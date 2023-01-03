@@ -16,9 +16,9 @@ postPet.post("/", async (req, res) => {
       location,
       gender,
     });
-    res.status(200).send("Mascota creada correctamente.");
+    res.status(200).json("Mascota creada correctamente.");
   } catch (error) {
-    res.status(400).send("Error al crear la mascota.");
+    res.status(400).json(error.message);
   }
 });
 

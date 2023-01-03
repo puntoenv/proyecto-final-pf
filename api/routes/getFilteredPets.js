@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { petsFiltered } = require("./controllers/filters/petsFiltered");
+const petsFiltered = require("./controllers/filters/petsFiltered");
 const router = Router();
 
 // localhost:3001/filter?
@@ -9,12 +9,11 @@ router.get("/", async (req, res) => {
   console.log(type, size, age, gender, location);
   try {
     const petsFilters = await petsFiltered({ type, size, age, gender });
+
     res.json(petsFilters);
   } catch (error) {
     res.status(400).json(error.message);
   }
-
-  res.json("no estas filtrando nada");
 });
 
 module.exports = router;
