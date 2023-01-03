@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const detail = require("./detail.js");
+const allPets = require("./allPets.js");
+const postPet = require("./postPet.js");
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.use("/detail", detail);
+router.use("/pets", allPets);
+router.use("/postPet", postPet);
 
 module.exports = router;
