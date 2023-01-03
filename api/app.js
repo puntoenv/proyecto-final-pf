@@ -1,15 +1,25 @@
-var createError = require("http-errors");
+require("dotenv").config();
 var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-
-// var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users");
+var morgan = require("morgan");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const getFilteredPets = require("./routes/getFilteredPets");
 
 var app = express();
 
-// app.use("/", indexRouter);
-// app.use("/users", usersRouter);
+const corsConfig = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsConfig));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
+app.use(morgan("tiny"));
+
+app.use("/filter", getFilteredPets);
 
 module.exports = app;
