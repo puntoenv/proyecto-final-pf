@@ -14,13 +14,13 @@ const productSchema = new Schema({
     min: 15,
     required: true
   },
-  Price:{
+  price:{
     type: Number,
     required: true
   }, 
   image: String,
-  Stock: Number,
-  Category: {
+  stock: Number,
+  category: {
     type: Schema.Types.ObjectId,
     ref: 'Category'
   }
