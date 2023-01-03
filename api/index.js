@@ -14,4 +14,4 @@ client.connect((err) => {
   client.close();
 });
 
-conn.listen(3000, () => console.log("SERVER OPEN IN PORT"));
+conn.listen(3001, () => console.log("SERVER OPEN IN PORT"));
