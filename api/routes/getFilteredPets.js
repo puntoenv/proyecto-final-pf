@@ -8,8 +8,8 @@ router.get("/", async (req, res) => {
   const { type, size, age, gender, location } = req.query;
   console.log(type, size, age, gender, location);
   try {
-    const petsFiltered = await petsFiltered({ type, size, age, gender });
-    res.json(petsFiltered);
+    const petsFilters = await petsFiltered({ type, size, age, gender });
+    res.json(petsFilters);
   } catch (error) {
     res.status(400).json(error.message);
   }
