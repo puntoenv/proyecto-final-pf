@@ -27,14 +27,15 @@ const userSchema = new Schema({
     type: String,
     min: 8,
   },
-  posts: [{ 
+  pets: [{ 
     type: Schema.Types.ObjectId,
-     ref: 'Post',
+     ref: 'Pet',
  }],
   favorites: [{
     type: Schema.Types.ObjectId,
     ref: 'Favorites'
   }],
+
 });
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken." });

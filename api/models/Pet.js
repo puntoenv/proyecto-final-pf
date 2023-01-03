@@ -28,7 +28,11 @@ const petSchema = new Schema({
         type: String,
         required: true
     },
-    kind:{
+    type:{
+        type: String,
+        required: true
+    },
+    location: {
         type: String,
         required: true
     }
