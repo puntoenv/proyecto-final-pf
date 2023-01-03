@@ -1,4 +1,3 @@
-require("dotenv").config();
 const conn = require("./app");
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
