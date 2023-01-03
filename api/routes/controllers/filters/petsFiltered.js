@@ -5,16 +5,14 @@ const petsFiltered = async (typesFilters) => {
 
   for (const key in typesFilters) {
     if (typesFilters[key] !== undefined) {
-      console.log(typesFilters[key]);
       const pets = await Pet.find({ key: typesFilters[key] });
-
-      const petsSet = new Set(pets.map((p) => p._id));
-      const data = Array.from(petsSet);
-      console.log(data);
-      petsFiltered = [...petsFiltered, ...data];
+      petsFiltered = pets;
     }
   }
-  return petsFiltered;
+
+  const petsSet = [...new Set(petsFiltered.map((p) => p.id))];
+  const pets = await Pet.find({ id: petsSet });
+  return pets;
 };
 
 module.exports = petsFiltered;
