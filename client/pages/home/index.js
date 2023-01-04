@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Link from "next/link";
 
 //const inter = Inter({ subsets: ['latin'] })
@@ -15,13 +15,13 @@ export default function Home() {
       <div className={styles.home}>
         <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
-          <Link href="/adoptar">
+          <Link href="/petAdoption">
             <h1>Adoptar </h1>
           </Link>
           <Link href="/Apóyanos">
             <h1>Apóyanos  </h1>
           </Link>
-          <Link href="/ingresoRegistro">
+          <Link href="/login">
             <h1>Ingresar | Registrarse</h1>
           </Link>
           </h1>
