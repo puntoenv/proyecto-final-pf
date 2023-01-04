@@ -45,6 +45,7 @@ const userSchema = new Schema({
       ref: "Product",
     },
   ],
+  hidden: { type: Boolean, default: false },
 });
 
 userSchema.plugin(uniqueValidator, { message: "is already taken." });

@@ -42,6 +42,8 @@ const petSchema = new Schema({
       ref: "Pet",
     },
   ],
+  hidden: {type: Boolean,
+    default: false}
 });
 
 module.exports = mongoose.model("Pet", petSchema);
