@@ -9,8 +9,8 @@ export default function () {
       </Head>
       <Link href="/home">
         <button className={styles.button}>
-          {" "}
-          Click aqui para ir a la pagina principal{" "}
+          
+          Click aqui para ir a la pagina principal
         </button>
       </Link>
     </div>
