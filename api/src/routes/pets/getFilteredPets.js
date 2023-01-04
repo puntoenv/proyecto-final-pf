@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const petsFiltered = require("./controllers/filters/petsFiltered");
+const petsFiltered = require("../filters/petsFiltered");
 const router = Router();
 
 // localhost:3001/filter?

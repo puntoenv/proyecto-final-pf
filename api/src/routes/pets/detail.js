@@ -1,6 +1,6 @@
 const express = require("express");
 const detail = express.Router();
-const Pet = require("../models/Pet.js");
+const Pet = require("../../../models/Pet.js");
 
 detail.get("/:id", async (req, res) => {
   try {
