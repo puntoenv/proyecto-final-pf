@@ -7,9 +7,14 @@ export const caracterSlice = createSlice({
     municipios: []
   },
   reducers: {
-
+    getPersonajes: (state, action) => {
+      state.provi = action.payload
+    },
+    getmunicipios: (state, action) => {
+      state.municipios = action.payload
+    }
   }
 })
 
-export const { } = caracterSlice.actions
+export const { getPersonajes, getmunicipios } = caracterSlice.actions
 export default caracterSlice.reducer

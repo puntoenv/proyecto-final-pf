@@ -11,5 +11,6 @@ router.use("/pets", allPets);
 router.use("/postPet", postPet);
 router.use("/auth", routeAuth);
 router.use("/user", user);
+router.use("/postUser", user);
 
 module.exports = router;

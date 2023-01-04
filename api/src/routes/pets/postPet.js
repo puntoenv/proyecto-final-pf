@@ -2,7 +2,7 @@ const { Router } = require("express");
 const Pet = require("../../models/Pet");
 const postPet = Router();
 
-postPet.post("/", async (req, res) => {
+postPet.post("/post-pet", async (req, res) => {
   try {
     let {
       name,
