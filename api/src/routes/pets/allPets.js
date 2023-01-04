@@ -4,7 +4,7 @@ const Pet = require("../../models/Pet.js");
 
 allPets.get("/", async (req, res) => {
   try {
-    let pets = await Pet.find();
+    let pets = await Pet.find({hidden:false});
     res.status(200).send(pets);
   } catch (error) {
     res.status(400).send(error.message);

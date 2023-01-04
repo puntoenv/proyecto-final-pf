@@ -5,13 +5,13 @@ const petsFiltered = async (typesFilters) => {
 
   for (const key in typesFilters) {
     if (typesFilters[key] !== undefined) {
-      const pets = await Pet.find({ key: typesFilters[key] });
+      const pets = await Pet.find({ [key]: typesFilters[key] });
       petsFiltered = pets;
     }
   }
 
   const petsSet = [...new Set(petsFiltered.map((p) => p.id))];
-  const pets = await Pet.find({ id: petsSet });
+  const pets = await Pet.find({ _id: petsSet });
   return pets;
 };
 
