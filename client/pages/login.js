@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function () {
     const {data: session} = useSession()
     console.log(session)
-    
+     
     return (
         <>
             {

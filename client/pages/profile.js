@@ -19,7 +19,7 @@ const profile = () => {
                 </div>
             }
         </div>
-    );
+    ); 
 };
 
 export default profile
