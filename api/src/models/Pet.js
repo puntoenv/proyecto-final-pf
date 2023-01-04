@@ -6,7 +6,7 @@ const petSchema = new Schema({
     type: String,
     lowercase: true,
     required: [true, "can't be blank"],
-    match: [/^[a-zA-Z0-9]+$/, "invalid name"],
+    match: [/^[a-zA-Z0-9\s]+$/, "invalid name"],
   },
   age: {
     type: Number,
@@ -33,7 +33,7 @@ const petSchema = new Schema({
     required: true,
   },
   location: {
-    type: Object,
+    type: Array,
     required: true,
   },
   user: [
@@ -42,8 +42,7 @@ const petSchema = new Schema({
       ref: "Pet",
     },
   ],
-  hidden: {type: Boolean,
-    default: false}
+  hidden: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Pet", petSchema);
