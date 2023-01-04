@@ -1,6 +1,6 @@
 const { Router } = require("express");
+const Pet = require("../../models/Pet");
 const postPet = Router();
-const Pet = require("../models/Pet.js");
 
 postPet.post("/", async (req, res) => {
   try {
