@@ -49,7 +49,7 @@ export default function PetAdoption () {
                 </select>
             </div>
             <div>
-                { hard.map(mascota => <Card nombre={ mascota.nombre} edad={ mascota.edad} genero={ mascota.genero}/>) }
+                { hard.map((mascota, index) => <Card key={index} nombre={ mascota.nombre} edad={ mascota.edad} genero={ mascota.genero}/>) }
             </div>
         </div>
         </div>
