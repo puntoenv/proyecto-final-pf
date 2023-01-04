@@ -1,16 +1,18 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
+import styles from "../styles/landing.module.css";
+import Link from "next/link";
+import Head from "next/head";
+export default function () {
   return (
-    <>
+    <div className={styles.landing}>
       <Head>
-        <title>Home</title>
+        <title>Bienvenidos</title>
       </Head>
-    </>
-  )
+      <Link href="/home">
+        <button className={styles.button}>
+          {" "}
+          Click aqui para ir a la pagina principal{" "}
+        </button>
+      </Link>
+    </div>
+  );
 }
