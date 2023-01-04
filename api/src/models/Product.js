@@ -28,6 +28,8 @@ const productSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  hidden: {type: Boolean,
+    default: false}
 });
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken." });

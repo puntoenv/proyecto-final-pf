@@ -18,14 +18,14 @@ const userSchema = new Schema({
   image: String,
   mail: {
     type: String,
-    lowercase: true,
     unique: true,
     required: [true, "can't be blank"],
     match: [/\S+@\S+\.\S+/, "invalid mail"],
   },
   password: {
     type: String,
-    min: 8,
+    minlength: 8,
+    required: [true, "can't be blank"],
   },
   pets: [
     {
@@ -45,8 +45,9 @@ const userSchema = new Schema({
       ref: "Product",
     },
   ],
+  hidden: { type: Boolean, default: false },
 });
 
-UserSchema.plugin(uniqueValidator, { message: "is already taken." });
+userSchema.plugin(uniqueValidator, { message: "is already taken." });
 
 module.exports = mongoose.model("User", userSchema);
