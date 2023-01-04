@@ -1,18 +1,18 @@
 import Link from 'next/link'
 import Card from '../../components/Card'
 const hard = [
-    {nombre:'firu' ,edad:15 ,genero: 'masculino'},
-    {nombre:'pepe' ,edad:11 ,genero: 'masculino'},
-    {nombre:'pepa' ,edad:13 ,genero: 'femenino'},
-    {nombre:'yei' ,edad:3 ,genero: 'femenino'},
-    {nombre:'paper' ,edad:9 ,genero: 'masculino'},
-    {nombre:'key' ,edad:15 ,genero: 'femenino'},
-    {nombre:'mia' ,edad:8 ,genero: 'femenino'},
-    {nombre:'firulais' ,edad:5 ,genero: 'masculino'},
+  { nombre: 'firu', edad: 15, genero: 'masculino' },
+  { nombre: 'pepe', edad: 11, genero: 'masculino' },
+  { nombre: 'pepa', edad: 13, genero: 'femenino' },
+  { nombre: 'yei', edad: 3, genero: 'femenino' },
+  { nombre: 'paper', edad: 9, genero: 'masculino' },
+  { nombre: 'key', edad: 15, genero: 'femenino' },
+  { nombre: 'mia', edad: 8, genero: 'femenino' },
+  { nombre: 'firulais', edad: 5, genero: 'masculino' }
 ]
 
 export default function PetAdoption () {
-    return (
+  return (
         <div>
          <div>
           <nav>
@@ -49,12 +49,9 @@ export default function PetAdoption () {
                 </select>
             </div>
             <div>
-                {hard.map(mascota => <Card 
-                nombre={mascota.nombre} 
-                edad={mascota.edad} 
-                genero={mascota.genero}/>)}
+                { hard.map(mascota => <Card nombre={ mascota.nombre} edad={ mascota.edad} genero={ mascota.genero}/>) }
             </div>
         </div>
         </div>
-    )
-}
+  )
+};
