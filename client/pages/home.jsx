@@ -9,32 +9,48 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-       <Head>
-          <title>Home</title>
-        </Head>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className={styles.home}>
-        
-          <nav className={styles.navBar}>
-            <Link href="/adoptar">
-              <h1>Adoptar| </h1>
-            </Link>
-            <Link href="/Apóyanos">
-              <h1>Apóyanos | </h1>
-            </Link>
-            <Link href="/ingresoRegistro">
-              <h1>Ingresar | Registrarse</h1>
-            </Link>
-          </nav>
+        <nav className={styles.navBar}>
+          <h1 className={styles.textNav}>
+          <Link href="/adoptar">
+            <h1>Adoptar </h1>
+          </Link>
+          <Link href="/Apóyanos">
+            <h1>Apóyanos  </h1>
+          </Link>
+          <Link href="/ingresoRegistro">
+            <h1>Ingresar | Registrarse</h1>
+          </Link>
+          </h1>
+        </nav>
 
-          <div>
-             <form className={styles.searchBar} > 
-                <input className={styles.inputSearch} type="text" placeholder="Buscador..." />
-                <button className = {styles.buttonSearch} type="submit">Buscar</button>
-            </form> 
+        <div>
+          <form className={styles.searchBar}>
+            <input
+              className={styles.inputSearch}
+              type="text"
+              placeholder="Buscador..."
+            />
+            <button className={styles.buttonSearch} type="submit">
+              Buscar
+            </button>
+          </form>
         </div>
 
-        <div className={styles.sobreNosotros}>About us</div>
-        
+        <div className={styles.sobreNosotros}>
+          <h1 className={styles.textoNosotros}>
+            Nosotros somos Little Paws y nuestro objetivo es poder buscarles un
+            hogar y buenas condiciones de vida a los animalitos que estan
+            abandonados en la calle. Además contamos con un e-shop donde podes
+            comprarle comida, juguetes y muchas mas cosas a tu peludito. Con las
+            ganancias del e-shop, nosotros nos podemos financiar en mejorar
+            nuestro servicio y tambien ayudar a refugios y fundaciones de
+            animalitos.
+          </h1>
+        </div>
       </div>
     </>
   );
