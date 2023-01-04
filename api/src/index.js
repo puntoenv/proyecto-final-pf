@@ -4,7 +4,9 @@ const detail = require("./routes/pets/detail");
 const allPets = require("./routes/pets/allPets");
 const postPet = require("./routes/pets/postPet");
 const routeAuth = require("./routes/Auth/routeAuth");
+const petsFiltered = require("./routes/pets/getFilteredPets");
 
+router.use("/filter", petsFiltered);
 router.use("/detail", detail);
 router.use("/pets", allPets);
 router.use("/postPet", postPet);
