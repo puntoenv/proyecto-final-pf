@@ -3,7 +3,7 @@ const bcyrpt = require("bcrypt");
 const {
   schemaUserRegister,
 } = require("../../controllers/schemaValidations/schemaUser");
-const User = require("../models/User");
+const User = require("../../models/User");
 
 const router = Router();
 
