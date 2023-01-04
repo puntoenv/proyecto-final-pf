@@ -16,7 +16,7 @@
   color: rgb(45, 83, 45);
   cursor: pointer;
   /* display: inline-block; */
-  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
   text-align: center;
   text-decoration: none;
@@ -26,10 +26,11 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  position: absolute;top: 60%;
-  position: absolute;right: 40%;;
+  position: absolute;
+  top: 60%;
+  position: absolute;
+  right: 40%;
   /* align-items: center; */
-  
 }
 
 .button:hover {
