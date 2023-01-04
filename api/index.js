@@ -10,4 +10,4 @@ mongoose
   .then(() => console.log("db connected"))
   .catch((e) => console.log(e));
 
-conn.listen(3001, () => console.log("SERVER OPEN IN PORT"));
+conn.listen(PORT || 3001, () => console.log("SERVER OPEN IN PORT"));

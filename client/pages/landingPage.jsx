@@ -1,6 +1,6 @@
 import styles from "../styles/landing.module.css";
 import Link from "next/link";
-import Head from 'next/head'
+import Head from "next/head";
 export default function () {
   return (
     <div className={styles.landing}>

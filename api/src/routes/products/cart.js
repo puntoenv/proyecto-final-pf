@@ -1,6 +1,5 @@
 const { Router } = require("express");
 const User = require("../../models/User");
-
 const cart = Router();
 
 cart.get("/carrito", async (user_id) => {

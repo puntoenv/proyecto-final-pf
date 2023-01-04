@@ -1,6 +1,6 @@
 const { Router } = require("express");
+const Pet = require("../../models/Pet");
 const postPet = Router();
-const Pet = require("../models/Pet.js");
 
 postPet.post("/", async (req, res) => {
   try {
@@ -28,7 +28,7 @@ postPet.post("/", async (req, res) => {
     });
     res.status(200).json("Mascota creada correctamente.");
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(error);
   }
 });
 
