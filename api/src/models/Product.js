@@ -12,19 +12,22 @@ const productSchema = new Schema({
   description: {
     type: String,
     min: 15,
-    required: true
+    required: true,
   },
-  price:{
+  price: {
     type: Number,
-    required: true
-  }, 
+    required: true,
+  },
   image: String,
   stock: Number,
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'Category'
-  }
-
+    ref: "Category",
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 UserSchema.plugin(uniqueValidator, { message: "is already taken." });

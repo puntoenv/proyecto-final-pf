@@ -1,4 +1,4 @@
-const Pet = require("../../../models/Pet.js");
+const Pet = require("../../models/Pet");
 
 const petsFiltered = async (typesFilters) => {
   let petsFiltered = [];
