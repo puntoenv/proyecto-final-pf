@@ -6,7 +6,7 @@
   width: 100%;
   margin-left: 90%;
 }
-.textNav{
+.textNav {
   display: flex;
   justify-content: right;
   align-items: right;
@@ -20,9 +20,16 @@
   position: absolute;
   height: 18ch;
   width: 100%;
-  
 }
 
+.adopcion{
+  font-size: 3ch;
+  display:flex;
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 5%;
+}
 .textoNosotros {
   font-size: 3ch;
   display: flex;
@@ -30,6 +37,7 @@
   align-items: center;
   margin-left: 15%;
   margin-right: 15%;
+  
 }
 
 .searchBar {
