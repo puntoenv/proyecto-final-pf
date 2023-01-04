@@ -8,7 +8,7 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
     required: [true, "can't be blank"],
-    match: [/^[a-zA-Z0-9]+$/, "invalid name"],
+    match: [/^[a-zA-Z0-9\s]+$/, "invalid name"],
   },
   bio: String,
   age: {
