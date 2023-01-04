@@ -11,4 +11,7 @@ allProducts.get("/support-us", async (req, res) => {
   }
 });
 
+
+ // PRUEBA
+ 
 module.exports = allProducts;
