@@ -9,6 +9,6 @@ const user = require("./routes/users/profile");
 router.use("/pets", detail, allPets, postPet);
 router.use("/auth", routeAuth);
 router.use("/user", user);
-router.use("/postUser", userPost);
+
 
 module.exports = router;
