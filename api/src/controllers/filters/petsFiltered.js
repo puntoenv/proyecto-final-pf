@@ -11,7 +11,7 @@ const petsFiltered = async (typesFilters) => {
     }
   }
   const petsSet = [...new Set(petsFiltered.map((p) => p.id))];
-  const pets = await Pet.find({ _id: petsSet });
+  const pets = await Pet.find({ _id: petsSet, hidden: false });
   return pets;
 };
 
