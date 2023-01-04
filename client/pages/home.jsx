@@ -40,8 +40,10 @@ export default function Home() {
           </form>
         </div>
 
+        <p className={styles.adopcion}> Parrafo sobre adopcion</p>
+
         <div className={styles.sobreNosotros}>
-          <h1 className={styles.textoNosotros}>
+          <p className={styles.textoNosotros}>
             Nosotros somos Little Paws y nuestro objetivo es poder buscarles un
             hogar y buenas condiciones de vida a los animalitos que estan
             abandonados en la calle. Además contamos con un e-shop donde podes
@@ -49,7 +51,7 @@ export default function Home() {
             ganancias del e-shop, nosotros nos podemos financiar en mejorar
             nuestro servicio y tambien ayudar a refugios y fundaciones de
             animalitos.
-          </h1>
+          </p>
         </div>
       </div>
     </>
