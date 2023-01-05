@@ -14,6 +14,7 @@ export default function Card ({ nombre, imagen, edad, genero, tamaño, tipo, loc
             <p>Género: { genero }</p>
             <p>Tamaño: { tamaño }</p>
             <p>Tipo: { tipo }</p>
+            <p>Locacion: { locacion }</p>
         </div>
   )
 };

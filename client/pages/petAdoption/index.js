@@ -5,21 +5,12 @@ import { getPets } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-const hard = [
-  { nombre: "firu", edad: 15, genero: "masculino", id: 1 },
-  { nombre: "pepe", edad: 11, genero: "masculino", id: 2  },
-  { nombre: "pepa", edad: 13, genero: "femenino", id: 3  },
-  { nombre: "yei", edad: 3, genero: "femenino", id: 4 },
-  { nombre: "paper", edad: 9, genero: "masculino", id: 5  },
-  { nombre: "key", edad: 15, genero: "femenino", id: 6  },
-  { nombre: "mia", edad: 8, genero: "femenino", id: 7  },
-  { nombre: "firulais", edad: 5, genero: "masculino", id: 8  },
-];
 
 export default function PetAdoption() {
+
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()
- /*  const pets = useSelector((state) =>{state.mascotas.mascotas}) */
+  const pets = useSelector( state => state.mascotas.mascotas)
 
   useEffect(()=>{
     dispatch(getPets())
@@ -77,13 +68,14 @@ export default function PetAdoption() {
           </select>
         </div>
         <div>
-          {hard.map((mascota) => (
-            <Card key={mascota.id}
-              nombre={mascota.nombre}
-              edad={mascota.edad}
-              genero={mascota.genero}
+            {pets?.map((mascota) => (
+            <Card key={mascota._id}
+              nombre={mascota.name}
+              /* imagen={mascota.image} */ 
+              edad={mascota.age}
+              genero={mascota.gender}
             />
-          ))}
+          ))} 
         </div>
       </div>
     </div>
