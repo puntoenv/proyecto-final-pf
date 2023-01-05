@@ -39,18 +39,22 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { error } = schemaUserLogin.validate(req.body);
-    if (error) return res.json({ error: error.details[0].context });
+    if (error) {
+      return res.json({ error: error.details[0].context });
+    }
 
-    const user = await User.find({ mail: req.body.mail });
-    if (!user) return res.json({ error: "Credenciales no validas" });
-
+    const user = await User.findOne({ mail: req.body.mail });
+    if (!user) {
+      return res.json({ error: "Credenciales no validas" });
+    }
     const passwordValidate = await bcyrpt.compare(
       req.body.password,
       user.password
     );
 
-    if (!passwordValidate)
+    if (!passwordValidate) {
       return res.json({ error: "Credenciales no validas" });
+    }
 
     const token = jwt.sign(
       {
