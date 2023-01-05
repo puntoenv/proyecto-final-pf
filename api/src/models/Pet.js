@@ -33,7 +33,7 @@ const petSchema = new Schema({
     required: true,
   },
   location: {
-    type: Array,
+    type: Object,
     required: true,
   },
   user: [

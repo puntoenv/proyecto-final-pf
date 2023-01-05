@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Card from "../../components/Card";
+import { useState } from "react";
+
 const hard = [
   { nombre: "firu", edad: 15, genero: "masculino", id: 1 },
   { nombre: "pepe", edad: 11, genero: "masculino", id: 2  },
@@ -12,6 +14,14 @@ const hard = [
 ];
 
 export default function PetAdoption() {
+  const [search, setSearch] = useState('')
+  const handlerSearch = (e) => {
+    setSearch(e.target.value)
+  }
+  const handlerSearchButton = () => {
+    alert(`buscando a ${search}`);
+    setSearch('');
+  }
   return (
     <div>
       <div>
@@ -23,8 +33,8 @@ export default function PetAdoption() {
       </div>
       <div>
         <div>
-          <input type="text" placeholder="Mascota..." />
-          <button>Buscar</button>
+          <input type="text" placeholder="Mascota..." onChange={handlerSearch} value={search}/>
+          <button onClick={handlerSearchButton}>Buscar</button>
         </div>
         <div className="filtros">
           <select>
