@@ -15,14 +15,12 @@ const buyProduct = require("./routes/products/buyProduct");
 
 // AGREGAR PARA EL PRIMER SPRINT EL VERIFY AUTH PARA LAS SIGUIENTES RUTAS
 /* RUTAS SEGURAS
-
 detail pet
 detail produt
 profile user
 update pet
 compra producto
 post pet
-
 */
 
 router.use("/pets", allPets);
