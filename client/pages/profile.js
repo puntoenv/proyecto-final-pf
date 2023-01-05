@@ -1,6 +1,7 @@
 import React from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
+import styles from '../styles/profile.module.css'
 
 const profile = () => {
     const {data: session} = useSession()
