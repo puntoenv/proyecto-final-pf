@@ -1,26 +1,49 @@
-.navBar {
-  display: flex;
-  float: right;
-  background-color: rgb(97, 118, 75);
-  height: 7ch;
-  width: 100%;
-  margin-left: 90%;
-}
-.textNav {
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  padding-left: 50%;
-  font-size: 3ch;
+.header{
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.sobreNosotros {
-  background-color: rgb(97, 118, 75);
-  top: 40%;
-  position: absolute;
-  height: 18ch;
-  width: 100%;
+.nav{
+  display:flex;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f26538 ;
 }
+.navMenuList{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 24px;
+  color: white;
+  /* font-size: 12px; */
+}
+.link{
+  font-size: 12px;
+  position: relative;
+}
+.link::before{
+  content:"";
+  position: absolute;
+  width: 0%;
+  bottom: -16px;
+  left: 0;
+  height: 6px;
+  transition: all 0,2s;
+  background-color: white;
+}
+.link:hover::before{
+  width:100%;
+
+
+}
+
+
+
+
+
+
 
 .adopcion{
   font-size: 3ch;
@@ -37,7 +60,16 @@
   align-items: center;
   margin-left: 15%;
   margin-right: 15%;
-  
+}
+
+.sobreNosotros {
+  background-color: rgb(97, 118, 75);
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18ch;
+  width: 100%;
 }
 
 .searchBar {
@@ -71,7 +103,7 @@
 } */
 
 .home {
-  background-color: rgb(229, 217, 182);
+  background-color: #fffbac;
   background-size: cover;
   /* display: flex; */
   justify-content: center;

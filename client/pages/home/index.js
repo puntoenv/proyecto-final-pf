@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
-
+import NavBar from '../../components/NavBar/NavBar'
 //const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -12,8 +12,12 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
+      
       <div className={styles.home}>
-        <nav className={styles.navBar}>
+      <NavBar/>
+      
+
+        {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
           <Link href="/petAdoption">
             <h1>Adoptar </h1>
@@ -25,9 +29,9 @@ export default function Home() {
             <h1>Ingresar | Registrarse</h1>
           </Link>
           </h1>
-        </nav>
+        </nav> */}
 
-        <div>
+        {/* <div>
           <form className={styles.searchBar}>
             <input
               className={styles.inputSearch}
@@ -52,7 +56,7 @@ export default function Home() {
             nuestro servicio y tambien ayudar a refugios y fundaciones de
             animalitos.
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );
