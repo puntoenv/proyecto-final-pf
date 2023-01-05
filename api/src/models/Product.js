@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const uniqueValidator = require("mongoose-unique-validator");
+//const uniqueValidator = require("mongoose-unique-validator");
 
 const productSchema = new Schema({
   name: {
@@ -32,6 +32,6 @@ const productSchema = new Schema({
     default: false}
 });
 
-UserSchema.plugin(uniqueValidator, { message: "is already taken." });
+//UserSchema.plugin(uniqueValidator, { message: "is already taken." });
 
 module.exports = mongoose.model("Product", productSchema);
