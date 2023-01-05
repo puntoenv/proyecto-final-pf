@@ -47,6 +47,7 @@ const userSchema = new Schema({
     },
   ],
   hidden: { type: Boolean, default: false },
+  administrator: { type: Boolean, default: false }
 });
 
 userSchema.plugin(uniqueValidator, { message: "is already taken." });
