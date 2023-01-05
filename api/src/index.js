@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const detail = require("./routes/pets/detail");
 const allPets = require("./routes/pets/allPets");
 const postPet = require("./routes/pets/postPet");
@@ -26,7 +25,6 @@ router.use("/pets", allPets);
 router.use("/pets", verifyAuth, detail);
 router.use("/pets", verifyAuth, postPet);
 router.use("/auth", routeAuth);
-router.use("products");
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 router.use("/products", postproducts);
