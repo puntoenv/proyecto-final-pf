@@ -7,7 +7,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
 //const inter = Inter({ subsets: ['latin'] })
-
+import ProductSlider from "../../components/ProductSlider/ProductSlider";
 export default function Home() {
   return (
     <>
@@ -18,6 +18,9 @@ export default function Home() {
       <div className={styles.home}>
       <NavBar/>
       <Nosotros/>
+      {/* <div className={styles.carrusel}>
+        <ProductSlider/>
+      </div> */}
       <Footer/>
       
       

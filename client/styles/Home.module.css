@@ -32,6 +32,7 @@
   height: 6px;
   transition: all 0,2s;
   background-color: white;
+
 }
 .link:hover::before{
   width:100%;
@@ -92,7 +93,7 @@
   margin-right: 15%;
 }
 
-.sobreNosotros {
+/* .sobreNosotros {
   background-color: rgb(97, 118, 75);
   top: 40%;
   display: flex;
@@ -100,7 +101,7 @@
   align-items: center;
   height: 18ch;
   width: 100%;
-}
+} */
 
 .searchBar {
   top: 60%;
