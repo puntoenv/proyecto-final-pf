@@ -2,25 +2,16 @@ const { Router } = require("express");
 const postProduct = Router();
 
 const Product = require("../../models/Product.js");
-//coment
-postProduct.post("/", async (req, res) => {
+postProduct.post("/post", async (req, res) => {
   try {
-    let {
+    let { name, description, image, price, stock, category } = req.body;
+    await Product.create({
       name,
       description,
       image,
       price,
       stock,
-      category
-     
-    } = req.body;
-    await Product.create({
-        name,
-        description,
-        image,
-        price,
-        stock,
-        category
+      category,
     });
     res.status(200).json("Producto Creado");
   } catch (error) {
