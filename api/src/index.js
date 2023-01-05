@@ -6,6 +6,22 @@ const postPet = require("./routes/pets/postPet");
 const routeAuth = require("./routes/Auth/routeAuth");
 const verifyAuth = require("../middlewares/mw-jwt");
 const user = require("./routes/users/profile");
+const updateProfile = require("./routes/users/profile");
+const postproducts = require("./routes/products/postProduct");
+const getAllProducts = require("./routes/products/e-shop");
+
+// NO ESTA LISTO.....................
+const buyProduct = require("./routes/products/buyProduct");
+
+// AGREGAR PARA EL PRIMER SPRINT EL VERIFY AUTH PARA LAS SIGUIENTES RUTAS
+/* RUTAS SEGURAS
+detail pet
+detail produt
+profile user
+update pet
+compra producto
+post pet
+*/
 
 router.use("/pets", allPets);
 router.use("/pets", detail);
