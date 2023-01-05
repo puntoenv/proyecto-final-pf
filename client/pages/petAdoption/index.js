@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "../../components/Card";
+import Card from "../../components/Card/index.js";
 import { useState } from "react";
 import { getPets } from "../../stores/actions";
 import { useEffect } from "react";
@@ -53,8 +53,8 @@ export default function PetAdoption() {
             <option value="" hidden>
               Género
             </option>
-            <option value="femenino">Femenino</option>
-            <option value="masculino">Masculino</option>
+            <option value="hembre">Hembra</option>
+            <option value="macho">Macho</option>
           </select>
           <select>
             <option value="" hidden>
@@ -75,9 +75,12 @@ export default function PetAdoption() {
             <Card
               key={mascota._id}
               nombre={mascota.name}
-              /* imagen={mascota.image} */
+              imagen={mascota.image}
               edad={mascota.age}
               genero={mascota.gender}
+              tamaño={mascota.size}
+              tipo={mascota.type}
+              locacion={mascota.location}
             />
           ))}
         </div>
