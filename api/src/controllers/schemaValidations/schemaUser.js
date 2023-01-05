@@ -11,6 +11,13 @@ const schemaUserRegister = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
+const schemaUserLogin = Joi.object({
+  mail: Joi.string()
+    .required()
+    .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } }),
+  password: Joi.string().min(8).required(),
+});
 module.exports = {
   schemaUserRegister,
+  schemaUserLogin,
 };
