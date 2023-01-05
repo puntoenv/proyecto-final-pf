@@ -5,24 +5,22 @@ import { getPets } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function PetAdoption() {
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const pets = useSelector((state) => state.mascotas.mascotas);
 
-  const [search, setSearch] = useState('')
-  const dispatch = useDispatch()
-  const pets = useSelector( state => state.mascotas.mascotas)
-
-  useEffect(()=>{
-    dispatch(getPets())
-  },[])
+  useEffect(() => {
+    dispatch(getPets());
+  }, []);
 
   const handlerSearch = (e) => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
   const handlerSearchButton = () => {
     alert(`buscando a ${search}`);
-    setSearch('');
-  }
+    setSearch("");
+  };
   return (
     <div>
       <div>
@@ -34,7 +32,12 @@ export default function PetAdoption() {
       </div>
       <div>
         <div>
-          <input type="text" placeholder="Mascota..." onChange={handlerSearch} value={search}/>
+          <input
+            type="text"
+            placeholder="Mascota..."
+            onChange={handlerSearch}
+            value={search}
+          />
           <button onClick={handlerSearchButton}>Buscar</button>
         </div>
         <div className="filtros">
@@ -68,14 +71,15 @@ export default function PetAdoption() {
           </select>
         </div>
         <div>
-            {pets?.map((mascota) => (
-            <Card key={mascota._id}
+          {pets?.map((mascota) => (
+            <Card
+              key={mascota._id}
               nombre={mascota.name}
-              /* imagen={mascota.image} */ 
+              /* imagen={mascota.image} */
               edad={mascota.age}
               genero={mascota.gender}
             />
-          ))} 
+          ))}
         </div>
       </div>
     </div>
