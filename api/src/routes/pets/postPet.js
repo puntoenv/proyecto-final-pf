@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Pet = require("../../models/Pet");
 const postPet = Router();
+const cloudinary = require("../../../cloud.js");
 
 postPet.post("/post-pet", async (req, res) => {
   try {
@@ -15,12 +16,13 @@ postPet.post("/post-pet", async (req, res) => {
       location,
       userId,
     } = req.body;
+    const result = await cloudinary.uploader.upload(image);
     await Pet.create({
       name,
       size,
       age,
       description,
-      image,
+      image: result.url,
       type,
       location,
       gender,
