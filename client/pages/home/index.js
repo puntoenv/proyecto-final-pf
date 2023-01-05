@@ -1,33 +1,48 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Link from "next/link";
-
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from "../../components/Footer/footer";
+import Nosotros from "../../components/infoHome/nosotros";
+import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
-
+import ProductSlider from "../../components/ProductSlider/ProductSlider";
 export default function Home() {
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
+      
       <div className={styles.home}>
-        <nav className={styles.navBar}>
+      <NavBar/>
+      <Nosotros/>
+      <div className={styles.carruselAnimals}>
+        <ProductSlider/>
+        <ProductSliderEshop/>
+      </div>
+
+      <Footer/>
+      
+      
+
+        {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
-          <Link href="/adoptar">
+          <Link href="/petAdoption">
             <h1>Adoptar </h1>
           </Link>
           <Link href="/Apóyanos">
             <h1>Apóyanos  </h1>
           </Link>
-          <Link href="/ingresoRegistro">
+          <Link href="/login">
             <h1>Ingresar | Registrarse</h1>
           </Link>
           </h1>
-        </nav>
+        </nav> */}
 
-        <div>
+        {/* <div>
           <form className={styles.searchBar}>
             <input
               className={styles.inputSearch}
@@ -52,7 +67,7 @@ export default function Home() {
             nuestro servicio y tambien ayudar a refugios y fundaciones de
             animalitos.
           </p>
-        </div>
+        </div> */}
       </div>
     </>
   );
