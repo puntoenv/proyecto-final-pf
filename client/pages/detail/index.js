@@ -19,20 +19,47 @@ import {getper,getmuni} from '..//..//stores/actions'
 function index() {
   const dispatch = useDispatch()
   const provi = useSelector(state => state.caracter.provi.provincias)
-  
   const munici = useSelector (state => state.caracter.municipios.municipios)
-   const [deta, setdeta] = useState()
+   const [deta, setdeta] = useState(
+    {
+      size:'',
+      type:'',
+      age:'',
+      gender:'',
+      location:{}
+    }
+   )
+  console.log(deta)
    useEffect(() => {
     dispatch(getper())
   }, [])
+  
    const handelprovincia = (e) => {
        const {name, value} = e.target;
        e.preventDefault()
        dispatch(getmuni(value))
+       setdeta({...deta,[name]:{provincia:value}})
    }
+   const handelciudad = (e)=> {
+    const {name, value} = e.target;
+    e.preventDefault()
+    setdeta({...deta,[name]:{...deta.location,municipio:value}})
+}
+    const handelselector = (e) => {
+      const {name, value} = e.target;
+      e.preventDefault()
+      setdeta({...deta,[name]:value})
+    }
+    const handenumber = (e)=> {
+      const {name, value} = e.target;
+      e.preventDefault()
+      const number = parseInt(value)
+      number > 0 && number <=20? setdeta({...deta,[name]:value}) : console.log('error')
+  }
 
   return (
     <>
+    <h2>filtros</h2>
     <p></p>
     <select name="size" onChange={(e)=> handelselector(e)}>
             <option disabled>Seleccione el tipo de tamaño...</option>
@@ -70,11 +97,15 @@ function index() {
         <option key="femenino" value="femenino">femenino</option>
     </select>
     <p></p>
+    <h2>cards</h2>
     {mock.map((detail)=><Card
     key={detail.id}
     nombre={detail.name}
     edad={detail.age}
     genero={detail.gender}
+    tamaño={detail.size}
+    tipo={detail.type}
+    locacion={detail.location}
     />)}
     </>
   )
