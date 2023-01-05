@@ -1,0 +1,83 @@
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import Card from "../../components/Card"
+import {getper,getmuni} from '..//..//stores/actions'
+ let mock =[ {
+    id: 123, 
+    name: "ju",
+    size: "mediano",
+    age: 4,
+    description: "ff",
+    image: "https://images.unsplash.com/photo-1591871937631-2f64059d234f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",
+    type: "aves",
+    location: {
+        provincia: "Misiones",
+        municipio: "Apóstoles"
+    },
+    gender: "masculino"
+}]
+function index() {
+  const dispatch = useDispatch()
+  const provi = useSelector(state => state.caracter.provi.provincias)
+  
+  const munici = useSelector (state => state.caracter.municipios.municipios)
+   const [deta, setdeta] = useState()
+   useEffect(() => {
+    dispatch(getper())
+  }, [])
+   const handelprovincia = (e) => {
+       const {name, value} = e.target;
+       e.preventDefault()
+       dispatch(getmuni(value))
+   }
+
+  return (
+    <>
+    <p></p>
+    <select name="size" onChange={(e)=> handelselector(e)}>
+            <option disabled>Seleccione el tipo de tamaño...</option>
+            <option key="grande" value="grande">grande</option>
+            <option key="mediano" value="mediano">mediano</option>
+            <option key="pequeño" value="pequeño">pequeño</option>
+    </select>
+    <p></p>
+    <p></p>
+    <input type='number' name='age' placeholder='Ingrese la edad' onChange={(e)=>{handenumber(e)}} />
+    <p></p>
+    <select name="type" onChange={(e)=> handelselector(e)}>
+      <option disabled>tipo</option>
+      <option key="gatos" value="gatos">gatos</option>
+      <option key="perros" value="perros">perros</option>
+      <option key="aves" value="aves">aves</option>
+      <option key="peces" value="peces">peces</option>
+    </select>
+    <p></p>
+    <select name="location" onChange={(e)=> handelprovincia(e)}>
+        <option>provincia</option>
+        {provi?.map((el) => <option key={el.nombre} value={el.nombre}>{el.nombre}</option>)}
+    </select>
+    <p></p>
+    <select name="location" onChange={e=> handelciudad(e)}>
+        <option>ciudad</option>
+        {munici?.map((el) => <option key={el.nombre} value={el.nombre}>{el.nombre}</option>)}
+       
+    </select>
+    <p></p>
+    <p></p>
+    <select name="gender" onChange={e=> handelselector(e)}>
+        <option>genero</option>
+        <option key="masculino" value="masculino">masculino</option>
+        <option key="femenino" value="femenino">femenino</option>
+    </select>
+    <p></p>
+    {mock.map((detail)=><Card
+    key={detail.id}
+    nombre={detail.name}
+    edad={detail.age}
+    genero={detail.gender}
+    />)}
+    </>
+  )
+}
+
+export default index
