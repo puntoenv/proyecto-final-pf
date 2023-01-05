@@ -9,7 +9,6 @@ allPets.get("/:filter", async (req, res) => {
 
   try {
     if (filter === "all") {
-    
       const pets = await Pet.find({ hidden: false });
 
       res.json({ error: null, pets });
