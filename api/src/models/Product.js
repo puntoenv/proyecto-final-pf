@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const uniqueValidator = require("mongoose-unique-validator");
+// const uniqueValidator = require("mongoose-unique-validator");
 
 const productSchema = new Schema({
   name: {
     type: String,
-    unique: true,
+    // unique: true,
     required: true,
     lowercase: true,
   },
@@ -20,18 +20,15 @@ const productSchema = new Schema({
   },
   image: String,
   stock: Number,
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: "Category",
-  },
-  user: {
+  category: Array,
+  boughtBy: [{
     type: Schema.Types.ObjectId,
     ref: "User",
-  },
+  }],
   hidden: {type: Boolean,
     default: false}
 });
 
-UserSchema.plugin(uniqueValidator, { message: "is already taken." });
+// productSchema.plugin(uniqueValidator, { message: "is already taken." });
 
 module.exports = mongoose.model("Product", productSchema);
