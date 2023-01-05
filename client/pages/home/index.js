@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../../styles/Home.module.css";
 import Link from "next/link";
-import NavBar from '../../components/NavBar/NavBar'
+import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
 import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
@@ -15,15 +15,26 @@ export default function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      
+
       <div className={styles.home}>
-      <NavBar/>
-      <Nosotros/>
-      <div className={styles.carruselAnimals}>
-        <ProductSlider/>
-        <ProductSliderEshop/>
-      </div>
-      <Footer/>
+        <NavBar />
+        <Nosotros />
+
+        <div className={styles.carruselAnimals}>
+          <Link className={styles.linkAdoptar} href="/petAdoption">
+            <h1>Adoptame!</h1>
+          </Link>
+          <ProductSlider />
+       
+        <div className={styles.carruselEshop}>
+          <Link className={styles.linkEshop} href="/eshop">
+            <h1>E-shop</h1>
+          </Link>
+          <ProductSliderEshop />
+          </div>
+        </div>
+
+        <Footer />
 
         {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>

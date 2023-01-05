@@ -38,7 +38,7 @@
 }
 
 .infoNosotros {
-  margin-top: 2%;
+  margin-top: 1%;
   margin-left: 30%;
   margin-right: 30%;
   display: flex;
@@ -55,6 +55,27 @@
   height: 20%;
 }
 
+.infoAdopcion{
+  margin-top: 1%;
+  margin-left: 30%;
+  margin-right: 30%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #f26538;
+  justify-items: center;
+  justify-self: center;
+  font-size: 20px;
+}
+.tituloAdopcion{
+  text-align: center;
+  display: center;
+  justify-content: center;
+  margin-top: 2%;
+  color: #f26538;
+  font-size: 45px;
+}
+
 .aboutUs {
   text-align: center;
   display: center;
@@ -66,8 +87,28 @@
 
 .carruselAnimals{
   background-color: rgb(184, 209, 115);
-  margin-top: 29%;
+  margin-top: 3%;
   height: 80rem;
+
+}
+
+.linkEshop{
+
+  color: rgb(11, 88, 11);
+  text-align: center;
+  display: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.linkAdoptar{
+  padding-top: 2%;
+  display: flex;
+  color: rgb(11, 88, 11);
+  text-align: center;
+  display: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 /* .boxTitulo{
@@ -83,6 +124,7 @@
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 5%;
+  text-decoration: none;
 }
 .textoNosotros {
   font-size: 3ch;
@@ -103,7 +145,7 @@
   width: 100%;
 } */
 
-.searchBar {
+/* .searchBar {
   top: 60%;
   margin-left: 35%;
 }
@@ -132,13 +174,13 @@
  background-color:  rgb(14, 94, 111);
  border-bottom: 1px solid #e0e0e0; 
 } */
-
-.home {
+/* 
+ .home {
   background-color: #fffbac;
   background-size: cover;
-  /* display: flex; */
+   display: flex; 
   justify-content: center;
   background-repeat: no-repeat;
   align-items: center;
   height: 100vh;
-}
+}  */
