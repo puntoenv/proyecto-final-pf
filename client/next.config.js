@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['lh3.googleusercontent.com',  'platform-lookaside.fbsbx.com'], 
+    domains: ['lh3.googleusercontent.com',  'platform-lookaside.fbsbx.com', "cdn2.thedogapi.com", "olondriz.com"], 
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,4 +14,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;

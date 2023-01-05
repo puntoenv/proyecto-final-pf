@@ -28,6 +28,7 @@ function form() {
     const dispatch = useDispatch ();
     const provi = useSelector(state => state.caracter.provi.provincias)
     const munici = useSelector (state => state.caracter.municipios.municipios)
+   
    const [error, seterror] = useState()
    const [post, setpost] = useState({
        name: '',

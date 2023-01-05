@@ -20,3 +20,9 @@ export const getPets = () => async (dispatch) =>{
     let allPets = await axios('http://localhost:3001/pets/all')
     dispatch(getMascotas(allPets.data.pets))
 }
+
+/*export const filtersize = async (fil) => {
+    const {size, type, age, gender, location} = fil
+   const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
+   return filtros
+}*/
