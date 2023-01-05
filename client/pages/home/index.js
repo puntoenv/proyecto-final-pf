@@ -23,10 +23,7 @@ export default function Home() {
         <ProductSlider/>
         <ProductSliderEshop/>
       </div>
-
       <Footer/>
-      
-      
 
         {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
