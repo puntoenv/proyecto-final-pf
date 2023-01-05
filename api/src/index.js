@@ -9,6 +9,9 @@ const user = require("./routes/users/profile");
 const updateProfile = require("./routes/users/profile");
 const postproducts = require("./routes/products/postProduct");
 const getAllProducts = require("./routes/products/e-shop");
+const updateProduct = require("./routes/products/updateProduct");
+const filterP = require("./routes/products/getFilteredProducts");
+const detailProduct = require("./routes/products/detailProduct");
 
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
@@ -31,6 +34,8 @@ router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 
 // buyProduct aun no esta listo
-router.use("/products", postproducts, getAllProducts, buyProduct);
+router.use("/products", postproducts, getAllProducts, buyProduct,detailProduct);
+router.use("/updateProduct", updateProduct);
+router.use("/FilteredProducts", filterP);
 
 module.exports = router;
