@@ -2,7 +2,7 @@ const { Router } = require("express");
 const postProduct = Router();
 
 const Product = require("../../models/Product.js");
-
+//coment
 postProduct.post("/", async (req, res) => {
   try {
     let {
