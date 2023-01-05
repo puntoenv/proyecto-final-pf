@@ -23,10 +23,9 @@ post pet
 */
 
 router.use("/pets", allPets);
-router.use("/pets", verifyAuth, detail);
-router.use("/pets", verifyAuth, postPet);
+router.use("/pets", detail);
+router.use("/pets", postPet);
 router.use("/auth", routeAuth);
-router.use("products");
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 router.use("/products", postproducts);
