@@ -27,6 +27,7 @@ const userSchema = new Schema({
     minlength: 8,
     required: [true, "can't be blank"],
   },
+  administrator: { type: Boolean, default: false },
   pets: [
     {
       type: Schema.Types.ObjectId,
