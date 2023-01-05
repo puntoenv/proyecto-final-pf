@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export default function Card ({ nombre, imagen, edad, genero }) {
+export default function Card ({ nombre, imagen, edad, genero, tamaño, tipo, locacion}) {
   return (
         <div>
             <h4>Nombre: { nombre }</h4>
@@ -12,6 +12,8 @@ export default function Card ({ nombre, imagen, edad, genero }) {
             />
             <p>Edad: { edad }</p>
             <p>Género: { genero }</p>
+            <p>Tamaño: { tamaño }</p>
+            <p>Tipo: { tipo }</p>
         </div>
   )
 };

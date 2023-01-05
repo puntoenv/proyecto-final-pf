@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Card from "../../components/Card";
 import { useState } from "react";
+import { getPets } from "../../stores/actions";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const hard = [
   { nombre: "firu", edad: 15, genero: "masculino", id: 1 },
@@ -15,6 +18,13 @@ const hard = [
 
 export default function PetAdoption() {
   const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
+ /*  const pets = useSelector((state) =>{state.mascotas.mascotas}) */
+
+  useEffect(()=>{
+    dispatch(getPets())
+  },[])
+
   const handlerSearch = (e) => {
     setSearch(e.target.value)
   }
