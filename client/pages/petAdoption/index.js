@@ -1,25 +1,28 @@
 import Link from "next/link";
 import Card from "../../components/Card/index.js";
 import { useState } from "react";
-import { getPets } from "../../stores/actions";
+import { getPets, searchPet } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
-  const [filtros, setFiltros] = useState("");
+  const [filtros, setFiltros] = useState({
+    type: "",
+    size: "",
+  });
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
 
   useEffect(() => {
     dispatch(getPets());
-  }, []);
+  }, [dispatch]);
 
   const handlerSearch = (e) => {
     setSearch(e.target.value);
   };
   const handlerSearchButton = () => {
-    alert(`buscando a ${search}`);
+    dispatch(searchPet(search));
     setSearch("");
   };
   return (
