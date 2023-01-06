@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import { postUser } from "../src/actions";
+import { postUser } from "../stores/actions";
+
 
 export default function () {
   const { data: session } = useSession();
-  console.log(session);
 
   const dispatch = useDispatch();
   const [input, setInput] = useState({
@@ -18,17 +18,18 @@ export default function () {
     password: "",
   });
 
-  const handlerSubmitRegister = () => {
-    dispatch(postUser);
-  };
-
   const handlerChange = (event) => {
+    event.preventDefault();
     setInput({
       ...input,
       [event.target.name]: event.target.value,
     });
   };
 
+  const handlerSubmitRegister = async (event) => {
+    event.preventDefault();
+    dispatch(postUser(input))
+  };
   return (
     <>
       {session ? (
@@ -41,65 +42,38 @@ export default function () {
         <div>
           <div>
             <h1>LOG IN</h1>
-            <form>
+            <form onChange={(event) => handlerChange(event)}>
               <div>
                 <label>Name: </label>
-                <input
-                  type="text"
-                  value={input.username}
-                  name="username"
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="text" name="username"></input>
               </div>
               <div>
                 <label>Age: </label>
-                <input
-                  type="number"
-                  value={input.age}
-                  name={"age"}
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="number" name={"age"}></input>
               </div>
               <div>
                 <label>Bio: </label>
-                <input
-                  type="text"
-                  value={input.bio}
-                  name={"bio"}
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="text" name={"bio"}></input>
               </div>
               <div>
                 <label>Image: </label>
-                <input
-                  type="text"
-                  value={input.image}
-                  name={"image"}
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="text" name={"image"}></input>
               </div>
               <div>
                 <label>Email: </label>
-                <input
-                  type="text"
-                  value={input.mail}
-                  name={"mail"}
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="text" name={"mail"}></input>
               </div>
               <div>
                 <label>Password: </label>
-                <input
-                  type="text"
-                  value={input.password}
-                  name={"password"}
-                  onChange={(event) => handlerChange(event)}
-                ></input>
+                <input type="password" name={"password"}></input>
               </div>
+              <button
+                type="submit"
+                onClick={(event) => handlerSubmitRegister(event)}
+              >
+                Log in
+              </button>
             </form>
-            <button type="submit" onSubmit={() => handlerSubmitRegister()}>
-              Log in
-            </button>
           </div>
           <br />
           <br />
