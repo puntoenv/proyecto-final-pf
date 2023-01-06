@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
-import { postUser } from "../../stores/actions";
+import { postUser } from "../stores/actions";
 
 export default function () {
   const { data: session } = useSession();
@@ -28,6 +28,14 @@ export default function () {
   const handlerSubmitRegister = async (event) => {
     event.preventDefault();
     dispatch(postUser(input));
+    setInput({
+      name: "",
+      age: 0,
+      bio: "",
+      image: "",
+      email: "",
+      password: "",
+    });
   };
   return (
     <>
@@ -41,30 +49,60 @@ export default function () {
         <div>
           <div>
             <h1>LOG IN</h1>
-            <form onChange={(event) => handlerChange(event)}>
+            <form>
               <div>
                 <label>Name: </label>
-                <input type="text" name="name"></input>
+                <input
+                  type="text"
+                  name="name"
+                  value={input.name}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <div>
                 <label>Age: </label>
-                <input type="number" name={"age"}></input>
+                <input
+                  type="number"
+                  name={"age"}
+                  value={input.age}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <div>
                 <label>Bio: </label>
-                <input type="text" name={"bio"}></input>
+                <input
+                  type="text"
+                  name={"bio"}
+                  value={input.bio}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <div>
                 <label>Image: </label>
-                <input type="text" name={"image"}></input>
+                <input
+                  type="text"
+                  name={"image"}
+                  value={input.image}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <div>
                 <label>Email: </label>
-                <input type="text" name={"email"}></input>
+                <input
+                  type="text"
+                  name={"email"}
+                  value={input.email}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <div>
                 <label>Password: </label>
-                <input type="password" name={"password"}></input>
+                <input
+                  type="password"
+                  name={"password"}
+                  value={input.password}
+                  onChange={(event) => handlerChange(event)}
+                ></input>
               </div>
               <button
                 type="submit"
