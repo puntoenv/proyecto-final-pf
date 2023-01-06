@@ -91,3 +91,14 @@ export const postUser = (payload) => {
     }
   };
 };
+
+export const filtrarMascotas = (mascotas) => (dispatch) => {
+  try {
+    const filtradas = axios(
+      `http://localhost:3001/pets/filter?size=${mascotas.size}&age=${mascotas.age}&gender=${mascotas.gender}&type=${mascotas.type}`
+    );
+    dispatch(getMascotas(filtradas.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
