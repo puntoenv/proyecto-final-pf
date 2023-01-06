@@ -30,7 +30,7 @@ function index() {
       location:{}
     }
    )
- 
+ console.log(deta)
    useEffect(() => {
     dispatch(getper())
   }, [])
@@ -60,7 +60,7 @@ function index() {
 
   return (
     <>
-    <form>
+    <form >
     <h2>filtros</h2>
     <p></p>
     <select name="size" onChange={(e)=> handelselector(e)}>
