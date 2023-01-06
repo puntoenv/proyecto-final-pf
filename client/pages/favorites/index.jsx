@@ -16,6 +16,19 @@ import Pagina from '..//../components/paginated/pagina'
         municipio: "Apóstoles"
     },
     gender: "masculino"
+},{
+  id: 124, 
+  name: "ju",
+  size: "mediano",
+  age: 4,
+  description: "ff",
+  image: "https://images.unsplash.com/photo-1591871937631-2f64059d234f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",
+  type: "aves",
+  location: {
+      provincia: "Misiones",
+      municipio: "Apóstoles"
+  },
+  gender: "masculino"
 }]
 function index() {
   
@@ -58,8 +71,19 @@ function index() {
       const number = parseInt(value)
       number > 0 && number <=20? setdeta({...deta,[name]:value}) : console.log('error')
   }
+  ////////////////////////////////////////////////////
     //paginado
-    
+  const [curren, setcurren] = useState(1)
+  const pg = 9;
+
+  //movimiento del puntero
+  const ultimo = curren * pg;
+  const primero = ultimo - pg;
+  const pets = mock.length ? mock.slice(primero, ultimo) : [];
+  //console.log(pets)
+  const Page = (pageNumber) => { setcurren(pageNumber) };
+  useEffect(()=>{setcurren(1)})
+  /////////////////////////////////////////
   return (
     <>
     <form >
@@ -103,7 +127,7 @@ function index() {
     </form>
     <p></p>
     <h2>cards</h2>
-    {mock.map((detail)=><Card
+    {pets.map((detail)=><Card
     key={detail.id}
     nombre={detail.name}
     edad={detail.age}
@@ -112,7 +136,8 @@ function index() {
     tipo={detail.type}
     locacion={detail.location}
     />)}
-   {<Pagina></Pagina>}
+    <p></p>
+   {<Pagina pets={mock} pg={pg} page={Page}/>}
     </>
   )
 }
