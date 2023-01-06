@@ -21,6 +21,13 @@ export const getPets = () => async (dispatch) => {
   dispatch(getMascotas(allPets.data.pets));
 };
 
+export const searchPet = (pet) => async (dispatch) => {
+  const petEncontrado = await axios(
+    `http://localhost:3001/pets/by-name?name=${pet}`
+  );
+  dispatch(getMascotas(petEncontrado.data));
+};
+
 /*export const filtersize = async (fil) => {
     const {size, type, age, gender, location} = fil
    const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
