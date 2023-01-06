@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 import Image from "next/image";
 import Link from "next/link";
 
+=======
+>>>>>>> main
 export default function Card({
   id,
   nombre,

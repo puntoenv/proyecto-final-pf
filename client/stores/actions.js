@@ -21,13 +21,21 @@ export const getPets = () => async (dispatch) => {
   dispatch(getMascotas(allPets.data.pets));
 };
 
+
 export const postDetail = (id) => async (dispatch) => {
   try {
     const detail = await axios.get(`http://localhost:3001/pets/detail/${id}`);
     dispatch(getPostDetail, detail.data);
   } catch (error) {
     console.log(error);
-  }
+  }}
+
+export const searchPet = (pet) => async (dispatch) => {
+  const petEncontrado = await axios(
+    `http://localhost:3001/pets/by-name?name=${pet}`
+  );
+  dispatch(getMascotas(petEncontrado.data));
+
 };
 
 /*export const filtersize = async (fil) => {
