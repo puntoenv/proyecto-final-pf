@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Card from "../../components/Card"
+<<<<<<< HEAD:client/pages/detail/index.jsx
 import {getper, getmuni, Filter} from '..//..//stores/actions'
+=======
+import {getper,getmuni} from '../../stores/actions'
+>>>>>>> main:client/pages/favorites/index.jsx
  let mock =[ {
     id: 123, 
     name: "ju",
