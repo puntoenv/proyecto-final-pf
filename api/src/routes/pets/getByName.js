@@ -8,8 +8,8 @@ router.get("/by-name", async (req, res) => {
   try {
     const pets = await Pet.find();
     const petsFiltered = pets.filter((e) => e.name.includes(name));
-    console.log(petsFiltered);
-    res.json(pets);
+
+    res.json(petsFiltered);
   } catch (error) {
     res.json(error);
   }
