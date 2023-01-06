@@ -1,0 +1,37 @@
+.form {
+  border-style: solid;
+  border-color: black;
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  gap: 1rem;
+  display: grid;
+  place-content: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 1rem;
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.stretch {
+  display: grid;
+  place-content: center;
+  justify-content: stretch;
+}
+
+.radio {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title {
+  text-align: center;
+}

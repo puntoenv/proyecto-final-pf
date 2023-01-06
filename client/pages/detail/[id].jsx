@@ -1,12 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-// import { useParams } from "react-router-dom";
-import { postDetail } from "../../stores/actions";
 import Card from "../../components/Card";
-import { useRouter } from "next/router";
 
 export default function Detail({ data }) {
-  console.log(data);
   return <>{<Card tamaño={data.size} />}</>;
 }
 export async function getServerSideProps({ params }) {
