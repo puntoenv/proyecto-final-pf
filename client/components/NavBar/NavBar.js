@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import styles from "../../styles/Home.module.css";
+import styles from "../../pages/home/styles.module.css";
 import NavItem from "./NavItem";
 
 const menuList = [
@@ -39,10 +39,10 @@ const NavBar = () => {
         </div>
 
         <div className={styles.navMenuList}>
-          <Link className={styles.link} href="/petAdoption">
+          <Link className={styles.link} href="/petsPosts">
             <h1>Adoptar </h1>
           </Link>
-          <Link className={styles.link} href="/Apóyanos">
+          <Link className={styles.link} href="/Apoyanos">
             <h1>Apóyanos </h1>
           </Link>
           <Link className={styles.link} href="/login">
