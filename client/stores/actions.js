@@ -15,6 +15,13 @@ export const PostAdop = async (post) =>{
    return res
 }
 
+export const PostUser = async (payload) => {
+    let res = await axios.post('http://localhost:3001/register', payload)
+    return res;
+};
+
+
+
 
 
 /*export const filtersize = async (fil) => {
