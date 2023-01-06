@@ -23,9 +23,11 @@ export const getPets = () => async (dispatch) => {
 
 
 export const postDetail = (id) => async (dispatch) => {
+  console.log(id);
   try {
-    const detail = await axios.get(`http://localhost:3001/pets/detail/${id}`);
-    dispatch(getPostDetail, detail.data);
+    const detail = await axios(`http://localhost:3001/pets/detail/${id}`);
+    dispatch(getPostDetail(detail.data));
+    // console.log(detail);
   } catch (error) {
     console.log(error);
   }}

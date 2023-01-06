@@ -1,21 +1,25 @@
-import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { postDetail } from "../../../stores/actions";
 import Card from "../../../components/Card";
+import { useRouter } from 'next/router'
 
 export default function Detail() {
-  const { id } = useParams();
+  const router = useRouter()
+  const { id } = router.query
   const dispatch = useDispatch()
   const detail = useSelector((state) => state.mascotas.detail);
-  console.log(detail);
+   console.log(detail);
   useEffect(() => {
     dispatch(postDetail(id));
   }, []);
-
+console.log(id);
   return(
 <>
+
+      {/* <h1>{detail[0].name}</h1> */}
+
     {/* <h1>{detail.name}</h1>
 
     <div>
