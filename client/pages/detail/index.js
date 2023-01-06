@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Card from "../../components/Card"
-import {getper,getmuni} from '..//..//stores/actions'
+import {getper, getmuni, Filter} from '..//..//stores/actions'
  let mock =[ {
     id: 123, 
     name: "ju",
@@ -17,6 +17,7 @@ import {getper,getmuni} from '..//..//stores/actions'
     gender: "masculino"
 }]
 function index() {
+  
   const dispatch = useDispatch()
   const provi = useSelector(state => state.caracter.provi.provincias)
   const munici = useSelector (state => state.caracter.municipios.municipios)
@@ -29,11 +30,11 @@ function index() {
       location:{}
     }
    )
-  console.log(deta)
+ 
    useEffect(() => {
     dispatch(getper())
   }, [])
-  
+
    const handelprovincia = (e) => {
        const {name, value} = e.target;
        e.preventDefault()
@@ -59,6 +60,7 @@ function index() {
 
   return (
     <>
+    <form>
     <h2>filtros</h2>
     <p></p>
     <select name="size" onChange={(e)=> handelselector(e)}>
@@ -96,6 +98,7 @@ function index() {
         <option key="masculino" value="masculino">masculino</option>
         <option key="femenino" value="femenino">femenino</option>
     </select>
+    </form>
     <p></p>
     <h2>cards</h2>
     {mock.map((detail)=><Card
