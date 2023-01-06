@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const detail = require("./routes/pets/detail");
 const allPets = require("./routes/pets/allPets");
+const petsByName = require("./routes/pets/getByName");
 const postPet = require("./routes/pets/postPet");
 const routeAuth = require("./routes/Auth/routeAuth");
 const verifyAuth = require("../middlewares/mw-jwt");
@@ -25,7 +26,7 @@ update pet
 compra producto
 post pet
 */
-
+router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", verifyAuth, detail);
 router.use("/pets", postPet);
@@ -34,7 +35,13 @@ router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 
 // buyProduct aun no esta listo
-router.use("/products", postproducts, getAllProducts, buyProduct,detailProduct);
+router.use(
+  "/products",
+  postproducts,
+  getAllProducts,
+  buyProduct,
+  detailProduct
+);
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
 
