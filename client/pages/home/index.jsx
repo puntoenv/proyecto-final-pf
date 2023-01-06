@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import styles from "../../styles/Home.module.css";
+import styles from "./styles.module.css";
 import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
@@ -25,12 +25,12 @@ export default function Home() {
             <h1>Adoptame!</h1>
           </Link>
           <ProductSlider />
-       
-        <div className={styles.carruselEshop}>
-          <Link className={styles.linkEshop} href="/eshop">
-            <h1>E-shop</h1>
-          </Link>
-          <ProductSliderEshop />
+
+          <div className={styles.carruselEshop}>
+            <Link className={styles.linkEshop} href="/eshop">
+              <h1>E-shop</h1>
+            </Link>
+            <ProductSliderEshop />
           </div>
         </div>
 
