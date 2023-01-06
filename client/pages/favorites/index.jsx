@@ -31,7 +31,7 @@ function index() {
       location:{}
     }
    )
- console.log(deta)
+ //console.log(deta)
    useEffect(() => {
     dispatch(getper())
   }, [])
@@ -58,7 +58,8 @@ function index() {
       const number = parseInt(value)
       number > 0 && number <=20? setdeta({...deta,[name]:value}) : console.log('error')
   }
-
+    //paginado
+    
   return (
     <>
     <form >

@@ -18,19 +18,7 @@ console.log(id);
   return(
 <>
 
-      {/* <h1>{detail[0].name}</h1> */}
 
-    {/* <h1>{detail.name}</h1>
-
-    <div>
-        {detail.image ? (<img src={detail.image} alt={detail.name}/>) : null}
-    </div>
-
-    <p>{detail.size}</p>
-    <p>{detail.gender}</p>
-    <p>{detail.age}</p>
-    <p>{detail.location}</p>
-    <p>{detail.description}</p> */}
     {<Card 
     tamaño={detail.size}
     

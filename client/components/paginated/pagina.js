@@ -1,5 +1,6 @@
 
-function Pagina() {
+function Pagina({pets, pg, page}) {
+
 
   return (
     <div>pagina</div>

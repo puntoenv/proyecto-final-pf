@@ -1,9 +1,6 @@
 import axios from "axios";
-import { getPersonajes, getmunicipios } from "./slice";
-
-import { getMascotas /* getMascotaEncontrada */ } from "./mascotas";
+import { getPersonajes, getmunicipios } from "./slice"
 import { getUser } from './User';
-
 import { getMascotas, getPostDetail } from "./mascotas";
 
 
