@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
+  const [filtros, setFiltros] = useState("");
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
 
