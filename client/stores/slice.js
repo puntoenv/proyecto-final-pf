@@ -4,7 +4,8 @@ export const caracterSlice = createSlice({
   name: 'caracter',
   initialState: {
     provi: [],
-    municipios: []
+    municipios: [],
+    usuario:[]
   },
   reducers: {
     getPersonajes: (state, action) => {
@@ -12,9 +13,12 @@ export const caracterSlice = createSlice({
     },
     getmunicipios: (state, action) => {
       state.municipios = action.payload
-    }
+    },
+    getuser: (state, action) => {
+      state.municipios = action.payload
+    },
   }
 })
 
-export const { getPersonajes, getmunicipios } = caracterSlice.actions
+export const { getPersonajes, getmunicipios, getuser } = caracterSlice.actions
 export default caracterSlice.reducer
