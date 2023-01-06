@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getper, getmuni, PostAdop } from "../stores/actions";
+import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
+import Head from "next/head";
 
 function validate(input) {
   let errors = {};
