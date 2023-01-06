@@ -1,62 +1,63 @@
 import Link from "next/link";
 import React from "react";
-import styles from "../../pages/home/styles.module.css";
-import NavItem from "./NavItem";
+import { useSession } from "next-auth/react";
 
-const menuList = [
-  // {
-  //     text: 'Home',
-  //     href: '/',
-  // },
-  {
-    text: "Adoptar",
-    href: "/petAdoption",
-  },
-  {
-    text: "Apóyanos",
-    href: "/apoyanos",
-  },
-  {
-    text: "Ingresar | Registrarse",
-    href: "/login",
-  },
-];
+const handlerClick = () => {
+  const dash = document.getElementById("dashNavAdmin");
+
+  if (dash.className.includes("view")) {
+    dash.classList.remove("view");
+    console.log(dash.className);
+    return;
+  }
+  dash.className += " view";
+
+  console.log(dash.className);
+};
 
 const NavBar = () => {
+  const { data: session } = useSession();
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <Link href={"/"}>
-          {/* <a> LOGOOO
-                    <h1></h1>
-                </a> */}
+    <header className="headerNav">
+      <nav className="nav">
+        <Link href={"/home"}>
+          <span className="logoNav">Paw Pet</span>
         </Link>
-
-        <div className={styles.navMenuBar}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-
-        <div className={styles.navMenuList}>
-          <Link className={styles.link} href="/petsPosts">
-            <h1>Adoptar </h1>
+        <div className="navMenuList">
+          <Link className="itemNav" href="/Apóyanos">
+            <span>Apóyanos </span>
           </Link>
-          <Link className={styles.link} href="/Apoyanos">
-            <h1>Apóyanos </h1>
+          <Link className="itemNav" href="/petAdoption">
+            <span>Adoptar </span>
           </Link>
-          <Link className={styles.link} href="/login">
-            <h1>Ingresar | Registrarse</h1>
-          </Link>
-          {/* {
-                        menuList.map((menu)=>{
-                            return <div key={menu.text}>
-                                <NavItem {...menu}/>
-                            </div>
-                        })
-                    } */}
+          {true || session ? (
+            <span className="btnPerfil" onClick={handlerClick}>
+              Perfil
+            </span>
+          ) : (
+            <Link href="/login" className="itemNav">
+              <span>Ingresar | Registrarse</span>
+            </Link>
+          )}
         </div>
       </nav>
+      <div className="dashBoardContain" id="dashNavAdmin">
+        <Link className="itemDash" href="#">
+          <span>Editar Perfil</span>
+        </Link>
+        <Link className="itemDash" href="#">
+          <span>Mis Favoritos</span>
+        </Link>
+        <Link className="itemDash" href="#">
+          <span>Mi carrito</span>
+        </Link>
+        <Link className="itemDash" href="/adoptionForm">
+          <span>Publicar Mascota</span>
+        </Link>
+        <Link className="itemDash" href="#">
+          <span>Cerrar sesión</span>
+        </Link>
+      </div>
     </header>
   );
 };

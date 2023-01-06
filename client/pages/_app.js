@@ -2,6 +2,8 @@ import "../styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import { store } from "../stores/store";
 import { Provider } from "react-redux";
+import "../styles/NavBar/NavBar.css";
+import "../styles/NavBar/DashBoardUser.css";
 
 export default function App({ Component, pageProps, session }) {
   return (

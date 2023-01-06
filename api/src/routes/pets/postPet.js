@@ -30,6 +30,7 @@ postPet.post("/post-pet", async (req, res) => {
     });
     res.status(200).json("Mascota creada correctamente.");
   } catch (error) {
+    console.log(error.message);
     res.status(400).json(error);
   }
 });
