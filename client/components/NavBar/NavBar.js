@@ -27,7 +27,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>
           </Link>
-          <Link className="itemNav" href="/petAdoption">
+          <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
           {true || session ? (

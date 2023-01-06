@@ -21,7 +21,7 @@ export default function Home() {
         <Nosotros />
 
         <div className={styles.carruselAnimals}>
-          <Link className={styles.linkAdoptar} href="/petAdoption">
+          <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>Adoptame!</h1>
           </Link>
           {/* <ProductSlider /> */}
