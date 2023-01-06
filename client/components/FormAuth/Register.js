@@ -6,7 +6,8 @@ export default function Refister({ handlerChange, handlerClick }) {
     name: "",
     age: 0,
     bio: "",
-    image: "",
+    image:
+      "https://www.pngkit.com/png/detail/301-3012694_account-user-profile-avatar-comments-fa-user-circle.png",
     email: "",
     password: "",
   });
