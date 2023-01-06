@@ -1,8 +1,9 @@
+import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
-import Head from "next/head";
+import { useRouter } from "next/router";
 
 function validate(input) {
   let errors = {};
@@ -22,6 +23,8 @@ function validate(input) {
 }
 
 function form() {
+  const router = useRouter();
+  // console.log(router);
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
@@ -39,150 +42,237 @@ function form() {
 
   useEffect(() => {
     dispatch(getper());
-  }, []);
+  }, [dispatch]);
 
   // handel
 
   const handelselector = (e) => {
     const { name, value } = e.target;
-    e.preventDefault();
-    setpost({ ...post, [name]: value });
-    seterror(validate({ ...post, [name]: value }));
+    setpost({
+      ...post,
+      [name]: value,
+    });
+    console.log(post);
+    seterror(
+      validate({
+        ...post,
+        [name]: value,
+      })
+    );
   };
   const handenumber = (e) => {
     const { name, value } = e.target;
-    e.preventDefault();
     const number = parseInt(value);
-    number > 0 && number <= 20
-      ? setpost({ ...post, [name]: value })
-      : console.log("error");
+    if (number > 0 && number <= 20) {
+      setpost({
+        ...post,
+        [name]: value,
+      });
+      console.log(post);
+    } else {
+      console.log("error");
+    }
   };
 
   const handelprovincia = (e) => {
     const { name, value } = e.target;
-    e.preventDefault();
     dispatch(getmuni(value));
-    setpost({ ...post, [name]: { provincia: value } });
+    setpost({
+      ...post,
+      [name]: {
+        provincia: value,
+      },
+    });
+    console.log(post);
   };
   const handelciudad = (e) => {
     const { name, value } = e.target;
     e.preventDefault();
-    setpost({ ...post, [name]: { ...post.location, municipio: value } });
+    setpost({
+      ...post,
+      [name]: {
+        ...post.location,
+        municipio: value,
+      },
+    });
   };
 
   const handelfiles = (e) => {
-    const { name, value, files } = e.target;
+    const { name, files } = e.target;
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onloadend = () => {
-      setpost({ ...post, [name]: reader.result });
+      setpost({
+        ...post,
+        [name]: reader.result,
+      });
     };
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(post);
     PostAdop(post);
+    // router.push("/home");
   };
   return (
     <>
-      <form onSubmit={(evt) => handleSubmit(evt)}>
-        <input
-          type="text"
-          name="name"
-          placeholder="ingrese el nombre de tu mascota..."
-          onChange={(e) => handelselector(e)}
-        />
-        <p></p>
-        <select name="size" onChange={(e) => handelselector(e)}>
-          <option disabled>Seleccione el tipo de tamaño...</option>
-          <option key="grande" value="grande">
-            grande
-          </option>
-          <option key="mediano" value="mediano">
-            mediano
-          </option>
-          <option key="pequeño" value="pequeño">
-            pequeño
-          </option>
-        </select>
-        <p></p>
-        <input
-          type="number"
-          name="age"
-          placeholder="Ingrese la edad"
-          onChange={(e) => {
-            handenumber(e);
-          }}
-        />
-        <p></p>
-        <select name="type" onChange={(e) => handelselector(e)}>
-          <option disabled>tipo</option>
-          <option key="gatos" value="gatos">
-            gatos
-          </option>
-          <option key="perros" value="perros">
-            perros
-          </option>
-          <option key="aves" value="aves">
-            aves
-          </option>
-          <option key="peces" value="peces">
-            peces
-          </option>
-        </select>
-        <p></p>
-        <select name="location" onChange={(e) => handelprovincia(e)}>
-          <option>provincia</option>
-          {provi?.map((el) => (
-            <option key={el.nombre} value={el.nombre}>
-              {el.nombre}
-            </option>
-          ))}
-        </select>
-        <p></p>
-        <select name="location" onChange={(e) => handelciudad(e)}>
-          <option>ciudad</option>
-          {munici?.map((el) => (
-            <option key={el.nombre} value={el.nombre}>
-              {el.nombre}
-            </option>
-          ))}
-        </select>
-        <p></p>
-        <select name="gender" onChange={(e) => handelselector(e)}>
-          <option>genero</option>
-          <option key="masculino" value="masculino">
-            masculino
-          </option>
-          <option key="femenino" value="femenino">
-            femenino
-          </option>
-        </select>
-        <p></p>
-        <textarea
-          type="text"
-          name="description"
-          placeholder="ingrese la descripcion de tu mascota..."
-          onChange={(e) => handelselector(e)}
-        />
-        <p></p>
-        <input
-          type="file"
-          name="image"
-          onChange={(e) => handelfiles(e)}
-          multiple
-        />
-        <p></p>
-        {/*Array.from(post.image)?.map(item => <img src={item ? URL.createObjectURL(item) : null}/>)*/}
-        <p></p>
-        {post.name !== "" && !error.name && post.description !== "" ? (
-          <button type="submit">Guardar</button>
-        ) : post.name === "" ? (
-          <button>Name is require</button>
-        ) : (
-          <button>descripcion is require</button>
-        )}
-      </form>
+      <div className={styles.container}>
+        <form className={styles.form} onSubmit={(evt) => handleSubmit(evt)}>
+          <h1 className={styles.title}>Posteo de Mascota</h1>
+          <label htmlFor="name" className={styles.stretch}>
+            Nombre:
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Ingrese el nombre de la mascota..."
+              onChange={(e) => handelselector(e)}
+            />
+          </label>
+          <label htmlFor="size" className={styles.stretch}>
+            Tamaño:
+            <div className={styles.radio}>
+              <label htmlFor="pequeño">
+                <input
+                  type="radio"
+                  id="pequeño"
+                  value="pequeño"
+                  name="size"
+                  onChange={(e) => handelselector(e)}
+                />
+                Pequeño
+              </label>
+              <label htmlFor="mediano">
+                <input
+                  type="radio"
+                  id="mediano"
+                  value="mediano"
+                  name="size"
+                  onChange={(e) => handelselector(e)}
+                />
+                Mediano
+              </label>
+              <label htmlFor="grande">
+                <input
+                  type="radio"
+                  id="grande"
+                  value="grande"
+                  name="size"
+                  onChange={(e) => handelselector(e)}
+                />
+                Grande
+              </label>
+            </div>
+          </label>
+          <label htmlFor="age" className={styles.stretch}>
+            Edad:
+            <input
+              id="age"
+              type="number"
+              name="age"
+              placeholder="Ingrese la edad"
+              onChange={(e) => {
+                handenumber(e);
+              }}
+            />
+          </label>
+          <label htmlFor="type" className={styles.stretch}>
+            Especie:
+            <select id="type" name="type" onChange={(e) => handelselector(e)}>
+              <option defaultValue={true}>
+                Seleccione la especie de la mascota
+              </option>
+              <option key="gatos" value="gatos">
+                gato
+              </option>
+              <option key="perros" value="perros">
+                perro
+              </option>
+              <option key="aves" value="aves">
+                ave
+              </option>
+              <option key="peces" value="peces">
+                pez
+              </option>
+            </select>
+          </label>
+          <label htmlFor="location" className={styles.stretch}>
+            Ubicación:
+            <select
+              name="location"
+              id="location"
+              onChange={(e) => handelprovincia(e)}
+            >
+              <option defaultValue={true}>Seleccione la provincia...</option>
+              {provi?.map((el) => (
+                <option key={el.nombre} value={el.nombre}>
+                  {el.nombre}
+                </option>
+              ))}
+            </select>
+            <select name="location" onChange={(e) => handelciudad(e)}>
+              <option defaultValue={true}>Seleccione la ciudad...</option>
+              {munici?.map((el) => (
+                <option key={el.nombre} value={el.nombre}>
+                  {el.nombre}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="gender" className={styles.stretch}>
+            Genero:
+            <div className={styles.radio}>
+              <label htmlFor="macho">
+                <input
+                  type="radio"
+                  value="macho"
+                  id="macho"
+                  name="gender"
+                  onChange={(e) => handelselector(e)}
+                />
+                Macho
+              </label>
+              <label htmlFor="hembra">
+                <input
+                  type="radio"
+                  value="hembra"
+                  id="hembra"
+                  name="gender"
+                  onChange={(e) => handelselector(e)}
+                />
+                Hembra
+              </label>
+            </div>
+          </label>
+          <label htmlFor="description" className={styles.stretch}>
+            Descripción:
+            <textarea
+              id="description"
+              type="text"
+              name="description"
+              placeholder="Describa a la mascota..."
+              onChange={(e) => handelselector(e)}
+            />
+          </label>
+          <label htmlFor="image" className={styles.stretch}>
+            Imagen:
+            <input
+              id="image"
+              type="file"
+              name="image"
+              onChange={(e) => handelfiles(e)}
+              multiple
+            />
+          </label>
+          {post.name !== "" && !error.name && post.description !== "" ? (
+            <button type="submit">Guardar</button>
+          ) : post.name === "" ? (
+            <button>Name is require</button>
+          ) : (
+            <button>descripcion is require</button>
+          )}
+        </form>
+      </div>
     </>
   );
 }

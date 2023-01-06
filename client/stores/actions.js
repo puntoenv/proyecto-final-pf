@@ -36,7 +36,9 @@ export const searchPet = (pet) => async (dispatch) => {
 
 export const PostAdop = async (post) => {
   console.log(post);
-  let res = await axios.post("http://localhost:3001/pets/post-pet", post);
+  let res = await axios
+    .post("http://localhost:3001/pets/post-pet", post)
+    .then((res) => console.log(res));
   return res;
 };
 
