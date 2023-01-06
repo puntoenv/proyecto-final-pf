@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Card from "../../components/Card"
 import {getper,getmuni} from '../../stores/actions'
-
+import Pagina from '..//../components/paginated/pagina'
  let mock =[ {
     id: 123, 
     name: "ju",
@@ -111,6 +111,7 @@ function index() {
     tipo={detail.type}
     locacion={detail.location}
     />)}
+   {<Pagina></Pagina>}
     </>
   )
 }
