@@ -5,10 +5,10 @@ const productsFiltered = require("../../controllers/filters/productsFiltered");
 // localhost:3001/filter?
 
 router.get("/", async (req, res) => {
-  const { name, category,stock } = req.query;
+  const { name, category, stock } = req.query;
   console.log(name);
   try {
-    const productsFilters = await productsFiltered( name,category,stock );
+    const productsFilters = await productsFiltered(name, category, stock);
 
     res.json(productsFilters);
   } catch (error) {

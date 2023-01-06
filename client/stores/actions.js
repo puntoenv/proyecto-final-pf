@@ -26,9 +26,3 @@ export const getPets = () => async (dispatch) => {
    const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
    return filtros
 }*/
-
-export const PostAdop = async (post) => {
-  console.log(post);
-  let res = await axios.post("http://localhost:3001/pets/post-pet", post);
-  return res;
-};
