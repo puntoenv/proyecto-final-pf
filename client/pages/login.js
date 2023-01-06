@@ -1,34 +1,105 @@
-import React from "react";
+import { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { postUser } from "../stores/actions";
+
 
 export default function () {
-    const {data: session} = useSession()
-    console.log(session)
-     
-    return (
-        <>
-            {
-                session ? 
-                <div>
-                    <p>Go to <Link href={'/profile'}>{session.user.name}'s</Link> profile.</p>
-                </div> 
-                : <div>
-                    <h1>LOG IN</h1>
-                    <div>
-                        <form>
-                            <label>User: <input type='text'></input></label>
-                            <br />
-                            <label>Password: <input type='text'></input></label>
-                        </form>
-                        <button type="submit">Log in</button>
-                    </div>
-                    <div>
-                        <h1>SIGN IN</h1>
-                        <button onClick={() => signIn()}>Sign in</button>
-                    </div>
-                </div> 
-            }
-        </>
-    )
+  const { data: session } = useSession();
+
+  const dispatch = useDispatch();
+  const [input, setInput] = useState({
+    name: "",
+    age: 0,
+    bio: "",
+    image: "",
+    email: "",
+    password: "",
+  });
+
+  const handlerChange = (event) => {
+    event.preventDefault();
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handlerSubmitRegister = async (event) => {
+    event.preventDefault();
+    dispatch(postUser(input))
+  };
+  return (
+    <>
+      {session ? (
+        <div>
+          <p>
+            Go to <Link href={"/profile"}>{session.user.name}'s</Link> profile.
+          </p>
+        </div>
+      ) : (
+        <div>
+          <div>
+            <h1>LOG IN</h1>
+            <form onChange={(event) => handlerChange(event)}>
+              <div>
+                <label>Name: </label>
+                <input type="text" name="name"></input>
+              </div>
+              <div>
+                <label>Age: </label>
+                <input type="number" name={"age"}></input>
+              </div>
+              <div>
+                <label>Bio: </label>
+                <input type="text" name={"bio"}></input>
+              </div>
+              <div>
+                <label>Image: </label>
+                <input type="text" name={"image"}></input>
+              </div>
+              <div>
+                <label>Email: </label>
+                <input type="text" name={"email"}></input>
+              </div>
+              <div>
+                <label>Password: </label>
+                <input type="password" name={"password"}></input>
+              </div>
+              <button
+                type="submit"
+                onClick={(event) => handlerSubmitRegister(event)}
+              >
+                Log in
+              </button>
+            </form>
+          </div>
+          <br />
+          <br />
+          <div>
+            <h1>SIGN IN</h1>
+            <form>
+              <label>
+                User: <input type="text"></input>
+              </label>
+              <br />
+              <label>
+                Password: <input type="text"></input>
+              </label>
+            </form>
+            <button type="submit">Sign in</button>
+          </div>
+          <br />
+          <br />
+          <div>
+            <h1>SIGN IN WITH FACEBOOK OR GOOGLE</h1>
+            <button onClick={() => signIn()}>
+              Sign in with Facebook or Google
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
