@@ -5,7 +5,7 @@ const detail = express.Router();
 detail.get("/detail/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    let detail = await Pet.find({ _id: id, hidden: false });
+    let detail = await Pet.findOne({ _id: id, hidden: false });
     res.status(200).send(detail);
   } catch (error) {
     res.status(400).send(error.message);

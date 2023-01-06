@@ -118,7 +118,7 @@ export default function () {
             <h1>SIGN IN</h1>
             <form>
               <label>
-                User: <input type="text"></input>
+                User: <input type="text" name></input>
               </label>
               <br />
               <label>
