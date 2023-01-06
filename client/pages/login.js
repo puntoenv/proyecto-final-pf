@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSession, signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
@@ -10,11 +10,11 @@ export default function () {
 
   const dispatch = useDispatch();
   const [input, setInput] = useState({
-    username: "",
+    name: "",
     age: 0,
     bio: "",
     image: "",
-    mail: "",
+    email: "",
     password: "",
   });
 
@@ -45,7 +45,7 @@ export default function () {
             <form onChange={(event) => handlerChange(event)}>
               <div>
                 <label>Name: </label>
-                <input type="text" name="username"></input>
+                <input type="text" name="name"></input>
               </div>
               <div>
                 <label>Age: </label>
@@ -61,7 +61,7 @@ export default function () {
               </div>
               <div>
                 <label>Email: </label>
-                <input type="text" name={"mail"}></input>
+                <input type="text" name={"email"}></input>
               </div>
               <div>
                 <label>Password: </label>
