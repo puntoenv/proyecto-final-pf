@@ -1,11 +1,7 @@
 .landing {
-  background-image: url("../public/img/landing.jpg");
-  background-size: cover;
-  /* display: flex; */
-  justify-content: center;
-  background-repeat: no-repeat;
-  align-items: center;
-  height: 100vh;
+  display: grid;
+  place-content: center;
+  margin-right: 45rem;
 }
 
 /* CSS */
@@ -30,9 +26,7 @@
   top: 25rem;
   position: absolute;
   display: flex;
-   align-content: center; 
-  
-   
+  align-content: center;
 }
 
 .button:hover {
