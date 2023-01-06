@@ -1,4 +1,4 @@
-
+import styles from "./style.module.css";
 function Pagina({pets, pg, page}) {
   let numeroPaginas = [];
   for (let i = 0; i < (pets.length / pg); i++) {
@@ -7,7 +7,7 @@ function Pagina({pets, pg, page}) {
    
   return (
     <div>
-      {numeroPaginas.map(a => (<button key={a} onClick={() => page(a)}>{a}</button>))}
+      {numeroPaginas.map(a => (<button className={styles.button} key={a} onClick={() => page(a)}>{a}</button>))}
       pagina
       </div>
   )
