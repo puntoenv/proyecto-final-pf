@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios } from "./slice";
-import { getMascotas, getPostDetail } from "./mascotas";
+import { getMascotas } from "./mascotas";
 
 export const getper = () => async (dispatch) => {
   await fetch("https://apis.datos.gob.ar/georef/api/provincias")
