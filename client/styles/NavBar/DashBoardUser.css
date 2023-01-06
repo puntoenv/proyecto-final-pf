@@ -5,7 +5,7 @@
   z-index: 2500;
   justify-content: flex-start;
   top: 0px;
-  right: 0px;
+  right: -600px;
   height: 100vh;
   background-color: aliceblue;
   padding: 30px;
@@ -24,4 +24,7 @@
 }
 .itemDash:hover {
   font-weight: bold;
+}
+.view {
+  right: 0;
 }

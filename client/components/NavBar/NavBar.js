@@ -1,47 +1,60 @@
 import Link from "next/link";
 import React from "react";
 import { useSession } from "next-auth/react";
-import styles from "./NavBar.module.css";
-import styleDash from "./DashBoardUser.module.css";
+
+const handlerClick = () => {
+  const dash = document.getElementById("dashNavAdmin");
+
+  if (dash.className.includes("view")) {
+    dash.classList.remove("view");
+    console.log(dash.className);
+    return;
+  }
+  dash.className += " view";
+
+  console.log(dash.className);
+};
 
 const NavBar = () => {
   const { data: session } = useSession();
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <Link href={"/"}>
-          <span className={styles.logo}>Paw Pet</span>
+    <header className="headerNav">
+      <nav className="nav">
+        <Link href={"/home"}>
+          <span className="logoNav">Paw Pet</span>
         </Link>
-        <div className={styles.navMenuList}>
-          <Link className={styles.itemNav} href="/Apóyanos">
+        <div className="navMenuList">
+          <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>
           </Link>
-          <Link className={styles.itemNav} href="/petAdoption">
+          <Link className="itemNav" href="/petAdoption">
             <span>Adoptar </span>
           </Link>
           {true || session ? (
-            <span className={styles.btnPerfil}>Perfil</span>
+            <span className="btnPerfil" onClick={handlerClick}>
+              Perfil
+            </span>
           ) : (
-            <Link href="/login" className={styles.itemNav}>
+            <Link href="/login" className="itemNav">
               <span>Ingresar | Registrarse</span>
             </Link>
           )}
         </div>
       </nav>
-      <div className={styleDash.dashBoardContain} id="dashNavAdmin">
-        <Link className={styleDash.itemDash} href="#">
+      <div className="dashBoardContain" id="dashNavAdmin">
+        <Link className="itemDash" href="#">
           <span>Editar Perfil</span>
         </Link>
-        <Link className={styleDash.itemDash} href="#">
+        <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
         </Link>
-        <Link className={styleDash.itemDash} href="#">
+        <Link className="itemDash" href="#">
           <span>Mi carrito</span>
         </Link>
-        <Link className={styleDash.itemDash} href="#">
+        <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>
-        <Link className={styleDash.itemDash} href="#">
+        <Link className="itemDash" href="#">
           <span>Cerrar sesión</span>
         </Link>
       </div>
