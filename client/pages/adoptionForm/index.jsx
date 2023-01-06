@@ -198,26 +198,36 @@ function form() {
           </label>
           <label htmlFor="location" className={styles.stretch}>
             Ubicación:
-            <select
-              name="location"
-              id="location"
-              onChange={(e) => handelprovincia(e)}
-            >
-              <option defaultValue={true}>Seleccione la provincia...</option>
-              {provi?.map((el) => (
-                <option key={el.nombre} value={el.nombre}>
-                  {el.nombre}
-                </option>
-              ))}
-            </select>
-            <select name="location" onChange={(e) => handelciudad(e)}>
-              <option defaultValue={true}>Seleccione la ciudad...</option>
-              {munici?.map((el) => (
-                <option key={el.nombre} value={el.nombre}>
-                  {el.nombre}
-                </option>
-              ))}
-            </select>
+            <label htmlFor="provincia" className={styles.stretch}>
+              <span className={styles.title}>Provincia</span>
+              <select
+                name="location"
+                id="provincia"
+                onChange={(e) => handelprovincia(e)}
+              >
+                <option defaultValue={true}>Seleccione la provincia...</option>
+                {provi?.map((el) => (
+                  <option key={el.nombre} value={el.nombre}>
+                    {el.nombre}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label htmlFor="ciudad" className={styles.stretch}>
+              <span className={styles.title}>Ciudad</span>
+              <select
+                id="ciudad"
+                name="location"
+                onChange={(e) => handelciudad(e)}
+              >
+                <option defaultValue={true}>Seleccione la ciudad...</option>
+                {munici?.map((el) => (
+                  <option key={el.nombre} value={el.nombre}>
+                    {el.nombre}
+                  </option>
+                ))}
+              </select>
+            </label>
           </label>
           <label htmlFor="gender" className={styles.stretch}>
             Genero:
