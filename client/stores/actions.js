@@ -1,7 +1,12 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios } from "./slice";
+
 import { getMascotas /* getMascotaEncontrada */ } from "./mascotas";
 import { getUser } from './User';
+
+import { getMascotas, getPostDetail } from "./mascotas";
+
+
 export const getper = () => async (dispatch) => {
   await fetch("https://apis.datos.gob.ar/georef/api/provincias")
     .then((res) => (res.ok ? res.json() : promise.reject(res)))
@@ -22,11 +27,24 @@ export const getPets = () => async (dispatch) => {
 };
 
 
+
+export const postDetail = (id) => async (dispatch) => {
+  console.log(id);
+  try {
+    const detail = await axios(`http://localhost:3001/pets/detail/${id}`);
+    dispatch(getPostDetail(detail.data));
+    // console.log(detail);
+  } catch (error) {
+    console.log(error);
+  }}
+
+
 export const searchPet = (pet) => async (dispatch) => {
   const petEncontrado = await axios(
     `http://localhost:3001/pets/by-name?name=${pet}`
   );
   dispatch(getMascotas(petEncontrado.data));
+
 };
 
 /*export const filtersize = async (fil) => {
@@ -38,6 +56,7 @@ export const searchPet = (pet) => async (dispatch) => {
 
 export const PostAdop = async (post) => {
   let res = await axios.post("http://localhost:3001/pets/post-pet", post);
+  console.log(res);
   return res;
 };
 
