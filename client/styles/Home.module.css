@@ -3,22 +3,6 @@
   top: 0;
   z-index: 10;
 }
-
-.nav {
-  display: flex;
-  padding: 16px;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f26538;
-}
-.navMenuList {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 24px;
-  color: white;
-  /* font-size: 12px; */
-}
 .link {
   font-size: 12px;
   position: relative;
@@ -55,7 +39,7 @@
   height: 20%;
 }
 
-.infoAdopcion{
+.infoAdopcion {
   margin-top: 1%;
   margin-left: 30%;
   margin-right: 30%;
@@ -67,7 +51,7 @@
   justify-self: center;
   font-size: 20px;
 }
-.tituloAdopcion{
+.tituloAdopcion {
   text-align: center;
   display: center;
   justify-content: center;
@@ -85,15 +69,13 @@
   font-size: 45px;
 }
 
-.carruselAnimals{
+.carruselAnimals {
   background-color: rgb(184, 209, 115);
   margin-top: 3%;
   height: 80rem;
-
 }
 
-.linkEshop{
-
+.linkEshop {
   color: rgb(11, 88, 11);
   text-align: center;
   display: center;
@@ -101,7 +83,7 @@
   text-decoration: none;
 }
 
-.linkAdoptar{
+.linkAdoptar {
   padding-top: 2%;
   display: flex;
   color: rgb(11, 88, 11);

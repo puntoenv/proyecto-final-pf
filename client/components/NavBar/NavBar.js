@@ -1,62 +1,50 @@
 import Link from "next/link";
 import React from "react";
-import styles from "../../styles/Home.module.css";
-import NavItem from "./NavItem";
-
-const menuList = [
-  // {
-  //     text: 'Home',
-  //     href: '/',
-  // },
-  {
-    text: "Adoptar",
-    href: "/petAdoption",
-  },
-  {
-    text: "Apóyanos",
-    href: "/apoyanos",
-  },
-  {
-    text: "Ingresar | Registrarse",
-    href: "/login",
-  },
-];
+import { useSession } from "next-auth/react";
+import styles from "./NavBar.module.css";
+import styleDash from "./DashBoardUser.module.css";
 
 const NavBar = () => {
+  const { data: session } = useSession();
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <Link href={"/"}>
-          {/* <a> LOGOOO
-                    <h1></h1>
-                </a> */}
+          <span className={styles.logo}>Paw Pet</span>
         </Link>
-
-        <div className={styles.navMenuBar}>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-
         <div className={styles.navMenuList}>
-          <Link className={styles.link} href="/petAdoption">
-            <h1>Adoptar </h1>
+          <Link className={styles.itemNav} href="/Apóyanos">
+            <span>Apóyanos </span>
           </Link>
-          <Link className={styles.link} href="/Apóyanos">
-            <h1>Apóyanos </h1>
+          <Link className={styles.itemNav} href="/petAdoption">
+            <span>Adoptar </span>
           </Link>
-          <Link className={styles.link} href="/login">
-            <h1>Ingresar | Registrarse</h1>
-          </Link>
-          {/* {
-                        menuList.map((menu)=>{
-                            return <div key={menu.text}>
-                                <NavItem {...menu}/>
-                            </div>
-                        })
-                    } */}
+          {true || session ? (
+            <span className={styles.btnPerfil}>Perfil</span>
+          ) : (
+            <Link href="/login" className={styles.itemNav}>
+              <span>Ingresar | Registrarse</span>
+            </Link>
+          )}
         </div>
       </nav>
+      <div className={styleDash.dashBoardContain} id="dashNavAdmin">
+        <Link className={styleDash.itemDash} href="#">
+          <span>Editar Perfil</span>
+        </Link>
+        <Link className={styleDash.itemDash} href="#">
+          <span>Mis Favoritos</span>
+        </Link>
+        <Link className={styleDash.itemDash} href="#">
+          <span>Mi carrito</span>
+        </Link>
+        <Link className={styleDash.itemDash} href="#">
+          <span>Publicar Mascota</span>
+        </Link>
+        <Link className={styleDash.itemDash} href="#">
+          <span>Cerrar sesión</span>
+        </Link>
+      </div>
     </header>
   );
 };
