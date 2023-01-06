@@ -14,11 +14,11 @@ router.post("/register", async (req, res) => {
 
   const hashedPassword = await bcyrpt.hash(req.body.password, saltGen);
   const user = new User({
-    username: req.body.username,
+    name: req.body.name,
     age: req.body.age,
     bio: req.body.bio,
     image: req.body.image,
-    mail: req.body.mail,
+    email: req.body.email,
     password: hashedPassword,
   });
 
@@ -37,13 +37,44 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  const { provider } = req.body;
+
+  // LOGIN WITH AUTH EXTERNAL
+  if (provider === "external") {
+    try {
+      let user = await User.findOne({ email: req.body.email });
+      console.log("desde line 46: " + user);
+      if (!user) {
+        user = await User.create({
+          name: req.body.name,
+          email: req.body.email,
+          image: req.body.image,
+        });
+      }
+      const token = jwt.sign(
+        {
+          name: user.name,
+          id: user._id,
+        },
+        `${process.env.JWT_TOKEN_SECRET}`
+      );
+
+      return res.header("auth-token", token).json({
+        error: null,
+        data: { token },
+      });
+    } catch (error) {
+      return res.status(400).json(error.message);
+    }
+  }
+  //LOGIN WITH CREDENTIALS
   try {
     const { error } = schemaUserLogin.validate(req.body);
     if (error) {
       return res.json({ error: error.details[0].context });
     }
 
-    const user = await User.findOne({ mail: req.body.mail });
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
       return res.json({ error: "Credenciales no validas" });
     }
@@ -58,7 +89,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       {
-        username: user.username,
+        name: user.name,
         id: user._id,
       },
       `${process.env.JWT_TOKEN_SECRET}`

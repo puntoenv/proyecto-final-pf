@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = new Schema({
-  username: {
+  name: {
     type: String,
     unique: true,
     lowercase: true,
@@ -13,10 +13,9 @@ const userSchema = new Schema({
   bio: String,
   age: {
     type: Number,
-    required: true,
   },
   image: String,
-  mail: {
+  email: {
     type: String,
     unique: true,
     required: [true, "can't be blank"],
@@ -25,7 +24,6 @@ const userSchema = new Schema({
   password: {
     type: String,
     minlength: 8,
-    required: [true, "can't be blank"],
   },
   administrator: { type: Boolean, default: false },
   pets: [
