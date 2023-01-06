@@ -16,8 +16,8 @@ function validate(input) {
   if (!input.description) {
     errors.description = "description is require";
   }
-  if (!input.description) {
-    errors.image = "image is require";
+  if (!input.gender) {
+    errors.image = "gender is require";
   }
   return errors;
 }
@@ -112,6 +112,7 @@ function form() {
     e.preventDefault();
     console.log(post);
     PostAdop(post);
+
     // router.push("/home");
   };
   return (
@@ -283,6 +284,7 @@ function form() {
           )}
         </form>
       </div>
+
     </>
   );
 }
