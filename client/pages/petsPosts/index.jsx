@@ -10,6 +10,8 @@ export default function PetAdoption() {
   const [filtros, setFiltros] = useState({
     type: "",
     size: "",
+    age: "",
+    location: "",
   });
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
@@ -24,6 +26,9 @@ export default function PetAdoption() {
   const handlerSearchButton = () => {
     dispatch(searchPet(search));
     setSearch("");
+  };
+  const handlerTodas = () => {
+    dispatch(getPets());
   };
   return (
     <div>
@@ -43,6 +48,9 @@ export default function PetAdoption() {
             value={search}
           />
           <button onClick={handlerSearchButton}>Buscar</button>
+        </div>
+        <div>
+          <button onClick={handlerTodas}>todas las mascotas</button>
         </div>
         <div className="filtros">
           <select>
@@ -82,7 +90,7 @@ export default function PetAdoption() {
               imagen={mascota.image}
               edad={mascota.age}
               genero={mascota.gender}
-              tamaño='pequeño'
+              tamaño="pequeño"
               tipo={mascota.type}
               locacion={mascota.location}
               key={mascota._id}
