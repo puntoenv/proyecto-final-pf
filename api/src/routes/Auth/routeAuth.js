@@ -17,7 +17,7 @@ router.post("/register", async (req, res) => {
     name: req.body.name,
     age: req.body.age,
     bio: req.body.bio,
-    image: req.body.image,
+    image: 'https://cdn-icons-png.flaticon.com/512/5372/5372211.png' || req.body.image,
     email: req.body.email,
     password: hashedPassword,
   });

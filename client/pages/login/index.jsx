@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { postUser } from "../../stores/actions";
@@ -41,9 +41,13 @@ export default function () {
     <>
       {session ? (
         <div>
+          <h1>¡Ya iniciaste sesión!</h1>
           <p>
-            Go to <Link href={"/profile"}>{session.user.name}'s</Link> profile.
+            Ve al perfil de <Link href={"/profile"}>{session.user.name}</Link>.
           </p>
+          <Link href={"/"}>Home</Link>
+          <br />
+          <button onClick={() => signOut()}>Cerrar Sesión</button>
         </div>
       ) : (
         <div>
@@ -113,20 +117,11 @@ export default function () {
             </form>
           </div>
           <br />
+          
           <br />
-          <div>
-            <h1>SIGN IN</h1>
-            <form>
-              <label>
-                User: <input type="text"></input>
-              </label>
-              <br />
-              <label>
-                Password: <input type="text"></input>
-              </label>
-            </form>
-            <button type="submit">Sign in</button>
-          </div>
+          <p>
+            ¿Ya tienes una cuenta? <Link href={"/signup"}>Inicia Sesion</Link>
+          </p>
           <br />
           <br />
           <div>

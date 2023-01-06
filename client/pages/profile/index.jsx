@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const profile = () => {
   const { data: session } = useSession();
-
+  console.log(session)
   return (
     <div>
       {session ? (
@@ -17,12 +17,12 @@ const profile = () => {
             style={{ borderRadius: "50%" }}
             alt={session.user.name}
           ></Image>
-          <h1>Welcome, {session.user.name}</h1>
-          <button onClick={() => signOut()}>Sign out</button>
+          <h1>Bienvenido, {session.user.name}</h1>
+          <button onClick={() => signOut()}>Cerrar Sesión</button>
         </div>
       ) : (
         <div>
-          <p>You are not sign in</p>
+          <p>No iniciaste sesión</p>
         </div>
       )}
     </div>
