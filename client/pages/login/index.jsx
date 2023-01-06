@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { postUser } from "../stores/actions";
 
-
 export default function () {
   const { data: session } = useSession();
 
@@ -28,7 +27,7 @@ export default function () {
 
   const handlerSubmitRegister = async (event) => {
     event.preventDefault();
-    dispatch(postUser(input))
+    dispatch(postUser(input));
     setInput({
       name: "",
       age: 0,
