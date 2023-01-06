@@ -6,9 +6,9 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
-import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
+//import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
-import ProductSlider from "../../components/ProductSlider/ProductSlider";
+//import ProductSlider from "../../components/ProductSlider/ProductSlider";
 export default function Home() {
   return (
     <>
@@ -21,16 +21,16 @@ export default function Home() {
         <Nosotros />
 
         <div className={styles.carruselAnimals}>
-          <Link className={styles.linkAdoptar} href="/petAdoption">
+          <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>Adoptame!</h1>
           </Link>
-          <ProductSlider />
+          {/* <ProductSlider /> */}
 
           <div className={styles.carruselEshop}>
             <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>
             </Link>
-            <ProductSliderEshop />
+            {/* <ProductSliderEshop /> */}
           </div>
         </div>
 
