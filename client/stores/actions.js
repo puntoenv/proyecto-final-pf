@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 import { getPersonajes, getmunicipios } from "./slice";
-import { getMascotas /* getMascotaEncontrada */ } from "./mascotas";
+import { getMascotas, getPostDetail } from "./mascotas";
 
 export const getper = () => async (dispatch) => {
   await fetch("https://apis.datos.gob.ar/georef/api/provincias")
@@ -9,12 +9,25 @@ export const getper = () => async (dispatch) => {
 };
 
 export const getmuni = (municipios) => async (dispatch) => {
-    await fetch(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${municipios}`).then(res => res.ok ? res.json():promise.reject(res)).then(res => dispatch(getmunicipios(res)))
-   }
+  await fetch(
+    `https://apis.datos.gob.ar/georef/api/municipios?provincia=${municipios}`
+  )
+    .then((res) => (res.ok ? res.json() : promise.reject(res)))
+    .then((res) => dispatch(getmunicipios(res)));
+};
 
 export const getPets = () => async (dispatch) => {
   let allPets = await axios("http://localhost:3001/pets/all");
   dispatch(getMascotas(allPets.data.pets));
+};
+
+export const postDetail = (id) => async (dispatch) => {
+  try {
+    const detail = await axios.get(`http://localhost:3001/pets/detail/${id}`);
+    dispatch(getPostDetail, detail.data);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /*export const filtersize = async (fil) => {
@@ -37,10 +50,13 @@ export const postUser = (payload) => {
 
   return async function () {
     try {
-      console.log(payload)
-      const response = await axios.post("http://localhost:3001/auth/register", payload);
-      console.log(response)
-      return response
+      console.log(payload);
+      const response = await axios.post(
+        "http://localhost:3001/auth/register",
+        payload
+      );
+      console.log(response);
+      return response;
     } catch (err) {
       return err.response;
     }

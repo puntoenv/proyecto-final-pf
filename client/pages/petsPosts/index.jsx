@@ -73,18 +73,23 @@ export default function PetAdoption() {
         <div>
           {pets?.map((mascota) => (
             <Card
-              key={mascota._id}
+              id={mascota._id}
               nombre={mascota.name}
               imagen={mascota.image}
               edad={mascota.age}
               genero={mascota.gender}
-              tamaño={mascota.size}
+              tamaño='pequeño'
               tipo={mascota.type}
               locacion={mascota.location}
+              key={mascota._id}
             />
           ))}
         </div>
       </div>
+
+      {/* <Link href={`/detail/${pets._id}`}>
+        <h1>Ver mascota</h1>
+      </Link> */}
     </div>
   );
 }
