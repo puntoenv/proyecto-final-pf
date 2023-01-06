@@ -14,8 +14,8 @@ function validate(input) {
   if (!input.description) {
     errors.description = "description is require";
   }
-  if (!input.description) {
-    errors.image = "image is require";
+  if (!input.gender) {
+    errors.image = "gender is require";
   }
   return errors;
 }
@@ -81,6 +81,7 @@ function form() {
     e.preventDefault();
     console.log(post);
     PostAdop(post);
+    alert("se creo la adopcion")
   };
   return (
     <>
@@ -174,7 +175,7 @@ function form() {
         <p></p>
         {/*Array.from(post.image)?.map(item => <img src={item ? URL.createObjectURL(item) : null}/>)*/}
         <p></p>
-        {post.name !== "" && !error.name && post.description !== "" ? (
+        {post.name !== "" && !error.name && post.description !== "" && post.gender !== "" ? (
           <button type="submit">Guardar</button>
         ) : post.name === "" ? (
           <button>Name is require</button>
