@@ -1,25 +1,13 @@
-import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import {
   handlerOnChange,
   handlerOnClick,
 } from "../../controller/loginAndRegister";
-import Register from "../../components/FormAuth/Refister";
+import Register from "../../components/FormAuth/Register";
 
 export default function () {
   const { data: session } = useSession();
-
-  // const dispatch = useDispatch();
-  // const [input, setInput] = useState({
-  //   name: "",
-  //   age: 0,
-  //   bio: "",
-  //   image: "",
-  //   email: "",
-  //   password: "",
-  // });
 
   return (
     <>

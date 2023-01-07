@@ -1,4 +1,5 @@
 // import { setLocalStorage } from "../../localStorage";
+import axios from "axios";
 
 export const handlerOnChange = (event, setInput, input) => {
   event.preventDefault();
@@ -11,35 +12,28 @@ export const handlerOnChange = (event, setInput, input) => {
 export const handlerOnClick = async (event, input, register) => {
   if (register) {
     event.preventDefault();
-
-    /*     setInput({
-      name: "",
-      age: 0,
-      bio: "",
-      image: "",
-      email: "",
-      password: "",
-    }); */
+    if (input.image === "")
+      input.image =
+        "https://www.pngkit.com/png/detail/301-3012694_account-user-profile-avatar-comments-fa-user-circle.png";
     try {
       const response = await axios.post(
         "http://localhost:3001/auth/register",
         input
       );
       const data = await response.data;
-      //   if (data.error) {
-      //     const badRequest = data.error;
-      //     setResult({
-      //       error: catchErrorAuth(
-      //         badRequest.key,
-      //         badRequest.value,
-      //         badRequest.limit
-      //       ),
-      //     });
-      //   } else {
-      //     setResult({
-      //       success: "Se ha creado tu cuenta, inicia sesion",
-      //     });
-      //   }
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/auth/login",
+        input
+      );
+      const data = response.data;
+      console.log(data);
+      //   setLocalStorage("token", data.data.token);
     } catch (error) {
       console.log(error);
     }
