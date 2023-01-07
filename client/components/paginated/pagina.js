@@ -66,9 +66,11 @@ function Pagina({
       >
         Prev
       </button>
-      {pageDecremenEllipses}
-      {pageNumbers}
-      {pageIncrementEllipses}
+      <button className={styles.button}>
+        {pageDecremenEllipses}
+        {pageNumbers}
+        {pageIncrementEllipses}
+      </button>
       <button
         className={styles.button}
         onClick={handleNextClick}
