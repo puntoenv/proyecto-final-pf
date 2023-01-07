@@ -1,7 +1,7 @@
 import Card from "../../components/Card";
 
 export default function Detail({ data }) {
-<<<<<<< HEAD
+
 
   return (
     <>
@@ -20,15 +20,14 @@ export default function Detail({ data }) {
       
     </>
   );
-=======
-  return <>{<Card tamaño={data.size} />}</>;
->>>>>>> 39a6c9fa20be4a01f7bf718d3afa0793e13d87e2
+
 }
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
       await fetch("http://localhost:3001/pets/detail/" + params.id)
     ).json();
+    console.log(data);
     return {
       props: {
         data,

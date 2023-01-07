@@ -33,7 +33,7 @@
 .boxInfoNosotros {
   width: 100%;
   height: 40%;
-  
+    
 }
 
 .infoAdopcion {
@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  color: #415D43;
+  color: black;
   justify-items: center;
   justify-self: center;
   font-size: 20px;
@@ -52,8 +52,9 @@
   text-align: center;
   display: center;
   justify-content: center;
-  margin-top: 2%;
-  color: #415D43;
+  margin-top: 10em;
+  color: #415D43
+  ;
   font-size: 45px;
 }
 
@@ -67,21 +68,21 @@
 .carruselAnimals {
   background-color: rgb(184, 209, 115);
   margin-top: 3%;
-  height: 80rem;
+  height: 25rem;
 }
 
-.linkEshop {
+/* .linkEshop {
   color: rgb(11, 88, 11);
   text-align: center;
   display: center;
   justify-content: center;
   text-decoration: none;
-}
+}  */
 
 .linkAdoptar {
   padding-top: 2%;
   display: flex;
-  color: rgb(11, 88, 11);
+  color: #32281F;
   text-align: center;
   display: center;
   justify-content: center;
@@ -115,12 +116,11 @@
 .home{
   width: 91em;
   margin-top: -5em;
-  height: 50em;
-  
+  height: 50em;  
 }
 
 .logo{
-  border-radius:2em;
+  border-radius:1em;
   display: flex;
   position: absolute;
   margin-top: 52px;
@@ -134,32 +134,36 @@
   display: flex;
   position: absolute;
   border-radius: 50%;
-  width: 20em;
-  height: 17em;
-  margin-left: 55em;
-  margin-top: -15em;
+  width: 14em;
+  height: 9em;
+  margin-left: 73em;
+  margin-top: -22em;
 }
 
 .kitten{
   display: flex;
   position: absolute;
-  width: 20em;
-  height: 15em;
+  width: 22em;
+  height: 17em;
   border-radius: 50%;
-  margin-left: 60em;
-  margin-top: -25em;
+  margin-left: 50em;
+  margin-top: -19em;
 }
 
 .hug{
   display: flex;
   position: absolute;
-  width: 15em;
-  height: 12em;
+  width: 17em;
+  height: 14em;
   border-radius: 50%;
-  margin-left: 75em;
-  margin-top: -15em;
+  margin-left: 73em;
+  margin-top: -12em;
 }
 
+
+.footer{
+  background-color: #415D43;
+}
 /* .sobreNosotros {
   background-color: rgb(97, 118, 75);
   top: 40%;

@@ -9,7 +9,7 @@ import Nosotros from "../../components/infoHome/nosotros";
 // import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
-import home from '../../img/home.jpg'
+import home from '../../img/prueba.jpeg'
 import logo from '../../img/logo.jpeg'
 import hug from '../../img/hug.jpg'
 import shelter from '../../img/shelter.jpg'
@@ -27,6 +27,7 @@ export default function Home() {
         <Link href={"/home"} classname= "logo">
         <Image src={logo} alt="logo" className={styles.logo} width='auto' height='auto'/>
         </Link>
+        <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
         <Image src={home} alt="home" className= {styles.home} width='auto' height='auto'/>
         <Nosotros />
         <Image src={hug} alt="hug" className={styles.hug} width='auto' height='auto'/>
@@ -34,7 +35,7 @@ export default function Home() {
         <Image src={shelter} alt="shelter" className={styles.shelter} width='auto' height='auto'/>
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
-            <h1>¡Adoptame!</h1>
+            <h1>¡Adoptame! --- (acá abajo va el carrousel)</h1>
           </Link>
           {/* <ProductSlider /> */}
 
@@ -46,7 +47,7 @@ export default function Home() {
           </div>
         </div>
 
-        <Footer />
+        
 
         {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
