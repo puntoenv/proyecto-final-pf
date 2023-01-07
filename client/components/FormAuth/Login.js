@@ -39,8 +39,7 @@ export default function Login({ handlerOnChange, handlerOnClick }) {
         </button>
       </div>
       <div>
-        {/* {result.done && <p>{result.done}</p>}
-        {result.failed && <p>{result.failed}</p>} */}
+        {result.failed && <p>{result.failed}</p>}
       </div>
       <button>
         <Link href={"/login"}>Go Back</Link>
