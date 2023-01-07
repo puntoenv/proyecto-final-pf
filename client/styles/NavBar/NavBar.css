@@ -1,20 +1,20 @@
 .nav {
-  display: flex;
-  position: fixed;
+  display:flex;
+  position:absolute;
   z-index: 4000;
   top: 0;
   width: 100%;
   padding: 16px;
-  z-index: 4000;
+  z-index: 1;
   justify-content: space-between;
-  align-items: center;
-  background-color: #f26538;
+  align-items:flex-end;
+  background-color: #38593a;
 }
 .navMenuList {
   box-sizing: border-box;
-  display: flex;
+  display:flex;
   flex-direction: row;
-  align-items: center;
+  margin-left: 71em;
   column-gap: 24px;
   color: white;
 }
@@ -23,6 +23,8 @@
   display: flex;
   color: #eeee;
   text-decoration: none;
+  font-size: 20px;
+
 }
 .itemNav:hover {
   color: #fff;
@@ -30,8 +32,11 @@
 
 .btnPerfil {
   color: #eeee;
+  font-size: 20px;
 }
 .btnPerfil:hover {
   color: #fff;
   cursor: pointer;
 }
+
+

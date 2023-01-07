@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import Layout from "../layout";
 
 export default function Detail({ data }) {
+
   return (
     <>
       <Layout title={data.name.toUpperCase()} />

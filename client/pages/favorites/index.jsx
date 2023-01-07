@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/Card";
 import { getper, getmuni } from "../../stores/actions";
 import Pagina from "..//../components/paginated/pagina";
-import Layout from "../layout";
 let mock = [
   {
     id: 123,
@@ -79,24 +78,40 @@ function index() {
   };
   ////////////////////////////////////////////////////
   //paginado
-  const [curren, setcurren] = useState(1);
   const pg = 9;
+  const [curren, setcurren] = useState(1);
+  const [maxPageLimit, setMaxPageLimit] = useState(5);
+  const [minPageLimit, setMinPageLimit] = useState(0);
 
   //movimiento del puntero
   const ultimo = curren * pg;
   const primero = ultimo - pg;
   const pets = mock.length ? mock.slice(primero, ultimo) : [];
-  console.log(pets);
+  //console.log(pets)
+  useEffect(() => {
+    setcurren(1);
+  }, []);
   const Page = (pageNumber) => {
     setcurren(pageNumber);
   };
-  useEffect(() => {
-    setcurren(1);
-  });
+
+  const onPrevClick = () => {
+    if ((curren - 1) % pg === 0) {
+      setMaxPageLimit(maxPageLimit - pg);
+      setMinPageLimit(minPageLimit - pg);
+    }
+    setcurren((prev) => prev - 1);
+  };
+  const onNextClick = () => {
+    if (curren + 1 > maxPageLimit) {
+      setMaxPageLimit(maxPageLimit + pg);
+      setMinPageLimit(minPageLimit + pg);
+    }
+    setcurren((prev) => prev + 1);
+  };
   /////////////////////////////////////////
   return (
     <>
-      <Layout title="Favoritos" />
       <div className={styles.container}>
         <form>
           <h2>filtros</h2>
@@ -224,7 +239,20 @@ function index() {
       </div>
       <p></p>
       <div className={styles.button}>
-        {<Pagina pets={mock} pg={pg} page={Page} />}
+        {
+          <Pagina
+            pets={mock}
+            pg={pg}
+            page={Page}
+            onPrevClick={onPrevClick}
+            onNextClick={onNextClick}
+            curren={curren}
+            maxPageLimit={maxPageLimit}
+            minPageLimit={minPageLimit}
+            setMaxPageLimit={setMaxPageLimit}
+            setMinPageLimit={setMinPageLimit}
+          />
+        }
       </div>
     </>
   );

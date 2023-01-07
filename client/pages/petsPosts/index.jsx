@@ -9,6 +9,8 @@ import {
 } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+//PAGINADO
+import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
 
 /* { type, size*, age*, gender*, location? } querys de filtros*/
@@ -52,6 +54,39 @@ export default function PetAdoption() {
       gender: "",
       location: "",
     });
+  };
+
+  //PAGINADO////
+  const pg = 10;
+  const [curren, setcurren] = useState(1);
+  const [maxPageLimit, setMaxPageLimit] = useState(5);
+  const [minPageLimit, setMinPageLimit] = useState(0);
+
+  //movimiento del puntero
+  const ultimo = curren * pg;
+  const primero = ultimo - pg;
+  const pet = pets.length ? pets.slice(primero, ultimo) : [];
+  //console.log(pets)
+  useEffect(() => {
+    setcurren(1);
+  }, []);
+  const Page = (pageNumber) => {
+    setcurren(pageNumber);
+  };
+
+  const onPrevClick = () => {
+    if ((curren - 1) % pg === 0) {
+      setMaxPageLimit(maxPageLimit - pg);
+      setMinPageLimit(minPageLimit - pg);
+    }
+    setcurren((prev) => prev - 1);
+  };
+  const onNextClick = () => {
+    if (curren + 1 > maxPageLimit) {
+      setMaxPageLimit(maxPageLimit + pg);
+      setMinPageLimit(minPageLimit + pg);
+    }
+    setcurren((prev) => prev + 1);
   };
   return (
     <div>
@@ -114,7 +149,7 @@ export default function PetAdoption() {
           </select> */}
         </div>
         <div>
-          {pets?.map((mascota) => (
+          {pet?.map((mascota) => (
             <Card
               id={mascota._id}
               nombre={mascota.name}
@@ -128,6 +163,20 @@ export default function PetAdoption() {
       {/* <Link href={`/detail/${pets._id}`}>
         <h1>Ver mascota</h1>
       </Link> */}
+      {
+        <Pagina
+          pets={pets}
+          pg={pg}
+          page={Page}
+          onPrevClick={onPrevClick}
+          onNextClick={onNextClick}
+          curren={curren}
+          maxPageLimit={maxPageLimit}
+          minPageLimit={minPageLimit}
+          setMaxPageLimit={setMaxPageLimit}
+          setMinPageLimit={setMinPageLimit}
+        />
+      }
     </div>
   );
 }
