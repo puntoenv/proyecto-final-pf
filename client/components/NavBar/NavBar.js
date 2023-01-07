@@ -22,15 +22,11 @@ const NavBar = () => {
   return (
     <header className="headerNav">
       <nav className="nav">
-        {/* <Link href={"/home"} classname= "logo">
         
-        <Image src={logo} alt="logo" className="logo" width='auto' height='auto'/>
-      
-        </Link> */}
         <div className="navMenuList">
-          <Link className="itemNav" href="/Apóyanos">
+          {/* <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>
-          </Link>
+          </Link> */}
           <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
@@ -52,9 +48,9 @@ const NavBar = () => {
         <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
         </Link>
-        <Link className="itemDash" href="#">
+        {/* <Link className="itemDash" href="#">
           <span>Mi carrito</span>
-        </Link>
+        </Link> */}
         <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>

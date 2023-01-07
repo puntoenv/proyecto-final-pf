@@ -10,7 +10,10 @@ import Nosotros from "../../components/infoHome/nosotros";
 //const inter = Inter({ subsets: ['latin'] })
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
 import home from '../../img/home.jpg'
-import logo from '../../img/logo.png'
+import logo from '../../img/logo.jpeg'
+import hug from '../../img/hug.jpg'
+import shelter from '../../img/shelter.jpg'
+import kitten from '../../img/kitten.jpg'
 
 export default function Home() {
   return (
@@ -22,14 +25,16 @@ export default function Home() {
       <div className={styles.home}>
         <NavBar />
         <Link href={"/home"} classname= "logo">
-        <Image src={logo} alt="logo" className="logo" width='auto' height='auto'/>
+        <Image src={logo} alt="logo" className={styles.logo} width='auto' height='auto'/>
         </Link>
-        <Image src={home} alt="home" className= {styles.logo} width='auto' height='auto'/>
+        <Image src={home} alt="home" className= {styles.home} width='auto' height='auto'/>
         <Nosotros />
-
+        <Image src={hug} alt="hug" className={styles.hug} width='auto' height='auto'/>
+        <Image src={kitten} alt="kitten" className={styles.kitten} width='auto' height='auto'/>
+        <Image src={shelter} alt="shelter" className={styles.shelter} width='auto' height='auto'/>
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
-            <h1>Adoptame!</h1>
+            <h1>¡Adoptame!</h1>
           </Link>
           {/* <ProductSlider /> */}
 
