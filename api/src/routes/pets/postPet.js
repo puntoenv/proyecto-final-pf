@@ -17,7 +17,7 @@ postPet.post("/post-pet", async (req, res) => {
       userId,
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
-    await Pet.create({
+    let pet = await Pet.create({
       name,
       size,
       age,
@@ -28,10 +28,9 @@ postPet.post("/post-pet", async (req, res) => {
       gender,
       userId,
     });
-    res.status(200).json("Mascota creada correctamente.");
+    res.status(200).send(pet._id);
   } catch (error) {
-    console.log(error.message);
-    res.status(400).json(error);
+    res.status(400).send("Error al publicar la mascota ");
   }
 });
 
