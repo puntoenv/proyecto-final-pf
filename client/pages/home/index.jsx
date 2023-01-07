@@ -6,26 +6,22 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
+import Layout from "../layout";
 // import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Home</title>
-      </Head>
-
+      <Layout title="Inicio" />
       <div className={styles.home}>
         <NavBar />
         <Nosotros />
-
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>Adoptame!</h1>
           </Link>
           {/* <ProductSlider /> */}
-
           <div className={styles.carruselEshop}>
             <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>

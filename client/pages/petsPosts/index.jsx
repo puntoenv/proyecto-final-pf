@@ -9,6 +9,7 @@ import {
 } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Layout from "../layout.js";
 
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
@@ -54,6 +55,7 @@ export default function PetAdoption() {
   };
   return (
     <div>
+      <Layout title="Mascotas" />
       <div>
         <nav>
           <Link href="/nosotros">Nosotros</Link>
