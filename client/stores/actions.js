@@ -1,6 +1,8 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getMascotas } from "./mascotas";
+import { useRouter } from "next/router";
+// const router = useRouter();
 
 export const getper = () => async (dispatch) => {
   try {
@@ -33,17 +35,6 @@ export const getPets = () => async (dispatch) => {
   }
 };
 
-export const postDetail = (id) => async (dispatch) => {
-  console.log(id);
-  try {
-    const detail = await axios(`http://localhost:3001/pets/detail/${id}`);
-    dispatch(getPostDetail(detail.data));
-    // console.log(detail);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const searchPet = (pet) => async (dispatch) => {
   try {
     const petEncontrado = await axios(
@@ -61,14 +52,19 @@ export const searchPet = (pet) => async (dispatch) => {
    return filtros
 }*/
 
-export const PostAdop = async (post) => {
-  try {
-    console.log(post);
-    let res = await axios.post("http://localhost:3001/pets/post-pet", post);
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
+export const PostAdop = (post) => {
+  return (
+    axios
+      .post("http://localhost:3001/pets/post-pet", post)
+      .then((res) => {
+        alert("Mascota publicada correctamente.");
+        return res.data;
+      })
+      // .then((id) => fetch(`http://localhost:3001/pets/detail/${id}`))
+      // .then((response) => response.url.split("/").pop())
+      // .then((id) => router.push(`detail/${id}`))
+      .catch((err) => alert(err.response.data))
+  );
 };
 
 export const postUser = (payload) => {
@@ -92,10 +88,11 @@ export const postUser = (payload) => {
   };
 };
 
-
-  export const GetUs = () => async (dispatch) => {
-    await axios.get('http://localhost:3001/user/63b773434f2e71676e855f8a').then(res => dispatch(getuser(res.data)))
-  }
+export const GetUs = () => async (dispatch) => {
+  await axios
+    .get("http://localhost:3001/user/63b773434f2e71676e855f8a")
+    .then((res) => dispatch(getuser(res.data)));
+};
 
 export const filtrarMascotas = (mascotas) => (dispatch) => {
   try {
@@ -107,4 +104,3 @@ export const filtrarMascotas = (mascotas) => (dispatch) => {
     console.error(error);
   }
 };
-
