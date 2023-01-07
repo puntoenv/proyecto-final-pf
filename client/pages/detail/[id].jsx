@@ -3,6 +3,7 @@ import styles from "./detail.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 
 export default function Detail({ data }) {
+
   return (
     <>
       <NavBar />

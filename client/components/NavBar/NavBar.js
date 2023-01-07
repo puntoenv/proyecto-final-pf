@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { useSession } from "next-auth/react";
+// import logo from '../../img/logo.png'
+// import Image from "next/image";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -20,13 +22,11 @@ const NavBar = () => {
   return (
     <header className="headerNav">
       <nav className="nav">
-        <Link href={"/home"}>
-          <span className="logoNav">Paw Pet</span>
-        </Link>
+        
         <div className="navMenuList">
-          <Link className="itemNav" href="/Apóyanos">
+          {/* <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>
-          </Link>
+          </Link> */}
           <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
@@ -48,9 +48,9 @@ const NavBar = () => {
         <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
         </Link>
-        <Link className="itemDash" href="#">
+        {/* <Link className="itemDash" href="#">
           <span>Mi carrito</span>
-        </Link>
+        </Link> */}
         <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>
