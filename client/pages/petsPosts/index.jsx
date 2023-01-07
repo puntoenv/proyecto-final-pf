@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
+import Layout from "../layout.js";
+
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
@@ -88,6 +90,7 @@ export default function PetAdoption() {
   };
   return (
     <div>
+      <Layout title="Mascotas" />
       <div>
         <nav>
           <Link href="/nosotros">Nosotros</Link>

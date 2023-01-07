@@ -4,38 +4,15 @@ import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Head from "next/head";
+import Layout from "../layout";
 
 export default function form() {
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
-  const [errors, setError] = useState({
-    // name: "Se requiere un nombre no mayor a 150 caracteres para la mascota.",
-    // provincia: "Se requiere que se brinde la provincia de la mascota.",
-    // municipio: "Se requiere que se brinde el municipio de la mascota.",
-    // age: "Se requiere que se especifique la edad de la mascota.",
-    // size: "Se requiere que se brinde el tamaño de la mascota.",
-    // description: "Se requiere una descripcion de minimo 15 caracteres",
-    // image: "Se requiere una imagen referencial de la mascota.",
-    // type: "Se requiere que se especifique la especie de la mascota.",
-    // gender: "Se requiere que se brinde el genero de la mascota.",
-  });
-  const [post, setPost] = useState({
-    name: "",
-    size: "",
-    age: 0,
-    description: "",
-    image: null,
-    type: "",
-    location: {
-      provincia: "",
-      municipio: "",
-    },
-    gender: "",
-  });
-
+  const [errors, setError] = useState({});
+  const [post, setPost] = useState({});
   const validation = (e) => {
     let { value, name } = e.target;
     if (name === "name") {
@@ -91,13 +68,9 @@ export default function form() {
     }
     return console.log(errors);
   };
-
   useEffect(() => {
     dispatch(getper());
   }, [dispatch]);
-
-  // handel
-
   const handleSelector = (e) => {
     const { name, value } = e.target;
     setPost({
@@ -112,7 +85,6 @@ export default function form() {
       age: value,
     });
   };
-
   const handleProvincia = (e) => {
     const { value } = e.target;
     dispatch(getmuni(value));
@@ -133,7 +105,6 @@ export default function form() {
       },
     });
   };
-
   const handleFiles = (e) => {
     const { files } = e.target;
     const reader = new FileReader();
@@ -152,24 +123,19 @@ export default function form() {
   };
   return (
     <>
-      <Head>
-        <title>Post Adoption</title>
-        <link
-          rel="icon"
-          href="https://cdn-icons-png.flaticon.com/512/3069/3069153.png"
-        />
-      </Head>
+      <Layout title="Publicar Mascota" />
       <div className={styles.container}>
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-          <span className={styles.title}>Posteo de Mascota</span>
+          <span className={styles.title}>Datos de la Mascota</span>
           <label htmlFor="name" className={styles.stretch}>
-            Nombre:
+            Nombre: wedwjdbwb
             <span className={styles.errors}>{errors.name}</span>
             <input
+              className={styles.input}
               id="name"
               type="text"
               name="name"
-              placeholder="Ingrese el nombre de la mascota..."
+              placeholder=" Ingrese el nombre de la mascota..."
               onChange={(e) => {
                 validation(e);
                 handleSelector(e);
@@ -225,10 +191,11 @@ export default function form() {
             Edad:
             <span className={styles.errors}>{errors.age}</span>
             <input
+              className={styles.input}
               id="age"
               type="number"
               name="age"
-              placeholder="Ingrese la edad"
+              placeholder=" Ingrese la edad de la mascota.."
               min="0"
               max="40"
               onChange={(e) => {
@@ -241,6 +208,7 @@ export default function form() {
             Especie:
             <span className={styles.errors}>{errors.type}</span>
             <select
+              className={styles.input}
               id="type"
               name="type"
               onChange={(e) => {
@@ -271,6 +239,7 @@ export default function form() {
               <span className={styles.title}>Provincia</span>
               <span className={styles.errors}>{errors.provincia}</span>
               <select
+                className={styles.input}
                 name="provincia"
                 id="provincia"
                 onChange={(e) => {
@@ -292,6 +261,7 @@ export default function form() {
               <span className={styles.title}>Ciudad</span>
               <span className={styles.errors}>{errors.municipio}</span>
               <select
+                className={styles.input}
                 id="municipio"
                 name="municipio"
                 onChange={(e) => {
@@ -346,10 +316,12 @@ export default function form() {
             Descripción:
             <span className={styles.errors}>{errors.description}</span>
             <textarea
+              className={styles.input}
               id="description"
               type="text"
               name="description"
-              placeholder="Describa a la mascota..."
+              rows="3"
+              placeholder=" Describa a la mascota..."
               onChange={(e) => {
                 validation(e);
                 handleSelector(e);
@@ -367,7 +339,6 @@ export default function form() {
                 validation(e);
                 handleFiles(e);
               }}
-              // multiple
             />
           </label>
           <label htmlFor="submit"></label>

@@ -5,12 +5,14 @@ import {
   handlerOnClick,
 } from "../../controller/loginAndRegister";
 import Register from "../../components/FormAuth/Register";
+import Layout from "../layout";
 
 export default function () {
   const { data: session } = useSession();
 
   return (
     <>
+      <Layout title="Iniciar Sesión" />
       {session ? (
         <div>
           <h1>¡Ya iniciaste sesión!</h1>

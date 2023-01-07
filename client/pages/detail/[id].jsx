@@ -1,11 +1,13 @@
 import Image from "next/image";
 import styles from "./detail.module.css";
 import NavBar from "../../components/NavBar/NavBar";
+import Layout from "../layout";
 
 export default function Detail({ data }) {
 
   return (
     <>
+      <Layout title={data.name.toUpperCase()} />
       <NavBar />
       <div className={styles.container}>
         <div className={styles.title}>
