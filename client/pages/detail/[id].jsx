@@ -1,8 +1,24 @@
 import Card from "../../components/Card";
 
-
 export default function Detail({ data }) {
- return <>{<Card tamaño={data.size} />}</>;
+
+  return (
+    <>
+      {
+        <Card
+          nombre={data.name}
+          tamaño={data.size}
+          imagen={data.image}
+          edad={data.age}
+          genero={data.gender}
+          tipo={data.type}
+          locacion={data.location}
+          
+        />
+      }
+      
+    </>
+  );
 }
 export async function getServerSideProps({ params }) {
   try {

@@ -9,6 +9,9 @@ import Nosotros from "../../components/infoHome/nosotros";
 // import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
+import home from '../../img/home.jpg'
+import logo from '../../img/logo.png'
+
 export default function Home() {
   return (
     <>
@@ -18,6 +21,10 @@ export default function Home() {
 
       <div className={styles.home}>
         <NavBar />
+        <Link href={"/home"} classname= "logo">
+        <Image src={logo} alt="logo" className="logo" width='auto' height='auto'/>
+        </Link>
+        <Image src={home} alt="home" className= {styles.logo} width='auto' height='auto'/>
         <Nosotros />
 
         <div className={styles.carruselAnimals}>
@@ -27,9 +34,9 @@ export default function Home() {
           {/* <ProductSlider /> */}
 
           <div className={styles.carruselEshop}>
-            <Link className={styles.linkEshop} href="/eshop">
+            {/* <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>
-            </Link>
+            </Link> */}
             {/* <ProductSliderEshop /> */}
           </div>
         </div>

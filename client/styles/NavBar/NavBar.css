@@ -8,13 +8,13 @@
   z-index: 4000;
   justify-content: space-between;
   align-items: center;
-  background-color: #f26538;
+  background-color: #447447;
 }
 .navMenuList {
   box-sizing: border-box;
-  display: flex;
+  display:flex;
   flex-direction: row;
-  align-items: center;
+  margin-left: 71em;
   column-gap: 24px;
   color: white;
 }
@@ -23,6 +23,7 @@
   display: flex;
   color: #eeee;
   text-decoration: none;
+
 }
 .itemNav:hover {
   color: #fff;
@@ -35,3 +36,5 @@
   color: #fff;
   cursor: pointer;
 }
+
+
