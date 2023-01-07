@@ -3,26 +3,32 @@
   border-color: black;
   width: auto;
   height: auto;
-  padding: 1rem;
-  gap: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  gap: 0.1rem;
   display: grid;
   place-content: center;
   justify-content: center;
   flex-direction: column;
   border-radius: 1rem;
+  background-color: whitesmoke;
+  min-width: 25rem;
+  min-height: 40rem;
 }
 
 .container {
   display: grid;
   place-content: center;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: coral;
 }
 
 .stretch {
   display: grid;
   place-content: center;
   justify-content: stretch;
+  font-size: medium;
 }
 
 .radio {
@@ -34,4 +40,11 @@
 
 .title {
   text-align: center;
+  font-size: larger;
+}
+
+.errors {
+  color: red;
+  font-size: smaller;
+  font-style: inherit;
 }
