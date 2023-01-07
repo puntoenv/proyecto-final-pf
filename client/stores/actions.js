@@ -33,17 +33,6 @@ export const getPets = () => async (dispatch) => {
   }
 };
 
-export const postDetail = (id) => async (dispatch) => {
-  console.log(id);
-  try {
-    const detail = await axios(`http://localhost:3001/pets/detail/${id}`);
-    dispatch(getPostDetail(detail.data));
-    // console.log(detail);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const searchPet = (pet) => async (dispatch) => {
   try {
     const petEncontrado = await axios(
@@ -61,14 +50,14 @@ export const searchPet = (pet) => async (dispatch) => {
    return filtros
 }*/
 
-export const PostAdop = async (post) => {
-  try {
-    console.log(post);
-    let res = await axios.post("http://localhost:3001/pets/post-pet", post);
-    return res;
-  } catch (error) {
-    console.error(error);
-  }
+export const PostAdop = (post) => {
+  return axios
+    .post("http://localhost:3001/pets/post-pet", post)
+    .then((res) => {
+      alert("Mascota publicada correctamente.");
+      return res.data;
+    })
+    .catch((err) => alert(err.response.data));
 };
 
 export const postUser = (payload) => {
