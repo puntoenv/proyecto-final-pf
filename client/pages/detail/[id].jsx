@@ -1,6 +1,7 @@
 import Card from "../../components/Card";
 
 export default function Detail({ data }) {
+<<<<<<< HEAD
 
   return (
     <>
@@ -19,6 +20,9 @@ export default function Detail({ data }) {
       
     </>
   );
+=======
+  return <>{<Card tamaño={data.size} />}</>;
+>>>>>>> 39a6c9fa20be4a01f7bf718d3afa0793e13d87e2
 }
 export async function getServerSideProps({ params }) {
   try {

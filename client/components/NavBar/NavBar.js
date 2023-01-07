@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { useSession } from "next-auth/react";
-import logo from '../../img/logo.png'
-import Image from "next/image";
+// import logo from '../../img/logo.png'
+// import Image from "next/image";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -31,7 +31,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>
           </Link>
-          <Link className="itemNav" href="/petAdoption">
+          <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
           {true || session ? (
