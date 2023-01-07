@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { validation, validationButton } from "../../controller/validationLogin";
+import { validation, validationButton } from "../../controller/validationSignup";
 
 export default function Register({ handlerChange, handlerClick }) {
   const [input, setInput] = useState({
@@ -27,7 +27,7 @@ export default function Register({ handlerChange, handlerClick }) {
 
   return (
     <div>
-      <h1>LOG IN</h1>
+      <h1>Registrarse</h1>
       <form>
         <div>
           <label>

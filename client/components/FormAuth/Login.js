@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import {
   validation,
   validationButton,
-} from "../../controller/validationSignUp";
+} from "../../controller/validationLogin";
 
 export default function Login({ handlerOnChange, handlerOnClick }) {
   const router = useRouter()
@@ -32,7 +32,7 @@ export default function Login({ handlerOnChange, handlerOnClick }) {
   return (
     <>
       <div>
-        <h1>SIGN UP</h1>
+        <h1>INICIAR SESION</h1>
         <form
           onChange={(event) => {
             handlerOnChange(event, setInput, input),
@@ -53,7 +53,7 @@ export default function Login({ handlerOnChange, handlerOnClick }) {
           onClick={(event) => handlerOnClick(event, input, setResult, true)}
           disabled={validationButton(error, input)}
         >
-          Sign up
+          Iniciar sesión
         </button>
       </div>
       <div>{result.failed && <p>{result.failed}</p>}</div>
