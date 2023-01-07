@@ -12,15 +12,15 @@ export default function form() {
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({
-    name: "Se requiere un nombre no mayor a 150 caracteres para la mascota.",
-    provincia: "Se requiere que se brinde la provincia de la mascota.",
-    municipio: "Se requiere que se brinde el municipio de la mascota.",
-    age: "Se requiere que se especifique la edad de la mascota.",
-    size: "Se requiere que se brinde el tamaño de la mascota.",
-    description: "Se requiere una descripcion de minimo 15 caracteres",
-    image: "Se requiere una imagen referencial de la mascota.",
-    type: "Se requiere que se especifique la especie de la mascota.",
-    gender: "Se requiere que se brinde el genero de la mascota.",
+    // name: "Se requiere un nombre no mayor a 150 caracteres para la mascota.",
+    // provincia: "Se requiere que se brinde la provincia de la mascota.",
+    // municipio: "Se requiere que se brinde el municipio de la mascota.",
+    // age: "Se requiere que se especifique la edad de la mascota.",
+    // size: "Se requiere que se brinde el tamaño de la mascota.",
+    // description: "Se requiere una descripcion de minimo 15 caracteres",
+    // image: "Se requiere una imagen referencial de la mascota.",
+    // type: "Se requiere que se especifique la especie de la mascota.",
+    // gender: "Se requiere que se brinde el genero de la mascota.",
   });
   const [post, setPost] = useState({
     name: "",
@@ -125,7 +125,6 @@ export default function form() {
   };
   const handleMunicipio = (e) => {
     const { value } = e.target;
-    e.preventDefault();
     setPost({
       ...post,
       location: {
@@ -149,9 +148,7 @@ export default function form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(post);
-    let id = PostAdop(post);
-    PostAdop(post);
-    // router.push("/home");
+    return PostAdop(post).then((id) => router.push(`detail/${id}`));
   };
   return (
     <>
@@ -379,15 +376,15 @@ export default function form() {
             type="submit"
             value="Subir Mascota"
             disabled={
-              errors.age ||
-              errors.name ||
-              errors.description ||
-              errors.provincia ||
-              errors.image ||
-              errors.size ||
-              errors.gender ||
-              errors.type ||
-              errors.municipio
+              !post.age ||
+              !post.name ||
+              !post.description ||
+              !post.location.provincia ||
+              !post.image ||
+              !post.size ||
+              !post.gender ||
+              !post.type ||
+              !post.location.municipio
             }
           />
         </form>
