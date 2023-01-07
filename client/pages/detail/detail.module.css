@@ -1,35 +1,39 @@
 .container {
-  display: grid;
-  place-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   min-width: 100vw;
   min-height: 100vh;
-  background-color: #415d43;
+  background-color: #e8eb9d;
 }
 
 .detail {
   display: flex;
-  flex-direction: row;
-  width: 50rem;
-  min-height: 25rem;
-  border-style: solid;
-  border-radius: 1rem;
-  background-color: #e8eb9d;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .image {
-  height: 100%;
-  width: 25rem;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  height: 25rem;
+  width: 40rem;
+  border-radius: 1rem;
 }
 
 .text {
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: left;
-  width: 25rem;
-  padding-left: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
   gap: 1rem;
+  margin-top: 1rem;
+  width: 40rem;
+}
+
+.title {
+  margin-top: 4rem;
+  width: 40rem;
+  text-align: center;
 }
