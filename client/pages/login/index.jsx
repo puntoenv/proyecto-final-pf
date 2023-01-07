@@ -117,7 +117,7 @@ export default function () {
             </form>
           </div>
           <br />
-          
+
           <br />
           <p>
             ¿Ya tienes una cuenta? <Link href={"/signup"}>Inicia Sesion</Link>

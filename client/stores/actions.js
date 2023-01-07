@@ -21,17 +21,6 @@ export const getPets = () => async (dispatch) => {
   dispatch(getMascotas(allPets.data.pets));
 };
 
-export const postDetail = (id) => async (dispatch) => {
-  console.log(id);
-  try {
-    const detail = await axios(`http://localhost:3001/pets/detail/${id}`);
-    dispatch(getPostDetail(detail.data));
-    // console.log(detail);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const searchPet = (pet) => async (dispatch) => {
   const petEncontrado = await axios(
     `http://localhost:3001/pets/by-name?name=${pet}`
@@ -45,30 +34,12 @@ export const searchPet = (pet) => async (dispatch) => {
    return filtros
 }*/
 
-export const PostAdop = async (post) => {
-  console.log(post);
-  let res = await axios.post("http://localhost:3001/pets/post-pet", post);
-  console.log(res);
-  return res;
-};
-
-export const postUser = (payload) => {
-  // return async function(dispatch){
-  //     const response = await axios('http://localhost:3001/cards')
-  //     return dispatch({type: GET_ALL_DOGS, payload: response.data})
-  // }
-
-  return async function () {
-    try {
-      console.log(payload);
-      const response = await axios.post(
-        "http://localhost:3001/auth/register",
-        payload
-      );
-      console.log(response);
-      return response;
-    } catch (err) {
-      return err.response;
-    }
-  };
+export const PostAdop = (post) => {
+  return axios
+    .post("http://localhost:3001/pets/post-pet", post)
+    .then((res) => {
+      alert("Mascota publicada correctamente.");
+      return res.data;
+    })
+    .catch((err) => alert(err.response.data));
 };
