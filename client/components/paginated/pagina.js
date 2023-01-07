@@ -8,11 +8,15 @@ function Pagina({
   curren,
   maxPageLimit,
   minPageLimit,
+  setMaxPageLimit,
+  setMinPageLimit,
 }) {
+  //console.log(pets);
   let numeroPaginas = [];
-  for (let i = 0; i < pets.length - 1 / pg; i++) {
-    numeroPaginas.push(i);
+  for (let i = 0; i < pets.length / pg; i++) {
+    numeroPaginas.push(i + 1);
   }
+  //console.log(numeroPaginas);
   const handlePrevClick = () => {
     onPrevClick();
   };
@@ -22,39 +26,31 @@ function Pagina({
   };
 
   const handlePageClick = (e) => {
-    page(Number(e.target.id));
+    const { id } = e.target;
+    page(Number(id));
   };
-  const pageNumbers = numeroPaginas.map((page) => {
-    if (page <= maxPageLimit && page > minPageLimit) {
+  const pagina = numeroPaginas.map((a) => {
+    if (a <= maxPageLimit && a > minPageLimit) {
       return (
-        <li
-          key={page}
-          id={page}
+        <button
+          className={styles.button}
+          key={a}
+          id={a}
           onClick={handlePageClick}
-          className={curren === page ? "active" : null}
         >
-          {page}
-        </li>
+          {a}
+        </button>
       );
-    } else {
-      return null;
     }
   });
+  //console.log(pageNumbers);
   let pageIncrementEllipses = null;
   if (numeroPaginas.length > maxPageLimit) {
-    pageIncrementEllipses = (
-      <button className={styles.button} onClick={handleNextClick}>
-        {numeroPaginas}
-      </button>
-    );
+    pageIncrementEllipses = <li onClick={handleNextClick}>&hellip;</li>;
   }
   let pageDecremenEllipses = null;
   if (minPageLimit >= 1) {
-    pageDecremenEllipses = (
-      <button className={styles.button} onClick={handlePrevClick}>
-        {numeroPaginas}
-      </button>
-    );
+    pageDecremenEllipses = <li onClick={handlePrevClick}>&hellip;</li>;
   }
 
   return (
@@ -66,11 +62,9 @@ function Pagina({
       >
         Prev
       </button>
-      <button className={styles.button}>
-        {pageDecremenEllipses}
-        {pageNumbers}
-        {pageIncrementEllipses}
-      </button>
+      {pageDecremenEllipses}
+      {pagina}
+      {pageIncrementEllipses}
       <button
         className={styles.button}
         onClick={handleNextClick}
@@ -86,3 +80,19 @@ function Pagina({
 export default Pagina;
 
 /*  {numeroPaginas.map(a => (<button className={styles.button} key={a} onClick={() => page(a)}>{a}</button>))}*/
+/*(page) => {
+    if (page <= maxPageLimit && page > minPageLimit) {
+      return (
+        <li
+          key={page}
+          id={page}
+          onClick={handlePageClick}
+          className={curren === page ? "active" : null}
+        >
+          {page}
+        </li>
+      );
+    } else {
+      return null;
+    }
+  }*/
