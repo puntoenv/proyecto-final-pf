@@ -17,7 +17,9 @@ router.post("/register", async (req, res) => {
     name: req.body.name,
     age: req.body.age,
     bio: req.body.bio,
-    image: 'https://cdn-icons-png.flaticon.com/512/5372/5372211.png' || req.body.image,
+    image:
+      "https://cdn-icons-png.flaticon.com/512/5372/5372211.png" ||
+      req.body.image,
     email: req.body.email,
     password: hashedPassword,
   });
@@ -40,29 +42,33 @@ router.post("/login", async (req, res) => {
   const { provider } = req.body;
 
   // LOGIN WITH AUTH EXTERNAL
-  if (provider === "external") {
+  if (provider.status === "external") {
     try {
-      let user = await User.findOne({ email: req.body.email });
-      console.log("desde line 46: " + user);
-      if (!user) {
-        user = await User.create({
-          name: req.body.name,
-          email: req.body.email,
-          image: req.body.image,
-        });
-      }
-      const token = jwt.sign(
-        {
-          name: user.name,
-          id: user._id,
-        },
-        `${process.env.JWT_TOKEN_SECRET}`
-      );
+      if (new RegExp(/([A-Za-z\w]){64,64}$/, "g").test(provider.key)) {
+        let user = await User.findOne({ email: req.body.email });
+        console.log("desde line 46: " + user);
+        if (!user) {
+          user = await User.create({
+            name: req.body.name,
+            email: req.body.email,
+            image: req.body.image,
+          });
+        }
+        const token = jwt.sign(
+          {
+            name: user.name,
+            id: user._id,
+          },
+          `${process.env.JWT_TOKEN_SECRET}`
+        );
 
-      return res.header("auth-token", token).json({
-        error: null,
-        data: { token },
-      });
+        return res.header("auth-token", token).json({
+          error: null,
+          data: { token },
+        });
+      } else {
+        res.status(403).json({ error: "access denied bad authentication" });
+      }
     } catch (error) {
       return res.status(400).json(error.message);
     }
