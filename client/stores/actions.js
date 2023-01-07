@@ -92,10 +92,11 @@ export const postUser = (payload) => {
   };
 };
 
-
-  export const GetUs = () => async (dispatch) => {
-    await axios.get('http://localhost:3001/user/63b773434f2e71676e855f8a').then(res => dispatch(getuser(res.data)))
-  }
+export const GetUs = () => async (dispatch) => {
+  await axios
+    .get("http://localhost:3001/user/63b773434f2e71676e855f8a")
+    .then((res) => dispatch(getuser(res.data)));
+};
 
 export const filtrarMascotas = (mascotas) => (dispatch) => {
   try {
@@ -107,4 +108,3 @@ export const filtrarMascotas = (mascotas) => (dispatch) => {
     console.error(error);
   }
 };
-
