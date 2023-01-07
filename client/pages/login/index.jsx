@@ -15,7 +15,8 @@ export default function () {
         <div>
           <h1>¡Ya iniciaste sesión!</h1>
           <p>
-            Ve al perfil de <Link href={"/profile"}>{session.user.name}</Link>.
+            Ve al perfil de <Link href={"/mi-perfil"}>{session.user.name}</Link>
+            .
           </p>
           <Link href={"/"}>Home</Link>
           <br />

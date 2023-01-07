@@ -50,6 +50,10 @@ const userSchema = new Schema({
       ref: "Product",
     },
   ],
+  signIn: {
+    type: String,
+    default: "local",
+  },
   hidden: { type: Boolean, default: false },
 });
 

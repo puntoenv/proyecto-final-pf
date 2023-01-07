@@ -25,53 +25,55 @@ export default function Refister({ handlerChange, handlerClick }) {
           ></input>
         </label>
 
-        <div>
-          <label>
-            Age:
-            <input
-              type="number"
-              name={"age"}
-              value={input.age}
-              onChange={(event) => handlerChange(event, setInput, input)}
-            ></input>
-          </label>
-        </div>
-        <div>
-          <label>Bio: </label>
+        <label>
+          Age:
+          <input
+            type="number"
+            name={"age"}
+            value={input.age}
+            onChange={(event) => handlerChange(event, setInput, input)}
+          ></input>
+        </label>
+
+        <label>
+          Bio:
           <input
             type="text"
             name={"bio"}
             value={input.bio}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
-        </div>
-        <div>
-          <label>Image: </label>
+        </label>
+
+        <label>
+          Image:
           <input
             type="text"
             name={"image"}
             value={input.image}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
-        </div>
-        <div>
-          <label>Email: </label>
+        </label>
+
+        <label>
+          Email:
           <input
             type="text"
             name={"email"}
             value={input.email}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
-        </div>
-        <div>
-          <label>Password: </label>
+        </label>
+
+        <label>
+          Password:
           <input
             type="password"
             name={"password"}
             value={input.password}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
-        </div>
+        </label>
         <button
           type="submit"
           onClick={(event) => handlerClick(event, input, true)}

@@ -3,9 +3,9 @@ import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
 // import styles from '../styles/profile.module.css'
 
-const profile = () => {
+export default function Profile({ sesion }) {
+  console.log(sesion);
   const { data: session } = useSession();
-  console.log(session)
   return (
     <div>
       {session ? (
@@ -27,21 +27,4 @@ const profile = () => {
       )}
     </div>
   );
-};
-
-export default profile;
-
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
-};
+}
