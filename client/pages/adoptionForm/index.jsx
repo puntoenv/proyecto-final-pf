@@ -125,7 +125,6 @@ export default function form() {
   };
   const handleMunicipio = (e) => {
     const { value } = e.target;
-    e.preventDefault();
     setPost({
       ...post,
       location: {
@@ -149,9 +148,7 @@ export default function form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(post);
-    let id = PostAdop(post);
-    PostAdop(post);
-    // router.push("/home");
+    return PostAdop(post).then((id) => router.push(`detail/${id}`));
   };
   return (
     <>

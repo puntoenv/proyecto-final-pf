@@ -1,6 +1,8 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getMascotas } from "./mascotas";
+import { useRouter } from "next/router";
+// const router = useRouter();
 
 export const getper = () => async (dispatch) => {
   try {
@@ -51,13 +53,18 @@ export const searchPet = (pet) => async (dispatch) => {
 }*/
 
 export const PostAdop = (post) => {
-  return axios
-    .post("http://localhost:3001/pets/post-pet", post)
-    .then((res) => {
-      alert("Mascota publicada correctamente.");
-      return res.data;
-    })
-    .catch((err) => alert(err.response.data));
+  return (
+    axios
+      .post("http://localhost:3001/pets/post-pet", post)
+      .then((res) => {
+        alert("Mascota publicada correctamente.");
+        return res.data;
+      })
+      // .then((id) => fetch(`http://localhost:3001/pets/detail/${id}`))
+      // .then((response) => response.url.split("/").pop())
+      // .then((id) => router.push(`detail/${id}`))
+      .catch((err) => alert(err.response.data))
+  );
 };
 
 export const postUser = (payload) => {
