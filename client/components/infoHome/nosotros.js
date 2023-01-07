@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../pages/home/styles.module.css";
-import Footer from "../Footer/footer";
+
 function Nosotros() {
   return (
 
@@ -24,17 +24,17 @@ function Nosotros() {
         animales.
       </p>
 
-      <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
+      {/* <h1 className={styles.tituloAdopcion}>Info Adopciones</h1> */}
 
-      <p className={styles.infoAdopcion}>
+      {/* <p className={styles.infoAdopcion}>
         En nuestra web puedes encontrar a tu peludito. Puedes ver todas las
         mascotas en adopcion y filtarlas por tama;o, ubicacion, genero, etc.
         Tener una mascota es una responsabilidad, por lo tanto, pedimos
         compromiso cuando se trate de adoptar a un nuevo integrantes. Y tambien
         compromiso para los usuarios que publican los posteos.
-      </p>
+      </p> */}
     </div>
-    <Footer /></>
+    </>
   );
 }
 
