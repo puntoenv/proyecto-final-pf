@@ -1,16 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
-export default function Refister({ handlerChange, handlerClick }) {
+export default function Register({ handlerChange, handlerClick }) {
   const [input, setInput] = useState({
     name: "",
     age: 0,
     bio: "",
-    image:
-      "https://www.pngkit.com/png/detail/301-3012694_account-user-profile-avatar-comments-fa-user-circle.png",
+    image: "",
     email: "",
     password: "",
   });
+
+  const [result, setResult] = useState({
+    failed: "",
+    done: ""
+  })
+
+
   return (
     <div>
       <h1>LOG IN</h1>
@@ -48,7 +54,7 @@ export default function Refister({ handlerChange, handlerClick }) {
         <div>
           <label>Image: </label>
           <input
-            type="text"
+            type="file"
             name={"image"}
             value={input.image}
             onChange={(event) => handlerChange(event, setInput, input)}
@@ -74,11 +80,17 @@ export default function Refister({ handlerChange, handlerClick }) {
         </div>
         <button
           type="submit"
-          onClick={(event) => handlerClick(event, input, true)}
+          onClick={(event) =>
+            handlerClick(event, input, setResult, setInput, true)
+          }
         >
           Log in
         </button>
       </form>
+      <div>
+        {result.done && <h3>{result.done}</h3>}
+        {result.failed && <h3>{result.failed}</h3>}
+      </div>
     </div>
   );
 }

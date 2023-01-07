@@ -61,7 +61,11 @@ router.post("/login", async (req, res) => {
 
       return res.header("auth-token", token).json({
         error: null,
-        data: { token },
+        data: { token, user: {
+          name: user.name,
+          image: user.image,
+          email: user.email
+        } },
       });
     } catch (error) {
       return res.status(400).json(error.message);
@@ -76,7 +80,7 @@ router.post("/login", async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.json({ error: "Credenciales no validas" });
+      return res.json({ error: "Correo no registrado" });
     }
     const passwordValidate = await bcyrpt.compare(
       req.body.password,
@@ -84,7 +88,7 @@ router.post("/login", async (req, res) => {
     );
 
     if (!passwordValidate) {
-      return res.json({ error: "Credenciales no validas" });
+      return res.json({ error: "Contraseña incorrecta" });
     }
 
     const token = jwt.sign(
@@ -97,7 +101,14 @@ router.post("/login", async (req, res) => {
 
     res.header("auth-token", token).json({
       error: null,
-      data: { token },
+      data: {
+        token,
+        user: {
+          name: user.name,
+          image: user.image,
+          email: user.email,
+        },
+      },
     });
   } catch (error) {
     return res.status(400).json(error.message);
