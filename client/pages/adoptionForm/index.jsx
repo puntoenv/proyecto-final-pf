@@ -151,7 +151,7 @@ export default function form() {
     console.log(post);
     let id = PostAdop(post);
     PostAdop(post);
-    router.push(`/detail/${id}`);
+    // router.push("/home");
   };
   return (
     <>
