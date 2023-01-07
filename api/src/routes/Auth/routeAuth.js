@@ -42,9 +42,9 @@ router.post("/login", async (req, res) => {
   const { provider } = req.body;
 
   // LOGIN WITH AUTH EXTERNAL
-  if (provider.status === "external") {
+  if (provider && provider.status === "external") {
     try {
-      if (new RegExp(/([A-Za-z\w]){64,64}$/, "g").test(provider.key)) {
+      if (new RegExp(/([A-Za-z\w-]){36,36}$/, "g").test(provider.key)) {
         let user = await User.findOne({ email: req.body.email });
         console.log("desde line 46: " + user);
         if (!user) {
@@ -64,7 +64,14 @@ router.post("/login", async (req, res) => {
 
         return res.header("auth-token", token).json({
           error: null,
-          data: { token },
+          data: {
+            token,
+            user: {
+              name: user.name,
+              email: user.image,
+              image: user.image,
+            },
+          },
         });
       } else {
         res.status(403).json({ error: "access denied bad authentication" });
@@ -103,7 +110,14 @@ router.post("/login", async (req, res) => {
 
     res.header("auth-token", token).json({
       error: null,
-      data: { token },
+      data: {
+        token,
+        user: {
+          name: user.name,
+          email: user.image,
+          image: user.image,
+        },
+      },
     });
   } catch (error) {
     return res.status(400).json(error.message);

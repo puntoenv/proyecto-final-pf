@@ -1,14 +1,17 @@
 import React from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
+import { getLocalStorage } from "../../sesionStorage";
 // import styles from '../styles/profile.module.css'
 
-export default function Profile({ sesion }) {
-  console.log(typeof sesion);
+export default function Profile() {
   const { data: session } = useSession();
+  console.log(session);
+  const token = getLocalStorage("auth-token");
+  console.log(token);
   return (
     <div>
-      {session ? (
+      {session || token ? (
         <div>
           <Image
             src={session.user.image}

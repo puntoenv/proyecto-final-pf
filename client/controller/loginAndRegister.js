@@ -1,4 +1,4 @@
-import { setLocalStorage } from "../pages/api/localStorage/sesionStorage";
+import { setLocalStorage } from "../sesionStorage";
 import axios from "axios";
 
 export const handlerOnChange = (event, setInput, input) => {
@@ -33,7 +33,7 @@ export const handlerOnClick = async (event, input, register) => {
       );
       const data = response.data;
       console.log(data);
-      setLocalStorage("token", data.data.token);
+      setLocalStorage("session", data.data);
     } catch (error) {
       console.log(error);
     }

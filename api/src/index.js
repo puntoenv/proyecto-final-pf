@@ -28,7 +28,7 @@ post pet
 */
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
-router.use("/pets", detail);
+router.use("/pets", verifyAuth, detail);
 router.use("/pets", postPet);
 router.use("/auth", routeAuth);
 router.use("/user", user);
