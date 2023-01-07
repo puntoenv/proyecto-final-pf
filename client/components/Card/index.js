@@ -26,7 +26,6 @@ export default function Card({
       {locacion?.lat ? <p>Latitud: {locacion.lat}</p> : null}
       {locacion?.provincia ? <p>Provincia: {locacion.provincia}</p> : null}
       {locacion?.municipio ? <p>Municipio: {locacion?.municipio}</p> : null}
-      {descripcion ? <p>Descripcion: {descripcion}</p> : null}
     </div>
   );
 }
