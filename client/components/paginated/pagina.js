@@ -29,19 +29,18 @@ function Pagina({
     const { id } = e.target;
     page(Number(id));
   };
+  //en este apartado se puede manejar el corte de las paginas
   const pagina = numeroPaginas.map((a) => {
-    if (a <= maxPageLimit && a > minPageLimit) {
-      return (
-        <button
-          className={styles.button}
-          key={a}
-          id={a}
-          onClick={handlePageClick}
-        >
-          {a}
-        </button>
-      );
-    }
+    return (
+      <button
+        className={styles.button}
+        key={a}
+        id={a}
+        onClick={handlePageClick}
+      >
+        {a}
+      </button>
+    );
   });
   //console.log(pageNumbers);
   let pageIncrementEllipses = null;
@@ -62,9 +61,9 @@ function Pagina({
       >
         Prev
       </button>
-      {pageDecremenEllipses}
+      {/*pageDecremenEllipses*/}
       {pagina}
-      {pageIncrementEllipses}
+      {/*pageIncrementEllipses*/}
       <button
         className={styles.button}
         onClick={handleNextClick}

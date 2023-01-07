@@ -90,7 +90,7 @@ function index() {
   //console.log(pets)
   useEffect(() => {
     setcurren(1);
-  });
+  }, []);
   const Page = (pageNumber) => {
     setcurren(pageNumber);
   };
@@ -249,6 +249,8 @@ function index() {
             curren={curren}
             maxPageLimit={maxPageLimit}
             minPageLimit={minPageLimit}
+            setMaxPageLimit={setMaxPageLimit}
+            setMinPageLimit={setMinPageLimit}
           />
         }
       </div>

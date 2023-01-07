@@ -170,6 +170,8 @@ export default function PetAdoption() {
           curren={curren}
           maxPageLimit={maxPageLimit}
           minPageLimit={minPageLimit}
+          setMaxPageLimit={setMaxPageLimit}
+          setMinPageLimit={setMinPageLimit}
         />
       }
     </div>
