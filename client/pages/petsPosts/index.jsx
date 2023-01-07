@@ -117,12 +117,7 @@ export default function PetAdoption() {
               id={mascota._id}
               nombre={mascota.name}
               imagen={mascota.image}
-              edad={mascota.age}
               genero={mascota.gender}
-              tamaño="pequeño"
-              tipo={mascota.type}
-              locacion={mascota.location}
-              key={mascota._id}
             />
           ))}
         </div>
