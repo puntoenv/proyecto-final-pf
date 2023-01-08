@@ -117,7 +117,7 @@ export default function form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(post);
-    return PostAdop(post).then((id) => router.push(`detail/${id}`));
+    return PostAdop(post).then((id) => null);
   };
   return (
     <>

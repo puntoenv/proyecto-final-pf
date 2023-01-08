@@ -30,7 +30,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
-          {true || session ? (
+          {false || session ? (
             <span className="btnPerfil" onClick={handlerClick}>
               Perfil
             </span>
@@ -42,7 +42,7 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link className="itemDash" href="#">
+        <Link className="itemDash" href="/profile">
           <span>Editar Perfil</span>
         </Link>
         <Link className="itemDash" href="#">
