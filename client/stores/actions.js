@@ -1,8 +1,6 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
-import { getMascotas } from "./mascotas";
-import { useRouter } from "next/router";
-// const router = useRouter();
+import { getMascotas, petsFilter } from "./mascotas";
 
 export const getper = () => async (dispatch) => {
   try {
@@ -26,32 +24,11 @@ export const getmuni = (municipios) => async (dispatch) => {
   }
 };
 
-export const getPets = () => async (dispatch) => {
-  try {
-    let allPets = await axios("http://localhost:3001/pets/");
-    dispatch(getMascotas(allPets.data));
-    console.log(allPets.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const searchPet = (pet) => async (dispatch) => {
-  try {
-    const petEncontrado = await axios(
-      `http://localhost:3001/pets/by-name?name=${pet}`
-    );
-    dispatch(getMascotas(petEncontrado.data));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 /*export const filtersize = async (fil) => {
     const {size, type, age, gender, location} = fil
-   const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
-   return filtros
-}*/
+    const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
+    return filtros
+  }*/
 
 export const PostAdop = (post) => {
   return (
@@ -81,7 +58,6 @@ export const postUser = (payload) => {
         "http://localhost:3001/auth/register",
         payload
       );
-      console.log(response);
       return response;
     } catch (err) {
       return err.response;
@@ -95,7 +71,30 @@ export const GetUs = () => async (dispatch) => {
     .then((res) => dispatch(getuser(res.data)));
 };
 
-export const setFilteredPets = (mascotas) => (dispatch) => {
-  console.log(mascotas);
-  dispatch(getMascotas(mascotas));
+// export const setFilteredPets = (filter) => (dispatch) => {
+//   dispatch(getMascotas(mascotas));
+// };
+
+export const getPets = () => async (dispatch) => {
+  try {
+    let allPets = await axios("http://localhost:3001/pets");
+    dispatch(getMascotas(allPets.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const searchPet = (pet) => async (dispatch) => {
+  try {
+    const petEncontrado = await axios(
+      `http://localhost:3001/pets/by-name?name=${pet}`
+    );
+    dispatch(getMascotas(petEncontrado.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const filterPets = (params) => (dispatch) => {
+  return dispatch(petsFilter(params));
 };
