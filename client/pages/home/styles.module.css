@@ -70,10 +70,9 @@
 }
 
 .infoAdopcion {
-  margin-top: 1%;
   margin-left: 28%;
   margin-right: 28%;
-  margin-bottom: 4%;
+  margin-bottom: 1%;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -84,14 +83,15 @@
   font-weight: 450;
 }
 .tituloAdopcion {
-  text-align: center;
-  display: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: 370px;
-  color: #415d43;
-  font-size: 45px;
-  font-weight: 700;
+  padding-top: 25px
+
 }
+
+
 
 .aboutUs {
   margin-left: 340px;
@@ -105,15 +105,11 @@
   background-color: rgb(184, 209, 115);
   margin-top: 3%;
   height: 25rem;
+
 }
 
-/* .linkEshop {
-  color: rgb(11, 88, 11);
-  text-align: center;
-  display: center;
-  justify-content: center;
-  text-decoration: none;
-}  */
+
+
 
 .linkAdoptar {
   padding-top: 2%;
@@ -127,12 +123,13 @@
 
 .adopcion {
   font-size: 3ch;
-  display: flex;
-  justify-content: center;
   margin-left: 15%;
   margin-right: 15%;
   margin-top: 5%;
   text-decoration: none;
+ 
+ 
+  
 }
 .textoNosotros {
   font-size: 3ch;
@@ -154,15 +151,6 @@
   height: 14em;
 }
 
-/* .all{
-  display: flex;
-  position: absolute;
-  z-index: 620;
-  width: 17em;
-  height: 25em;
-   margin-left: 7em;
-  margin-top: -296px;
-} */
 
 .footer {
   background-color: #32281f;
@@ -172,52 +160,4 @@
   justify-content: center;
   color: antiquewhite;
 }
-/* .sobreNosotros {
-  background-color: rgb(97, 118, 75);
-  top: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 18ch;
-  width: 100%;
-} */
 
-/* .searchBar {
-  top: 60%;
-  margin-left: 35%;
-}
-
-.buttonSearch {
-  background-color: white;
-  height: 5ch;
-  width: 10ch;
-  border-radius: 5px;
-  border: none;
-}
-.inputSearch {
-  color: rgb(1, 1, 12);
-  border: none;
-  height: 5ch;
-  width: 40ch;
-  border-radius: 5px;
-}
-
-/* .navbar {
-  margin-top: 0%;
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 0 20px;
- background-color:  rgb(14, 94, 111);
- border-bottom: 1px solid #e0e0e0; 
-} */
-/* 
- .home {
-  background-color: #fffbac;
-  background-size: cover;
-   display: flex; 
-  justify-content: center;
-  background-repeat: no-repeat;
-  align-items: center;
-  height: 100vh;
-}  */
