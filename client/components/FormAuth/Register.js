@@ -126,7 +126,7 @@ export default function Register({ handlerChange, handlerClick }) {
           Iniciar sesión
         </button>
       </form> 
-      <div>
+      <div> 
         {result.done && <h3>{result.done}</h3>}
         {result.failed && <h3>{result.failed}</h3>}
       </div>
