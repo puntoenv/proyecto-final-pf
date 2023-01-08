@@ -13,12 +13,13 @@ import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
 import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
-import All from "../../img/all.png";
+//import All from "../../img/all.png";
 import Join from "../../components/JoinUs/joinUs";
 import Alimento from "../../img/alimento.png";
 import Alim from "../../img/alim.png";
 import Al from "../../img/al.png";
 import Ali from "../../img/ali.png";
+import Alimen from "../../img/alimen.png"
 
 export default function Home() {
   return (
@@ -61,9 +62,16 @@ export default function Home() {
           height="auto"
         />
         <Image
+          src={Alimen}
+          alt="alimen"
+          className={styles.alimen}
+          width="auto"
+          height="auto"
+        />
+        <Image
           src={Alimento}
-          alt="shelter"
-          className={styles.shelter}
+          alt="Alimento"
+          className={styles.alimento}
           width="auto"
           height="auto"
         />
