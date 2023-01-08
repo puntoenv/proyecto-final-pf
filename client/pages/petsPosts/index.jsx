@@ -1,12 +1,7 @@
 import Link from "next/link";
 //import Card from "../../components/Card/index.js";
 import { useState } from "react";
-import {
-  getPets,
-  searchPet,
-  getper,
-  filtrarMascotas,
-} from "../../stores/actions";
+import { getPets, searchPet, getper, filterPets } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // FILTERS----------------
@@ -37,6 +32,12 @@ export default function PetAdoption() {
     dispatch(getPets());
     dispatch(getper());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (pets.length === 0) {
+      dispatch(getPets());
+    }
+  }, [pets]);
 
   const handlerSearch = (e) => {
     dispatch(searchPet(e.target.value));
@@ -76,6 +77,13 @@ export default function PetAdoption() {
     }
     setcurren((prev) => prev + 1);
   };
+  const typeFilter = (e) => {
+    e.preventDefault();
+    let { id, value } = e.target;
+    let params = { id, value };
+    dispatch(filterPets(params));
+    console.log(id, value, pet);
+  };
   return (
     <div>
       <Layout title="Mascotas" />
@@ -98,10 +106,8 @@ export default function PetAdoption() {
         </button>
       </div>
       {/* ----------------------------------FILTROS------------------------------------ */}
-      <form
-        onChange={(e) => handlerOnChange(e, filter, setFilter, pets, dispatch)}
-      >
-        <select name="type" id="">
+      <form onChange={(e) => typeFilter(e)}>
+        <select id="type">
           <option value="animal">animal</option>
           <option value="perros">perros</option>
           <option value="gatos">gatos</option>
@@ -110,18 +116,18 @@ export default function PetAdoption() {
           <option value="peces">peces</option>
           <option value="hamsters">hamsters</option>
         </select>
-        <select name="size" id="">
+        <select id="size">
           <option value="tamaño">tamaño</option>
           <option value="pequeño">pequeño</option>
           <option value="mediano">mediano</option>
           <option value="grande">grande</option>
         </select>
-        <select name="gender" id="">
+        <select id="gender">
           <option value="genero">genero</option>
           <option value="macho">macho</option>
           <option value="hembra">hembra</option>
         </select>
-        <input type="number" name="age" placeholder="edad" />
+        <input type="number" id="age" placeholder="edad" />
       </form>
       {/* ----------------------------------------------------------------------- */}
 
