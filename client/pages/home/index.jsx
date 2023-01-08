@@ -84,6 +84,8 @@ export default function Home() {
           <Footer />
         </div>
 
+       
+
         {/* <div>
           <form className={styles.searchBar}>
             <input

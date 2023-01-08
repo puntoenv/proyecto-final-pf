@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Card from "../../components/Card/index.js";
+//import Card from "../../components/Card/index.js";
 import { useState } from "react";
 import {
   getPets,
@@ -11,10 +11,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // FILTERS----------------
 import { handlerOnChange } from "../../controller/filtersPets.js";
-import { setFilteredPets } from "../../stores/actions";
+//import { setFilteredPets } from "../../stores/actions";
 //PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
+import NavBar from "../../components/NavBar/NavBar.js";
+import styles from "./styles.module.css";
+import Image from "next/image";
 
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
@@ -80,59 +83,75 @@ export default function PetAdoption() {
   return (
     <div>
       <Layout title="Mascotas" />
-      <div></div>
+      <NavBar />
+
+      <div className={styles.search}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Mascota..."
+          onChange={handlerSearch}
+          value={search}
+        />
+        <button className={styles.searchB} onClick={handlerSearchButton}>
+          Buscar
+        </button>
+      </div>
       <div>
-        <div>
-          <input
-            type="text"
-            placeholder="Mascota..."
-            onChange={handlerSearch}
-            value={search}
-          />
-          <button onClick={handlerSearchButton}>Buscar</button>
-        </div>
-        <div>
-          <button onClick={handlerTodas}>todas las mascotas</button>
-        </div>
-        {/* ----------------------------------FILTROS------------------------------------ */}
-        <form
-          onChange={(e) =>
-            handlerOnChange(e, filter, setFilter, pets, dispatch)
-          }
-        >
-          <select name="type" id="">
-            <option value="animal">animal</option>
-            <option value="perros">perros</option>
-            <option value="gatos">gatos</option>
-            <option value="conejos">conejos</option>
-            <option value="aves">aves</option>
-            <option value="peces">peces</option>
-            <option value="hamsters">hamsters</option>
-          </select>
-          <select name="size" id="">
-            <option value="tamaño">tamaño</option>
-            <option value="pequeño">pequeño</option>
-            <option value="mediano">mediano</option>
-            <option value="grande">grande</option>
-          </select>
-          <select name="gender" id="">
-            <option value="genero">genero</option>
-            <option value="macho">macho</option>
-            <option value="hembra">hembra</option>
-          </select>
-          <input type="number" name="age" placeholder="edad" />
-        </form>
-        {/* ----------------------------------------------------------------------- */}
-        <div>
-          {pet?.map((mascota) => (
-            <Card
-              id={mascota._id}
-              nombre={mascota.name}
-              imagen={mascota.image}
-              genero={mascota.gender}
-            />
-          ))}
-        </div>
+        <button className={styles.all} onClick={handlerTodas}>
+          Ver todas
+        </button>
+      </div>
+      {/* ----------------------------------FILTROS------------------------------------ */}
+      <form
+        onChange={(e) => handlerOnChange(e, filter, setFilter, pets, dispatch)}
+      >
+        <select name="type" id="">
+          <option value="animal">animal</option>
+          <option value="perros">perros</option>
+          <option value="gatos">gatos</option>
+          <option value="conejos">conejos</option>
+          <option value="aves">aves</option>
+          <option value="peces">peces</option>
+          <option value="hamsters">hamsters</option>
+        </select>
+        <select name="size" id="">
+          <option value="tamaño">tamaño</option>
+          <option value="pequeño">pequeño</option>
+          <option value="mediano">mediano</option>
+          <option value="grande">grande</option>
+        </select>
+        <select name="gender" id="">
+          <option value="genero">genero</option>
+          <option value="macho">macho</option>
+          <option value="hembra">hembra</option>
+        </select>
+        <input type="number" name="age" placeholder="edad" />
+      </form>
+      {/* ----------------------------------------------------------------------- */}
+
+      <div className={styles.big_container}>
+        <div className={styles.posts_Container}></div>
+        {pet?.map((mascota) => {
+          return (
+            <div key={mascota.id} className={styles.card}>
+              <Image
+                className={styles.img}
+                width="300"
+                height="260"
+                src={mascota.image}
+                alt="image"
+              />
+              <h1 className={styles.name}>{mascota.name}</h1>
+              <h2 className={styles.size}>{mascota.gender}</h2>
+              <button className={styles.btn}>
+          <Link href="/detail/:id">Ver detalle</Link>
+        </button>
+            </div>
+          );
+        })}
+        
+        <div />
       </div>
 
       {/* <Link href={`/detail/${pets._id}`}>
@@ -152,6 +171,7 @@ export default function PetAdoption() {
           setMinPageLimit={setMinPageLimit}
         />
       }
+      {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );
 }
