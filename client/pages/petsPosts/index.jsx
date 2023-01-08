@@ -245,7 +245,7 @@ export default function PetAdoption() {
         <input
           className={styles.input}
           type="search"
-          placeholder="Mascota..."
+          placeholder="Buscar..."
           onChange={handlerSearch}
         />
       </div>
@@ -256,15 +256,32 @@ export default function PetAdoption() {
       </div>
       {/* ----------------------------------FILTROS------------------------------------ */}
       <form onChange={(e) => typeFilter(e)}>
-        <select id="type">
-          <option value="animal">animal</option>
-          <option value="perros">perros</option>
-          <option value="gatos">gatos</option>
-          <option value="conejos">conejos</option>
+        {/* <select id="type"> */}
+
+         
+          <label className={styles.container}> Perro
+          <input checked='checked' type='checkbox'id="perros"/>
+          <span className={styles.checkmark}></span>
+          </label>
+
+          <label className={styles.container}> Gato
+          <input checked='checked' type='checkbox'  id="gatos" />
+          <span className={styles.checkmark}></span>
+          </label>
+
+          <label className={styles.container}> Gato
+          <input checked='checked' type='checkbox'  id="gatos" />
+          <span className={styles.checkmark}></span>
+          </label>
+
+         
+          
+          
+          {/* <option value="conejos">conejos</option>
           <option value="aves">aves</option>
           <option value="peces">peces</option>
-          <option value="hamsters">hamsters</option>
-        </select>
+          <option value="hamsters">hamsters</option> */}
+        {/* </select> */}
         <select id="size">
           <option value="tamaño">tamaño</option>
           <option value="pequeño">pequeño</option>

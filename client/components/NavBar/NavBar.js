@@ -29,7 +29,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
-          {true ? (
+          {false ? (
             <span className="btnPerfil" onClick={handlerClick}>
               Perfil
             </span>

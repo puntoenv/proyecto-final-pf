@@ -148,3 +148,82 @@
         padding: 10px;
         background: red;
     } */
+
+
+    /* los checkboxes */
+#perros input:checked ~ .checkmark {
+background-color: black;
+}
+#gatos input:checked ~ .checkmark {
+background-color: red;
+}
+/* #c3 input:checked ~ .checkmark {
+background-color: green;
+}
+#c4 input:checked ~ .checkmark {
+background-color: blue;
+} */
+
+/* Contenedor */
+.container {
+  display: block;
+  position: relative;
+  top: 15px;
+  padding-left: 65px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+/* escondemos el default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* creamos un custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 4px;
+  left: 35px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgb(185, 179, 179);
+}
+
+/* Al pasar el mouse encima, lo ponemos gris */
+.container:hover input ~ .checkmark {
+  background-color: rgb(216, 205, 172);
+}
+
+/* creamos el marcador (escondido al no seleccionar) */
+.checkmark:after {
+ 
+  position: absolute;
+  display: none;
+}
+
+/* mostramos el marcador al seleccionar */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* estilo del marcador */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background: #6e613f;
+}
