@@ -39,43 +39,40 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { provider } = req.body;
+  const { external, user: usuario } = req.body;
 
   // LOGIN WITH AUTH EXTERNAL
-  if (provider && provider.status === "external") {
+  if (external.provider && external.access_token) {
     try {
-      if (new RegExp(/([A-Za-z\w-]){36,36}$/, "g").test(provider.key)) {
-        let user = await User.findOne({ email: req.body.email });
-        console.log("desde line 46: " + user);
-        if (!user) {
-          user = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            image: req.body.image,
-          });
-        }
-        const token = jwt.sign(
-          {
-            name: user.name,
-            id: user._id,
-          },
-          `${process.env.JWT_TOKEN_SECRET}`
-        );
-
-        return res.header("auth-token", token).json({
-          error: null,
-          data: {
-            token,
-            user: {
-              name: user.name,
-              email: user.image,
-              image: user.image,
-            },
-          },
+      let user = await User.findOne({ email: usuario.email });
+      console.log("desde line 46: " + user);
+      if (!user) {
+        user = await User.create({
+          name: req.body.name,
+          email: req.body.email,
+          image: req.body.image,
         });
-      } else {
-        res.status(403).json({ error: "access denied bad authentication" });
       }
+      const token = jwt.sign(
+        {
+          name: user.name,
+          id: user._id,
+        },
+        `${process.env.JWT_TOKEN_SECRET}`
+      );
+      console.log(token);
+
+      return res.header("auth-token", token).json({
+        error: null,
+        data: {
+          token,
+          user: {
+            name: user.name,
+            image: user.image,
+            email: user.email,
+          },
+        },
+      });
     } catch (error) {
       return res.status(400).json(error.message);
     }
@@ -89,7 +86,7 @@ router.post("/login", async (req, res) => {
 
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.json({ error: "Credenciales no validas" });
+      return res.json({ error: "Correo no registrado" });
     }
     const passwordValidate = await bcyrpt.compare(
       req.body.password,
@@ -97,7 +94,7 @@ router.post("/login", async (req, res) => {
     );
 
     if (!passwordValidate) {
-      return res.json({ error: "Credenciales no validas" });
+      return res.json({ error: "Contraseña incorrecta" });
     }
 
     const token = jwt.sign(
@@ -114,8 +111,8 @@ router.post("/login", async (req, res) => {
         token,
         user: {
           name: user.name,
-          email: user.image,
           image: user.image,
+          email: user.email,
         },
       },
     });

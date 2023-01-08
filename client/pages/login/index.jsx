@@ -5,6 +5,7 @@ import {
   handlerOnClick,
 } from "../../controller/loginAndRegister";
 import Register from "../../components/FormAuth/Register";
+import { getTok } from "../../stores/actions";
 
 export default function () {
   const { data: session } = useSession();

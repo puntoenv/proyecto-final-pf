@@ -36,20 +36,6 @@ export default function Home() {
 
         <Footer />
 
-        {/* <nav className={styles.navBar}>
-          <h1 className={styles.textNav}>
-          <Link href="/petAdoption">
-            <h1>Adoptar </h1>
-          </Link>
-          <Link href="/Apóyanos">
-            <h1>Apóyanos  </h1>
-          </Link>
-          <Link href="/login">
-            <h1>Ingresar | Registrarse</h1>
-          </Link>
-          </h1>
-        </nav> */}
-
         {/* <div>
           <form className={styles.searchBar}>
             <input

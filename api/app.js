@@ -21,7 +21,11 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 
 // app.use("/filter", getFilteredPets);
-
+// app.post("/rutaPrueba", (req, res) => {
+//   const { external, user: usuario } = req.body;
+//   console.log(usuario);
+//   res.json(usuario);
+// });
 app.use("/", router);
 
 module.exports = app;

@@ -42,7 +42,7 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link className="itemDash" href="#">
+        <Link className="itemDash" href="/profile">
           <span>Editar Perfil</span>
         </Link>
         <Link className="itemDash" href="#">

@@ -94,11 +94,12 @@ export const GetUs = () => async (dispatch) => {
     .then((res) => dispatch(getuser(res.data)));
 };
 
-export const filtrarMascotas = (mascotas) => (dispatch) => {
+export const filtrarMascotas = (mascotas) => async (dispatch) => {
   try {
-    const filtradas = axios(
+    const filtradas = await axios(
       `http://localhost:3001/pets/filter?size=${mascotas.size}&age=${mascotas.age}&gender=${mascotas.gender}&type=${mascotas.type}`
     );
+    console.log(filtradas.data);
     dispatch(getMascotas(filtradas.data));
   } catch (error) {
     console.error(error);
