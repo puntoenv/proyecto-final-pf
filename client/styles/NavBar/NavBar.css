@@ -1,4 +1,4 @@
-.nav {
+/* .nav {
   display:flex;
   position:fixed;
   z-index: 4000;
@@ -17,26 +17,66 @@
   margin-left: 75em;
   column-gap: 24px;
   color: white;
+} */
+
+.nav {
+  display: flex;
+  position: fixed;
+  z-index: 4000;
+  top: 0;
+  width: 100%;
+  padding: 16px;
+  z-index: 800;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #38593a;
 }
+.navMenuList {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  column-gap: 24px;
+  color: white;
+}
+
+
+
+/* .itemNav {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin-left: -6em;
+} */
 
 .itemNav {
   display: flex;
   color: #eeee;
   text-decoration: none;
   font-size: 20px;
-
 }
+
+
 .itemNav:hover {
   color: #fff;
 }
 
 .btnPerfil {
-  color: #eeee;
+  color: white;
   font-size: 20px;
 }
 .btnPerfil:hover {
   color: #fff;
   cursor: pointer;
+}
+
+.login{
+  background: #38593a;
+  width: 20em;
+  font-size: 20px;
+  display: flex;
+  position: absolute;
 }
 
 

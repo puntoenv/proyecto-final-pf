@@ -121,7 +121,7 @@ export default function Home() {
           <Footer />
         </div>
 
-        <Footer />
+        
 
         {/* <div>
           <form className={styles.searchBar}>
