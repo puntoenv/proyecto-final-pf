@@ -12,16 +12,14 @@ import Layout from "../layout";
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
 import home from "../../img/prueba.jpeg";
 import logo from "../../img/logo.jpeg";
-// import hug from '../../img/hug.jpg'
-// import shelter from '../../img/shelter.jpg'
-// import kitten from '../../img/kitten.jpg'
-//import Cat from "../../img/meal.png";
-// import All from "../../img/all.png";
-// import Join from "../../components/JoinUs/joinUs";
-// import Alimento from "../../img/alimento.png";
-// import Alim from "../../img/alim.png";
-// import Al from "../../img/al.png";
-// import Ali from "../../img/ali.png";
+import Cat from "../../img/meal.png";
+//import All from "../../img/all.png";
+import Join from "../../components/JoinUs/joinUs";
+import Alimento from "../../img/alimento.png";
+import Alim from "../../img/alim.png";
+import Al from "../../img/al.png";
+import Ali from "../../img/ali.png";
+import Alimen from "../../img/alimen.png"
 
 export default function Home() {
   return (
@@ -46,15 +44,16 @@ export default function Home() {
           width="auto"
           height="auto"
         />
+        <h1 className={styles.green}>hola</h1>
         <Nosotros />
         {/* <Image
-        {/* <Image
+         
           src={All}
           alt="hug"
           className={styles.all}
           width="auto"
           height="auto"
-        />
+        /> */}
         <Image
           src={Cat}
           alt="kitten"
@@ -63,9 +62,16 @@ export default function Home() {
           height="auto"
         />
         <Image
+          src={Alimen}
+          alt="alimen"
+          className={styles.alimen}
+          width="auto"
+          height="auto"
+        />
+        <Image
           src={Alimento}
-          alt="shelter"
-          className={styles.shelter}
+          alt="Alimento"
+          className={styles.alimento}
           width="auto"
           height="auto"
         />
@@ -89,7 +95,7 @@ export default function Home() {
           className={styles.ali}
           width="auto"
           height="auto"
-        /> */}
+        />
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>¡Adoptame! --- (acá abajo va el carrousel)</h1>
@@ -104,8 +110,8 @@ export default function Home() {
             adoptar a un nuevo integrante. También esperamos compromiso para con
             los usuarios que llevan a cabo las publicaciones de los posteos.
           </p>
-          {/* <Join /> */}
-          {/* <Join /> */}
+          <Join /> 
+          
           <div className={styles.carruselEshop}>
             {/* <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>

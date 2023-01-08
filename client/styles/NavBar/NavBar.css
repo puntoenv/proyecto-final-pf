@@ -1,11 +1,11 @@
 .nav {
   display:flex;
-  position:absolute;
+  position:fixed;
   z-index: 4000;
   top: 0;
   width: 100%;
   padding: 16px;
-  z-index: 1;
+  z-index: 800;
   justify-content: space-between;
   align-items:flex-end;
   background-color: #38593a;
@@ -14,7 +14,7 @@
   box-sizing: border-box;
   display:flex;
   flex-direction: row;
-  margin-left: 71em;
+  margin-left: 75em;
   column-gap: 24px;
   color: white;
 }
