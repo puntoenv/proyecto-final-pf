@@ -5,6 +5,7 @@ import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Layout from "../layout";
+import NavBar from "../../components/NavBar/NavBar";
 
 export default function form() {
   const router = useRouter();
@@ -17,54 +18,51 @@ export default function form() {
     let { value, name } = e.target;
     if (name === "name") {
       errors.name =
-        !value || value.length > 150
-          ? "Se requiere un nombre no mayor a 150 caracteres para la mascota."
+        !value ||
+        value.length > 150 ||
+        !value.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") ||
+        !/([A-Z])\w+/g.test(value)
+          ? "Se requiere un nombre empiece con mayuscula que solo contenga letras tenga mas de 3 caracteres y no mas de 150."
           : null;
-    }
-    if (name === "size") {
+    } else if (name === "size") {
       errors.size = !value
         ? "Se requiere que se brinde el tamaño de la mascota."
         : null;
-    }
-    if (name === "description") {
+    } else if (name === "description") {
       errors.description =
-        !value || value.length < 15
+        !value || value.length < 15 || value.length > 150
           ? "Se requiere una descripcion de minimo 15 caracteres"
           : null;
-    }
-    if (name === "image") {
+    } else if (name === "image") {
       errors.image = !value
         ? "Se requiere una imagen referencial de la mascota."
         : null;
-    }
-    if (name === "type") {
+    } else if (name === "type") {
       errors.type =
         !value || value === "select"
           ? "Se requiere que se especifique la especie de la mascota."
           : null;
-    }
-    if (name === "provincia") {
-      !value || value === "select"
-        ? (errors.provincia =
-            "Se requiere que se brinde la provincia de la mascota.")
-        : (errors.provincia = null);
-    }
-    if (name === "municipio") {
-      !value || value === "select"
-        ? (errors.municipio =
-            "Se requiere que se brinde el municipio de la mascota.")
-        : (errors.municipio = null);
-    }
-    if (name === "gender") {
+    } else if (name === "provincia") {
+      errors.provincia =
+        !value || value === "select"
+          ? "Se requiere que se brinde la provincia de la mascota."
+          : null;
+    } else if (name === "municipio") {
+      errors.municipio =
+        !value || value === "select"
+          ? "Se requiere que se brinde el municipio de la mascota."
+          : null;
+    } else if (name === "gender") {
       errors.gender = !value
         ? "Se requiere que se brinde el genero de la mascota."
         : null;
-    }
-    if (name === "age") {
+    } else if (name === "age") {
       errors.age =
         !value || value < 0 || value > 40
-          ? "Se requiere que se especifique la edad de la mascota."
+          ? "Se requiere que se especifique la edad de la mascota no mayor a 40 años."
           : null;
+    } else {
+      setError(null);
     }
     return console.log(errors);
   };
@@ -124,11 +122,12 @@ export default function form() {
   return (
     <>
       <Layout title="Publicar Mascota" />
+      <NavBar />
       <div className={styles.container}>
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
           <span className={styles.title}>Datos de la Mascota</span>
           <label htmlFor="name" className={styles.stretch}>
-            Nombre: wedwjdbwb
+            Nombre:
             <span className={styles.errors}>{errors.name}</span>
             <input
               className={styles.input}
@@ -355,7 +354,17 @@ export default function form() {
               !post.size ||
               !post.gender ||
               !post.type ||
-              !post.location.municipio
+              !post.location.municipio ||
+              /////////////////////////////////////////////////////////
+              errors.name !== null ||
+              errors.age !== null ||
+              errors.description !== null ||
+              errors.size !== null ||
+              errors.gender !== null ||
+              errors.municipio !== null ||
+              errors.provincia !== null ||
+              errors.type !== null ||
+              errors.image !== null
             }
           />
         </form>
