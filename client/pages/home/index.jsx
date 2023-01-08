@@ -44,58 +44,21 @@ export default function Home() {
           width="auto"
           height="auto"
         />
-        <h1 className={styles.green}>hola</h1>
+        <div className={styles.barGreen}></div>
+        <div className={styles.divAlimento}></div>
+        {/* <span className={styles.catAlimento}></span> */}
+        <div className={styles.containKitten}>
+          <Image
+            src={Cat}
+            alt="kitten"
+            className={styles.kitten}
+            width="auto"
+            height="auto"
+          />
+        </div>
+
         <Nosotros />
-        {/* <Image
-         
-          src={All}
-          alt="hug"
-          className={styles.all}
-          width="auto"
-          height="auto"
-        /> */}
-        <Image
-          src={Cat}
-          alt="kitten"
-          className={styles.kitten}
-          width="auto"
-          height="auto"
-        />
-        <Image
-          src={Alimen}
-          alt="alimen"
-          className={styles.alimen}
-          width="auto"
-          height="auto"
-        />
-        <Image
-          src={Alimento}
-          alt="Alimento"
-          className={styles.alimento}
-          width="auto"
-          height="auto"
-        />
-        <Image
-          src={Alim}
-          alt="shelter"
-          className={styles.alim}
-          width="auto"
-          height="auto"
-        />
-        <Image
-          src={Al}
-          alt="shelter"
-          className={styles.al}
-          width="auto"
-          height="auto"
-        />
-        <Image
-          src={Ali}
-          alt="shelter"
-          className={styles.ali}
-          width="auto"
-          height="auto"
-        />
+
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>¡Adoptame! --- (acá abajo va el carrousel)</h1>
@@ -120,8 +83,6 @@ export default function Home() {
           </div>
           <Footer />
         </div>
-
-        <Footer />
 
         {/* <div>
           <form className={styles.searchBar}>

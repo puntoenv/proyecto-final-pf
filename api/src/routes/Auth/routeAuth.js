@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
   const { external, user: usuario } = req.body;
 
   // LOGIN WITH AUTH EXTERNAL
-  if (external.provider && external.access_token) {
+  if (external && external.provider && external.access_token) {
     try {
       let user = await User.findOne({ email: usuario.email });
       console.log("desde line 46: " + user);

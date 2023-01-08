@@ -5,7 +5,6 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "../../../lib/mongodb";
 import axios from "axios";
 import { setLocalStorage } from "../../../sesionStorage";
-import { getTok } from "../../../stores/actions";
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
@@ -31,7 +30,6 @@ export default NextAuth({
       });
       const data = response.data;
       console.log(data);
-      getTok(data.token);
       // setLocalStorage("token", data.token);
       return true;
     },

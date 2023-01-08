@@ -6,7 +6,7 @@
   width: 100%;
   padding: 16px;
   z-index: 800;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: flex-end;
   background-color: #38593a;
 }
@@ -14,7 +14,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  margin-left: 75em;
+  justify-content: right;
   column-gap: 24px;
   color: white;
 }
