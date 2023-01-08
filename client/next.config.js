@@ -9,7 +9,9 @@ const nextConfig = {
       "cdn2.thedogapi.com",
       "olondriz.com",
       "random.imagecdn.app",
+      "gfycat.com"
     ],
+   
     remotePatterns: [
       {
         protocol: "https",

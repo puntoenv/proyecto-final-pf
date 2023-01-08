@@ -20,11 +20,10 @@
 }
 
 .infoNosotros {
-  margin-top: 1%;
-  margin-left: 30%;
-  margin-right: 30%;
+  margin-top: 0%;
+  margin-left: 10%;
+  margin-right: 40%;
   display: flex;
-  
   text-align: center;
   color: black;
   font-size: 20px;
@@ -41,7 +40,7 @@
   margin-top: 1%;
   margin-left: 28%;
   margin-right: 28%;
-  margin-bottom: 3%;
+  margin-bottom: 4%;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -55,16 +54,18 @@
   text-align: center;
   display: center;
   justify-content: center;
-  margin-top: 380px;
+  margin-top: 370px;
   color: #415D43;
   font-size: 45px;
+  font-weight: 700;
 }
 
 .aboutUs {
-  margin-left: 560px;
-  margin-top: 4%;
+  margin-left: 340px;
+  margin-top: 5%;
   color: #415D43;
   font-size: 45px;
+  font-weight: 700;
 }
 
 .carruselAnimals {
@@ -91,12 +92,6 @@
   text-decoration: none;
 }
 
-/* .boxTitulo{
-  background-color: red;
-  width: 30%;
-   margin-top: 40%;
-} */
-
 .adopcion {
   font-size: 3ch;
   display: flex;
@@ -121,6 +116,13 @@
   height: 50em;  
 }
 
+.green{
+  background-color:#415D43;
+  color:#415D43;
+  height: 30px;
+  font-size: 1px;
+}
+
 .logo{
   border-radius:1em;
   display: flex;
@@ -138,7 +140,7 @@
   width: 22em;
   height: 60px;
   margin-left: 705px;
-  margin-top: -24em;
+  margin-top: -25em;
   z-index: 600;
 }
 
@@ -147,17 +149,17 @@
   position: absolute;
   width: 23em;
   height: 60px;
-  margin-top: -24em;
+  margin-top: -25em;
   z-index: 600;
 }
 
 .ali{
   display: flex;
   position: absolute;
-  width: 22em;
+  width: 20em;
   height: 60px;
-  margin-left:1200px;
-  margin-top: -24em;
+  margin-left:1137px;
+  margin-top: -25em;
   z-index: 600;
 
 }
@@ -168,7 +170,7 @@
   width: 22em;
   height: 60px;
   margin-left: 353px;
-  margin-top: -24em;
+  margin-top: -25em;
   z-index: 600;
 }
 
@@ -178,22 +180,20 @@
   position: absolute;
   width: 22em;
   height: 24em;
-  /* border-radius: 50%; */
   margin-left: 66em;
-  margin-top: -24em;
+  margin-top: -25em;
   z-index: 650;
 }
 
-.all{
+/* .all{
   display: flex;
   position: absolute;
   z-index: 620;
   width: 17em;
   height: 25em;
-  /* border-radius: 50%; */
-  margin-left: 7em;
+   margin-left: 7em;
   margin-top: -296px;
-}
+} */
 
 
 .footer{
