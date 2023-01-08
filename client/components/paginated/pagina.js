@@ -33,14 +33,15 @@ function Pagina({
   const pagina = numeroPaginas.map((a) => {
     return (
       <div className={styles.container}>
-      <button
-        className={styles.button}
-        key={a}
-        id={a}
-        onClick={handlePageClick}
-      >
-        {a}
-      </button> </div>
+        <button
+          className={styles.button}
+          key={a}
+          id={a}
+          onClick={handlePageClick}
+        >
+          {a}
+        </button>{" "}
+      </div>
     );
   });
   //console.log(pageNumbers);
@@ -72,7 +73,6 @@ function Pagina({
       >
         Sig
       </button>
-      
     </div>
   );
 }
