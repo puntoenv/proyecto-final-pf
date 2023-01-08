@@ -9,7 +9,7 @@ export default function Card({ id, nombre, imagen, genero }) {
         <h3>{nombre.toUpperCase()}</h3>
       </Link>
       <Image src={imagen} width={100} height={100} alt="imagen de la mascota" />
-      <p>Género: {genero}</p>
+      {genero ? <p>Género: {genero}</p> : null}
     </div>
   );
 }

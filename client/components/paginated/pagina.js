@@ -32,14 +32,16 @@ function Pagina({
   //en este apartado se puede manejar el corte de las paginas
   const pagina = numeroPaginas.map((a) => {
     return (
-      <button
-        className={styles.button}
-        key={a}
-        id={a}
-        onClick={handlePageClick}
-      >
-        {a}
-      </button>
+      <div className={styles.container}>
+        <button
+          className={styles.button}
+          key={a}
+          id={a}
+          onClick={handlePageClick}
+        >
+          {a}
+        </button>{" "}
+      </div>
     );
   });
   //console.log(pageNumbers);
@@ -53,23 +55,23 @@ function Pagina({
   }
 
   return (
-    <div className={styles.paginado}>
+    <div className={styles.container}>
       <button
-        className={styles.button}
+        className={styles.sig_ant}
         onClick={handlePrevClick}
         disabled={curren === numeroPaginas[0]}
       >
-        Prev
+        Ant
       </button>
       {/*pageDecremenEllipses*/}
       {pagina}
       {/*pageIncrementEllipses*/}
       <button
-        className={styles.button}
+        className={styles.sig_ant}
         onClick={handleNextClick}
         disabled={curren === numeroPaginas[numeroPaginas.length - 1]}
       >
-        Next
+        Sig
       </button>
     </div>
   );

@@ -34,7 +34,7 @@ const NavBar = () => {
               Perfil
             </span>
           ) : (
-            <Link href="/login" className="itemNav">
+            <Link href="/login" className='login'>
               <span>Ingresar | Registrarse</span>
             </Link>
           )}
