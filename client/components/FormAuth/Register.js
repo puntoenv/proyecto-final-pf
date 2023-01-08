@@ -1,84 +1,135 @@
 import React from "react";
 import { useState } from "react";
+import { validation, validationButton } from "../../controller/validationSignup";
+import style from '../../pages/adoptionForm/style.module.css'
+import styles from '../../pages/login/styles.module.css'
 
-export default function Refister({ handlerChange, handlerClick }) {
+export default function Register({ handlerChange, handlerClick }) {
   const [input, setInput] = useState({
     name: "",
     age: 0,
     bio: "",
-    image:
-      "https://www.pngkit.com/png/detail/301-3012694_account-user-profile-avatar-comments-fa-user-circle.png",
+    image: "",
     email: "",
     password: "",
   });
+
+  const [error, setError] = useState({
+    name: "",
+    age: "",
+    bio: "",
+    email: "",
+    password: "",
+  });
+
+  const [result, setResult] = useState({
+    failed: "",
+    done: "",
+  });
+
   return (
-    <div>
-      <h1>LOG IN</h1>
-      <form>
-        <label>
-          Name:
+    <div className={style.title}>
+      <h1>Registrarse</h1>
+      <form className={style.form}>
+        <div className={styles.div}>
+          <label>Name:</label>
           <input
+            className={style.input}
             type="text"
             name="name"
             value={input.name}
-            onChange={(event) => handlerChange(event, setInput, input)}
+            onChange={(event) => {
+              handlerChange(event, setInput, input),
+                validation(event, setError);
+            }}
           ></input>
-        </label>
 
-        <div>
-          <label>
-            Age:
-            <input
-              type="number"
-              name={"age"}
-              value={input.age}
-              onChange={(event) => handlerChange(event, setInput, input)}
-            ></input>
-          </label>
+          <div>{error.name && <p>{error.name}</p>}</div>
         </div>
-        <div>
-          <label>Bio: </label>
+        <div className={styles.div}>
+          <label>Age:</label>
           <input
+            className={style.input}
+            type="number"
+            name={"age"}
+            value={input.age}
+            onChange={(event) => {
+              handlerChange(event, setInput, input),
+                validation(event, setError);
+            }}
+          ></input>
+
+          <div>{error.age && <p>{error.age}</p>}</div>
+        </div>
+        <div className={styles.div}>
+          <label>Bio:</label>
+          <input
+            className={style.input}
             type="text"
             name={"bio"}
             value={input.bio}
-            onChange={(event) => handlerChange(event, setInput, input)}
+            onChange={(event) => {
+              handlerChange(event, setInput, input),
+                validation(event, setError);
+            }}
           ></input>
+
+          <div>{error.bio && <p>{error.bio}</p>}</div>
         </div>
-        <div>
-          <label>Image: </label>
+        <div className={styles.div}>
+          <label>Image:</label>
           <input
-            type="text"
+            className={style.input}
+            type="file"
             name={"image"}
             value={input.image}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
         </div>
-        <div>
-          <label>Email: </label>
+        <div className={styles.div}>
+          <label>Email:</label>
           <input
+            className={style.input}
             type="text"
             name={"email"}
             value={input.email}
-            onChange={(event) => handlerChange(event, setInput, input)}
+            onChange={(event) => {
+              handlerChange(event, setInput, input),
+                validation(event, setError);
+            }}
           ></input>
+
+          <div>{error.email && <p>{error.email}</p>}</div>
         </div>
-        <div>
-          <label>Password: </label>
+        <div className={styles.div}>
+          <label>Password:</label>
           <input
+            className={style.input}
             type="password"
             name={"password"}
             value={input.password}
-            onChange={(event) => handlerChange(event, setInput, input)}
+            onChange={(event) => {
+              handlerChange(event, setInput, input),
+                validation(event, setError);
+            }}
           ></input>
+
+          <div>{error.password && <p>{error.password}</p>}</div>
         </div>
         <button
           type="submit"
-          onClick={(event) => handlerClick(event, input, true)}
+          onClick={(event) =>
+            handlerClick(event, input, setResult, setInput, true)
+          }
+          disabled={validationButton(error, input)}
         >
-          Log in
+          Iniciar sesión
         </button>
-      </form>
+      </form> 
+      <div> 
+        {result.done && <h3>{result.done}</h3>}
+        {result.failed && <h3>{result.failed}</h3>}
+      </div>
     </div>
   );
-}
+};

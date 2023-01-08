@@ -6,43 +6,90 @@ import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
+import Layout from "../layout";
 // import ProductSliderEshop from "../../components/ProductSlider/ProductSliderEshop";
 //const inter = Inter({ subsets: ['latin'] })
 // import ProductSlider from "../../components/ProductSlider/ProductSlider";
-import home from '../../img/prueba.jpeg'
-import logo from '../../img/logo.jpeg'
+import home from "../../img/prueba.jpeg";
+import logo from "../../img/logo.jpeg";
 // import hug from '../../img/hug.jpg'
 // import shelter from '../../img/shelter.jpg'
 // import kitten from '../../img/kitten.jpg'
-import Cat from '../../img/meal.png'
-import All from '../../img/all.png'
-import Join from "../../components/JoinUs/joinUs";
-import Alimento from '../../img/alimento.png'
-import Alim from '../../img/alim.png'
-import Al from '../../img/al.png'
-import Ali from '../../img/ali.png'
+//import Cat from "../../img/meal.png";
+// import All from "../../img/all.png";
+// import Join from "../../components/JoinUs/joinUs";
+// import Alimento from "../../img/alimento.png";
+// import Alim from "../../img/alim.png";
+// import Al from "../../img/al.png";
+// import Ali from "../../img/ali.png";
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Home</title>
-      </Head>
-
+      <Layout title="Inicio" />
       <div className={styles.home}>
         <NavBar />
-        <Link href={"/home"} classname= "logo">
-        <Image src={logo} alt="logo" className={styles.logo} width='auto' height='auto'/>
+        <Link href={"/home"} classname="logo">
+          <Image
+            src={logo}
+            alt="logo"
+            className={styles.logo}
+            width="auto"
+            height="auto"
+          />
         </Link>
         <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
-        <Image src={home} alt="home" className= {styles.home} width='auto' height='auto'/>
+        <Image
+          src={home}
+          alt="home"
+          className={styles.home}
+          width="auto"
+          height="auto"
+        />
         <Nosotros />
-        <Image src={All} alt="hug" className={styles.all} width='auto' height='auto'/>
-        <Image src={Cat} alt="kitten" className={styles.kitten} width='auto' height='auto'/>
-         <Image src={Alimento} alt="shelter" className={styles.shelter} width='auto' height='auto'/>
-         <Image src={Alim} alt="shelter" className={styles.alim} width='auto' height='auto'/>
-         <Image src={Al} alt="shelter" className={styles.al} width='auto' height='auto'/>
-         <Image src={Ali} alt="shelter" className={styles.ali} width='auto' height='auto'/>
+        {/* <Image
+        {/* <Image
+          src={All}
+          alt="hug"
+          className={styles.all}
+          width="auto"
+          height="auto"
+        />
+        <Image
+          src={Cat}
+          alt="kitten"
+          className={styles.kitten}
+          width="auto"
+          height="auto"
+        />
+        <Image
+          src={Alimento}
+          alt="shelter"
+          className={styles.shelter}
+          width="auto"
+          height="auto"
+        />
+        <Image
+          src={Alim}
+          alt="shelter"
+          className={styles.alim}
+          width="auto"
+          height="auto"
+        />
+        <Image
+          src={Al}
+          alt="shelter"
+          className={styles.al}
+          width="auto"
+          height="auto"
+        />
+        <Image
+          src={Ali}
+          alt="shelter"
+          className={styles.ali}
+          width="auto"
+          height="auto"
+        /> */}
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
             <h1>¡Adoptame! --- (acá abajo va el carrousel)</h1>
@@ -50,15 +97,15 @@ export default function Home() {
           {/* <ProductSlider /> */}
           <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
           <p className={styles.infoAdopcion}>
-        Nuestra plataforma permite a los usuarios visualizar todas las
-        mascotas disponibles para adopción, como así también filtar las mismas
-        por tamaño, ubicación, genero, etc.
-        Tener una mascota es una responsabilidad, por lo tanto, exigimos
-        compromiso al momento de adoptar a un nuevo integrante. También esperamos
-        compromiso para con los usuarios que llevan a cabo las publicaciones
-        de los posteos.
-      </p>
-      <Join />
+            Nuestra plataforma permite a los usuarios visualizar todas las
+            mascotas disponibles para adopción, como así también filtar las
+            mismas por tamaño, ubicación, genero, etc. Tener una mascota es una
+            responsabilidad, por lo tanto, exigimos compromiso al momento de
+            adoptar a un nuevo integrante. También esperamos compromiso para con
+            los usuarios que llevan a cabo las publicaciones de los posteos.
+          </p>
+          {/* <Join /> */}
+          {/* <Join /> */}
           <div className={styles.carruselEshop}>
             {/* <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>
@@ -67,8 +114,6 @@ export default function Home() {
           </div>
           <Footer />
         </div>
-
-        
 
         {/* <nav className={styles.navBar}>
           <h1 className={styles.textNav}>
@@ -110,7 +155,6 @@ export default function Home() {
             animalitos.
           </p>
         </div> */}
-        
       </div>
     </>
   );

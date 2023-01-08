@@ -3,10 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: [
+      "res.cloudinary.com",
       "lh3.googleusercontent.com",
       "platform-lookaside.fbsbx.com",
       "cdn2.thedogapi.com",
       "olondriz.com",
+      "random.imagecdn.app",
     ],
     remotePatterns: [
       {
