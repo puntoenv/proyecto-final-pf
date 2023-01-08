@@ -15,15 +15,14 @@ import logo from "../../img/logo.jpeg";
 // import hug from '../../img/hug.jpg'
 // import shelter from '../../img/shelter.jpg'
 // import kitten from '../../img/kitten.jpg'
-///////////////////////////////////////////////////////////////////////
-// import Cat from "../../img/meal.png";
+//import Cat from "../../img/meal.png";
 // import All from "../../img/all.png";
 // import Join from "../../components/JoinUs/joinUs";
 // import Alimento from "../../img/alimento.png";
 // import Alim from "../../img/alim.png";
 // import Al from "../../img/al.png";
 // import Ali from "../../img/ali.png";
-///////////////////////////////////////////////////////////////////////
+
 export default function Home() {
   return (
     <>
@@ -48,6 +47,7 @@ export default function Home() {
           height="auto"
         />
         <Nosotros />
+        {/* <Image
         {/* <Image
           src={All}
           alt="hug"
@@ -88,7 +88,7 @@ export default function Home() {
           alt="shelter"
           className={styles.ali}
           width="auto"
-          height="auto" 
+          height="auto"
         /> */}
         <div className={styles.carruselAnimals}>
           <Link className={styles.linkAdoptar} href="/petsPosts">
@@ -104,6 +104,7 @@ export default function Home() {
             adoptar a un nuevo integrante. También esperamos compromiso para con
             los usuarios que llevan a cabo las publicaciones de los posteos.
           </p>
+          {/* <Join /> */}
           {/* <Join /> */}
           <div className={styles.carruselEshop}>
             {/* <Link className={styles.linkEshop} href="/eshop">
