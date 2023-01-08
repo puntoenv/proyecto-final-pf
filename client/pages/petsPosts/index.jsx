@@ -33,18 +33,15 @@ export default function PetAdoption() {
     dispatch(getper());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (pets.length === 0) {
+      dispatch(getPets());
+    }
+  }, [pets]);
+
   const handlerSearch = (e) => {
-    e.preventDefault();
     dispatch(searchPet(e.target.value));
   };
-
-  // const handlerSearch = (e) => {
-  //   setSearch(e.target.value);
-  // };
-  // const handlerSearchButton = () => {
-  //   dispatch(searchPet(search));
-  //   setSearch("");
-  // };
   const handlerTodas = () => {
     dispatch(getPets());
   };
@@ -80,7 +77,6 @@ export default function PetAdoption() {
     }
     setcurren((prev) => prev + 1);
   };
-
   const typeFilter = (e) => {
     e.preventDefault();
     let { id, value } = e.target;
@@ -96,10 +92,13 @@ export default function PetAdoption() {
       <div className={styles.search}>
         <input
           className={styles.input}
-          type="search"
+          type="text"
           placeholder="Mascota..."
           onChange={handlerSearch}
         />
+        <button className={styles.searchB} onClick={handlerSearch}>
+          Buscar
+        </button>
       </div>
       <div>
         <button className={styles.all} onClick={handlerTodas}>
@@ -128,7 +127,7 @@ export default function PetAdoption() {
           <option value="macho">macho</option>
           <option value="hembra">hembra</option>
         </select>
-        <input type="number" name="age" placeholder="edad" />
+        <input type="number" id="age" placeholder="edad" />
       </form>
       {/* ----------------------------------------------------------------------- */}
 
@@ -136,7 +135,7 @@ export default function PetAdoption() {
         <div className={styles.posts_Container}></div>
         {pet?.map((mascota) => {
           return (
-            <div key={mascota.id} className={styles.card}>
+            <div key={mascota._id} className={styles.card}>
               <Image
                 className={styles.img}
                 width="300"
@@ -147,7 +146,7 @@ export default function PetAdoption() {
               <h1 className={styles.name}>{mascota.name}</h1>
               <h2 className={styles.size}>{mascota.gender}</h2>
               <button className={styles.btn}>
-                <Link href="/detail/:id">Ver detalle</Link>
+                <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
               </button>
             </div>
           );

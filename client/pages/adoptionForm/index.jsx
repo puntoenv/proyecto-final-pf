@@ -149,7 +149,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="pequeño"
-                  value="Pequeño"
+                  value="pequeño"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -162,7 +162,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="mediano"
-                  value="Mediano"
+                  value="mediano"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -175,7 +175,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="grande"
-                  value="Grande"
+                  value="grande"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -218,14 +218,14 @@ export default function form() {
               <option defaultValue={true} value="select">
                 Seleccione la especie de la mascota...
               </option>
-              <option value="Gato">Gato</option>
-              <option value="Perro">Perro</option>
-              <option value="Conejo">Conejo</option>
-              <option value="Hamster">Hamster</option>
-              <option value="Ave">Ave</option>
-              <option value="Pez">Pez</option>
-              <option value="Tortuga">Tortuga</option>
-              <option value="Desconocida">Desconocida</option>
+              <option value="gato">Gato</option>
+              <option value="perro">Perro</option>
+              <option value="conejo">Conejo</option>
+              <option value="hamster">Hamster</option>
+              <option value="ave">Ave</option>
+              <option value="pez">Pez</option>
+              <option value="tortuga">Tortuga</option>
+              <option value="desconocida">Desconocida</option>
             </select>
           </label>
           <label className={styles.stretch}>
@@ -282,7 +282,7 @@ export default function form() {
               <label htmlFor="macho">
                 <input
                   type="radio"
-                  value="Macho"
+                  value="macho"
                   id="macho"
                   name="gender"
                   onChange={(e) => {
@@ -295,7 +295,7 @@ export default function form() {
               <label htmlFor="hembra">
                 <input
                   type="radio"
-                  value="Hembra"
+                  value="hembra"
                   id="hembra"
                   name="gender"
                   onChange={(e) => {

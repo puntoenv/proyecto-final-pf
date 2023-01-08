@@ -32,13 +32,8 @@ function Pagina({
   //en este apartado se puede manejar el corte de las paginas
   const pagina = numeroPaginas.map((a) => {
     return (
-      <div className={styles.container}>
-        <button
-          className={styles.button}
-          key={a}
-          id={a}
-          onClick={handlePageClick}
-        >
+      <div className={styles.container} key={a}>
+        <button className={styles.button} id={a} onClick={handlePageClick}>
           {a}
         </button>{" "}
       </div>
