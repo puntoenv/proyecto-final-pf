@@ -128,7 +128,7 @@ export default function form() {
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
           <span className={styles.title}>Datos de la Mascota</span>
           <label htmlFor="name" className={styles.stretch}>
-            Nombre: wedwjdbwb
+            Nombre: 
             <span className={styles.errors}>{errors.name}</span>
             <input
               className={styles.input}
