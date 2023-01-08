@@ -94,14 +94,7 @@ export const GetUs = () => async (dispatch) => {
     .then((res) => dispatch(getuser(res.data)));
 };
 
-export const filtrarMascotas = (mascotas) => async (dispatch) => {
-  try {
-    const filtradas = await axios(
-      `http://localhost:3001/pets/filter?size=${mascotas.size}&age=${mascotas.age}&gender=${mascotas.gender}&type=${mascotas.type}`
-    );
-    console.log(filtradas.data);
-    dispatch(getMascotas(filtradas.data));
-  } catch (error) {
-    console.error(error);
-  }
+export const setFilteredPets = (mascotas) => (dispatch) => {
+  console.log(mascotas);
+  dispatch(getMascotas(mascotas));
 };
