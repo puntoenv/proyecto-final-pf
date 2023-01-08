@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { validation, validationButton } from "../../controller/validationSignup";
-import style from '../../pages/adoptionForm/style.module.css'
-import styles from '../../pages/login/styles.module.css'
+import {
+  validation,
+  validationButton,
+} from "../../controller/validationSignup";
+import style from "../../pages/adoptionForm/style.module.css";
+import styles from "../../pages/login/styles.module.css";
 
 export default function Register({ handlerChange, handlerClick }) {
   const [input, setInput] = useState({
@@ -44,25 +47,10 @@ export default function Register({ handlerChange, handlerClick }) {
             }}
           ></input>
 
-<<<<<<< HEAD
-        <label>
-          Age:
-          <input
-            type="number"
-            name={"age"}
-            value={input.age}
-            onChange={(event) => handlerChange(event, setInput, input)}
-          ></input>
-        </label>
-
-        <label>
-          Bio:
-=======
           <div>{error.name && <p>{error.name}</p>}</div>
         </div>
         <div className={styles.div}>
           <label>Age:</label>
->>>>>>> main
           <input
             className={style.input}
             type="number"
@@ -88,18 +76,11 @@ export default function Register({ handlerChange, handlerClick }) {
                 validation(event, setError);
             }}
           ></input>
-<<<<<<< HEAD
-        </label>
-
-        <label>
-          Image:
-=======
 
           <div>{error.bio && <p>{error.bio}</p>}</div>
         </div>
         <div className={styles.div}>
           <label>Image:</label>
->>>>>>> main
           <input
             className={style.input}
             type="file"
@@ -107,16 +88,9 @@ export default function Register({ handlerChange, handlerClick }) {
             value={input.image}
             onChange={(event) => handlerChange(event, setInput, input)}
           ></input>
-<<<<<<< HEAD
-        </label>
-
-        <label>
-          Email:
-=======
         </div>
         <div className={styles.div}>
           <label>Email:</label>
->>>>>>> main
           <input
             className={style.input}
             type="text"
@@ -127,18 +101,11 @@ export default function Register({ handlerChange, handlerClick }) {
                 validation(event, setError);
             }}
           ></input>
-<<<<<<< HEAD
-        </label>
-
-        <label>
-          Password:
-=======
 
           <div>{error.email && <p>{error.email}</p>}</div>
         </div>
         <div className={styles.div}>
           <label>Password:</label>
->>>>>>> main
           <input
             className={style.input}
             type="password"
@@ -149,13 +116,9 @@ export default function Register({ handlerChange, handlerClick }) {
                 validation(event, setError);
             }}
           ></input>
-<<<<<<< HEAD
-        </label>
-=======
 
           <div>{error.password && <p>{error.password}</p>}</div>
         </div>
->>>>>>> main
         <button
           type="submit"
           onClick={(event) =>
@@ -165,11 +128,11 @@ export default function Register({ handlerChange, handlerClick }) {
         >
           Iniciar sesión
         </button>
-      </form> 
-      <div> 
+      </form>
+      <div>
         {result.done && <h3>{result.done}</h3>}
         {result.failed && <h3>{result.failed}</h3>}
       </div>
     </div>
   );
-};
+}

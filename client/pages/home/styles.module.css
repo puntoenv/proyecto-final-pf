@@ -1,5 +1,8 @@
 .home {
   margin-top: 70px;
+  width: 100%;
+  margin-top: -5em;
+  height: 50em;
 }
 .link {
   font-size: 12px;
@@ -19,6 +22,36 @@
   width: 100%;
 }
 
+.barGreen {
+  height: 50px;
+  background-color: #415d43;
+  color: #415d43;
+  height: 30px;
+  font-size: 1px;
+}
+
+.divAlimento {
+  display: flex;
+  height: 70px;
+  background-image: url("https://res.cloudinary.com/dibwxnomi/image/upload/v1673186381/imagenes/alim_ixvvc3.png");
+  background-repeat: repeat-x;
+  background-size: contain;
+}
+.containKitten {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  z-index: 90000000;
+  transform: translateY(-14px);
+}
+.kitten {
+  position: relative;
+  margin-right: 20px;
+  height: 500px;
+  width: 500px;
+}
+
 .infoNosotros {
   margin-top: 0%;
   margin-left: 10%;
@@ -33,7 +66,6 @@
 .boxInfoNosotros {
   width: 100%;
   height: 40%;
-    
 }
 
 .infoAdopcion {
@@ -55,7 +87,7 @@
   display: center;
   justify-content: center;
   margin-top: 370px;
-  color: #415D43;
+  color: #415d43;
   font-size: 45px;
   font-weight: 700;
 }
@@ -63,7 +95,7 @@
 .aboutUs {
   margin-left: 340px;
   margin-top: 5%;
-  color: #415D43;
+  color: #415d43;
   font-size: 45px;
   font-weight: 700;
 }
@@ -85,7 +117,7 @@
 .linkAdoptar {
   padding-top: 2%;
   display: flex;
-  color: #32281F;
+  color: #32281f;
   text-align: center;
   display: center;
   justify-content: center;
@@ -110,21 +142,8 @@
   margin-right: 15%;
 }
 
-.home{
-  width: 91em;
-  margin-top: -5em;
-  height: 50em;  
-}
-
-.green{
-  background-color:#415D43;
-  color:#415D43;
-  height: 30px;
-  font-size: 1px;
-}
-
-.logo{
-  border-radius:1em;
+.logo {
+  border-radius: 1em;
   display: flex;
   position: fixed;
   margin-top: 30px;
@@ -133,69 +152,6 @@
   width: 8em;
   height: 14em;
 }
-
-.alimento{
-  display: flex;
-  position: absolute;
-  width: 19em;
-  height: 60px;
-  margin-left: 849px;
-  margin-top: -25em;
-  z-index: 600;
-}
-
-
-.alimen{
-  display: flex;
-  position: absolute;
-  width: 19em;
-  height: 60px;
-  margin-top: -25em;
-  z-index: 600;
-}
-
-.alim{
-  display: flex;
-  position: absolute;
-  width: 19em;
-  height: 60px;
-  margin-top: -400px;
-  z-index: 600;
-  margin-left: 600px;
-}
-
-.ali{
-  display: flex;
-  position: absolute;
-  width: 19em;
-  height: 60px;
-  margin-left:1153px;
-  margin-top: -25em;
-  z-index: 600;
-
-}
-
-.al{
-  display: flex;
-  position: absolute;
-  width: 19em;
-  height: 60px;
-  margin-left: 304px;
-  margin-top: -25em;
-  z-index: 600;
-}
-
-
-.kitten{
-  display: flex;
-  position: absolute;
-  width: 26em;
-  height: 27em;
-  margin-left: 65em;
-  margin-top: -350px;
-  z-index: 650;
-}
-
 
 /* .all{
   display: flex;
@@ -207,9 +163,8 @@
   margin-top: -296px;
 } */
 
-
-.footer{
-  background-color: #32281F;
+.footer {
+  background-color: #32281f;
   width: 100%;
   padding: 16px;
   display: flex;

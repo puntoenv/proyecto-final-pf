@@ -22,7 +22,6 @@ const NavBar = () => {
   return (
     <header className="headerNav">
       <nav className="nav">
-        
         <div className="navMenuList">
           {/* <Link className="itemNav" href="/Apóyanos">
             <span>Apóyanos </span>

@@ -17,8 +17,8 @@
 .container {
   display: grid;
   place-content: center;
-  min-width: 100vw;
-  min-height: 100vh;
+  min-width: 100%;
+  min-height: 100%;
   background-color: #415d43;
 }
 
@@ -52,4 +52,5 @@
   border-width: 1px;
   border-radius: 1rem;
   min-height: 1.5rem;
+  background-color: beige;
 }
