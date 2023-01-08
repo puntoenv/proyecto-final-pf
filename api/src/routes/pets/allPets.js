@@ -4,10 +4,10 @@ const Pet = require("../../models/Pet");
 
 allPets.get("/", async (req, res) => {
   try {
-    let pets = await Pet.find();
+    const pets = await Pet.find({ hidden: false });
     res.send(pets);
   } catch (error) {
-    console.log(error);
+    res.status(400).send({ error: error.message });
   }
 });
 module.exports = allPets;

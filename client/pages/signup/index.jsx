@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSession, signIn } from "next-auth/react";
 import Login from "../../components/FormAuth/Login";
 import {
   handlerOnChange,
