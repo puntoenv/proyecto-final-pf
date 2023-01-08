@@ -39,8 +39,6 @@
   color: white;
 }
 
-
-
 /* .itemNav {
   display: flex;
   color: white;
@@ -56,7 +54,6 @@
   font-size: 20px;
 }
 
-
 .itemNav:hover {
   color: #fff;
 }
@@ -70,12 +67,10 @@
   cursor: pointer;
 }
 
-.login{
+.login {
   background: #38593a;
   width: 20em;
   font-size: 20px;
   display: flex;
   position: absolute;
 }
-
-

@@ -1,4 +1,3 @@
-import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 import {
   handlerOnChange,
@@ -10,8 +9,6 @@ import style from "../adoptionForm/style.module.css";
 import styles from "../login/styles.module.css";
 
 export default function () {
-  const { data: session } = useSession();
-
   return (
     <div className={style.container}>
       <Layout title="Iniciar Sesión" />
