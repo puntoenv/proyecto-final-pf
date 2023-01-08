@@ -48,6 +48,7 @@ export default function Home() {
         />
         <Nosotros />
         {/* <Image
+        {/* <Image
           src={All}
           alt="hug"
           className={styles.all}
@@ -103,6 +104,7 @@ export default function Home() {
             adoptar a un nuevo integrante. También esperamos compromiso para con
             los usuarios que llevan a cabo las publicaciones de los posteos.
           </p>
+          {/* <Join /> */}
           {/* <Join /> */}
           <div className={styles.carruselEshop}>
             {/* <Link className={styles.linkEshop} href="/eshop">
