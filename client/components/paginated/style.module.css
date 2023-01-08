@@ -1,14 +1,44 @@
-.button{
-font-size: 15px;
-font-weight: 200;
-letter-spacing: 1px;
-padding: 12px 20px 12px;
-outline: 0;
-border: 1px solid black;
-cursor: pointer;
-position: relative;
-background-color: rgba(0, 0, 0, 0);
-user-select: none;
--webkit-user-select: none;
-touch-action: manipulation;
+.button {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  border: 1px solid #d1bdab;
+  cursor: pointer;
+  margin: 5px;
+  color: #32281f;
+  background: #e8eb9d;
+  border-radius: 10px;
+  width: 35px;
+  margin-top: 80px;
+}
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #6d5946;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+
+.sig_ant {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  height: 47px;
+  width: 4em;
+  border: 1px solid #39513b;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 2px;
+  color: white;
+  background: #38593a;
+  margin-top: 4em;
+}
+
+.sig_ant:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #6d5946;
 }
