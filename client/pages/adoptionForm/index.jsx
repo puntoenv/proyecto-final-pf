@@ -67,7 +67,7 @@ export default function form() {
     return console.log(errors);
   };
   useEffect(() => {
-    dispatch(getper());
+    dispatch(getper()).then((_) => console.log(provi));
   }, [dispatch]);
   const handleSelector = (e) => {
     const { name, value } = e.target;
@@ -117,7 +117,7 @@ export default function form() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(post);
-    return PostAdop(post).then((id) => null);
+    return PostAdop(post).then((id) => router.push(`/detail/${id}`));
   };
   return (
     <>
@@ -149,7 +149,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="pequeño"
-                  value="pequeño"
+                  value="Pequeño"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -162,7 +162,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="mediano"
-                  value="mediano"
+                  value="Mediano"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -175,7 +175,7 @@ export default function form() {
                 <input
                   type="radio"
                   id="grande"
-                  value="grande"
+                  value="Grande"
                   name="size"
                   onChange={(e) => {
                     validation(e);
@@ -216,20 +216,16 @@ export default function form() {
               }}
             >
               <option defaultValue={true} value="select">
-                Seleccione la especie de la mascota
+                Seleccione la especie de la mascota...
               </option>
-              <option key="gatos" value="gatos">
-                gato
-              </option>
-              <option key="perros" value="perros">
-                perro
-              </option>
-              <option key="aves" value="aves">
-                ave
-              </option>
-              <option key="peces" value="peces">
-                pez
-              </option>
+              <option value="Gato">Gato</option>
+              <option value="Perro">Perro</option>
+              <option value="Conejo">Conejo</option>
+              <option value="Hamster">Hamster</option>
+              <option value="Ave">Ave</option>
+              <option value="Pez">Pez</option>
+              <option value="Tortuga">Tortuga</option>
+              <option value="Desconocida">Desconocida</option>
             </select>
           </label>
           <label className={styles.stretch}>
@@ -286,7 +282,7 @@ export default function form() {
               <label htmlFor="macho">
                 <input
                   type="radio"
-                  value="macho"
+                  value="Macho"
                   id="macho"
                   name="gender"
                   onChange={(e) => {
@@ -299,7 +295,7 @@ export default function form() {
               <label htmlFor="hembra">
                 <input
                   type="radio"
-                  value="hembra"
+                  value="Hembra"
                   id="hembra"
                   name="gender"
                   onChange={(e) => {

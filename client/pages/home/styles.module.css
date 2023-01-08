@@ -33,7 +33,6 @@
 .boxInfoNosotros {
   width: 100%;
   height: 40%;
-    
 }
 
 .infoAdopcion {
@@ -55,7 +54,7 @@
   display: center;
   justify-content: center;
   margin-top: 370px;
-  color: #415D43;
+  color: #415d43;
   font-size: 45px;
   font-weight: 700;
 }
@@ -63,7 +62,7 @@
 .aboutUs {
   margin-left: 340px;
   margin-top: 5%;
-  color: #415D43;
+  color: #415d43;
   font-size: 45px;
   font-weight: 700;
 }
@@ -85,7 +84,7 @@
 .linkAdoptar {
   padding-top: 2%;
   display: flex;
-  color: #32281F;
+  color: #32281f;
   text-align: center;
   display: center;
   justify-content: center;
@@ -110,21 +109,21 @@
   margin-right: 15%;
 }
 
-.home{
+.home {
   width: 91em;
   margin-top: -5em;
-  height: 50em;  
+  height: 50em;
 }
 
-.green{
-  background-color:#415D43;
-  color:#415D43;
+.green {
+  background-color: #415d43;
+  color: #415d43;
   height: 30px;
   font-size: 1px;
 }
 
-.logo{
-  border-radius:1em;
+.logo {
+  border-radius: 1em;
   display: flex;
   position: fixed;
   margin-top: 30px;
@@ -134,7 +133,7 @@
   height: 14em;
 }
 
-.alimento{
+.alimento {
   display: flex;
   position: absolute;
   width: 19em;
@@ -144,8 +143,7 @@
   z-index: 600;
 }
 
-
-.alimen{
+.alimen {
   display: flex;
   position: absolute;
   width: 19em;
@@ -154,7 +152,7 @@
   z-index: 600;
 }
 
-.alim{
+.alim {
   display: flex;
   position: absolute;
   width: 19em;
@@ -164,18 +162,17 @@
   margin-left: 600px;
 }
 
-.ali{
+.ali {
   display: flex;
   position: absolute;
   width: 19em;
   height: 60px;
-  margin-left:1153px;
+  margin-left: 1153px;
   margin-top: -25em;
   z-index: 600;
-
 }
 
-.al{
+.al {
   display: flex;
   position: absolute;
   width: 19em;
@@ -185,8 +182,7 @@
   z-index: 600;
 }
 
-
-.kitten{
+.kitten {
   display: flex;
   position: absolute;
   width: 26em;
@@ -195,7 +191,6 @@
   margin-top: -350px;
   z-index: 650;
 }
-
 
 /* .all{
   display: flex;
@@ -207,9 +202,8 @@
   margin-top: -296px;
 } */
 
-
-.footer{
-  background-color: #32281F;
+.footer {
+  background-color: #32281f;
   width: 100%;
   padding: 16px;
   display: flex;

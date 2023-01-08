@@ -19,7 +19,7 @@ import Alimento from "../../img/alimento.png";
 import Alim from "../../img/alim.png";
 import Al from "../../img/al.png";
 import Ali from "../../img/ali.png";
-import Alimen from "../../img/alimen.png"
+import Alimen from "../../img/alimen.png";
 
 export default function Home() {
   return (
@@ -110,8 +110,8 @@ export default function Home() {
             adoptar a un nuevo integrante. También esperamos compromiso para con
             los usuarios que llevan a cabo las publicaciones de los posteos.
           </p>
-          <Join /> 
-          
+          <Join />
+
           <div className={styles.carruselEshop}>
             {/* <Link className={styles.linkEshop} href="/eshop">
               <h1>E-shop</h1>

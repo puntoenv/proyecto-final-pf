@@ -1,18 +1,18 @@
 .nav {
-  display:flex;
-  position:fixed;
+  display: flex;
+  position: fixed;
   z-index: 4000;
   top: 0;
   width: 100%;
   padding: 16px;
   z-index: 800;
   justify-content: space-between;
-  align-items:flex-end;
+  align-items: flex-end;
   background-color: #38593a;
 }
 .navMenuList {
   box-sizing: border-box;
-  display:flex;
+  display: flex;
   flex-direction: row;
   margin-left: 75em;
   column-gap: 24px;
@@ -24,7 +24,6 @@
   color: #eeee;
   text-decoration: none;
   font-size: 20px;
-
 }
 .itemNav:hover {
   color: #fff;
@@ -38,5 +37,3 @@
   color: #fff;
   cursor: pointer;
 }
-
-
