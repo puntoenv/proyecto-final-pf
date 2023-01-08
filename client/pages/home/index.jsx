@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
@@ -13,15 +12,10 @@ import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
 import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
-//import All from "../../img/all.png";
 import Join from "../../components/JoinUs/joinUs";
-import Alimento from "../../img/alimento.png";
-import Alim from "../../img/alim.png";
-import Al from "../../img/al.png";
-import Ali from "../../img/ali.png";
-import Alimen from "../../img/alimen.png";
 
 export default function Home() {
+  const clientId = process.env.AUHT0_CLIENT_ID;
   return (
     <>
       <Layout title="Inicio" />
@@ -84,32 +78,7 @@ export default function Home() {
           <Footer />
         </div>
 
-        {/* <div>
-          <form className={styles.searchBar}>
-            <input
-              className={styles.inputSearch}
-              type="text"
-              placeholder="Buscador..."
-            />
-            <button className={styles.buttonSearch} type="submit">
-              Buscar
-            </button>
-          </form>
-        </div>
-
-        <p className={styles.adopcion}> Parrafo sobre adopcion</p>
-
-        <div className={styles.sobreNosotros}>
-          <p className={styles.textoNosotros}>
-            Nosotros somos Little Paws y nuestro objetivo es poder buscarles un
-            hogar y buenas condiciones de vida a los animalitos que estan
-            abandonados en la calle. Además contamos con un e-shop donde podes
-            comprarle comida, juguetes y muchas mas cosas a tu peludito. Con las
-            ganancias del e-shop, nosotros nos podemos financiar en mejorar
-            nuestro servicio y tambien ayudar a refugios y fundaciones de
-            animalitos.
-          </p>
-        </div> */}
+        <button onClick={() => console.log(clientId)}>.env</button>
       </div>
     </>
   );
