@@ -1,0 +1,31 @@
+.page {
+  background-color: rgb(184, 209, 115);
+  padding-top: 5rem;
+  min-height: 100vh;
+}
+
+.filters {
+  position: fixed;
+  width: 10rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  height: 100vh;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 15rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.footer {
+  width: 100%;
+}

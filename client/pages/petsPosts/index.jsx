@@ -1,22 +1,14 @@
-import Link from "next/link";
+import styles from "./styles.module.css";
+import NavBar from "../../components/NavBar/NavBar";
 import Card from "../../components/Card/index.js";
 import { useState } from "react";
-import {
-  getPets,
-  searchPet,
-  getper,
-  filtrarMascotas,
-} from "../../stores/actions";
+import { getPets, searchPet, getper, filterPets } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// FILTERS----------------
 import { handlerOnChange } from "../../controller/filtersPets.js";
 import { setFilteredPets } from "../../stores/actions";
-//PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
-
-/* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({
@@ -28,34 +20,27 @@ export default function PetAdoption() {
   });
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
-  /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
-
   useEffect(() => {
     dispatch(getPets());
     dispatch(getper());
+    console.log(pets);
   }, [dispatch]);
 
   const handlerSearch = (e) => {
-    setSearch(e.target.value);
-  };
-  const handlerSearchButton = () => {
-    dispatch(searchPet(search));
-    setSearch("");
+    e.preventDefault();
+    dispatch(searchPet(e.target.value));
   };
   const handlerTodas = () => {
     dispatch(getPets());
   };
-  //PAGINADO////
   const pg = 10;
   const [curren, setcurren] = useState(1);
   const [maxPageLimit, setMaxPageLimit] = useState(5);
   const [minPageLimit, setMinPageLimit] = useState(0);
-
-  //movimiento del puntero
   const ultimo = curren * pg;
   const primero = ultimo - pg;
-  const pet = pets.length ? pets.slice(primero, ultimo) : [];
-  //console.log(pets)
+  // const pet = pets.length > 0 ? pets.slice(primero, ultimo) : [];
+  const pet = pets;
   useEffect(() => {
     setcurren(1);
   }, [filter, pets, setFilter]);
@@ -77,81 +62,107 @@ export default function PetAdoption() {
     }
     setcurren((prev) => prev + 1);
   };
+
+  const typeFilter = (e) => {
+    e.preventDefault();
+    let { id, value } = e.target;
+    let params = { id, value };
+    dispatch(filterPets(params));
+    console.log(id, value, pet);
+  };
   return (
-    <div>
+    <>
       <Layout title="Mascotas" />
-      <div></div>
-      <div>
-        <div>
-          <input
-            type="text"
-            placeholder="Mascota..."
-            onChange={handlerSearch}
-            value={search}
-          />
-          <button onClick={handlerSearchButton}>Buscar</button>
+      <NavBar />
+      <div className={styles.page}>
+        <div className={styles.filters}>
+          <h1>version beta</h1>
+          <div>
+            <input
+              type="search"
+              placeholder="Mascota..."
+              onChange={(e) => handlerSearch(e)}
+            />
+          </div>
+          <div>
+            <button className={styles.all} onClick={(e) => handlerTodas(e)}>
+              Todas las mascotas
+            </button>
+          </div>
+
+          {/* onChange={(e) =>
+               handlerOnChange(e, filter, setFilter, pets, dispatch) */}
+          <form onChange={(e) => typeFilter(e)}>
+            <label htmlFor="type">
+              <select name="type" id="type">
+                <option value="">Seleccione la especie...</option>
+                <option value="perros">Perros</option>
+                <option value="gatos">Gatos</option>
+                <option value="conejos">Conejos</option>
+                <option value="aves">Aves</option>
+                <option value="peces">Peces</option>
+                <option value="hamsters">Hamsters</option>
+                <option value="tortugas">Tortugas</option>
+              </select>
+            </label>
+            <label htmlFor="size">
+              <select name="size" id="size">
+                <option value="tamaño">tamaño</option>
+                <option value="pequeño">pequeño</option>
+                <option value="mediano">mediano</option>
+                <option value="grande">grande</option>
+              </select>
+            </label>
+            <label htmlFor="gender">
+              <select name="gender" id="gender">
+                <option value="genero">genero</option>
+                <option value="macho">macho</option>
+                <option value="hembra">hembra</option>
+              </select>
+            </label>
+            <input type="number" name="age" placeholder="edad" />
+          </form>
         </div>
-        <div>
-          <button onClick={handlerTodas}>todas las mascotas</button>
-        </div>
-        {/* ----------------------------------FILTROS------------------------------------ */}
-        <form
-          onChange={(e) =>
-            handlerOnChange(e, filter, setFilter, pets, dispatch)
-          }
-        >
-          <select name="type" id="">
-            <option value="animal">animal</option>
-            <option value="perros">perros</option>
-            <option value="gatos">gatos</option>
-            <option value="conejos">conejos</option>
-            <option value="aves">aves</option>
-            <option value="peces">peces</option>
-            <option value="hamsters">hamsters</option>
-          </select>
-          <select name="size" id="">
-            <option value="tamaño">tamaño</option>
-            <option value="pequeño">pequeño</option>
-            <option value="mediano">mediano</option>
-            <option value="grande">grande</option>
-          </select>
-          <select name="gender" id="">
-            <option value="genero">genero</option>
-            <option value="macho">macho</option>
-            <option value="hembra">hembra</option>
-          </select>
-          <input type="number" name="age" placeholder="edad" />
-        </form>
-        {/* ----------------------------------------------------------------------- */}
-        <div>
+        <div className={styles.box}>
+          <div className={styles.footer}>
+            {/* <Pagina
+              pets={pets}
+              pg={pg}
+              page={Page}
+              onPrevClick={onPrevClick}
+              onNextClick={onNextClick}
+              curren={curren}
+              maxPageLimit={maxPageLimit}
+              minPageLimit={minPageLimit}
+              setMaxPageLimit={setMaxPageLimit}
+              setMinPageLimit={setMinPageLimit}
+            /> */}
+          </div>
           {pet?.map((mascota) => (
             <Card
+              key={mascota._id}
               id={mascota._id}
               nombre={mascota.name}
               imagen={mascota.image}
               genero={mascota.gender}
             />
           ))}
+          <div className={styles.footer}>
+            {/* <Pagina
+              pets={pets}
+              pg={pg}
+              page={Page}
+              onPrevClick={onPrevClick}
+              onNextClick={onNextClick}
+              curren={curren}
+              maxPageLimit={maxPageLimit}
+              minPageLimit={minPageLimit}
+              setMaxPageLimit={setMaxPageLimit}
+              setMinPageLimit={setMinPageLimit}
+            /> */}
+          </div>
         </div>
       </div>
-
-      {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-      {
-        <Pagina
-          pets={pets}
-          pg={pg}
-          page={Page}
-          onPrevClick={onPrevClick}
-          onNextClick={onNextClick}
-          curren={curren}
-          maxPageLimit={maxPageLimit}
-          minPageLimit={minPageLimit}
-          setMaxPageLimit={setMaxPageLimit}
-          setMinPageLimit={setMinPageLimit}
-        />
-      }
-    </div>
+    </>
   );
 }

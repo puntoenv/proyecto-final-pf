@@ -1,14 +1,21 @@
-.button{
-font-size: 15px;
-font-weight: 200;
-letter-spacing: 1px;
-padding: 12px 20px 12px;
-outline: 0;
-border: 1px solid black;
-cursor: pointer;
-position: relative;
-background-color: rgba(0, 0, 0, 0);
-user-select: none;
--webkit-user-select: none;
-touch-action: manipulation;
+.button {
+  font-size: 15px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 12px 20px 12px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.paginado {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }

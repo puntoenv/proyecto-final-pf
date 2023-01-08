@@ -42,13 +42,14 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  z-index: 90000000;
+  z-index: 1900;
   transform: translateY(-14px);
 }
 .kitten {
   position: relative;
   margin-right: 20px;
   height: 500px;
+  z-index: 1901;
   width: 500px;
 }
 
@@ -148,8 +149,8 @@
   position: fixed;
   margin-top: 30px;
   margin-left: 2em;
-  z-index: 900;
-  width: 8em;
+  z-index: 4500;
+  width: auto;
   height: 14em;
 }
 

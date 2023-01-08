@@ -53,7 +53,7 @@ function Pagina({
   }
 
   return (
-    <div>
+    <div className={styles.paginado}>
       <button
         className={styles.button}
         onClick={handlePrevClick}
@@ -71,7 +71,6 @@ function Pagina({
       >
         Next
       </button>
-      pagina
     </div>
   );
 }

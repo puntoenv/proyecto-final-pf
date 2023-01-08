@@ -2,20 +2,20 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 750;
+  z-index: 3000;
   justify-content: flex-start;
   top: 0px;
   right: -600px;
   height: 100vh;
-  border-left: 1px solid #E8EB9D ;
-  border-top: 1px solid #E8EB9D ;
+  border-left: 1px solid #e8eb9d;
+  border-top: 1px solid #e8eb9d;
   backdrop-filter: blur(20px);
   padding: 30px;
   padding-top: 70px;
   padding-right: 100px;
   text-align: left;
   transition: all 0.6s;
-  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
 }
 
 .itemDash {
@@ -23,7 +23,7 @@
   margin: 15px 10px;
   padding: 1px;
   padding-bottom: 2px;
-  border-bottom: 2px solid #32281F;
+  border-bottom: 2px solid #32281f;
 }
 .itemDash:hover {
   font-weight: bold;
