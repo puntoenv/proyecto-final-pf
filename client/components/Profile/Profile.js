@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
-import Layout from "../layout";
+import { getLocalStorage } from "../../sesionStorage";
 // import styles from '../styles/profile.module.css'
 
-const profile = () => {
+export default function Profile() {
   const { data: session } = useSession();
   console.log(session);
+<<<<<<< HEAD:client/components/Profile/Profile.js
+  const token = getLocalStorage("auth-token");
+  console.log(token);
+=======
 
+
+>>>>>>> main:client/pages/profile/index.jsx
   return (
     <div>
-      <Layout title="Mi Perfil" />
-      {session ? (
+      {session || token ? (
         <div>
           <Image
             src={session.user.image}
@@ -30,21 +35,25 @@ const profile = () => {
       )}
     </div>
   );
+<<<<<<< HEAD:client/components/Profile/Profile.js
+}
+=======
 };
 
 export default profile;
 
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/login",
-      },
-    };
-  }
+// export const getServerSideProps = async (context) => {
+//   const session = await getSession(context);
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//       },
+//     };
+//   }
 
-  return {
-    props: { session },
-  };
-};
+//   return {
+//     props: { session },
+//   };
+// };
+>>>>>>> main:client/pages/profile/index.jsx

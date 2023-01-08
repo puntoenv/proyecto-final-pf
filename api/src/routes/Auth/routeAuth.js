@@ -17,7 +17,9 @@ router.post("/register", async (req, res) => {
     name: req.body.name,
     age: req.body.age,
     bio: req.body.bio,
-    image: 'https://cdn-icons-png.flaticon.com/512/5372/5372211.png' || req.body.image,
+    image:
+      "https://cdn-icons-png.flaticon.com/512/5372/5372211.png" ||
+      req.body.image,
     email: req.body.email,
     password: hashedPassword,
   });
@@ -37,12 +39,12 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { provider } = req.body;
+  const { external, user: usuario } = req.body;
 
   // LOGIN WITH AUTH EXTERNAL
-  if (provider === "external") {
+  if (external.provider && external.access_token) {
     try {
-      let user = await User.findOne({ email: req.body.email });
+      let user = await User.findOne({ email: usuario.email });
       console.log("desde line 46: " + user);
       if (!user) {
         user = await User.create({
@@ -58,14 +60,18 @@ router.post("/login", async (req, res) => {
         },
         `${process.env.JWT_TOKEN_SECRET}`
       );
+      console.log(token);
 
       return res.header("auth-token", token).json({
         error: null,
-        data: { token, user: {
-          name: user.name,
-          image: user.image,
-          email: user.email
-        } },
+        data: {
+          token,
+          user: {
+            name: user.name,
+            image: user.image,
+            email: user.email,
+          },
+        },
       });
     } catch (error) {
       return res.status(400).json(error.message);
