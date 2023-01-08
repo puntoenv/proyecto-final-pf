@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const mascotasSlice = createSlice({
   name: "mascotas",
@@ -16,6 +15,9 @@ export const mascotasSlice = createSlice({
       state.mascotas = state.mascotas.filter(
         (mascota) => mascota[action.payload.id] === action.payload.value
       );
+      if (state.mascotas.length === 0) {
+        alert("No hay mascotas.");
+      }
     },
   },
 });
