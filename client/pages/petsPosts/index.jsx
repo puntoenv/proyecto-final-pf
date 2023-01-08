@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 //PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
+import NavBar from "../../components/NavBar/NavBar.js";
+import styles from "./styles.module.css"
 
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
@@ -92,15 +94,17 @@ export default function PetAdoption() {
     <div>
       <Layout title="Mascotas" />
       <div>
-        <nav>
+        <NavBar />
+        {/* <nav>
           <Link href="/nosotros">Nosotros</Link>
           <Link href="/contactanos">Contactanos</Link>
           <Link href="/perfil">Perfil</Link>
-        </nav>
+        </nav> */}
       </div>
       <div>
         <div>
           <input
+          className={styles.search}
             type="text"
             placeholder="Mascota..."
             onChange={handlerSearch}
