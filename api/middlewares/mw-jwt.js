@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
+  console.log("entro");
   const token = req.header("auth-token");
 
   if (!token) return res.json("Acceso denegado");
@@ -10,7 +11,7 @@ module.exports = async (req, res, next) => {
 
     req.user = verified;
 
-    next;
+    next();
   } catch (error) {
     res.status(400).json(error.message);
   }

@@ -6,8 +6,8 @@ import {
 } from "../../controller/loginAndRegister";
 import Register from "../../components/FormAuth/Register";
 import Layout from "../layout";
-import style from '../adoptionForm/style.module.css'
-import styles from '../login/styles.module.css'
+import style from "../adoptionForm/style.module.css";
+import styles from "../login/styles.module.css";
 
 export default function () {
   const { data: session } = useSession();
@@ -19,7 +19,8 @@ export default function () {
         <div>
           <h1>¡Ya iniciaste sesión!</h1>
           <p>
-            Ve al perfil de <Link href={"/profile"}>{session.user.name}</Link>.
+            Ve al perfil de <Link href={"/mi-perfil"}>{session.user.name}</Link>
+            .
           </p>
           <Link href={"/"}>Home</Link>
           <br />
@@ -33,7 +34,10 @@ export default function () {
           />
 
           <p className={styles.div}>
-            ¿Ya tienes una cuenta? <Link className={styles.link} href={"/signup"}>Inicia Sesion</Link>
+            ¿Ya tienes una cuenta?{" "}
+            <Link className={styles.link} href={"/signup"}>
+              Inicia Sesion
+            </Link>
           </p>
           <br />
           <div className={styles.div}>

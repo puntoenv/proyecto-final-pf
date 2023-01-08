@@ -9,6 +9,9 @@ import {
 } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// FILTERS----------------
+import { handlerOnChange } from "../../controller/filtersPets.js";
+import { setFilteredPets } from "../../stores/actions";
 //PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
@@ -18,7 +21,7 @@ import styles from "./styles.module.css"
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
-  const [filtros, setFiltros] = useState({
+  const [filter, setFilter] = useState({
     type: "",
     size: "",
     age: "",
@@ -44,20 +47,6 @@ export default function PetAdoption() {
   const handlerTodas = () => {
     dispatch(getPets());
   };
-  const handlerFiltrado = (e) => {
-    setFiltros({ ...filtros, [e.target.name]: e.target.value });
-  };
-  const handlerAplicar = () => {
-    dispatch(filtrarMascotas(filtros));
-    setFiltros({
-      type: "",
-      size: "",
-      age: "",
-      gender: "",
-      location: "",
-    });
-  };
-
   //PAGINADO////
   const pg = 10;
   const [curren, setcurren] = useState(1);
@@ -71,11 +60,11 @@ export default function PetAdoption() {
   //console.log(pets)
   useEffect(() => {
     setcurren(1);
-  }, []);
+  }, [filter, pets, setFilter]);
+
   const Page = (pageNumber) => {
     setcurren(pageNumber);
   };
-
   const onPrevClick = () => {
     if ((curren - 1) % pg === 0) {
       setMaxPageLimit(maxPageLimit - pg);
@@ -93,14 +82,7 @@ export default function PetAdoption() {
   return (
     <div>
       <Layout title="Mascotas" />
-      <div>
-        <NavBar />
-        {/* <nav>
-          <Link href="/nosotros">Nosotros</Link>
-          <Link href="/contactanos">Contactanos</Link>
-          <Link href="/perfil">Perfil</Link>
-        </nav> */}
-      </div>
+      <div></div>
       <div>
         <div>
           <input
@@ -115,43 +97,35 @@ export default function PetAdoption() {
         <div>
           <button onClick={handlerTodas}>todas las mascotas</button>
         </div>
-        <div className="filtros">
-          <select name="size" onClick={handlerFiltrado}>
-            <option value="" hidden>
-              Tamaño
-            </option>
-            <option value="pequeño">Pequeño</option>
-            <option value="mediano">Mediano</option>
-            <option value="grande">Grande</option>
+        {/* ----------------------------------FILTROS------------------------------------ */}
+        <form
+          onChange={(e) =>
+            handlerOnChange(e, filter, setFilter, pets, dispatch)
+          }
+        >
+          <select name="type" id="">
+            <option value="animal">animal</option>
+            <option value="perros">perros</option>
+            <option value="gatos">gatos</option>
+            <option value="conejos">conejos</option>
+            <option value="aves">aves</option>
+            <option value="peces">peces</option>
+            <option value="hamsters">hamsters</option>
           </select>
-          {/* <input type="text" placeholder="filtrar por edad" /> */}
-          <select name="gender" onClick={handlerFiltrado}>
-            <option value="" hidden>
-              Género
-            </option>
-            <option value="hembra">Hembra</option>
-            <option value="macho">Macho</option>
+          <select name="size" id="">
+            <option value="tamaño">tamaño</option>
+            <option value="pequeño">pequeño</option>
+            <option value="mediano">mediano</option>
+            <option value="grande">grande</option>
           </select>
-          <select name="age" onClick={handlerFiltrado}>
-            <option value="" hidden>
-              Edad
-            </option>
-            <option value="inicial">Inicial</option>
-            <option value="intermedia">Intermedia</option>
-            <option value="avanzada">Avanzada</option>
+          <select name="gender" id="">
+            <option value="genero">genero</option>
+            <option value="macho">macho</option>
+            <option value="hembra">hembra</option>
           </select>
-          <button onClick={handlerAplicar}>aplicar filtros</button>
-          {/* <select name="location" onClick={handlerFiltrado}>
-            <option value="" hidden>
-              Locacion
-            </option>
-            {ubi?.map((el) => (
-              <option key={el.nombre} value={el.nombre}>
-                {el.nombre}
-              </option>
-            ))}
-          </select> */}
-        </div>
+          <input type="number" name="age" placeholder="edad" />
+        </form>
+        {/* ----------------------------------------------------------------------- */}
         <div>
           {pet?.map((mascota) => (
             <Card

@@ -1,4 +1,4 @@
-// import { setLocalStorage } from "../../localStorage";
+import { setLocalStorage } from "../sesionStorage";
 import axios from "axios";
 
 export const handlerOnChange = (event, setInput, input) => {
@@ -62,7 +62,7 @@ export const handlerOnClick = async (
       setResult({
         failed: `The email "${errorEmail.value}" ya está registrado.`,
         // done: ""
-      })
+      });
     }
   } else {
     try {
@@ -71,18 +71,22 @@ export const handlerOnClick = async (
         input
       );
       const data = response.data;
-        if(data.error){
-          console.log(data.error)
-          setResult({
-            failed: [...data.error]
-          })
-        } else {
-          setResult({
-            done: [data.data.user.name, data.data.user.email, data.data.user.image]
-          })
-        }
-
-      //   setLocalStorage("token", data.data.token);
+      if (data.error) {
+        console.log(data.error);
+        setResult({
+          failed: [...data.error],
+        });
+      } else {
+        setResult({
+          done: [
+            data.data.user.name,
+            data.data.user.email,
+            data.data.user.image,
+          ],
+        });
+      }
+      console.log(data);
+      setLocalStorage("session", data.data);
     } catch (error) {
       console.log(error);
     }
