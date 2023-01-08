@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   images: {
     domains: [
       "res.cloudinary.com",
@@ -9,9 +9,9 @@ const nextConfig = {
       "cdn2.thedogapi.com",
       "olondriz.com",
       "random.imagecdn.app",
-      "gfycat.com"
+      "gfycat.com",
     ],
-   
+
     remotePatterns: [
       {
         protocol: "https",
