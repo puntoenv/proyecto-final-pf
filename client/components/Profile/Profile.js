@@ -1,19 +1,10 @@
 import React, { useState } from "react";
-import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
-import { getLocalStorage } from "../../sesionStorage";
 // import styles from '../styles/profile.module.css'
 
 export default function Profile() {
-  const { data: session } = useSession();
   console.log(session);
-<<<<<<< HEAD:client/components/Profile/Profile.js
-  const token = getLocalStorage("auth-token");
-  console.log(token);
-=======
 
-
->>>>>>> main:client/pages/profile/index.jsx
   return (
     <div>
       {session || token ? (
@@ -35,12 +26,9 @@ export default function Profile() {
       )}
     </div>
   );
-<<<<<<< HEAD:client/components/Profile/Profile.js
 }
-=======
-};
 
-export default profile;
+// export default profile;
 
 // export const getServerSideProps = async (context) => {
 //   const session = await getSession(context);
@@ -56,4 +44,3 @@ export default profile;
 //     props: { session },
 //   };
 // };
->>>>>>> main:client/pages/profile/index.jsx
