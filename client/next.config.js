@@ -8,6 +8,7 @@ const nextConfig = {
       "platform-lookaside.fbsbx.com",
       "cdn2.thedogapi.com",
       "olondriz.com",
+      "random.imagecdn.app",
     ],
     remotePatterns: [
       {

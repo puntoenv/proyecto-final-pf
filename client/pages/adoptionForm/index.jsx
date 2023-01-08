@@ -4,100 +4,71 @@ import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Head from "next/head";
+import Layout from "../layout";
+import NavBar from "../../components/NavBar/NavBar";
 
 export default function form() {
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
-  const [errors, setError] = useState({
-    // name: "Se requiere un nombre no mayor a 150 caracteres para la mascota.",
-    // provincia: "Se requiere que se brinde la provincia de la mascota.",
-    // municipio: "Se requiere que se brinde el municipio de la mascota.",
-    // age: "Se requiere que se especifique la edad de la mascota.",
-    // size: "Se requiere que se brinde el tamaño de la mascota.",
-    // description: "Se requiere una descripcion de minimo 15 caracteres",
-    // image: "Se requiere una imagen referencial de la mascota.",
-    // type: "Se requiere que se especifique la especie de la mascota.",
-    // gender: "Se requiere que se brinde el genero de la mascota.",
-  });
-  const [post, setPost] = useState({
-    name: "",
-    size: "",
-    age: 0,
-    description: "",
-    image: null,
-    type: "",
-    location: {
-      provincia: "",
-      municipio: "",
-    },
-    gender: "",
-  });
-
+  const [errors, setError] = useState({});
+  const [post, setPost] = useState({});
   const validation = (e) => {
     let { value, name } = e.target;
     if (name === "name") {
       errors.name =
-        !value || value.length > 150
-          ? "Se requiere un nombre no mayor a 150 caracteres para la mascota."
+        !value ||
+        value.length > 150 ||
+        !value.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") ||
+        !/([A-Z])\w+/g.test(value)
+          ? "Se requiere un nombre empiece con mayuscula que solo contenga letras tenga mas de 3 caracteres y no mas de 150."
           : null;
-    }
-    if (name === "size") {
+    } else if (name === "size") {
       errors.size = !value
         ? "Se requiere que se brinde el tamaño de la mascota."
         : null;
-    }
-    if (name === "description") {
+    } else if (name === "description") {
       errors.description =
-        !value || value.length < 15
+        !value || value.length < 15 || value.length > 150
           ? "Se requiere una descripcion de minimo 15 caracteres"
           : null;
-    }
-    if (name === "image") {
+    } else if (name === "image") {
       errors.image = !value
         ? "Se requiere una imagen referencial de la mascota."
         : null;
-    }
-    if (name === "type") {
+    } else if (name === "type") {
       errors.type =
         !value || value === "select"
           ? "Se requiere que se especifique la especie de la mascota."
           : null;
-    }
-    if (name === "provincia") {
-      !value || value === "select"
-        ? (errors.provincia =
-            "Se requiere que se brinde la provincia de la mascota.")
-        : (errors.provincia = null);
-    }
-    if (name === "municipio") {
-      !value || value === "select"
-        ? (errors.municipio =
-            "Se requiere que se brinde el municipio de la mascota.")
-        : (errors.municipio = null);
-    }
-    if (name === "gender") {
+    } else if (name === "provincia") {
+      errors.provincia =
+        !value || value === "select"
+          ? "Se requiere que se brinde la provincia de la mascota."
+          : null;
+    } else if (name === "municipio") {
+      errors.municipio =
+        !value || value === "select"
+          ? "Se requiere que se brinde el municipio de la mascota."
+          : null;
+    } else if (name === "gender") {
       errors.gender = !value
         ? "Se requiere que se brinde el genero de la mascota."
         : null;
-    }
-    if (name === "age") {
+    } else if (name === "age") {
       errors.age =
         !value || value < 0 || value > 40
-          ? "Se requiere que se especifique la edad de la mascota."
+          ? "Se requiere que se especifique la edad de la mascota no mayor a 40 años."
           : null;
+    } else {
+      setError(null);
     }
     return console.log(errors);
   };
-
   useEffect(() => {
     dispatch(getper());
   }, [dispatch]);
-
-  // handel
-
   const handleSelector = (e) => {
     const { name, value } = e.target;
     setPost({
@@ -112,7 +83,6 @@ export default function form() {
       age: value,
     });
   };
-
   const handleProvincia = (e) => {
     const { value } = e.target;
     dispatch(getmuni(value));
@@ -133,7 +103,6 @@ export default function form() {
       },
     });
   };
-
   const handleFiles = (e) => {
     const { files } = e.target;
     const reader = new FileReader();
@@ -152,24 +121,20 @@ export default function form() {
   };
   return (
     <>
-      <Head>
-        <title>Post Adoption</title>
-        <link
-          rel="icon"
-          href="https://cdn-icons-png.flaticon.com/512/3069/3069153.png"
-        />
-      </Head>
+      <Layout title="Publicar Mascota" />
+      <NavBar />
       <div className={styles.container}>
         <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-          <span className={styles.title}>Posteo de Mascota</span>
+          <span className={styles.title}>Datos de la Mascota</span>
           <label htmlFor="name" className={styles.stretch}>
             Nombre:
             <span className={styles.errors}>{errors.name}</span>
             <input
+              className={styles.input}
               id="name"
               type="text"
               name="name"
-              placeholder="Ingrese el nombre de la mascota..."
+              placeholder=" Ingrese el nombre de la mascota..."
               onChange={(e) => {
                 validation(e);
                 handleSelector(e);
@@ -225,10 +190,11 @@ export default function form() {
             Edad:
             <span className={styles.errors}>{errors.age}</span>
             <input
+              className={styles.input}
               id="age"
               type="number"
               name="age"
-              placeholder="Ingrese la edad"
+              placeholder=" Ingrese la edad de la mascota.."
               min="0"
               max="40"
               onChange={(e) => {
@@ -241,6 +207,7 @@ export default function form() {
             Especie:
             <span className={styles.errors}>{errors.type}</span>
             <select
+              className={styles.input}
               id="type"
               name="type"
               onChange={(e) => {
@@ -271,6 +238,7 @@ export default function form() {
               <span className={styles.title}>Provincia</span>
               <span className={styles.errors}>{errors.provincia}</span>
               <select
+                className={styles.input}
                 name="provincia"
                 id="provincia"
                 onChange={(e) => {
@@ -292,6 +260,7 @@ export default function form() {
               <span className={styles.title}>Ciudad</span>
               <span className={styles.errors}>{errors.municipio}</span>
               <select
+                className={styles.input}
                 id="municipio"
                 name="municipio"
                 onChange={(e) => {
@@ -346,10 +315,12 @@ export default function form() {
             Descripción:
             <span className={styles.errors}>{errors.description}</span>
             <textarea
+              className={styles.input}
               id="description"
               type="text"
               name="description"
-              placeholder="Describa a la mascota..."
+              rows="3"
+              placeholder=" Describa a la mascota..."
               onChange={(e) => {
                 validation(e);
                 handleSelector(e);
@@ -367,7 +338,6 @@ export default function form() {
                 validation(e);
                 handleFiles(e);
               }}
-              // multiple
             />
           </label>
           <label htmlFor="submit"></label>
@@ -384,7 +354,17 @@ export default function form() {
               !post.size ||
               !post.gender ||
               !post.type ||
-              !post.location.municipio
+              !post.location.municipio ||
+              /////////////////////////////////////////////////////////
+              errors.name !== null ||
+              errors.age !== null ||
+              errors.description !== null ||
+              errors.size !== null ||
+              errors.gender !== null ||
+              errors.municipio !== null ||
+              errors.provincia !== null ||
+              errors.type !== null ||
+              errors.image !== null
             }
           />
         </form>

@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSession, signOut, getSession } from "next-auth/react";
 import Image from "next/image";
-import { getLocalStorage } from "../../sesionStorage";
+import Layout from "../layout";
 // import styles from '../styles/profile.module.css'
 
 const profile = () => {
   const { data: session } = useSession();
-  // console.log(session);
-  const token = getLocalStorage("token");
-  useEffect(() => {
-    console.log(token);
-  }, [token, getLocalStorage("token")]);
+  console.log(session);
 
-  console.log(token);
   return (
     <div>
+      <Layout title="Mi Perfil" />
       {session ? (
         <div>
           <Image
