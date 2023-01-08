@@ -28,8 +28,9 @@ export const getmuni = (municipios) => async (dispatch) => {
 
 export const getPets = () => async (dispatch) => {
   try {
-    let allPets = await axios("http://localhost:3001/pets/all");
-    dispatch(getMascotas(allPets.data.pets));
+    let allPets = await axios("http://localhost:3001/pets/");
+    dispatch(getMascotas(allPets.data));
+    console.log(allPets.data);
   } catch (error) {
     console.error(error);
   }
