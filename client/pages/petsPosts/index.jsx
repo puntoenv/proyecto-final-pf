@@ -13,7 +13,10 @@ import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
-
+const ages = [];
+for (let i = 0; i <= 40; i++) {
+  ages.push(i);
+}
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
@@ -26,6 +29,7 @@ export default function PetAdoption() {
   });
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
+
   /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
 
   useEffect(() => {
@@ -108,26 +112,43 @@ export default function PetAdoption() {
       {/* ----------------------------------FILTROS------------------------------------ */}
       <form onChange={(e) => typeFilter(e)}>
         <select id="type">
-          <option value="animal">animal</option>
-          <option value="perros">perros</option>
-          <option value="gatos">gatos</option>
-          <option value="conejos">conejos</option>
-          <option value="aves">aves</option>
-          <option value="peces">peces</option>
-          <option value="hamsters">hamsters</option>
+          <option value="animal">Animal</option>
+          <option value="perro">Perros</option>
+          <option value="gato">Gatos</option>
+          <option value="conejo">Conejos</option>
+          <option value="ave">Aves</option>
+          <option value="pez">Peces</option>
+          <option value="hamster">Hamsters</option>
+          <option value="tortuga">Tortuga</option>
         </select>
         <select id="size">
-          <option value="tamaño">tamaño</option>
-          <option value="pequeño">pequeño</option>
-          <option value="mediano">mediano</option>
-          <option value="grande">grande</option>
+          <option value="tamaño">Tamaño</option>
+          <option value="pequeño">Pequeño</option>
+          <option value="mediano">Mediano</option>
+          <option value="grande">Grande</option>
         </select>
         <select id="gender">
-          <option value="genero">genero</option>
-          <option value="macho">macho</option>
-          <option value="hembra">hembra</option>
+          <option value="genero">Genero</option>
+          <option value="macho">Macho</option>
+          <option value="hembra">Hembra</option>
         </select>
-        <input type="number" id="age" placeholder="edad" />
+        <select
+          id="age"
+          className={styles.input}
+          onChange={(e) => {
+            validation(e);
+            handleNumber(e);
+          }}
+        >
+          <option defaultValue={true} value="">
+            Edad en años...
+          </option>
+          {ages.map((age) => (
+            <option key={age} value={age}>
+              {age}
+            </option>
+          ))}
+        </select>
       </form>
       {/* ----------------------------------------------------------------------- */}
 
