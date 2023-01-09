@@ -7,11 +7,6 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/footer"
-import logo from "../../img/logo.jpeg";
-import Link from "next/link";
-import Image from "next/image";
-
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -138,15 +133,6 @@ export function form(props) {
         <>
           <Layout title="Publicar Mascota" />
           <NavBar />
-          <Link href={"/home"} className= 'logo' >
-            <Image
-              src={logo}
-              alt="logo"
-              className={styles.logo}
-              width="auto"
-              height="auto"
-            />
-          </Link>
           <div className={styles.container}>
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
               <span className={styles.title}>Datos de la Mascota</span>
@@ -366,10 +352,10 @@ export function form(props) {
                 />
               </label>
               <label htmlFor="submit"></label>
-              <input className={styles.post}
+              <input
                 id="submit"
                 type="submit"
-                value="Publicar Mascota"
+                value="Subir Mascota"
                 disabled={
                   !post.age ||
                   !post.name ||
@@ -396,7 +382,6 @@ export function form(props) {
           </div>
         </>
       )}
-      <Footer />
     </>
   );
 }
