@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import Perfil from "../../components/Profile/Profile";
+import NavBar from "../../components/NavBar/NavBar";
+import styles from '../../components/Profile/Loading.module.css'
+import Layout from "../layout";
 // import styles from '../styles/profile.module.css'
 
 function Profile(props) {
@@ -7,21 +11,20 @@ function Profile(props) {
   console.log(props.user);
   return (
     <>
-      {isLoading && <h1>Loading...</h1>}
-      {props.user && (
-        <>
-          <a href="/api/auth/logout">Logout</a>
-          <div>
-            <img src={props.user.picture} />
-            <h1>{props.user.name}</h1>
-          </div>
-        </>
-      )}
+    <Layout title={'Perfil'}></Layout>
+      <NavBar></NavBar>
+      <Perfil></Perfil>
     </>
   );
 }
 
 export default withPageAuthRequired(Profile, {
-  onRedirecting: () => <h1>Loading...</h1>,
+  onRedirecting: () => (
+    <div className={styles.container}>
+      <div className={styles.loader}>
+        <p>Loading...</p>
+      </div>
+    </div>
+  ),
   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
