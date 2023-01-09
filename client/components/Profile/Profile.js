@@ -1,27 +1,70 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-// import styles from '../styles/profile.module.css'
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Link from "next/link";
+import style from "./styles.module.css";
+import styles from "./Loading.module.css";
 
-export default function Profile() {
-  console.log(session);
+export default function Perfil() {
+  const { isLoading, user } = useUser();
 
   return (
-    <div>
-      {session || token ? (
-        <div>
-          <Image
-            src={session.user.image}
-            width={150}
-            height={150}
-            style={{ borderRadius: "50%" }}
-            alt={session.user.name}
-          ></Image>
-          <h1>Bienvenido, {session.user.name}</h1>
-          <button onClick={() => signOut()}>Cerrar Sesión</button>
+    <div className={style.mainContainer}>
+      {isLoading && (
+        <div className={styles.container}>
+          <div className={styles.loader}>
+            <p>Loading...</p>
+          </div>
         </div>
-      ) : (
+      )}
+      {user && (
         <div>
-          <p>No iniciaste sesión</p>
+          <div className={style.secondContainer}>
+            <div className={style.thirdContainer}>
+              <div className={style.imageContainer}>
+                <Image
+                  src={user.picture}
+                  width={150}
+                  height={150}
+                  style={{ borderRadius: "50%" }}
+                  alt={user.name}
+                ></Image>
+              </div>
+              <button className={style.button}>
+                <Link href={"/api/auth/logout"}>
+                  <b>Cerrar Sesión</b>
+                </Link>
+              </button>
+            </div>
+            <div className={style.infoContainer}>
+              <div>
+                <h1 className={style.h1}>Mi perfil </h1>
+                <p>{user.name}</p>
+              </div>
+              <div className={style.buttons}>
+                <button className={style.button}>
+                  <Link href={"/petsPosts"}>
+                    <b>Ver todas las mascotas</b>
+                  </Link>
+                </button>
+                <button className={style.button}>
+                  <Link href={"/adoptionForm"}>
+                    <b>Postea una adopción</b>
+                  </Link>
+                </button>
+                <button className={style.button}>
+                  <Link href={"/profile"}>
+                    <b>Adopta</b>
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className={style.link}>
+            <Link href={"/home"}>
+              <b>Página principal</b>
+            </Link>
+          </div>
         </div>
       )}
     </div>

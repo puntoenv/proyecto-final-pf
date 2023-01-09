@@ -10,6 +10,8 @@ const nextConfig = {
       "olondriz.com",
       "random.imagecdn.app",
       "gfycat.com",
+      "lh3.googleusercontent.com",
+      's.gravatar.com'
     ],
 
     remotePatterns: [
