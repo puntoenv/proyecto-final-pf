@@ -1,4 +1,3 @@
-import { setLocalStorage } from "../sesionStorage";
 import axios from "axios";
 
 export const handlerOnChange = (event, setInput, input) => {
@@ -86,7 +85,6 @@ export const handlerOnClick = async (
         });
       }
       console.log(data);
-      setLocalStorage("session", data.data);
     } catch (error) {
       console.log(error);
     }
