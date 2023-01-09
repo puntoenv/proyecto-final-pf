@@ -97,12 +97,12 @@ export default function PetAdoption() {
         <input
           className={styles.input}
           type="text"
-          placeholder="Mascota..."
+          placeholder="Buscar..."
           onChange={handlerSearch}
         />
-        <button className={styles.searchB} onClick={handlerSearch}>
+        {/* <button className={styles.searchB} onClick={handlerSearch}>
           Buscar
-        </button>
+        </button> */}
       </div>
       <div>
         <button className={styles.all} onClick={handlerTodas}>
@@ -110,44 +110,57 @@ export default function PetAdoption() {
         </button>
       </div>
       {/* ----------------------------------FILTROS------------------------------------ */}
-      <form onChange={(e) => typeFilter(e)}>
-        <select id="type">
-          <option value="animal">Animal</option>
-          <option value="perro">Perros</option>
-          <option value="gato">Gatos</option>
-          <option value="conejo">Conejos</option>
-          <option value="ave">Aves</option>
-          <option value="pez">Peces</option>
-          <option value="hamster">Hamsters</option>
-          <option value="tortuga">Tortuga</option>
+
+   
+
+     
+
+      <h1 className={styles.title}>Animal</h1>
+      <form className={styles.form} onChange={(e) => typeFilter(e)}>
+        <select className={styles.select} id="type">
+          <option className= {styles.option} value="animal">Todos</option>
+          <option className= {styles.option} value="perro">Perros</option>
+          <option className= {styles.option} value="gato">Gatos</option>
+          <option className= {styles.option} value="conejo">Conejos</option>
+          <option className= {styles.option}value="ave">Aves</option>
+          <option className= {styles.option} value="pez">Peces</option>
+          <option className= {styles.option}value="hamster">Hamsters</option>
+          <option className= {styles.option} value="tortuga">Tortuga</option>
         </select>
-        <select id="size">
-          <option value="tamaño">Tamaño</option>
-          <option value="pequeño">Pequeño</option>
-          <option value="mediano">Mediano</option>
-          <option value="grande">Grande</option>
+
+        <h1 className={styles.title}>Tamaño</h1>
+        <select className={styles.select} id="size">
+          <option className= {styles.option} value="tamaño">Todos</option>
+          <option className= {styles.option} value="pequeño">Pequeño</option>
+          <option className= {styles.option} value="mediano">Mediano</option>
+          <option className= {styles.option} value="grande">Grande</option>
         </select>
-        <select id="gender">
-          <option value="genero">Genero</option>
-          <option value="macho">Macho</option>
-          <option value="hembra">Hembra</option>
-        </select>
+
+        <h1 className={styles.title}>Género</h1>
+        <select className={styles.select} id="gender">
+          <option className= {styles.option}value="genero">Todos</option>
+          <option className= {styles.option} value="macho">Macho</option>
+          <option className= {styles.option} value="hembra">Hembra</option>
+          </select>
+
+          <h1 className={styles.title}>Edades</h1>
         <select
           id="age"
-          className={styles.input}
+          className={styles.select}
           onChange={(e) => {
             validation(e);
             handleNumber(e);
           }}
         >
-          <option defaultValue={true} value="">
-            Edad en años...
+          <option  className={styles.option} defaultValue={true} value="">
+            Todas
           </option>
           {ages.map((age) => (
-            <option key={age} value={age}>
+            <option className={styles.option} key={age} value={age}>
               {age}
             </option>
           ))}
+
         </select>
       </form>
       {/* ----------------------------------------------------------------------- */}
