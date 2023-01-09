@@ -27,7 +27,7 @@
   padding: 12px 24px;
   transition: transform 250ms ease-in-out;
   line-height: 10px;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px ;
   /* border: 1px solid #333; */
   border: none;
   border-right: none;
@@ -51,7 +51,7 @@
   padding: 12px 24px;
   outline: 0;
   border: none;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px;
   background-position: 100% center;
   background-color: #8c7d5d;
 }
@@ -66,6 +66,7 @@
   width: 160px;
   font-weight: 700;
   margin-left: 3em;
+  margin-bottom: 2em;
 }
 
 .all:hover {
@@ -141,89 +142,36 @@
   background: #483c30;
 }
 
-/* .posts_container{
-        width: 500px;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        background: red;
-    } */
 
-
-    /* los checkboxes */
-#perros input:checked ~ .checkmark {
-background-color: black;
-}
-#gatos input:checked ~ .checkmark {
-background-color: red;
-}
-/* #c3 input:checked ~ .checkmark {
-background-color: green;
-}
-#c4 input:checked ~ .checkmark {
-background-color: blue;
-} */
-
-/* Contenedor */
-.container {
-  display: block;
-  position: relative;
-  top: 15px;
-  padding-left: 65px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 22px;
+.title{
+    font-size: 20px;
+    margin-left: 90px;
+    margin-top: 20px;
 }
 
-/* escondemos el default checkbox */
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.form{
+    
+    display: flex;
+    flex-direction: column;
 }
 
-/* creamos un custom checkbox */
-.checkmark {
-  position: absolute;
-  top: 4px;
-  left: 35px;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 6px;
-  background: transparent;
-  border: 1px solid rgb(185, 179, 179);
+
+
+.select{
+    background-color: #4c8053;
+    padding: 8px;
+    width: 10em;
+    margin-bottom: 1em;
+    border-radius: 9px;
+    margin-left: 3em;
+    font-weight: 500;
+    font-size: 17px;
 }
 
-/* Al pasar el mouse encima, lo ponemos gris */
-.container:hover input ~ .checkmark {
-  background-color: rgb(216, 205, 172);
-}
 
-/* creamos el marcador (escondido al no seleccionar) */
-.checkmark:after {
- 
-  position: absolute;
-  display: none;
-}
+.option { 
+    background-color:#e8eb9d;
+    font-family: Verdana;
+    
+ }
 
-/* mostramos el marcador al seleccionar */
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* estilo del marcador */
-.container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #6e613f;
-}
