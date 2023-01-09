@@ -13,6 +13,8 @@ import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
+import logo from "../../img/logo.jpeg"
+import Footer from "../../components/Footer/footer";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -97,6 +99,14 @@ export default function PetAdoption() {
     <div>
       <Layout title="Mascotas" />
       <NavBar />
+      <Link href={"/home"} className="logo">
+      <Image
+              src={logo}
+              alt="logo"
+              className={styles.logo}
+              width="auto"
+              height="auto"
+            /></Link>
 
       <div className={styles.search}>
         <input
@@ -191,26 +201,26 @@ export default function PetAdoption() {
 
         {/* ----------------------------------------------------------------------- */}
 
-        <div className={styles.big_container}>
-          <div className={styles.posts_Container}></div>
-          {pet?.map((mascota) => {
-            return (
-              <div key={mascota._id} className={styles.card}>
-                <Image
-                  className={styles.img}
-                  width="300"
-                  height="260"
-                  src={mascota.image}
-                  alt="image"
-                />
-                <h1 className={styles.name}>{mascota.name}</h1>
-                <h2 className={styles.size}>{mascota.gender}</h2>
-                <button className={styles.btn}>
-                  <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                </button>
-              </div>
-            );
-          })}
+      <div className={styles.big_container}>
+        <div className={styles.posts_Container}></div>
+        {pet?.map((mascota) => {
+          return (
+            <div key={mascota._id} className={styles.card}>
+              <Image
+                className={styles.img}
+                width="300"
+                height="240"
+                src={mascota.image}
+                alt="image"
+              />
+              <h1 className={styles.name}>{mascota.name}</h1>
+              <h2 className={styles.size}>{mascota.gender}</h2>
+              <button className={styles.btn}>
+                <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+              </button>
+            </div>
+          );
+        })}
 
           <div />
         </div>
@@ -234,7 +244,7 @@ export default function PetAdoption() {
           setMinPageLimit={setMinPageLimit}
         />
       }
-
+     <Footer />
       {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );

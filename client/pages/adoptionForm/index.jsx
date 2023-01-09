@@ -37,8 +37,8 @@ export function form(props) {
         : null;
     } else if (name === "description") {
       errors.description =
-        !value || value.length < 15 || value.length > 150
-          ? "Se requiere una descripcion de minimo 15 caracteres"
+        !value || value.length < 15 || value.length > 250
+          ? "Se requiere una descripcion de minimo 15 caracteres y no mas de 250"
           : null;
     } else if (name === "image") {
       errors.image = !value

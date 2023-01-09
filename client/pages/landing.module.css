@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 .containerImg {
   background: linear-gradient(to right, white, #415d43);
@@ -85,7 +85,14 @@
 
 /* CSS */
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transform: translateX(317px) translateY(1300%);
   background: #e8eb9d;
+  padding: 10px 30px;
+  font-weight: 700;
   font-size: 23px;
   color: #32281f;
   border: 1em;
@@ -98,7 +105,6 @@
   text-decoration: none;
   transition: all 250ms;
   font-size: 23px;
-  position: relative;
 }
 
 .button:hover {
