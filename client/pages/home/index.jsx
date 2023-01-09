@@ -100,7 +100,6 @@ export default function Home() {
           <Footer />
         </div>
         <button onClick={() => console.log(clientId)}>.env</button>
-            
       </>
     );
   }
