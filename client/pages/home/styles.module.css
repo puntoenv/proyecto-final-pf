@@ -87,11 +87,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 25px
-
+  padding-top: 25px;
 }
-
-
 
 .aboutUs {
   margin-left: 340px;
@@ -105,11 +102,7 @@
   background-color: rgb(184, 209, 115);
   margin-top: 3%;
   height: 25rem;
-
 }
-
-
-
 
 .linkAdoptar {
   padding-top: 2%;
@@ -127,9 +120,6 @@
   margin-right: 15%;
   margin-top: 5%;
   text-decoration: none;
- 
- 
-  
 }
 .textoNosotros {
   font-size: 3ch;
@@ -151,7 +141,6 @@
   height: 14em;
 }
 
-
 .footer {
   background-color: #32281f;
   width: 100%;
@@ -160,4 +149,3 @@
   justify-content: center;
   color: antiquewhite;
 }
-
