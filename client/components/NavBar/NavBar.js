@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { useSession } from "next-auth/react";
 // import logo from '../../img/logo.png'
 // import Image from "next/image";
 
@@ -18,7 +17,6 @@ const handlerClick = () => {
 };
 
 const NavBar = () => {
-  const { data: session } = useSession();
   return (
     <header className="headerNav">
       <nav className="nav">
@@ -34,7 +32,7 @@ const NavBar = () => {
               Perfil
             </span>
           ) : (
-            <Link href="/login" className='login'>
+            <Link href="/api/auth/login" className="itemNav">
               <span>Ingresar | Registrarse</span>
             </Link>
           )}

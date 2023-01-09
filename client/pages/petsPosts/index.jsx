@@ -13,7 +13,10 @@ import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
-
+const ages = [];
+for (let i = 0; i <= 40; i++) {
+  ages.push(i);
+}
 /* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
@@ -26,6 +29,7 @@ export default function PetAdoption() {
   });
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
+
   /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
 
   useEffect(() => {
@@ -106,6 +110,7 @@ export default function PetAdoption() {
         </button>
       </div>
       {/* ----------------------------------FILTROS------------------------------------ */}
+
    
 
      
@@ -136,8 +141,27 @@ export default function PetAdoption() {
           <option className= {styles.option}value="genero">Todos</option>
           <option className= {styles.option} value="macho">Macho</option>
           <option className= {styles.option} value="hembra">Hembra</option>
+          </select>
+
+          <h1 className={styles.title}>Edades</h1>
+        <select
+          id="age"
+          className={styles.select}
+          onChange={(e) => {
+            validation(e);
+            handleNumber(e);
+          }}
+        >
+          <option  className={styles.option} defaultValue={true} value="">
+            Todas
+          </option>
+          {ages.map((age) => (
+            <option className={styles.option} key={age} value={age}>
+              {age}
+            </option>
+          ))}
+
         </select>
-        <input type="number" id="age" placeholder="edad" />
       </form>
       {/* ----------------------------------------------------------------------- */}
 
