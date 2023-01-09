@@ -15,14 +15,14 @@
   align-items: center;
   margin-bottom: 4em;
 }
-.under{
+.under {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 .image {
-border-radius: 2em;
+  border-radius: 2em;
 }
 
 .text {
@@ -36,65 +36,66 @@ border-radius: 2em;
 }
 
 .title {
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
   width: 40rem;
   text-align: center;
- 
 }
 
-.name{
-  margin-left:-35px;
-    color: #584A3C;
-    width: 700px;
-    font-size: 3em;
-    position: relative;
-    margin-top: 2em;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 20px rgb(93, 79, 54);
+.name {
+  margin-left: -35px;
+  color: #584a3c;
+  width: 700px;
+  font-size: 3em;
+  position: relative;
+  margin-top: 2em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 20px rgb(93, 79, 54);
 }
 
-.data{
+.data {
   margin-left: 15px;
   font-size: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-  
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
 }
-.size_data{
+.size_data {
   font-size: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
 }
 
-.size{ 
-display: flex;
-flex-direction: row;
-justify-content: center;
+.size {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.h{
-font-size: 22px;
-margin-right: 8px;
-text-shadow: 2px 2px 20px rgb(93, 79, 54);
+.h {
+  font-size: 22px;
+  margin-right: 8px;
+  text-shadow: 2px 2px 20px rgb(93, 79, 54);
 }
 
-.location{
-display: flex;
-flex-direction: column;
-justify-content: center;
+.location {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.location_h{
+.location_h {
   font-size: 22px;
   margin-bottom: -10px;
   text-shadow: 2px 2px 20px rgb(93, 79, 54);
 }
 
-.descrip_h{
+.descrip_h {
   font-size: 22px;
   text-shadow: 2px 2px 20px rgb(93, 79, 54);
 }
-.descrip_data{
+.descrip_data {
   font-size: 20px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
 }
 
 .back {
@@ -129,4 +130,3 @@ justify-content: center;
   width: auto;
   height: 14em;
 }
-
