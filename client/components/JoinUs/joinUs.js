@@ -9,12 +9,14 @@ const Join = () => {
   return (
     <>
       <div className={styles.container}>
-        <p className={styles.join}>
-          Sumate a nuestra comunidad para poder adoptar o ayudar a las mascotas
-        </p>
-
+        <div className={styles.containJoin}>
+          <span className={styles.join}>
+            Sumate a nuestra comunidad para poder adoptar o ayudar a las
+            mascotas
+          </span>
+        </div>
         <button className={styles.joinBtn}>
-          <Link href="/api/auth/login">Sumarme </Link>
+          <Link href="/login">Sumarme </Link>
         </button>
 
         <Image className={styles.cat} src={Cat} width="auto" height="auto" />
