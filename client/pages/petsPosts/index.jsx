@@ -84,9 +84,14 @@ export default function PetAdoption() {
   const typeFilter = (e) => {
     e.preventDefault();
     let { id, value } = e.target;
-    let params = { id, value };
-    dispatch(filterPets(params));
-    console.log(id, value, pet);
+    if (id == "age") {
+      let params = { id, value: parseInt(value) };
+      dispatch(filterPets(params));
+    } else {
+      let params = { id, value };
+      dispatch(filterPets(params));
+    }
+    console.log(typeof value);
   };
   return (
     <div>
@@ -172,14 +177,7 @@ export default function PetAdoption() {
           </select>
 
           <h1 className={styles.title}>Edades</h1>
-          <select
-            id="age"
-            className={styles.select}
-            onChange={(e) => {
-              validation(e);
-              handleNumber(e);
-            }}
-          >
+          <select id="age" className={styles.select}>
             <option className={styles.option} defaultValue={true} value="">
               Todas
             </option>
