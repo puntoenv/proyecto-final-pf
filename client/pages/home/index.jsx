@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
@@ -9,46 +10,8 @@ import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
 import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
+//import All from "../../img/all.png";
 import Join from "../../components/JoinUs/joinUs";
-<<<<<<< HEAD
-
-export default function Home() {
-  const clientId = process.env.AUHT0_CLIENT_ID;
-  return (
-    <>
-      <Layout title="Inicio" />
-      <div className={styles.home}>
-        <NavBar />
-        <Link href={"/home"} classname="logo">
-          <Image
-            src={logo}
-            alt="logo"
-            className={styles.logo}
-            width="auto"
-            height="auto"
-          />
-        </Link>
-        <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
-        <Image
-          src={home}
-          alt="home"
-          className={styles.home}
-          width="auto"
-          height="auto"
-        />
-        <div className={styles.barGreen}></div>
-        <div className={styles.divAlimento}></div>
-        {/* <span className={styles.catAlimento}></span> */}
-        <div className={styles.containKitten}>
-          <Image
-            src={Cat}
-            alt="kitten"
-            className={styles.kitten}
-            width="auto"
-            height="auto"
-          />
-        </div>
-=======
 import Alimento from "../../img/alimento.png";
 import Alim from "../../img/alim.png";
 import Al from "../../img/al.png";
@@ -72,7 +35,6 @@ export default function Home() {
       slidesToShow: 3,
       slidesToScroll: 3,
     };
->>>>>>> main
 
     const data = useSelector((data) => data.mascotas.mascotas);
 
@@ -144,13 +106,7 @@ export default function Home() {
 
           <Footer />
         </div>
-<<<<<<< HEAD
-
-        <button onClick={() => console.log(clientId)}>.env</button>
-      </div>
-=======
       
->>>>>>> main
     </>
   );
 }}
