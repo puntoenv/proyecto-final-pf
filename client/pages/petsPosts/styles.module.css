@@ -65,7 +65,7 @@
   height: 45px;
   width: 160px;
   font-weight: 700;
-  margin-left: 3em;
+  margin-left: 50px;
   margin-bottom: 2em;
   margin-top: 5em;
 }
@@ -97,6 +97,8 @@
   font-weight: 700;
   margin-top: 20px;
   color: #32281f;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px #937a60;
 }
 
 .size {
@@ -127,7 +129,7 @@
 
 .btn {
   background: #38593a;
-  font-size: 23px;
+  font-size: 21px;
   color: white;
   border: 1em;
   border-radius: 15px;
@@ -188,4 +190,15 @@
     display: flex;
     
  }
+
+ .logo {
+  border-radius: 1em;
+  display: flex;
+  position: fixed;
+  margin-top: -130px;
+  margin-left: 2em;
+  z-index: 4501;
+  width: auto;
+  height: 14em;
+}
 
