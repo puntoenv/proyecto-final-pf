@@ -13,6 +13,8 @@ import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
+import logo from "../../img/logo.jpeg"
+import Footer from "../../components/Footer/footer";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -92,6 +94,14 @@ export default function PetAdoption() {
     <div>
       <Layout title="Mascotas" />
       <NavBar />
+      <Link href={"/home"} className="logo">
+      <Image
+              src={logo}
+              alt="logo"
+              className={styles.logo}
+              width="auto"
+              height="auto"
+            /></Link>
 
       <div className={styles.search}>
         <input
@@ -177,7 +187,7 @@ export default function PetAdoption() {
               <Image
                 className={styles.img}
                 width="300"
-                height="260"
+                height="240"
                 src={mascota.image}
                 alt="image"
               />
@@ -212,7 +222,7 @@ export default function PetAdoption() {
           setMinPageLimit={setMinPageLimit}
         />
       }
-     
+     <Footer />
       {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );
