@@ -1,18 +1,18 @@
 
 .container{
-  background-color: rgb(229, 217, 182);
+ 
   
   width: 100%;
-  height:100%;
+  height:90%;
   
 }
-
 .containerImg{
-  background-color: aqua;
+  background: linear-gradient(to right, white, #415D43);
   background-size:cover;
   width: 100%;
   height: 100%;
   position:absolute;
+
 }
 .img1{
   
@@ -22,8 +22,6 @@
   width: 100%;
   height: 100%;
   position:absolute;
-  
-
   
   
   
@@ -35,11 +33,6 @@
   width: 100%;
   height: 100%;
   position:absolute;
-
-  
-
-
-
 }
 .img3{
   background-image: url(https://i.postimg.cc/GhRqF76w/cambia-Una-Vida.png);
@@ -79,7 +72,7 @@
 
 }
 .img6{
-  background-image: url(https://i.postimg.cc/htysqSvc/medalla.png);
+  background-image: url(https://i.postimg.cc/rpqcHdbj/logo.png);
   background-repeat: no-repeat;
   background-size:cover;
   width: 100%;
@@ -96,6 +89,14 @@
   position:absolute;
 
 }
+.img8{
+  width: 100px;
+  height: 200px;
+  border-radius: 30px;
+  position:absolute;
+  left: 100px;
+
+}
 
 
 
@@ -104,19 +105,24 @@
 /* CSS */
 .button {
   
-  background-color: rgb(229, 217, 182);
-  border-radius: 100px;
+  background: #E8EB9D;
+    font-size: 23px;
+    color: #32281F;
+    border: 1em;
+    border-radius: 15px;
+    height: 45px;
+    width: 150px;
   /* box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px; */
-  color: rgb(218, 104, 10);
   cursor: pointer;
   display: inline-block; 
   font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
-  padding: 7px 20px;
+  
+  font-weight: 700;
   text-align: center;
   text-decoration: none;
   transition: all 250ms;
   border: 0;
-  font-size: 25px;
+  font-size: 23px;
   position: relative;
   top: 480px;
   left: 300px;
@@ -126,64 +132,78 @@
 
 .button:hover {
   /* box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px; */
- transform: scale(1.05);/* rotate(-1deg);*/
+transform: scale(1.05);/* rotate(-1deg);*/
+background:#32281F ;
+font-size: 23px;
+color: #E8EB9D;
+
 }
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 2200px){
+  .button{
+    position: relative;
+  top: 430px;
+  left: 280px;
+  }
+}
+@media screen and (max-width: 1700px){
+  .button{
+    position: relative;
+  top: 450px;
+  left: 290px;
+  }
+}
+@media screen and (max-width: 750px){
+  .img2{
+    background-image: none;
+    
+
+  }
   .button{
     position: relative;
   top: 400px;
-  left: 230px;
+  left: 210px;
   }
-}
-@media screen and (max-width: 800px){
-  .img2{
-    background-image: none;
-
-  }
-  @media screen and (max-width: 500px){
+  
+                        
+      
+    }@media screen and (max-width:500px){
     .button{
       position: relative;
-  top: 200px;
-  left: 100px;
+  top:200px;
+  left:110px;
     }
     .img7{
     background-size:contain;
-  width: 500px;
-  height: 600px;
+  width:500px;
+  height:300px;
   
-  } 
-  }
-  @media screen and (max-width: 500px){
-    .img1{
+  } .img1{
  background-size:contain;
   width: 500px;
-  height: 600px;
+  height: 300px;
    } 
       .img3{
         background-size:contain;
         width: 500px;
-        height: 600px;
+        height: 300px;
           } 
           .img4{
             background-size:contain;
                 width: 500px;
-                height: 600px
+                height: 300px
              
               } 
               .img5{
                 background-size:contain;
                 width: 500px;
-                 height: 600px;
+                 height: 300px;
                   } 
                   .img6{
                     background-size:contain;
                     width: 500px;
-                      height: 500px;
+                      height: 300px;
                       }
-                        
-      
-    }
   
 
 
@@ -206,5 +226,6 @@
        
     }
   
+
 
 

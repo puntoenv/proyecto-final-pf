@@ -6,6 +6,10 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
+const ages = [];
+for (let i = 0; i <= 40; i++) {
+  ages.push(i);
+}
 
 export default function form() {
   const router = useRouter();
@@ -14,6 +18,7 @@ export default function form() {
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
   const [post, setPost] = useState({});
+
   const validation = (e) => {
     let { value, name } = e.target;
     if (name === "name") {
@@ -189,19 +194,24 @@ export default function form() {
           <label htmlFor="age" className={styles.stretch}>
             Edad:
             <span className={styles.errors}>{errors.age}</span>
-            <input
-              className={styles.input}
-              id="age"
-              type="number"
+            <select
               name="age"
-              placeholder=" Ingrese la edad de la mascota.."
-              min="0"
-              max="40"
+              id="age"
+              className={styles.input}
               onChange={(e) => {
                 validation(e);
                 handleNumber(e);
               }}
-            />
+            >
+              <option defaultValue={true} value="">
+                Ingrese la edad de la mascota...
+              </option>
+              {ages.map((age) => (
+                <option key={age} value={age}>
+                  {age}
+                </option>
+              ))}
+            </select>
           </label>
           <label htmlFor="type" className={styles.stretch}>
             Especie:

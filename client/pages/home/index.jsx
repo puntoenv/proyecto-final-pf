@@ -17,7 +17,7 @@ import PetsCard from "../../components/Carousel/petsCard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPets } from "../../stores/actions";
-import React from "react";
+import React, { Component } from "react";
 
 export default function Home() {
   {
@@ -41,7 +41,7 @@ export default function Home() {
         <Layout title="Inicio" />
         <div className={styles.home}>
           <NavBar />
-          <Link href={"/home"} classname="logo">
+          <Link href={"/home"} className="logo">
             <Image
               src={logo}
               alt="logo"
@@ -73,19 +73,16 @@ export default function Home() {
 
           <Nosotros />
 
-          <div>
-            <Slider {...settings}>
-              {data.slice(0, 9).map((mascota) => (
-                <PetsCard
-                  key={mascota._id}
-                  nombre={mascota.name}
-                  imagen={mascota.image}
-                  genero={mascota.gender}
-                />
-              ))}
-            </Slider>
-          </div>
-
+          <Slider {...settings}>
+            {data.slice(0, 9).map((mascota) => (
+              <PetsCard
+                key={mascota._id}
+                nombre={mascota.name}
+                imagen={mascota.image}
+                genero={mascota.gender}
+              />
+            ))}
+          </Slider>
           <div className={styles.containerAdopciones}>
             <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
             <p className={styles.infoAdopcion}>
@@ -102,6 +99,8 @@ export default function Home() {
 
           <Footer />
         </div>
+        <button onClick={() => console.log(clientId)}>.env</button>
+            
       </>
     );
   }

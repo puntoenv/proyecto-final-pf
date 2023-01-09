@@ -27,7 +27,7 @@
   padding: 12px 24px;
   transition: transform 250ms ease-in-out;
   line-height: 10px;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px ;
   /* border: 1px solid #333; */
   border: none;
   border-right: none;
@@ -51,7 +51,7 @@
   padding: 12px 24px;
   outline: 0;
   border: none;
-  border-radius: 15px 0px 0px 15px;
+  border-radius: 15px;
   background-position: 100% center;
   background-color: #8c7d5d;
 }
@@ -66,6 +66,8 @@
   width: 160px;
   font-weight: 700;
   margin-left: 3em;
+  margin-bottom: 2em;
+  margin-top: 5em;
 }
 
 .all:hover {
@@ -106,7 +108,6 @@
   padding: 0;
   min-height: 100vh;
   display: flex;
-
   justify-content: center;
   align-items: center;
   font-family: "Segoe UI";
@@ -141,10 +142,43 @@
   background: #483c30;
 }
 
-/* .posts_container{
-        width: 500px;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        background: red;
-    } */
+
+.title{
+    font-size: 20px;
+    margin-left: 90px;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.form{
+    
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.select{
+    background-color: #4c8053;
+    padding: 8px;
+    width: 10em;
+    margin-bottom: 1em;
+    border-radius: 9px;
+    margin-left: 3em;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+
+.option { 
+    background-color:#e8eb9d;
+    font-family: Verdana;
+    
+ }
+
+ .huge_container{
+    display: flex;
+    
+ }
+
