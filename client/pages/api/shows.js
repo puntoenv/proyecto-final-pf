@@ -12,7 +12,7 @@ export default withApiAuthRequired(async function shows(req, res) {
       },
     });
     const shows = await response.json();
-
+    console.log(shows);
     res.status(200).json(shows);
   } catch (error) {
     res.status(error.status || 500).json({ error: error.message });

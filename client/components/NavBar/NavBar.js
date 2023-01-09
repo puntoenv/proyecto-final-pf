@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-// import logo from '../../img/logo.png'
-// import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -17,6 +16,10 @@ const handlerClick = () => {
 };
 
 const NavBar = () => {
+  const { user, isLoading } = useUser();
+
+  if (isLoading) return <h1>Loading...</h1>;
+
   return (
     <header className="headerNav">
       <nav className="nav">
@@ -27,7 +30,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/petsPosts">
             <span>Adoptar </span>
           </Link>
-          {false ? (
+          {user ? (
             <span className="btnPerfil" onClick={handlerClick}>
               Perfil
             </span>

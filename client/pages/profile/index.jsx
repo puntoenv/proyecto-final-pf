@@ -1,48 +1,27 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Layout from "../layout";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 // import styles from '../styles/profile.module.css'
 
-const profile = () => {
-  console.log(session);
-
+function Profile(props) {
+  const { isLoading } = useUser();
+  console.log(props.user);
   return (
-    <div>
-      <Layout title="Mi Perfil" />
-      {session ? (
-        <div>
-          <Image
-            src={session.user.image}
-            width={150}
-            height={150}
-            style={{ borderRadius: "50%" }}
-            alt={session.user.name}
-          ></Image>
-          <h1>Bienvenido, {session.user.name}</h1>
-          <button onClick={() => signOut()}>Cerrar Sesión</button>
-        </div>
-      ) : (
-        <div>
-          <p>No iniciaste sesión</p>
-        </div>
+    <>
+      {isLoading && <h1>Loading...</h1>}
+      {props.user && (
+        <>
+          <a href="/api/auth/logout">Logout</a>
+          <div>
+            <img src={props.user.picture} />
+            <h1>{props.user.name}</h1>
+          </div>
+        </>
       )}
-    </div>
+    </>
   );
-};
+}
 
-export default profile;
-
-// export const getServerSideProps = async (context) => {
-//   const session = await getSession(context);
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/login",
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// };
+export default withPageAuthRequired(Profile, {
+  onRedirecting: () => <h1>Loading...</h1>,
+  onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
+});

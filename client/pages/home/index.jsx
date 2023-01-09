@@ -10,50 +10,6 @@ import home from "../../img/prueba.jpeg";
 import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
 import Join from "../../components/JoinUs/joinUs";
-<<<<<<< HEAD
-
-export default function Home() {
-  const clientId = process.env.AUHT0_CLIENT_ID;
-  return (
-    <>
-      <Layout title="Inicio" />
-      <div className={styles.home}>
-        <NavBar />
-        <Link href={"/home"} classname="logo">
-          <Image
-            src={logo}
-            alt="logo"
-            className={styles.logo}
-            width="auto"
-            height="auto"
-          />
-        </Link>
-        <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
-        <Image
-          src={home}
-          alt="home"
-          className={styles.home}
-          width="auto"
-          height="auto"
-        />
-        <div className={styles.barGreen}></div>
-        <div className={styles.divAlimento}></div>
-        {/* <span className={styles.catAlimento}></span> */}
-        <div className={styles.containKitten}>
-          <Image
-            src={Cat}
-            alt="kitten"
-            className={styles.kitten}
-            width="auto"
-            height="auto"
-          />
-        </div>
-=======
-import Alimento from "../../img/alimento.png";
-import Alim from "../../img/alim.png";
-import Al from "../../img/al.png";
-import Ali from "../../img/ali.png";
-import Alimen from "../../img/alimen.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -61,7 +17,7 @@ import PetsCard from "../../components/Carousel/petsCard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPets } from "../../stores/actions";
-import React, { Component } from "react";
+import React from "react";
 
 export default function Home() {
   {
@@ -72,7 +28,6 @@ export default function Home() {
       slidesToShow: 3,
       slidesToScroll: 3,
     };
->>>>>>> main
 
     const data = useSelector((data) => data.mascotas.mascotas);
 
@@ -118,7 +73,7 @@ export default function Home() {
 
           <Nosotros />
 
-          
+          <div>
             <Slider {...settings}>
               {data.slice(0, 9).map((mascota) => (
                 <PetsCard
@@ -129,28 +84,25 @@ export default function Home() {
                 />
               ))}
             </Slider>
-            <div className={styles.containerAdopciones}>
-          <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
-          <p className={styles.infoAdopcion}>
-            Nuestra plataforma permite a los usuarios visualizar todas las
-            mascotas disponibles para adopción, como así también filtar las
-            mismas por tamaño, ubicación, genero, etc. Tener una mascota es una
-            responsabilidad, por lo tanto, exigimos compromiso al momento de
-            adoptar a un nuevo integrante. También esperamos compromiso para con
-            los usuarios que llevan a cabo las publicaciones de los posteos.
-          </p>
+          </div>
+
+          <div className={styles.containerAdopciones}>
+            <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
+            <p className={styles.infoAdopcion}>
+              Nuestra plataforma permite a los usuarios visualizar todas las
+              mascotas disponibles para adopción, como así también filtar las
+              mismas por tamaño, ubicación, genero, etc. Tener una mascota es
+              una responsabilidad, por lo tanto, exigimos compromiso al momento
+              de adoptar a un nuevo integrante. También esperamos compromiso
+              para con los usuarios que llevan a cabo las publicaciones de los
+              posteos.
+            </p>
           </div>
           <Join />
 
           <Footer />
         </div>
-<<<<<<< HEAD
-
-        <button onClick={() => console.log(clientId)}>.env</button>
-      </div>
-=======
-      
->>>>>>> main
-    </>
-  );
-}}
+      </>
+    );
+  }
+}
