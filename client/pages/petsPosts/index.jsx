@@ -1,54 +1,40 @@
 import Link from "next/link";
-//import Card from "../../components/Card/index.js";
 import { useState } from "react";
-import { getPets, searchPet, getper, filterPets } from "../../stores/actions";
+import {
+  getPets,
+  searchPet,
+  getper,
+  filterPets,
+  filterBack,
+} from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // FILTERS----------------
 import { handlerOnChange } from "../../controller/filtersPets.js";
-//import { setFilteredPets } from "../../stores/actions";
 //PAGINADO
 import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import logo from "../../img/logo.jpeg"
+import logo from "../../img/logo.jpeg";
 import Footer from "../../components/Footer/footer";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
-/* { type, size*, age*, gender*, location? } querys de filtros*/
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState({
-    type: "",
-    size: "",
-    age: "",
-    gender: "",
-    location: "",
-  });
+  const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
 
-  /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
-
-  useEffect(() => {
-    dispatch(getPets());
-    dispatch(getper());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (pets.length === 0) {
-      dispatch(getPets());
-    }
-  }, [pets]);
-
   const handlerSearch = (e) => {
     dispatch(searchPet(e.target.value));
+    if (pet.length === 0) e.target.value = "";
   };
-  const handlerTodas = () => {
+  const handlerTodas = (e) => {
+    e.preventDefault();
     dispatch(getPets());
   };
   //PAGINADO////
@@ -61,10 +47,12 @@ export default function PetAdoption() {
   const ultimo = curren * pg;
   const primero = ultimo - pg;
   const pet = pets.length ? pets.slice(primero, ultimo) : [];
-  //console.log(pets)
+
   useEffect(() => {
+    dispatch(getPets());
+    dispatch(getper());
     setcurren(1);
-  }, [filter, pets, setFilter]);
+  }, [dispatch]);
 
   const Page = (pageNumber) => {
     setcurren(pageNumber);
@@ -83,35 +71,49 @@ export default function PetAdoption() {
     }
     setcurren((prev) => prev + 1);
   };
-  const typeFilter = (e) => {
+  // const typeFilter = (e) => {
+  //   e.preventDefault();
+  //   let { id, value } = e.target;
+  //   if (id == "age") {
+  //     let params = { id, value: parseInt(value) };
+  //     dispatch(filterPets(params));
+  //   } else {
+  //     let params = { id, value };
+  //     dispatch(filterPets(params));
+  //   }
+  //   console.log(typeof value);
+  // };
+
+  const handlerFilter = (e) => {
     e.preventDefault();
-    let { id, value } = e.target;
-    if (id == "age") {
-      let params = { id, value: parseInt(value) };
-      dispatch(filterPets(params));
-    } else {
-      let params = { id, value };
-      dispatch(filterPets(params));
-    }
-    console.log(typeof value);
+    setFilter({ ...filter, [e.target.id]: e.target.value });
+    return console.log(filter);
   };
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    dispatch(filterBack(filter));
+    return console.log(filter);
+  };
+
   return (
     <div>
       <Layout title="Mascotas" />
       <NavBar />
       <Link href={"/home"} className="logo">
-      <Image
-              src={logo}
-              alt="logo"
-              className={styles.logo}
-              width="auto"
-              height="auto"
-            /></Link>
+        <Image
+          src={logo}
+          alt="logo"
+          className={styles.logo}
+          width="auto"
+          height="auto"
+        />
+      </Link>
 
       <div className={styles.search}>
         <input
           className={styles.input}
-          type="text"
+          type="search"
           placeholder="Buscar..."
           onChange={handlerSearch}
         />
@@ -123,9 +125,9 @@ export default function PetAdoption() {
       {/* ----------------------------------FILTROS------------------------------------ */}
 
       <div className={styles.container2}>
-        <form className={styles.form} onChange={(e) => typeFilter(e)}>
+        <form className={styles.form} onChange={(e) => handlerFilter(e)}>
           <div>
-            <button className={styles.all} onClick={handlerTodas}>
+            <button className={styles.all} onClick={(e) => handlerTodas(e)}>
               Ver todas
             </button>
           </div>
@@ -197,40 +199,39 @@ export default function PetAdoption() {
               </option>
             ))}
           </select>
+          <input
+            type="submit"
+            value="Aplicar Filtros"
+            onClick={(e) => handlerSubmit(e)}
+          />
         </form>
 
         {/* ----------------------------------------------------------------------- */}
-
-      <div className={styles.big_container}>
-        <div className={styles.posts_Container}></div>
-        {pet?.map((mascota) => {
-          return (
-            <div key={mascota._id} className={styles.card}>
-              <Image
-                className={styles.img}
-                width="300"
-                height="240"
-                src={mascota.image}
-                alt="image"
-              />
-              <h1 className={styles.name}>{mascota.name}</h1>
-              <h2 className={styles.size}>{mascota.gender}</h2>
-              <button className={styles.btn}>
-                <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-              </button>
-            </div>
-          );
-        })}
+        <div className={styles.big_container}>
+          <div className={styles.posts_Container}></div>
+          {pet?.map((mascota) => {
+            return (
+              <div key={mascota._id} className={styles.card}>
+                <Image
+                  className={styles.img}
+                  width="300"
+                  height="240"
+                  src={mascota.image}
+                  alt="image"
+                />
+                <h1 className={styles.name}>{mascota.name}</h1>
+                <h2 className={styles.size}>{mascota.gender}</h2>
+                <button className={styles.btn}>
+                  <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                </button>
+              </div>
+            );
+          })}
 
           <div />
         </div>
       </div>
-
-      {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-
-      {
+      <div className={styles.paging}>
         <Pagina
           pets={pets}
           pg={pg}
@@ -243,8 +244,13 @@ export default function PetAdoption() {
           setMaxPageLimit={setMaxPageLimit}
           setMinPageLimit={setMinPageLimit}
         />
-      }
-     <Footer />
+      </div>
+
+      {/* <Link href={`/detail/${pets._id}`}>
+        <h1>Ver mascota</h1>
+      </Link> */}
+
+      <Footer />
       {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );

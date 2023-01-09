@@ -89,7 +89,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  transform: translateX(317px) translateY(1300%);
+  transform: translateX(317px) translateY(1200%);
   background: #e8eb9d;
   padding: 10px 30px;
   font-weight: 700;
@@ -112,7 +112,7 @@
   background: #32281f;
   font-size: 23px;
   color: #e8eb9d;
-  transform: translateX(317px) translateY(1300%);
+  transform: translateX(317px) translateY(1200%);
 }
 
 @media screen and (max-width: 750px) {
