@@ -38,9 +38,9 @@ export default function Home() {
 
     return (
       <>
+        <NavBar />
         <Layout title="Inicio" />
         <div className={styles.home}>
-          <NavBar />
           <Link href={"/home"} className="logo">
             <Image
               src={logo}
