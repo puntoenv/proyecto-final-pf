@@ -10,6 +10,9 @@ export const mascotasSlice = createSlice({
   reducers: {
     getMascotas: (state, action) => {
       state.mascotas = action.payload;
+      if (state.mascotas.length === 0) {
+        alert("No hay mascotas.");
+      }
     },
     petsFilter: (state, action) => {
       state.mascotas = state.mascotas.filter(

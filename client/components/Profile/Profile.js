@@ -52,11 +52,11 @@ export default function Perfil() {
                     <b>Postea una adopción</b>
                   </Link>
                 </button>
-                <button className={style.button}>
+                {/* <button className={style.button}>
                   <Link href={"/profile"}>
                     <b>Adopta</b>
                   </Link>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
