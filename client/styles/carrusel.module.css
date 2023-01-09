@@ -1,35 +1,43 @@
-.name{
-    color: black;
-    font-size: 28px;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+.name {
+  color: black;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
-.image{
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+.image {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  border-radius: 50%;
 }
 
-
-.gender{
-    color: black;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+.gender {
+  color: black;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
-.container{
-    background-color: rgb(184, 209, 115);
-    height: 300px;
-   padding-top: 50px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   
+.container {
+  background-color: rgb(184, 209, 115);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-
+.cardPet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 40%;
+  height: 80%;
+  border-radius: 20px;
+  background-color: rgba(46, 58, 25, 0.212);
 }

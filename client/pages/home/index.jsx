@@ -83,6 +83,7 @@ export default function Home() {
               />
             ))}
           </Slider>
+
           <div className={styles.containerAdopciones}>
             <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
             <p className={styles.infoAdopcion}>
