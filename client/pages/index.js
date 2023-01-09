@@ -1,4 +1,4 @@
-import styles from "../pages/Landing.module.css";
+import styles from "./landing.module.css";
 import Link from "next/link";
 import Layout from "./layout";
 
@@ -16,11 +16,9 @@ export default function landingPage() {
           <div className={styles.img6}></div>
           <div className={styles.img7}></div>
           <div className={styles.buttonContainer}>
-            <div>
-              <Link href="/home">
-                <button className={styles.button}>Entrar</button>
-              </Link>
-            </div>
+            <Link href="/home" className={styles.button}>
+              Entrar
+            </Link>
           </div>
         </div>
       </div>
