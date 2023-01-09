@@ -22,8 +22,9 @@ import React, { Component } from "react";
 export default function Home() {
   {
     const settings = {
-      dots: true,
+      arrows: false,
       infinite: true,
+      dots: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,
@@ -70,8 +71,9 @@ export default function Home() {
               height="auto"
             />
           </div>
-
-          <Nosotros />
+          <div>
+            <Nosotros />
+          </div>
 
           <Slider {...settings}>
             {data.slice(0, 9).map((mascota) => (

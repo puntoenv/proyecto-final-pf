@@ -3,6 +3,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/Profile";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from '../../components/Profile/Loading.module.css'
+import Layout from "../layout";
 // import styles from '../styles/profile.module.css'
 
 function Profile(props) {
@@ -10,6 +11,7 @@ function Profile(props) {
   console.log(props.user);
   return (
     <>
+    <Layout title={'Perfil'}></Layout>
       <NavBar></NavBar>
       <Perfil></Perfil>
     </>

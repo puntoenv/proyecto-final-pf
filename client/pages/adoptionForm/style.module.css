@@ -1,17 +1,19 @@
 .form {
-  border: 1px solid red;
-  box-shadow: 8px 8px 10px rgb(136, 92, 57);
+  box-shadow: 10px 10px 50px rgb(136, 92, 57);
   gap: 0.1rem;
   display: grid;
   place-content: center;
   justify-content: center;
   flex-direction: column;
   border-radius: 1rem;
-  background-color: #e8eb9d;
+  background-color: #f2f4c0;
   min-width: auto;
   min-height: auto;
   padding: 1rem;
   margin-top: 5rem;
+  border-left: 1px solid #e8eb9d;
+  border-top: 1px solid #e8eb9d;
+  backdrop-filter: blur(20px);
 }
 
 .container {
@@ -19,8 +21,9 @@
   place-content: center;
   min-width: 100%;
   min-height: 100%;
-  background-color: white;
-  padding-bottom: 1rem;
+  background-color: rgb(188, 178, 117);
+  padding-bottom: 3rem;
+  padding-top: 2em;
 }
 
 .stretch {
@@ -54,4 +57,22 @@
   border-radius: 1rem;
   min-height: 1.5rem;
   background-color: beige;
+}
+
+.post{
+  border-radius: 10px;
+  width: 11em;
+  margin: auto;
+  height: 2em;
+}
+
+.logo {
+  border-radius: 1em;
+  display: flex;
+  position: fixed;
+  margin-top: -50px;
+  margin-left: 2em;
+  z-index: 4500;
+  width: auto;
+  height: 14em;
 }
