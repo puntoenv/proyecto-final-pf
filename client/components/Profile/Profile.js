@@ -13,8 +13,8 @@ export default function Perfil() {
       {isLoading && (
         <div className={styles.container}>
           <div className={styles.loader}>
-            <p>Loading...</p>
           </div>
+            <p>Loading...</p>
         </div>
       )}
       {user && (
