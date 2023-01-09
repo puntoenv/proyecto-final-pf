@@ -54,9 +54,9 @@ const NavBar = () => {
         <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>
-        <Link className="itemDash" href="#">
+        <a className="itemDash" href="/api/auth/logout">
           <span>Cerrar sesión</span>
-        </Link>
+        </a>
       </div>
     </header>
   );
