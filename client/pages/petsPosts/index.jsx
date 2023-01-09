@@ -104,19 +104,21 @@ export default function PetAdoption() {
           Buscar
         </button> */}
       </div>
-      <div>
-        <button className={styles.all} onClick={handlerTodas}>
-          Ver todas
-        </button>
-      </div>
+    
       {/* ----------------------------------FILTROS------------------------------------ */}
 
    
 
      
-
-      <h1 className={styles.title}>Animal</h1>
+<div className={styles.container2}>
+     
       <form className={styles.form} onChange={(e) => typeFilter(e)}>
+      <div>
+        <button className={styles.all} onClick={handlerTodas}>
+          Ver todas
+        </button>
+      </div>
+      <h1 className={styles.title}>Animal</h1>
         <select className={styles.select} id="type">
           <option className= {styles.option} value="animal">Todos</option>
           <option className= {styles.option} value="perro">Perros</option>
@@ -162,7 +164,9 @@ export default function PetAdoption() {
           ))}
 
         </select>
+        
       </form>
+    
       {/* ----------------------------------------------------------------------- */}
 
       <div className={styles.big_container}>
@@ -188,10 +192,12 @@ export default function PetAdoption() {
 
         <div />
       </div>
+      </div>
 
       {/* <Link href={`/detail/${pets._id}`}>
         <h1>Ver mascota</h1>
       </Link> */}
+   
       {
         <Pagina
           pets={pets}
@@ -206,6 +212,7 @@ export default function PetAdoption() {
           setMinPageLimit={setMinPageLimit}
         />
       }
+     
       {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );
