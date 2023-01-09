@@ -36,6 +36,10 @@ const petSchema = new Schema({
     type: Object,
     required: true,
   },
+  castrated: String,
+  health: String,
+  pregnant: String,
+  sociability: String,
   user: [
     {
       type: Schema.Types.ObjectId,
