@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getMascotas, petsFilter } from "./mascotas";
+import { getAllProducts } from "./products";
 
 export const getper = () => async (dispatch) => {
   try {
@@ -97,4 +98,13 @@ export const searchPet = (pet) => async (dispatch) => {
 
 export const filterPets = (params) => (dispatch) => {
   return dispatch(petsFilter(params));
+};
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    let products = await axios("http://localhost:3001/products");
+    dispatch(getAllProducts(products.data));
+  } catch (error) {
+    console.error(error);
+  }
 };
