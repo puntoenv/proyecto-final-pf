@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from "react";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
@@ -11,7 +12,8 @@ for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
 
-export default function form() {
+export function form(props) {
+  const { isLoading } = useUser();
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
@@ -126,255 +128,265 @@ export default function form() {
   };
   return (
     <>
-      <Layout title="Publicar Mascota" />
-      <NavBar />
-      <div className={styles.container}>
-        <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-          <span className={styles.title}>Datos de la Mascota</span>
-          <label htmlFor="name" className={styles.stretch}>
-            Nombre:
-            <span className={styles.errors}>{errors.name}</span>
-            <input
-              className={styles.input}
-              id="name"
-              type="text"
-              name="name"
-              placeholder=" Ingrese el nombre de la mascota..."
-              onChange={(e) => {
-                validation(e);
-                handleSelector(e);
-              }}
-            />
-          </label>
-          <label htmlFor="size" className={styles.stretch}>
-            Tamaño:
-            <span className={styles.errors}>{errors.size}</span>
-            <div className={styles.radio}>
-              <label htmlFor="pequeño">
+      {isLoading && <h1>Loading...</h1>}
+      {props.user && (
+        <>
+          <Layout title="Publicar Mascota" />
+          <NavBar />
+          <div className={styles.container}>
+            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+              <span className={styles.title}>Datos de la Mascota</span>
+              <label htmlFor="name" className={styles.stretch}>
+                Nombre:
+                <span className={styles.errors}>{errors.name}</span>
                 <input
-                  type="radio"
-                  id="pequeño"
-                  value="pequeño"
-                  name="size"
+                  className={styles.input}
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder=" Ingrese el nombre de la mascota..."
                   onChange={(e) => {
                     validation(e);
                     handleSelector(e);
                   }}
                 />
-                Pequeño
               </label>
-              <label htmlFor="mediano">
-                <input
-                  type="radio"
-                  id="mediano"
-                  value="mediano"
-                  name="size"
+              <label htmlFor="size" className={styles.stretch}>
+                Tamaño:
+                <span className={styles.errors}>{errors.size}</span>
+                <div className={styles.radio}>
+                  <label htmlFor="pequeño">
+                    <input
+                      type="radio"
+                      id="pequeño"
+                      value="pequeño"
+                      name="size"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Pequeño
+                  </label>
+                  <label htmlFor="mediano">
+                    <input
+                      type="radio"
+                      id="mediano"
+                      value="mediano"
+                      name="size"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Mediano
+                  </label>
+                  <label htmlFor="grande">
+                    <input
+                      type="radio"
+                      id="grande"
+                      value="grande"
+                      name="size"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Grande
+                  </label>
+                </div>
+              </label>
+              <label htmlFor="age" className={styles.stretch}>
+                Edad:
+                <span className={styles.errors}>{errors.age}</span>
+                <select
+                  name="age"
+                  id="age"
+                  className={styles.input}
                   onChange={(e) => {
                     validation(e);
-                    handleSelector(e);
+                    handleNumber(e);
                   }}
-                />
-                Mediano
-              </label>
-              <label htmlFor="grande">
-                <input
-                  type="radio"
-                  id="grande"
-                  value="grande"
-                  name="size"
-                  onChange={(e) => {
-                    validation(e);
-                    handleSelector(e);
-                  }}
-                />
-                Grande
-              </label>
-            </div>
-          </label>
-          <label htmlFor="age" className={styles.stretch}>
-            Edad:
-            <span className={styles.errors}>{errors.age}</span>
-            <select
-              name="age"
-              id="age"
-              className={styles.input}
-              onChange={(e) => {
-                validation(e);
-                handleNumber(e);
-              }}
-            >
-              <option defaultValue={true} value="">
-                Ingrese la edad de la mascota...
-              </option>
-              {ages.map((age) => (
-                <option key={age} value={age}>
-                  {age}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label htmlFor="type" className={styles.stretch}>
-            Especie:
-            <span className={styles.errors}>{errors.type}</span>
-            <select
-              className={styles.input}
-              id="type"
-              name="type"
-              onChange={(e) => {
-                validation(e);
-                handleSelector(e);
-              }}
-            >
-              <option defaultValue={true} value="select">
-                Seleccione la especie de la mascota...
-              </option>
-              <option value="gato">Gato</option>
-              <option value="perro">Perro</option>
-              <option value="conejo">Conejo</option>
-              <option value="hamster">Hamster</option>
-              <option value="ave">Ave</option>
-              <option value="pez">Pez</option>
-              <option value="tortuga">Tortuga</option>
-              <option value="desconocida">Desconocida</option>
-            </select>
-          </label>
-          <label className={styles.stretch}>
-            Ubicación:
-            <label htmlFor="provincia" className={styles.stretch}>
-              <span className={styles.title}>Provincia</span>
-              <span className={styles.errors}>{errors.provincia}</span>
-              <select
-                className={styles.input}
-                name="provincia"
-                id="provincia"
-                onChange={(e) => {
-                  validation(e);
-                  handleProvincia(e);
-                }}
-              >
-                <option defaultValue={true} value="select">
-                  Seleccione la provincia...
-                </option>
-                {provi?.map((el) => (
-                  <option key={el.nombre} value={el.nombre}>
-                    {el.nombre}
+                >
+                  <option defaultValue={true} value="">
+                    Ingrese la edad de la mascota...
                   </option>
-                ))}
-              </select>
-            </label>
-            <label htmlFor="municipio" className={styles.stretch}>
-              <span className={styles.title}>Ciudad</span>
-              <span className={styles.errors}>{errors.municipio}</span>
-              <select
-                className={styles.input}
-                id="municipio"
-                name="municipio"
-                onChange={(e) => {
-                  validation(e);
-                  handleMunicipio(e);
-                }}
-              >
-                <option defaultValue={true} value="select">
-                  Seleccione la ciudad...
-                </option>
-                {munici?.map((el) => (
-                  <option key={el.nombre} value={el.nombre}>
-                    {el.nombre}
+                  {ages.map((age) => (
+                    <option key={age} value={age}>
+                      {age}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label htmlFor="type" className={styles.stretch}>
+                Especie:
+                <span className={styles.errors}>{errors.type}</span>
+                <select
+                  className={styles.input}
+                  id="type"
+                  name="type"
+                  onChange={(e) => {
+                    validation(e);
+                    handleSelector(e);
+                  }}
+                >
+                  <option defaultValue={true} value="select">
+                    Seleccione la especie de la mascota...
                   </option>
-                ))}
-              </select>
-            </label>
-          </label>
-          <label htmlFor="gender" className={styles.stretch}>
-            Genero:
-            <span className={styles.errors}>{errors.gender}</span>
-            <div className={styles.radio}>
-              <label htmlFor="macho">
-                <input
-                  type="radio"
-                  value="macho"
-                  id="macho"
-                  name="gender"
+                  <option value="gato">Gato</option>
+                  <option value="perro">Perro</option>
+                  <option value="conejo">Conejo</option>
+                  <option value="hamster">Hamster</option>
+                  <option value="ave">Ave</option>
+                  <option value="pez">Pez</option>
+                  <option value="tortuga">Tortuga</option>
+                  <option value="desconocida">Desconocida</option>
+                </select>
+              </label>
+              <label className={styles.stretch}>
+                Ubicación:
+                <label htmlFor="provincia" className={styles.stretch}>
+                  <span className={styles.title}>Provincia</span>
+                  <span className={styles.errors}>{errors.provincia}</span>
+                  <select
+                    className={styles.input}
+                    name="provincia"
+                    id="provincia"
+                    onChange={(e) => {
+                      validation(e);
+                      handleProvincia(e);
+                    }}
+                  >
+                    <option defaultValue={true} value="select">
+                      Seleccione la provincia...
+                    </option>
+                    {provi?.map((el) => (
+                      <option key={el.nombre} value={el.nombre}>
+                        {el.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label htmlFor="municipio" className={styles.stretch}>
+                  <span className={styles.title}>Ciudad</span>
+                  <span className={styles.errors}>{errors.municipio}</span>
+                  <select
+                    className={styles.input}
+                    id="municipio"
+                    name="municipio"
+                    onChange={(e) => {
+                      validation(e);
+                      handleMunicipio(e);
+                    }}
+                  >
+                    <option defaultValue={true} value="select">
+                      Seleccione la ciudad...
+                    </option>
+                    {munici?.map((el) => (
+                      <option key={el.nombre} value={el.nombre}>
+                        {el.nombre}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </label>
+              <label htmlFor="gender" className={styles.stretch}>
+                Genero:
+                <span className={styles.errors}>{errors.gender}</span>
+                <div className={styles.radio}>
+                  <label htmlFor="macho">
+                    <input
+                      type="radio"
+                      value="macho"
+                      id="macho"
+                      name="gender"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Macho
+                  </label>
+                  <label htmlFor="hembra">
+                    <input
+                      type="radio"
+                      value="hembra"
+                      id="hembra"
+                      name="gender"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Hembra
+                  </label>
+                </div>
+              </label>
+              <label htmlFor="description" className={styles.stretch}>
+                Descripción:
+                <span className={styles.errors}>{errors.description}</span>
+                <textarea
+                  className={styles.input}
+                  id="description"
+                  type="text"
+                  name="description"
+                  rows="3"
+                  placeholder=" Describa a la mascota..."
                   onChange={(e) => {
                     validation(e);
                     handleSelector(e);
                   }}
                 />
-                Macho
               </label>
-              <label htmlFor="hembra">
+              <label htmlFor="image" className={styles.stretch}>
+                Imagen:
+                <span className={styles.errors}>{errors.image}</span>
                 <input
-                  type="radio"
-                  value="hembra"
-                  id="hembra"
-                  name="gender"
+                  id="image"
+                  type="file"
+                  name="image"
                   onChange={(e) => {
                     validation(e);
-                    handleSelector(e);
+                    handleFiles(e);
                   }}
                 />
-                Hembra
               </label>
-            </div>
-          </label>
-          <label htmlFor="description" className={styles.stretch}>
-            Descripción:
-            <span className={styles.errors}>{errors.description}</span>
-            <textarea
-              className={styles.input}
-              id="description"
-              type="text"
-              name="description"
-              rows="3"
-              placeholder=" Describa a la mascota..."
-              onChange={(e) => {
-                validation(e);
-                handleSelector(e);
-              }}
-            />
-          </label>
-          <label htmlFor="image" className={styles.stretch}>
-            Imagen:
-            <span className={styles.errors}>{errors.image}</span>
-            <input
-              id="image"
-              type="file"
-              name="image"
-              onChange={(e) => {
-                validation(e);
-                handleFiles(e);
-              }}
-            />
-          </label>
-          <label htmlFor="submit"></label>
-          <input
-            id="submit"
-            type="submit"
-            value="Subir Mascota"
-            disabled={
-              !post.age ||
-              !post.name ||
-              !post.description ||
-              !post.location.provincia ||
-              !post.image ||
-              !post.size ||
-              !post.gender ||
-              !post.type ||
-              !post.location.municipio ||
-              /////////////////////////////////////////////////////////
-              errors.name !== null ||
-              errors.age !== null ||
-              errors.description !== null ||
-              errors.size !== null ||
-              errors.gender !== null ||
-              errors.municipio !== null ||
-              errors.provincia !== null ||
-              errors.type !== null ||
-              errors.image !== null
-            }
-          />
-        </form>
-      </div>
+              <label htmlFor="submit"></label>
+              <input
+                id="submit"
+                type="submit"
+                value="Subir Mascota"
+                disabled={
+                  !post.age ||
+                  !post.name ||
+                  !post.description ||
+                  !post.location.provincia ||
+                  !post.image ||
+                  !post.size ||
+                  !post.gender ||
+                  !post.type ||
+                  !post.location.municipio ||
+                  /////////////////////////////////////////////////////////
+                  errors.name !== null ||
+                  errors.age !== null ||
+                  errors.description !== null ||
+                  errors.size !== null ||
+                  errors.gender !== null ||
+                  errors.municipio !== null ||
+                  errors.provincia !== null ||
+                  errors.type !== null ||
+                  errors.image !== null
+                }
+              />
+            </form>
+          </div>
+        </>
+      )}
     </>
   );
 }
+
+export default withPageAuthRequired(form, {
+  onRedirecting: () => <h1>Loading...</h1>,
+  onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
+});
