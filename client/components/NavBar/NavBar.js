@@ -28,7 +28,7 @@ const NavBar = () => {
             <span>Apóyanos </span>
           </Link> */}
           <Link className="itemNav" href="/petsPosts">
-            <span>Adoptar </span>
+            <span>Ver Mascotas</span>
           </Link>
           {user ? (
             <span className="btnPerfil" onClick={handlerClick}>
@@ -43,11 +43,11 @@ const NavBar = () => {
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
         <Link className="itemDash" href="/profile">
-          <span>Editar Perfil</span>
+          <span>Mi Perfil</span>
         </Link>
-        <Link className="itemDash" href="#">
+        {/* <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
-        </Link>
+        </Link> */}
         {/* <Link className="itemDash" href="#">
           <span>Mi carrito</span>
         </Link> */}

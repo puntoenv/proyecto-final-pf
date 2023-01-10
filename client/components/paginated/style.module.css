@@ -18,9 +18,7 @@
 
 .container {
   display: flex;
-  justify-content: center;
   flex-direction: row;
-  margin-bottom: 2em;
 }
 
 .sig_ant {

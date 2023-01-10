@@ -1,7 +1,12 @@
 import axios from "axios";
+import url from "url";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
+<<<<<<< HEAD
 import { getMascotas, petsFilter } from "./mascotas";
 import { getAllProducts } from "./products";
+=======
+import { backFilter, getMascotas, petsFilter } from "./mascotas";
+>>>>>>> main
 
 export const getper = () => async (dispatch) => {
   try {
@@ -96,8 +101,15 @@ export const searchPet = (pet) => async (dispatch) => {
   }
 };
 
-export const filterPets = (params) => (dispatch) => {
-  return dispatch(petsFilter(params));
+// export const filterPets = (params) => (dispatch) => {
+//   return dispatch(petsFilter(params));
+// };
+
+export const filterBack = (filters) => (dispatch) => {
+  let params = new URLSearchParams(filters);
+  return axios(`http://localhost:3001/pets?${params}`)
+    .then((res) => res.data)
+    .then((data) => dispatch(backFilter(data)));
 };
 
 export const getProducts = () => async (dispatch) => {
