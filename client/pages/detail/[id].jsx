@@ -69,7 +69,10 @@ export default function Detail({ data }) {
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch("http://localhost:3001/pets/detail/" + params.id)
+      await fetch(
+        "https://proyecto-final-pf-production.up.railway.app/pets/detail/" +
+          params.id
+      )
     ).json();
     return {
       props: {
