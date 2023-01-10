@@ -7,7 +7,8 @@ import styles from "./Loading.module.css";
 
 export default function Perfil() {
   const { isLoading, user } = useUser();
-
+  const imgAux =
+    "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
   return (
     <div className={style.mainContainer}>
       {isLoading && (
@@ -22,13 +23,13 @@ export default function Perfil() {
           <div className={style.secondContainer}>
             <div className={style.thirdContainer}>
               <div className={style.imageContainer}>
-                <Image
-                  src={user.picture}
+                <img
+                  src={user.picture || imgAux}
                   width={150}
                   height={150}
                   style={{ borderRadius: "50%" }}
                   alt={user.name}
-                ></Image>
+                />
               </div>
               <button className={style.button}>
                 <Link href={"/api/auth/logout"}>
@@ -70,20 +71,3 @@ export default function Perfil() {
     </div>
   );
 }
-
-// export default profile;
-
-// export const getServerSideProps = async (context) => {
-//   const session = await getSession(context);
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/login",
-//       },
-//     };
-//   }
-
-//   return {
-//     props: { session },
-//   };
-// };
