@@ -36,9 +36,9 @@ const petSchema = new Schema({
     type: Object,
     required: true,
   },
-  castrated: String,
+  
   health: String,
-  pregnant: String,
+  condition: String,
   sociability: String,
   user: [
     {
