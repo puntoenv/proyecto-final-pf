@@ -14,6 +14,10 @@ postPet.post("/post-pet", async (req, res) => {
       type,
       gender,
       location,
+      health,
+      pregnant,
+      sociability,
+      castrated,
       userId,
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
@@ -26,6 +30,10 @@ postPet.post("/post-pet", async (req, res) => {
       type,
       location,
       gender,
+      health,
+      pregnant,
+      sociability,
+      castrated,
       userId,
     });
     res.status(200).send(pet._id);

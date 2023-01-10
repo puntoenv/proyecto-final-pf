@@ -14,6 +14,10 @@ updatePet.put("/:id", async (req, res) => {
       type,
       gender,
       location,
+      health,
+      pregnant,
+      sociability,
+      castrated,
       userId,
     } = req.body;
     let pet = Pet.findById(id);
@@ -26,6 +30,10 @@ updatePet.put("/:id", async (req, res) => {
     pet.gender = gender ? gender : pet.gender;
     pet.location = location ? location : pet.location;
     pet.userId = userId ? userId : pet.userId;
+    pet.health = health ? health : pet.health;
+    pet.pregnant = pregnant ? pregnant : pet.pregnant;
+    pet.sociability = sociability ? sociability : pet.sociability;
+    pet.castrated = castrated ? castrated : pet.castrated;
     let updatePet = await pet.save();
     res.status(200).send(updatePet);
   } catch (error) {
