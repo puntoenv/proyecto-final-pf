@@ -1,12 +1,8 @@
 import axios from "axios";
 import url from "url";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
-<<<<<<< HEAD
-import { getMascotas, petsFilter } from "./mascotas";
 import { getAllProducts } from "./products";
-=======
 import { backFilter, getMascotas, petsFilter } from "./mascotas";
->>>>>>> main
 
 export const getper = () => async (dispatch) => {
   try {
