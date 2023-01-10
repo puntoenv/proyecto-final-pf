@@ -15,4 +15,14 @@ allPets.get("/", async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
+
+allPets.get("/latest-pets", async (req, res) => {
+  try {
+    const pets = await Pet.find({ hidden: false });
+    res.json(pets.reverse());
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = allPets;
