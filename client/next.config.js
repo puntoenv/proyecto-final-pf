@@ -13,6 +13,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       's.gravatar.com',
       "img.freepik.com",
+
     ],
 
     remotePatterns: [
@@ -26,4 +27,6 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig
+
+module.exports = nextConfig;
+
