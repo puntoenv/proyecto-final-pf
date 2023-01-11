@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
+import { getAllProducts, addProductCart } from "./products";
 import { getMascotas } from "./mascotas";
 import { getUserId } from "./User";
 
@@ -121,6 +122,16 @@ export const searchPet = (pet) => async (dispatch) => {
   }
 };
 
+export const searchProduct = (product) => async (dispatch) => {
+  try {
+    const productoEncontrado = await axios(
+      `http://localhost:3001/products/by-name?name=${product}`
+    );
+    dispatch(getAllProducts(productoEncontrado.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));
 // };
@@ -139,6 +150,23 @@ export const getPets = (page, filters) => async (dispatch) => {
       res = await axios.get(`/pets/${page}`);
     }
     dispatch(getMascotas(res.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    let products = await axios("http://localhost:3001/products");
+    dispatch(getAllProducts(products.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addCart = (id) => async (dispatch) => {
+  try {
+    dispatch(addProductCart(id));
   } catch (error) {
     console.error(error);
   }
