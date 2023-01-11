@@ -16,7 +16,6 @@ axios.defaults.baseURL = "http://localhost:3001/";
 const clientId = process.env.AUHT0_CLIENT_ID;
 
 export default function App({ Component, pageProps }) {
-  console.log(clientId);
   return (
     <ContextProvider>
     <UserProvider client_id={clientId}>
