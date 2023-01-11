@@ -2,13 +2,17 @@ const { Router } = require("express");
 const router = Router();
 const productsFiltered = require("../../controllers/filters/productsFiltered");
 
-router.get("/", async (req, res) => {
-  try {
-    const leakedProducts = await productsFiltered(req.body);
+// localhost:3001/filter?
 
-    res.json(leakedProducts);
+router.get("/", async (req, res) => {
+  const { name, category, stock } = req.query;
+  console.log(name);
+  try {
+    const productsFilters = await productsFiltered(name, category, stock);
+
+    res.json(productsFilters);
   } catch (error) {
-    res.status(400).json({ error: error.messagge });
+    res.status(400).json("Error: no anda " + error.message);
   }
 });
 

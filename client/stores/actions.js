@@ -2,6 +2,9 @@ import axios from "axios";
 import url from "url";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { backFilter, getMascotas, petsFilter } from "./mascotas";
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
+import 'sweetalert2/src/sweetalert2.scss';
 
 export const getper = () => async (dispatch) => {
   try {
@@ -36,15 +39,47 @@ export const PostAdop = (post) => {
     axios
       .post("/pets/post-pet", post)
       .then((res) => {
-        alert("Mascota publicada correctamente.");
+        // Swal.fire({
+        //   title: 'Mascota publicada correctamente',
+        //   width: 600,
+        //   padding: '3em',
+        //   color: '#716add',
+        //   // background: '#fff url(/images/trees.png)',
+        //   backdrop: `
+        //     rgba(0,0,123,0.4)
+        //     url("./giphy.gif")
+        //     left top
+        //     no-repeat
+        //   `
+        // })
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Mascota publicada correctamente',
+          showConfirmButton: false,
+          timer: 3000
+        })
+        // alert("Mascota publicada correctamente.");
         return res.data;
       })
       // .then((id) => fetch(`http://localhost:3001/pets/detail/${id}`))
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
-      .catch((err) => alert(err.response.data))
+      .catch((err) =>Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'No se pudo publicar la mascota',
+        showConfirmButton: false,
+        timer: 3000
+      }))
   );
 };
+
+
+
+
+
+
 
 export const postUser = (payload) => {
   // return async function(dispatch){
@@ -73,6 +108,15 @@ export const GetUs = () => async (dispatch) => {
 //   dispatch(getMascotas(mascotas));
 // };
 
+export const getPets = () => async (dispatch) => {
+  try {
+    let allPets = await axios("/pets");
+    dispatch(getMascotas(allPets.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const searchPet = (pet) => async (dispatch) => {
   try {
     const petEncontrado = await axios(`/pets/by-name?name=${pet}`);
@@ -82,21 +126,13 @@ export const searchPet = (pet) => async (dispatch) => {
   }
 };
 
-export const getPets = (page, filters) => async (dispatch) => {
-  try {
-    let res = {};
-    if (filters) {
-      let query = "?" + new URLSearchParams(filters);
-      res = await axios.get(`/pets/${page}/${query}`);
-      if (res.data.docs.length === 0) {
-        alert("No hay mascotas");
-        res = await axios.get(`/pets/1`);
-      }
-    } else {
-      res = await axios.get(`/pets/${page}`);
-    }
-    dispatch(getMascotas(res.data));
-  } catch (error) {
-    console.error(error);
-  }
+// export const filterPets = (params) => (dispatch) => {
+//   return dispatch(petsFilter(params));
+// };
+
+export const filterBack = (filters) => (dispatch) => {
+  let params = new URLSearchParams(filters);
+  return axios(`/pets?${params}`)
+    .then((res) => res.data)
+    .then((data) => dispatch(backFilter(data)));
 };

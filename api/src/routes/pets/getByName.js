@@ -6,7 +6,7 @@ const router = Router();
 router.get("/by-name", async (req, res) => {
   const { name } = req.query;
   try {
-    const pets = await Pet.find({ hidden: false });
+    const pets = await Pet.find();
     const petsFiltered = pets.filter((e) => e.name.includes(name));
 
     res.json(petsFiltered);
