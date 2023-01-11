@@ -28,12 +28,6 @@ export const getmuni = (municipios) => async (dispatch) => {
   }
 };
 
-/*export const filtersize = async (fil) => {
-    const {size, type, age, gender, location} = fil
-    const filtros = await axios.get(`http://localhost:3001/pets/filter?size=${size}&type=${type}&age=${age}&gender=${gender}&location=${location}`)
-    return filtros
-  }*/
-
 export const PostAdop = (post) => {
   return (
     axios
@@ -74,13 +68,6 @@ export const PostAdop = (post) => {
       }))
   );
 };
-
-
-
-
-
-
-
 export const postUser = (payload) => {
   // return async function(dispatch){
   //     const response = await axios('http://localhost:3001/cards')
@@ -98,10 +85,10 @@ export const postUser = (payload) => {
   };
 };
 
-export const GetUs = () => async (dispatch) => {
+export const GetUs = (id) => async (dispatch) => {
   await axios
-    .get("/user/63b773434f2e71676e855f8a")
-    .then((res) => dispatch(getuser(res.data)));
+    .get(`http://localhost:3001/user/${id}`)
+    .then((res) => dispatch(getuser(res)));
 };
 
 // export const setFilteredPets = (filter) => (dispatch) => {

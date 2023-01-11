@@ -1,9 +1,14 @@
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Card from "../../components/Card";
-import { getper, getmuni } from "../../stores/actions";
-import Pagina from "..//../components/paginated/pagina";
+import { GetUs } from "../../stores/actions";
+import NavBar from "../../components/NavBar/NavBar.js";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "../../img/logo.jpeg";
+import Layout from "../layout.js";
+import {useRouter} from 'next/router';
+
 let mock = [
   {
     id: 123,
@@ -36,225 +41,142 @@ let mock = [
     gender: "masculino",
   },
 ];
+const ages = [];
+for (let i = 0; i <= 40; i++) {
+  ages.push(i);
+}
 function index() {
+  const {query} = useRouter();
   const dispatch = useDispatch();
-  const provi = useSelector((state) => state.caracter.provi.provincias);
-  const munici = useSelector((state) => state.caracter.municipios.municipios);
-  const [deta, setdeta] = useState({
-    size: "",
-    type: "",
-    age: "",
-    gender: "",
-    location: {},
-  });
-  //console.log(deta)
-  useEffect(() => {
-    dispatch(getper());
-  }, []);
-
-  const handelprovincia = (e) => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    dispatch(getmuni(value));
-    setdeta({ ...deta, [name]: { provincia: value } });
-  };
-  const handelciudad = (e) => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    setdeta({ ...deta, [name]: { ...deta.location, municipio: value } });
-  };
-  const handelselector = (e) => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    setdeta({ ...deta, [name]: value });
-  };
-  const handenumber = (e) => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    const number = parseInt(value);
-    number > 0 && number <= 20
-      ? setdeta({ ...deta, [name]: value })
-      : console.log("error");
-  };
-  ////////////////////////////////////////////////////
-  //paginado
-  const pg = 9;
-  const [curren, setcurren] = useState(1);
-  const [maxPageLimit, setMaxPageLimit] = useState(5);
-  const [minPageLimit, setMinPageLimit] = useState(0);
-
-  //movimiento del puntero
-  const ultimo = curren * pg;
-  const primero = ultimo - pg;
-  const pets = mock.length ? mock.slice(primero, ultimo) : [];
-  //console.log(pets)
-  useEffect(() => {
-    setcurren(1);
-  }, []);
-  const Page = (pageNumber) => {
-    setcurren(pageNumber);
-  };
-
-  const onPrevClick = () => {
-    if ((curren - 1) % pg === 0) {
-      setMaxPageLimit(maxPageLimit - pg);
-      setMinPageLimit(minPageLimit - pg);
-    }
-    setcurren((prev) => prev - 1);
-  };
-  const onNextClick = () => {
-    if (curren + 1 > maxPageLimit) {
-      setMaxPageLimit(maxPageLimit + pg);
-      setMinPageLimit(minPageLimit + pg);
-    }
-    setcurren((prev) => prev + 1);
-  };
-  /////////////////////////////////////////
+  useEffect(()=>{
+   dispatch(GetUs(query.id))
+  })
+ const handlerFilter = (e) => {
+   console.log(e.target.value)
+   
+  }
   return (
-    <>
-      <div className={styles.container}>
-        <form>
-          <h2>filtros</h2>
-          <p></p>
-          <label htmlFor="size" className={styles.stretch}>
-            Tamaño:
-            <div className={styles.radio}>
-              <label htmlFor="pequeño">
-                <input
-                  type="radio"
-                  id="pequeño"
-                  value="pequeño"
-                  name="size"
-                  onChange={(e) => handelselector(e)}
-                />
-                Pequeño
-              </label>
-              <label htmlFor="mediano">
-                <input
-                  type="radio"
-                  id="mediano"
-                  value="mediano"
-                  name="size"
-                  onChange={(e) => handelselector(e)}
-                />
-                Mediano
-              </label>
-              <label htmlFor="grande">
-                <input
-                  type="radio"
-                  id="grande"
-                  value="grande"
-                  name="size"
-                  onChange={(e) => handelselector(e)}
-                />
-                Grande
-              </label>
-            </div>
-          </label>
-          <p></p>
-          <p></p>
-          <label htmlFor="age" className={styles.stretch}>
-            Edad:
-            <input
-              type="number"
-              name="age"
-              placeholder="Ingrese la edad"
-              onChange={(e) => {
-                handenumber(e);
-              }}
-            />
-          </label>
-          <p></p>
-          <label htmlFor="type" className={styles.stretch}>
-            Especie:
-            <select name="type" onChange={(e) => handelselector(e)}>
-              <option disabled>tipo</option>
-              <option key="gatos" value="gatos">
-                gatos
+    
+    <div>
+      <Layout title="Mascotas" />
+      <NavBar/>
+      <Link href={"/home"} className="logo">
+        <Image
+          src={logo}
+          alt="logo"
+          className={styles.logo}
+          width="auto"
+          height="auto"
+        />
+      </Link>
+   
+      <div className={styles.container2}>
+      <form className={styles.form} onChange={(e) => handlerFilter(e)}>
+          <div>
+            <button className={styles.all} onClick={(e) => handlerTodas(e)}>
+              Ver todas
+            </button>
+          </div>
+          <h1 className={styles.title}>Animal</h1>
+          <select className={styles.select} id="type">
+            <option className={styles.option} value="animal">
+              Todos
+            </option>
+            <option className={styles.option} value="perro">
+              Perros
+            </option>
+            <option className={styles.option} value="gato">
+              Gatos
+            </option>
+            <option className={styles.option} value="conejo">
+              Conejos
+            </option>
+            <option className={styles.option} value="ave">
+              Aves
+            </option>
+            <option className={styles.option} value="pez">
+              Peces
+            </option>
+            <option className={styles.option} value="hamster">
+              Hamsters
+            </option>
+            <option className={styles.option} value="tortuga">
+              Tortuga
+            </option>
+          </select>
+
+          <h1 className={styles.title}>Tamaño</h1>
+          <select className={styles.select} id="size">
+            <option className={styles.option} value="tamaño">
+              Todos
+            </option>
+            <option className={styles.option} value="pequeño">
+              Pequeño
+            </option>
+            <option className={styles.option} value="mediano">
+              Mediano
+            </option>
+            <option className={styles.option} value="grande">
+              Grande
+            </option>
+          </select>
+
+          <h1 className={styles.title}>Género</h1>
+          <select className={styles.select} id="gender">
+            <option className={styles.option} value="genero">
+              Todos
+            </option>
+            <option className={styles.option} value="macho">
+              Macho
+            </option>
+            <option className={styles.option} value="hembra">
+              Hembra
+            </option>
+          </select>
+
+          <h1 className={styles.title}>Edades</h1>
+          <select id="age" className={styles.select}>
+            <option className={styles.option} defaultValue={true} value="">
+              Todas
+            </option>
+            {ages.map((age) => (
+              <option className={styles.option} key={age} value={age}>
+                {age}
               </option>
-              <option key="perros" value="perros">
-                perros
-              </option>
-              <option key="aves" value="aves">
-                aves
-              </option>
-              <option key="peces" value="peces">
-                peces
-              </option>
-            </select>
-          </label>
-          <p></p>
-          <label htmlFor="location" className={styles.stretch}>
-            Ubicación:
-            <select name="location" onChange={(e) => handelprovincia(e)}>
-              <option>provincia</option>
-              {provi?.map((el) => (
-                <option key={el.nombre} value={el.nombre}>
-                  {el.nombre}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p></p>
-          <label htmlFor="ciudad" className={styles.stretch}>
-            <select name="location" onChange={(e) => handelciudad(e)}>
-              <option>ciudad</option>
-              {munici?.map((el) => (
-                <option key={el.nombre} value={el.nombre}>
-                  {el.nombre}
-                </option>
-              ))}
-            </select>
-          </label>
-          <p></p>
-          <p></p>
-          <label htmlFor="gender" className={styles.stretch}>
-            Genero:
-            <select name="gender" onChange={(e) => handelselector(e)}>
-              <option>genero</option>
-              <option key="masculino" value="masculino">
-                masculino
-              </option>
-              <option key="femenino" value="femenino">
-                femenino
-              </option>
-            </select>
-          </label>
+            ))}
+          </select>
+          <button
+            type="submit"
+            value="Aplicar Filtros"
+            className={styles.all}
+            onClick={(e) => handlerSubmit(e)}
+          >Aplicar Filtros</button>
         </form>
         <p></p>
-      </div>
-      <h2>cards</h2>
-      <div className={styles.card}>
-        {pets?.map((detail) => (
-          <Card
-            key={detail.id}
-            nombre={detail.name}
-            edad={detail.age}
-            genero={detail.gender}
-            tamaño={detail.size}
-            tipo={detail.type}
-            locacion={detail.location}
-          />
-        ))}
-      </div>
-      <p></p>
-      <div className={styles.button}>
-        {
-          <Pagina
-            pets={mock}
-            pg={pg}
-            page={Page}
-            onPrevClick={onPrevClick}
-            onNextClick={onNextClick}
-            curren={curren}
-            maxPageLimit={maxPageLimit}
-            minPageLimit={minPageLimit}
-            setMaxPageLimit={setMaxPageLimit}
-            setMinPageLimit={setMinPageLimit}
-          />
-        }
-      </div>
-    </>
+     
+      <div className={styles.big_container}>
+         
+          {mock?.map((mascota) => {
+            return (
+              <div key={mascota._id} className={styles.card}>
+                <Image
+                  className={styles.img}
+                  width="300"
+                  height="240"
+                  src={mascota.image}
+                  alt="image"
+                />
+                <h1 className={styles.name}>{mascota.name}</h1>
+                <h2 className={styles.size}>{mascota.gender}</h2>
+                <button className={styles.btn}>
+                  <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                </button>
+              </div>
+            );
+          })}
+        </div>
+        </div>
+    </div>
   );
 }
 

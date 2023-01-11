@@ -11,8 +11,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // FILTERS----------------
 import { handlerOnChange } from "../../controller/filtersPets.js";
-//PAGINADO
-import Pagina from "../../components/paginated/pagina.js";
 import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
@@ -31,46 +29,20 @@ export default function PetAdoption() {
 
   const handlerSearch = (e) => {
     dispatch(searchPet(e.target.value));
-    if (pet.length === 0) e.target.value = "";
+    if (pets.length === 0) e.target.value = "";
   };
   const handlerTodas = (e) => {
     e.preventDefault();
     dispatch(getPets());
   };
-  //PAGINADO////
-  const pg = 10;
-  const [curren, setcurren] = useState(1);
-  const [maxPageLimit, setMaxPageLimit] = useState(5);
-  const [minPageLimit, setMinPageLimit] = useState(0);
-
-  //movimiento del puntero
-  const ultimo = curren * pg;
-  const primero = ultimo - pg;
-  const pet = pets.length ? pets.slice(primero, ultimo) : [];
+ 
 
   useEffect(() => {
     dispatch(getPets());
-    dispatch(getper());
-    setcurren(1);
   }, [dispatch]);
 
-  const Page = (pageNumber) => {
-    setcurren(pageNumber);
-  };
-  const onPrevClick = () => {
-    if ((curren - 1) % pg === 0) {
-      setMaxPageLimit(maxPageLimit - pg);
-      setMinPageLimit(minPageLimit - pg);
-    }
-    setcurren((prev) => prev - 1);
-  };
-  const onNextClick = () => {
-    if (curren + 1 > maxPageLimit) {
-      setMaxPageLimit(maxPageLimit + pg);
-      setMinPageLimit(minPageLimit + pg);
-    }
-    setcurren((prev) => prev + 1);
-  };
+
+
   // const typeFilter = (e) => {
   //   e.preventDefault();
   //   let { id, value } = e.target;
@@ -209,7 +181,7 @@ export default function PetAdoption() {
         {/* ----------------------------------------------------------------------- */}
         <div className={styles.big_container}>
           <div className={styles.posts_Container}></div>
-          {pet?.map((mascota) => {
+          {pets?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
                 <Image
@@ -231,21 +203,6 @@ export default function PetAdoption() {
           <div />
         </div>
       </div>
-      <div className={styles.paging}>
-        <Pagina
-          pets={pets}
-          pg={pg}
-          page={Page}
-          onPrevClick={onPrevClick}
-          onNextClick={onNextClick}
-          curren={curren}
-          maxPageLimit={maxPageLimit}
-          minPageLimit={minPageLimit}
-          setMaxPageLimit={setMaxPageLimit}
-          setMinPageLimit={setMinPageLimit}
-        />
-      </div>
-
       {/* <Link href={`/detail/${pets._id}`}>
         <h1>Ver mascota</h1>
       </Link> */}

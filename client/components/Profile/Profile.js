@@ -4,9 +4,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import style from "./styles.module.css";
 import styles from "./Loading.module.css";
+import Favorites from "..//..//pages/favorites/index"
 
 export default function Perfil() {
   const { isLoading, user } = useUser();
+  const Use = "63bc80eaae370a0013940854";
   const imgAux =
     "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
   return (
@@ -51,6 +53,14 @@ export default function Perfil() {
                 <button className={style.button}>
                   <Link href={"/adoptionForm"}>
                     <b>Postea una adopción</b>
+                  </Link>
+                </button>
+                <button className={style.button}>
+                <Link href={{
+            pathname: '/favorites',
+            query: { id: `${Use}` },
+          }} >
+                    <b>Mis favoritos</b>
                   </Link>
                 </button>
                 {/* <button className={style.button}>
