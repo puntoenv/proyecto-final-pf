@@ -1,21 +1,21 @@
 import React from "react";
-import Image from "next/image";
-import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
 import style from "./styles.module.css";
 import styles from "./Loading.module.css";
 
-export default function Perfil() {
-  const { isLoading, user } = useUser();
+export default function Perfil({user, isLoading}) {
+
+
   const imgAux =
     "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
+
+
   return (
     <div className={style.mainContainer}>
       {isLoading && (
         <div className={styles.container}>
-          <div className={styles.loader}>
-          </div>
-            <p>Loading...</p>
+          <div className={styles.loader}></div>
+          <p>Loading...</p>
         </div>
       )}
       {user && (
@@ -71,3 +71,4 @@ export default function Perfil() {
     </div>
   );
 }
+

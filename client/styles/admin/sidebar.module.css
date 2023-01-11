@@ -1,0 +1,5 @@
+.activeLink{
+    display: flex;
+    justify-items: center;
+    gap: 5em;
+}
