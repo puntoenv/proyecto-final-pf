@@ -24,7 +24,9 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.6.1",
     "react-slick": "^0.29.0",
+    "sass": "^1.57.1",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.6.16",
     "swiper": "^8.4.5",
     "url": "^0.11.0"
   },

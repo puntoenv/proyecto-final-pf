@@ -3,7 +3,6 @@ const Pet = require("../../models/Pet");
 const detail = express.Router();
 
 detail.get("/detail/:id", async (req, res) => {
-  console.log("entro");
   try {
     let { id } = req.params;
     let detail = await Pet.findOne({ _id: id, hidden: false });

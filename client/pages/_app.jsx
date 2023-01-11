@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import "../styles/NavBar/NavBar.css";
 import "../styles/NavBar/DashBoardUser.css";
 import axios from 'axios'
-axios.defaults.baseURL = "https://proyecto-final-pf-production.up.railway.app/";
+axios.defaults.baseURL = "http://localhost:3001/";
 
 const clientId = process.env.AUHT0_CLIENT_ID;
 
