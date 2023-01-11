@@ -21,15 +21,9 @@ const Join = () => {
 
         <Image className={styles.cat} src={Cat} width="auto" height="auto" />
       </div>
-      <div>
-        {" "}
-        <Image
-          className={styles.gif}
-          src={Gif}
-          width="auto"
-          height="auto"
-        />{" "}
-      </div>{" "}
+      <div className={styles.divGif}>
+        <Image className={styles.gif} src={Gif} width="auto" height="auto" />
+      </div>
     </>
   );
 };

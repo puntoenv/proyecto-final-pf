@@ -31,8 +31,6 @@ export default function Detail({ data }) {
         <div className={styles.containCardDetail}>
           <img
             className={styles.image}
-            width="500"
-            height="400"
             src={data.image}
             alt="Imagen de la mascota"
           />
@@ -79,15 +77,14 @@ export default function Detail({ data }) {
 
         <div className={styles.divDescription}>
           <h3 className={styles.titleDescription}>Descripición</h3>
-          <p className={styles.description}>
-            {data.description}
-          </p>
+          <p className={styles.description}>{data.description}</p>
         </div>
       </div>
       <Footer />
     </div>
   );
 }
+
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
