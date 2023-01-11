@@ -33,6 +33,6 @@ router.use(
   detailProduct
 );
 router.use("/updateProduct", updateProduct);
-router.use("/FilteredProducts", filterP);
+router.use("/products-filters", filterP);
 
 module.exports = router;
