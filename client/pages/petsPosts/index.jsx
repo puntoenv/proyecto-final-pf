@@ -1,60 +1,69 @@
 import Link from "next/link";
 import { useState } from "react";
-import {
-  getPets,
-  searchPet,
-  getper,
-  filterPets,
-  filterBack,
-} from "../../stores/actions";
+import { getPets, searchPet, getper } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// FILTERS----------------
-import { handlerOnChange } from "../../controller/filtersPets.js";
 import Layout from "../layout.js";
 import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import Footer from "../../components/Footer/footer";
-const ages = [];
-for (let i = 0; i <= 40; i++) {
-  ages.push(i);
-}
+
 export default function PetAdoption() {
-  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
+  const data = useSelector((state) => state.mascotas.data);
+  const paging = [];
+  const ages = [];
+  for (let i = 0; i <= 40; i++) {
+    ages.push(i);
+  }
+  for (let i = 1; i <= data.pages; i++) {
+    paging.push(i);
+  }
 
   const handlerSearch = (e) => {
     dispatch(searchPet(e.target.value));
-    if (pets.length === 0) e.target.value = "";
   };
+
   const handlerTodas = (e) => {
     e.preventDefault();
-    dispatch(getPets());
+    dispatch(getPets(1));
   };
- 
 
   useEffect(() => {
-    dispatch(getPets());
+    dispatch(getPets(1));
+    dispatch(getper());
   }, [dispatch]);
 
-
-
-  // const typeFilter = (e) => {
-  //   e.preventDefault();
-  //   let { id, value } = e.target;
-  //   if (id == "age") {
-  //     let params = { id, value: parseInt(value) };
-  //     dispatch(filterPets(params));
-  //   } else {
-  //     let params = { id, value };
-  //     dispatch(filterPets(params));
-  //   }
-  //   console.log(typeof value);
-  // };
+  const handlerPage = (e) => {
+    e.preventDefault();
+    let { value } = e.target;
+    if (value === "next" && data.page !== data.pages) {
+      let next = data.page + 1;
+      if (filter) {
+        dispatch(getPets(next, filter));
+      } else {
+        dispatch(getPets(next));
+      }
+    } else if (value === "prev" && data.page !== 1) {
+      let prev = data.page - 1;
+      if (filter) {
+        dispatch(getPets(prev, filter));
+      } else {
+        dispatch(getPets(prev));
+      }
+    } else if (value !== "next" && value !== "prev") {
+      if (filter) {
+        dispatch(getPets(value, filter));
+      } else {
+        dispatch(getPets(value));
+        console.log(value);
+      }
+    }
+  };
 
   const handlerFilter = (e) => {
     e.preventDefault();
@@ -64,8 +73,9 @@ export default function PetAdoption() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    dispatch(filterBack(filter));
-    return console.log(filter);
+    dispatch(getPets(1, filter));
+    console.log(filter);
+    return setFilter({});
   };
 
   return (
@@ -81,7 +91,6 @@ export default function PetAdoption() {
           height="auto"
         />
       </Link>
-
       <div className={styles.search}>
         <input
           className={styles.input}
@@ -89,13 +98,7 @@ export default function PetAdoption() {
           placeholder="Buscar..."
           onChange={handlerSearch}
         />
-        {/* <button className={styles.searchB} onClick={handlerSearch}>
-          Buscar
-        </button> */}
       </div>
-
-      {/* ----------------------------------FILTROS------------------------------------ */}
-
       <div className={styles.container2}>
         <form className={styles.form} onChange={(e) => handlerFilter(e)}>
           <div>
@@ -130,7 +133,6 @@ export default function PetAdoption() {
               Tortuga
             </option>
           </select>
-
           <h1 className={styles.title}>Tamaño</h1>
           <select className={styles.select} id="size">
             <option className={styles.option} value="tamaño">
@@ -146,7 +148,6 @@ export default function PetAdoption() {
               Grande
             </option>
           </select>
-
           <h1 className={styles.title}>Género</h1>
           <select className={styles.select} id="gender">
             <option className={styles.option} value="genero">
@@ -159,7 +160,6 @@ export default function PetAdoption() {
               Hembra
             </option>
           </select>
-
           <h1 className={styles.title}>Edades</h1>
           <select id="age" className={styles.select}>
             <option className={styles.option} defaultValue={true} value="">
@@ -177,11 +177,9 @@ export default function PetAdoption() {
             onClick={(e) => handlerSubmit(e)}
           />
         </form>
-
-        {/* ----------------------------------------------------------------------- */}
         <div className={styles.big_container}>
           <div className={styles.posts_Container}></div>
-          {pets?.map((mascota) => {
+          {pets.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
                 <Image
@@ -203,12 +201,19 @@ export default function PetAdoption() {
           <div />
         </div>
       </div>
-      {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-
+      <div className={styles.paging}>
+        <input type="button" value="prev" onClick={(e) => handlerPage(e)} />
+        {paging.map((page) => (
+          <input
+            type="button"
+            value={page}
+            key={page}
+            onClick={(e) => handlerPage(e)}
+          />
+        ))}
+        <input type="button" value="next" onClick={(e) => handlerPage(e)} />
+      </div>
       <Footer />
-      {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
     </div>
   );
 }
