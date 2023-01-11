@@ -1,5 +1,5 @@
-const { number } = require("joi");
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 const Schema = mongoose.Schema;
 
 const petSchema = new Schema({
@@ -37,9 +37,9 @@ const petSchema = new Schema({
     type: Object,
     required: true,
   },
-
+  castrated: String,
   health: String,
-  condition: String,
+  pregnant: String,
   sociability: String,
   user: [
     {
@@ -48,7 +48,9 @@ const petSchema = new Schema({
     },
   ],
   hidden: { type: Boolean, default: false },
-  expireAt: { type: Date, expires: 5.184 * 1000 },
+  createdAt: { type: Date, default: Date.now },
 });
+
+petSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Pet", petSchema);

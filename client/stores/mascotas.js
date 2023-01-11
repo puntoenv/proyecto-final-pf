@@ -5,12 +5,17 @@ export const mascotasSlice = createSlice({
   initialState: {
     mascotas: [],
     filtered: [],
-    pets: [],
+    data: {},
   },
   reducers: {
     getMascotas: (state, action) => {
-      state.mascotas = action.payload;
+      state.mascotas = action.payload.docs;
+      state.data = {
+        pages: action.payload.totalPages,
+        page: action.payload.page,
+      };
       if (state.mascotas.length === 0) {
+        state.pages = 0;
         alert("No hay mascotas.");
       }
     },
@@ -23,9 +28,10 @@ export const mascotasSlice = createSlice({
     //   }
     // },
     backFilter: (state, action) => {
+      console.log(action.payload);
       action.payload.length === 0
         ? alert("No hay mascotas con esas características")
-        : (state.mascotas = action.payload);
+        : (state.mascotas = action.payload.docs);
     },
   },
 });

@@ -194,7 +194,7 @@
 
 .paging {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin-bottom: 1rem;
   margin-left: 18rem;
