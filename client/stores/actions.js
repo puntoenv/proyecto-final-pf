@@ -1,7 +1,10 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getMascotas } from "./mascotas";
+import { getUserId } from "./User";
+
 import Swal from "sweetalert2/dist/sweetalert2.js";
+
 import "sweetalert2/src/sweetalert2.scss";
 
 export const getper = () => async (dispatch) => {
@@ -75,20 +78,28 @@ export const PostAdop = (post) => {
   );
 };
 
-export const postUser = (payload) => {
-  // return async function(dispatch){
-  //     const response = await axios('http://localhost:3001/cards')
-  //     return dispatch({type: GET_ALL_DOGS, payload: response.data})
-  // }
-  return async function () {
-    try {
-      console.log(payload);
-      const response = await axios.post("/auth/register", payload);
-      return response;
-    } catch (err) {
-      return err.response;
-    }
-  };
+// export const postUser = (payload) => {
+//   // return async function(dispatch){
+//   //     const response = await axios('http://localhost:3001/cards')
+//   //     return dispatch({type: GET_ALL_DOGS, payload: response.data})
+//   // }
+
+//   return async function () {
+//     try {
+//       console.log(payload);
+//       const response = await axios.post("/auth/register", payload);
+//       return response;
+//     } catch (err) {
+//       return err.response;
+//     }
+//   };
+// };
+
+export const getUserById = (id) => async (dispatch) => {
+  await axios.get(`/user/${id}`).then((res) => {
+    console.log(res.data);
+    dispatch(getUserId(res.data));
+  });
 };
 
 export const GetUs = () => async (dispatch) => {
