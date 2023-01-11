@@ -4,6 +4,7 @@ const postPet = Router();
 const cloudinary = require("../../../cloud.js");
 
 postPet.post("/post-pet", async (req, res) => {
+  console.log(req.body);
   try {
     let {
       name,
@@ -15,11 +16,11 @@ postPet.post("/post-pet", async (req, res) => {
       gender,
       location,
       health,
-      pregnant,
       sociability,
-      castrated,
+      condition,
       userId,
     } = req.body;
+
     const result = await cloudinary.uploader.upload(image);
     let pet = await Pet.create({
       name,
@@ -31,14 +32,15 @@ postPet.post("/post-pet", async (req, res) => {
       location,
       gender,
       health,
-      pregnant,
+      condition,
       sociability,
-      castrated,
       userId,
+      expireAt: new Date(),
     });
+
     res.status(200).send(pet._id);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).send("Error al publicar la mascota ");
   }
 });

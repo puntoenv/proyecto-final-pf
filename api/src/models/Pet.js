@@ -1,3 +1,4 @@
+const { number } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -36,9 +37,9 @@ const petSchema = new Schema({
     type: Object,
     required: true,
   },
-  castrated: String,
+
   health: String,
-  pregnant: String,
+  condition: String,
   sociability: String,
   user: [
     {
@@ -47,7 +48,7 @@ const petSchema = new Schema({
     },
   ],
   hidden: { type: Boolean, default: false },
-  createdAt: new Date(),
+  expireAt: { type: Date, expires: 5.184 * 1000 },
 });
 
 module.exports = mongoose.model("Pet", petSchema);

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/footer";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -29,16 +30,16 @@ export function form(props) {
         value.length > 150 ||
         !value.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") ||
         !/([A-Z])\w+/g.test(value)
-          ? "Se requiere un nombre empiece con mayuscula que solo contenga letras tenga mas de 3 caracteres y no mas de 150."
+          ? "El nombre debe iniciar con mayuscula y solo puede contener letras."
           : null;
     } else if (name === "size") {
       errors.size = !value
-        ? "Se requiere que se brinde el tamaño de la mascota."
+        ? "Por favor, brinde el tamaño de la mascota."
         : null;
     } else if (name === "description") {
       errors.description =
         !value || value.length < 15 || value.length > 250
-          ? "Se requiere una descripcion de minimo 15 caracteres y no mas de 250"
+          ? "Se requiere una descripcion mín. 15 caracteres / máx. 250 caracteres."
           : null;
     } else if (name === "image") {
       errors.image = !value
@@ -47,27 +48,39 @@ export function form(props) {
     } else if (name === "type") {
       errors.type =
         !value || value === "select"
-          ? "Se requiere que se especifique la especie de la mascota."
+          ? "Por favor, especifique la especie de la mascota."
           : null;
     } else if (name === "provincia") {
       errors.provincia =
         !value || value === "select"
-          ? "Se requiere que se brinde la provincia de la mascota."
+          ? "Por favor, brinde la provincia de la mascota."
           : null;
-    } else if (name === "municipio") {
-      errors.municipio =
+    } else if (name === "ciudad") {
+      errors.ciudad =
         !value || value === "select"
-          ? "Se requiere que se brinde el municipio de la mascota."
+          ? "Por favor, brinde el ciudad de la mascota."
           : null;
     } else if (name === "gender") {
       errors.gender = !value
-        ? "Se requiere que se brinde el genero de la mascota."
+        ? "Por favor, brinde el genero de la mascota."
         : null;
     } else if (name === "age") {
       errors.age =
         !value || value < 0 || value > 40
-          ? "Se requiere que se especifique la edad de la mascota no mayor a 40 años."
+          ? "Por favor, especifique edad de la mascota (no mayor a 40 años)."
           : null;
+    } else if (name === "health") {
+      errors.health = !value
+        ? "Por favor, especifique el estado de salud de la mascota"
+        : null;
+    } else if (name === "sociability") {
+      errors.sociability = !value
+        ? "Por favor, indique la sociabilidad de la mascota"
+        : null;
+    } else if (name === "condition") {
+      errors.condition = !value
+        ? "Por favor, indique la condición de la mascota"
+        : null;
     } else {
       setError(null);
     }
@@ -76,20 +89,23 @@ export function form(props) {
   useEffect(() => {
     dispatch(getper()).then((_) => console.log(provi));
   }, [dispatch]);
+
   const handleSelector = (e) => {
     const { name, value } = e.target;
+
     setPost({
       ...post,
       [name]: value,
     });
+    console.log(post);
   };
-  const handleNumber = (e) => {
-    const { value } = e.target;
-    setPost({
-      ...post,
-      age: value,
-    });
-  };
+  // const handleNumber = (e) => {
+  //   const { value } = e.target;
+  //   setPost({
+  //     ...post,
+  //     age: value,
+  //   });
+  // };
   const handleProvincia = (e) => {
     const { value } = e.target;
     dispatch(getmuni(value));
@@ -100,7 +116,7 @@ export function form(props) {
       },
     });
   };
-  const handleMunicipio = (e) => {
+  const handleCiudad = (e) => {
     const { value } = e.target;
     setPost({
       ...post,
@@ -126,6 +142,7 @@ export function form(props) {
     console.log(post);
     return PostAdop(post).then((id) => router.push(`/detail/${id}`));
   };
+
   return (
     <>
       {isLoading && <h1>Loading...</h1>}
@@ -205,7 +222,7 @@ export function form(props) {
                   className={styles.input}
                   onChange={(e) => {
                     validation(e);
-                    handleNumber(e);
+                    handleSelector(e);
                   }}
                 >
                   <option defaultValue={true} value="">
@@ -240,9 +257,165 @@ export function form(props) {
                   <option value="ave">Ave</option>
                   <option value="pez">Pez</option>
                   <option value="tortuga">Tortuga</option>
-                  <option value="desconocida">Desconocida</option>
+                  <option value="otra">otra</option>
                 </select>
               </label>
+
+              <label htmlFor="health" className={styles.health}>
+                Salud
+                {/* <span className={styles.errors}>{errors.health}</span> */}
+                <div className={styles.radio}>
+                  <label classNamee={styles.label} htmlFor="good">
+                    <input
+                      classNamee={styles.input}
+                      type="radio"
+                      value="good"
+                      id="good"
+                      name="health"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Buena
+                  </label>
+                  <div className={styles.check}></div>
+                  <label classNamee={styles.label} htmlFor="needy">
+                    <input
+                      classNamee={styles.input}
+                      type="radio"
+                      value="needy"
+                      id="needy"
+                      name="health"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Necesita atención
+                  </label>
+                  <div className={styles.check}></div>
+                  <label classNamee={styles.label} htmlFor="unknown">
+                    <input
+                      classNamee={styles.input}
+                      type="radio"
+                      value="unknown"
+                      id="unknown"
+                      name="health"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Desconozco
+                  </label>
+                  <div className={styles.check}></div>
+                </div>
+              </label>
+
+              <label htmlFor="condition" className={styles.condition}>
+                Condición
+                <div className={styles.radio}>
+                  <label htmlFor="pregnant">
+                    <input
+                      type="radio"
+                      value="pregnant"
+                      id="pregnant"
+                      name="condition"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Embarazada
+                  </label>
+                  <label htmlFor="castrated">
+                    <input
+                      type="radio"
+                      value="castrated"
+                      id="castrated"
+                      name="condition"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Castrado/a
+                  </label>
+                  <label htmlFor="_unknown">
+                    <input
+                      type="radio"
+                      value="_unknown"
+                      id="_unknown"
+                      name="condition"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Desconozco
+                  </label>
+                </div>
+              </label>
+
+              <label htmlFor="sociability" className={styles.sociability}>
+                ¿Cómo es su interacción con otros animales?
+                <div className={styles.radio}>
+                  <label htmlFor="_good">
+                    <input
+                      type="radio"
+                      value="_good"
+                      id="_good"
+                      name="sociability"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Buena
+                  </label>
+                  <label htmlFor="normal">
+                    <input
+                      type="radio"
+                      value="normal"
+                      id="normal"
+                      name="sociability"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Normal
+                  </label>
+                  <label htmlFor="bad">
+                    <input
+                      type="radio"
+                      value="bad"
+                      id="bad"
+                      name="sociability"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Mala
+                  </label>
+                  <label htmlFor="__unknown">
+                    <input
+                      type="radio"
+                      value="__unknown"
+                      id="__unknown"
+                      name="sociability"
+                      onChange={(e) => {
+                        validation(e);
+                        handleSelector(e);
+                      }}
+                    />
+                    Desconozco
+                  </label>
+                </div>
+              </label>
+
               <label className={styles.stretch}>
                 Ubicación:
                 <label htmlFor="provincia" className={styles.stretch}>
@@ -267,16 +440,16 @@ export function form(props) {
                     ))}
                   </select>
                 </label>
-                <label htmlFor="municipio" className={styles.stretch}>
+                <label htmlFor="ciudad" className={styles.stretch}>
                   <span className={styles.title}>Ciudad</span>
-                  <span className={styles.errors}>{errors.municipio}</span>
+                  <span className={styles.errors}>{errors.ciudad}</span>
                   <select
                     className={styles.input}
-                    id="municipio"
-                    name="municipio"
+                    id="ciudad"
+                    name="ciudad"
                     onChange={(e) => {
                       validation(e);
-                      handleMunicipio(e);
+                      handleCiudad(e);
                     }}
                   >
                     <option defaultValue={true} value="select">
@@ -322,6 +495,7 @@ export function form(props) {
                   </label>
                 </div>
               </label>
+
               <label htmlFor="description" className={styles.stretch}>
                 Descripción:
                 <span className={styles.errors}>{errors.description}</span>
@@ -338,6 +512,7 @@ export function form(props) {
                   }}
                 />
               </label>
+
               <label htmlFor="image" className={styles.stretch}>
                 Imagen:
                 <span className={styles.errors}>{errors.image}</span>
@@ -372,21 +547,26 @@ export function form(props) {
                   errors.description !== null ||
                   errors.size !== null ||
                   errors.gender !== null ||
-                  errors.municipio !== null ||
+                  errors.ciudad !== null ||
                   errors.provincia !== null ||
                   errors.type !== null ||
-                  errors.image !== null
+                  errors.image !== null ||
+                  errors.health !== null ||
+                  errors.sociability !== null ||
+                  errors.condition !== null
                 }
               />
             </form>
           </div>
         </>
       )}
+      <Footer />
     </>
   );
 }
 
 export default withPageAuthRequired(form, {
   onRedirecting: () => <h1>Loading...</h1>,
-  onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
+  
+   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
