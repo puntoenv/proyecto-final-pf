@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
-const withImages = require("next-images");
-
 const nextConfig = {
   // reactStrictMode: true,
-
   images: {
     domains: [
       "res.cloudinary.com",
@@ -14,7 +11,7 @@ const nextConfig = {
       "random.imagecdn.app",
       "gfycat.com",
       "lh3.googleusercontent.com",
-      's.gravatar.com'
+      "s.gravatar.com",
     ],
 
     remotePatterns: [
@@ -28,4 +25,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {nextConfig, withImages}
+module.exports = nextConfig;

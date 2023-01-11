@@ -269,7 +269,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="good"
+                      value="buena"
                       id="good"
                       name="health"
                       onChange={(e) => {
@@ -284,7 +284,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="needy"
+                      value="necesita atención"
                       id="needy"
                       name="health"
                       onChange={(e) => {
@@ -299,7 +299,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="unknown"
+                      value="desconocida"
                       id="unknown"
                       name="health"
                       onChange={(e) => {
@@ -319,7 +319,7 @@ export function form(props) {
                   <label htmlFor="pregnant">
                     <input
                       type="radio"
-                      value="pregnant"
+                      value="embarazada"
                       id="pregnant"
                       name="condition"
                       onChange={(e) => {
@@ -332,7 +332,7 @@ export function form(props) {
                   <label htmlFor="castrated">
                     <input
                       type="radio"
-                      value="castrated"
+                      value="castrado/a"
                       id="castrated"
                       name="condition"
                       onChange={(e) => {
@@ -345,7 +345,7 @@ export function form(props) {
                   <label htmlFor="_unknown">
                     <input
                       type="radio"
-                      value="_unknown"
+                      value="desconocida"
                       id="_unknown"
                       name="condition"
                       onChange={(e) => {
@@ -364,7 +364,7 @@ export function form(props) {
                   <label htmlFor="_good">
                     <input
                       type="radio"
-                      value="_good"
+                      value="buena"
                       id="_good"
                       name="sociability"
                       onChange={(e) => {
@@ -390,7 +390,7 @@ export function form(props) {
                   <label htmlFor="bad">
                     <input
                       type="radio"
-                      value="bad"
+                      value="mala"
                       id="bad"
                       name="sociability"
                       onChange={(e) => {
@@ -403,7 +403,7 @@ export function form(props) {
                   <label htmlFor="__unknown">
                     <input
                       type="radio"
-                      value="__unknown"
+                      value="desconocida"
                       id="__unknown"
                       name="sociability"
                       onChange={(e) => {
@@ -567,6 +567,6 @@ export function form(props) {
 
 export default withPageAuthRequired(form, {
   onRedirecting: () => <h1>Loading...</h1>,
-  
-   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
+
+  onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
