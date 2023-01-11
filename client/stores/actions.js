@@ -1,6 +1,7 @@
 import axios from "axios";
 import url from "url";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
+import { getAllProducts, addProductCart } from "./products";
 import { backFilter, getMascotas, petsFilter } from "./mascotas";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 
@@ -126,6 +127,16 @@ export const searchPet = (pet) => async (dispatch) => {
   }
 };
 
+export const searchProduct = (product) => async (dispatch) => {
+  try {
+    const productoEncontrado = await axios(
+      `http://localhost:3001/products/by-name?name=${product}`
+    );
+    dispatch(getAllProducts(productoEncontrado.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));
 // };
@@ -135,4 +146,21 @@ export const filterBack = (filters) => (dispatch) => {
   return axios(`/pets?${params}`)
     .then((res) => res.data)
     .then((data) => dispatch(backFilter(data)));
+};
+
+export const getProducts = () => async (dispatch) => {
+  try {
+    let products = await axios("http://localhost:3001/products");
+    dispatch(getAllProducts(products.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addCart = (id) => async (dispatch) => {
+  try {
+    dispatch(addProductCart(id));
+  } catch (error) {
+    console.error(error);
+  }
 };
