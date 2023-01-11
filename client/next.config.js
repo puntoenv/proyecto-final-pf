@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
-const withImages = require("next-images");
-
 const nextConfig = {
   // reactStrictMode: true,
-
   images: {
     domains: [
       "res.cloudinary.com",
@@ -29,4 +26,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {nextConfig, withImages}
+module.exports = nextConfig
