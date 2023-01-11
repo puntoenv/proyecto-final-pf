@@ -2,20 +2,16 @@ const { Router } = require("express");
 const allPets = Router();
 const Pet = require("../../models/Pet");
 
-allPets.get("/:id", async (req, res) => {
+allPets.get("/", async (req, res) => {
   try {
-    let { id } = req.params;
-    let { query } = req;
-    let data = {};
-    if (query) {
-      data = await Pet.paginate(query, { page: id, limit: 10 });
+    let pets = [];
+    if (req.query) {
+      pets = await Pet.find(req.query);
     } else {
-      data = await Pet.paginate({}, { page: id, limit: 10 });
+      pets = await Pet.find({ hidden: false });
     }
-    console.log(data);
-    res.send(data);
+    res.send(pets);
   } catch (error) {
-    console.log(error);
     res.status(400).send({ error: error.message });
   }
 });

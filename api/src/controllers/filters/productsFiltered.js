@@ -1,34 +1,27 @@
 const Product = require("../../models/Product.js");
 
-const productsFiltered = async ({ rangePrice, category }) => {
-  const { minPrice, maxPrice } = rangePrice;
+const productsFiltered = async (name,category,stock) => {
 
-  const categories = category.map((categ) => ({ category: categ }));
 
-  if (minPrice && maxPrice && categories.length) {
-    const leakedProducts = await Product.find({
-      $and: [
-        { price: { $gte: minPrice, $lte: maxPrice } },
-        {
-          $or: categories,
-        },
-      ],
-    });
-
-    return leakedProducts;
-  } else if (minPrice && maxPrice) {
-    const leakedProducts = await Product.find({
-      price: { $gte: minPrice, $lte: maxPrice },
-    });
-
-    return leakedProducts;
-  } else if (categories.length) {
-    const leakedProducts = await Product.find({
-      $or: categories,
-    });
-
-    return leakedProducts;
-  }
-};
+  let productFiltered = [];
+  let Products = await Product.find();
+  let ProductsF = Products
+if (name) {
+  productFiltered = ProductsF.filter(e => e.name.toLowerCase()=== name.toLowerCase());
+  ProductsF=productFiltered;
+  return productFiltered;
+}
+if (category) {
+  productFiltered = ProductsF.map(e => e.category.name.filter(e => e.name.toLowerCase()=== name.toLowerCase()));
+  ProductsF=productFiltered;
+  return productFiltered;
+}
+if (stock>0) {
+  productFiltered = ProductsF.filter(e => e.stock > 0);
+  ProductsF=productFiltered;
+  return productFiltered;
+}
+return [];
+}
 
 module.exports = productsFiltered;

@@ -13,6 +13,7 @@ const getAllProducts = require("./routes/products/e-shop");
 const updateProduct = require("./routes/products/updateProduct");
 const filterP = require("./routes/products/getFilteredProducts");
 const detailProduct = require("./routes/products/detailProduct");
+const allUsers = require("./routes/users/allUsers")
 
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
@@ -21,6 +22,7 @@ router.use("/pets", allPets);
 router.use("/pets", detail);
 router.use("/pets", postPet);
 router.use("/auth", routeAuth);
+router.use("/users", allUsers)
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 
@@ -33,6 +35,6 @@ router.use(
   detailProduct
 );
 router.use("/updateProduct", updateProduct);
-router.use("/products-filters", filterP);
+router.use("/FilteredProducts", filterP);
 
 module.exports = router;
