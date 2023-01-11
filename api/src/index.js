@@ -13,7 +13,7 @@ const getAllProducts = require("./routes/products/e-shop");
 const updateProduct = require("./routes/products/updateProduct");
 const filterP = require("./routes/products/getFilteredProducts");
 const detailProduct = require("./routes/products/detailProduct");
-
+const productsByName = require("./routes/products/getByName")
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 router.use("/pets", petsByName);
@@ -30,7 +30,8 @@ router.use(
   postproducts,
   getAllProducts,
   buyProduct,
-  detailProduct
+  detailProduct,
+  productsByName
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
