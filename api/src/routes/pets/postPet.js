@@ -45,7 +45,7 @@ postPet.post("/post-pet", async (req, res) => {
       from: "littlePaws0508@gmail.com",
       to: `${user.email}`,
       subject: "Correo de confirmación",
-      text: `Usted ha publicado una mascota llamada ${name}`,
+      text: `Usted ha publicado una mascota llamada ${name}.`,
     });
     console.log(info);
     res.status(200).send(pet._id);
