@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useState } from "react";
 import { getProducts, searchProduct, addCart } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,13 +9,9 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
-import axios from "axios";
+/* import axios from "axios"; */
 
-export default function eShop(/* { productsEshop } */ { addToCart, cart }) {
-  /* useEffect(() => {
-    const carrito = JSON.parse(localStorage.getItem("cart" || "[]"));
-    setCart(carrito);
-  }, []); */
+export default function eShop(/* { productsEshop } */ { addToCart }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
@@ -25,10 +20,6 @@ export default function eShop(/* { productsEshop } */ { addToCart, cart }) {
     dispatch(getProducts());
   }, [dispatch]);
 
-  /* useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(cart));
-  }, [cart]); */
-
   const handlerTodos = () => {
     dispatch(getProducts());
   };
@@ -36,10 +27,6 @@ export default function eShop(/* { productsEshop } */ { addToCart, cart }) {
     dispatch(searchProduct(e.target.value));
   };
 
-  /* const addToCart = (id) => {
-    let guardarProducto = productos?.find((prod) => prod._id === id);
-    setCart([...cart, guardarProducto]);
-  }; */
   return (
     <div>
       <Layout title="Productos" />
