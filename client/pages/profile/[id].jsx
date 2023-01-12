@@ -10,14 +10,11 @@ function Profile({data, response}) {
 
     const { isLoading, user } = useUser();
 
-    console.log(response);
-
-
   return (
     <>
       <Layout title={"Perfil"}></Layout>
       <NavBar></NavBar>
-      <Perfil data={data} user={user} isLoading={isLoading}></Perfil>
+      <Perfil data={data} response={response} user={user} isLoading={isLoading}></Perfil>
     </>
   );
 }
