@@ -13,6 +13,7 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "s.gravatar.com",
       "i.pinimg.com",
+      "img.freepik.com",
     ],
 
     remotePatterns: [

@@ -19,8 +19,9 @@
 .containCardDetail {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 30px;
+  padding: 30px 5px;
   width: 100%;
 }
 .containFront {
@@ -35,7 +36,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 150px;
+  padding: 30px;
+  grid-column-gap: 30px;
   grid-row-gap: 41px;
 }
 
@@ -87,13 +89,14 @@
 
 .image {
   border-radius: 10px;
-  height: 400px;
+  height: 300px;
   width: auto;
 }
 
 .titleDescription {
   text-align: center;
-  margin: 40px;
+  font-size: 30px;
+  margin: 20px 40px;
 }
 
 .divDescription {
