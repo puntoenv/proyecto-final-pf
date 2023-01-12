@@ -110,23 +110,23 @@ export default function PetAdoption() {
               <option className={styles.option} value="animal">
                 Todos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="conejo">
                 Conejos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
+              <option className={styles.option} value="gato">
+                Gatos
+              </option>
+              <option className={styles.option} value="hamster">
+                Hamsters
               </option>
               <option className={styles.option} value="pez">
                 Peces
               </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
+              <option className={styles.option} value="perro">
+                Perros
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga

@@ -11,8 +11,8 @@ export default function CardProduct({ info, addToCart }) {
       <Image
         className={styles.img}
         src={info.image}
-        width={100}
-        height={100}
+        width="300"
+        height="240"
         alt="imagen de la mascota"
       />
       {info.price ? <p className={styles.size}>Precio: ${info.price}</p> : null}
