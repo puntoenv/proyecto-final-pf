@@ -7,54 +7,25 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import Layout from "../layout.js";
-import {useRouter} from 'next/router';
 
-let mock = [
-  {
-    id: 123,
-    name: "ju",
-    size: "mediano",
-    age: 4,
-    description: "ff",
-    image:
-      "https://images.unsplash.com/photo-1591871937631-2f64059d234f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",
-    type: "aves",
-    location: {
-      provincia: "Misiones",
-      municipio: "Apóstoles",
-    },
-    gender: "masculino",
-  },
-  {
-    id: 124,
-    name: "ju",
-    size: "mediano",
-    age: 4,
-    description: "ff",
-    image:
-      "https://images.unsplash.com/photo-1591871937631-2f64059d234f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80",
-    type: "aves",
-    location: {
-      provincia: "Misiones",
-      municipio: "Apóstoles",
-    },
-    gender: "masculino",
-  },
-];
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
-function index() {
-  const {query} = useRouter();
-  const dispatch = useDispatch();
-  useEffect(()=>{
-   dispatch(GetUs(query.id))
-  })
+function Favorite({response}) {
+const {favorites} =response
+const [fil, setfil] = useState({
+  type:"",
+  size:"",
+  gender:"",
+  age:""
+})
+//console.log(fil)
  const handlerFilter = (e) => {
-   console.log(e.target.value)
-   
+   const {id, value} = e.target
+   id === 'type' ? setfil ({... fil,[id]:value}) : id === 'size' ? setfil ({... fil,[id]:value}) : id === 'gender' ? setfil ({... fil,[id]:value}) : id === 'age' ? setfil ({... fil,[id]:value}) : setfil({... fil})
   }
+ console.log(fil)
   return (
     
     <div>
@@ -156,7 +127,7 @@ function index() {
      
       <div className={styles.big_container}>
          
-          {mock?.map((mascota) => {
+          {favorites?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
                 <Image
@@ -180,4 +151,19 @@ function index() {
   );
 }
 
-export default index;
+export default Favorite;
+export async function getServerSideProps({query}) {
+  try {
+    const response = await (
+      await fetch("http://localhost:3001/user/" + query.id)
+    ).json();
+    return {
+      props: {
+        response,
+      },
+    };
+    
+  } catch (error) {
+    console.log(error);
+  }
+}

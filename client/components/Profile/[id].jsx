@@ -2,15 +2,14 @@ import React from "react";
 import Link from "next/link";
 import style from "./styles.module.css";
 import styles from "./Loading.module.css";
-import Favorites from "..//..//pages/favorites/index"
+import Favorite from '..//../pages/favorites/index'
 
 
 
   
 
-export default function Perfil({user, isLoading}) {
-
-  const Use = "63bc80eaae370a0013940854";
+export default function Perfil({user, isLoading, response}) {
+  const {_id}=response
 
   const imgAux =
     "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
@@ -59,10 +58,10 @@ export default function Perfil({user, isLoading}) {
                     <b>Postea una adopción</b>
                   </Link>
                 </button>
-                <button className={style.button}>
+                <button className={style.button} >
                 <Link href={{
             pathname: '/favorites',
-            query: { id: `${Use}` },
+            query: { id: `${_id}` },
           }} >
                     <b>Mis favoritos</b>
                   </Link>

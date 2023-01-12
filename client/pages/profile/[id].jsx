@@ -17,7 +17,7 @@ function Profile({data, response}) {
     <>
       <Layout title={"Perfil"}></Layout>
       <NavBar></NavBar>
-      <Perfil data={data} user={user} isLoading={isLoading}></Perfil>
+      <Perfil data={data} user={user} isLoading={isLoading} response={response}></Perfil>
     </>
   );
 }

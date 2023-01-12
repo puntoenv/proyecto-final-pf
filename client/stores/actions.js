@@ -99,11 +99,10 @@ export const getUserById = (id) => async (dispatch) => {
 
 };
 
-export const GetUs = (id) => async (dispatch) => {
-  await axios
-    .get(`http://localhost:3001/user/${id}`)
-    .then((res) => dispatch(getuser(res)));
-};
+/*export const GetUs = (id) =>  (dispatch) => {
+
+   fetch(`http://localhost:3001/user/${id}`).then(res => res.json()).then(res => console.log(res))
+};*/
 
 // export const setFilteredPets = (filter) => (dispatch) => {
 //   dispatch(getMascotas(mascotas));
