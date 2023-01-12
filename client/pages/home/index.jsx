@@ -69,9 +69,7 @@ export default function Home() {
               height="auto"
             />
           </div>
-          {/* <div> */}
           <Nosotros />
-          {/* </div> */}
 
           <Slider {...settings}>
             {data.slice(0, 9).map((mascota) => (
