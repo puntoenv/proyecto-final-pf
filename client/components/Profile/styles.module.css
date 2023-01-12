@@ -1,83 +1,189 @@
 .mainContainer {
-    margin-top: 5rem;
-    margin-left: 3rem;
+  margin-top: 2rem;
+  padding: 3rem;
 }
 
-.secondContainer {
-    display: flex;
+.email{
+  color: #034103;
 }
 
-.thirdContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 25rem;
-    width: 15rem;
-    border-radius: 10px;
-    margin-right: 10rem;
-    background-color: #38593a;
+.thirdContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.imageContainer {
-    background-color: antiquewhite;
-    border-radius: 50%;
-    height: 10.3rem;
-    width: 10.3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+.thirdContainer p {
+  color: antiquewhite;
 }
 
 .infoContainer {
-    justify-self: center;
-    width: 60%;
-    padding: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border: 1px solid #034103;
-    border-radius: 18px;
+  width: 80%;
+  padding: 4rem;
+  border: 1px solid #034103;
+  border-radius: 18px;
+  margin: auto;
 }
 
 .buttons {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .button {
-    background-color: antiquewhite;
-    color: #38593a;
-    width: 7rem;
-    height: 3rem;
-    border: 1px solid #38593a;
-    border-radius: 8px;
-    align-self: center;
+  background-color: antiquewhite;
+  color: #38593a;
+  width: 7rem;
+  height: 3rem;
+  border: 1px solid #38593a;
+  border-radius: 8px;
+  align-self: center;
 }
 
 .button:hover {
-    position: relative;
-    background-color: #38593a;
-    color: antiquewhite;
-    border: none;
-    font-size: large;
-    height: 3.2rem;
-    width: 8rem;
+  position: relative;
+  background-color: #38593a;
+  color: antiquewhite;
+  border: none;
+  font-size: large;
+  height: 3.2rem;
+  width: 8rem;
 }
 
 .h1 {
-    margin-bottom: 3rem;
-    font-size: 3.5rem;
+  margin-bottom: 3rem;
+  font-size: 3.5rem;
 }
 
 .link {
-    margin-top: 2rem;
-    margin-left: 4vw;
-    color: #4d614e;
-    border: 1px ;
-    font-size: large;
+  color: #4d614e;
+  font-size: large;
+  text-align: center;
 }
 
-.link:hover{
-    color: #034103;
+.link:hover {
+  color: #034103;
+}
+
+.fourthContainer {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageEdit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  
+}
+
+.formImage {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  margin-right: 2rem;
+  border-radius: 8px;
+}
+
+.form button {
+  border: 3px solid #38593a;
+  background-color: antiquewhite;
+
+}
+
+.form button :hover {
+  background-color: #0e3810;
+  color: antiquewhite;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.image {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+  border: 10px solid #38593a;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+.hiddenInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.mi_archivo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #0e3810;
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 8px 40px;
+  text-transform: uppercase;
+  width: 10rem;
+  height: 3.45rem;
+  text-align: center;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.mi_archivo:hover {
+  background-color: antiquewhite;
+  color: #034103;
+  border: 1px solid #034103;
+  border-radius: 5px;
+}
+
+.emptyDiv {
+  visibility: hidden;
+  height: 4.9rem;
+}
+
+.infoStylesP {
+  margin: 10px;
+  height: 3rem;
+  padding-left: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.insideInfo {
+  width: 20rem;
+  border-radius: 50px;
+}
+
+.pContainer {
+  display: flex;
+  background-color: #584a3caa;
+  border-radius: 50px;
+  height: 3rem;
+  align-items: center;
+}
+
+.p {
+  display: flex;
+  align-items: center;
+  background-color: #38593a88;
+  border-radius: 50px;
+  width: 10rem;
+  height: 3rem;
+  padding-left: 4px;
 }

@@ -1,0 +1,24 @@
+.containLayout {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.mainLayout {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.logo {
+  border-radius: 1em;
+  display: flex;
+  position: fixed;
+  margin-top: -130px;
+  margin-left: 2em;
+  z-index: 4501;
+  width: auto;
+  height: 14em;
+}

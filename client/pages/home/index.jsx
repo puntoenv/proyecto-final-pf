@@ -2,8 +2,6 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
 import Link from "next/link";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
 import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
@@ -18,6 +16,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPets } from "../../stores/actions";
 import React, { Component } from "react";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
 export default function Home() {
   {
@@ -38,8 +37,7 @@ export default function Home() {
     }, []);
 
     return (
-      <>
-        <NavBar />
+      <LayoutGlobal>
         <Layout title="Inicio" />
         <div className={styles.home}>
           <Link href={"/home"} className="logo">
@@ -71,23 +69,23 @@ export default function Home() {
               height="auto"
             />
           </div>
-          <div>
-            <Nosotros />
+          <Nosotros />
+
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {data.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                />
+              ))}
+            </Slider>
           </div>
 
-          <Slider {...settings}>
-            {data.slice(0, 9).map((mascota) => (
-              <PetsCard
-                key={mascota._id}
-                nombre={mascota.name}
-                imagen={mascota.image}
-                genero={mascota.gender}
-              />
-            ))}
-          </Slider>
-
           <div className={styles.containerAdopciones}>
-            <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
+            <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
             <p className={styles.infoAdopcion}>
               Nuestra plataforma permite a los usuarios visualizar todas las
               mascotas disponibles para adopción, como así también filtar las
@@ -99,10 +97,8 @@ export default function Home() {
             </p>
           </div>
           <Join />
-
-          <Footer />
         </div>
-      </>
+      </LayoutGlobal>
     );
   }
 }

@@ -14,13 +14,16 @@ for (let i = 0; i <= 40; i++) {
 }
 
 export function form(props) {
-  const { isLoading } = useUser();
+  const { isLoading, user } = useUser();
+  const idUser = user?.sub.split("|")[1];
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({
+    userId: idUser,
+  });
 
   const validation = (e) => {
     let { value, name } = e.target;
@@ -99,13 +102,6 @@ export function form(props) {
     });
     console.log(post);
   };
-  // const handleNumber = (e) => {
-  //   const { value } = e.target;
-  //   setPost({
-  //     ...post,
-  //     age: value,
-  //   });
-  // };
   const handleProvincia = (e) => {
     const { value } = e.target;
     dispatch(getmuni(value));
@@ -137,10 +133,10 @@ export function form(props) {
       });
     };
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(post);
-    return PostAdop(post).then((id) => router.push(`/detail/${id}`));
+    const id = await PostAdop(post);
+    if (id) return await router.push(`/detail/${id}`);
   };
 
   return (
@@ -269,7 +265,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="good"
+                      value="buena"
                       id="good"
                       name="health"
                       onChange={(e) => {
@@ -284,7 +280,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="needy"
+                      value="necesita atención"
                       id="needy"
                       name="health"
                       onChange={(e) => {
@@ -299,7 +295,7 @@ export function form(props) {
                     <input
                       classNamee={styles.input}
                       type="radio"
-                      value="unknown"
+                      value="desconocida"
                       id="unknown"
                       name="health"
                       onChange={(e) => {
@@ -319,7 +315,7 @@ export function form(props) {
                   <label htmlFor="pregnant">
                     <input
                       type="radio"
-                      value="pregnant"
+                      value="embarazada"
                       id="pregnant"
                       name="condition"
                       onChange={(e) => {
@@ -332,7 +328,7 @@ export function form(props) {
                   <label htmlFor="castrated">
                     <input
                       type="radio"
-                      value="castrated"
+                      value="castrado/a"
                       id="castrated"
                       name="condition"
                       onChange={(e) => {
@@ -345,7 +341,7 @@ export function form(props) {
                   <label htmlFor="_unknown">
                     <input
                       type="radio"
-                      value="_unknown"
+                      value="desconocida"
                       id="_unknown"
                       name="condition"
                       onChange={(e) => {
@@ -364,7 +360,7 @@ export function form(props) {
                   <label htmlFor="_good">
                     <input
                       type="radio"
-                      value="_good"
+                      value="buena"
                       id="_good"
                       name="sociability"
                       onChange={(e) => {
@@ -390,7 +386,7 @@ export function form(props) {
                   <label htmlFor="bad">
                     <input
                       type="radio"
-                      value="bad"
+                      value="mala"
                       id="bad"
                       name="sociability"
                       onChange={(e) => {
@@ -403,7 +399,7 @@ export function form(props) {
                   <label htmlFor="__unknown">
                     <input
                       type="radio"
-                      value="__unknown"
+                      value="desconocida"
                       id="__unknown"
                       name="sociability"
                       onChange={(e) => {
@@ -455,6 +451,7 @@ export function form(props) {
                     <option defaultValue={true} value="select">
                       Seleccione la ciudad...
                     </option>
+                    <option value="Resistencia">Resistencia</option>
                     {munici?.map((el) => (
                       <option key={el.nombre} value={el.nombre}>
                         {el.nombre}
@@ -526,36 +523,47 @@ export function form(props) {
                   }}
                 />
               </label>
-              <label htmlFor="submit"></label>
+              {/* <label htmlFor="email">
+                Email de confirmación de publicación
+              </label>
               <input
-                id="submit"
-                type="submit"
-                value="Subir Mascota"
-                disabled={
-                  !post.age ||
-                  !post.name ||
-                  !post.description ||
-                  !post.location.provincia ||
-                  !post.image ||
-                  !post.size ||
-                  !post.gender ||
-                  !post.type ||
-                  !post.location.municipio ||
-                  /////////////////////////////////////////////////////////
-                  errors.name !== null ||
-                  errors.age !== null ||
-                  errors.description !== null ||
-                  errors.size !== null ||
-                  errors.gender !== null ||
-                  errors.ciudad !== null ||
-                  errors.provincia !== null ||
-                  errors.type !== null ||
-                  errors.image !== null ||
-                  errors.health !== null ||
-                  errors.sociability !== null ||
-                  errors.condition !== null
-                }
-              />
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ingrese el email..."
+                onChange={(e) => handleSelector(e)}
+              /> */}
+              <label htmlFor="submit">
+                <input
+                  id="submit"
+                  type="submit"
+                  value="Subir Mascota"
+                  disabled={
+                    !post.age ||
+                    !post.name ||
+                    !post.description ||
+                    !post.location.provincia ||
+                    !post.image ||
+                    !post.size ||
+                    !post.gender ||
+                    !post.type ||
+                    !post.location.municipio ||
+                    ///////////////////////////////////////////////////
+                    errors.name !== null ||
+                    errors.age !== null ||
+                    errors.description !== null ||
+                    errors.size !== null ||
+                    errors.gender !== null ||
+                    errors.ciudad !== null ||
+                    errors.provincia !== null ||
+                    errors.type !== null ||
+                    errors.image !== null ||
+                    errors.health !== null ||
+                    errors.sociability !== null ||
+                    errors.condition !== null
+                  }
+                />
+              </label>
             </form>
           </div>
         </>
@@ -567,6 +575,6 @@ export function form(props) {
 
 export default withPageAuthRequired(form, {
   onRedirecting: () => <h1>Loading...</h1>,
-  
-   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
+
+  onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });

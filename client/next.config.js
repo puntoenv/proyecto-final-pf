@@ -11,7 +11,8 @@ const nextConfig = {
       "random.imagecdn.app",
       "gfycat.com",
       "lh3.googleusercontent.com",
-      's.gravatar.com',
+      "s.gravatar.com",
+      "i.pinimg.com",
       "img.freepik.com",
     ],
 
@@ -26,4 +27,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;

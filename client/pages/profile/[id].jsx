@@ -3,22 +3,25 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "../../components/Profile/Loading.module.css";
+import style from './style.module.css'
 import Layout from "../layout";
+import {
+  hanldeOnChange,
+  handleOnSubmit,
+} from "../../controller/validationUpdateP";
+
 // import styles from '../styles/profile.module.css'
 
 function Profile({data, response}) {
 
     const { isLoading, user } = useUser();
 
-    console.log(response);
-
-
   return (
-    <>
+    <div className={style.container}>
       <Layout title={"Perfil"}></Layout>
       <NavBar></NavBar>
-      <Perfil data={data} user={user} isLoading={isLoading}></Perfil>
-    </>
+      <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
+    </div>
   );
 }
 

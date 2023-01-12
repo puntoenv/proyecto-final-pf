@@ -10,11 +10,13 @@
   text-align: center;
   z-index: 600;
 }
+
 .containJoin {
   padding: 10px;
   display: flex;
   justify-content: flex-end;
 }
+
 .join {
   display: flex;
   justify-content: center;
@@ -32,9 +34,9 @@
   border-radius: 15px;
   height: 45px;
   width: 150px;
+  margin: 0 auto;
   margin-top: 2em;
   margin-bottom: 85px;
-  margin-left: 67%;
   z-index: 600;
   font-weight: 700;
 }
@@ -50,15 +52,13 @@
 
 .gif {
   margin-left: 15em;
-  margin-top: -47em;
+  margin-top: -37em;
   width: 250px;
-  height: 450px;
+  height: 400px;
 }
 
 .cat {
   width: 10em;
   height: 10em;
   margin-top: -650px;
-
-  /* transform: rotate(4deg); */
 }
