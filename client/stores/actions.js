@@ -108,15 +108,6 @@ export const getUserById = (id) => async (dispatch) => {
 //   dispatch(getMascotas(mascotas));
 // };
 
-export const searchPet = (pet) => async (dispatch) => {
-  try {
-    const petEncontrado = await axios(`/pets/by-name?name=${pet}`);
-    dispatch(getMascotas(petEncontrado.data));
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export const searchProduct = (product) => async (dispatch) => {
   try {
     const productoEncontrado = await axios(
@@ -130,6 +121,19 @@ export const searchProduct = (product) => async (dispatch) => {
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));
 // };
+
+export const searchPet = (pet, page) => async (dispatch) => {
+  try {
+    let petEncontrado = await axios(`/pets/by-name/${page}?name=${pet}`);
+    if (petEncontrado.data.docs.length === 0) {
+      alert("No hay mascotas con ese nombre.");
+      petEncontrado = await axios.get(`/pets/1`);
+    }
+    dispatch(getMascotas(petEncontrado.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export const getPets = (page, filters) => async (dispatch) => {
   try {

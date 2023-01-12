@@ -1,7 +1,9 @@
 const { Router } = require("express");
-const Pet = require("../../models/Pet");
-const postPet = Router();
 const cloudinary = require("../../../cloud.js");
+const Pet = require("../../models/Pet");
+const User = require("../../models/User");
+
+const postPet = Router();
 
 postPet.post("/post-pet", async (req, res) => {
   console.log(req.body);
@@ -21,6 +23,8 @@ postPet.post("/post-pet", async (req, res) => {
       userId,
     } = req.body;
 
+    const user = await User.findById(userId);
+
     const result = await cloudinary.uploader.upload(image);
     let pet = await Pet.create({
       name,
@@ -34,9 +38,13 @@ postPet.post("/post-pet", async (req, res) => {
       health,
       condition,
       sociability,
-      userId,
+      user: user.id,
       expireAt: new Date(),
     });
+
+    user.pets = user.pets.concat(pet.id);
+
+    await user.save();
 
     res.status(200).send(pet._id);
   } catch (error) {

@@ -1,4 +1,6 @@
 import axios from "axios";
+import Router from "next/router";
+
 
 export const validateForm = () => {};
 
@@ -19,9 +21,10 @@ export const handleOnSubmit = async (
   setResult,
   setInput,
   input,
-  idUser
+  idUser,
 ) => {
-  event.preventDefault();
+  event.preventDefault()
+
   try {
     const response = await axios.put(
       `http://localhost:3001/updateProfile/${idUser}`,
@@ -46,6 +49,8 @@ export const handleOnSubmit = async (
         image: "",
         ubication: "",
       });
+
+      Router.reload(window.location.pathname);
     }
   } catch (error) {
     console.log(error);
