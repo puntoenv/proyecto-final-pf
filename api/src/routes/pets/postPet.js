@@ -20,22 +20,10 @@ postPet.post("/post-pet", async (req, res) => {
       health,
       sociability,
       condition,
-      email,
       userId,
     } = req.body;
-
-    let message = {
-      from: "littlePaws0508@gmail.com",
-      to: `${email}`,
-      subject: "Correo de confirmación",
-      text: `Usted ha publicado una mascota llamada ${name}`,
-    };
-
-    const info = await mailer.sendMail(message);
+    let result = await cloudinary.uploader.upload(image);
     const user = await User.findById(userId);
-
-    const result = await cloudinary.uploader.upload(image);
-
     let pet = await Pet.create({
       name,
       size,
@@ -53,8 +41,16 @@ postPet.post("/post-pet", async (req, res) => {
     });
     user.pets = user.pets.concat(pet.id);
     await user.save();
+    let info = await mailer.sendMail({
+      from: "littlePaws0508@gmail.com",
+      to: `${user.email}`,
+      subject: "Correo de confirmación",
+      text: `Usted ha publicado una mascota llamada ${name}`,
+    });
+    console.log(info);
     res.status(200).send(pet._id);
   } catch (error) {
+    console.log(error);
     res.status(400).send("Error al publicar la mascota ");
   }
 });

@@ -523,7 +523,7 @@ export function form(props) {
                   }}
                 />
               </label>
-              <label htmlFor="email">
+              {/* <label htmlFor="email">
                 Email de confirmación de publicación
               </label>
               <input
@@ -532,7 +532,7 @@ export function form(props) {
                 name="email"
                 placeholder="Ingrese el email..."
                 onChange={(e) => handleSelector(e)}
-              />
+              /> */}
               <label htmlFor="submit">
                 <input
                   id="submit"
