@@ -71,16 +71,18 @@ export default function Home() {
           </div>
           <Nosotros />
 
-          <Slider {...settings}>
-            {data.slice(0, 9).map((mascota) => (
-              <PetsCard
-                key={mascota._id}
-                nombre={mascota.name}
-                imagen={mascota.image}
-                genero={mascota.gender}
-              />
-            ))}
-          </Slider>
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {data.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                />
+              ))}
+            </Slider>
+          </div>
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>

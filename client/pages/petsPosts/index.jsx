@@ -10,6 +10,7 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 
 export default function PetAdoption() {
+  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
@@ -24,7 +25,11 @@ export default function PetAdoption() {
   }
 
   const handlerSearch = (e) => {
-    dispatch(searchPet(e.target.value));
+    e.preventDefault();
+    let { value } = e.target;
+    setSearch(value);
+    setFilter({});
+    return dispatch(searchPet(value, 1));
   };
 
   const handlerTodas = (e) => {
@@ -42,20 +47,26 @@ export default function PetAdoption() {
     let { value } = e.target;
     if (value === "next" && data.page !== data.pages) {
       let next = data.page + 1;
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, next));
+      } else if (filter) {
         dispatch(getPets(next, filter));
       } else {
         dispatch(getPets(next));
       }
     } else if (value === "prev" && data.page !== 1) {
       let prev = data.page - 1;
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, prev));
+      } else if (filter) {
         dispatch(getPets(prev, filter));
       } else {
         dispatch(getPets(prev));
       }
     } else if (value !== "next" && value !== "prev") {
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, page));
+      } else if (filter) {
         dispatch(getPets(value, filter));
       } else {
         dispatch(getPets(value));
@@ -67,7 +78,7 @@ export default function PetAdoption() {
   const handlerFilter = (e) => {
     e.preventDefault();
     setFilter({ ...filter, [e.target.id]: e.target.value });
-    return console.log(filter);
+    setSearch("");
   };
 
   const handlerSubmit = (e) => {
@@ -90,14 +101,6 @@ export default function PetAdoption() {
         />
       </Link>
       <div className={styles.containerAllPets}>
-        <div className={styles.search}>
-          <input
-            className={styles.input}
-            type="search"
-            placeholder="Buscar..."
-            onChange={handlerSearch}
-          />
-        </div>
         <div className={styles.container2}>
           <form className={styles.form} onChange={(e) => handlerFilter(e)}>
             <div>
@@ -178,40 +181,57 @@ export default function PetAdoption() {
               onClick={(e) => handlerSubmit(e)}
             />
           </form>
-          <div className={styles.big_container}>
-            <div className={styles.posts_Container}></div>
-            {pets?.map((mascota) => {
-              return (
-                <div key={mascota._id} className={styles.card}>
-                  <Image
-                    className={styles.img}
-                    width="300"
-                    height="240"
-                    src={mascota.image}
-                    alt="image"
-                  />
-                  <h3 className={styles.name}>{mascota.name}</h3>
-                  <span className={styles.size}>{mascota.gender}</span>
-                  <button className={styles.btn}>
-                    <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                  </button>
-                </div>
-              );
-            })}
-            <div />
+          <div className={styles.containerPetsPages}>
+            <div className={styles.search}>
+              <input
+                className={styles.input}
+                type="search"
+                placeholder="Buscar..."
+                onChange={handlerSearch}
+              />
+            </div>
+            <div className={styles.big_container}>
+              {pets?.map((mascota) => {
+                return (
+                  <div key={mascota._id} className={styles.card}>
+                    <Image
+                      className={styles.img}
+                      width="300"
+                      height="240"
+                      src={mascota.image}
+                      alt="image"
+                    />
+                    <h3 className={styles.name}>{mascota.name}</h3>
+                    <span className={styles.size}>{mascota.gender}</span>
+                    <button className={styles.btn}>
+                      <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className={styles.paging}>
+              <input
+                type="button"
+                value="prev"
+                onClick={(e) => handlerPage(e)}
+              />
+              {paging.map((page) => (
+                <input
+                  type="button"
+                  value={page}
+                  key={page}
+                  onClick={(e) => handlerPage(e)}
+                />
+              ))}
+              <input
+                type="button"
+                value="next"
+                onClick={(e) => handlerPage(e)}
+              />
+            </div>
           </div>
-        </div>
-        <div className={styles.paging}>
-          <input type="button" value="prev" onClick={(e) => handlerPage(e)} />
-          {paging.map((page) => (
-            <input
-              type="button"
-              value={page}
-              key={page}
-              onClick={(e) => handlerPage(e)}
-            />
-          ))}
-          <input type="button" value="next" onClick={(e) => handlerPage(e)} />
         </div>
       </div>
     </LayoutGlobal>

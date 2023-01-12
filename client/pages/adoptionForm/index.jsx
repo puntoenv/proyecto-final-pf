@@ -14,13 +14,16 @@ for (let i = 0; i <= 40; i++) {
 }
 
 export function form(props) {
-  const { isLoading } = useUser();
+  const { isLoading, user } = useUser();
+  const idUser = user?.sub.split("|")[1];
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({
+    userId: idUser,
+  });
 
   const validation = (e) => {
     let { value, name } = e.target;
@@ -99,13 +102,6 @@ export function form(props) {
     });
     console.log(post);
   };
-  // const handleNumber = (e) => {
-  //   const { value } = e.target;
-  //   setPost({
-  //     ...post,
-  //     age: value,
-  //   });
-  // };
   const handleProvincia = (e) => {
     const { value } = e.target;
     dispatch(getmuni(value));
@@ -137,10 +133,10 @@ export function form(props) {
       });
     };
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(post);
-    return PostAdop(post).then((id) => router.push(`/detail/${id}`));
+    const id = await PostAdop(post);
+    if (id) return await router.push(`/detail/${id}`);
   };
 
   return (
@@ -455,6 +451,7 @@ export function form(props) {
                     <option defaultValue={true} value="select">
                       Seleccione la ciudad...
                     </option>
+                    <option value="Resistencia">Resistencia</option>
                     {munici?.map((el) => (
                       <option key={el.nombre} value={el.nombre}>
                         {el.nombre}
