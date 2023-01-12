@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { getPets, searchPet, getper } from "../../stores/actions";
+import { getPets, searchPet, getper, sorts } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
@@ -8,6 +8,7 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
+
 
 export default function PetAdoption() {
   const [filter, setFilter] = useState({});
@@ -31,6 +32,11 @@ export default function PetAdoption() {
     e.preventDefault();
     dispatch(getPets(1));
   };
+
+  const handlerSort = (e)=>{ 
+    e.preventDefault();
+    dispatch(sorts(e.target.value)); 
+} 
 
   useEffect(() => {
     dispatch(getPets(1));
@@ -178,6 +184,16 @@ export default function PetAdoption() {
               onClick={(e) => handlerSubmit(e)}
             />
           </form>
+
+
+          <select className="select" onChange={handlerSort}>
+          <option value=" ">Ordenar</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+          </select>
+
+       
+
           <div className={styles.big_container}>
             <div className={styles.posts_Container}></div>
             {pets?.map((mascota) => {

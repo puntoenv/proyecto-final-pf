@@ -15,11 +15,27 @@ export const mascotasSlice = createSlice({
       };
       if (state.mascotas.length === 0) {
         state.pages = 0;
-        alert("No hay mascotas.");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "No hay mascotas",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       }
     },
+    orderPets:(state, action)=>{
+      // console.log(action.payload)
+      
+      if (action.payload === 'asc'){
+        state.mascotas.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+      }else {
+        state.mascotas.sort((a, b)=> a.name > b.name ?  -1 : b.name > a.name ? 1 : 0)
+      }
+      
+    }
   },
 });
 
-export const { getMascotas } = mascotasSlice.actions;
+export const { getMascotas, orderPets } = mascotasSlice.actions;
 export default mascotasSlice.reducer;

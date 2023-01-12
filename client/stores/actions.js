@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getAllProducts, addProductCart } from "./products";
-import { getMascotas } from "./mascotas";
+import { getMascotas, orderPets } from "./mascotas";
 import { getUserId } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -171,3 +171,14 @@ export const addCart = (id) => async (dispatch) => {
     console.error(error);
   }
 };
+
+
+export const sorts=(payload)=> (dispatch)=>{
+  // console.log(payload)
+  return dispatch(orderPets(payload))
+  
+}
+
+// export const filterPets = (params) => (dispatch) => {
+//   return dispatch(petsFilter(params));
+// };
