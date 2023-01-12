@@ -523,36 +523,47 @@ export function form(props) {
                   }}
                 />
               </label>
-              <label htmlFor="submit"></label>
+              {/* <label htmlFor="email">
+                Email de confirmación de publicación
+              </label>
               <input
-                id="submit"
-                type="submit"
-                value="Subir Mascota"
-                disabled={
-                  !post.age ||
-                  !post.name ||
-                  !post.description ||
-                  !post.location.provincia ||
-                  !post.image ||
-                  !post.size ||
-                  !post.gender ||
-                  !post.type ||
-                  !post.location.municipio ||
-                  /////////////////////////////////////////////////////////
-                  errors.name !== null ||
-                  errors.age !== null ||
-                  errors.description !== null ||
-                  errors.size !== null ||
-                  errors.gender !== null ||
-                  errors.ciudad !== null ||
-                  errors.provincia !== null ||
-                  errors.type !== null ||
-                  errors.image !== null ||
-                  errors.health !== null ||
-                  errors.sociability !== null ||
-                  errors.condition !== null
-                }
-              />
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ingrese el email..."
+                onChange={(e) => handleSelector(e)}
+              /> */}
+              <label htmlFor="submit">
+                <input
+                  id="submit"
+                  type="submit"
+                  value="Subir Mascota"
+                  disabled={
+                    !post.age ||
+                    !post.name ||
+                    !post.description ||
+                    !post.location.provincia ||
+                    !post.image ||
+                    !post.size ||
+                    !post.gender ||
+                    !post.type ||
+                    !post.location.municipio ||
+                    ///////////////////////////////////////////////////
+                    errors.name !== null ||
+                    errors.age !== null ||
+                    errors.description !== null ||
+                    errors.size !== null ||
+                    errors.gender !== null ||
+                    errors.ciudad !== null ||
+                    errors.provincia !== null ||
+                    errors.type !== null ||
+                    errors.image !== null ||
+                    errors.health !== null ||
+                    errors.sociability !== null ||
+                    errors.condition !== null
+                  }
+                />
+              </label>
             </form>
           </div>
         </>
