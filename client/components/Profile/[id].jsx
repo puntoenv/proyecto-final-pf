@@ -55,7 +55,7 @@ export default function Perfil({
       });
     };
   };
-
+  const {_id} = response
   return (
     <div className={style.mainContainer}>
       {isLoading && (
@@ -323,6 +323,14 @@ export default function Perfil({
               <button className={style.button}>
                 <Link href={"/adoptionForm"}>
                   <b>Postea una adopción</b>
+                </Link>
+              </button>
+              <button className={style.button}>
+                <Link href= {{
+            pathname: '/PetsCrea',
+            query: { id: `${_id}` },
+          }}>
+                <b>animales creados</b>
                 </Link>
               </button>
               {/* <button className={style.button}>
