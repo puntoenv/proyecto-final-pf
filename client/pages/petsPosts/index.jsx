@@ -5,11 +5,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout.js";
-import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
-import Footer from "../../components/Footer/footer";
 
 export default function PetAdoption() {
   const [filter, setFilter] = useState({});
@@ -91,7 +89,6 @@ export default function PetAdoption() {
           height="auto"
         />
       </Link>
-
       <div className={styles.containerAllPets}>
         <div className={styles.search}>
           <input
@@ -100,13 +97,7 @@ export default function PetAdoption() {
             placeholder="Buscar..."
             onChange={handlerSearch}
           />
-          {/* <button className={styles.searchB} onClick={handlerSearch}>
-          Buscar
-        </button> */}
         </div>
-
-        {/* ----------------------------------FILTROS------------------------------------ */}
-
         <div className={styles.container2}>
           <form className={styles.form} onChange={(e) => handlerFilter(e)}>
             <div>
@@ -141,7 +132,6 @@ export default function PetAdoption() {
                 Tortuga
               </option>
             </select>
-
             <h1 className={styles.title}>Tamaño</h1>
             <select className={styles.select} id="size">
               <option className={styles.option} value="tamaño">
@@ -188,11 +178,9 @@ export default function PetAdoption() {
               onClick={(e) => handlerSubmit(e)}
             />
           </form>
-
-          {/* ----------------------------------------------------------------------- */}
           <div className={styles.big_container}>
             <div className={styles.posts_Container}></div>
-            {pet?.map((mascota) => {
+            {pets?.map((mascota) => {
               return (
                 <div key={mascota._id} className={styles.card}>
                   <Image
@@ -210,30 +198,21 @@ export default function PetAdoption() {
                 </div>
               );
             })}
-
             <div />
           </div>
         </div>
         <div className={styles.paging}>
-          <Pagina
-            pets={pets}
-            pg={pg}
-            page={Page}
-            onPrevClick={onPrevClick}
-            onNextClick={onNextClick}
-            curren={curren}
-            maxPageLimit={maxPageLimit}
-            minPageLimit={minPageLimit}
-            setMaxPageLimit={setMaxPageLimit}
-            setMinPageLimit={setMinPageLimit}
-          />
+          <input type="button" value="prev" onClick={(e) => handlerPage(e)} />
+          {paging.map((page) => (
+            <input
+              type="button"
+              value={page}
+              key={page}
+              onClick={(e) => handlerPage(e)}
+            />
+          ))}
+          <input type="button" value="next" onClick={(e) => handlerPage(e)} />
         </div>
-
-        {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-
-        {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
       </div>
     </LayoutGlobal>
   );
