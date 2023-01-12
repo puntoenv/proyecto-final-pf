@@ -5,6 +5,7 @@ export const mascotasSlice = createSlice({
   initialState: {
     mascotas: [],
     data: {},
+    auxMascotas: [],
   },
   reducers: {
     getMascotas: (state, action) => {
@@ -13,10 +14,6 @@ export const mascotasSlice = createSlice({
         pages: action.payload.totalPages,
         page: action.payload.page,
       };
-      if (state.mascotas.length === 0) {
-        state.pages = 0;
-        alert("No hay mascotas.");
-      }
     },
   },
 });

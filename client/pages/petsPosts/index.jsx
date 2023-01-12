@@ -10,6 +10,7 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 
 export default function PetAdoption() {
+  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
@@ -24,7 +25,11 @@ export default function PetAdoption() {
   }
 
   const handlerSearch = (e) => {
-    dispatch(searchPet(e.target.value));
+    e.preventDefault();
+    let { value } = e.target;
+    setSearch(value);
+    setFilter({});
+    return dispatch(searchPet(value, 1));
   };
 
   const handlerTodas = (e) => {
@@ -42,20 +47,26 @@ export default function PetAdoption() {
     let { value } = e.target;
     if (value === "next" && data.page !== data.pages) {
       let next = data.page + 1;
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, next));
+      } else if (filter) {
         dispatch(getPets(next, filter));
       } else {
         dispatch(getPets(next));
       }
     } else if (value === "prev" && data.page !== 1) {
       let prev = data.page - 1;
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, prev));
+      } else if (filter) {
         dispatch(getPets(prev, filter));
       } else {
         dispatch(getPets(prev));
       }
     } else if (value !== "next" && value !== "prev") {
-      if (filter) {
+      if (search) {
+        dispatch(searchPet(search, page));
+      } else if (filter) {
         dispatch(getPets(value, filter));
       } else {
         dispatch(getPets(value));
@@ -67,7 +78,7 @@ export default function PetAdoption() {
   const handlerFilter = (e) => {
     e.preventDefault();
     setFilter({ ...filter, [e.target.id]: e.target.value });
-    return console.log(filter);
+    setSearch("");
   };
 
   const handlerSubmit = (e) => {
