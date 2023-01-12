@@ -1,8 +1,10 @@
 const { Router } = require("express");
-const Pet = require("../../models/Pet");
-const postPet = Router();
 const cloudinary = require("../../../cloud.js");
 const mailer = require("../../../mailer");
+const Pet = require("../../models/Pet");
+const User = require("../../models/User");
+
+const postPet = Router();
 
 postPet.post("/post-pet", async (req, res) => {
   try {
@@ -19,6 +21,7 @@ postPet.post("/post-pet", async (req, res) => {
       sociability,
       condition,
       email,
+      userId,
     } = req.body;
 
     let message = {
@@ -29,6 +32,7 @@ postPet.post("/post-pet", async (req, res) => {
     };
 
     const info = await mailer.sendMail(message);
+    const user = await User.findById(userId);
 
     const result = await cloudinary.uploader.upload(image);
 
@@ -44,9 +48,11 @@ postPet.post("/post-pet", async (req, res) => {
       health,
       condition,
       sociability,
+      user: user.id,
       expireAt: new Date(),
     });
-    console.log(info);
+    user.pets = user.pets.concat(pet.id);
+    await user.save();
     res.status(200).send(pet._id);
   } catch (error) {
     res.status(400).send("Error al publicar la mascota ");

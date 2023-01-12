@@ -42,12 +42,11 @@ const petSchema = new Schema({
   health: String,
   condition: String,
   sociability: String,
-  user: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Pet",
-    },
-  ],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
   hidden: { type: Boolean, default: false },
   expireAt: { type: Date, expires: 5.184 * 1000 },
 });

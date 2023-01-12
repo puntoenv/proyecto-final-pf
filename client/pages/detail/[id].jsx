@@ -77,8 +77,8 @@ export default function Detail({ data }) {
 
         <div className={styles.divDescription}>
           <h3 className={styles.titleDescription}>Descripición</h3>
-          {/* <p className={styles.description}>{data.description}</p> */}
-          <p className={styles.description}>
+          <p className={styles.description}>{data.description}</p>
+          {/* <p className={styles.description}>
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -88,7 +88,7 @@ export default function Detail({ data }) {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
-          </p>
+          </p> */}
         </div>
       </div>
       <Footer />
