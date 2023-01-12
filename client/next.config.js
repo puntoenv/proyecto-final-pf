@@ -13,8 +13,8 @@ const nextConfig = {
       "lh3.googleusercontent.com",
       "s.gravatar.com",
       "images.unsplash.com",
-      "img.freepik.com"
-
+      "img.freepik.com",
+      "i.pinimg.com"
 
     ],
 
@@ -29,6 +29,4 @@ const nextConfig = {
   },
 };
 
-
 module.exports = nextConfig;
-

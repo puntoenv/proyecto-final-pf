@@ -4,16 +4,17 @@ import style from "./styles.module.css";
 import styles from "./Loading.module.css";
 import Favorite from '..//../pages/favorites/index'
 
-
-
-  
-
 export default function Perfil({user, isLoading, response}) {
+  const nameUpper =
+  response.name && response.name[0].toUpperCase() + response.name.slice(1);
+  const lastnameUpper =
+  response.lastname &&
+  response.lastname[0].toUpperCase() + response.lastname.slice(1);
+
   const {_id}=response
 
   const imgAux =
     "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
-
 
   return (
     <div className={style.mainContainer}>
@@ -29,13 +30,14 @@ export default function Perfil({user, isLoading, response}) {
             <div className={style.thirdContainer}>
               <div className={style.imageContainer}>
                 <img
-                  src={user.picture || imgAux}
+                  src={response.image ? response.image : imgAux}
                   width={150}
                   height={150}
                   style={{ borderRadius: "50%" }}
                   alt={user.name}
                 />
               </div>
+              <p>{nameUpper ? nameUpper : user.name}</p>
               <button className={style.button}>
                 <Link href={"/api/auth/logout"}>
                   <b>Cerrar Sesión</b>
@@ -45,7 +47,31 @@ export default function Perfil({user, isLoading, response}) {
             <div className={style.infoContainer}>
               <div>
                 <h1 className={style.h1}>Mi perfil </h1>
-                <p>{user.name}</p>
+              </div>
+              <div>
+                <div>
+                  <p>
+                    Nombre:{" "}
+                    {nameUpper && lastnameUpper
+                      ? `${nameUpper} ${lastnameUpper}`
+                      : nameUpper && !lastnameUpper
+                      ? nameUpper
+                      : "No especificado"}
+                  </p>
+                  <p>Edad: {response.age ? response.age : "No especificado"}</p>
+                  <p>Bio: {response.bio ? response.bio : "No especificado"}</p>
+                  <p>
+                    Provincia:{" "}
+                    {response.ubication
+                      ? response.ubication
+                      : "No especificado"}
+                  </p>
+                </div>
+                <div>
+                  <Link href={`/updateProfile/${user.sub.split("|")[1]}`}>
+                    <p style={{ color: "blue" }}>Editar Perfil</p>
+                  </Link>
+                </div>
               </div>
               <div className={style.buttons}>
                 <button className={style.button}>
@@ -84,4 +110,3 @@ export default function Perfil({user, isLoading, response}) {
     </div>
   );
 }
-

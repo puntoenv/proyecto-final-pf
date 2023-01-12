@@ -10,9 +10,6 @@ function Profile({data, response}) {
 
     const { isLoading, user } = useUser();
 
-    console.log(response);
-
-
   return (
     <>
       <Layout title={"Perfil"}></Layout>

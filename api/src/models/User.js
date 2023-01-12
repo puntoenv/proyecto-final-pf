@@ -9,10 +9,15 @@ const userSchema = new Schema({
     required: [true, "can't be blank"],
     match: [/^[a-zA-Z0-9\s]+$/, "invalid name"],
   },
+  lastname: {
+    type: String,
+    lowercase: true,
+  },
   bio: String,
   age: {
     type: Number,
   },
+  ubication: String,
   image: String,
   email: {
     type: String,
