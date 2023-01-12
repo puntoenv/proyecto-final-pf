@@ -5,6 +5,7 @@ import style from "./styles.module.css";
 
 export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit }) {
   const { user } = useUser();
+
   const idUser = user?.sub.split("|")[1];
   const [input, setInput] = useState({
     name: "",
@@ -19,14 +20,28 @@ export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit }) {
     error: "",
     success: "",
   });
-  console.log(result);
+  console.log(input);
+
+    const handleFiles = (event) => {
+      const { files } = event.target;
+      const reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onloadend = () => {
+        setInput({
+          ...input,
+          image: reader.result,
+        });
+      };
+    };
 
   return (
     <div className={style.mainContainer}>
-        <div><Link href={`/profile/${idUser}`}>Volver atrás</Link></div>
+      <div>
+        <Link href={`/profile/${idUser}`}>Volver atrás</Link>
+      </div>
       <div>
         <form
-          onClick={(event) =>
+          onSubmit={(event) =>
             handleOnSubmit(event, setResult, setInput, input, idUser)
           }
         >
@@ -79,9 +94,7 @@ export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit }) {
             <input
               type="file"
               name="image"
-              onChange={(event) =>
-                hanldeOnChange(event, setInput, input, setResult)
-              }
+              onChange={(event) => handleFiles(event)}
             />
           </div>
           <div>
