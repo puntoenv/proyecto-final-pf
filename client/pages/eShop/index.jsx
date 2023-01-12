@@ -10,16 +10,24 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
+import axios from "axios";
 
-export default function PetAdoption() {
+export default function eShop(/* { productsEshop } */ { addToCart, cart }) {
+  /* useEffect(() => {
+    const carrito = JSON.parse(localStorage.getItem("cart" || "[]"));
+    setCart(carrito);
+  }, []); */
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
-
   /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
+
+  /* useEffect(() => {
+    localStorage.setItem("products", JSON.stringify(cart));
+  }, [cart]); */
 
   const handlerTodos = () => {
     dispatch(getProducts());
@@ -28,10 +36,10 @@ export default function PetAdoption() {
     dispatch(searchProduct(e.target.value));
   };
 
-  const addToCart = (id) => {
-    dispatch(addCart(id));
-  };
-
+  /* const addToCart = (id) => {
+    let guardarProducto = productos?.find((prod) => prod._id === id);
+    setCart([...cart, guardarProducto]);
+  }; */
   return (
     <div>
       <Layout title="Productos" />
@@ -178,3 +186,12 @@ export default function PetAdoption() {
     </div>
   );
 }
+
+/* export async function getServerSideProps() {
+  const respuesta = await axios("http://localhost:3001/products");
+  return {
+    props: {
+      productsEshop: respuesta.data,
+    },
+  };
+} */

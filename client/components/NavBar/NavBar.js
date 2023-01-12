@@ -42,15 +42,18 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link className="itemDash" href={user ? `/profile/${user.sub.split("|")[1]}` : '/'}>
+        <Link
+          className="itemDash"
+          href={user ? `/profile/${user.sub.split("|")[1]}` : "/"}
+        >
           <span>Mi Perfil</span>
         </Link>
         {/* <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
         </Link> */}
-        {/* <Link className="itemDash" href="#">
+        <Link className="itemDash" href="/cart">
           <span>Mi carrito</span>
-        </Link> */}
+        </Link>
         <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>
