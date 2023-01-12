@@ -5,6 +5,7 @@ export const mascotasSlice = createSlice({
   initialState: {
     mascotas: [],
     data: {},
+    auxMascotas: [],
   },
   reducers: {
     getMascotas: (state, action) => {

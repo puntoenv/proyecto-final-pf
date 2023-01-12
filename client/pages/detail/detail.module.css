@@ -100,7 +100,12 @@
 }
 
 .divDescription {
-  padding: 50px 150px;
+  text-align: center;
+  padding: 30px 150px;
+  padding-bottom: 100px;
+}
+.description {
+  text-align: center;
 }
 .button {
   display: flex;

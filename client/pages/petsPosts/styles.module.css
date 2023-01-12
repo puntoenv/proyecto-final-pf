@@ -3,6 +3,23 @@
   flex-direction: column;
   padding: 50px 0;
 }
+
+.container2 {
+  display: flex;
+  padding: 60px 0;
+}
+
+.big_container {
+  margin: auto;
+  padding: 70px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  font-family: "Segoe UI";
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .search {
   display: flex;
   justify-content: center;
@@ -110,22 +127,6 @@
   font-size: 20px;
 }
 
-.big_container {
-  margin: auto;
-  padding: 70px 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  font-family: "Segoe UI";
-  width: 1200px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.container2 {
-  display: flex;
-}
-
 .img {
   width: 250px;
   height: auto;
@@ -201,7 +202,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
-  margin-left: 18rem;
 }
 
 .edit {
