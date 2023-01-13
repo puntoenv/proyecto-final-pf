@@ -4,7 +4,7 @@ const router = Router();
 const mercadopago = require("mercadopago");
 require("dotenv").config();
 
- //configuracion de credenciales de mercado pago
+//configuracion de credenciales de mercado pago
  
  
 
