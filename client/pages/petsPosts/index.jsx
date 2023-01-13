@@ -29,12 +29,21 @@ export default function PetAdoption() {
     let { value } = e.target;
     setSearch(value);
     setFilter({});
-    return dispatch(searchPet(value, 1));
+    console.log(value);
+  };
+
+  const handlerOnSearch = (e) => {
+    e.preventDefault();
+    dispatch(searchPet(search, 1));
+    // setSearch("");
+    console.log(e);
+    e.target.reset();
   };
 
   const handlerTodas = (e) => {
     e.preventDefault();
     dispatch(getPets(1));
+    e.target.reset();
   };
 
   //   const handlerSort = (e)=>{
@@ -50,7 +59,7 @@ export default function PetAdoption() {
   const handlerPage = (e) => {
     e.preventDefault();
     let { value } = e.target;
-    if (value === "next" && data.page !== data.pages) {
+    if (value === "🡺" && data.page !== data.pages) {
       let next = data.page + 1;
       if (search) {
         dispatch(searchPet(search, next));
@@ -59,7 +68,7 @@ export default function PetAdoption() {
       } else {
         dispatch(getPets(next));
       }
-    } else if (value === "prev" && data.page !== 1) {
+    } else if (value === "🡸" && data.page !== 1) {
       let prev = data.page - 1;
       if (search) {
         dispatch(searchPet(search, prev));
@@ -68,7 +77,7 @@ export default function PetAdoption() {
       } else {
         dispatch(getPets(prev));
       }
-    } else if (value !== "next" && value !== "prev") {
+    } else if (value !== "🡺" && value !== "🡸") {
       if (search) {
         dispatch(searchPet(search, page));
       } else if (filter) {
@@ -90,7 +99,7 @@ export default function PetAdoption() {
     e.preventDefault();
     dispatch(getPets(1, filter));
     console.log(filter);
-    return setFilter({});
+    setFilter({});
   };
 
   return (
@@ -98,11 +107,13 @@ export default function PetAdoption() {
       <Layout title="Mascotas" />
       <div className={styles.containerAllPets}>
         <div className={styles.container2}>
-          <form className={styles.form} onChange={(e) => handlerFilter(e)}>
+          <form
+            className={styles.form}
+            onChange={(e) => handlerFilter(e)}
+            onSubmit={(e) => handlerTodas(e)}
+          >
             <div>
-              <button className={styles.all} onClick={(e) => handlerTodas(e)}>
-                Ver todas
-              </button>
+              <input type="submit" className={styles.all} value="Ver Todas" />
             </div>
             <h1 className={styles.title}>Animal</h1>
             <select className={styles.select} id="type">
@@ -171,12 +182,9 @@ export default function PetAdoption() {
                 </option>
               ))}
             </select>
-            <input
-              className={styles.all2}
-              type="submit"
-              value="Aplicar Filtros"
-              onClick={(e) => handlerSubmit(e)}
-            />
+            <button className={styles.all2} onClick={(e) => handlerSubmit(e)}>
+              Aplicar Filtros
+            </button>
           </form>
 
           {/* <select className="select" onChange={handlerSort}>
@@ -184,28 +192,44 @@ export default function PetAdoption() {
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
           </select> */}
-
-          <div className={styles.big_container}>
-            <div className={styles.posts_Container}></div>
-            {pets?.map((mascota) => {
-              return (
-                <div key={mascota._id} className={styles.card}>
-                  <Image
-                    className={styles.img}
-                    width="300"
-                    height="240"
-                    src={mascota.image}
-                    alt="image"
-                  />
-                  <h3 className={styles.name}>{mascota.name}</h3>
-                  <span className={styles.size}>{mascota.gender}</span>
-                  <button className={styles.btn}>
-                    <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                  </button>
-                </div>
-              );
-            })}
-            <div />
+          <div className={styles.caja}>
+            <form
+              className={styles.box}
+              onChange={(e) => {
+                handlerSearch(e);
+              }}
+              onSubmit={(e) => handlerOnSearch(e)}
+            >
+              <input
+                type="search"
+                placeholder="Ingrese el nombre de la mascota ..."
+                autoFocus
+                className={styles.search}
+              />
+              <input type="submit" className={styles.searchB} value="Buscar" />
+            </form>
+            <div className={styles.big_container}>
+              <div className={styles.posts_Container}></div>
+              {pets?.map((mascota) => {
+                return (
+                  <div key={mascota._id} className={styles.card}>
+                    <Image
+                      className={styles.img}
+                      width="300"
+                      height="240"
+                      src={mascota.image}
+                      alt="image"
+                    />
+                    <h3 className={styles.name}>{mascota.name}</h3>
+                    <span className={styles.size}>{mascota.gender}</span>
+                    <button className={styles.btn}>
+                      <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                    </button>
+                  </div>
+                );
+              })}
+              <div />
+            </div>
           </div>
         </div>
         <div className={styles.paging}>

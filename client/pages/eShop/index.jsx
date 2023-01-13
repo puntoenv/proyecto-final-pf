@@ -18,7 +18,8 @@ export default function eShop({ addToCart }) {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const handlerTodos = () => {
+  const handlerTodos = (e) => {
+    e.preventDefault();
     dispatch(getProducts());
   };
   const handlerSearch = (e) => {
