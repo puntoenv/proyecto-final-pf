@@ -40,7 +40,7 @@ export default function CardProduct({ info, addToCart }) {
   return (
     <div className={styles.card}>
       <h3 className={styles.name}>{name.toUpperCase()}</h3>
-      <Image
+      <img
         className={styles.img}
         src={image}
         width="300"
@@ -48,7 +48,7 @@ export default function CardProduct({ info, addToCart }) {
         alt="imagen del producto"
       />
       {price ? <p className={styles.size}>Precio: ${price}</p> : null}
-      <Link href={`/detailProduct/${_id}`}>
+      <Link href={`/eShop/detail/${_id}`}>
         <h1>Ver Producto</h1>
       </Link>
       <form onSubmit={handlerSubmit}>

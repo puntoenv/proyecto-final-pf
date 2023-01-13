@@ -105,15 +105,6 @@ export default function PetAdoption() {
   return (
     <LayoutGlobal>
       <Layout title="Mascotas" />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllPets}>
         <div className={styles.container2}>
           <form

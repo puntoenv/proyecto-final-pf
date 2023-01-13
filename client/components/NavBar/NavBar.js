@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
+import logo from "../../img/logo.jpeg";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 const handlerClick = () => {
@@ -22,6 +24,15 @@ const NavBar = () => {
 
   return (
     <header className="headerNav">
+      <Link href={"/home"} className="logo">
+        <Image
+          src={logo}
+          alt="logo"
+          className="logo"
+          width="auto"
+          height="auto"
+        />
+      </Link>
       <nav className="nav">
         <div className="navMenuList">
           <Link className="itemNav" href="/eShop">

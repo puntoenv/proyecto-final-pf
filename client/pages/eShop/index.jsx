@@ -6,12 +6,9 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layout.js";
-import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
-import Image from "next/image";
-import logo from "../../img/logo.jpeg";
-import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
 export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
@@ -29,18 +26,8 @@ export default function eShop({ addToCart }) {
     dispatch(searchProduct(e.target.value));
   };
   return (
-    <div>
+    <LayoutGlobal>
       <Layout title="Productos" />
-      <NavBar />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllProducts}>
         <div className={styles.search}>
           <input
@@ -143,66 +130,14 @@ export default function eShop({ addToCart }) {
                   addToCart={addToCart}
                 />
               );
-              {
-                /* <div key={producto._id} className={styles.card}>
-             <Image
-               className={styles.img}
-               width="300"
-               height="240"
-               src={producto.image}
-               alt="image"
-             />
-              <h3 className={styles.name}>{producto.name}</h3>
-                <span className={styles.size}>${producto.price}</span>
-              <button className={styles.btn}>
-              <Link href={`/detailProduct/${producto._id}`}>
-              <h1>Ver Producto</h1>
-              </Link>
-              </button>
-            </div> */
-              }
             })}
-
-            {/* // {/*  */}
 
             <div />
           </div>
         </div>
-        {/*(
-               <div key={producto._id} className={styles.card}>
-                <Image
-                  className={styles.img}
-                  width="300"
-                  height="240"
-                  src={producto.image}
-                  alt="image"
-                />
-                <h1 className={styles.name}>{producto.name}</h1>
-                <h2 className={styles.size}>${producto.price}</h2>
-              </div>
-            ); */}
-        {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-
-        {/* {
-        <Pagina
-          pets={pets}
-          pg={pg}
-          page={Page}
-          onPrevClick={onPrevClick}
-          onNextClick={onNextClick}
-          curren={curren}
-          maxPageLimit={maxPageLimit}
-          minPageLimit={minPageLimit}
-          setMaxPageLimit={setMaxPageLimit}
-          setMinPageLimit={setMinPageLimit}
-        />
-      } */}
-        <Footer />
         {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
       </div>
-    </div>
+    </LayoutGlobal>
   );
 }
 
