@@ -6,12 +6,9 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layout.js";
-import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
-import Image from "next/image";
-import logo from "../../img/logo.jpeg";
-import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
 export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
@@ -90,18 +87,8 @@ export default function eShop({ addToCart }) {
   };
 
   return (
-    <div>
+    <LayoutGlobal>
       <Layout title="Productos" />
-      <NavBar />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllProducts}>
         <div className={styles.search}>
           <input
@@ -118,9 +105,7 @@ export default function eShop({ addToCart }) {
             onChange={(e) => handlerSelect(e)}
             onSubmit={(e) => handlerTodos(e)}
           >
-            <div>
-              <input type="submit" value="Ver Todos" className={styles.all} />
-            </div>
+            <input type="submit" value="Ver Todos" className={styles.all} />
             <h1 className={styles.title}>Accesorios</h1>
             <select className={styles.select} id="accesorios">
               <option className={styles.option} value="indumentaria">
@@ -210,8 +195,7 @@ export default function eShop({ addToCart }) {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </div>
+    </LayoutGlobal>
   );
 }

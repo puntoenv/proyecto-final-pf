@@ -39,8 +39,8 @@ export default function CardProduct({ info, addToCart }) {
 
   return (
     <div className={styles.card}>
-      <span className={styles.name}>{name.toUpperCase()}</span>
-      <Image
+      <h3 className={styles.name}>{name.toUpperCase()}</h3>
+      <img
         className={styles.img}
         src={image}
         width="300"

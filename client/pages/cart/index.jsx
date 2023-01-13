@@ -2,7 +2,6 @@ import Image from "next/image";
 import Layout from "../layout";
 import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
-import logo from "../../img/logo.jpeg";
 import styles from "./styles.module.css";
 
 export default function Cart({ cart, deleteCart, deleteAllCart }) {
@@ -17,21 +16,13 @@ export default function Cart({ cart, deleteCart, deleteAllCart }) {
       <div>
         <Layout title="Carrito" />
         <NavBar />
-        <Link href={"/home"} className="logo">
-          <Image
-            src={logo}
-            alt="logo"
-            className={styles.logo}
-            width="auto"
-            height="auto"
-          />
-        </Link>
+
         <button className={styles.btn}>Finalizar Compra</button>
         <div className={styles.big_container}>
           {cart?.map((unidad, index) => (
             <div className={styles.card} key={index}>
               <h3 className={styles.name}>{unidad.name}</h3>
-              <Image
+              <img
                 className={styles.img}
                 src={unidad.image}
                 width={20}

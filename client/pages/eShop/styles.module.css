@@ -1,3 +1,6 @@
+.containerAllProducts {
+  margin: 40px 0;
+}
 .search {
   display: flex;
   justify-content: center;
