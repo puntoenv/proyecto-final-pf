@@ -17,12 +17,14 @@ export const mascotasSlice = createSlice({
       if (state.mascotas.length === 0) {
         state.pages = 0;
         Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "No hay mascotas",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+          title:'No hay mascotas',
+          icon:'error',
+          color: '#437042',
+          confirmButtonColor:'#437042',
+          confirmButtonAriaLabel:'#437042',
+          // background:'#fff url(../backAlerts.png)',
+  })
+       
       }
     },
     // orderPets:(state, action)=>{

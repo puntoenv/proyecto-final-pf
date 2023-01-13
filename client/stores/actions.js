@@ -54,7 +54,7 @@ export const PostAdop = (post) => {
           color: '#437042',
           confirmButtonColor:'#437042',
           confirmButtonAriaLabel:'#437042',
-          background: '#fff url(/images/trees.png)'
+          // background: '#fff url(/images/trees.png)'
         }
           
          
@@ -74,11 +74,15 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch((err) =>
-      Swal.fire(
-        'Error. No se pudo publicar la mascota',
-        // 'pudo publicar la mascota',
-        'error'
-      )
+      Swal.fire({
+        title:'Error. No se pudo publicar la mascota',
+        icon:'error',
+        color: '#437042',
+        confirmButtonColor:'#437042',
+        confirmButtonAriaLabel:'#437042',
+        // background:'#fff url(../backAlerts.png)',
+
+})
       //   Swal.fire({
       //     position: "top-end",
       //     icon: "error",

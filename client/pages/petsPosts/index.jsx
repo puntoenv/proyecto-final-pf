@@ -181,7 +181,7 @@ export default function PetAdoption() {
                 </option>
               ))}
             </select>
-            <input
+            <input className={styles.all2}
               type="submit"
               value="Aplicar Filtros"
               onClick={(e) => handlerSubmit(e)}
@@ -219,16 +219,16 @@ export default function PetAdoption() {
           </div>
         </div>
         <div className={styles.paging}>
-          <input type="button" value="prev" onClick={(e) => handlerPage(e)} />
+          <input className={styles.paginate} type="button" value="🡸" onClick={(e) => handlerPage(e)} />
           {paging.map((page) => (
-            <input
+            <input className={styles.paginate}
               type="button"
               value={page}
               key={page}
               onClick={(e) => handlerPage(e)}
             />
           ))}
-          <input type="button" value="next" onClick={(e) => handlerPage(e)} />
+          <input className={styles.paginate} type="button" value="🡺" onClick={(e) => handlerPage(e)} />
         </div>
       </div>
     </LayoutGlobal>
