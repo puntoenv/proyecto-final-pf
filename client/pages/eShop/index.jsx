@@ -51,7 +51,15 @@ export default function eShop({ addToCart }) {
         </div>
 
         {/* ----------------------------------FILTROS------------------------------------ */}
-
+        
+      <div className={styles.search}>
+        <input
+          className={styles.input}
+          type="search"
+          placeholder="Buscar..."
+          onChange={handlerSearch}
+        />
+      </div>
         <div className={styles.container2}>
           <form className={styles.form}>
             <div>
