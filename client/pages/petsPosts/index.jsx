@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { getPets, searchPet, getper } from "../../stores/actions";
+import { getPets, searchPet, getper, sorts } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
@@ -29,13 +29,27 @@ export default function PetAdoption() {
     let { value } = e.target;
     setSearch(value);
     setFilter({});
-    return dispatch(searchPet(value, 1));
+    console.log(value);
+  };
+
+  const handlerOnSearch = (e) => {
+    e.preventDefault();
+    dispatch(searchPet(search, 1));
+    // setSearch("");
+    console.log(e);
+    e.target.reset();
   };
 
   const handlerTodas = (e) => {
     e.preventDefault();
     dispatch(getPets(1));
+    e.target.reset();
   };
+
+  //   const handlerSort = (e)=>{
+  //     e.preventDefault();
+  //     dispatch(sorts(e.target.value));
+  // }
 
   useEffect(() => {
     dispatch(getPets(1));
@@ -45,7 +59,7 @@ export default function PetAdoption() {
   const handlerPage = (e) => {
     e.preventDefault();
     let { value } = e.target;
-    if (value === "next" && data.page !== data.pages) {
+    if (value === "🡺" && data.page !== data.pages) {
       let next = data.page + 1;
       if (search) {
         dispatch(searchPet(search, next));
@@ -54,7 +68,7 @@ export default function PetAdoption() {
       } else {
         dispatch(getPets(next));
       }
-    } else if (value === "prev" && data.page !== 1) {
+    } else if (value === "🡸" && data.page !== 1) {
       let prev = data.page - 1;
       if (search) {
         dispatch(searchPet(search, prev));
@@ -63,7 +77,7 @@ export default function PetAdoption() {
       } else {
         dispatch(getPets(prev));
       }
-    } else if (value !== "next" && value !== "prev") {
+    } else if (value !== "🡺" && value !== "🡸") {
       if (search) {
         dispatch(searchPet(search, page));
       } else if (filter) {
@@ -85,51 +99,44 @@ export default function PetAdoption() {
     e.preventDefault();
     dispatch(getPets(1, filter));
     console.log(filter);
-    return setFilter({});
+    setFilter({});
   };
 
   return (
     <LayoutGlobal>
       <Layout title="Mascotas" />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllPets}>
         <div className={styles.container2}>
-          <form className={styles.form} onChange={(e) => handlerFilter(e)}>
+          <form
+            className={styles.form}
+            onChange={(e) => handlerFilter(e)}
+            onSubmit={(e) => handlerTodas(e)}
+          >
             <div>
-              <button className={styles.all} onClick={(e) => handlerTodas(e)}>
-                Ver todas
-              </button>
+              <input type="submit" className={styles.all} value="Ver Todas" />
             </div>
             <h1 className={styles.title}>Animal</h1>
             <select className={styles.select} id="type">
               <option className={styles.option} value="animal">
                 Todos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="conejo">
                 Conejos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
+              <option className={styles.option} value="gato">
+                Gatos
+              </option>
+              <option className={styles.option} value="hamster">
+                Hamsters
               </option>
               <option className={styles.option} value="pez">
                 Peces
               </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
+              <option className={styles.option} value="perro">
+                Perros
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga
@@ -175,22 +182,34 @@ export default function PetAdoption() {
                 </option>
               ))}
             </select>
-            <input
-              type="submit"
-              value="Aplicar Filtros"
-              onClick={(e) => handlerSubmit(e)}
-            />
+            <button className={styles.all2} onClick={(e) => handlerSubmit(e)}>
+              Aplicar Filtros
+            </button>
           </form>
-          <div className={styles.containerPetsPages}>
-            <div className={styles.search}>
+
+          {/* <select className="select" onChange={handlerSort}>
+          <option value=" ">Ordenar</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+          </select> */}
+          <div className={styles.caja}>
+            <form
+              className={styles.box}
+              onChange={(e) => {
+                handlerSearch(e);
+              }}
+              onSubmit={(e) => handlerOnSearch(e)}
+            >
               <input
-                className={styles.input}
                 type="search"
-                placeholder="Buscar..."
-                onChange={handlerSearch}
+                placeholder="Ingrese el nombre de la mascota ..."
+                autoFocus
+                className={styles.search}
               />
-            </div>
+              <input type="submit" className={styles.searchB} value="Buscar" />
+            </form>
             <div className={styles.big_container}>
+              <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
                 return (
                   <div key={mascota._id} className={styles.card}>
@@ -209,29 +228,32 @@ export default function PetAdoption() {
                   </div>
                 );
               })}
-            </div>
-
-            <div className={styles.paging}>
-              <input
-                type="button"
-                value="prev"
-                onClick={(e) => handlerPage(e)}
-              />
-              {paging.map((page) => (
-                <input
-                  type="button"
-                  value={page}
-                  key={page}
-                  onClick={(e) => handlerPage(e)}
-                />
-              ))}
-              <input
-                type="button"
-                value="next"
-                onClick={(e) => handlerPage(e)}
-              />
+              <div />
             </div>
           </div>
+        </div>
+        <div className={styles.paging}>
+          <input
+            className={styles.paginate}
+            type="button"
+            value="🡸"
+            onClick={(e) => handlerPage(e)}
+          />
+          {paging.map((page) => (
+            <input
+              className={styles.paginate}
+              type="button"
+              value={page}
+              key={page}
+              onClick={(e) => handlerPage(e)}
+            />
+          ))}
+          <input
+            className={styles.paginate}
+            type="button"
+            value="🡺"
+            onClick={(e) => handlerPage(e)}
+          />
         </div>
       </div>
     </LayoutGlobal>

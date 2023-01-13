@@ -9,6 +9,7 @@ export default function LayoutGlobal({ children, title, description }) {
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
       </Head>
       <NavBar />
 

@@ -40,15 +40,6 @@ export default function Home() {
       <LayoutGlobal>
         <Layout title="Inicio" />
         <div className={styles.home}>
-          <Link href={"/home"} className="logo">
-            <Image
-              src={logo}
-              alt="logo"
-              className={styles.logo}
-              width="auto"
-              height="auto"
-            />
-          </Link>
           <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
           <Image
             src={home}
