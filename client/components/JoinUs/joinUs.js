@@ -16,7 +16,7 @@ const Join = () => {
           </span>
         </div>
         <button className={styles.joinBtn}>
-          <Link href="/login">Sumarme </Link>
+          <Link href="/api/auth/login">Sumarme </Link>
         </button>
 
         <Image className={styles.cat} src={Cat} width="auto" height="auto" />
