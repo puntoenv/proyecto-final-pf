@@ -24,9 +24,9 @@ const NavBar = () => {
     <header className="headerNav">
       <nav className="nav">
         <div className="navMenuList">
-          {/* <Link className="itemNav" href="/Apóyanos">
+          <Link className="itemNav" href="/eShop">
             <span>Apóyanos </span>
-          </Link> */}
+          </Link>
           <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>
@@ -42,7 +42,10 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link className="itemDash" href={user ? `/profile/${user.sub.split("|")[1]}` : '/'}>
+        <Link
+          className="itemDash"
+          href={user ? `/profile/${user.sub.split("|")[1]}` : "/"}
+        >
           <span>Mi Perfil</span>
         </Link>
         {/* <Link className="itemDash" href="#">

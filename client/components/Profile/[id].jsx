@@ -55,7 +55,7 @@ export default function Perfil({
       });
     };
   };
-  const {_id} = response
+  const { _id } = response;
   return (
     <div className={style.mainContainer}>
       {isLoading && (
@@ -71,6 +71,51 @@ export default function Perfil({
               <div>
                 <h1 className={style.h1}>Mi perfil </h1>
                 <span className={style.email}>{response?.email}</span>
+                <p>
+                  <div className={style.bioContainer}>
+                    <p className={style.p}>Bio: </p>
+                    <div className={style.insideInfo}>
+                      {!edit.bio ? (
+                        response.bio ? (
+                          response.bio
+                        ) : (
+                          "No especificado"
+                        )
+                      ) : (
+                        <form
+                          className={style.form}
+                          onSubmit={(event) =>
+                            handleOnSubmit(
+                              event,
+                              setResult,
+                              setInput,
+                              input,
+                              idUser
+                            )
+                          }
+                        >
+                          <input
+                            type="text"
+                            placeholder="Breve descripción sobre ti"
+                            name="bio"
+                            onChange={(event) =>
+                              hanldeOnChange(event, setInput, input, setResult)
+                            }
+                          />
+                          <button className={style.iconBio} type="submit">
+                            <HiCheck size={20}></HiCheck>
+                          </button>
+                        </form>
+                      )}
+                    </div>
+                  </div>
+                  <span
+                    className={style.icon}
+                    onClick={() => setEdit({ ...edit, bio: !edit.bio })}
+                  >
+                    <HiPencilSquare size={18}></HiPencilSquare>
+                  </span>
+                </p>
               </div>
               <div className={style.fourthContainer}>
                 <img
@@ -128,7 +173,7 @@ export default function Perfil({
                 </div>
               </div>
             </div>
-            <div>
+            <div className={style.div}>
               <div className={style.infoStyles}>
                 <p className={style.infoStylesP}>
                   <div className={style.pContainer}>
@@ -220,51 +265,7 @@ export default function Perfil({
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
                 </p>
-                <p className={style.infoStylesP}>
-                  <div className={style.pContainer}>
-                    <p className={style.p}>Bio: </p>
-                    <div className={style.insideInfo}>
-                      {!edit.bio ? (
-                        response.bio ? (
-                          response.bio
-                        ) : (
-                          "No especificado"
-                        )
-                      ) : (
-                        <form
-                          className={style.form}
-                          onSubmit={(event) =>
-                            handleOnSubmit(
-                              event,
-                              setResult,
-                              setInput,
-                              input,
-                              idUser
-                            )
-                          }
-                        >
-                          <input
-                            type="text"
-                            placeholder="Breve descripción sobre ti"
-                            name="bio"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
-                          />
-                          <button className={style.icon} type="submit">
-                            <HiCheck size={20}></HiCheck>
-                          </button>
-                        </form>
-                      )}
-                    </div>
-                  </div>
-                  <span
-                    className={style.icon}
-                    onClick={() => setEdit({ ...edit, bio: !edit.bio })}
-                  >
-                    <HiPencilSquare size={18}></HiPencilSquare>
-                  </span>
-                </p>
+
                 <p className={style.infoStylesP}>
                   <div className={style.pContainer}>
                     <p className={style.p}>Provincia: </p>
@@ -313,24 +314,33 @@ export default function Perfil({
                   </span>
                 </p>
               </div>
-            </div>
-            <div className={style.buttons}>
-              <button className={style.button}>
-                <Link href={"/petsPosts"}>
-                  <b>Ver todas las mascotas</b>
-                </Link>
-              </button>
-              <button className={style.button}>
-                <Link href={"/adoptionForm"}>
-                  <b>Postea una adopción</b>
-                </Link>
-              </button>
-       
-              {/* <button className={style.button}>
+              <div className={style.buttons}>
+                <button className={style.button}>
+                  <Link href={"/petsPosts"}>
+                    <b>Ver todas las mascotas</b>
+                  </Link>
+                </button>
+                <button className={style.button}>
+                  <Link href={"/adoptionForm"}>
+                    <b>Postea una adopción</b>
+                  </Link>
+                </button>
+                <button className={style.button}>
+                  <Link
+                    href={{
+                      pathname: "/PetsCrea",
+                      query: { id: `${_id}` },
+                    }}
+                  >
+                    <b>animales creados</b>
+                  </Link>
+                </button>
+                {/* <button className={style.button}>
                   <Link href={"/profile"}>
                     <b>Adopta</b>
                   </Link>
                 </button> */}
+              </div>
             </div>
           </div>
           {/* <h4>{result && {}}</h4> */}
