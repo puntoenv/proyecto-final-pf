@@ -1,10 +1,45 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 
-export default function Detail({ data }) {
-  console.log(data);
+export default function Detail({ data, addToCart, deleteCart }) {
+  const [cantidad, setCantidad] = useState(1);
+  const {
+    name,
+    image,
+    price,
+    _id,
+    description,
+    stock,
+    category,
+    boughtBy,
+    hidden,
+    __v,
+  } = data;
+
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    const unidad = {
+      name,
+      image,
+      price,
+      _id,
+      description,
+      stock,
+      category,
+      boughtBy,
+      hidden,
+      __v,
+      cantidad,
+    };
+    addToCart(unidad);
+    alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
+  };
+  const handlerDelete = (id) => {
+    deleteCart(id);
+    alert(`${name} eliminado con exito`);
+  };
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -14,6 +49,7 @@ export default function Detail({ data }) {
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
+            <button onClick={() => handlerDelete(_id)}>X</button>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
               <button className={style.btnBuy}>Comprar</button>
@@ -35,6 +71,26 @@ export default function Detail({ data }) {
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
+        <form onSubmit={handlerSubmit}>
+          <label>Cantidad</label>
+          <select
+            onChange={(e) => setCantidad(parseInt(e.target.value))}
+            value={cantidad}
+          >
+            <option value="0" hidden>
+              Seleccione Cantidad
+            </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <input type="submit" value="Agregar al carrito" />
+        </form>
       </div>
     </LayoutGlobal>
   );

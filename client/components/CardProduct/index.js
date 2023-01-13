@@ -34,7 +34,7 @@ export default function CardProduct({ info, addToCart }) {
       cantidad,
     };
     addToCart(unidad);
-    alert(`${cantidad} ${name} agregado/s al carrito`);
+    alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
   };
 
   return (
@@ -48,7 +48,7 @@ export default function CardProduct({ info, addToCart }) {
         alt="imagen del producto"
       />
       {price ? <p className={styles.size}>Precio: ${price}</p> : null}
-      <Link href={`/detailProduct/${_id}`}>
+      <Link href={`/eShop/detail/${_id}`}>
         <h1>Ver Producto</h1>
       </Link>
       <form onSubmit={handlerSubmit}>
