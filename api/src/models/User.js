@@ -9,10 +9,6 @@ const userSchema = new Schema({
     required: [true, "can't be blank"],
     match: [/^[a-zA-Z0-9\s]+$/, "invalid name"],
   },
-  lastname: {
-    type: String,
-    lowercase: true,
-  },
   bio: String,
   age: {
     type: Number,
@@ -34,12 +30,6 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Pet",
-    },
-  ],
-  favorites: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Pets",
     },
   ],
   cart: [
