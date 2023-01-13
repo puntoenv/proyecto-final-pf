@@ -31,13 +31,13 @@ export default function Cart({ cart, deleteCart, deleteAllCart }) {
           {cart?.map((unidad, index) => (
             <div className={styles.card} key={index}>
               <h3 className={styles.name}>{unidad.name}</h3>
-              <Image
+              {/* <Image
                 className={styles.img}
                 src={unidad.image}
                 width={20}
                 height={20}
                 alt={`imagen de ${unidad.name}`}
-              />
+              /> */}
               <p className={styles.size}>Precio: {unidad.price}</p>
               <button
                 className={styles.btn}

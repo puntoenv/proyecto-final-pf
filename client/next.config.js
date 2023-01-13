@@ -14,6 +14,7 @@ const nextConfig = {
       "s.gravatar.com",
       "i.pinimg.com",
       "img.freepik.com",
+      "http2.mlstatic.com",
     ],
 
     remotePatterns: [

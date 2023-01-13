@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const carrito = JSON.parse(localStorage.getItem("cart" ?? "[]"));
+    const carrito = JSON.parse(localStorage.getItem("cart")) ?? [];
     setCart(carrito);
   }, []);
 
@@ -30,7 +30,18 @@ export default function App({ Component, pageProps }) {
   }, [cart]);
 
   const addToCart = (product) => {
-    !cart ? setCart([product]) : setCart([...cart, product]);
+    if (cart.some((unidad) => unidad._id === product._id)) {
+      const carritoActualizado = cart.map((unidad) => {
+        if (unidad._id === product._id) {
+          unidad.cantidad = product.cantidad;
+        }
+        return unidad;
+      });
+      console.log(carritoActualizado);
+      setCart(carritoActualizado);
+    } else {
+      setCart([...cart, product]);
+    }
   };
 
   const deleteCart = (id) => {
