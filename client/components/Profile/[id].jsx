@@ -292,7 +292,7 @@ export default function Perfil({
                           <input
                             type="text"
                             placeholder="Ej: Buenos Aires"
-                            name="bio"
+                            name="ubication"
                             onChange={(event) =>
                               hanldeOnChange(event, setInput, input, setResult)
                             }
@@ -332,7 +332,7 @@ export default function Perfil({
                       query: { id: `${_id}` },
                     }}
                   >
-                    <b>animales creados</b>
+                    <b>Animales creados</b>
                   </Link>
                 </button>
                 {/* <button className={style.button}>
