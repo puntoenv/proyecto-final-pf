@@ -246,11 +246,11 @@ export function form(props) {
                   <option defaultValue={true} value="select">
                     Seleccione la especie de la mascota...
                   </option>
-                  <option value="gato">Gato</option>
-                  <option value="perro">Perro</option>
-                  <option value="conejo">Conejo</option>
-                  <option value="hamster">Hamster</option>
                   <option value="ave">Ave</option>
+                  <option value="conejo">Conejo</option>
+                  <option value="gato">Gato</option>
+                  <option value="hamster">Hamster</option>
+                  <option value="perro">Perro</option>
                   <option value="pez">Pez</option>
                   <option value="tortuga">Tortuga</option>
                   <option value="otra">otra</option>

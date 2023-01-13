@@ -100,6 +100,28 @@
   box-shadow: 0 0 10px rgb(185, 163, 103);
   background: #584a3c;
 }
+.all2 {
+  background: #e8eb9d;
+  font-size: 21px;
+  color: #32281f;
+  border: 1em;
+  border-radius: 15px;
+  height: 45px;
+  width: 160px;
+  font-weight: 700;
+  margin-left: 50px;
+  margin-bottom: 2em;
+  margin-top: 1em;
+}
+
+.all2:hover {
+  color: beige;
+  border: none;
+  font-weight: 700;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(185, 163, 103);
+  background: #584a3c;
+}
 
 .card {
   display: flex;
@@ -202,7 +224,22 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  background-color: white;
 }
+
+.paginate {
+   background-color:  #e8eb9d;
+   margin: 1rem;
+   width: 5%;
+   border-radius: 15%;
+  
+}
+.paginate:hover{
+  background-color:  #4c8053;
+
+}
+
+
 
 .edit {
   display: flex;
