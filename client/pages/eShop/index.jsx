@@ -97,7 +97,9 @@ export default function eShop({ addToCart }) {
             placeholder="Buscar..."
             onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)}>Buscar</button>
+          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
+            Buscar
+          </button>
         </div>
         <div className={styles.container2}>
           <form
@@ -168,8 +170,7 @@ export default function eShop({ addToCart }) {
             </select>
             <button onClick={(e) => handlerFilter(e)}>Aplicar Filtros</button>
           </form>
-          <div className={styles.big_container}>
-            <div className={styles.posts_Container}></div>
+          <div className={styles.containerCards}>
             {productos?.map((producto) => {
               return (
                 <CardProduct
@@ -180,20 +181,20 @@ export default function eShop({ addToCart }) {
               );
             })}
             <div />
-            <div>
-              <button value="🡸" onClick={(e) => handlerPage(e)}>
-                🡸
-              </button>
-              {paging?.map((p) => (
-                <button value={p} key={p} onClick={(e) => handlerPage(e)}>
-                  {p}
-                </button>
-              ))}
-              <button value="🡺" onClick={(e) => handlerPage(e)}>
-                🡺
-              </button>
-            </div>
           </div>
+        </div>
+        <div className={styles.pages}>
+          <button value="🡸" onClick={(e) => handlerPage(e)}>
+            🡸
+          </button>
+          {paging?.map((p) => (
+            <button value={p} key={p} onClick={(e) => handlerPage(e)}>
+              {p}
+            </button>
+          ))}
+          <button value="🡺" onClick={(e) => handlerPage(e)}>
+            🡺
+          </button>
         </div>
       </div>
     </LayoutGlobal>
