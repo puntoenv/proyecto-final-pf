@@ -325,16 +325,7 @@ export default function Perfil({
                     <b>Postea una adopción</b>
                   </Link>
                 </button>
-                <button className={style.button}>
-                  <Link
-                    href={{
-                      pathname: "/PetsCrea",
-                      query: { id: `${_id}` },
-                    }}
-                  >
-                    <b>animales creados</b>
-                  </Link>
-                </button>
+        
                 {/* <button className={style.button}>
                   <Link href={"/profile"}>
                     <b>Adopta</b>
