@@ -12,8 +12,10 @@ const nextConfig = {
       "gfycat.com",
       "lh3.googleusercontent.com",
       "s.gravatar.com",
-      "i.pinimg.com",
+      "images.unsplash.com",
       "img.freepik.com",
+      "i.pinimg.com"
+
     ],
 
     remotePatterns: [

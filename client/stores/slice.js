@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 export const caracterSlice = createSlice({
   name: 'caracter',
   initialState: {
@@ -15,7 +16,7 @@ export const caracterSlice = createSlice({
       state.municipios = action.payload
     },
     getuser: (state, action) => {
-      state.municipios = action.payload
+      state.usuario = action.payload
     },
   }
 })
