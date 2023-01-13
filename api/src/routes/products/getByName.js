@@ -9,7 +9,7 @@ router.get("/by-name/:id", async (req, res) => {
     let { name } = req.query;
     let products = await Product.paginate(
       { name: { $regex: name, $options: "i" } },
-      { page: id, limit: 3 }
+      { page: id, limit: 10 }
     );
     res.send(products);
   } catch (error) {
