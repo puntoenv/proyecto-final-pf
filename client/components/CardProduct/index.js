@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-/* import Link from "next/link"; */
 import styles from "./styles.module.css";
 
 export default function CardProduct({ info, addToCart }) {
@@ -37,23 +36,6 @@ export default function CardProduct({ info, addToCart }) {
     addToCart(unidad);
   };
 
-  /* const handlerAdd = () => {
-    const unidad = {
-      name,
-      image,
-      price,
-      _id,
-      description,
-      stock,
-      category,
-      boughtBy,
-      hidden,
-      __v,
-    };
-    addToCart(unidad);
-    alert(`${name} agregado con exito`);
-  }; */
-
   return (
     <div className={styles.card}>
       {/* <Link href={`/detail/${id}`}> */}
@@ -88,9 +70,6 @@ export default function CardProduct({ info, addToCart }) {
         </select>
         <input type="submit" value="Agregar al carrito" />
       </form>
-      {/* <button className={styles.btn} onClick={handlerAdd}>
-        Agregar
-      </button> */}
     </div>
   );
 }

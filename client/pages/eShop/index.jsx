@@ -9,12 +9,10 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
-/* import axios from "axios"; */
 
 export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
-  /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
 
   useEffect(() => {
     dispatch(getProducts());
