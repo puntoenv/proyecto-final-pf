@@ -25,16 +25,16 @@ export const mascotasSlice = createSlice({
         });
       }
     },
-    orderPets:(state, action)=>{
-      // console.log(action.payload)
+    // orderPets:(state, action)=>{
+    //   // console.log(action.payload)
       
-      if (action.payload === 'asc'){
-        state.mascotas.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
-      }else {
-        state.mascotas.sort((a, b)=> a.name > b.name ?  -1 : b.name > a.name ? 1 : 0)
-      }
+    //   if (action.payload === 'asc'){
+    //     state.mascotas.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+    //   }else {
+    //     state.mascotas.sort((a, b)=> a.name > b.name ?  -1 : b.name > a.name ? 1 : 0)
+    //   }
       
-    }
+    // }
   },
 });
 

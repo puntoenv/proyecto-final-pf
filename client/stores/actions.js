@@ -55,12 +55,24 @@ export const PostAdop = (post) => {
         //   `
         // })
         Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Mascota publicada correctamente",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+          title:'🐾 Mascota publicada correctamente 🐾',
+          icon: 'success',
+          color: '#437042',
+          confirmButtonColor:'#437042',
+          confirmButtonAriaLabel:'#437042',
+          background: '#fff url(/images/trees.png)'
+        }
+          
+         
+         
+      )
+        // Swal.fire({
+        //   position: "top-end",
+        //   icon: "success",
+        //   title: "Mascota publicada correctamente",
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        // });
         // alert("Mascota publicada correctamente.");
         return res.data;
       })
@@ -68,13 +80,18 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch((err) =>
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "No se pudo publicar la mascota",
-          showConfirmButton: false,
-          timer: 3000,
-        })
+      Swal.fire(
+        'Error. No se pudo publicar la mascota',
+        // 'pudo publicar la mascota',
+        'error'
+      )
+      //   Swal.fire({
+      //     position: "top-end",
+      //     icon: "error",
+      //     title: "No se pudo publicar la mascota",
+      //     showConfirmButton: false,
+      //     timer: 3000,
+      //   })
       )
   );
 };
@@ -177,11 +194,11 @@ export const addCart = (id) => async (dispatch) => {
 };
 
 
-export const sorts=(payload)=> (dispatch)=>{
-  // console.log(payload)
-  return dispatch(orderPets(payload))
+// export const sorts=(payload)=> (dispatch)=>{
+//   // console.log(payload)
+//   return dispatch(orderPets(payload))
   
-}
+// }
 
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));

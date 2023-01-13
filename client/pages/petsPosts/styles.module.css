@@ -202,7 +202,13 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
+  background-color: white;
 }
+
+.button {
+   background-color: red;
+}
+
 
 .edit {
   display: flex;

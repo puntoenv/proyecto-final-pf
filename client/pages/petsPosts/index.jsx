@@ -38,10 +38,10 @@ export default function PetAdoption() {
     dispatch(getPets(1));
   };
 
-  const handlerSort = (e)=>{ 
-    e.preventDefault();
-    dispatch(sorts(e.target.value)); 
-} 
+//   const handlerSort = (e)=>{ 
+//     e.preventDefault();
+//     dispatch(sorts(e.target.value)); 
+// } 
 
   useEffect(() => {
     dispatch(getPets(1));
@@ -189,11 +189,11 @@ export default function PetAdoption() {
           </form>
 
           
-          <select className="select" onChange={handlerSort}>
+          {/* <select className="select" onChange={handlerSort}>
           <option value=" ">Ordenar</option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
-          </select>
+          </select> */}
           
           <div className={styles.big_container}>
             <div className={styles.posts_Container}></div>
