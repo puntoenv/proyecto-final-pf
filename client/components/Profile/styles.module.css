@@ -23,10 +23,12 @@
   border: 1px solid #034103;
   border-radius: 18px;
   margin: auto;
+  background-color: white;
 }
 
 .buttons {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
@@ -163,6 +165,9 @@
   padding-left: 12px;
   display: flex;
   justify-content: space-between;
+  width: 15rem;
+  display: flex;
+  text-align: center;
 }
 
 .insideInfo {
@@ -174,8 +179,27 @@
   display: flex;
   background-color: #584a3caa;
   border-radius: 50px;
-  height: 3rem;
+  min-height: 3rem;
   align-items: center;
+}
+
+.thirdContainer p {
+  color: black;
+  background-color: transparent;
+
+  text-align: justify;
+}
+
+.thirdContainer .p {
+    border-bottom: 3px solid #0e3810;
+    border-radius: 0;
+    display: flex;
+    align-items: flex-end;
+    width: 20%;
+}
+
+.bioContainer {
+  color: black
 }
 
 .p {
@@ -186,4 +210,12 @@
   width: 10rem;
   height: 3rem;
   padding-left: 4px;
+}
+
+.div {
+  display: flex;
+}
+
+.infoStyles {
+  min-width: 40rem;
 }
