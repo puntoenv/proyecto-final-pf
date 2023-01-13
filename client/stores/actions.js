@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getAllProducts, addProductCart } from "./products";
-import { getMascotas } from "./mascotas";
+import { getMascotas, orderPets } from "./mascotas";
 import { getUserId } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -49,12 +49,24 @@ export const PostAdop = (post) => {
         //   `
         // })
         Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Mascota publicada correctamente",
-          showConfirmButton: false,
-          timer: 3000,
-        });
+          title:'🐾 Mascota publicada correctamente 🐾',
+          icon: 'success',
+          color: '#437042',
+          confirmButtonColor:'#437042',
+          confirmButtonAriaLabel:'#437042',
+          // background: '#fff url(/images/trees.png)'
+        }
+          
+         
+         
+      )
+        // Swal.fire({
+        //   position: "top-end",
+        //   icon: "success",
+        //   title: "Mascota publicada correctamente",
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        // });
         // alert("Mascota publicada correctamente.");
         return res.data;
       })
@@ -62,13 +74,22 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch((err) =>
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "No se pudo publicar la mascota",
-          showConfirmButton: false,
-          timer: 3000,
-        })
+      Swal.fire({
+        title:'Error. No se pudo publicar la mascota',
+        icon:'error',
+        color: '#437042',
+        confirmButtonColor:'#437042',
+        confirmButtonAriaLabel:'#437042',
+        // background:'#fff url(../backAlerts.png)',
+
+})
+      //   Swal.fire({
+      //     position: "top-end",
+      //     icon: "error",
+      //     title: "No se pudo publicar la mascota",
+      //     showConfirmButton: false,
+      //     timer: 3000,
+      //   })
       )
   );
 };
@@ -170,3 +191,14 @@ export const addCart = (id) => async (dispatch) => {
     console.error(error);
   }
 };
+
+
+// export const sorts=(payload)=> (dispatch)=>{
+//   // console.log(payload)
+//   return dispatch(orderPets(payload))
+  
+// }
+
+// export const filterPets = (params) => (dispatch) => {
+//   return dispatch(petsFilter(params));
+// };
