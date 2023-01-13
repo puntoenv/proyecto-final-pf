@@ -19,7 +19,7 @@ function Profile({data, response}) {
   return (
     <div className={style.container}>
       <Layout title={"Perfil"}></Layout>
-      <NavBar></NavBar>
+      <NavBar response={response}></NavBar>
       <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
     </div>
   );
