@@ -135,8 +135,9 @@ export function form(props) {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const id = await PostAdop(post);
-    if (id) return await router.push(`/detail/${id}`);
+    await PostAdop(post)
+      .then((id) => router.push(`/detail/${id}`))
+      .catch((err) => alert(err));
   };
 
   return (

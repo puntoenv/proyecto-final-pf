@@ -21,7 +21,8 @@ export default function PetAdoption() {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const handlerTodos = () => {
+  const handlerTodos = (e) => {
+    e.preventDefault();
     dispatch(getProducts());
   };
   const handlerSearch = (e) => {
@@ -60,7 +61,7 @@ export default function PetAdoption() {
       <div className={styles.container2}>
         <form className={styles.form}>
           <div>
-            <button className={styles.all} onClick={handlerTodos}>
+            <button className={styles.all} onClick={(e) => handlerTodos(e)}>
               Ver todos
             </button>
           </div>
