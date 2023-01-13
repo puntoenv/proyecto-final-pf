@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "../styles/globals.css";
 import { store } from "../stores/store";
@@ -18,11 +18,51 @@ axios.defaults.baseURL = "http://localhost:3001/";
 const clientId = process.env.AUHT0_CLIENT_ID;
 
 export default function App({ Component, pageProps }) {
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const carrito = JSON.parse(localStorage.getItem("cart")) ?? [];
+    setCart(carrito);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  const addToCart = (product) => {
+    if (cart.some((unidad) => unidad._id === product._id)) {
+      const carritoActualizado = cart.map((unidad) => {
+        if (unidad._id === product._id) {
+          unidad.cantidad = product.cantidad;
+        }
+        return unidad;
+      });
+      console.log(carritoActualizado);
+      setCart(carritoActualizado);
+    } else {
+      setCart([...cart, product]);
+    }
+  };
+
+  const deleteCart = (id) => {
+    const buscar = cart.filter((uno) => uno._id !== id);
+    setCart(buscar);
+  };
+
+  const deleteAllCart = () => {
+    setCart([]);
+  };
   return (
     <ContextProvider>
       <UserProvider client_id={clientId}>
         <Provider store={store}>
-          <Component {...pageProps} />
+          <Component
+            {...pageProps}
+            cart={cart}
+            addToCart={addToCart}
+            deleteCart={deleteCart}
+            deleteAllCart={deleteAllCart}
+          />
         </Provider>
       </UserProvider>
     </ContextProvider>
