@@ -69,8 +69,8 @@
   width: 160px;
   font-weight: 700;
   margin-left: 50px;
-  margin-bottom: 2em;
-  margin-top: 5em;
+  margin-bottom: 1em;
+  margin-top: 4em;
 }
 
 .all:hover {
@@ -82,7 +82,7 @@
   background: #584a3c;
 }
 
-.card {
+/* .card {
   background: #e8eb9d;
   position: relative;
   display: flex;
@@ -91,37 +91,37 @@
   align-content: center;
   border-radius: 30px;
   flex-direction: column;
-  width: 300px;
-  margin-top: 3em;
-  margin-left: 4em;
-}
+  width: auto;
+  height: auto;
+} */
 
-.name {
+/* .name {
   font-weight: 700;
   margin-top: 20px;
   color: #32281f;
   font-size: 35px;
   text-shadow: 2px 2px 4px #937a60;
-}
+} */
 
 .size {
   font-size: 20px;
 }
 
 .big_container {
-  margin: auto;
-  padding: 0;
-  min-height: 100vh;
+  margin-top: 1rem;
   display: flex;
-
+  justify-content: space-evenly;
   align-items: center;
+  flex-direction: row;
+  margin-left: 15rem;
   font-family: "Segoe UI";
-  width: 1200px;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .container2 {
   display: flex;
+  flex-direction: column;
 }
 
 .img {
@@ -161,6 +161,7 @@
   flex-direction: column;
   align-items: center;
   display: flex;
+  position: fixed;
 }
 
 .select {
