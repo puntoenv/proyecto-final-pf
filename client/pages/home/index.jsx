@@ -33,7 +33,7 @@ export default function Home() {
 
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getPets());
+      dispatch(getPets(1));
     }, []);
 
     return (

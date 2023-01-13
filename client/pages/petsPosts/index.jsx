@@ -7,7 +7,6 @@ import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import logo from "../../img/logo.jpeg";
 
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
