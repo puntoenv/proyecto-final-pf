@@ -2,6 +2,8 @@ import React from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
 import NavBar from "../../components/NavBar/NavBar";
+import Petscrea from "../../components/petscreate";
+import HistoryEsh from '../../components/HistoryEsh'
 import styles from "../../components/Profile/Loading.module.css";
 import style from './style.module.css'
 import Layout from "../layout";
@@ -21,6 +23,8 @@ function Profile({data, response}) {
       <Layout title={"Perfil"}></Layout>
       <NavBar></NavBar>
       <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
+      <Petscrea response={response}/>
+      <HistoryEsh response={response}/>
     </div>
   );
 }
