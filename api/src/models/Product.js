@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const uniqueValidator = require("mongoose-unique-validator");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const productSchema = new Schema({
   name: {
@@ -21,14 +22,17 @@ const productSchema = new Schema({
   image: String,
   stock: Number,
   category: Array,
-  boughtBy: [{
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  }],
-  hidden: {type: Boolean,
-    default: false}
+  boughtBy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  hidden: { type: Boolean, default: false },
 });
 
 productSchema.plugin(uniqueValidator, { message: "is already taken." });
+
+productSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("Product", productSchema);
