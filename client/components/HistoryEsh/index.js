@@ -5,9 +5,9 @@ function index({ response }) {
   return (
     <div>
       <div className={styles.container_animal}>
-        <h2>historial de compras</h2>
-        <div className={styles.big_container}>
-          <div className={styles.posts_Container}></div>
+        <h2 className={styles.letra}>historial de compras</h2>
+        <div className={styles.container_post}>
+       
           {bought?.map((producto) => (
             <CardProduct
               key={producto._id}

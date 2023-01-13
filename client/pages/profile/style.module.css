@@ -9,6 +9,7 @@
   align-items: flex-start;
 }
 .container_history {
-  display: inline-flex;
-  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 80%;
+  
 }

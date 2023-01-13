@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 function Petscrea({ response }) {
   const { pets } = response;
-  console.log(pets);
+  console.log(response);
   return (
     <div>
       <div className={styles.container_animal}>

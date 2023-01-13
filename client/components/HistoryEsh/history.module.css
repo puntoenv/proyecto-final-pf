@@ -208,8 +208,7 @@
 }
 
 .container_animal {
-  display: flex;
-  flex-direction: column;
+width: 100%;
 }
 
 .container_post {
@@ -217,4 +216,18 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.letra {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  text-shadow: 2px 2px 4px #937a60;
+  width: 100%;
+}
+.container_post{
+  display: inline-flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
