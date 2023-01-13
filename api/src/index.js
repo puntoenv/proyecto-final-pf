@@ -15,6 +15,7 @@ const filterP = require("./routes/products/getFilteredProducts");
 const detailProduct = require("./routes/products/detailProduct");
 const allUsers = require("./routes/users/allUsers")
 const productsByName = require("./routes/products/getByName")
+const payment = require("./routes/mercadoPago");
 
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
@@ -38,5 +39,5 @@ router.use(
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
-
+router.use("/payment",payment)
 module.exports = router;

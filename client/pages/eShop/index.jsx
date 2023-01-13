@@ -44,6 +44,7 @@ export default function PetAdoption() {
           height="auto"
         />
       </Link>
+      <div className={styles.containerAllProducts}>
 
       <div className={styles.search}>
         <input
@@ -103,23 +104,23 @@ export default function PetAdoption() {
             <option className={styles.option} value="tipo">
               Todos
             </option>
-            <option className={styles.option} value="perro">
-              Perros
-            </option>
-            <option className={styles.option} value="gato">
-              Gatos
+            <option className={styles.option} value="ave">
+              Aves
             </option>
             <option className={styles.option} value="conejo">
               Conejos
             </option>
-            <option className={styles.option} value="ave">
-              Aves
-            </option>
-            <option className={styles.option} value="pez">
-              Peces
+            <option className={styles.option} value="gato">
+              Gatos
             </option>
             <option className={styles.option} value="hamster">
               Hamsters
+            </option>
+            <option className={styles.option} value="perro">
+              Perros
+            </option>
+            <option className={styles.option} value="pez">
+              Peces
             </option>
             <option className={styles.option} value="tortuga">
               Tortuga
@@ -130,13 +131,42 @@ export default function PetAdoption() {
 
         <div className={styles.big_container}>
           <div className={styles.posts_Container}></div>
-          {productos?.map((producto) => (
-            <CardProduct
-              key={producto._id}
-              info={producto}
-              addToCart={addToCart}
-            />
-          ))}
+          {productos?.map((producto) => {
+            return(
+            //      <CardProduct
+            //    key={producto._id}
+            //    info={producto}
+            //   addToCart={addToCart}
+            //  /> 
+
+             <div key={producto._id} className={styles.card}>
+             <Image
+               className={styles.img}
+               width="300"
+               height="240"
+               src={producto.image}
+               alt="image"
+             />
+              <h3 className={styles.name}>{producto.name}</h3>
+                <span className={styles.size}>${producto.price}</span>
+              <button className={styles.btn}>
+              <Link href={`/detailProduct/${producto._id}`}>
+              <h1>Ver Producto</h1>
+              </Link>
+              </button>
+            </div>
+            )
+})}
+            
+
+
+
+
+
+
+{/* // {/*  */}
+          
+         
 
           <div />
         </div>
@@ -174,6 +204,7 @@ export default function PetAdoption() {
       } */}
       <Footer />
       {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
+    </div>
     </div>
   );
 }
