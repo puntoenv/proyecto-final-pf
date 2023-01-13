@@ -9,6 +9,10 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import {
+  IoIosArrowDroprightCircle,
+  IoIosArrowDropleftCircle,
+} from "react-icons/io";
 
 export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
@@ -168,7 +172,12 @@ export default function eShop({ addToCart }) {
                 Tortuga
               </option>
             </select>
-            <button onClick={(e) => handlerFilter(e)}>Aplicar Filtros</button>
+            <button
+              className={styles.btnFilter}
+              onClick={(e) => handlerFilter(e)}
+            >
+              Aplicar Filtros
+            </button>
           </form>
           <div className={styles.containerCards}>
             {productos?.map((producto) => {
@@ -184,16 +193,21 @@ export default function eShop({ addToCart }) {
           </div>
         </div>
         <div className={styles.pages}>
-          <button value="🡸" onClick={(e) => handlerPage(e)}>
-            🡸
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDropleftCircle className={styles.iconPage} />
           </button>
           {paging?.map((p) => (
-            <button value={p} key={p} onClick={(e) => handlerPage(e)}>
+            <button
+              value={p}
+              key={p}
+              onClick={(e) => handlerPage(e)}
+              className={styles.pageNum}
+            >
               {p}
             </button>
           ))}
-          <button value="🡺" onClick={(e) => handlerPage(e)}>
-            🡺
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDroprightCircle className={styles.iconPage} />
           </button>
         </div>
       </div>
