@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { getProducts, searchProduct, addCart } from "../../stores/actions";
+import {
+  getProducts,
+  searchProduct /* , addCart  */,
+} from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layout.js";
@@ -24,7 +27,6 @@ export default function eShop({ addToCart }) {
   const handlerSearch = (e) => {
     dispatch(searchProduct(e.target.value));
   };
-
   return (
     <div>
       <Layout title="Productos" />
@@ -39,101 +41,101 @@ export default function eShop({ addToCart }) {
         />
       </Link>
       <div className={styles.containerAllProducts}>
+        <div className={styles.search}>
+          <input
+            className={styles.input}
+            type="search"
+            placeholder="Buscar..."
+            onChange={handlerSearch}
+          />
+        </div>
 
-      <div className={styles.search}>
-        <input
-          className={styles.input}
-          type="search"
-          placeholder="Buscar..."
-          onChange={handlerSearch}
-        />
-      </div>
+        {/* ----------------------------------FILTROS------------------------------------ */}
 
-      {/* ----------------------------------FILTROS------------------------------------ */}
+        <div className={styles.container2}>
+          <form className={styles.form}>
+            <div>
+              <button className={styles.all} onClick={handlerTodos}>
+                Ver todos
+              </button>
+            </div>
+            <h1 className={styles.title}>Accesorios</h1>
+            <select className={styles.select} id="accesorios">
+              <option className={styles.option} value="indumentaria">
+                Todos
+              </option>
+              <option className={styles.option} value="collar">
+                Collar
+              </option>
+              <option className={styles.option} value="gorros">
+                Gorros
+              </option>
+              <option className={styles.option} value="Chapitas">
+                Chapitas
+              </option>
+              <option className={styles.option} value="remeras">
+                Remeras
+              </option>
+            </select>
 
-      <div className={styles.container2}>
-        <form className={styles.form}>
-          <div>
-            <button className={styles.all} onClick={handlerTodos}>
-              Ver todos
-            </button>
-          </div>
-          <h1 className={styles.title}>Accesorios</h1>
-          <select className={styles.select} id="accesorios">
-            <option className={styles.option} value="indumentaria">
-              Todos
-            </option>
-            <option className={styles.option} value="collar">
-              Collar
-            </option>
-            <option className={styles.option} value="gorros">
-              Gorros
-            </option>
-            <option className={styles.option} value="Chapitas">
-              Chapitas
-            </option>
-            <option className={styles.option} value="remeras">
-              Remeras
-            </option>
-          </select>
+            <h1 className={styles.title}>Precio</h1>
+            <select className={styles.select} id="precio">
+              <option className={styles.option} value="precio">
+                Todos
+              </option>
+              <option className={styles.option} value="barato">
+                0$ a 999$
+              </option>
+              <option className={styles.option} value="accesible">
+                1.000$ a 4.999$
+              </option>
+              <option className={styles.option} value="costoso">
+                5.000$ a 10.000$
+              </option>
+            </select>
 
-          <h1 className={styles.title}>Precio</h1>
-          <select className={styles.select} id="precio">
-            <option className={styles.option} value="precio">
-              Todos
-            </option>
-            <option className={styles.option} value="barato">
-              0$ a 999$
-            </option>
-            <option className={styles.option} value="accesible">
-              1.000$ a 4.999$
-            </option>
-            <option className={styles.option} value="costoso">
-              5.000$ a 10.000$
-            </option>
-          </select>
+            <h1 className={styles.title}>Tipo</h1>
+            <select className={styles.select} id="tipo">
+              <option className={styles.option} value="tipo">
+                Todos
+              </option>
+              <option className={styles.option} value="perro">
+                Perros
+              </option>
+              <option className={styles.option} value="gato">
+                Gatos
+              </option>
+              <option className={styles.option} value="conejo">
+                Conejos
+              </option>
+              <option className={styles.option} value="ave">
+                Aves
+              </option>
+              <option className={styles.option} value="pez">
+                Peces
+              </option>
+              <option className={styles.option} value="hamster">
+                Hamsters
+              </option>
+              <option className={styles.option} value="tortuga">
+                Tortuga
+              </option>
+            </select>
+          </form>
+          {/* ----------------------------------------------------------------------- */}
 
-          <h1 className={styles.title}>Tipo</h1>
-          <select className={styles.select} id="tipo">
-            <option className={styles.option} value="tipo">
-              Todos
-            </option>
-            <option className={styles.option} value="perro">
-              Perros
-            </option>
-            <option className={styles.option} value="gato">
-              Gatos
-            </option>
-            <option className={styles.option} value="conejo">
-              Conejos
-            </option>
-            <option className={styles.option} value="ave">
-              Aves
-            </option>
-            <option className={styles.option} value="pez">
-              Peces
-            </option>
-            <option className={styles.option} value="hamster">
-              Hamsters
-            </option>
-            <option className={styles.option} value="tortuga">
-              Tortuga
-            </option>
-          </select>
-        </form>
-        {/* ----------------------------------------------------------------------- */}
-
-        <div className={styles.big_container}>
-          <div className={styles.posts_Container}></div>
-          {productos?.map((producto) => {
-            return(
-            //      <CardProduct
-            //    key={producto._id}
-            //    info={producto}
-            //   addToCart={addToCart}
-            //  /> 
-
-             <div key={producto._id} className={styles.card}>
+          <div className={styles.big_container}>
+            <div className={styles.posts_Container}></div>
+            {productos?.map((producto) => {
+              return (
+                <CardProduct
+                  key={producto._id}
+                  info={producto}
+                  addToCart={addToCart}
+                />
+              );
+              {
+                /* <div key={producto._id} className={styles.card}>
              <Image
                className={styles.img}
                width="300"
@@ -148,24 +150,16 @@ export default function eShop({ addToCart }) {
               <h1>Ver Producto</h1>
               </Link>
               </button>
-            </div>
-            )
-})}
-            
+            </div> */
+              }
+            })}
 
+            {/* // {/*  */}
 
-
-
-
-
-{/* // {/*  */}
-          
-         
-
-          <div />
+            <div />
+          </div>
         </div>
-      </div>
-      {/*(
+        {/*(
                <div key={producto._id} className={styles.card}>
                 <Image
                   className={styles.img}
@@ -178,11 +172,11 @@ export default function eShop({ addToCart }) {
                 <h2 className={styles.size}>${producto.price}</h2>
               </div>
             ); */}
-      {/* <Link href={`/detail/${pets._id}`}>
+        {/* <Link href={`/detail/${pets._id}`}>
         <h1>Ver mascota</h1>
       </Link> */}
 
-      {/* {
+        {/* {
         <Pagina
           pets={pets}
           pg={pg}
@@ -196,9 +190,9 @@ export default function eShop({ addToCart }) {
           setMinPageLimit={setMinPageLimit}
         />
       } */}
-      <Footer />
-      {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
-    </div>
+        <Footer />
+        {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
+      </div>
     </div>
   );
 }

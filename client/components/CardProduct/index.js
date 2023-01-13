@@ -34,22 +34,23 @@ export default function CardProduct({ info, addToCart }) {
       cantidad,
     };
     addToCart(unidad);
+    alert(`${cantidad} ${name} agregado/s al carrito`);
   };
 
   return (
     <div className={styles.card}>
-      {/* <Link href={`/detail/${id}`}> */}
       <h3 className={styles.name}>{name.toUpperCase()}</h3>
-      {/* </Link> */}
-      {/* <Image
+      <Image
         className={styles.img}
         src={image}
-        width={100}
-        height={100}
+        width="300"
+        height="240"
         alt="imagen del producto"
-      /> */}
+      />
       {price ? <p className={styles.size}>Precio: ${price}</p> : null}
-      <Link href={`/detailProduct/${_id}`}>Ver Producto</Link>
+      <Link href={`/detailProduct/${_id}`}>
+        <h1>Ver Producto</h1>
+      </Link>
       <form onSubmit={handlerSubmit}>
         <label>Cantidad</label>
         <select
