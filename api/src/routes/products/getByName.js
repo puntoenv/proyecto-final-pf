@@ -3,15 +3,18 @@ const Product = require("../../models/Product");
 
 const router = Router();
 
-router.get("/by-name", async (req, res) => {
-  const { name } = req.query;
+router.get("/by-name/:id", async (req, res) => {
   try {
-    const products = await Product.find();
-    const productsFiltered = products.filter((e) => e.name.includes(name));
-
-    res.json(productsFiltered);
+    let { id } = req.params;
+    let { name } = req.query;
+    let products = await Product.paginate(
+      { name: { $regex: name, $options: "i" } },
+      { page: id, limit: 3 }
+    );
+    res.send(products);
   } catch (error) {
-    res.json(error);
+    console.log(error);
+    res.status(400).send(error.message);
   }
 });
 
