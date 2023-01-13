@@ -15,8 +15,6 @@ export default function PetAdoption() {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
 
-  /* const ubi = useSelector((state) => state.caracter.provi.provincias); */
-
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
