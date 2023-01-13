@@ -186,6 +186,8 @@ export default function PetAdoption() {
               value="Aplicar Filtros"
               onClick={(e) => handlerSubmit(e)}
             />
+           
+        
           </form>
 
           
@@ -230,6 +232,7 @@ export default function PetAdoption() {
           ))}
           <input className={styles.paginate} type="button" value="🡺" onClick={(e) => handlerPage(e)} />
         </div>
+
       </div>
     </LayoutGlobal>
   );

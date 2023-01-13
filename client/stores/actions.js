@@ -55,6 +55,7 @@ export const PostAdop = (post) => {
           color: '#437042',
           confirmButtonColor:'#437042',
           confirmButtonAriaLabel:'#437042',
+         
           // background: '#fff url(/images/trees.png)'
         }
           
@@ -81,6 +82,7 @@ export const PostAdop = (post) => {
         color: '#437042',
         confirmButtonColor:'#437042',
         confirmButtonAriaLabel:'#437042',
+     
         // background:'#fff url(../backAlerts.png)',
 
 })
@@ -148,7 +150,14 @@ export const searchPet = (pet, page) => async (dispatch) => {
   try {
     let petEncontrado = await axios(`/pets/by-name/${page}?name=${pet}`);
     if (petEncontrado.data.docs.length === 0) {
-      alert("No hay mascotas con ese nombre.");
+      Swal.fire({
+        title:'No hay mascotas con ese nombre',
+        icon:'error',
+        color: '#437042',
+        confirmButtonColor:'#437042',
+        confirmButtonAriaLabel:'#437042',
+})
+      // alert("No hay mascotas con ese nombre.");
       petEncontrado = await axios.get(`/pets/1`);
     }
     dispatch(getMascotas(petEncontrado.data));
@@ -164,7 +173,14 @@ export const getPets = (page, filters) => async (dispatch) => {
       let query = "?" + new URLSearchParams(filters);
       res = await axios.get(`/pets/${page}/${query}`);
       if (res.data.docs.length === 0) {
-        alert("No hay mascotas");
+        Swal.fire({
+          title:'No hay mascotas',
+          icon:'error',
+          color: '#437042',
+          confirmButtonColor:'#437042',
+          confirmButtonAriaLabel:'#437042',
+  })
+        // alert("No hay mascotas");
         res = await axios.get(`/pets/1`);
       }
     } else {

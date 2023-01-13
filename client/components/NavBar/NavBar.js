@@ -51,9 +51,9 @@ const NavBar = () => {
         {/* <Link className="itemDash" href="#">
           <span>Mis Favoritos</span>
         </Link> */}
-        {/* <Link className="itemDash" href="#">
+        <Link className="itemDash" href="/cart">
           <span>Mi carrito</span>
-        </Link> */}
+        </Link>
         <Link className="itemDash" href="/adoptionForm">
           <span>Publicar Mascota</span>
         </Link>
