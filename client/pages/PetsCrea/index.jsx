@@ -1,7 +1,5 @@
 import styles from "./style.module.css";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GetUs } from "../../stores/actions";
+import { useState } from "react";
 import NavBar from "../../components/NavBar/NavBar.js";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,19 +11,19 @@ for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
 function Favorite({response}) {
-const {favorites} =response
+const {pets} =response
+console.log(response)
 const [fil, setfil] = useState({
   type:"",
   size:"",
   gender:"",
   age:""
 })
-//console.log(fil)
+
  const handlerFilter = (e) => {
    const {id, value} = e.target
-   id === 'type' ? setfil ({... fil,[id]:value}) : id === 'size' ? setfil ({... fil,[id]:value}) : id === 'gender' ? setfil ({... fil,[id]:value}) : id === 'age' ? setfil ({... fil,[id]:value}) : setfil({... fil})
   }
- console.log(fil)
+
   return (
     
     <div>
@@ -127,7 +125,7 @@ const [fil, setfil] = useState({
      
       <div className={styles.big_container}>
          
-          {favorites?.map((mascota) => {
+          {pets?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
                 <Image
