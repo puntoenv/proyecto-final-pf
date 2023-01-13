@@ -4,8 +4,10 @@ import Layout from "./layout";
 
 export default function landingPage() {
   return (
-    <>
+    <div>
       <Layout title="Bienvenidos" />
+
+      
       <div className={styles.container}>
         <div className={styles.containerImg}>
           <div className={styles.img1}></div>
@@ -15,13 +17,19 @@ export default function landingPage() {
           <div className={styles.img5}></div>
           <div className={styles.img6}></div>
           <div className={styles.img7}></div>
-          <div className={styles.buttonContainer}>
+          
+          </div>
+        </div>
+
+        
+<div className={styles.buttonContainer}>
             <Link href="/home" className={styles.button}>
               Entrar
             </Link>
-          </div>
-        </div>
+
       </div>
-    </>
+
+      
+    </div>
   );
 }
