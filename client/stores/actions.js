@@ -2,7 +2,7 @@ import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
 import { getAllProducts, addProductCart } from "./products";
 import { getMascotas } from "./mascotas";
-import { getUserId } from "./User";
+import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
@@ -173,5 +173,14 @@ export const addCart = (id) => async (dispatch) => {
     dispatch(addProductCart(id));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const allUsers = () => async (dispatch) => {
+  try {
+    let users = await axios("http://localhost:3001/users");
+    dispatch(getAllUsers(users.data));
+  } catch (error) {
+    console.log(error);
   }
 };

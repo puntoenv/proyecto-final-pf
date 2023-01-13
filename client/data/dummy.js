@@ -393,7 +393,7 @@ export const LinePrimaryYAxis = {
 
 export const customersGrid = [
   { type: 'checkbox', width: '50' },
-  { headerText: 'Name',
+  { headerText: 'Nombre',
     width: '150',
     template: customerGridImage,
     textAlign: 'Center' },
@@ -490,10 +490,12 @@ export const links = [
       {
         name: 'employees',
         icon: <IoMdContacts />,
+        path: '/users'
       },
       {
         name: 'customers',
         icon: <RiContactsLine />,
+        
       },
     ],
   },
