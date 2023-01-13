@@ -3,7 +3,7 @@
   padding: 3rem;
 }
 
-.email{
+.email {
   color: #034103;
 }
 
@@ -11,19 +11,18 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.thirdContainer p {
   color: antiquewhite;
 }
 
 .infoContainer {
+  padding: 2rem 3rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0px 0px 25px #222;
+  background-color: rgba(146, 86, 8, 0.363);
   width: 80%;
-  padding: 4rem;
-  border: 1px solid #034103;
-  border-radius: 18px;
   margin: auto;
-  background-color: white;
+  border-radius: 20px;
 }
 
 .buttons {
@@ -82,7 +81,6 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  
 }
 
 .formImage {
@@ -90,20 +88,42 @@
   flex-direction: column;
 }
 
+.divImage {
+  display: flex;
+  justify-content: center;
+}
+
 .form input {
   margin-right: 2rem;
   border-radius: 8px;
+  color: black;
 }
 
-.form button {
+.form button, .formImage button {
   border: 3px solid #38593a;
   background-color: antiquewhite;
+  color: #034103;
+  box-shadow: 0px 0px 25px #222;
+  border-radius: 10px;
+  max-width:10rem;
+ align-self: center;
 
 }
 
-.form button :hover {
+.formImage button {
+  margin-top: 5px;
+}
+
+.form button :hover, .formImage button:hover {
   background-color: #0e3810;
   color: antiquewhite;
+  border-radius: 10px;
+  border: none;
+  
+}
+
+.formImage button:hover{
+height: 1.8rem;
 }
 
 .icon {
@@ -119,6 +139,7 @@
 .input {
   display: flex;
   flex-direction: column;
+  
 }
 
 .hiddenInput {
@@ -191,15 +212,15 @@
 }
 
 .thirdContainer .p {
-    border-bottom: 3px solid #0e3810;
-    border-radius: 0;
-    display: flex;
-    align-items: flex-end;
-    width: 20%;
+  border-bottom: 3px solid #0e3810;
+  border-radius: 0;
+  display: flex;
+  align-items: flex-end;
+  width: 20%;
 }
 
 .bioContainer {
-  color: black
+  color: black;
 }
 
 .p {
@@ -214,8 +235,5 @@
 
 .div {
   display: flex;
-}
-
-.infoStyles {
-  min-width: 40rem;
+  justify-content: space-between;
 }

@@ -1,7 +1,6 @@
 import axios from "axios";
 import Router from "next/router";
 
-
 export const validateForm = () => {};
 
 export const hanldeOnChange = (event, setInput, input, setResult) => {
@@ -22,8 +21,9 @@ export const handleOnSubmit = async (
   setInput,
   input,
   idUser,
+  Swal
 ) => {
-  event.preventDefault()
+  event.preventDefault();
 
   try {
     const response = await axios.put(
@@ -49,10 +49,29 @@ export const handleOnSubmit = async (
         image: "",
         ubication: "",
       });
-
       Router.reload(window.location.pathname);
     }
   } catch (error) {
-    console.log(error);
+    
+    if (input.image && error) {
+      if (error.response.statusText === "Payload Too Large") {
+        Swal.fire({
+          title: "Error. Intenta nuevamente con otra imagen",
+          icon: "error",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        });
+      }
+    } 
+    // else {
+    //   Swal.fire({
+    //     title: "No se pudo editar el perfil. Intenta nuevamente",
+    //     icon: "error",
+    //     color: "#437042",
+    //     confirmButtonColor: "#437042",
+    //     confirmButtonAriaLabel: "#437042",
+    //   });
+    // }
   }
 };
