@@ -2,9 +2,12 @@ import Link from "next/link";
 import React from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
+import axios from "axios";
+import products from "../../../stores/products";
 
 export default function Detail({ data }) {
   console.log(data);
+  let products=[data];
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -16,7 +19,19 @@ export default function Detail({ data }) {
           <div className={style.containInfo}>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
-              <button className={style.btnBuy}>Comprar</button>
+              <button className={style.btnBuy} onClick={(e)=>{ try {
+                axios.post("http://localhost:3001/payment",products).then(
+                (res)=> (window.location.href=res.data.response.body.init_point))
+              } catch (error) {res.status(400).send(error);}
+            }}>Comprar</button>
+             
+              
+               
+              
+
+
+
+
               <span className={style.priceProduct}>${data.price}</span>
               {data.category && (
                 <span className={style.categoriesProduct}>
