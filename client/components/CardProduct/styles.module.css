@@ -1,51 +1,69 @@
 .card {
-  background: #e8eb9d;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 3px solid #aaa;
+  width: 100%;
+  margin: 20px;
+  padding: 40px 20px;
+}
+.linkImg {
   display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  border-radius: 30px;
-  flex-direction: column;
-  height: 400px;
-  width: 300px;
-  margin: 20px;
+  width: 220px;
+  height: 220px;
 }
+
 .img {
-  width: 250px;
-  height: auto;
   border-radius: 30px;
-}
-
-.btn {
-  background: #38593a;
-  font-size: 21px;
-  color: white;
-  border: 1em;
-  border-radius: 15px;
-  height: 45px;
-  width: 150px;
-  margin-top: 15px;
-  margin-bottom: 30px;
-  z-index: 600;
-  font-weight: 700;
-}
-
-.btn:hover {
-  color: beige;
-  border: none;
-  font-weight: 700;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #333;
-  background: #483c30;
 }
 .name {
   font-weight: 700;
+  margin-left: 60px;
   margin-top: 20px;
-  color: #32281f;
-  font-size: 35px;
-  text-shadow: 2px 2px 4px #937a60;
+  color: #333;
+  font-size: 30px;
+}
+.divPriceAddCart {
+  display: flex;
+  margin-top: 40px;
+  margin-left: 60px;
+}
+.price {
+  margin-top: 50px;
+  font-size: 28px;
 }
 
-.size {
-  font-size: 20px;
+.formCantCart {
+  display: flex;
+  align-items: center;
+  margin-left: 30%;
+  margin-bottom: 60px;
+}
+.selectCant {
+  width: 25%;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 5px 8px;
+}
+.spanButtonAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+.icon {
+  font-size: 28px;
+  color: #fff;
+}
+.addCant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  padding: 5px;
+  color: #fff;
+  border-radius: 10px;
+  background-color: #38593a;
 }
