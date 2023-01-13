@@ -1,15 +1,14 @@
 .card {
   background: #e8eb9d;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   border-radius: 30px;
   flex-direction: column;
+  height: 400px;
   width: 300px;
-  margin-top: 3em;
-  margin-left: 4em;
+  margin: 20px;
 }
 .img {
   width: 250px;
