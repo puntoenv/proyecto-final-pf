@@ -1,18 +1,18 @@
 .card {
   background: #e8eb9d;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   border-radius: 30px;
   flex-direction: column;
-  width: 17.5rem;
-  height: 30rem;
+  height: 400px;
+  width: 300px;
+  margin: 20px;
 }
 .img {
-  width: 15rem;
-  height: 10rem;
+  width: 250px;
+  height: auto;
   border-radius: 30px;
 }
 
@@ -40,10 +40,12 @@
 }
 .name {
   font-weight: 700;
+  margin-top: 20px;
   color: #32281f;
-  font-size: xx-large;
+  font-size: 35px;
   text-shadow: 2px 2px 4px #937a60;
-  height: auto;
-  width: auto;
-  text-align: center;
+}
+
+.size {
+  font-size: 20px;
 }
