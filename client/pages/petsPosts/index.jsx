@@ -9,7 +9,6 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 
-
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
@@ -38,10 +37,10 @@ export default function PetAdoption() {
     dispatch(getPets(1));
   };
 
-//   const handlerSort = (e)=>{ 
-//     e.preventDefault();
-//     dispatch(sorts(e.target.value)); 
-// } 
+  //   const handlerSort = (e)=>{
+  //     e.preventDefault();
+  //     dispatch(sorts(e.target.value));
+  // }
 
   useEffect(() => {
     dispatch(getPets(1));
@@ -97,15 +96,6 @@ export default function PetAdoption() {
   return (
     <LayoutGlobal>
       <Layout title="Mascotas" />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllPets}>
         <div className={styles.container2}>
           <form className={styles.form} onChange={(e) => handlerFilter(e)}>
@@ -181,22 +171,20 @@ export default function PetAdoption() {
                 </option>
               ))}
             </select>
-            <input className={styles.all2}
+            <input
+              className={styles.all2}
               type="submit"
               value="Aplicar Filtros"
               onClick={(e) => handlerSubmit(e)}
             />
-           
-        
           </form>
 
-          
           {/* <select className="select" onChange={handlerSort}>
           <option value=" ">Ordenar</option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
           </select> */}
-          
+
           <div className={styles.big_container}>
             <div className={styles.posts_Container}></div>
             {pets?.map((mascota) => {
@@ -221,18 +209,28 @@ export default function PetAdoption() {
           </div>
         </div>
         <div className={styles.paging}>
-          <input className={styles.paginate} type="button" value="🡸" onClick={(e) => handlerPage(e)} />
+          <input
+            className={styles.paginate}
+            type="button"
+            value="🡸"
+            onClick={(e) => handlerPage(e)}
+          />
           {paging.map((page) => (
-            <input className={styles.paginate}
+            <input
+              className={styles.paginate}
               type="button"
               value={page}
               key={page}
               onClick={(e) => handlerPage(e)}
             />
           ))}
-          <input className={styles.paginate} type="button" value="🡺" onClick={(e) => handlerPage(e)} />
+          <input
+            className={styles.paginate}
+            type="button"
+            value="🡺"
+            onClick={(e) => handlerPage(e)}
+          />
         </div>
-
       </div>
     </LayoutGlobal>
   );

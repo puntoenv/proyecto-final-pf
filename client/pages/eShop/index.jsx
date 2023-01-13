@@ -1,17 +1,16 @@
 import Link from "next/link";
-import { useState } from "react";
-import { getProducts, searchProduct, addCart } from "../../stores/actions";
+import {
+  getProducts,
+  searchProduct /* , addCart  */,
+} from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layout.js";
-import NavBar from "../../components/NavBar/NavBar.js";
 import styles from "./styles.module.css";
-import Image from "next/image";
-import logo from "../../img/logo.jpeg";
-import Footer from "../../components/Footer/footer";
 import CardProduct from "../../components/CardProduct";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
-export default function PetAdoption() {
+export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
 
@@ -25,24 +24,9 @@ export default function PetAdoption() {
   const handlerSearch = (e) => {
     dispatch(searchProduct(e.target.value));
   };
-
-  const addToCart = (id) => {
-    dispatch(addCart(id));
-  };
-
   return (
-    <div>
+    <LayoutGlobal>
       <Layout title="Productos" />
-      <NavBar />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
       <div className={styles.containerAllProducts}>
         <div className={styles.search}>
           <input
@@ -55,6 +39,14 @@ export default function PetAdoption() {
 
         {/* ----------------------------------FILTROS------------------------------------ */}
 
+        <div className={styles.search}>
+          <input
+            className={styles.input}
+            type="search"
+            placeholder="Buscar..."
+            onChange={handlerSearch}
+          />
+        </div>
         <div className={styles.container2}>
           <form className={styles.form}>
             <div>
@@ -102,23 +94,23 @@ export default function PetAdoption() {
               <option className={styles.option} value="tipo">
                 Todos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="conejo">
-                Conejos
+              <option className={styles.option} value="perro">
+                Perros
               </option>
               <option className={styles.option} value="gato">
                 Gatos
               </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
+              <option className={styles.option} value="conejo">
+                Conejos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="pez">
                 Peces
+              </option>
+              <option className={styles.option} value="hamster">
+                Hamsters
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga
@@ -131,70 +123,28 @@ export default function PetAdoption() {
             <div className={styles.posts_Container}></div>
             {productos?.map((producto) => {
               return (
-                //      <CardProduct
-                //    key={producto._id}
-                //    info={producto}
-                //   addToCart={addToCart}
-                //  />
-
-                <div key={producto._id} className={styles.card}>
-                  <img
-                    className={styles.img}
-                    width="300"
-                    height="240"
-                    src={producto.image}
-                    alt="image"
-                  />
-                  <h3 className={styles.name}>{producto.name}</h3>
-                  <span className={styles.size}>${producto.price}</span>
-                  <button className={styles.btn}>
-                    <Link href={`/eShop/detail/${producto._id}`}>
-                      <h1>Ver Producto</h1>
-                    </Link>
-                  </button>
-                </div>
+                <CardProduct
+                  key={producto._id}
+                  info={producto}
+                  addToCart={addToCart}
+                />
               );
             })}
-
-            {/* // {/*  */}
 
             <div />
           </div>
         </div>
-        {/*(
-               <div key={producto._id} className={styles.card}>
-                <Image
-                  className={styles.img}
-                  width="300"
-                  height="240"
-                  src={producto.image}
-                  alt="image"
-                />
-                <h1 className={styles.name}>{producto.name}</h1>
-                <h2 className={styles.size}>${producto.price}</h2>
-              </div>
-            ); */}
-        {/* <Link href={`/detail/${pets._id}`}>
-        <h1>Ver mascota</h1>
-      </Link> */}
-
-        {/* {
-        <Pagina
-          pets={pets}
-          pg={pg}
-          page={Page}
-          onPrevClick={onPrevClick}
-          onNextClick={onNextClick}
-          curren={curren}
-          maxPageLimit={maxPageLimit}
-          minPageLimit={minPageLimit}
-          setMaxPageLimit={setMaxPageLimit}
-          setMinPageLimit={setMinPageLimit}
-        />
-      } */}
-        <Footer />
         {/* <button className={styles.next} onClick={onNextClick} value='Next'>Next</button> */}
       </div>
-    </div>
+    </LayoutGlobal>
   );
 }
+
+/* export async function getServerSideProps() {
+  const respuesta = await axios("http://localhost:3001/products");
+  return {
+    props: {
+      productsEshop: respuesta.data,
+    },
+  };
+} */

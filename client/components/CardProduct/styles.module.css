@@ -12,6 +12,8 @@
   margin-left: 4em;
 }
 .img {
+  width: 250px;
+  height: auto;
   border-radius: 30px;
 }
 
