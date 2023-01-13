@@ -7,11 +7,12 @@
   align-content: center;
   border-radius: 30px;
   flex-direction: column;
-  width: 300px;
-  margin-top: 3em;
-  margin-left: 4em;
+  width: 17.5rem;
+  height: 30rem;
 }
 .img {
+  width: 15rem;
+  height: 10rem;
   border-radius: 30px;
 }
 
@@ -39,12 +40,10 @@
 }
 .name {
   font-weight: 700;
-  margin-top: 20px;
   color: #32281f;
-  font-size: 35px;
+  font-size: xx-large;
   text-shadow: 2px 2px 4px #937a60;
-}
-
-.size {
-  font-size: 20px;
+  height: auto;
+  width: auto;
+  text-align: center;
 }
