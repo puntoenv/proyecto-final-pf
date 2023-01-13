@@ -9,8 +9,21 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function eShop({ addToCart }) {
+  {
+    const settings = {
+      arrows: false,
+      infinite: true,
+      dots: true,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+    };
+    
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -198,4 +211,4 @@ export default function eShop({ addToCart }) {
       </div>
     </LayoutGlobal>
   );
-}
+}}
