@@ -10,6 +10,11 @@
   margin-top: 5em;
 }
 
+.cantidad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container2 {
   display: flex;
   width: 100%;

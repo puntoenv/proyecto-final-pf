@@ -32,7 +32,7 @@ export default function Cart({
         <Layout title="Carrito" />
         <NavBar />
 
-        <button className={styles.btn}>Finalizar Compra</button>
+        
         
         <div className={styles.big_container}>
           {cart.length === 0 ? (
@@ -49,9 +49,9 @@ export default function Cart({
                   alt={`imagen de ${unidad.name}`}
                 />
                 <p className={styles.size}>Precio: ${unidad.price}</p>
-                <div>
-                  <p>Cantidad: {unidad.cantidad}</p>
-                  <select
+                <div className={styles.cantidad}>
+                  <p>  Cantidad: {unidad.cantidad}</p>
+                  <select 
                     value={unidad.cantidad}
                     onChange={(e) =>
                       actualizarCantidad({
@@ -86,17 +86,21 @@ export default function Cart({
         {cart.length === 0 ? null : (
           <button className={styles.vaciarCarrito}onClick={handlerDeleteAll}>Vaciar Carrito</button>
         )}
-      </div>
-      <div>
-        {total > 0 ? (
-          <div>
-            <h3 className={styles.resumen}>Resumen de compra</h3>
-            <p className={styles.resumen}>Total a pagar: ${total}</p>
-          </div>
+             {total > 0 ? (
+          <>
+          {/* // <div className={styles.resumen}> */}
+            {/* <h3 className={styles.miCarrito}>Resumen de compra</h3> */}
+            <p  className={styles.total}>Total a pagar: ${total}</p>
+            <button className={styles.btn}>Finalizar Compra</button>
+            </>
+          // </div>
         ) : (
-          <p className={styles.carritoVacio}>No hay productos en el carrito</p>
+          <p></p>
         )}
       </div>
-    </div>
+      </div>
+    
+   
+    
   );
 }
