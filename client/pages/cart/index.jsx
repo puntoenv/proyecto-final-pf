@@ -33,9 +33,10 @@ export default function Cart({
         <NavBar />
 
         <button className={styles.btn}>Finalizar Compra</button>
+        
         <div className={styles.big_container}>
           {cart.length === 0 ? (
-            <p> Carrito vacio </p>
+            <p className={styles.carritoVacio}> Carrito vacio </p>
           ) : (
             cart?.map((unidad, index) => (
               <div className={styles.card} key={index}>
@@ -69,7 +70,7 @@ export default function Cart({
                     <option value="8">8</option>
                   </select>
                 </div>
-                <p>Subtotal: ${unidad.cantidad * unidad.price}</p>
+                <p >Subtotal: ${unidad.cantidad * unidad.price}</p>
                 <button
                   className={styles.btn}
                   onClick={() => handlerDelete(unidad._id)}
@@ -81,19 +82,19 @@ export default function Cart({
           )}
         </div>
       </div>
-      <div>
+      <div className={styles.resumenContainer}>
         {cart.length === 0 ? null : (
-          <button onClick={handlerDeleteAll}>Vaciar Carrito</button>
+          <button className={styles.vaciarCarrito}onClick={handlerDeleteAll}>Vaciar Carrito</button>
         )}
       </div>
       <div>
         {total > 0 ? (
           <div>
-            <h3>Resumen de compra</h3>
-            <p>Total a pagar: ${total}</p>
+            <h3 className={styles.resumen}>Resumen de compra</h3>
+            <p className={styles.resumen}>Total a pagar: ${total}</p>
           </div>
         ) : (
-          <p>No hay productos en el carrito</p>
+          <p className={styles.carritoVacio}>No hay productos en el carrito</p>
         )}
       </div>
     </div>
