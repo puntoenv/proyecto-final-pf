@@ -1,18 +1,72 @@
 const { Router } = require("express");
 const router = Router();
-const productsFiltered = require("../../controllers/filters/productsFiltered");
+const Product = require("../../models/Product");
 
-// localhost:3001/filter?
-
-router.get("/", async (req, res) => {
-  const { name, category, stock } = req.query;
-  console.log(name);
+router.get("/:id", async (req, res) => {
+  let { id } = req.params;
+  let { category, price } = req.query;
+  let products = {};
   try {
-    const productsFilters = await productsFiltered(name, category, stock);
+    if (category && price) {
+      category = Array.from(new Set(category.split("-")));
 
-    res.json(productsFilters);
+      console.log(category);
+      if (price === "barato") {
+        products = await Product.paginate(
+          {
+            category: { $in: [...category] },
+            price: { $gte: 0, $lte: 999 },
+          },
+          { page: id, limit: 10 }
+        );
+      } else if (price === "accesible") {
+        products = await Product.paginate(
+          {
+            category: { $in: [...category] },
+            price: { $gte: 1000, $lte: 4999 },
+          },
+          { page: id, limit: 10 }
+        );
+      } else if (price === "costoso") {
+        products = await Product.paginate(
+          {
+            category: { $in: [...category] },
+            price: { $gte: 5000, $lte: 10000 },
+          },
+          { page: id, limit: 10 }
+        );
+      }
+    } else if (category && !price) {
+      category = Array.from(new Set(category.split("-")));
+      console.log(category);
+      products = await Product.paginate(
+        { category: { $in: [...category] } },
+        { page: id, limit: 10 }
+      );
+    } else if (!category && price) {
+      if (price === "barato") {
+        products = await Product.paginate(
+          { price: { $gte: 0, $lte: 999 } },
+          { page: id, limit: 10 }
+        );
+      } else if (price === "accesible") {
+        products = await Product.paginate(
+          { price: { $gte: 1000, $lte: 4999 } },
+          { page: id, limit: 10 }
+        );
+      } else if (price === "costoso") {
+        products = await Product.paginate(
+          { price: { $gte: 5000, $lte: 10000 } },
+          { page: id, limit: 10 }
+        );
+      }
+    } else {
+      products = await Product.paginate({}, { page: id, limit: 10 });
+    }
+    console.log(products);
+    res.send(products);
   } catch (error) {
-    res.status(400).json("Error: no anda " + error.message);
+    console.log(error);
   }
 });
 

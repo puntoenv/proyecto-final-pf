@@ -1,0 +1,58 @@
+/* <div className={styles.container}>
+<div className={styles.containerImg}>
+<img className={styles.img} src={image} alt="imagen del producto" />
+<div className={styles.containInfo}>
+    <h3 className={styles.name}> {name} </h3>
+        <h1 className={styles.gender}>$ {price} </h1>
+    </div> */
+
+.img{
+    width: 200px;
+    height: 250px; 
+   
+    /* height: 100%;
+    width: 100%;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    object-fit: fill; */
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    border-radius: 30px;
+    margin: 40px auto;
+    text-align: center;
+    background-color: #e8eb9d;
+    display: flex; */
+    
+}
+.name{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+.price{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+/* .containImg { */
+ 
+    /* width: 200px;
+    height: 50%;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+  } */
+  /* .image {
+   
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    object-fit: fill;
+  } */

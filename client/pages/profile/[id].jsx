@@ -2,8 +2,10 @@ import React from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
 import NavBar from "../../components/NavBar/NavBar";
+import Petscrea from "../../components/petscreate";
+import HistoryEsh from "../../components/HistoryEsh";
 import styles from "../../components/Profile/Loading.module.css";
-import style from './style.module.css'
+import style from "./style.module.css";
 import Layout from "../layout";
 import {
   hanldeOnChange,
@@ -12,16 +14,28 @@ import {
 
 // import styles from '../styles/profile.module.css'
 
-function Profile({data, response}) {
-
-    const { isLoading, user } = useUser();
+function Profile({ data, response }) {
+  const { isLoading, user } = useUser();
 
   return (
+    <>
     <div className={style.container}>
       <Layout title={"Perfil"}></Layout>
-      <NavBar response={response}></NavBar>
+
+      <NavBar res={response}></NavBar>
       <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
+     </div>
+      <div>
+      {
+        <div className={style.container_history}>
+          <Petscrea response={response} />
+          <HistoryEsh response={response} />
+        </div>
+      }
+     
+
     </div>
+    </>
   );
 }
 
@@ -37,7 +51,6 @@ export default withPageAuthRequired(Profile, {
 
 export async function getServerSideProps({ params }) {
   try {
-    
     const response = await (
       await fetch("http://localhost:3001/user/" + params.id)
     ).json();
@@ -50,4 +63,3 @@ export async function getServerSideProps({ params }) {
     console.log(error);
   }
 }
-

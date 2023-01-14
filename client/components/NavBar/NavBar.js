@@ -6,40 +6,25 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
+import { handleAdoption } from "../../controller/validationUpdateP";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
 
   if (dash.className.includes("view")) {
     dash.classList.remove("view");
-    console.log(dash.className);
     return;
   }
   dash.className += " view";
 
-  console.log(dash.className);
 };
 
-const NavBar = ( response) => {
+const NavBar = (res) => {
   const { user, isLoading } = useUser();
-    const router = useRouter();
-    const idUser = user?.sub.split("|")[1];
-
+  const router = useRouter();
+  const idUser = user?.sub.split("|")[1];
+  const response = res.res;
   if (isLoading) return <h1>Loading...</h1>;
-
-  const handleAdoption = () => {
-    if (!response.response.name || response.response.name === " ") {
-      Swal.fire({
-        title: "Necesitas configurar tu nombre para adoptar",
-        icon: "error",
-        color: "#437042",
-        confirmButtonColor: "#437042",
-        confirmButtonAriaLabel: "#437042",
-      });
-    } else {
-      router.push(`/adoptionForm/${idUser}`);
-    }
-  };
 
   return (
     <header className="headerNav">
@@ -85,7 +70,7 @@ const NavBar = ( response) => {
           <span>Mi carrito</span>
         </Link>
         <p
-          onClick={() => handleAdoption()}
+          onClick={() => handleAdoption(response, router, Swal, idUser)}
           className="itemDash"
           href="/adoptionForm"
         >
@@ -100,6 +85,3 @@ const NavBar = ( response) => {
 };
 
 export default NavBar;
-
-
-
