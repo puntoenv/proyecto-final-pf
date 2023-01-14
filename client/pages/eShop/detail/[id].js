@@ -41,6 +41,7 @@ export default function Detail({
     };
     addToCart(unidad);
     alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
+    setCantidad(1);
   };
   const handlerDelete = (id) => {
     deleteCart(id);

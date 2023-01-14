@@ -35,6 +35,7 @@ export default function CardProduct({ info, addToCart }) {
     };
     addToCart(unidad);
     alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
+    setCantidad(1);
   };
 
   return (
