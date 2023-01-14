@@ -17,7 +17,7 @@ updateProfile.put("/:id", async (req, res) => {
     user.ubication = ubication ? ubication : user.ubication;
     user.image = result ? result.url : user.image;
     let userUpdate = await user.save();
-    console.log(result)
+
     res.status(200).send(userUpdate);
   } catch (error) {
     console.log(error)

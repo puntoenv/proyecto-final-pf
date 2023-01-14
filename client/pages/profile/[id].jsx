@@ -35,6 +35,8 @@ function Profile({ data, response }) {
           <HistoryEsh response={response} />
         </div>
       }
+      <NavBar response={response}></NavBar>
+      <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
     </div>
   );
 }

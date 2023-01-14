@@ -39,7 +39,7 @@ postPet.post("/post-pet", async (req, res) => {
       user: user.id,
       expireAt: new Date(),
     });
-    user.pets = user.pets.concat(pet.id);
+    user.pets = user.pets.concat(pet._id);
     await user.save();
     let info = await mailer.sendMail({
       from: "littlePaws0508@gmail.com",
