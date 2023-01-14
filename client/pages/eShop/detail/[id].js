@@ -3,8 +3,14 @@ import React, { useState } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 
-export default function Detail({ data, addToCart, deleteCart }) {
+export default function Detail({
+  data,
+  addToCart,
+  deleteCart,
+  actualizarCantidad,
+}) {
   const [cantidad, setCantidad] = useState(1);
+
   const {
     name,
     image,
@@ -38,6 +44,7 @@ export default function Detail({ data, addToCart, deleteCart }) {
   };
   const handlerDelete = (id) => {
     deleteCart(id);
+    setCantidad(1);
     alert(`${name} eliminado con exito`);
   };
   return (
@@ -74,12 +81,15 @@ export default function Detail({ data, addToCart, deleteCart }) {
         <form onSubmit={handlerSubmit}>
           <label>Cantidad</label>
           <select
-            onChange={(e) => setCantidad(parseInt(e.target.value))}
             value={cantidad}
+            onChange={(e) => {
+              setCantidad(parseInt(e.target.value));
+              actualizarCantidad({
+                cantidad: e.target.value,
+                id: _id,
+              });
+            }}
           >
-            <option value="0" hidden>
-              Seleccione Cantidad
-            </option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
