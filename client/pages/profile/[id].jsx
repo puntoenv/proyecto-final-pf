@@ -21,15 +21,9 @@ function Profile({ data, response }) {
     <>
     <div className={style.container}>
       <Layout title={"Perfil"}></Layout>
-      <NavBar></NavBar>
-      <Perfil
-        data={data}
-        response={response}
-        hanldeOnChange={hanldeOnChange}
-        handleOnSubmit={handleOnSubmit}
-        user={user}
-        isLoading={isLoading}
-      ></Perfil>
+
+      <NavBar res={response}></NavBar>
+      <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
      </div>
       <div>
       {
@@ -39,6 +33,7 @@ function Profile({ data, response }) {
         </div>
       }
      
+
     </div>
     </>
   );

@@ -145,7 +145,21 @@ export const searchProduct = (product, page) => async (dispatch) => {
       `/products/by-name/${page}?name=${product}`
     );
     if (productoEncontrado.data.docs.length === 0) {
-      alert("No existen productos con ese nombre.");
+      Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "No hay productos con ese nombre",
+            showConfirmButton: false,
+            timer: 1500,
+           })
+      // Swal.fire({
+      //   title: "No hay productos con ese nombre",
+      //   icon: "error",
+      //   color: "#437042",
+      //   confirmButtonColor: "#437042",
+      //   confirmButtonAriaLabel: "#437042",
+      // });
+      // alert("No existen productos con ese nombre.");
       productoEncontrado = await axios("/products/1");
     }
     dispatch(getAllProducts(productoEncontrado.data));

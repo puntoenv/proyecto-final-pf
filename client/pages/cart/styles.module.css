@@ -78,6 +78,10 @@
   box-shadow: 0 0 10px rgb(185, 163, 103);
   background: #584a3c;
 }
+.miCarrito{
+  display: flex;
+  margin-top: 1rem;
+}
 
 .card {
   background: #e8eb9d;
@@ -89,7 +93,8 @@
   border-radius: 30px;
   flex-direction: column;
   width: 300px;
-  margin-top: 3em;
+  height: 400px;
+  margin-top: 1em;
   margin-left: 4em;
 }
 
@@ -97,7 +102,7 @@
   font-weight: 700;
   margin-top: 20px;
   color: #32281f;
-  font-size: 35px;
+  font-size: 30px;
   text-shadow: 2px 2px 4px #937a60;
 }
 
@@ -110,7 +115,7 @@
   padding: 0;
   min-height: 100vh;
   display: flex;
-
+justify-content: center;
   align-items: center;
   font-family: "Segoe UI";
   width: 1200px;
@@ -123,6 +128,8 @@
 
 .img {
   border-radius: 30px;
+  width: 70%;
+  height: 200px;
 }
 
 .btn {
@@ -189,4 +196,45 @@
   z-index: 4501;
   width: auto;
   height: 14em;
+}
+
+.carritoVacio{
+ margin-top: 2rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.vaciarCarrito{
+  background-color: #4c8053;
+  font-size: 20px;
+  border-radius: 10%;
+  color: #111111;
+  width: 40%;
+}
+.vaciarCarrito:hover{
+  background-color: white;
+
+}
+.resumen{
+  width: 27%;
+  font-size: 20px;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2%;
+}
+
+.resumenContainer{
+  width: 27%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2%;
+  padding:0ch;
+
+  
+
 }
