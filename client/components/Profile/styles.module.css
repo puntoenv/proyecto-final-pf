@@ -5,7 +5,7 @@
 
 .email {
   margin-bottom: 3rem;
-  font-size: 1.5rem;
+  font-size: 109%;
   color: mintcream;
   border: 2px solid;
   border-top-color: #815843;
@@ -38,19 +38,16 @@
   flex-direction: column;
   justify-content: space-around;
   position: absolute;
-  top: 17%;
-  left: 72%;
+  top: 21%;
+  left: 74%;
 }
 
 .button {
   background-color: transparent;
   color: antiquewhite;
   margin-bottom: 3rem;
-  font-size: 182%;
+  font-size: 110%;
   border: 2px solid;
-  border-top-color: #815843;
-  border-left-color: #815843;
-  border-right-color: #815843;
   padding: 10px;
 }
 
@@ -66,7 +63,7 @@
 
 .h1 {
   margin-bottom: 3rem;
-  font-size: 450%;
+  font-size: 251%;
   color: mintcream;
   border: 2px solid;
   border-top-color: #815843;
@@ -105,12 +102,11 @@
 
 .formImage {
   display: flex;
-  flex-direction: column;
 }
 
 .divImage {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .form input {
@@ -151,8 +147,8 @@
 }
 
 .image {
-  width: 50%;
-  height: 80%;
+  width: 30%;
+  height: 67%;
   border-radius: 50% 50% 50% 50%;
   overflow: hidden;
   margin: 3%;
@@ -277,8 +273,8 @@
 }
 
 .infoStyles {
-  min-width: 60%;
-  height: 300px;
+  min-width: 66%;
+  height: 296px;
 }
 
 .container_caja1 {
@@ -289,13 +285,13 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  width: 95%;
+  width: 100%;
 }
 
 .container_caja3 {
   position: absolute;
-  left: 9%;
-  top: 30%;
+  left: 18%;
+  top: 15%;
 }
 .container_p {
   position: absolute;
@@ -303,15 +299,15 @@
   right: -30%;
 }
 .bio {
-  padding-top: 10%;
+  padding-top: 21%;
   margin-bottom: 3rem;
-  font-size: 1.5rem;
+  font-size: 133%;
   color: mintcream;
 }
 
 .conta_bio {
   position: absolute;
-  top: 85%;
+  top: 80%;
   margin-bottom: 3rem;
   font-size: 1.5rem;
   color: mintcream;
@@ -331,7 +327,7 @@
 .bio_posi {
   position: absolute;
   top: 73%;
-  left: 16%;
+  left: 25%;
 }
 .button_che {
   border-width: 3px;
