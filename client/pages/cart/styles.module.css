@@ -94,15 +94,17 @@
   flex-direction: column;
   width: 300px;
   height: 400px;
-  margin-top: 1em;
-  margin-left: 4em;
+  margin: 5%;
+  margin-top: 10%;
+
 }
 
 .name {
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 20px;
+  margin-bottom: 10px;
   color: #32281f;
-  font-size: 30px;
+  font-size: 20px;
   text-shadow: 2px 2px 4px #937a60;
 }
 
@@ -113,12 +115,12 @@
 .big_container {
   margin: auto;
   padding: 0;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
 justify-content: center;
   align-items: center;
   font-family: "Segoe UI";
-  width: 1200px;
+  width: 1000px;
   flex-wrap: wrap;
 }
 
@@ -138,7 +140,7 @@ justify-content: center;
   color: white;
   border: 1em;
   border-radius: 15px;
-  height: 45px;
+  height: 70px;
   width: 150px;
   margin-top: 15px;
   margin-bottom: 30px;
@@ -204,37 +206,53 @@ justify-content: center;
   align-items: center;
   justify-content: center;
   font-size: 40px;
+  
 }
 
 .vaciarCarrito{
-  background-color: #4c8053;
+  background-color:  #e8eb9d;
   font-size: 20px;
-  border-radius: 10%;
+  border-radius: 10em;
   color: #111111;
-  width: 40%;
+  width: 10%;
+  font-weight: 700;
 }
 .vaciarCarrito:hover{
-  background-color: white;
-
+  background-color:#4c8053;
+ 
 }
 .resumen{
   width: 27%;
   font-size: 20px;
- 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   margin: 2%;
+ 
+}
+.total{
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  margin: 2%;
+  font-weight: 700;
+
 }
 
 .resumenContainer{
-  width: 27%;
+  width: auto;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2%;
-  padding:0ch;
-
   
+  padding:0ch;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.miCarrito{
+  background-color: red;
 
 }
