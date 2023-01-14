@@ -8,6 +8,15 @@ import {
   HiCamera,
   HiArrowDownOnSquare,
 } from "react-icons/hi2";
+import { GoX } from "react-icons/go";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+import { useRouter } from "next/router";
+import {
+  handleAdoption,
+  handleFiles,
+  validateForm,
+} from "../../controller/validationUpdateP";
 
 export default function Perfil({
   user,
@@ -16,7 +25,7 @@ export default function Perfil({
   hanldeOnChange,
   handleOnSubmit,
 }) {
-  console.log(user);
+  const router = useRouter();
   const nameUpper =
     response.name && response.name[0].toUpperCase() + response.name.slice(1);
   const imgAux =
@@ -36,6 +45,14 @@ export default function Perfil({
     success: "",
   });
 
+  const [error, setError] = useState({
+    name: "",
+    age: "",
+    bio: "",
+    image: "",
+    ubication: "",
+  });
+
   const [edit, setEdit] = useState({
     name: false,
     age: false,
@@ -44,17 +61,6 @@ export default function Perfil({
     ubication: false,
   });
 
-  const handleFiles = (event) => {
-    const { files } = event.target;
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => {
-      setInput({
-        ...input,
-        image: reader.result,
-      });
-    };
-  };
   const { _id } = response;
   return (
     <div className={style.mainContainer}>
@@ -98,11 +104,16 @@ export default function Perfil({
                             type="text"
                             placeholder="Breve descripción sobre ti"
                             name="bio"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
-                          <button className={style.iconBio} type="submit">
+                          <button
+                            disabled={error.bio ? true : false}
+                            className={style.iconBio}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -111,10 +122,14 @@ export default function Perfil({
                   </div>
                   <span
                     className={style.icon}
-                    onClick={() => setEdit({ ...edit, bio: !edit.bio })}
+                    onClick={() => {
+                      setEdit({ ...edit, bio: !edit.bio }),
+                        setInput({ ...input, bio: "" });
+                    }}
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.bio ? error.bio : ""}</span>
                 </p>
               </div>
               <div className={style.fourthContainer}>
@@ -126,10 +141,13 @@ export default function Perfil({
 
                 <span
                   className={style.imageEdit}
-                  onClick={() => setEdit({ ...edit, image: !edit.image })}
+                  onClick={() => {
+                    setEdit({ ...edit, image: !edit.image });
+                  }}
                 >
                   <HiCamera className={style.icon} size={30}></HiCamera>
                 </span>
+
                 <div>
                   {edit.image ? (
                     <form
@@ -140,28 +158,42 @@ export default function Perfil({
                           setResult,
                           setInput,
                           input,
-                          idUser
+                          idUser,
+                          Swal
                         )
                       }
                     >
-                      <label
-                        for="mi_archivo"
-                        className={style.mi_archivo}
-                        name="image"
-                        onChange={(event) => handleFiles(event)}
-                      >
-                        <HiArrowDownOnSquare size={30}></HiArrowDownOnSquare>
-                        Subir imagen
-                        <span>
-                          <input
-                            type="file"
-                            className={style.hiddenInput}
-                            name="mi_archivo"
-                            id="mi_archivo"
-                          ></input>
+                      <div className={style.divImage}>
+                        <label
+                          for="mi_archivo"
+                          className={style.mi_archivo}
+                          name="image"
+                          onChange={(event) =>
+                            handleFiles(event, setInput, input)
+                          }
+                        >
+                          <HiArrowDownOnSquare size={30}></HiArrowDownOnSquare>
+                          Subir imagen
+                          <span>
+                            <input
+                              type="file"
+                              className={style.hiddenInput}
+                              name="mi_archivo"
+                              id="mi_archivo"
+                            ></input>
+                          </span>
+                        </label>
+                        <span
+                          className={style.imageEdit}
+                          onClick={() => {
+                            setInput({ ...input, image: "" });
+                          }}
+                        >
+                          <GoX className={style.icon} size={25}></GoX>
                         </span>
-                      </label>
-                      <button className={style.icon} type="submit">
+                      </div>
+                      <span>{input.image && input.image.slice(0, 40)}</span>
+                      <button className={style.iconImage} type="submit">
                         Editar imagen
                       </button>
                     </form>
@@ -202,11 +234,16 @@ export default function Perfil({
                             type="text"
                             placeholder="Ej: Pedro"
                             name="name"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.name ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -215,10 +252,14 @@ export default function Perfil({
                   </div>
                   <span
                     className={style.icon}
-                    onClick={() => setEdit({ ...edit, name: !edit.name })}
+                    onClick={() => {
+                      setEdit({ ...edit, name: !edit.name }),
+                        setInput({ ...input, name: "" });
+                    }}
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.name ? error.name : ""}</span>
                 </p>
                 <p className={style.infoStylesP}>
                   <div className={style.pContainer}>
@@ -244,14 +285,19 @@ export default function Perfil({
                           }
                         >
                           <input
-                            type="text"
+                            type="number"
                             placeholder="Ej: 28"
                             name="age"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.age ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -260,10 +306,14 @@ export default function Perfil({
                   </div>
                   <span
                     className={style.icon}
-                    onClick={() => setEdit({ ...edit, age: !edit.age })}
+                    onClick={() => {
+                      setEdit({ ...edit, age: !edit.age }),
+                        setInput({ ...input, age: "" });
+                    }}
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.age ? error.age : ""}</span>
                 </p>
 
                 <p className={style.infoStylesP}>
@@ -292,12 +342,17 @@ export default function Perfil({
                           <input
                             type="text"
                             placeholder="Ej: Buenos Aires"
-                            name="bio"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            name="ubication"
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.ubication ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -306,12 +361,14 @@ export default function Perfil({
                   </div>
                   <span
                     className={style.icon}
-                    onClick={() =>
-                      setEdit({ ...edit, ubication: !edit.ubication })
-                    }
+                    onClick={() => {
+                      setEdit({ ...edit, ubication: !edit.ubication }),
+                        setInput({ ...input, ubication: "" });
+                    }}
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.ubication ? error.ubication : ""}</span>
                 </p>
               </div>
               <div className={style.buttons}>
@@ -320,10 +377,13 @@ export default function Perfil({
                     <b>Ver todas las mascotas</b>
                   </Link>
                 </button>
-                <button className={style.button}>
-                  <Link href={"/adoptionForm"}>
-                    <b>Postea una adopción</b>
-                  </Link>
+                <button
+                  className={style.button}
+                  onClick={() => handleAdoption(response, router, Swal, idUser)}
+                >
+                  {/* <Link onClick={()=> handleAdoption()} href={`/adoptionForm/${idUser}`}> */}
+                  <b>Postea una adopción</b>
+                  {/* </Link> */}
                 </button>
                 <button className={style.button}>
                   <Link
@@ -332,7 +392,7 @@ export default function Perfil({
                       query: { id: `${_id}` },
                     }}
                   >
-                    <b>animales creados</b>
+                    <b>Animales creados</b>
                   </Link>
                 </button>
                 {/* <button className={style.button}>

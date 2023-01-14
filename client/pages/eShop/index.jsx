@@ -9,8 +9,10 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
 
-export default function eShop({ addToCart }) {
+
+export default function eShop({ addToCart }) { 
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -97,7 +99,9 @@ export default function eShop({ addToCart }) {
             placeholder="Buscar..."
             onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)}>Buscar</button>
+          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
+            Buscar
+          </button>
         </div>
         <div className={styles.container2}>
           <form
@@ -144,32 +148,36 @@ export default function eShop({ addToCart }) {
               <option className={styles.option} value="tipo">
                 Todos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="conejo">
                 Conejos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
+              <option className={styles.option} value="gato">
+                Gatos
               </option>
               <option className={styles.option} value="hamster">
                 Hamsters
+              </option>
+              <option className={styles.option} value="perro">
+                Perros
+              </option>
+              <option className={styles.option} value="pez">
+                Peces
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga
               </option>
             </select>
-            <button onClick={(e) => handlerFilter(e)}>Aplicar Filtros</button>
+            <button
+              className={styles.btnFilter}
+              onClick={(e) => handlerFilter(e)}
+            >
+              Aplicar Filtros
+            </button>
           </form>
-          <div className={styles.big_container}>
-            <div className={styles.posts_Container}></div>
+          <div className={styles.containerCards}>
             {productos?.map((producto) => {
               return (
                 <CardProduct
@@ -180,20 +188,25 @@ export default function eShop({ addToCart }) {
               );
             })}
             <div />
-            <div>
-              <button value="🡸" onClick={(e) => handlerPage(e)}>
-                🡸
-              </button>
-              {paging?.map((p) => (
-                <button value={p} key={p} onClick={(e) => handlerPage(e)}>
-                  {p}
-                </button>
-              ))}
-              <button value="🡺" onClick={(e) => handlerPage(e)}>
-                🡺
-              </button>
-            </div>
           </div>
+        </div>
+        <div className={styles.pages}>
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDropleftCircle className={styles.iconPage} />
+          </button>
+          {paging?.map((p) => (
+            <button
+              value={p}
+              key={p}
+              onClick={(e) => handlerPage(e)}
+              className={styles.pageNum}
+            >
+              {p}
+            </button>
+          ))}
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDroprightCircle className={styles.iconPage} />
+          </button>
         </div>
       </div>
     </LayoutGlobal>

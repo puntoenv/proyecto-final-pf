@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -89,7 +91,17 @@ export function form(props) {
     }
     return console.log(errors);
   };
+
   useEffect(() => {
+        if (!props.response.name || props.response.name === " ") {
+          Swal.fire({
+            title: "Necesitas configurar tu nombre para adoptar",
+            icon: "error",
+            color: "#437042",
+            confirmButtonColor: "#437042",
+            confirmButtonAriaLabel: "#437042",
+          }).then(() => router.push(`/profile/${idUser}`))
+        }
     dispatch(getper()).then((_) => console.log(provi));
   }, [dispatch]);
 
@@ -578,3 +590,18 @@ export default withPageAuthRequired(form, {
 
   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
+
+export async function getServerSideProps({ params }) {
+  try {
+    const response = await (
+      await fetch("http://localhost:3001/user/" + params.id)
+    ).json();
+    return {
+      props: {
+        response,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
