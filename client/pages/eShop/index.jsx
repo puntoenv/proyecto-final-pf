@@ -171,7 +171,7 @@ export default function eShop({ addToCart }) {
               </option>
             </select>
             <button
-              className={styles.btnFilter}
+              className={styles.all}
               onClick={(e) => handlerFilter(e)}
             >
               Aplicar Filtros
