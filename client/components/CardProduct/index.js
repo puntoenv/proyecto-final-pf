@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
 import { TbShoppingCartPlus } from "react-icons/tb";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 export default function CardProduct({ info, addToCart }) {
   const [cantidad, setCantidad] = useState(1);
@@ -35,7 +37,14 @@ export default function CardProduct({ info, addToCart }) {
       cantidad,
     };
     addToCart(unidad);
-    alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `${cantidad} ${name} agregado/s al carrito`,
+      showConfirmButton: false,
+      timer: 1000,
+     })
+    // alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
     setCantidad(1);
   };
 
