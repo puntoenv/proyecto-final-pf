@@ -9,12 +9,10 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import {
-  IoIosArrowDroprightCircle,
-  IoIosArrowDropleftCircle,
-} from "react-icons/io";
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
 
-export default function eShop({ addToCart }) {
+
+export default function eShop({ addToCart }) { 
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -150,23 +148,23 @@ export default function eShop({ addToCart }) {
               <option className={styles.option} value="tipo">
                 Todos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="conejo">
                 Conejos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
+              <option className={styles.option} value="gato">
+                Gatos
               </option>
               <option className={styles.option} value="hamster">
                 Hamsters
+              </option>
+              <option className={styles.option} value="perro">
+                Perros
+              </option>
+              <option className={styles.option} value="pez">
+                Peces
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga
