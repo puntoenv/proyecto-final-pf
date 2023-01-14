@@ -12,6 +12,11 @@ import { GoX } from "react-icons/go";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
+import {
+  handleAdoption,
+  handleFiles,
+  validateForm,
+} from "../../controller/validationUpdateP";
 
 export default function Perfil({
   user,
@@ -20,8 +25,7 @@ export default function Perfil({
   hanldeOnChange,
   handleOnSubmit,
 }) {
-  console.log(user);
-  const router = useRouter()
+  const router = useRouter();
   const nameUpper =
     response.name && response.name[0].toUpperCase() + response.name.slice(1);
   const imgAux =
@@ -41,6 +45,14 @@ export default function Perfil({
     success: "",
   });
 
+  const [error, setError] = useState({
+    name: "",
+    age: "",
+    bio: "",
+    image: "",
+    ubication: "",
+  });
+
   const [edit, setEdit] = useState({
     name: false,
     age: false,
@@ -49,31 +61,6 @@ export default function Perfil({
     ubication: false,
   });
 
-  const handleAdoption = () => {
-    if(!response.name || response.name === ' '){
-      Swal.fire({
-        title: "Necesitas configurar tu nombre para adoptar",
-        icon: "error",
-        color: "#437042",
-        confirmButtonColor: "#437042",
-        confirmButtonAriaLabel: "#437042",
-      });
-    } else {
-      router.push(`/adoptionForm/${idUser}`)
-    }
-  }
-
-  const handleFiles = (event) => {
-    const { files } = event.target;
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => {
-      setInput({
-        ...input,
-        image: reader.result,
-      });
-    };
-  };
   const { _id } = response;
   return (
     <div className={style.mainContainer}>
@@ -175,7 +162,9 @@ export default function Perfil({
                           for="mi_archivo"
                           className={style.mi_archivo}
                           name="image"
-                          onChange={(event) => handleFiles(event)}
+                          onChange={(event) =>
+                            handleFiles(event, setInput, input)
+                          }
                         >
                           <HiArrowDownOnSquare size={30}></HiArrowDownOnSquare>
                           Subir imagen
@@ -239,9 +228,10 @@ export default function Perfil({
                             type="text"
                             placeholder="Ej: Pedro"
                             name="name"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
                           <button className={style.icon} type="submit">
                             <HiCheck size={20}></HiCheck>
@@ -259,6 +249,7 @@ export default function Perfil({
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.name ? error.name : ""}</span>
                 </p>
                 <p className={style.infoStylesP}>
                   <div className={style.pContainer}>
@@ -284,12 +275,13 @@ export default function Perfil({
                           }
                         >
                           <input
-                            type="text"
+                            type="number"
                             placeholder="Ej: 28"
                             name="age"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
                           <button className={style.icon} type="submit">
                             <HiCheck size={20}></HiCheck>
@@ -307,6 +299,7 @@ export default function Perfil({
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.age ? error.age : ""}</span>
                 </p>
 
                 <p className={style.infoStylesP}>
@@ -336,9 +329,10 @@ export default function Perfil({
                             type="text"
                             placeholder="Ej: Buenos Aires"
                             name="ubication"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
                           <button className={style.icon} type="submit">
                             <HiCheck size={20}></HiCheck>
@@ -356,6 +350,7 @@ export default function Perfil({
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.ubication ? error.ubication : ""}</span>
                 </p>
               </div>
               <div className={style.buttons}>
@@ -366,7 +361,7 @@ export default function Perfil({
                 </button>
                 <button
                   className={style.button}
-                  onClick={() => handleAdoption()}
+                  onClick={() => handleAdoption(response, router, Swal, idUser)}
                 >
                   {/* <Link onClick={()=> handleAdoption()} href={`/adoptionForm/${idUser}`}> */}
                   <b>Postea una adopción</b>
