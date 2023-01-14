@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../../styles/carrusel.module.css'
+import styles from '../../styles/carruselShop.module.css'
 
 export default function ProductCard({ info }){
     const {name,image,price}=info;
@@ -9,7 +9,7 @@ export default function ProductCard({ info }){
         <img className={styles.img} src={image} alt="imagen del producto" />
         <div className={styles.containInfo}>
                 <h3 className={styles.name}> {name} </h3>
-                    <h1 className={styles.gender}>$ {price} </h1>
+                    <h1 className={styles.price}>$ {price} </h1>
                 </div>
         </div>
         </div>
