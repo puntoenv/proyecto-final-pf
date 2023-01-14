@@ -35,13 +35,23 @@ export default function CardProduct({ info, addToCart }) {
       cantidad,
     };
     addToCart(unidad);
-    alert(`${cantidad} ${name} agregado/s al carrito`);
+    alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
+    setCantidad(1);
   };
 
   return (
     <div className={styles.card}>
-      <Link href={`/eShop/detail/${_id}`} className={styles.linkImg}>
-        <img className={styles.img} src={image} alt="imagen del producto" />
+      <h3 className={styles.name}>{name.toUpperCase()}</h3>
+      <Image
+        className={styles.img}
+        src={image}
+        width="300"
+        height="240"
+        alt="imagen del producto"
+      />
+      {price ? <p className={styles.size}>Precio: ${price}</p> : null}
+      <Link href={`/eShop/detail/${_id}`}>
+        <h1>Ver Producto</h1>
       </Link>
       <div className={styles.divInfoProduct}>
         <Link href={`/eShop/detail/${_id}`} className={styles.name}>
