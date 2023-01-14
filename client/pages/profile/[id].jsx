@@ -18,6 +18,7 @@ function Profile({ data, response }) {
   const { isLoading, user } = useUser();
 
   return (
+    <>
     <div className={style.container}>
       <Layout title={"Perfil"}></Layout>
       <NavBar></NavBar>
@@ -29,15 +30,17 @@ function Profile({ data, response }) {
         user={user}
         isLoading={isLoading}
       ></Perfil>
+     </div>
+      <div>
       {
         <div className={style.container_history}>
           <Petscrea response={response} />
           <HistoryEsh response={response} />
         </div>
       }
-      <NavBar response={response}></NavBar>
-      <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
+     
     </div>
+    </>
   );
 }
 

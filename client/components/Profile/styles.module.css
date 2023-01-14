@@ -1,6 +1,6 @@
 .mainContainer {
-  margin: auto;
-  padding: 5%;
+  padding-left: 25%;
+  padding-top: 10%;
 }
 
 .email {
@@ -99,31 +99,31 @@
   color: black;
 }
 
-.form button, .formImage button {
+.form button,
+.formImage button {
   border: 3px solid #38593a;
   background-color: antiquewhite;
   color: #034103;
   box-shadow: 0px 0px 25px #222;
   border-radius: 10px;
-  max-width:10rem;
- align-self: center;
-
+  max-width: 10rem;
+  align-self: center;
 }
 
 .formImage button {
   margin-top: 5px;
 }
 
-.form button :hover, .formImage button:hover {
+.form button :hover,
+.formImage button:hover {
   background-color: #0e3810;
   color: antiquewhite;
   border-radius: 10px;
   border: none;
-  
 }
 
-.formImage button:hover{
-height: 1.8rem;
+.formImage button:hover {
+  height: 1.8rem;
 }
 
 .icon {
@@ -139,7 +139,6 @@ height: 1.8rem;
 .input {
   display: flex;
   flex-direction: column;
-  
 }
 
 .hiddenInput {

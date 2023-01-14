@@ -74,9 +74,9 @@ export default function Perfil({
       });
     };
   };
-  const { _id } = response;
+  
   return (
-    <div className={style.mainContainer}>
+    <div>
       {isLoading && (
         <div className={styles.container}>
           <div className={styles.loader}></div>
@@ -84,14 +84,14 @@ export default function Perfil({
         </div>
       )}
       {user && (
-        <div>
-          <div className={style.infoContainer}>
-            <div className={style.thirdContainer}>
+        <div className={style.mainContainer}>
+          <div >
+            <div > 
               <div>
                 <h1 className={style.h1}>Mi perfil </h1>
                 <span className={style.email}>{response?.email}</span>
                 <p>
-                  <div className={style.bioContainer}>
+                  <div >
                     <p className={style.p}>Bio: </p>
                     <div className={style.insideInfo}>
                       {!edit.bio ? (
@@ -139,7 +139,7 @@ export default function Perfil({
                   </span>
                 </p>
               </div>
-              <div className={style.fourthContainer}>
+              <div >
                 <img
                   src={response.image ? response.image : imgAux}
                   className={style.image}
@@ -310,7 +310,7 @@ export default function Perfil({
                 </p>
 
                 <p className={style.infoStylesP}>
-                  <div className={style.pContainer}>
+                  <div >
                     <p className={style.p}>Provincia: </p>
                     <div className={style.insideInfo}>
                       {!edit.ubication ? (
@@ -381,11 +381,11 @@ export default function Perfil({
             </div>
           </div>
           {/* <h4>{result && {}}</h4> */}
-          <div className={style.link}>
+          
             <Link href={"/home"}>
               <b>Página principal</b>
             </Link>
-          </div>
+          
         </div>
       )}
     </div>
