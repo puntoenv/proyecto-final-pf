@@ -9,10 +9,12 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 
-
-export default function eShop({ addToCart }) { 
+export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -53,10 +55,12 @@ export default function eShop({ addToCart }) {
       ...input,
       [name]: value,
     });
+    console.log(input);
   };
 
   const handlerFilter = (e) => {
     e.preventDefault();
+    dispatch(filterProducts(input));
   };
 
   const handlerPage = (e) => {
@@ -110,27 +114,28 @@ export default function eShop({ addToCart }) {
             onSubmit={(e) => handlerTodos(e)}
           >
             <input type="submit" value="Ver Todos" className={styles.all} />
-            <h1 className={styles.title}>Accesorios</h1>
-            <select className={styles.select} id="accesorios">
-              <option className={styles.option} value="indumentaria">
+            <h1 className={styles.title}>Categorias</h1>
+            <select className={styles.select} name="category">
+              <option
+                className={styles.option}
+                value="Todos"
+                defaultValue={true}
+              >
                 Todos
               </option>
-              <option className={styles.option} value="collar">
-                Collar
+              <option className={styles.option} value="Productos Little Paws">
+                Productos Little Paws
               </option>
-              <option className={styles.option} value="gorros">
-                Gorros
+              <option className={styles.option} value="Accesorios">
+                Accesorios
               </option>
-              <option className={styles.option} value="Chapitas">
-                Chapitas
-              </option>
-              <option className={styles.option} value="remeras">
-                Remeras
+              <option className={styles.option} value="Alimento">
+                Alimento
               </option>
             </select>
             <h1 className={styles.title}>Precio</h1>
-            <select className={styles.select} id="precio">
-              <option className={styles.option} value="precio">
+            <select className={styles.select} name="price">
+              <option className={styles.option} value="Todos">
                 Todos
               </option>
               <option className={styles.option} value="barato">
@@ -141,33 +146,6 @@ export default function eShop({ addToCart }) {
               </option>
               <option className={styles.option} value="costoso">
                 5.000$ a 10.000$
-              </option>
-            </select>
-            <h1 className={styles.title}>Tipo</h1>
-            <select className={styles.select} id="tipo">
-              <option className={styles.option} value="tipo">
-                Todos
-              </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="conejo">
-                Conejos
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
-              </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
-              </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
-              </option>
-              <option className={styles.option} value="tortuga">
-                Tortuga
               </option>
             </select>
             <button

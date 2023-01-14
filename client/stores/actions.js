@@ -145,12 +145,12 @@ export const searchProduct = (product, page) => async (dispatch) => {
     );
     if (productoEncontrado.data.docs.length === 0) {
       Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "No hay productos con ese nombre",
-            showConfirmButton: false,
-            timer: 1500,
-           })
+        position: "center",
+        icon: "error",
+        title: "No hay productos con ese nombre",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       // Swal.fire({
       //   title: "No hay productos con ese nombre",
       //   icon: "error",
@@ -230,3 +230,7 @@ export const addCart = (id) => async (dispatch) => {
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));
 // };
+export const filterProducts = (input, page) => async (dispatch) => {
+  try {
+  } catch (error) {}
+};
