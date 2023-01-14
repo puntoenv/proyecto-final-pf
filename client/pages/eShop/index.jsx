@@ -9,21 +9,10 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from 'react-icons/io'
 
-export default function eShop({ addToCart }) {
-  {
-    const settings = {
-      arrows: false,
-      infinite: true,
-      dots: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3,
-    };
-    
+
+export default function eShop({ addToCart }) { 
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -159,23 +148,23 @@ export default function eShop({ addToCart }) {
               <option className={styles.option} value="tipo">
                 Todos
               </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
+              <option className={styles.option} value="ave">
+                Aves
               </option>
               <option className={styles.option} value="conejo">
                 Conejos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
+              <option className={styles.option} value="gato">
+                Gatos
               </option>
               <option className={styles.option} value="hamster">
                 Hamsters
+              </option>
+              <option className={styles.option} value="perro">
+                Perros
+              </option>
+              <option className={styles.option} value="pez">
+                Peces
               </option>
               <option className={styles.option} value="tortuga">
                 Tortuga
@@ -222,4 +211,4 @@ export default function eShop({ addToCart }) {
       </div>
     </LayoutGlobal>
   );
-}}
+}
