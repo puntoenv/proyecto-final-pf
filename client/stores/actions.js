@@ -1,6 +1,11 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
-import { getAllProducts, addProductCart } from "./products";
+import {
+  getAllProducts,
+  addProductCart,
+  getCategories,
+  productsFilter,
+} from "./products";
 import { getMascotas, orderPets } from "./mascotas";
 import { getUserId } from "./User";
 
@@ -232,5 +237,21 @@ export const addCart = (id) => async (dispatch) => {
 // };
 export const filterProducts = (input, page) => async (dispatch) => {
   try {
+    let products = {};
+    if (input.category || input.price) {
+      let query = "?" + new URLSearchParams(input);
+      products = await axios.get(`/FilteredProducts/${page}/${query}`);
+    } else {
+      products = await axios.get(`/FilteredProducts/${page}`);
+    }
+    console.log(products.data.docs);
+    dispatch(productsFilter(products.data));
+  } catch (error) {}
+};
+
+export const allcategories = () => async (dispatch) => {
+  try {
+    let categories = await axios.get("/categories");
+    dispatch(getCategories(categories.data));
   } catch (error) {}
 };

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import axios from "axios";
 import {
+  allcategories,
+  filterProducts,
   getProducts,
   searchProduct /* , addCart  */,
 } from "../../stores/actions";
@@ -18,21 +21,24 @@ export default function eShop({ addToCart }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({ category: "" });
   const [search, setSearch] = useState("");
+  const categories = useSelector((state) => state.products.categories);
   const paging = [];
   for (let i = 1; i <= data.pages; i++) {
     paging.push(i);
   }
   console.log(data);
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(getProducts(1));
+    dispatch(allcategories());
   }, [dispatch]);
 
   const handlerTodos = (e) => {
     e.preventDefault();
     dispatch(getProducts(1));
+    setInput({});
     e.target.reset();
   };
 
@@ -51,16 +57,21 @@ export default function eShop({ addToCart }) {
   const handlerSelect = (e) => {
     e.preventDefault();
     let { name, value } = e.target;
-    setInput({
-      ...input,
-      [name]: value,
-    });
-    console.log(input);
+    if (name === "category") {
+      if (input.category) {
+        input[name] = input[name] + "-" + value;
+      } else {
+        input[name] = value;
+      }
+    } else {
+      input[name] = value;
+    }
+    console.log(input.category);
   };
 
   const handlerFilter = (e) => {
     e.preventDefault();
-    dispatch(filterProducts(input));
+    dispatch(filterProducts(input, 1));
   };
 
   const handlerPage = (e) => {
@@ -71,6 +82,8 @@ export default function eShop({ addToCart }) {
       page = data.page + 1;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -78,6 +91,8 @@ export default function eShop({ addToCart }) {
       page = data.page - 1;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -85,6 +100,8 @@ export default function eShop({ addToCart }) {
       page = value;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -123,15 +140,11 @@ export default function eShop({ addToCart }) {
               >
                 Todos
               </option>
-              <option className={styles.option} value="Productos Little Paws">
-                Productos Little Paws
-              </option>
-              <option className={styles.option} value="Accesorios">
-                Accesorios
-              </option>
-              <option className={styles.option} value="Alimento">
-                Alimento
-              </option>
+              {categories?.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
             <h1 className={styles.title}>Precio</h1>
             <select className={styles.select} name="price">
@@ -148,10 +161,7 @@ export default function eShop({ addToCart }) {
                 5.000$ a 10.000$
               </option>
             </select>
-            <button
-              className={styles.all}
-              onClick={(e) => handlerFilter(e)}
-            >
+            <button className={styles.all} onClick={(e) => handlerFilter(e)}>
               Aplicar Filtros
             </button>
           </form>

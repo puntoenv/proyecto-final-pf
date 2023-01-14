@@ -1,9 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const productsFiltered = require("../../controllers/filters/productsFiltered");
 const Product = require("../../models/Product");
-
-// localhost:3001/filter?
 
 router.get("/:id", async (req, res) => {
   let { id } = req.params;
@@ -11,7 +8,8 @@ router.get("/:id", async (req, res) => {
   let products = {};
   try {
     if (category && price) {
-      category = category.split("-");
+      category = Array.from(new Set(category.split("-")));
+
       console.log(category);
       if (price === "barato") {
         products = await Product.paginate(
@@ -39,7 +37,7 @@ router.get("/:id", async (req, res) => {
         );
       }
     } else if (category && !price) {
-      category = category.split("-");
+      category = Array.from(new Set(category.split("-")));
       console.log(category);
       products = await Product.paginate(
         { category: { $in: [...category] } },
@@ -63,8 +61,9 @@ router.get("/:id", async (req, res) => {
         );
       }
     } else {
-      products = await Product.paginate();
+      products = await Product.paginate({}, { page: id, limit: 10 });
     }
+    console.log(products);
     res.send(products);
   } catch (error) {
     console.log(error);
