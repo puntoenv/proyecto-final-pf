@@ -1,6 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
+import logo from "../../img/logo.jpeg";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+import { useRouter } from "next/router";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -15,13 +20,38 @@ const handlerClick = () => {
   console.log(dash.className);
 };
 
-const NavBar = () => {
+const NavBar = ( response) => {
   const { user, isLoading } = useUser();
+    const router = useRouter();
+    const idUser = user?.sub.split("|")[1];
 
   if (isLoading) return <h1>Loading...</h1>;
 
+  const handleAdoption = () => {
+    if (!response.response.name || response.response.name === " ") {
+      Swal.fire({
+        title: "Necesitas configurar tu nombre para adoptar",
+        icon: "error",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      });
+    } else {
+      router.push(`/adoptionForm/${idUser}`);
+    }
+  };
+
   return (
     <header className="headerNav">
+      <Link href={"/home"} className="logo">
+        <Image
+          src={logo}
+          alt="logo"
+          className="logo"
+          width="auto"
+          height="auto"
+        />
+      </Link>
       <nav className="nav">
         <div className="navMenuList">
           <Link className="itemNav" href="/eShop">
@@ -54,9 +84,13 @@ const NavBar = () => {
         <Link className="itemDash" href="/cart">
           <span>Mi carrito</span>
         </Link>
-        <Link className="itemDash" href="/adoptionForm">
+        <p
+          onClick={() => handleAdoption()}
+          className="itemDash"
+          href="/adoptionForm"
+        >
           <span>Publicar Mascota</span>
-        </Link>
+        </p>
         <a className="itemDash" href="/api/auth/logout">
           <span>Cerrar sesión</span>
         </a>
@@ -66,3 +100,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
+

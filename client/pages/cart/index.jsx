@@ -2,7 +2,6 @@ import Image from "next/image";
 import Layout from "../layout";
 import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
-import logo from "../../img/logo.jpeg";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 
@@ -32,15 +31,7 @@ export default function Cart({
       <div>
         <Layout title="Carrito" />
         <NavBar />
-        <Link href={"/home"} className="logo">
-          <Image
-            src={logo}
-            alt="logo"
-            className={styles.logo}
-            width="auto"
-            height="auto"
-          />
-        </Link>
+
         <button className={styles.btn}>Finalizar Compra</button>
         <div className={styles.big_container}>
           {cart.length === 0 ? (
