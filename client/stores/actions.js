@@ -36,6 +36,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 };
 
 export const PostAdop = (post) => {
+  console.log(post)
   return (
     axios
       .post("/pets/post-pet", post)

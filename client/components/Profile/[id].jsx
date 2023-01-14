@@ -63,7 +63,7 @@ export default function Perfil({
 
   const { _id } = response;
   return (
-    <div className={style.mainContainer}>
+    <div className={style.container_caja1}>
       {isLoading && (
         <div className={styles.container}>
           <div className={styles.loader}></div>
@@ -71,16 +71,16 @@ export default function Perfil({
         </div>
       )}
       {user && (
-        <div>
-          <div className={style.infoContainer}>
-            <div className={style.thirdContainer}>
-              <div>
+        <div className={style.mainContainer}>
+          <div >
+            <div className={style.container_caja2}> 
+              <div className={style.container_caja3}>
                 <h1 className={style.h1}>Mi perfil </h1>
                 <span className={style.email}>{response?.email}</span>
                 <p>
-                  <div className={style.bioContainer}>
-                    <p className={style.p}>Bio: </p>
-                    <div className={style.insideInfo}>
+                  <div >
+                    <p className={style.bio}>Bio: </p>
+                    <div className={style.conta_bio}>
                       {!edit.bio ? (
                         response.bio ? (
                           response.bio
@@ -89,7 +89,7 @@ export default function Perfil({
                         )
                       ) : (
                         <form
-                          className={style.form}
+                          className={style.form_input}
                           onSubmit={(event) =>
                             handleOnSubmit(
                               event,
@@ -109,19 +109,22 @@ export default function Perfil({
                                 validateForm(event, setError, error);
                             }}
                           />
+
                           <button
                             disabled={error.bio ? true : false}
-                            className={style.iconBio}
+                            className={style.button_che}
                             type="submit"
                           >
+
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
                       )}
                     </div>
                   </div>
+                 
                   <span
-                    className={style.icon}
+                   className={style.bio_posi}
                     onClick={() => {
                       setEdit({ ...edit, bio: !edit.bio }),
                         setInput({ ...input, bio: "" });
@@ -132,7 +135,7 @@ export default function Perfil({
                   <span>{error.bio ? error.bio : ""}</span>
                 </p>
               </div>
-              <div className={style.fourthContainer}>
+              <div >
                 <img
                   src={response.image ? response.image : imgAux}
                   className={style.image}
@@ -205,6 +208,7 @@ export default function Perfil({
                 </div>
               </div>
             </div>
+            
             <div className={style.div}>
               <div className={style.infoStyles}>
                 <p className={style.infoStylesP}>
@@ -244,6 +248,7 @@ export default function Perfil({
                             className={style.icon}
                             type="submit"
                           >
+
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -251,7 +256,7 @@ export default function Perfil({
                     </div>
                   </div>
                   <span
-                    className={style.icon}
+                  
                     onClick={() => {
                       setEdit({ ...edit, name: !edit.name }),
                         setInput({ ...input, name: "" });
@@ -293,11 +298,13 @@ export default function Perfil({
                                 validateForm(event, setError, error);
                             }}
                           />
+
                           <button
                             disabled={error.age ? true : false}
                             className={style.icon}
                             type="submit"
                           >
+
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -317,7 +324,7 @@ export default function Perfil({
                 </p>
 
                 <p className={style.infoStylesP}>
-                  <div className={style.pContainer}>
+                  <div >
                     <p className={style.p}>Provincia: </p>
                     <div className={style.insideInfo}>
                       {!edit.ubication ? (
@@ -385,30 +392,23 @@ export default function Perfil({
                   <b>Postea una adopción</b>
                   {/* </Link> */}
                 </button>
-                <button className={style.button}>
-                  <Link
-                    href={{
-                      pathname: "/PetsCrea",
-                      query: { id: `${_id}` },
-                    }}
-                  >
-                    <b>Animales creados</b>
-                  </Link>
-                </button>
                 {/* <button className={style.button}>
                   <Link href={"/profile"}>
                     <b>Adopta</b>
                   </Link>
                 </button> */}
+              <button className={style.button}>
+             <Link href={"/home"}>
+              <b>Página principal</b>
+            </Link>
+            </button>
               </div>
             </div>
           </div>
           {/* <h4>{result && {}}</h4> */}
-          <div className={style.link}>
-            <Link href={"/home"}>
-              <b>Página principal</b>
-            </Link>
-          </div>
+          
+          
+          
         </div>
       )}
     </div>
