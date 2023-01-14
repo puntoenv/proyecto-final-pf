@@ -76,7 +76,7 @@ export default function Perfil({
   };
   
   return (
-    <div>
+    <div className={style.container_caja1}>
       {isLoading && (
         <div className={styles.container}>
           <div className={styles.loader}></div>
@@ -86,14 +86,14 @@ export default function Perfil({
       {user && (
         <div className={style.mainContainer}>
           <div >
-            <div > 
-              <div>
+            <div className={style.container_caja2}> 
+              <div className={style.container_caja3}>
                 <h1 className={style.h1}>Mi perfil </h1>
                 <span className={style.email}>{response?.email}</span>
                 <p>
                   <div >
-                    <p className={style.p}>Bio: </p>
-                    <div className={style.insideInfo}>
+                    <p className={style.bio}>Bio: </p>
+                    <div className={style.conta_bio}>
                       {!edit.bio ? (
                         response.bio ? (
                           response.bio
@@ -102,7 +102,7 @@ export default function Perfil({
                         )
                       ) : (
                         <form
-                          className={style.form}
+                          className={style.form_input}
                           onSubmit={(event) =>
                             handleOnSubmit(
                               event,
@@ -121,15 +121,16 @@ export default function Perfil({
                               hanldeOnChange(event, setInput, input, setResult)
                             }
                           />
-                          <button className={style.iconBio} type="submit">
+                          <button className={style.button_che} type="submit">
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
                       )}
                     </div>
                   </div>
+                 
                   <span
-                    className={style.icon}
+                   className={style.bio_posi}
                     onClick={() => {
                       setEdit({ ...edit, bio: !edit.bio }),
                         setInput({ ...input, bio: "" });
@@ -210,6 +211,7 @@ export default function Perfil({
                 </div>
               </div>
             </div>
+            
             <div className={style.div}>
               <div className={style.infoStyles}>
                 <p className={style.infoStylesP}>
@@ -243,7 +245,7 @@ export default function Perfil({
                               hanldeOnChange(event, setInput, input, setResult)
                             }
                           />
-                          <button className={style.icon} type="submit">
+                          <button  type="submit">
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -251,7 +253,7 @@ export default function Perfil({
                     </div>
                   </div>
                   <span
-                    className={style.icon}
+                  
                     onClick={() => {
                       setEdit({ ...edit, name: !edit.name }),
                         setInput({ ...input, name: "" });
@@ -291,7 +293,7 @@ export default function Perfil({
                               hanldeOnChange(event, setInput, input, setResult)
                             }
                           />
-                          <button className={style.icon} type="submit">
+                          <button type="submit">
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -377,14 +379,17 @@ export default function Perfil({
                     <b>Adopta</b>
                   </Link>
                 </button> */}
+              <button className={style.button}>
+             <Link href={"/home"}>
+              <b>Página principal</b>
+            </Link>
+            </button>
               </div>
             </div>
           </div>
           {/* <h4>{result && {}}</h4> */}
           
-            <Link href={"/home"}>
-              <b>Página principal</b>
-            </Link>
+          
           
         </div>
       )}

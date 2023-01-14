@@ -1,8 +1,8 @@
 .container {
   display: flex;
-  background-color: #e8eb9d;
+  background-color: #815843;
   width: 100%;
-  border-radius: 20% 100% 10% 10%;
+  border-radius: 00% 00% 383% 383%;
 }
 .container_history {
   margin: 0 auto;

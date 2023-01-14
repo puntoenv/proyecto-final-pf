@@ -10,7 +10,7 @@ function Petscrea({ response }) {
       <div className={styles.container_animal}>
         <h2 className={styles.letra}>posteo de mascotas</h2>
         <div className={styles.container_post}>
-          {!pets.length ? <h1 className={styles.letra}>no hay historial de compra</h1> : pets?.map((mascota) => {
+          {!pets.length ? <h1 className={styles.letra}>no hay historial de creaciones</h1> : pets?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
                 <img
