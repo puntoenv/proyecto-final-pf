@@ -104,11 +104,16 @@ export default function Perfil({
                             type="text"
                             placeholder="Breve descripción sobre ti"
                             name="bio"
-                            onChange={(event) =>
-                              hanldeOnChange(event, setInput, input, setResult)
-                            }
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
                           />
-                          <button className={style.iconBio} type="submit">
+                          <button
+                            disabled={error.bio ? true : false}
+                            className={style.iconBio}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -124,6 +129,7 @@ export default function Perfil({
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                  <span>{error.bio ? error.bio : ""}</span>
                 </p>
               </div>
               <div className={style.fourthContainer}>
@@ -233,7 +239,11 @@ export default function Perfil({
                                 validateForm(event, setError, error);
                             }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.name ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -283,7 +293,11 @@ export default function Perfil({
                                 validateForm(event, setError, error);
                             }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.age ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>
@@ -334,7 +348,11 @@ export default function Perfil({
                                 validateForm(event, setError, error);
                             }}
                           />
-                          <button className={style.icon} type="submit">
+                          <button
+                            disabled={error.ubication ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
                             <HiCheck size={20}></HiCheck>
                           </button>
                         </form>

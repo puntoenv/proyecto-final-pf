@@ -104,7 +104,6 @@ export   const handleFiles = (event, setInput, input) => {
 };
 
 export const handleAdoption = (response, router, Swal, idUser) => {
-  console.log(response)
   if (response) {
     if (!response.name || response.name === " ") {
       Swal.fire({
@@ -114,10 +113,12 @@ export const handleAdoption = (response, router, Swal, idUser) => {
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
       });
+    } else {
+      router.push(`/adoptionForm/${idUser}`);
     }
-  } else {
-    router.push(`/adoptionForm/${idUser}`);
-  }
+    } else {
+      router.push(`/adoptionForm/${idUser}`);
+    }
 };
 
 export const handleOnSubmit = async (
@@ -179,3 +180,4 @@ export const handleOnSubmit = async (
     // }
   }
 };
+
