@@ -95,7 +95,7 @@ export default function Home() {
 
           
           <div className={styles.containSlider}>
-          <h1 className={styles.titleCarrusel}> Nuestro E-shop </h1>
+          <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
@@ -110,15 +110,6 @@ export default function Home() {
               ))}
             </Slider>
           </div>
-
-
-
-
-
-
-
-
-
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
