@@ -28,6 +28,7 @@
 .itemDash:hover {
   font-weight: bold;
   border-bottom: 1px transparent;
+  cursor: pointer;
 }
 .view {
   right: 0;
