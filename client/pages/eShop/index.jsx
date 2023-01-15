@@ -18,8 +18,9 @@ import {
 export default function eShop({
   addToCart,
   cart,
+  setCart,
   productOfCart,
-  discountProduct,
+  discountItem,
 }) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
@@ -173,8 +174,9 @@ export default function eShop({
                   info={producto}
                   addToCart={addToCart}
                   cart={cart}
+                  serCart={setCart}
                   productOfCart={productOfCart}
-                  discountProduct={discountProduct}
+                  discountItem={discountItem}
                 />
               );
             })}

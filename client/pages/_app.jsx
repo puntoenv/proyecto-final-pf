@@ -27,6 +27,15 @@ const clientId = process.env.AUHT0_CLIENT_ID;
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState([]);
 
+  const addToCart = (product) => {
+    console.log(cart);
+    addedProduct(product, cart, setCart);
+  };
+
+  const discountItem = (id) => {
+    discountOneProduct(cart, setCart, id);
+  };
+
   useEffect(() => {
     const carrito = JSON.parse(localStorage.getItem("cart")) ?? [];
     setCart(carrito);
@@ -36,17 +45,13 @@ export default function App({ Component, pageProps }) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => {
-    console.log(cart);
-    addedProduct(product, cart, setCart);
-  };
   return (
     <ContextProvider>
       <UserProvider client_id={clientId}>
         <Provider store={store}>
           <Component
             {...pageProps}
-            discountProduct={discountOneProduct}
+            discountItem={discountItem}
             cart={cart}
             setCart={setCart}
             addToCart={addToCart}

@@ -9,8 +9,9 @@ export default function CardProduct({
   info,
   addToCart,
   cart,
+  setCart,
   productOfCart,
-  discountProduct,
+  discountItem,
 }) {
   const { name, image, price, _id, stock, category, boughtBy } = info;
   const [amount, setAmount] = useState(0);
@@ -39,16 +40,17 @@ export default function CardProduct({
   };
 
   const handlerSubmitDiscount = () => {
-    discountProduct(cart, _id);
-
-    setAmount((i) => (i = i - 1));
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto quitado de tu Carrito`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
+    if (amount !== 0) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `Producto quitado de tu Carrito`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
   };
 
   useEffect(() => {
