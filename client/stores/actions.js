@@ -1,7 +1,12 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
-import { getAllProducts, addProductCart, products } from "./products";
-import { getMascotas } from "./mascotas";
+import {
+  getAllProducts,
+  addProductCart,
+  getCategories,
+ , products productsFilter,
+} from "./products";
+import { getMascotas, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -31,6 +36,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 };
 
 export const PostAdop = (post) => {
+  console.log(post);
   return (
     axios
       .post("/pets/post-pet", post)
@@ -71,16 +77,31 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch(
-        (err) =>
-          Swal.fire({
-            title: "Error. No se pudo publicar la mascota",
-            icon: "error",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
+        (err) => {
+          if (err) {
+            if (err.response.statusText === "Payload Too Large") {
+              Swal.fire({
+                title: "Error. Imagen inválida",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
 
-            // background:'#fff url(../backAlerts.png)',
-          })
+                // background:'#fff url(../backAlerts.png)',
+              });
+            } else {
+              Swal.fire({
+                title: "Error. No se pudo publicar la mascota",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
+
+                // background:'#fff url(../backAlerts.png)',
+              });
+            }
+          }
+        }
         //   Swal.fire({
         //     position: "top-end",
         //     icon: "error",
@@ -154,7 +175,21 @@ export const searchProduct = (product, page) => async (dispatch) => {
       `/products/by-name/${page}?name=${product}`
     );
     if (productoEncontrado.data.docs.length === 0) {
-      alert("No existen productos con ese nombre.");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "No hay productos con ese nombre",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      // Swal.fire({
+      //   title: "No hay productos con ese nombre",
+      //   icon: "error",
+      //   color: "#437042",
+      //   confirmButtonColor: "#437042",
+      //   confirmButtonAriaLabel: "#437042",
+      // });
+      // alert("No existen productos con ese nombre.");
       productoEncontrado = await axios("/products/1");
     }
     dispatch(getAllProducts(productoEncontrado.data));
@@ -226,6 +261,37 @@ export const addCart = (id) => async (dispatch) => {
 // export const filterPets = (params) => (dispatch) => {
 //   return dispatch(petsFilter(params));
 // };
+export const filterProducts = (input, page) => async (dispatch) => {
+  try {
+    let products = {};
+    if (input.category || input.price) {
+      let query = "?" + new URLSearchParams(input);
+      products = await axios.get(`/FilteredProducts/${page}/${query}`);
+    } else {
+      products = await axios.get(`/FilteredProducts/${page}`);
+    }
+    console.log(products.data.docs);
+    dispatch(productsFilter(products.data));
+  } catch (error) {}
+};
+
+export const allcategories = () => async (dispatch) => {
+  try {
+    let categories = await axios.get("/categories");
+    dispatch(getCategories(categories.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTypes = () => async (dispatch) => {
+  try {
+    let types = await axios.get("/types");
+    dispatch(typesGet(types.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const allUsers = () => async (dispatch) => {
   try {

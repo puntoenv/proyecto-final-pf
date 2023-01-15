@@ -1,45 +1,54 @@
 .mainContainer {
-  margin-top: 2rem;
-  padding: 3rem;
+  padding-left: 13%;
+  padding-top: 6%;
 }
 
-.email{
-  color: #034103;
+.email {
+  margin-bottom: 3rem;
+  font-size: 109%;
+  color: mintcream;
+  border: 2px solid;
+  border-top-color: #815843;
+  border-left-color: #815843;
+  border-right-color: #815843;
+  padding-top: 30px;
+  padding-bottom: 5%;
 }
 
 .thirdContainer {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-}
-
-.thirdContainer p {
   color: antiquewhite;
 }
 
 .infoContainer {
+  padding: 2rem 3rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0px 0px 25px #222;
+  background-color: rgba(146, 86, 8, 0.363);
   width: 80%;
-  padding: 4rem;
-  border: 1px solid #034103;
-  border-radius: 18px;
   margin: auto;
-  background-color: white;
+  border-radius: 20px;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  position: absolute;
+  top: 21%;
+  left: 74%;
 }
 
 .button {
-  background-color: antiquewhite;
-  color: #38593a;
-  width: 7rem;
-  height: 3rem;
-  border: 1px solid #38593a;
-  border-radius: 8px;
-  align-self: center;
+  background-color: transparent;
+  color: antiquewhite;
+  margin-bottom: 3rem;
+  font-size: 110%;
+  border: 2px solid;
+  padding: 10px;
 }
 
 .button:hover {
@@ -54,7 +63,13 @@
 
 .h1 {
   margin-bottom: 3rem;
-  font-size: 3.5rem;
+  font-size: 251%;
+  color: mintcream;
+  border: 2px solid;
+  border-top-color: #815843;
+  border-left-color: #815843;
+  border-right-color: #815843;
+  padding: 10px;
 }
 
 .link {
@@ -76,34 +91,55 @@
 .imageEdit {
   display: flex;
   justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 
 .form {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  
 }
 
 .formImage {
   display: flex;
-  flex-direction: column;
+}
+
+.divImage {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .form input {
   margin-right: 2rem;
   border-radius: 8px;
+  color: black;
 }
 
-.form button {
+.form button,
+.formImage button {
   border: 3px solid #38593a;
   background-color: antiquewhite;
-
+  color: #034103;
+  box-shadow: 0px 0px 25px #222;
+  border-radius: 10px;
+  max-width: 10rem;
+  align-self: center;
 }
 
-.form button :hover {
+.formImage button {
+  margin-top: 5px;
+}
+
+.form button :hover,
+.formImage button:hover {
   background-color: #0e3810;
   color: antiquewhite;
+  border-radius: 10px;
+  border: none;
+}
+
+.formImage button:hover {
+  height: 1.8rem;
 }
 
 .icon {
@@ -111,10 +147,25 @@
 }
 
 .image {
-  border-radius: 50%;
-  height: 300px;
-  width: 300px;
-  border: 10px solid #38593a;
+  width: 30%;
+  height: 67%;
+  border-radius: 50% 50% 50% 50%;
+  overflow: hidden;
+  margin: 3%;
+  box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 50%);
+  cursor: pointer;
+  transition: 400ms;
+}
+.image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Esto es opcional */
+.image:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
 }
 .input {
   display: flex;
@@ -173,6 +224,7 @@
 .insideInfo {
   width: 20rem;
   border-radius: 50px;
+  color: white;
 }
 
 .pContainer {
@@ -191,15 +243,15 @@
 }
 
 .thirdContainer .p {
-    border-bottom: 3px solid #0e3810;
-    border-radius: 0;
-    display: flex;
-    align-items: flex-end;
-    width: 20%;
+  border-bottom: 3px solid #0e3810;
+  border-radius: 0;
+  display: flex;
+  align-items: flex-end;
+  width: 20%;
 }
 
 .bioContainer {
-  color: black
+  color: black;
 }
 
 .p {
@@ -210,12 +262,73 @@
   width: 10rem;
   height: 3rem;
   padding-left: 4px;
+  color: white;
 }
 
 .div {
   display: flex;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .infoStyles {
-  min-width: 40rem;
+  min-width: 66%;
+  height: 296px;
+}
+
+.container_caja1 {
+  width: 100%;
+}
+
+.container_caja2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.container_caja3 {
+  position: absolute;
+  left: 18%;
+  top: 15%;
+}
+.container_p {
+  position: absolute;
+  top: 128%;
+  right: -30%;
+}
+.bio {
+  padding-top: 21%;
+  margin-bottom: 3rem;
+  font-size: 133%;
+  color: mintcream;
+}
+
+.conta_bio {
+  position: absolute;
+  top: 80%;
+  margin-bottom: 3rem;
+  font-size: 1.5rem;
+  color: mintcream;
+  border: 2px solid;
+  border-top-color: #815843;
+  border-left-color: #815843;
+  border-right-color: #815843;
+  padding-top: 30px;
+  padding-bottom: 5%;
+}
+.form_input {
+  margin-right: 2rem;
+  border-radius: 8px;
+  color: black;
+}
+
+.bio_posi {
+  position: absolute;
+  top: 73%;
+  left: 25%;
+}
+.button_che {
+  border-width: 3px;
 }

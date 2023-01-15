@@ -14,9 +14,10 @@ import "slick-carousel/slick/slick-theme.css";
 import PetsCard from "../../components/Carousel/petsCard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPets } from "../../stores/actions";
+import { getPets, getProducts } from "../../stores/actions";
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import ProductCard from "../../components/CarouselEshop/productsCard";
 
 export default function Home() {
   {
@@ -29,12 +30,18 @@ export default function Home() {
       slidesToScroll: 3,
     };
 
-    const data = useSelector((data) => data.mascotas.mascotas);
+    const dataPets = useSelector((data) => data.mascotas.mascotas);
+    const productos = useSelector((state) => state.products.allProducts);
+    const data = useSelector((state) => state.products.data);
 
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getPets());
+      dispatch(getPets(1));
+      dispatch(getProducts(1))
     }, []);
+    // useEffect(()=>{
+    //   dispatch(getProducts(1))
+    // },[dispatch])
 
     return (
       <LayoutGlobal>
@@ -64,7 +71,7 @@ export default function Home() {
 
           <div className={styles.containSlider}>
             <Slider {...settings} className="arrowsSlides">
-              {data.slice(0, 9).map((mascota) => (
+              {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard
                   key={mascota._id}
                   nombre={mascota.name}
@@ -74,6 +81,31 @@ export default function Home() {
               ))}
             </Slider>
           </div>
+
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {productos.slice(0, 9).map((producto) => (
+                <ProductCard
+                key={producto._id}
+                  info={producto}
+                  // addToCart={addToCart}
+                  // key={producto._id}
+                  // nombre={producto.name}
+                  // imagen={producto.image}
+                  // precio={producto.price}
+                />
+              ))}
+            </Slider>
+          </div>
+
+
+
+
+
+
+
+
+
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>

@@ -1,13 +1,18 @@
 import Link from "next/link";
 import { useState } from "react";
-import { getPets, searchPet, getper, sorts } from "../../stores/actions";
+import {
+  getPets,
+  searchPet,
+  getper,
+  sorts,
+  getTypes,
+} from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
-import logo from "../../img/logo.jpeg";
 
 export default function PetAdoption() {
   const [search, setSearch] = useState("");
@@ -15,6 +20,7 @@ export default function PetAdoption() {
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
   const data = useSelector((state) => state.mascotas.data);
+  const types = useSelector((state) => state.mascotas.types);
   const paging = [];
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -54,6 +60,7 @@ export default function PetAdoption() {
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
+    dispatch(getTypes());
   }, [dispatch]);
 
   const handlerPage = (e) => {
@@ -120,27 +127,11 @@ export default function PetAdoption() {
               <option className={styles.option} value="animal">
                 Todos
               </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="conejo">
-                Conejos
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
-              </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
-              </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="tortuga">
-                Tortuga
-              </option>
+              {types?.map((type) => (
+                <option className={styles.option} key={type} value={type}>
+                  {type}
+                </option>
+              ))}
             </select>
             <h1 className={styles.title}>Tamaño</h1>
             <select className={styles.select} id="size">
@@ -170,7 +161,6 @@ export default function PetAdoption() {
                 Hembra
               </option>
             </select>
-
             <h1 className={styles.title}>Edades</h1>
             <select id="age" className={styles.select}>
               <option className={styles.option} defaultValue={true} value="">

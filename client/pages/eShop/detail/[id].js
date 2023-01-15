@@ -1,11 +1,68 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
+import {formatOneItemMP} from "../../../controller/formatItemsMp";
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 
-export default function Detail({ data }) {
-  console.log(data);
+export default function Detail({
+  data,
+  cart,
+  addToCart,
+  deleteCart,
+  productOfCart,
+}) {
+  const { name, image, price, _id, description, stock, category, boughtBy } =
+    data;
+  const [amount, setAmount] = useState(0);
+  const itemCart = productOfCart(cart, _id);
+
+  const handlerSubmitAdded = (e) => {
+    e.preventDefault();
+    const product = {
+      name,
+      image,
+      price,
+      _id,
+      stock,
+      category,
+      boughtBy,
+    };
+    setAmount((i) => (i = i + 1));
+    addToCart(product);
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto agregado`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
+
+  const handlerSubmitDiscount = () => {
+    discountProduct(cart, _id);
+
+    setAmount((i) => (i = i - 1));
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto quitado de tu Carrito`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
+  const handlerDelete = (id) => {
+    deleteCart(id);
+    setCantidad(1);
+    alert(`${name} eliminado con exito`);
+  };
+
+  useEffect(() => {
+    itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
+  }, [cart, amount]);
+
   let products = [data];
   return (
     <LayoutGlobal>
@@ -22,24 +79,37 @@ export default function Detail({ data }) {
             <div className={style.containPriceAndCategorie}>
               <button
                 className={style.btnBuy}
-                onClick={(e) => {
-                  try {
-                    axios
-                      .post("http://localhost:3001/payment", products)
-                      .then(
-                        (res) =>
-                          (window.location.href =
-                            res.data.response.body.init_point)
-                      );
-                  } catch (error) {
-                    res.status(400).send(error);
-                  }
-                }}
+               onClick={(e) => formatOneItemMP(products)}
               >
                 Comprar
               </button>
 
-              <span className={style.priceProduct}>${data.price}</span>
+              <span className={style.priceProduct}>
+                ${data.price}
+                <div className={style.formCantCart}>
+                  <button
+                    onClick={handlerSubmitAdded}
+                    className={style.modifiedCant}
+                    type="submit"
+                  >
+                    <BsCartPlusFill className={style.icon} />
+                  </button>
+
+                  {amount !== undefined && (
+                    <span className={style.amount}>{amount}</span>
+                  )}
+
+                  <span className={style.spanButtonAdd}>
+                    <button
+                      onClick={handlerSubmitDiscount}
+                      className={style.modifiedCant}
+                      type="submit"
+                    >
+                      <BsCartDashFill className={style.icon} />
+                    </button>
+                  </span>
+                </div>
+              </span>
               {data.category && (
                 <span className={style.categoriesProduct}>
                   <ul className={style.listCategories}>

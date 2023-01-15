@@ -1,5 +1,6 @@
-import Link from "next/link";
 import {
+  allcategories,
+  filterProducts,
   getProducts,
   searchProduct /* , addCart  */,
 } from "../../stores/actions";
@@ -9,26 +10,38 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from "react-icons/io";
 
-export default function eShop({ addToCart }) {
+export default function eShop({
+  addToCart,
+  cart,
+  setCart,
+  productOfCart,
+  discountItem,
+}) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({ category: "" });
   const [search, setSearch] = useState("");
+  const categories = useSelector((state) => state.products.categories);
   const paging = [];
   for (let i = 1; i <= data.pages; i++) {
     paging.push(i);
   }
-  console.log(data);
 
   useEffect(() => {
     dispatch(getProducts(1));
+    dispatch(allcategories());
   }, [dispatch]);
 
   const handlerTodos = (e) => {
     e.preventDefault();
     dispatch(getProducts(1));
+    setInput({});
     e.target.reset();
   };
 
@@ -40,21 +53,26 @@ export default function eShop({ addToCart }) {
 
   const handlerOnSearch = (e) => {
     e.preventDefault();
-    console.log(search);
     dispatch(searchProduct(search, 1));
   };
 
   const handlerSelect = (e) => {
     e.preventDefault();
     let { name, value } = e.target;
-    setInput({
-      ...input,
-      [name]: value,
-    });
+    if (name === "category") {
+      if (input.category) {
+        input[name] = input[name] + "-" + value;
+      } else {
+        input[name] = value;
+      }
+    } else {
+      input[name] = value;
+    }
   };
 
   const handlerFilter = (e) => {
     e.preventDefault();
+    dispatch(filterProducts(input, 1));
   };
 
   const handlerPage = (e) => {
@@ -65,6 +83,8 @@ export default function eShop({ addToCart }) {
       page = data.page + 1;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -72,6 +92,8 @@ export default function eShop({ addToCart }) {
       page = data.page - 1;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -79,6 +101,8 @@ export default function eShop({ addToCart }) {
       page = value;
       if (search) {
         dispatch(searchProduct(search, page));
+      } else if (input) {
+        dispatch(filterProducts(input, page));
       } else {
         dispatch(getProducts(page));
       }
@@ -97,7 +121,9 @@ export default function eShop({ addToCart }) {
             placeholder="Buscar..."
             onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)}>Buscar</button>
+          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
+            Buscar
+          </button>
         </div>
         <div className={styles.container2}>
           <form
@@ -106,27 +132,24 @@ export default function eShop({ addToCart }) {
             onSubmit={(e) => handlerTodos(e)}
           >
             <input type="submit" value="Ver Todos" className={styles.all} />
-            <h1 className={styles.title}>Accesorios</h1>
-            <select className={styles.select} id="accesorios">
-              <option className={styles.option} value="indumentaria">
+            <h1 className={styles.title}>Categorias</h1>
+            <select className={styles.select} name="category">
+              <option
+                className={styles.option}
+                value="Todos"
+                defaultValue={true}
+              >
                 Todos
               </option>
-              <option className={styles.option} value="collar">
-                Collar
-              </option>
-              <option className={styles.option} value="gorros">
-                Gorros
-              </option>
-              <option className={styles.option} value="Chapitas">
-                Chapitas
-              </option>
-              <option className={styles.option} value="remeras">
-                Remeras
-              </option>
+              {categories?.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
             </select>
             <h1 className={styles.title}>Precio</h1>
-            <select className={styles.select} id="precio">
-              <option className={styles.option} value="precio">
+            <select className={styles.select} name="price">
+              <option className={styles.option} value="Todos">
                 Todos
               </option>
               <option className={styles.option} value="barato">
@@ -139,61 +162,44 @@ export default function eShop({ addToCart }) {
                 5.000$ a 10.000$
               </option>
             </select>
-            <h1 className={styles.title}>Tipo</h1>
-            <select className={styles.select} id="tipo">
-              <option className={styles.option} value="tipo">
-                Todos
-              </option>
-              <option className={styles.option} value="perro">
-                Perros
-              </option>
-              <option className={styles.option} value="gato">
-                Gatos
-              </option>
-              <option className={styles.option} value="conejo">
-                Conejos
-              </option>
-              <option className={styles.option} value="ave">
-                Aves
-              </option>
-              <option className={styles.option} value="pez">
-                Peces
-              </option>
-              <option className={styles.option} value="hamster">
-                Hamsters
-              </option>
-              <option className={styles.option} value="tortuga">
-                Tortuga
-              </option>
-            </select>
-            <button onClick={(e) => handlerFilter(e)}>Aplicar Filtros</button>
+            <button className={styles.all} onClick={(e) => handlerFilter(e)}>
+              Aplicar Filtros
+            </button>
           </form>
-          <div className={styles.big_container}>
-            <div className={styles.posts_Container}></div>
+          <div className={styles.containerCards}>
             {productos?.map((producto) => {
               return (
                 <CardProduct
                   key={producto._id}
                   info={producto}
                   addToCart={addToCart}
+                  cart={cart}
+                  serCart={setCart}
+                  productOfCart={productOfCart}
+                  discountItem={discountItem}
                 />
               );
             })}
             <div />
-            <div>
-              <button value="🡸" onClick={(e) => handlerPage(e)}>
-                🡸
-              </button>
-              {paging?.map((p) => (
-                <button value={p} key={p} onClick={(e) => handlerPage(e)}>
-                  {p}
-                </button>
-              ))}
-              <button value="🡺" onClick={(e) => handlerPage(e)}>
-                🡺
-              </button>
-            </div>
           </div>
+        </div>
+        <div className={styles.pages}>
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDropleftCircle className={styles.iconPage} />
+          </button>
+          {paging?.map((p) => (
+            <button
+              value={p}
+              key={p}
+              onClick={(e) => handlerPage(e)}
+              className={styles.pageNum}
+            >
+              {p}
+            </button>
+          ))}
+          <button onClick={(e) => handlerPage(e)}>
+            <IoIosArrowDroprightCircle className={styles.iconPage} />
+          </button>
         </div>
       </div>
     </LayoutGlobal>

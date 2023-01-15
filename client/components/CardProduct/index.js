@@ -1,76 +1,102 @@
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
+import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
-export default function CardProduct({ info, addToCart }) {
-  const [cantidad, setCantidad] = useState(1);
-  const {
-    name,
-    image,
-    price,
-    _id,
-    description,
-    stock,
-    category,
-    boughtBy,
-    hidden,
-    __v,
-  } = info;
+export default function CardProduct({
+  info,
+  addToCart,
+  cart,
+  setCart,
+  productOfCart,
+  discountItem,
+}) {
+  const { name, image, price, _id, stock, category, boughtBy } = info;
+  const [amount, setAmount] = useState(0);
+  const itemCart = productOfCart(cart, _id);
 
-  const handlerSubmit = (e) => {
+  const handlerSubmitAdded = (e) => {
     e.preventDefault();
-    const unidad = {
+    const product = {
       name,
       image,
       price,
       _id,
-      description,
       stock,
       category,
       boughtBy,
-      hidden,
-      __v,
-      cantidad,
     };
-    addToCart(unidad);
-    alert(`${cantidad} ${name} agregado/s al carrito`);
+    setAmount((i) => (i = i + 1));
+    addToCart(product);
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto agregado`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
   };
+
+  const handlerSubmitDiscount = () => {
+    if (amount !== 0) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `Producto quitado de tu Carrito`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  };
+
+  useEffect(() => {
+    itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
+  }, [cart, amount]);
 
   return (
     <div className={styles.card}>
-      <h3 className={styles.name}>{name.toUpperCase()}</h3>
-      <img
-        className={styles.img}
-        src={image}
-        width="300"
-        height="240"
-        alt="imagen del producto"
-      />
-      {price ? <p className={styles.size}>Precio: ${price}</p> : null}
-      <Link href={`/eShop/detail/${_id}`}>
-        <h1>Ver Producto</h1>
+      <Link className={styles.linkImg} href={`/eShop/detail/${_id}`}>
+        <img className={styles.img} src={image} alt="imagen del producto" />
       </Link>
-      <form onSubmit={handlerSubmit}>
-        <label>Cantidad</label>
-        <select
-          onChange={(e) => setCantidad(parseInt(e.target.value))}
-          value={cantidad}
-        >
-          <option value="0" hidden>
-            Seleccione Cantidad
-          </option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-        </select>
-        <input type="submit" value="Agregar al carrito" />
-      </form>
+      <div className={styles.divInfoProduct}>
+        <Link href={`/eShop/detail/${_id}`} className={styles.name}>
+          {name.toUpperCase()}
+        </Link>
+        <div className={styles.divPriceAddCart}>
+          {price ? (
+            <Link href={`/eShop/detail/${_id}`} className={styles.price}>
+              ${price}
+            </Link>
+          ) : null}
+          <div className={styles.formCantCart}>
+            <button
+              onClick={handlerSubmitAdded}
+              className={styles.modifiedCant}
+              type="submit"
+            >
+              <BsCartPlusFill className={styles.icon} />
+            </button>
+
+            {amount !== undefined && (
+              <span className={styles.amount}>{amount}</span>
+            )}
+
+            <span className={styles.spanButtonAdd}>
+              <button
+                onClick={handlerSubmitDiscount}
+                className={styles.modifiedCant}
+                type="submit"
+              >
+                <BsCartDashFill className={styles.icon} />
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

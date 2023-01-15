@@ -4,7 +4,7 @@ const User = require("../../models/User");
 
 allUsers.get("/", async (req, res) => {
   try {
-    const users = await User.find({hidden:false})
+    const users = await User.find().populate({ path: "pets", model: "Pet" });
     res.json(users);
   } catch (error) {
     res.status(400).send({ error: error.message });
