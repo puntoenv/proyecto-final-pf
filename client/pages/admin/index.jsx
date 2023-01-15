@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/admin/NavBar";
+import Navbar from "../../components/admin/Navbar.jsx";
 import Bar from "../../components/admin/Bar";
 import Link from "next/link";
 import Pie from "../../components/admin/Pie";
