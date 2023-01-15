@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
-import {formatOneItemMP} from "../../../controller/formatItemsMp";
+import { formatOneItemMP } from "../../../controller/formatItemsMp";
 import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
@@ -13,9 +13,9 @@ export default function Detail({
   addToCart,
   deleteCart,
   productOfCart,
+  discountItem,
 }) {
-  const { name, image, price, _id, description, stock, category, boughtBy } =
-    data;
+  const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
 
@@ -42,9 +42,9 @@ export default function Detail({
   };
 
   const handlerSubmitDiscount = () => {
-    discountProduct(cart, _id);
-
     setAmount((i) => (i = i - 1));
+    discountItem(_id);
+    console.log(itemCart.amount);
     Swal.fire({
       position: "top",
       icon: "success",
@@ -52,11 +52,6 @@ export default function Detail({
       showConfirmButton: false,
       timer: 1000,
     });
-  };
-  const handlerDelete = (id) => {
-    deleteCart(id);
-    setCantidad(1);
-    alert(`${name} eliminado con exito`);
   };
 
   useEffect(() => {
@@ -77,12 +72,18 @@ export default function Detail({
           <div className={style.containInfo}>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
-              <button
-                className={style.btnBuy}
-               onClick={(e) => formatOneItemMP(products)}
-              >
-                Comprar
-              </button>
+              {itemCart ? (
+                <Link href="/cart" className={style.btnBuy}>
+                  Comprar 😀
+                </Link>
+              ) : (
+                <button
+                  className={style.btnBuy}
+                  onClick={(e) => formatOneItemMP(products)}
+                >
+                  Comprar
+                </button>
+              )}
 
               <span className={style.priceProduct}>
                 ${data.price}
@@ -103,7 +104,6 @@ export default function Detail({
                     <button
                       onClick={handlerSubmitDiscount}
                       className={style.modifiedCant}
-                      type="submit"
                     >
                       <BsCartDashFill className={style.icon} />
                     </button>
