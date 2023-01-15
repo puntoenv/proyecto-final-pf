@@ -54,7 +54,7 @@ export async function getServerSideProps({ params }) {
   try {
     const response = await (
       await fetch(
-        "https://proyecto-final-pf-production.up.railway.app//user/" + params.id
+        "https://proyecto-final-pf-production.up.railway.app/user/" + params.id
       )
     ).json();
     return {
