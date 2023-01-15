@@ -74,7 +74,7 @@ export default function Detail({
             <div className={style.containPriceAndCategorie}>
               {itemCart ? (
                 <Link href="/cart" className={style.btnBuy}>
-                  Comprar
+                  Comprar 😀
                 </Link>
               ) : (
                 <button
