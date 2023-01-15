@@ -25,7 +25,7 @@ const [fil, setfil] = useState({
    const {id, value} = e.target
    id === 'type' ? setfil ({... fil,[id]:value}) : id === 'size' ? setfil ({... fil,[id]:value}) : id === 'gender' ? setfil ({... fil,[id]:value}) : id === 'age' ? setfil ({... fil,[id]:value}) : setfil({... fil})
   }
- console.log(fil)
+
   return (
     
     <div>
