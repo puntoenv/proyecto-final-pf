@@ -79,6 +79,7 @@ export const PostAdop = (post) => {
       // .then((id) => router.push(`detail/${id}`))
       .catch(
         (err) => {
+          console.log(err)
           if (err) {
             if (err.response.statusText === "Payload Too Large") {
               Swal.fire({

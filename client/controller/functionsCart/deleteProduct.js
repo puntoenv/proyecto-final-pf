@@ -13,12 +13,14 @@ export const deleteCart = (cart, setCart) => {
 
 export const discountOneProduct = (cart, setCart, id) => {
   const item = cart.find((item) => item._id === id);
-  if ((item.amount = 1)) {
+  console.log(item);
+  if (item.amount === 1) {
     const cartFiltered = cart.filter((item) => item._id !== id);
     setCart(cartFiltered);
     localStorage.setItem("cart", JSON.stringify(cart));
     return;
+  } else {
+    item.amount -= 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
-  item.amount -= 1;
-  localStorage.setItem("cart", JSON.stringify(cart));
 };
