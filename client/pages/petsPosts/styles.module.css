@@ -12,12 +12,14 @@
 .big_container {
   padding-left: 15rem;
   margin: auto;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   font-family: "Segoe UI";
   flex-wrap: wrap;
   justify-content: center;
+  min-width: 100vw;
+  align-content: flex-start;
 }
 
 .searchB {
@@ -179,6 +181,7 @@
   align-items: center;
   display: flex;
   margin-bottom: 5rem;
+  margin-top: 6rem;
 }
 
 .select {
