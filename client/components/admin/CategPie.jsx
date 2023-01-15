@@ -1,6 +1,6 @@
 import React from 'react';
 import { catChartData } from '../../data/dummy';
-import CategPiee from '../_admin/categPiee';
+import CategPiee from '../_admin/CategPiee';
 
 const CategPie = () => (
   <div className="">
