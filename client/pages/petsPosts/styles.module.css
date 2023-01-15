@@ -6,15 +6,13 @@
 
 .container2 {
   display: flex;
-  padding: 60px 0;
+  min-width: 100vw;
 }
 
 .big_container {
-  padding-left: 15rem;
   margin: auto;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-content: space-around;
   font-family: "Segoe UI";
   flex-wrap: wrap;
   justify-content: center;
@@ -80,7 +78,6 @@
   width: 160px;
   font-weight: 700;
   margin-left: 50px;
-  margin-top: 3.5em;
 }
 
 .all:hover {
@@ -172,16 +169,19 @@
 }
 
 .form {
-  position: fixed;
+  /* position: fixed; */
+
+  padding-top: 8.5rem;
   width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
   display: flex;
-  margin-bottom: 5rem;
+  gap: 0.5rem;
 }
 
 .select {
+  height: 2rem;
   background-color: #4c8053;
   padding: 8px;
   width: 10em;
@@ -248,11 +248,17 @@
   border-radius: 15px 0px 0px 15px;
   padding: 8px 22px;
   background-color: #4c8053;
-  min-width: 20rem;
 }
 
 .box {
   display: flex;
   justify-content: center;
-  width: 100%;
+  padding-top: 3rem;
+}
+
+.btns {
+  display: flex;
+  position: absolute;
+  padding-left: 50rem;
+  margin-bottom: 10rem;
 }

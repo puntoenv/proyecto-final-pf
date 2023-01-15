@@ -38,7 +38,11 @@ export const mascotasSlice = createSlice({
 
     // }
     typesGet: (state, action) => {
-      state.types = action.payload;
+      state.types = action.payload.sort((a, b) => {
+        if (a == b) return 0;
+        if (a < b) return -1;
+        return 1;
+      });
     },
   },
 });
