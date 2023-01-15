@@ -1,66 +1,64 @@
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import { TbShoppingCartPlus } from "react-icons/tb";
+import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
-export default function CardProduct({ info, addToCart }) {
-  const [cantidad, setCantidad] = useState(1);
-  const {
-    name,
-    image,
-    price,
-    _id,
-    description,
-    stock,
-    category,
-    boughtBy,
-    hidden,
-    __v,
-  } = info;
+export default function CardProduct({
+  info,
+  addToCart,
+  cart,
+  productOfCart,
+  discountProduct,
+}) {
+  const { name, image, price, _id, stock, category, boughtBy } = info;
+  const [amount, setAmount] = useState(0);
+  const itemCart = productOfCart(cart, _id);
 
-  const handlerSubmit = (e) => {
+  const handlerSubmitAdded = (e) => {
     e.preventDefault();
-    const unidad = {
+    const product = {
       name,
       image,
       price,
       _id,
-      description,
       stock,
       category,
       boughtBy,
-      hidden,
-      __v,
-      cantidad,
     };
-    addToCart(unidad);
+    setAmount((i) => (i = i + 1));
+    addToCart(product);
     Swal.fire({
       position: "top",
       icon: "success",
-      title: `${cantidad} ${name} agregado/s al carrito`,
+      title: `Producto agregado`,
       showConfirmButton: false,
       timer: 1000,
-     })
-    // alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
-    setCantidad(1);
+    });
   };
+
+  const handlerSubmitDiscount = () => {
+    discountProduct(cart, _id);
+
+    setAmount((i) => (i = i - 1));
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto quitado de tu Carrito`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
+
+  useEffect(() => {
+    itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
+  }, [cart, amount]);
 
   return (
     <div className={styles.card}>
-      <h3 className={styles.name}>{name.toUpperCase()}</h3>
-      <Image
-        className={styles.img}
-        src={image}
-        width="300"
-        height="240"
-        alt="imagen del producto"
-      />
-      {price ? <p className={styles.size}>Precio: ${price}</p> : null}
-      <Link href={`/eShop/detail/${_id}`}>
-        <h1>Ver Producto</h1>
+      <Link className={styles.linkImg} href={`/eShop/detail/${_id}`}>
+        <img className={styles.img} src={image} alt="imagen del producto" />
       </Link>
       <div className={styles.divInfoProduct}>
         <Link href={`/eShop/detail/${_id}`} className={styles.name}>
@@ -72,30 +70,29 @@ export default function CardProduct({ info, addToCart }) {
               ${price}
             </Link>
           ) : null}
-          <form onSubmit={handlerSubmit} className={styles.formCantCart}>
-            <select
-              className={styles.selectCant}
-              onChange={(e) => setCantidad(parseInt(e.target.value))}
-              value={cantidad}
+          <div className={styles.formCantCart}>
+            <button
+              onClick={handlerSubmitAdded}
+              className={styles.modifiedCant}
+              type="submit"
             >
-              <option value="0" hidden>
-                Seleccione Cantidad
-              </option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
+              <BsCartPlusFill className={styles.icon} />
+            </button>
+
+            {amount !== undefined && (
+              <span className={styles.amount}>{amount}</span>
+            )}
+
             <span className={styles.spanButtonAdd}>
-              <button className={styles.addCant} type="submit">
-                <TbShoppingCartPlus className={styles.icon} /> Agregar
+              <button
+                onClick={handlerSubmitDiscount}
+                className={styles.modifiedCant}
+                type="submit"
+              >
+                <BsCartDashFill className={styles.icon} />
               </button>
             </span>
-          </form>
+          </div>
         </div>
       </div>
     </div>

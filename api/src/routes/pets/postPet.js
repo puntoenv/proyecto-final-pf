@@ -38,16 +38,12 @@ postPet.post("/post-pet", async (req, res) => {
       health,
       condition,
       sociability,
-      user: user.id,
+      user: user._id,
       expireAt: new Date(),
     });
     user.pets = user.pets.concat(pet._id);
     await user.save();
-    // let data = fs.readFileSync(
-    //   path.join(__dirname, "email.html"),
-    //   "utf-8",
-    //   (err, data) => (err ? err : data)
-    // );
+
     let data = await ejs.renderFile(
       path.join(__dirname + "/email.ejs"),
       req.body

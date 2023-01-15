@@ -12,15 +12,7 @@ export default function Detail({ data }) {
     <div className={styles.containerAll}>
       <Layout title={data.name.toUpperCase()} />
       <NavBar />
-      <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
+
       <div className={styles.containDetail}>
         <div className={styles.button}>
           <Link className={styles.back} href="/petsPosts">
