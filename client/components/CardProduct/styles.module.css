@@ -17,6 +17,10 @@
 .img {
   border-radius: 30px;
 }
+
+.divInfoProduct {
+  width: 100%;
+}
 .name {
   font-weight: 700;
   margin-left: 60px;
@@ -26,6 +30,7 @@
 }
 .divPriceAddCart {
   display: flex;
+  width: 100%;
   margin-top: 40px;
   margin-left: 60px;
 }
@@ -36,8 +41,10 @@
 
 .formCantCart {
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
   align-items: center;
-  margin-left: 30%;
+  margin-left: 40%;
   margin-bottom: 60px;
 }
 .selectCant {
@@ -55,15 +62,23 @@
 }
 .icon {
   font-size: 28px;
-  color: #fff;
+  color: #333;
 }
-.addCant {
+.modifiedCant {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100px;
+  /* width: 100px; */
   padding: 5px;
-  color: #fff;
   border-radius: 10px;
-  background-color: #38593a;
+}
+
+.amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  margin: 0 15px;
 }

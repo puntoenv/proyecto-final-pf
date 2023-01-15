@@ -10,7 +10,7 @@
   margin-top: 5em;
 }
 
-.cantidad{
+.cantidad {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@
   font-family: "Segoe UI";
   flex-wrap: wrap;
   margin-top: 30px;
-  margin-left: 20%;
+  margin-left: 25%;
 }
 .input {
   width: 20%;

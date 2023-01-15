@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Cart({
   cart,
+  setCart,
   deleteCart,
   deleteAllCart,
   actualizarCantidad,
@@ -21,10 +22,10 @@ export default function Cart({
     setTotal(calculoTotal);
   }, [cart]);
   const handlerDelete = (id) => {
-    deleteCart(id);
+    deleteCart(cart, setCart, id);
   };
   const handlerDeleteAll = () => {
-    deleteAllCart();
+    deleteAllCart(setCart);
   };
   return (
     <div>
@@ -32,8 +33,6 @@ export default function Cart({
         <Layout title="Carrito" />
         <NavBar />
 
-        
-        
         <div className={styles.big_container}>
           {cart.length === 0 ? (
             <p className={styles.carritoVacio}> Carrito vacio </p>
@@ -50,12 +49,12 @@ export default function Cart({
                 />
                 <p className={styles.size}>Precio: ${unidad.price}</p>
                 <div className={styles.cantidad}>
-                  <p>  Cantidad: {unidad.cantidad}</p>
-                  <select 
-                    value={unidad.cantidad}
+                  <p> Cantidad: {unidad.amount}</p>
+                  <select
+                    value={unidad.amount}
                     onChange={(e) =>
                       actualizarCantidad({
-                        cantidad: e.target.value,
+                        amount: e.target.value,
                         id: unidad._id,
                       })
                     }
@@ -70,7 +69,7 @@ export default function Cart({
                     <option value="8">8</option>
                   </select>
                 </div>
-                <p >Subtotal: ${unidad.cantidad * unidad.price}</p>
+                <p>Subtotal: ${unidad.amount * unidad.price}</p>
                 <button
                   className={styles.btn}
                   onClick={() => handlerDelete(unidad._id)}
@@ -84,23 +83,22 @@ export default function Cart({
       </div>
       <div className={styles.resumenContainer}>
         {cart.length === 0 ? null : (
-          <button className={styles.vaciarCarrito}onClick={handlerDeleteAll}>Vaciar Carrito</button>
+          <button className={styles.vaciarCarrito} onClick={handlerDeleteAll}>
+            Vaciar Carrito
+          </button>
         )}
-             {total > 0 ? (
+        {total > 0 ? (
           <>
-          {/* // <div className={styles.resumen}> */}
+            {/* // <div className={styles.resumen}> */}
             {/* <h3 className={styles.miCarrito}>Resumen de compra</h3> */}
-            <p  className={styles.total}>Total a pagar: ${total}</p>
+            <p className={styles.total}>Total a pagar: ${total}</p>
             <button className={styles.btn}>Finalizar Compra</button>
-            </>
-          // </div>
+          </>
         ) : (
+          // </div>
           <p></p>
         )}
       </div>
-      </div>
-    
-   
-    
+    </div>
   );
 }
