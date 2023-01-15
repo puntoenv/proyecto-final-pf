@@ -20,6 +20,8 @@ const payment = require("./routes/mercadoPago");
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
+const types = require("./routes/pets/types");
+
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", detail);
@@ -28,7 +30,7 @@ router.use("/auth", routeAuth);
 router.use("/users", allUsers);
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
-
+router.use("/types", types);
 // buyProduct aun no esta listo
 router.use(
   "/products",

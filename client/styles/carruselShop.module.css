@@ -6,6 +6,14 @@
         <h1 className={styles.gender}>$ {price} </h1>
     </div> */
 
+
+.linea{
+    color: rgb(105, 104, 104);
+    height: 20px;
+    width: 100%;
+    margin-top: 10%;
+}
+
 .img{
     width: 200px;
     height: 250px; 
@@ -20,6 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 30px;
     /* flex-direction: column;
     align-items: center;
     width: 200px;
@@ -29,8 +38,9 @@
     text-align: center;
     background-color: #e8eb9d;
     display: flex; */
-    
 }
+   
+
 .name{
     font-size: 25px;
     display: flex;
@@ -40,7 +50,6 @@
     font-size: 20px;
     display: flex;
     justify-content: center;
-
 }
 
 /* .containImg { */

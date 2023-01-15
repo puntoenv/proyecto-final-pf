@@ -1,24 +1,17 @@
-//import error from "..styles/error.module.css"
-import Link from 'next/link';
-//import errorPage from "../../img/errorPage.png"
+import styles from "./404.module.css";
+import Link from "next/link";
 
-
-
-
-const Error = ({location}) => {
-
-
-    return (
-        <div>
-        <div >
-            {/* <img className={error.img} src={errorPage} alt="Page Error" /> */}
-            <h2 >Ooops, la pagina que estas buscando no existe.</h2>
-            {/* <h3 >La URL solicitada <code>{location.pathname}</code> no se encontró en este servidor.</h3> */}
-            <Link href="/home" ><button>Volver a Inicio</button></Link>
-        </div> 
-
+export default function Error({ location }) {
+  return (
+    <div className={styles.page}>
+      <h1 className={styles.title}>
+        Ooops, la pagina que estas buscando no existe.
+      </h1>
+      <div className={styles.btn}>
+        <Link href="/home">
+          <button>Volver a Inicio</button>
+        </Link>
+      </div>
     </div>
-    );
+  );
 }
-
-export default Error

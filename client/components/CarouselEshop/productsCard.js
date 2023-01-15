@@ -7,6 +7,7 @@ export default function ProductCard({ info }){
         <div className={styles.container}>
             <div className={styles.containerImg}>
         <img className={styles.img} src={image} alt="imagen del producto" />
+        <hr className={styles.linea}></hr>
         <div className={styles.containInfo}>
                 <h3 className={styles.name}> {name} </h3>
                     <h1 className={styles.price}>$ {price} </h1>

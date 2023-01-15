@@ -10,7 +10,7 @@
   margin-top: 5em;
 }
 
-.cantidad{
+.cantidad {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +26,7 @@
   align-items: center;
   position: fixed;
   width: fit-content;
+  gap: 0.5rem;
 }
 
 .containerCards {
@@ -36,7 +37,7 @@
   font-family: "Segoe UI";
   flex-wrap: wrap;
   margin-top: 30px;
-  margin-left: 20%;
+  margin-left: 25%;
 }
 .input {
   width: 20%;
@@ -83,7 +84,7 @@
   font-weight: 700;
   margin-left: 50px;
   margin-bottom: 1em;
-  margin-top: 4em;
+  /* margin-top: 4em; */
 }
 
 .all:hover {
