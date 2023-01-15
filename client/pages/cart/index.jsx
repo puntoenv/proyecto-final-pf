@@ -17,10 +17,11 @@ export default function Cart({
 
   useEffect(() => {
     const calculoTotal = cart.reduce(
-      (total, producto) => total + producto.cantidad * producto.price,
+      (total, producto) => total + producto.amount * producto.price,
       0
     );
     setTotal(calculoTotal);
+    console.log(calculoTotal);
   }, [cart]);
   const handlerDelete = (id) => {
     deleteCart(cart, setCart, id);
@@ -44,8 +45,8 @@ export default function Cart({
                 <Image
                   className={styles.img}
                   src={unidad.image}
-                  width={20}
-                  height={20}
+                  width={200}
+                  height={140}
                   alt={`imagen de ${unidad.name}`}
                 />
                 <p className={styles.size}>Precio: ${unidad.price}</p>
