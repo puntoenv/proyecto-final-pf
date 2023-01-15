@@ -1,6 +1,6 @@
 import React from "react";
-// import { validation } from "../../controller/validationPostPet";
-import styles from '../../pages/adoptionForm/style.module.css'
+import styles from "../../pages/adoptionForm/style.module.css";
+import { IoIosArrowForward } from "react-icons/io";
 
 const AdoptionForm1 = ({
   errors,
@@ -14,7 +14,7 @@ const AdoptionForm1 = ({
   setPost,
   post,
   dispatch,
-  getmuni
+  getmuni,
 }) => {
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -22,7 +22,6 @@ const AdoptionForm1 = ({
   }
   return (
     <div>
-      <span className={styles.title}>Datos de la Mascota</span>
       <label htmlFor="name" className={styles.stretch}>
         Nombre:
         <span className={styles.errors}>{errors.name}</span>
@@ -38,7 +37,7 @@ const AdoptionForm1 = ({
           }}
         />
       </label>
-      <label htmlFor="size" className={styles.stretch}>
+      {/* <label htmlFor="size" className={styles.stretch}>
         Tamaño:
         <span className={styles.errors}>{errors.size}</span>
         <div className={styles.radio}>
@@ -82,7 +81,7 @@ const AdoptionForm1 = ({
             Grande
           </label>
         </div>
-      </label>
+      </label> */}
       <label htmlFor="age" className={styles.stretch}>
         Edad:
         <span className={styles.errors}>{errors.age}</span>
@@ -167,7 +166,7 @@ const AdoptionForm1 = ({
       <label className={styles.stretch}>
         Ubicación:
         <label htmlFor="provincia" className={styles.stretch}>
-          <span className={styles.title}>Provincia</span>
+          <span className={styles.title2}>Provincia</span>
           <span className={styles.errors}>{errors.provincia}</span>
           <select
             className={styles.input}
@@ -189,7 +188,7 @@ const AdoptionForm1 = ({
           </select>
         </label>
         <label htmlFor="ciudad" className={styles.stretch}>
-          <span className={styles.title}>Ciudad</span>
+          <span className={styles.title2}>Ciudad</span>
           <span className={styles.errors}>{errors.ciudad}</span>
           <select
             className={styles.input}
@@ -212,8 +211,12 @@ const AdoptionForm1 = ({
           </select>
         </label>
       </label>
-      <button type="button" onClick={() => setFirst(false)}>
-        Siguiente
+      <button
+        type="button"
+        className={styles.buttonSiguiente}
+        onClick={() => setFirst(false)}
+      >
+        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
       </button>
     </div>
   );

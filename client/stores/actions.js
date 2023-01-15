@@ -36,7 +36,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 };
 
 export const PostAdop = (post) => {
-  console.log(post)
+  console.log(post);
   return (
     axios
       .post("/pets/post-pet", post)
@@ -77,16 +77,31 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch(
-        (err) =>
-          Swal.fire({
-            title: "Error. No se pudo publicar la mascota",
-            icon: "error",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
+        (err) => {
+          if (err) {
+            if (err.response.statusText === "Payload Too Large") {
+              Swal.fire({
+                title: "Error. Imagen inválida",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
 
-            // background:'#fff url(../backAlerts.png)',
-          })
+                // background:'#fff url(../backAlerts.png)',
+              });
+            } else {
+              Swal.fire({
+                title: "Error. No se pudo publicar la mascota",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
+
+                // background:'#fff url(../backAlerts.png)',
+              });
+            }
+          }
+        }
         //   Swal.fire({
         //     position: "top-end",
         //     icon: "error",

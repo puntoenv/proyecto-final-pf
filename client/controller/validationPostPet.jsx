@@ -1,4 +1,4 @@
-export const validation = (e, errors) => {
+export const validation = (e, errors, setError) => {
   let { value, name } = e.target;
   if (name === "name") {
     errors.name =
@@ -100,8 +100,78 @@ export const handleFiles = (e, setPost, post) => {
     });
   };
 };
-export const handleSubmit = async (e, PostAdop, post, router) => {
+export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
   e.preventDefault();
-  const id = await PostAdop(post);
-  if (typeof id === "string") return await router.push(`/detail/${id}`);
+  if (
+    !post.age ||
+    !post.name ||
+    !post.description ||
+    !post.location.provincia ||
+    !post.image ||
+    !post.size ||
+    !post.gender ||
+    !post.type ||
+    !post.location.municipio ||
+    errors.name !== null ||
+    errors.age !== null ||
+    errors.description !== null ||
+    errors.size !== null ||
+    errors.gender !== null ||
+    errors.ciudad !== null ||
+    errors.provincia !== null ||
+    errors.type !== null ||
+    errors.image !== null ||
+    errors.health !== null ||
+    errors.sociability !== null ||
+    errors.condition !== null
+  ) {
+    Swal.fire({
+      title: "Rellena todos los input para avanzar",
+      icon: "error",
+      color: "#437042",
+      confirmButtonColor: "#437042",
+      confirmButtonAriaLabel: "#437042",
+    });
+  } else{
+    const id = await PostAdop(post);
+    
+    if(typeof id === "string") {
+      return await router.push(`/detail/${id}`);
+    }
+  } 
+};
+
+export const handleDisableInput = (event, post, errors, Swal) => {
+  event.preventDefault();
+  if (
+    !post.age ||
+    !post.name ||
+    !post.description ||
+    !post.location.provincia ||
+    !post.image ||
+    !post.size ||
+    !post.gender ||
+    !post.type ||
+    !post.location.municipio ||
+    errors.name !== null ||
+    errors.age !== null ||
+    errors.description !== null ||
+    errors.size !== null ||
+    errors.gender !== null ||
+    errors.ciudad !== null ||
+    errors.provincia !== null ||
+    errors.type !== null ||
+    errors.image !== null ||
+    errors.health !== null ||
+    errors.sociability !== null ||
+    errors.condition !== null
+  ) {
+    Swal.fire({
+      title: "Rellena todos los input para avanzar",
+      icon: "error",
+      color: "#437042",
+      confirmButtonColor: "#437042",
+      confirmButtonAriaLabel: "#437042",
+    });
+  }
 };
