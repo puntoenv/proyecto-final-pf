@@ -1,0 +1,30 @@
+.e-grid .e-row:hover .e-rowcell {
+    background-color: rgb(209, 209, 255) !important;
+}
+.e-grid .e-rowcell.e-selectionbackground {
+    background-color: rgb(230, 230, 250);
+}
+.e-grid .e-row.e-altrow {
+    background-color: rgb(255, 255, 255);
+}
+.e-grid .e-row {
+    background-color: rgb(242, 248, 224);
+}
+/* .e-grid .e-gridheader {
+
+} */
+
+.e-grid .e-headercell {
+    background: rgb(255, 255, 255);
+ }
+
+ .e-grid .e-headercelldiv {
+    font-size: 13px;
+    font-weight: 600;    
+ }
+
+ .e-grid .e-gridpager .e-currentitem {
+    background-color: #299487;
+}
+
+

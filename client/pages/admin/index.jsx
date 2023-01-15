@@ -1,76 +1,76 @@
-import React, { useEffect } from "react";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-import Sidebar from "../../components/admin/Sidebar";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/NavBar";
-import ThemeSettings from "../../components/admin/themeSettings";
-
-// import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
-import '../../styles/admin.module.css'
-
-import { useStateContext } from "../../contexts/ContextProvider.js";
+import Bar from "../../components/admin/Bar";
+import Link from "next/link";
+import Pie from "../../components/admin/Pie";
+import CategPie from "../../components/admin/CategPie";
+import Calendar from "../../components/admin/Calendar";
+import Products from "../../components/admin/Products";
+import styles from "./admin.module.css";
+import Users from "../../components/admin/Users";
 import Footer from "../../components/admin/Footer";
 
-export default function Admin () {
-  const {
-    setCurrentColor,
-    setCurrentMode,
-    currentMode,
-    activeMenu,
-    currentColor,
-    themeSettings,
-    setThemeSettings,
-  } = useStateContext();
+export default function Admin() {
+  const [Render, setRender] = useState();
+
+  const handlerOnClick = (e, component) => {
+    e.preventDefault;
+    setRender(component);
+  };
 
   useEffect(() => {
-    const currentThemeColor = localStorage.getItem("colorMode");
-    const currentThemeMode = localStorage.getItem("themeMode");
-    if (currentThemeColor && currentThemeMode) {
-      setCurrentColor(currentThemeColor);
-      setCurrentMode(currentThemeMode);
+    {
+      setRender(<Pie />);
     }
   }, []);
+  
 
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
-      <div className="flex relative dark:bg-main-dark-bg">
-        <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-          <TooltipComponent content="Settings" position="Top">
-            <button
-              type="button"
-              onClick={() => setThemeSettings(true)}
-              style={{ background: currentColor, borderRadius: "50%" }}
-              className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
-            >
-              <FiSettings />
-            </button>
-          </TooltipComponent>
-        </div>
-        {activeMenu ? (
-          <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-            <Sidebar  />
+    <>
+    <div className="navAd">
+      <Navbar />
+      </div>
+      <div>
+        <div>
+          <div >
+            <button onClick={(e) => handlerOnClick(e, <Pie />)}  className={styles.lp}>Little Paws</button>
           </div>
-        ) : (
-          <div className="w-0 dark:bg-secondary-dark-bg">
-            <Sidebar />
+
+          <div>
+            <section>{Render}</section>
           </div>
-        )}
-        <div
-          className={
-            activeMenu
-              ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  "
-              : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
-          }
-        >
-          <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-            <Navbar />
+
+          <div className={styles.sidebar}>
+            <div key="customers">
+              <p className="text-gray-400 dark:text-gray-400 m-1 mt-10 uppercase">
+                Dashboard
+              </p>
+
+              <button
+                className={styles.btn}
+                onClick={(e) => handlerOnClick(e, <Users />)}
+              >
+                Usuarios
+              </button>
+              <button
+                className={styles.btn}
+                onClick={(e) => handlerOnClick(e, <Products />)}
+              >
+                Productos
+              </button>
+            
+              <button
+                className={styles.btn}
+                onClick={(e) => handlerOnClick(e, <Calendar />)}
+              >
+                Calendario
+              </button>
+            </div>
           </div>
-          <div>{themeSettings && <ThemeSettings />}</div>
-          <Footer />
         </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
-};
-
-
+}

@@ -4,10 +4,11 @@ import {
   getAllProducts,
   addProductCart,
   getCategories,
+  products,
   productsFilter,
 } from "./products";
-import { getMascotas, orderPets, typesGet } from "./mascotas";
-import { getUserId } from "./User";
+import { getMascotas, typesGet } from "./mascotas";
+import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
@@ -159,6 +160,15 @@ export const getProducts = (page) => async (dispatch) => {
   }
 };
 
+export const adminProducts = () => async (dispatch) => {
+  try {
+    let adProducts = await axios("/products");
+    dispatch(products(adProducts.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const searchProduct = (product, page) => async (dispatch) => {
   try {
     let productoEncontrado = await axios(
@@ -278,6 +288,15 @@ export const getTypes = () => async (dispatch) => {
   try {
     let types = await axios.get("/types");
     dispatch(typesGet(types.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const allUsers = () => async (dispatch) => {
+  try {
+    let users = await axios("/users");
+    dispatch(getAllUsers(users.data));
   } catch (error) {
     console.log(error);
   }
