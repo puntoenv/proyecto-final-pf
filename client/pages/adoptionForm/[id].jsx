@@ -19,6 +19,7 @@ import {
   handleCiudad,
   handleFiles,
   handleSubmit,
+  handleDisableInput,
 } from "../../controller/validationPostPet";
 const ages = [];
 for (let i = 0; i <= 40; i++) {
@@ -65,8 +66,9 @@ export function form(props) {
           <div className={styles.container}>
             <form
               className={styles.form}
-              onSubmit={(e) => handleSubmit(e, PostAdop, post, router)}
+              onSubmit={(e) => handleSubmit(e, PostAdop, post, router, errors, Swal)}
             >
+              <span className={styles.title}>Datos de la Mascota</span>
               {first ? (
                 <AdoptionForm1
                   setError={setError}
@@ -93,6 +95,8 @@ export function form(props) {
                   handleSelector={handleSelector}
                   handleFiles={handleFiles}
                   setPost={setPost}
+                  setError={setError}
+                  handleDisableInput={handleDisableInput}
                 ></AdoptionForm2>
               )}
             </form>
