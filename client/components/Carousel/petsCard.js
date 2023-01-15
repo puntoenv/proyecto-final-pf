@@ -1,4 +1,6 @@
 import styles from "../../styles/carrusel.module.css";
+
+
 import Link from "next/link";
 
 export default function PetsCard({ nombre, imagen, genero }) {

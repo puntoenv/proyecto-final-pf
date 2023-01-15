@@ -44,8 +44,8 @@ export default function Cart({
                 <Image
                   className={styles.img}
                   src={unidad.image}
-                  width={20}
-                  height={20}
+                  width={200}
+                  height={140}
                   alt={`imagen de ${unidad.name}`}
                 />
                 <p className={styles.size}>Precio: ${unidad.price}</p>
