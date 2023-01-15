@@ -161,7 +161,6 @@ export default function PetAdoption() {
                 Hembra
               </option>
             </select>
-
             <h1 className={styles.title}>Edades</h1>
             <select id="age" className={styles.select}>
               <option className={styles.option} defaultValue={true} value="">
