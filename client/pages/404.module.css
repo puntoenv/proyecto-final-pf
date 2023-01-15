@@ -1,0 +1,52 @@
+.page {
+  padding-top: 7.5rem;
+  min-height: 100vh;
+  width: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-content: center; */
+  gap: 1rem;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url("https://www.teahub.io/photos/full/186-1866167_sad-dogs-wallpaper-hd.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.image {
+  width: 15rem;
+  height: 10rem;
+}
+
+.title {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.btn {
+  transition: all 0.5s ease;
+  color: #6e613f;
+  border: 3px solid #6e613f;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  font-size: 17px;
+  background-color: transparent;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  font-size: x-large;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  /* color: white;
+  background-color: #6e613f;
+  border: 3px solid ; */
+  box-shadow: 5px 5px 0px 0px;
+}
