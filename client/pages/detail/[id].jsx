@@ -7,7 +7,7 @@ import Link from "next/link";
 import logo from "../../img/logo.jpeg";
 
 export default function Detail({ data }) {
-  console.log(data);
+
   return (
     <div className={styles.containerAll}>
       <Layout title={data.name.toUpperCase()} />

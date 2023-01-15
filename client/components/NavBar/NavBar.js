@@ -7,6 +7,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
 import { handleAdoption } from "../../controller/validationUpdateP";
+import styles from '../Profile/Loading.module.css'
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -24,7 +25,12 @@ const NavBar = (res) => {
   const router = useRouter();
   const idUser = user?.sub.split("|")[1];
   const response = res.res;
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return (
+    <div className={styles.container}>
+      <div className={styles.loader}></div>
+      <p>Loading...</p>
+    </div>
+  );
 
   return (
     <header className="headerNav">

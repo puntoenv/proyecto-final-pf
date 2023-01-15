@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
+import style from '../../components/Profile/Loading.module.css'
 import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
@@ -58,7 +59,12 @@ export function form(props) {
 
   return (
     <>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && (
+        <div className={style.container}>
+          <div className={style.loader}></div>
+          <p>Loading...</p>
+        </div>
+      )}
       {props.user && (
         <>
           <Layout title="Publicar Mascota" />
@@ -66,7 +72,9 @@ export function form(props) {
           <div className={styles.container}>
             <form
               className={styles.form}
-              onSubmit={(e) => handleSubmit(e, PostAdop, post, router, errors, Swal)}
+              onSubmit={(e) =>
+                handleSubmit(e, PostAdop, post, router, errors, Swal)
+              }
             >
               <span className={styles.title}>Datos de la Mascota</span>
               {first ? (
