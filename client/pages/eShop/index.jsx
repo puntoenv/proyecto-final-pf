@@ -107,7 +107,7 @@ export default function eShop({
         dispatch(getProducts(page));
       }
     }
-    console.log(e.target.value);
+    console.log(e.target.value, "hola");
   };
 
   return (
@@ -184,8 +184,8 @@ export default function eShop({
           </div>
         </div>
         <div className={styles.pages}>
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDropleftCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡸">
+            {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
           </button>
           {paging?.map((p) => (
             <button
@@ -197,8 +197,8 @@ export default function eShop({
               {p}
             </button>
           ))}
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDroprightCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡺">
+            {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
           </button>
         </div>
       </div>

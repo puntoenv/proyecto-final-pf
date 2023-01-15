@@ -16,6 +16,7 @@ export const productsSlice = createSlice({
         page: action.payload.page,
         pages: action.payload.totalPages,
       };
+      console.log(state.data);
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
