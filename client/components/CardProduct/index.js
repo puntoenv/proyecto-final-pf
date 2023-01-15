@@ -28,8 +28,8 @@ export default function CardProduct({
       category,
       boughtBy,
     };
-    setAmount((i) => (i = i + 1));
     addToCart(product);
+    setAmount((i) => (i = i + 1));
     Swal.fire({
       position: "top",
       icon: "success",
@@ -54,6 +54,7 @@ export default function CardProduct({
   };
 
   useEffect(() => {
+    console.log(itemCart);
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
   }, [cart, amount]);
 

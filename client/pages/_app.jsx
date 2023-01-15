@@ -33,6 +33,7 @@ export default function App({ Component, pageProps }) {
   };
 
   const discountItem = (id) => {
+    console.log(cart);
     discountOneProduct(cart, setCart, id);
   };
 
