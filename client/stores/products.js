@@ -10,6 +10,7 @@ export const productsSlice = createSlice({
     data: {},
     cart: [],
     categories: [],
+    products: [],
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -18,6 +19,7 @@ export const productsSlice = createSlice({
         page: action.payload.page,
         pages: action.payload.totalPages,
       };
+      console.log(state.data);
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
@@ -41,6 +43,9 @@ export const productsSlice = createSlice({
         };
       }
     },
+    products: (state, action) => {
+      state.products = action.payload;
+    },
   },
 });
 
@@ -49,6 +54,7 @@ export const {
   addProductCart,
   clearCart,
   getCategories,
+  products,
   productsFilter,
 } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -38,7 +38,7 @@ router.use(
   getAllProducts,
   buyProduct,
   detailProduct,
-  productsByName
+  productsByName,
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);

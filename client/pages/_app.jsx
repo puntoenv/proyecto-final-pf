@@ -5,6 +5,8 @@ import { store } from "../stores/store";
 import { Provider } from "react-redux";
 import "../styles/NavBar/NavBar.css";
 import "../styles/NavBar/DashBoardUser.css";
+import "../styles/admin/index.css";
+import "../styles/admin/Users.css";
 import axios from "axios";
 import { ContextProvider } from "../contexts/ContextProvider";
 import { registerLicense } from "@syncfusion/ej2-base";
@@ -33,6 +35,7 @@ export default function App({ Component, pageProps }) {
   };
 
   const discountItem = (id) => {
+    console.log(cart);
     discountOneProduct(cart, setCart, id);
   };
 

@@ -1,5 +1,9 @@
 import React from "react";
 import styles from "../../pages/adoptionForm/style.module.css";
+import { HiArrowDownOnSquare } from "react-icons/hi2";
+import { IoIosArrowBack } from "react-icons/io";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 const AdoptionForm2 = ({
   errors,
@@ -9,15 +13,60 @@ const AdoptionForm2 = ({
   handleSelector,
   handleFiles,
   setPost,
+  setError,
+  handleDisableInput,
 }) => {
   return (
     <div className={styles.form2}>
-      <span className={styles.title}>Datos de la Mascota</span>
-
+      <label htmlFor="size" className={styles.stretch}>
+        Tamaño:
+        <span className={styles.errors}>{errors.size}</span>
+        <div className={styles.radio}>
+          <label htmlFor="pequeño">
+            <input
+              type="radio"
+              id="pequeño"
+              value="pequeño"
+              name="size"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Pequeño
+          </label>
+          <label htmlFor="mediano">
+            <input
+              type="radio"
+              id="mediano"
+              value="mediano"
+              name="size"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Mediano
+          </label>
+          <label htmlFor="grande">
+            <input
+              type="radio"
+              id="grande"
+              value="grande"
+              name="size"
+              onClick={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Grande
+          </label>
+        </div>
+      </label>
       <label htmlFor="health" className={styles.health}>
         Salud
         {/* <span className={styles.errors}>{errors.health}</span> */}
-        <div className={styles.radio}>
+        <div className={styles.radio2}>
           <label classNamee={styles.label} htmlFor="good">
             <input
               classNamee={styles.input}
@@ -68,7 +117,7 @@ const AdoptionForm2 = ({
 
       <label htmlFor="condition" className={styles.condition}>
         Condición
-        <div className={styles.radio}>
+        <div className={styles.radio2}>
           <label htmlFor="pregnant">
             <input
               type="radio"
@@ -113,7 +162,7 @@ const AdoptionForm2 = ({
 
       <label htmlFor="sociability" className={styles.sociability}>
         ¿Cómo es su interacción con otros animales?
-        <div className={styles.radio}>
+        <div className={styles.radio2}>
           <label htmlFor="_good">
             <input
               type="radio"
@@ -171,7 +220,9 @@ const AdoptionForm2 = ({
 
       <label htmlFor="description" className={styles.stretch}>
         Descripción:
-        <span className={styles.errors}>{errors.description}</span>
+        <span className={styles.errors}>
+          {errors.description && errors.description}
+        </span>
         <textarea
           className={styles.input}
           id="description"
@@ -186,7 +237,7 @@ const AdoptionForm2 = ({
         />
       </label>
 
-      <label htmlFor="image" className={styles.stretch}>
+      {/* <label htmlFor="image" className={styles.stretch}>
         Imagen:
         <span className={styles.errors}>{errors.image}</span>
         <input
@@ -198,7 +249,29 @@ const AdoptionForm2 = ({
             handleFiles(e, setPost, post);
           }}
         />
+      </label> */}
+      <label
+        htmlFor="image"
+        className={styles.mi_archivo}
+        name="image"
+        onChange={(e) => {
+          validation(e, errors, setError);
+          handleFiles(e, setPost, post);
+        }}
+      >
+        <HiArrowDownOnSquare size={20}></HiArrowDownOnSquare>
+        Subir imagen
+        <span className={styles.errors}>{errors.image && errors.image}</span>
+        <input
+          type="file"
+          className={styles.hiddenInput}
+          name="image"
+          id="image"
+        ></input>
       </label>
+      <span style={{ textAlign: "center" }}>
+        {post.image && post.image.slice(0, 40) + "..."}
+      </span>
       {/* <label htmlFor="email">
                 Email de confirmación de publicación
               </label>
@@ -210,42 +283,45 @@ const AdoptionForm2 = ({
                 onChange={(e) => handleSelector(e)}
               /> */}
       <button
-        style={{ textAlign: "left" }}
+        className={styles.buttonAtras}
         type="button"
         onClick={() => setFirst(true)}
       >
-        Atras
+        <IoIosArrowBack size={30}></IoIosArrowBack> Atrás
       </button>
-      <label htmlFor="submit">
-        <input
+      <label htmlFor="submit" className={styles.submit}>
+        <button
+          className={styles.inputSubmit}
           id="submit"
           type="submit"
           value="Subir Mascota"
-          disabled={
-            !post.age ||
-            !post.name ||
-            !post.description ||
-            !post.location.provincia ||
-            !post.image ||
-            !post.size ||
-            !post.gender ||
-            !post.type ||
-            !post.location.municipio ||
-            ///////////////////////////////////////////////////
-            errors.name !== null ||
-            errors.age !== null ||
-            errors.description !== null ||
-            errors.size !== null ||
-            errors.gender !== null ||
-            errors.ciudad !== null ||
-            errors.provincia !== null ||
-            errors.type !== null ||
-            errors.image !== null ||
-            errors.health !== null ||
-            errors.sociability !== null ||
-            errors.condition !== null
-          }
-        />
+          // disabled={
+          //   // !post.age ||
+          //   // !post.name ||
+          //   // !post.description ||
+          //   // !post.location.provincia ||
+          //   // !post.image ||
+          //   // !post.size ||
+          //   // !post.gender ||
+          //   // !post.type ||
+          //   // !post.location.municipio ||
+          //   // ///////////////////////////////////////////////////
+          //   // errors.name !== null ||
+          //   // errors.age !== null ||
+          //   // errors.description !== null ||
+          //   // errors.size !== null ||
+          //   // errors.gender !== null ||
+          //   // errors.ciudad !== null ||
+          //   // errors.provincia !== null ||
+          //   // errors.type !== null ||
+          //   // errors.image !== null ||
+          //   // errors.health !== null ||
+          //   // errors.sociability !== null ||
+          //   // errors.condition !== null
+          //   () => handleDisableInput(post, errors, Swal)
+          // }
+          // onClick={event => handleDisableInput(event, post, errors, Swal)}
+        >Subir Mascota</button>
       </label>
     </div>
   );
