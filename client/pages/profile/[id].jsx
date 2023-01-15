@@ -53,7 +53,9 @@ export default withPageAuthRequired(Profile, {
 export async function getServerSideProps({ params }) {
   try {
     const response = await (
-      await fetch("http://localhost:3001/user/" + params.id)
+      await fetch(
+        "https://proyecto-final-pf-production.up.railway.app//user/" + params.id
+      )
     ).json();
     return {
       props: {
