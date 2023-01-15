@@ -6,6 +6,7 @@ export const productsSlice = createSlice({
     allProducts: [],
     data: {},
     cart: [],
+    categories: [],
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -22,9 +23,28 @@ export const productsSlice = createSlice({
     clearCart: (state, action) => {
       state.cart = [];
     },
+    getCategories: (state, action) => {
+      state.categories = action.payload;
+    },
+    productsFilter: (state, action) => {
+      if (action.payload.docs.length === 0) {
+        alert("No hay productos con esas características.");
+      } else {
+        state.allProducts = action.payload.docs;
+        state.data = {
+          page: action.payload.page,
+          pages: action.payload.totalPages,
+        };
+      }
+    },
   },
 });
 
-export const { getAllProducts, addProductCart, clearCart } =
-  productsSlice.actions;
+export const {
+  getAllProducts,
+  addProductCart,
+  clearCart,
+  getCategories,
+  productsFilter,
+} = productsSlice.actions;
 export default productsSlice.reducer;

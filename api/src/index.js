@@ -13,18 +13,19 @@ const getAllProducts = require("./routes/products/e-shop");
 const updateProduct = require("./routes/products/updateProduct");
 const filterP = require("./routes/products/getFilteredProducts");
 const detailProduct = require("./routes/products/detailProduct");
-const allUsers = require("./routes/users/allUsers")
-const productsByName = require("./routes/products/getByName")
+const allUsers = require("./routes/users/allUsers");
+const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
 
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
+const categories = require("./routes/products/categories");
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", detail);
 router.use("/pets", postPet);
 router.use("/auth", routeAuth);
-router.use("/users", allUsers)
+router.use("/users", allUsers);
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 
@@ -39,5 +40,6 @@ router.use(
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
-router.use("/payment",payment)
+router.use("/payment", payment);
+router.use("/categories", categories);
 module.exports = router;
