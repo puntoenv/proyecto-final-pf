@@ -82,3 +82,19 @@
   border-radius: 10px;
   margin: 0 15px;
 }
+
+.detail {
+  padding: 5px;
+  color: rgb(83, 83, 83);
+  border: 3px solid rgb(83, 83, 83);
+  width: 9rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  margin-left: 12rem;
+  transition: 250ms;
+  font-weight: bold;
+}
+
+.detail:hover {
+  box-shadow: 3px 3px 0px 0px rgb(48, 48, 48);
+}

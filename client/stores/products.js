@@ -29,7 +29,11 @@ export const productsSlice = createSlice({
       state.cart = [];
     },
     getCategories: (state, action) => {
-      state.categories = action.payload;
+      state.categories = action.payload.sort((a, b) => {
+        if (a == b) return 0;
+        if (a < b) return -1;
+        return 1;
+      });
     },
     productsFilter: (state, action) => {
       if (action.payload.docs.length === 0) {
