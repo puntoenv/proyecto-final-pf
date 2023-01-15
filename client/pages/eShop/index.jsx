@@ -1,5 +1,3 @@
-import Link from "next/link";
-import axios from "axios";
 import {
   allcategories,
   filterProducts,
@@ -17,7 +15,12 @@ import {
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
 
-export default function eShop({ addToCart }) {
+export default function eShop({
+  addToCart,
+  cart,
+  productOfCart,
+  discountProduct,
+}) {
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -28,9 +31,8 @@ export default function eShop({ addToCart }) {
   for (let i = 1; i <= data.pages; i++) {
     paging.push(i);
   }
-  console.log(data);
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(getProducts(1));
     dispatch(allcategories());
   }, [dispatch]);
@@ -50,7 +52,6 @@ export default function eShop({ addToCart }) {
 
   const handlerOnSearch = (e) => {
     e.preventDefault();
-    console.log(search);
     dispatch(searchProduct(search, 1));
   };
 
@@ -66,7 +67,6 @@ export default function eShop({ addToCart }) {
     } else {
       input[name] = value;
     }
-    console.log(input.category);
   };
 
   const handlerFilter = (e) => {
@@ -172,6 +172,9 @@ export default function eShop({ addToCart }) {
                   key={producto._id}
                   info={producto}
                   addToCart={addToCart}
+                  cart={cart}
+                  productOfCart={productOfCart}
+                  discountProduct={discountProduct}
                 />
               );
             })}

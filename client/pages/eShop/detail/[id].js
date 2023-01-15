@@ -1,55 +1,68 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import {formatOneItemMP} from "../../../controller/formatItemsMp";
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 
 export default function Detail({
   data,
+  cart,
   addToCart,
   deleteCart,
-  actualizarCantidad,
+  productOfCart,
 }) {
-  const [cantidad, setCantidad] = useState(1);
+  const { name, image, price, _id, description, stock, category, boughtBy } =
+    data;
+  const [amount, setAmount] = useState(0);
+  const itemCart = productOfCart(cart, _id);
 
-  const {
-    name,
-    image,
-    price,
-    _id,
-    description,
-    stock,
-    category,
-    boughtBy,
-    hidden,
-    __v,
-  } = data;
-
-  const handlerSubmit = (e) => {
+  const handlerSubmitAdded = (e) => {
     e.preventDefault();
-    const unidad = {
+    const product = {
       name,
       image,
       price,
       _id,
-      description,
       stock,
       category,
       boughtBy,
-      hidden,
-      __v,
-      cantidad,
     };
-    addToCart(unidad);
-    alert(`${cantidad} ${name} agregado/s al carrito`); //cambiar el alert
-    setCantidad(1);
+    setAmount((i) => (i = i + 1));
+    addToCart(product);
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto agregado`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  };
+
+  const handlerSubmitDiscount = () => {
+    discountProduct(cart, _id);
+
+    setAmount((i) => (i = i - 1));
+    Swal.fire({
+      position: "top",
+      icon: "success",
+      title: `Producto quitado de tu Carrito`,
+      showConfirmButton: false,
+      timer: 1000,
+    });
   };
   const handlerDelete = (id) => {
     deleteCart(id);
     setCantidad(1);
     alert(`${name} eliminado con exito`);
   };
+
+  useEffect(() => {
+    itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
+  }, [cart, amount]);
+
   let products = [data];
   return (
     <LayoutGlobal>
@@ -62,7 +75,6 @@ export default function Detail({
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
-            <button onClick={() => handlerDelete(_id)}>X</button>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
               <button
@@ -72,7 +84,32 @@ export default function Detail({
                 Comprar
               </button>
 
-              <span className={style.priceProduct}>${data.price}</span>
+              <span className={style.priceProduct}>
+                ${data.price}
+                <div className={style.formCantCart}>
+                  <button
+                    onClick={handlerSubmitAdded}
+                    className={style.modifiedCant}
+                    type="submit"
+                  >
+                    <BsCartPlusFill className={style.icon} />
+                  </button>
+
+                  {amount !== undefined && (
+                    <span className={style.amount}>{amount}</span>
+                  )}
+
+                  <span className={style.spanButtonAdd}>
+                    <button
+                      onClick={handlerSubmitDiscount}
+                      className={style.modifiedCant}
+                      type="submit"
+                    >
+                      <BsCartDashFill className={style.icon} />
+                    </button>
+                  </span>
+                </div>
+              </span>
               {data.category && (
                 <span className={style.categoriesProduct}>
                   <ul className={style.listCategories}>
@@ -90,29 +127,6 @@ export default function Detail({
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-        <form onSubmit={handlerSubmit}>
-          <label>Cantidad</label>
-          <select
-            value={cantidad}
-            onChange={(e) => {
-              setCantidad(parseInt(e.target.value));
-              actualizarCantidad({
-                cantidad: e.target.value,
-                id: _id,
-              });
-            }}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-          </select>
-          <input type="submit" value="Agregar al carrito" />
-        </form>
       </div>
     </LayoutGlobal>
   );

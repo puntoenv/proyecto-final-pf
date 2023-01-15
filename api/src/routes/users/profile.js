@@ -8,12 +8,7 @@ profile.get("/:id", async (req, res) => {
 
     let user = await User.findOne({
       _id: id,
-    }).populate("pets", {
-      hidden: 0,
-      expireAt: 0,
-      __v: 0,
-      user: 0,
-    });
+    }).populate({ path: "pets", model: "Pet" });
 
     if (user.hidden) return res.json("User not found");
     res.status(200).send(user);
