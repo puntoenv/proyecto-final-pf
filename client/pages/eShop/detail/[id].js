@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
+import {formatOneItemMP} from "../../../controller/formatItemsMp";
 import axios from "axios";
 
 export default function Detail({
@@ -66,19 +67,7 @@ export default function Detail({
             <div className={style.containPriceAndCategorie}>
               <button
                 className={style.btnBuy}
-                onClick={(e) => {
-                  try {
-                    axios
-                      .post("http://localhost:3001/payment", products)
-                      .then(
-                        (res) =>
-                          (window.location.href =
-                            res.data.response.body.init_point)
-                      );
-                  } catch (error) {
-                    res.status(400).send(error);
-                  }
-                }}
+               onClick={(e) => formatOneItemMP(products)}
               >
                 Comprar
               </button>

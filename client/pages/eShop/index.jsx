@@ -30,7 +30,7 @@ export default function eShop({ addToCart }) {
   }
   console.log(data);
 
-  useEffect(async () => {
+  useEffect( () => {
     dispatch(getProducts(1));
     dispatch(allcategories());
   }, [dispatch]);
