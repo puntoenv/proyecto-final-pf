@@ -26,6 +26,7 @@
   align-items: center;
   position: fixed;
   width: fit-content;
+  gap: 0.5rem;
 }
 
 .containerCards {
@@ -83,7 +84,7 @@
   font-weight: 700;
   margin-left: 50px;
   margin-bottom: 1em;
-  margin-top: 4em;
+  /* margin-top: 4em; */
 }
 
 .all:hover {
