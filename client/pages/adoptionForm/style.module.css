@@ -77,3 +77,8 @@
   width: auto;
   height: 14em;
 }
+
+.form2 {
+  display: flex;
+  flex-direction: column;
+}

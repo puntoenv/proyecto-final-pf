@@ -3,6 +3,7 @@ import Layout from "../layout";
 import Link from "next/link";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./styles.module.css";
+import { formatItemsMp } from "../../controller/formatItemsMp";
 import { useEffect, useState } from "react";
 
 export default function Cart({
@@ -92,9 +93,15 @@ export default function Cart({
             {/* // <div className={styles.resumen}> */}
             {/* <h3 className={styles.miCarrito}>Resumen de compra</h3> */}
             <p className={styles.total}>Total a pagar: ${total}</p>
-            <button className={styles.btn}>Finalizar Compra</button>
+            <button
+              className={styles.btn}
+              onClick={(e) => formatItemsMp(total)}
+            >
+              Finalizar Compra
+            </button>
           </>
         ) : (
+          // </div>
           // </div>
           <p></p>
         )}
