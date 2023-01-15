@@ -7,7 +7,7 @@ export const productsSlice = createSlice({
     data: {},
     cart: [],
     categories: [],
-    products: []
+    products: [],
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -39,8 +39,8 @@ export const productsSlice = createSlice({
       }
     },
     products: (state, action) => {
-      state.products = action.payload
-    }
+      state.products = action.payload;
+    },
   },
 });
 
@@ -49,6 +49,7 @@ export const {
   addProductCart,
   clearCart,
   getCategories,
- , products productsFilter,
+  products,
+  productsFilter,
 } = productsSlice.actions;
 export default productsSlice.reducer;

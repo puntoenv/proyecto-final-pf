@@ -4,7 +4,8 @@ import {
   getAllProducts,
   addProductCart,
   getCategories,
- , products productsFilter,
+  products,
+  productsFilter,
 } from "./products";
 import { getMascotas, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
@@ -159,15 +160,14 @@ export const getProducts = (page) => async (dispatch) => {
   }
 };
 
-
-export const adminProducts = ()=> async (dispatch) =>{
-  try{
-    let adProducts = await axios ("/products")
-    dispatch(products(adProducts.data))
-  }catch (error) {
+export const adminProducts = () => async (dispatch) => {
+  try {
+    let adProducts = await axios("/products");
+    dispatch(products(adProducts.data));
+  } catch (error) {
     console.error(error);
   }
-}
+};
 
 export const searchProduct = (product, page) => async (dispatch) => {
   try {
@@ -295,7 +295,7 @@ export const getTypes = () => async (dispatch) => {
 
 export const allUsers = () => async (dispatch) => {
   try {
-    let users = await axios("http://localhost:3001/users/admin");
+    let users = await axios("/users");
     dispatch(getAllUsers(users.data));
   } catch (error) {
     console.log(error);

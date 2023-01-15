@@ -16,8 +16,7 @@ const detailProduct = require("./routes/products/detailProduct");
 const allUsers = require("./routes/users/allUsers");
 const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
-const products = require("./routes/Admin/products");
-const users = require('./routes/Admin/users')
+
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
@@ -40,7 +39,6 @@ router.use(
   buyProduct,
   detailProduct,
   productsByName,
-  products
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
