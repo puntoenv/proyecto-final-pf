@@ -1,12 +1,13 @@
 export const validation = (e, errors, setError) => {
   let { value, name } = e.target;
+  let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
   if (name === "name") {
     errors.name =
       !value ||
       value.length > 150 ||
-      !value.match("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") ||
-      !/([A-Z])\w+/g.test(value)
-        ? "El nombre debe iniciar con mayuscula y solo puede contener letras."
+      !value.match(regex) || // arreglar que no acepta la Ñ
+      value[0] !== value[0].toUpperCase()
+        ? "El nombre debe iniciar con mayuscula y no debe tener carácteres especiales."
         : null;
   } else if (name === "size") {
     errors.size = !value ? "Por favor, brinde el tamaño de la mascota." : null;

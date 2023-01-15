@@ -2,7 +2,7 @@ import axios from "axios";
 import Router from "next/router";
 
 export const validateForm = (event, setError, error) => {
-  let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
+  let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$"; 
   let inputValue = event.target.value;
   let inputName = event.target.name;
   console.log(error)
