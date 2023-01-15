@@ -7,13 +7,13 @@ export default function PetsCard({ nombre, imagen, genero }) {
   return (
     <div className={styles.container}>
       <div className={styles.containImg}>
-        <Link href={"/petsPosts"}>
+        {/* <Link href={"/petsPosts"}> */}
           <img
             className={styles.image}
             src={imagen}
             alt="imagen de la mascota"
           />
-        </Link>
+        {/* </Link> */}
       </div>
       <div className={styles.containInfo}>
         <h3 className={styles.name}> {nombre}</h3>

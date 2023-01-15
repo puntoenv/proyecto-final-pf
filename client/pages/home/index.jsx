@@ -22,13 +22,23 @@ import ProductCard from "../../components/CarouselEshop/productsCard";
 export default function Home() {
   {
     const settings = {
-      arrows: false,
-      infinite: true,
       dots: true,
-      speed: 500,
+      infinite: true,
       slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 1700,
+      cssEase: "linear"
     };
+    // const settings = {
+    //   arrows: false,
+    //   infinite: true,
+    //   dots: true,
+    //   speed: 500,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 3,
+    // };
 
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
@@ -70,6 +80,7 @@ export default function Home() {
           <Nosotros />
 
           <div className={styles.containSlider}>
+            <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard
@@ -82,7 +93,9 @@ export default function Home() {
             </Slider>
           </div>
 
+          
           <div className={styles.containSlider}>
+          <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
@@ -97,15 +110,6 @@ export default function Home() {
               ))}
             </Slider>
           </div>
-
-
-
-
-
-
-
-
-
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
