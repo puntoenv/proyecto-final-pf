@@ -4,10 +4,11 @@ import {
   getAllProducts,
   addProductCart,
   getCategories,
+  products,
   productsFilter,
 } from "./products";
-import { getMascotas, orderPets, typesGet } from "./mascotas";
-import { getUserId } from "./User";
+import { getMascotas, typesGet } from "./mascotas";
+import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
@@ -77,16 +78,31 @@ export const PostAdop = (post) => {
       // .then((response) => response.url.split("/").pop())
       // .then((id) => router.push(`detail/${id}`))
       .catch(
-        (err) =>
-          Swal.fire({
-            title: "Error. No se pudo publicar la mascota",
-            icon: "error",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
+        (err) => {
+          if (err) {
+            if (err.response.statusText === "Payload Too Large") {
+              Swal.fire({
+                title: "Error. Imagen inválida",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
 
-            // background:'#fff url(../backAlerts.png)',
-          })
+                // background:'#fff url(../backAlerts.png)',
+              });
+            } else {
+              Swal.fire({
+                title: "Error. No se pudo publicar la mascota",
+                icon: "error",
+                color: "#437042",
+                confirmButtonColor: "#437042",
+                confirmButtonAriaLabel: "#437042",
+
+                // background:'#fff url(../backAlerts.png)',
+              });
+            }
+          }
+        }
         //   Swal.fire({
         //     position: "top-end",
         //     icon: "error",
@@ -139,6 +155,15 @@ export const getProducts = (page) => async (dispatch) => {
   try {
     let products = await axios(`/products/${page}`);
     dispatch(getAllProducts(products.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const adminProducts = () => async (dispatch) => {
+  try {
+    let adProducts = await axios("/products");
+    dispatch(products(adProducts.data));
   } catch (error) {
     console.error(error);
   }
@@ -263,6 +288,15 @@ export const getTypes = () => async (dispatch) => {
   try {
     let types = await axios.get("/types");
     dispatch(typesGet(types.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const allUsers = () => async (dispatch) => {
+  try {
+    let users = await axios("/users");
+    dispatch(getAllUsers(users.data));
   } catch (error) {
     console.log(error);
   }
