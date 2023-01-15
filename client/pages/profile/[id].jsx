@@ -1,7 +1,7 @@
 import React from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
-import NavBar from "../../components/NavBar/NavBar";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Petscrea from "../../components/petscreate";
 import HistoryEsh from "../../components/HistoryEsh";
 import styles from "../../components/Profile/Loading.module.css";
@@ -12,30 +12,31 @@ import {
   handleOnSubmit,
 } from "../../controller/validationUpdateP";
 
-// import styles from '../styles/profile.module.css'
-
 function Profile({ data, response }) {
   const { isLoading, user } = useUser();
 
   return (
-    <>
-    <div className={style.container}>
-      <Layout title={"Perfil"}></Layout>
-
-      <NavBar res={response}></NavBar>
-      <Perfil data={data} response={response} hanldeOnChange={hanldeOnChange} handleOnSubmit={handleOnSubmit} user={user} isLoading={isLoading}></Perfil>
-     </div>
+    <LayoutGlobal>
+      <div className={style.container}>
+        <Layout title={"Perfil"}></Layout>
+        <Perfil
+          data={data}
+          response={response}
+          hanldeOnChange={hanldeOnChange}
+          handleOnSubmit={handleOnSubmit}
+          user={user}
+          isLoading={isLoading}
+        ></Perfil>
+      </div>
       <div>
-      {
-        <div className={style.container_history}>
-          <Petscrea response={response} />
-          <HistoryEsh response={response} />
-        </div>
-      }
-     
-
-    </div>
-    </>
+        {
+          <div className={style.container_history}>
+            <Petscrea response={response} />
+            <HistoryEsh response={response} />
+          </div>
+        }
+      </div>
+    </LayoutGlobal>
   );
 }
 
