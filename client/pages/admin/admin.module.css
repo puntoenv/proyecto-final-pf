@@ -1,56 +1,152 @@
 
 .btn{
     display: flex;
-    align-items: center;
     gap: 1.25rem;
-    padding-left: 1rem;
-    padding-top: 0.75rem;
-    padding-bottom: 0.625rem;
+    font-size: 16px;
+    padding-left: 8px;
+    padding-top: 1em;
     border-radius: 0.5rem;
     /* color: rgb(55 65 81); */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    z-index: 5002;
+    color: rgb(184, 184, 184);
 }
 
-.title{
-    left: 60em
+.btn:hover{
+  color: white;
 }
+
+
 
 .users{
-
     display: flex;
     justify-content:flex-end;
     position: relative;
-    top: 15px;
-    width: fit-content;
-    left: 14em
+    top: 7em;
+ 
 }
+
+.lp{
+font-family:'Calibri';
+font-weight: 600;
+font-size: 25px;
+margin-top: -110px;
+margin-left: 20px;
+position: fixed;
+z-index: 5001;
+color: white;
+
+}
+
+
+
+.img{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.hola{
+  color: #6f6f6f;
+  z-index: 2014;
+}
+
+.admin{
+  font-weight: 600;
+  color: #4f5152;
+  margin-left: 4px;
+  z-index: 2015;
+  /* display: flex;
+  justify-content: flex-end; */
+  
+}
+
+.conteiner{
+  background: transparent;
+  z-index: 2010;
+  display: flex;
+  flex-direction: row;
+  float: right;
+  padding: 8px 15px
+}
+
+
+.tit{
+  font-size: 2em;
+  padding: 4em 11.35em;
+  width: fit-content;
+  font-weight: 900;
+  color: rgb(94, 93, 93);
+ 
+}
+
+.pet{
+  margin-top: -8em;
+  margin-left: 30em
+}
+
+.categ{
+  margin-left: 73em;
+  margin-top: 5px;
+}
+
+.categ_p{
+  font-size: 2em;
+  margin-left: 27.35em;
+  margin-top: -16.60em;
+  margin-bottom: 1.06em;
+  width: fit-content;
+  font-weight: 900;
+  color: rgb(94, 93, 93);
+}
+
+.bar{
+  margin-left:18.50em
+}
+
+.rend{
+  font-size: 2em;
+  margin-left: 22em;
+  margin-top: 5em;
+  margin-bottom: 1.06em;
+  width: fit-content;
+  font-weight: 900;
+  color: rgb(94, 93, 93);
+}
+
+.calend{
+  font-size: 2em;
+  margin-left: 27.35em;
+  margin-top: -16.60em;
+  margin-bottom: 1.06em;
+  width: fit-content;
+  font-weight: 900;
+  color: rgb(94, 93, 93);
+
+}
+
 
 
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
 .sidebar {
   box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
-padding: 40px;
+  padding: 55px;
   position:fixed;
-  left: 1px;
-  top: 60px;
-  height: 30em;
+  
+  top: 0px;
+  height: 50em;
   display: flex;  
+  z-index: 5000;
+  background: #393d3f;
 }
 
 @media  screen and (max-width:800px) {
   .sidebar{
-    z-index: 10000000;
+    z-index: 5000;
   }
 }
 
-
-.calendar{
-  margin: 0.5rem;
-  margin-top: 6rem;
-  padding: 0.5rem;
-  background-color: rgb(164, 22, 22);
-  border-radius: 1.5rem;
-}
 
 @media (min-width: 768px) { .calendar{
   margin: 2.5rem;

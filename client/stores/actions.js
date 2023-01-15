@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getPersonajes, getmunicipios, getuser } from "./slice";
-import { getAllProducts, addProductCart } from "./products";
-import { getMascotas, orderPets } from "./mascotas";
+import { getAllProducts, addProductCart, products } from "./products";
+import { getMascotas } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -138,6 +138,16 @@ export const getProducts = (page) => async (dispatch) => {
   }
 };
 
+
+export const adminProducts = ()=> async (dispatch) =>{
+  try{
+    let adProducts = await axios ("/products")
+    dispatch(products(adProducts.data))
+  }catch (error) {
+    console.error(error);
+  }
+}
+
 export const searchProduct = (product, page) => async (dispatch) => {
   try {
     let productoEncontrado = await axios(
@@ -219,7 +229,7 @@ export const addCart = (id) => async (dispatch) => {
 
 export const allUsers = () => async (dispatch) => {
   try {
-    let users = await axios("http://localhost:3001/users");
+    let users = await axios("http://localhost:3001/users/admin");
     dispatch(getAllUsers(users.data));
   } catch (error) {
     console.log(error);
