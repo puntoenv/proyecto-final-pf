@@ -85,7 +85,7 @@ export default function Perfil({
                         response.bio ? (
                           response.bio
                         ) : (
-                          "No especificado"
+                          "No especificado "
                         )
                       ) : (
                         <form
