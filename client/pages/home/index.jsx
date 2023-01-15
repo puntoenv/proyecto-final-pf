@@ -2,8 +2,6 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
 import Link from "next/link";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/footer";
 import Nosotros from "../../components/infoHome/nosotros";
 import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
@@ -16,8 +14,10 @@ import "slick-carousel/slick/slick-theme.css";
 import PetsCard from "../../components/Carousel/petsCard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPets } from "../../stores/actions";
+import { getPets, getProducts } from "../../stores/actions";
 import React, { Component } from "react";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import ProductCard from "../../components/CarouselEshop/productsCard";
 
 export default function Home() {
   {
@@ -30,27 +30,23 @@ export default function Home() {
       slidesToScroll: 3,
     };
 
-    const data = useSelector((data) => data.mascotas.mascotas);
+    const dataPets = useSelector((data) => data.mascotas.mascotas);
+    const productos = useSelector((state) => state.products.allProducts);
+    const data = useSelector((state) => state.products.data);
 
     const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(getPets());
+      dispatch(getPets(1));
+      dispatch(getProducts(1))
     }, []);
+    // useEffect(()=>{
+    //   dispatch(getProducts(1))
+    // },[dispatch])
 
     return (
-      <>
-        <NavBar />
+      <LayoutGlobal>
         <Layout title="Inicio" />
         <div className={styles.home}>
-          <Link href={"/home"} className="logo">
-            <Image
-              src={logo}
-              alt="logo"
-              className={styles.logo}
-              width="auto"
-              height="auto"
-            />
-          </Link>
           <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
           <Image
             src={home}
@@ -71,23 +67,48 @@ export default function Home() {
               height="auto"
             />
           </div>
-          <div>
-            <Nosotros />
+          <Nosotros />
+
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {dataPets.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                />
+              ))}
+            </Slider>
           </div>
 
-          <Slider {...settings}>
-            {data.slice(0, 9).map((mascota) => (
-              <PetsCard
-                key={mascota._id}
-                nombre={mascota.name}
-                imagen={mascota.image}
-                genero={mascota.gender}
-              />
-            ))}
-          </Slider>
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {productos.slice(0, 9).map((producto) => (
+                <ProductCard
+                key={producto._id}
+                  info={producto}
+                  // addToCart={addToCart}
+                  // key={producto._id}
+                  // nombre={producto.name}
+                  // imagen={producto.image}
+                  // precio={producto.price}
+                />
+              ))}
+            </Slider>
+          </div>
+
+
+
+
+
+
+
+
+
 
           <div className={styles.containerAdopciones}>
-            <h1 className={styles.tituloAdopcion}>Info Adopciones</h1>
+            <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
             <p className={styles.infoAdopcion}>
               Nuestra plataforma permite a los usuarios visualizar todas las
               mascotas disponibles para adopción, como así también filtar las
@@ -99,10 +120,8 @@ export default function Home() {
             </p>
           </div>
           <Join />
-
-          <Footer />
         </div>
-      </>
+      </LayoutGlobal>
     );
   }
 }

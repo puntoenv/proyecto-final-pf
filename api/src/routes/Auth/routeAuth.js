@@ -45,7 +45,6 @@ router.post("/login", async (req, res) => {
   if (external && external.provider && external.access_token) {
     try {
       let user = await User.findOne({ email: usuario.email });
-      console.log("desde line 46: " + user);
       if (!user) {
         user = await User.create({
           name: req.body.name,
@@ -60,7 +59,6 @@ router.post("/login", async (req, res) => {
         },
         `${process.env.JWT_TOKEN_SECRET}`
       );
-      console.log(token);
 
       return res.header("auth-token", token).json({
         error: null,

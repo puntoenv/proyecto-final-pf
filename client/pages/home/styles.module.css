@@ -2,12 +2,23 @@
   margin-top: 70px;
   width: 100%;
   margin-top: -5em;
-  height: 50em;
 }
 .link {
   font-size: 12px;
   position: relative;
 }
+
+.containSlider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 170px;
+  margin-right: 150px;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  width: 1200px;
+}
+
 .link::before {
   content: "";
   position: absolute;
@@ -65,16 +76,14 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  padding-left: 40px;
-  margin: 60px 0;
+  margin: 70px 0;
+  padding: 20px;
   width: 60%;
-  height: 40%;
 }
 
 .infoAdopcion {
-  margin-left: 28%;
-  margin-right: 28%;
   margin-bottom: 1%;
+  padding: 0 21%;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -130,22 +139,10 @@
   margin-right: 15%;
 }
 
-.logo {
-  border-radius: 1em;
-  display: flex;
-  position: fixed;
-  margin-top: 30px;
-  margin-left: 2em;
-  z-index: 4500;
-  width: auto;
-  height: 14em;
+.containerAdopciones {
+  padding: 30px;
 }
-
-.footer {
-  background-color: #32281f;
-  width: 100%;
-  padding: 16px;
-  display: flex;
-  justify-content: center;
-  color: antiquewhite;
+.tituloAdopcion {
+  font-size: 23px;
+  padding: 20px 0;
 }

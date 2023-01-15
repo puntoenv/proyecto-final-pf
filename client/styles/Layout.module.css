@@ -1,0 +1,22 @@
+.containLayout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.mainLayout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  z-index: 4000;
+  background-color: #32281f;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  color: antiquewhite;
+}

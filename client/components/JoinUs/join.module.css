@@ -1,20 +1,46 @@
 .container {
   display: flex;
-  flex-direction: column;
+  position: relative;
   background-color: #38593a;
-  height: 15em;
+  margin-top: 40px;
+  margin-bottom: 30px;
   width: 100%;
-  margin-bottom: 4em;
   font-size: 2em;
   color: antiquewhite;
   text-align: center;
   z-index: 600;
+}
+.containGeneral {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 40px 200px;
+  margin-bottom: 40px;
 }
 .containJoin {
   padding: 10px;
   display: flex;
   justify-content: flex-end;
 }
+.joinBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 55%;
+  top: 80%;
+  background: #e8eb9d;
+  color: #32281f;
+  font-size: 23px;
+  border-radius: 15px;
+  width: 150px;
+  padding: 10px;
+  z-index: 600;
+  font-weight: 700;
+}
+
 .join {
   display: flex;
   justify-content: center;
@@ -22,21 +48,6 @@
   font-weight: 900;
   font-size: 45px;
   width: 14em;
-}
-
-.joinBtn {
-  background: #e8eb9d;
-  font-size: 23px;
-  color: #32281f;
-  border: 1em;
-  border-radius: 15px;
-  height: 45px;
-  width: 150px;
-  margin-top: 2em;
-  margin-bottom: 85px;
-  margin-left: 67%;
-  z-index: 600;
-  font-weight: 700;
 }
 
 .joinBtn:hover {
@@ -47,18 +58,19 @@
   box-shadow: 0 0 10px #333;
   background: #584a3c;
 }
-
+.divGif {
+  display: flex;
+}
 .gif {
-  margin-left: 15em;
-  margin-top: -47em;
+  display: inline-block;
   width: 250px;
-  height: 450px;
+  height: 400px;
 }
 
 .cat {
+  display: flex;
+  position: absolute;
+  top: -180px;
   width: 10em;
   height: 10em;
-  margin-top: -650px;
-
-  /* transform: rotate(4deg); */
 }

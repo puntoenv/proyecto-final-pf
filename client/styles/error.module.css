@@ -1,0 +1,38 @@
+.title {
+    font-size: 1.5rem;
+    font-weight:500;
+    margin-top: -3em;
+    color: #333;
+  }
+  
+  .details {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  
+  .link{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .button {
+      border: 1px solid #232221;
+      border-radius: 1em;
+      margin-left: auto;
+      padding: 0.50em 1em;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+      margin-top: 1em;
+  }
+  
+  .button:hover{
+      background-color: rgba(67, 97, 31, 0.822);
+      color: #fff;
+      box-shadow: 0 0 10px #333;
+      border: none;
+    }
+  

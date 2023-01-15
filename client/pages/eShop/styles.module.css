@@ -1,0 +1,182 @@
+.containerAllProducts {
+  width: 100%;
+  margin: 40px 0;
+  margin-bottom: 12%;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+}
+
+.cantidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  width: fit-content;
+  gap: 0.5rem;
+}
+
+.containerCards {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: "Segoe UI";
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-left: 25%;
+}
+.input {
+  width: 20%;
+  background-color: #e8eb9d;
+  padding: 12px 24px;
+  transition: transform 250ms ease-in-out;
+  line-height: 10px;
+  border-radius: 15px;
+  border: none;
+  border-right: none;
+  transition: all 250ms ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  color: #111111;
+  display: block;
+  flex-direction: row;
+}
+
+.input::placeholder {
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #111111;
+  font-size: 12px;
+}
+
+.input:hover,
+.input:focus {
+  padding: 12px 24px;
+  outline: 0;
+  border: none;
+  border-radius: 15px;
+  background-position: 100% center;
+  background-color: #8c7d5d;
+}
+
+.all {
+  background: #e8eb9d;
+  font-size: 21px;
+  color: #32281f;
+  border: 1em;
+  border-radius: 15px;
+  height: 45px;
+  width: 160px;
+  font-weight: 700;
+  margin-left: 50px;
+  margin-bottom: 1em;
+  /* margin-top: 4em; */
+}
+
+.all:hover {
+  color: beige;
+  border: none;
+  font-weight: 700;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(185, 163, 103);
+  background: #584a3c;
+}
+
+.img {
+  border-radius: 30px;
+}
+
+.btn {
+  background: #38593a;
+  font-size: 16px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 8px 10px;
+  z-index: 600;
+}
+
+.btn:hover {
+  color: beige;
+  border: none;
+  font-weight: 500;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #333;
+  background: #483c30;
+}
+.btnFilter {
+  background: #483c30;
+  font-size: 16px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 8px 10px;
+  z-index: 600;
+}
+.btnFilter:hover {
+  color: #000;
+  border: none;
+  font-weight: 500;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #333;
+  background: #e8eb9d;
+}
+.title {
+  font-size: 20px;
+}
+
+.select {
+  background-color: #4c8053;
+  padding: 8px;
+  width: 10em;
+  margin-bottom: 1em;
+  border-radius: 9px;
+  margin-left: 3em;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.option {
+  background-color: #e8eb9d;
+  font-family: Verdana;
+}
+
+.huge_container {
+  display: flex;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pages button {
+  margin: 20px;
+}
+.iconPage {
+  color: #555;
+  font-size: 26px;
+}
+.pageNum {
+  padding: 1px 8px;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #555;
+}

@@ -13,6 +13,7 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
+  ubication: String,
   image: String,
   email: {
     type: String,
@@ -29,12 +30,6 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Pet",
-    },
-  ],
-  favorites: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Pets",
     },
   ],
   cart: [

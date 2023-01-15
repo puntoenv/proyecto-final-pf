@@ -1,7 +1,12 @@
 const { Router } = require("express");
-const Pet = require("../../models/Pet");
-const postPet = Router();
 const cloudinary = require("../../../cloud.js");
+const mailer = require("../../../mailer");
+const Pet = require("../../models/Pet");
+const User = require("../../models/User");
+const postPet = Router();
+const fs = require("fs");
+const path = require("path");
+const ejs = require("ejs");
 
 postPet.post("/post-pet", async (req, res) => {
   try {
@@ -15,12 +20,12 @@ postPet.post("/post-pet", async (req, res) => {
       gender,
       location,
       health,
-      pregnant,
       sociability,
-      castrated,
+      condition,
       userId,
     } = req.body;
-    const result = await cloudinary.uploader.upload(image);
+    let result = await cloudinary.uploader.upload(image);
+    const user = await User.findById(userId);
     let pet = await Pet.create({
       name,
       size,
@@ -31,14 +36,28 @@ postPet.post("/post-pet", async (req, res) => {
       location,
       gender,
       health,
-      pregnant,
+      condition,
       sociability,
-      castrated,
-      userId,
+      user: user._id,
+      expireAt: new Date(),
     });
+    user.pets = user.pets.concat(pet._id);
+    await user.save();
+
+    let data = await ejs.renderFile(
+      path.join(__dirname + "/email.ejs"),
+      req.body
+    );
+    let info = await mailer.sendMail({
+      from: "littlePaws0508@gmail.com",
+      to: `${user.email}`,
+      subject: "Correo de confirmación",
+      html: data,
+    });
+    console.log(info);
     res.status(200).send(pet._id);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).send("Error al publicar la mascota ");
   }
 });

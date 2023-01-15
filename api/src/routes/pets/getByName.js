@@ -3,14 +3,18 @@ const Pet = require("../../models/Pet");
 
 const router = Router();
 
-router.get("/by-name", async (req, res) => {
+router.get("/by-name/:id", async (req, res) => {
   const { name } = req.query;
+  const { id } = req.params;
   try {
-    const pets = await Pet.find();
-    const petsFiltered = pets.filter((e) => e.name.includes(name));
-
-    res.json(petsFiltered);
+    const pets = await Pet.paginate(
+      { name: { $regex: name, $options: "i" } },
+      { page: id, limit: 10 }
+    );
+    // const petsFiltered = pets.filter((e) => e.name.includes(name));
+    res.json(pets);
   } catch (error) {
+    console.log(error);
     res.json(error);
   }
 });

@@ -5,8 +5,11 @@ const profile = Router();
 profile.get("/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    console.log(id);
-    let user = await User.findById(id);
+
+    let user = await User.findOne({
+      _id: id,
+    }).populate({ path: "pets", model: "Pet" });
+
     if (user.hidden) return res.json("User not found");
     res.status(200).send(user);
   } catch (error) {
