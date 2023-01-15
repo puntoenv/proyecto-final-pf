@@ -6,7 +6,7 @@ import {
   getCategories,
   productsFilter,
 } from "./products";
-import { getMascotas, orderPets } from "./mascotas";
+import { getMascotas, orderPets, typesGet } from "./mascotas";
 import { getUserId } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -36,7 +36,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 };
 
 export const PostAdop = (post) => {
-  console.log(post)
+  console.log(post);
   return (
     axios
       .post("/pets/post-pet", post)
@@ -254,5 +254,16 @@ export const allcategories = () => async (dispatch) => {
   try {
     let categories = await axios.get("/categories");
     dispatch(getCategories(categories.data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getTypes = () => async (dispatch) => {
+  try {
+    let types = await axios.get("/types");
+    dispatch(typesGet(types.data));
+  } catch (error) {
+    console.log(error);
+  }
 };
