@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -15,19 +14,24 @@ export default function Cart({
   productOfCart,
   addToCart,
   discountItem,
-  getSubtotalCart,
 }) {
   const { user } = useUser();
   const [total, setTotal] = useState(0);
 
   const modifiedTotal = () => {
-    const calculoTotal = getSubtotalCart();
-    setTotal((total) => (total = calculoTotal));
+    const total = cart.reduce(
+      (total, producto) => (total += producto.subtotal),
+      0
+    );
+    setTotal((i) => (i = total));
   };
 
   useEffect(() => {
-    setTotal((total) => (total = getSubtotalCart()));
-    console.log(total);
+    const total = cart.reduce(
+      (total, producto) => (total += producto.amount * producto.price),
+      0
+    );
+    setTotal((i) => (i = total));
   }, [cart, total]);
 
   const handlerDeleteAll = () => {
@@ -65,7 +69,7 @@ export default function Cart({
             Vaciar Carrito
           </button>
         )}
-        {total > 0 ? (
+        {cart.length && (
           <>
             <p className={styles.total}>Total a pagar: ${total}</p>
             {user ? (
@@ -81,8 +85,6 @@ export default function Cart({
               </Link>
             )}
           </>
-        ) : (
-          <p></p>
         )}
       </div>
     </div>
