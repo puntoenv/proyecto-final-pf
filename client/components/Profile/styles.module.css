@@ -1,9 +1,136 @@
 .mainContainer {
   padding-left: 13%;
   padding-top: 6%;
+  min-height: 100vh;
+}
+
+.container_caja2 {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;  
+  height: 20rem;
+}
+.container_caja3 {
+  margin-right: 10rem;
+}
+.image {
+  width: 14rem;
+  height: 17rem;
+  border-radius: 50% 50% 50% 50%;
+  overflow: hidden;
+  margin: 3%;
+  box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 50%);
+  cursor: pointer;
+  transition: 400ms;
+}
+.hiddenInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.mi_archivo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #034103;
+  background-color: antiquewhite;
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 8px 40px;
+  text-transform: uppercase;
+  width: 10rem;
+  height: 3.45rem;
+  text-align: center;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.mi_archivo:hover {
+  background-color:#411a038e;
+  color: #fff;
+  border: 1px solid #411a038e;
+  border-radius: 5px;
+}
+.imageEdit {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+
+.infoStyles {
+  width: 40vw;
+  margin-bottom: 2rem;
+}
+.buttons {
+  width: 80vw;
+  background-color: purple;
+  display: flex;
+  justify-content: space-evenly;
+}
+.mainSpan{
+  display: flex;
+}
+.span {
+  max-width: 10rem;
+  text-align: center;
+}
+.formImage{
+  display: flex;
+  flex-direction: column;
+}
+.icon{
+  cursor: pointer;
+}
+
+.h1{
+  margin-top: 2rem;
+  font-size: 50px;
+  color: antiquewhite;
 }
 
 .email {
+  color: rgb(196, 191, 184);
+}
+
+.bioContainer {
+  margin-top: 2rem;
+
+}
+
+.bio {
+   font-weight: 600;
+   font-size: 20px;
+   color: antiquewhite;
+}
+.conta_bio {
+    background-color: rgba(255, 255, 255, 0.432);
+    border-radius: 20px;
+    padding: 4px;
+    max-width: 21rem;
+    min-width: 18rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.input{
+  border-radius: 10px;
+}
+.form_input{
+  display: flex;
+align-items: flex-start;
+
+}
+
+.infoStylesP {
+  display: flex;
+  justify-content: space-between;
+}
+/* .email {
   margin-bottom: 3rem;
   font-size: 109%;
   color: mintcream;
@@ -162,7 +289,7 @@
   object-fit: cover;
 }
 
-/* Esto es opcional */
+
 .image:hover {
   transform: scale(1.1);
   box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.5);
@@ -284,7 +411,6 @@
 .container_caja2 {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   width: 100%;
 }
 
@@ -331,4 +457,4 @@
 }
 .button_che {
   border-width: 3px;
-}
+} */
