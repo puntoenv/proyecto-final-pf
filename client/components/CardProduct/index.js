@@ -31,7 +31,7 @@ export default function CardProduct({
     addToCart(product);
     setAmount((i) => (i = i + 1));
     Swal.fire({
-      position: "top",
+      position: "center",
       icon: "success",
       title: `Producto agregado`,
       showConfirmButton: false,
@@ -44,7 +44,7 @@ export default function CardProduct({
       setAmount((i) => (i = i - 1));
       discountItem(_id);
       Swal.fire({
-        position: "top",
+        position: "center",
         icon: "success",
         title: `Producto quitado de tu Carrito`,
         showConfirmButton: false,
@@ -97,6 +97,11 @@ export default function CardProduct({
             </span>
           </div>
         </div>
+        {/* <div className={styles.detail}> */}
+        <Link className={styles.detail} href={`/eShop/detail/${_id}`}>
+          Ver Producto
+        </Link>
+        {/* </div> */}
       </div>
     </div>
   );

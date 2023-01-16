@@ -13,7 +13,6 @@ export const deleteCart = (cart, setCart) => {
 
 export const discountOneProduct = (cart, setCart, id) => {
   const item = cart.find((item) => item._id === id);
-  console.log(item);
   if (item.amount === 1) {
     const cartFiltered = cart.filter((item) => item._id !== id);
     setCart(cartFiltered);

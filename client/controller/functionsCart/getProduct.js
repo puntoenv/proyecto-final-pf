@@ -3,3 +3,12 @@ export const getProduct = (cart, id) => {
 
   return item;
 };
+
+export const getTotal = (cart) => {
+  const total = cart.reduce(
+    (total, producto) => total + producto.amount * producto.price,
+    0
+  );
+
+  return total;
+};
