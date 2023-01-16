@@ -17,6 +17,7 @@
   padding-top: 30px;
   padding-bottom: 50px;
   width: 1200px;
+  
 }
 
 .link::before {
@@ -138,10 +139,13 @@ font-size:20px ;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(35, 73, 35);
+
   font-size: 35px;
   width: 500px;
   margin-left: 350px;
+   color: #415d43;
+
+  font-weight: 700;
 }
 
 .containerAdopciones {
@@ -156,10 +160,12 @@ font-size:20px ;
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 .titleRoute{
   justify-content: space-between;
  flex-direction:row;
+ 
 }
 .buttonRoute{
   justify-content: center;
