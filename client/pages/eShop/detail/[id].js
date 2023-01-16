@@ -2,10 +2,10 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
-import {formatOneItemMP} from "../../../controller/formatItemsMp";
-import axios from "axios";
+import { formatOneItemMP } from "../../../controller/formatItemsMp";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Detail({
   data,
@@ -14,6 +14,8 @@ export default function Detail({
   deleteCart,
   productOfCart,
 }) {
+  const { user } = useUser;
+
   const { name, image, price, _id, description, stock, category, boughtBy } =
     data;
   const [amount, setAmount] = useState(0);
@@ -77,12 +79,19 @@ export default function Detail({
           <div className={style.containInfo}>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
-              <button
-                className={style.btnBuy}
-               onClick={(e) => formatOneItemMP(products)}
-              >
-                Comprar
-              </button>
+              {(itemCart && (
+                <Link href="/cart" className={style.btnBuy}>
+                  Comprar
+                </Link>
+              )) ||
+                (user && (
+                  <button
+                    className={style.btnBuy}
+                    onClick={(e) => formatOneItemMP(products)}
+                  >
+                    Comprar
+                  </button>
+                ))}
 
               <span className={style.priceProduct}>
                 ${data.price}

@@ -78,7 +78,7 @@
   box-shadow: 0 0 10px rgb(185, 163, 103);
   background: #584a3c;
 }
-.miCarrito{
+.miCarrito {
   display: flex;
   margin-top: 1rem;
 }
@@ -116,7 +116,7 @@
   padding: 0;
   min-height: 80vh;
   display: flex;
-justify-content: center;
+  justify-content: center;
   align-items: center;
   font-family: "Segoe UI";
   width: 1000px;
@@ -134,24 +134,21 @@ justify-content: center;
 }
 
 .btn {
-  background: #38593a;
-  font-size: 21px;
-  color: white;
-  border: 1em;
-  border-radius: 15px;
-  height: 70px;
-  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 15px;
   margin-bottom: 30px;
-  z-index: 600;
-  font-weight: 700;
+  padding: 10px;
+  background: #38593a;
+  font-size: 21px;
+  color: #fff;
+  border-radius: 15px;
+  font-weight: 500;
 }
 
 .btn:hover {
-  color: beige;
-  border: none;
-  font-weight: 700;
-  transform: scale(1.05);
+  transform: scale(1.01);
   box-shadow: 0 0 10px #333;
   background: #483c30;
 }
@@ -199,59 +196,53 @@ justify-content: center;
   height: 14em;
 }
 
-.carritoVacio{
- margin-top: 2rem; 
+.carritoVacio {
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 40px;
-  
 }
 
-.vaciarCarrito{
-  background-color:  #e8eb9d;
+.vaciarCarrito {
+  background-color: #e8eb9d;
   font-size: 20px;
   border-radius: 10em;
   color: #111111;
   width: 10%;
   font-weight: 700;
 }
-.vaciarCarrito:hover{
-  background-color:#4c8053;
- 
+.vaciarCarrito:hover {
+  background-color: #4c8053;
 }
-.resumen{
+.resumen {
   width: 27%;
   font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 2%;
- 
 }
-.total{
+.total {
   font-size: 20px;
   display: flex;
   align-items: center;
   margin: 2%;
   font-weight: 700;
-
 }
 
-.resumenContainer{
+.resumenContainer {
   width: auto;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  padding:0ch;
+
+  padding: 0ch;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
-.miCarrito{
+.miCarrito {
   background-color: red;
-
 }
