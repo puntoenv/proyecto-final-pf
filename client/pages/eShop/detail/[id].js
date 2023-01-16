@@ -13,6 +13,7 @@ export default function Detail({
   addToCart,
   deleteCart,
   productOfCart,
+  discountItem,
 }) {
   const { user } = useUser;
 
@@ -44,17 +45,19 @@ export default function Detail({
   };
 
   const handlerSubmitDiscount = () => {
-    discountProduct(cart, _id);
-
-    setAmount((i) => (i = i - 1));
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto quitado de tu Carrito`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
+    if (amount !== 0) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Producto quitado de tu Carrito`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
   };
+
   const handlerDelete = (id) => {
     deleteCart(id);
     setCantidad(1);
