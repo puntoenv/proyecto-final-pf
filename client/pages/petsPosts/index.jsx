@@ -205,7 +205,7 @@ export default function PetAdoption() {
                   <div key={mascota._id} className={styles.card}>
                     <Image
                       className={styles.img}
-                      width="300"
+                      width="400"
                       height="240"
                       src={mascota.image}
                       alt="image"
