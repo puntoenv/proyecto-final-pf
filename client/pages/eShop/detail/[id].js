@@ -15,7 +15,7 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
-  const { user } = useUser;
+  const { user } = useUser();
 
   const { name, image, price, _id, description, stock, category, boughtBy } =
     data;
@@ -58,12 +58,6 @@ export default function Detail({
     }
   };
 
-  const handlerDelete = (id) => {
-    deleteCart(id);
-    setCantidad(1);
-    alert(`${name} eliminado con exito`);
-  };
-
   useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
   }, [cart, amount]);
@@ -95,6 +89,19 @@ export default function Detail({
                     Comprar
                   </button>
                 ))}
+              {/* {(user && (
+                <button
+                  className={style.btnBuy}
+                  onClick={(e) => formatOneItemMP(products)}
+                >
+                  Comprar
+                </button>
+              )) ||
+                (itemCart && (
+                  <Link href="/cart" className={style.btnBuy}>
+                    Comprar
+                  </Link>
+                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
