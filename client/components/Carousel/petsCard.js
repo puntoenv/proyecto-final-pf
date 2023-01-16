@@ -18,6 +18,7 @@ export default function PetsCard({ nombre, imagen, genero, size }) {
       <div className={styles.containInfo}>
         <h3 className={styles.name}> {nombre.toUpperCase()}</h3>
         <h1 className={styles.gender}> {genero}</h1>
+        
         <h1 className={styles.size}>{size}</h1>
       </div>
     </div>
