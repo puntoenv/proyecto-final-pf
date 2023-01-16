@@ -18,23 +18,26 @@ function Profile({ data, response }) {
   return (
     <LayoutGlobal>
       <div className={style.container}>
-        <Layout title={"Perfil"}></Layout>
-        <Perfil
-          data={data}
-          response={response}
-          hanldeOnChange={hanldeOnChange}
-          handleOnSubmit={handleOnSubmit}
-          user={user}
-          isLoading={isLoading}
-        ></Perfil>
-      </div>
-      <div>
-        {
-          <div className={style.container_history}>
+        <div>
+          <Layout title={"Perfil"}></Layout>
+          <Perfil
+            data={data}
+            response={response}
+            hanldeOnChange={hanldeOnChange}
+            handleOnSubmit={handleOnSubmit}
+            user={user}
+            isLoading={isLoading}
+          ></Perfil>
+        </div>
+
+        <div className={style.container_history}>
+          <div className={style.containerPets}>
             <Petscrea response={response} />
-            <HistoryEsh response={response} />
           </div>
-        }
+          <div>
+            <HistoryEsh className={style.containerProducts} response={response} />
+          </div>
+        </div>
       </div>
     </LayoutGlobal>
   );

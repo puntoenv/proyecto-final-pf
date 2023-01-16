@@ -3,12 +3,6 @@
   margin: 40px 0;
   margin-bottom: 12%;
 }
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5em;
-}
 
 .cantidad {
   display: flex;
@@ -45,7 +39,7 @@
   padding: 12px 24px;
   transition: transform 250ms ease-in-out;
   line-height: 10px;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   border: none;
   border-right: none;
   transition: all 250ms ease-in-out;
@@ -54,6 +48,7 @@
   color: #111111;
   display: block;
   flex-direction: row;
+  margin-top: -3em;
 }
 
 .input::placeholder {
@@ -68,14 +63,22 @@
   padding: 12px 24px;
   outline: 0;
   border: none;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   background-position: 100% center;
-  background-color: #8c7d5d;
+  background-color: #8c7d5d
+}
+
+
+.box {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10em
 }
 
 .all {
   background: #e8eb9d;
-  font-size: 21px;
+  font-size: 19px;
   color: #32281f;
   border: 1em;
   border-radius: 15px;
@@ -84,7 +87,7 @@
   font-weight: 700;
   margin-left: 50px;
   margin-bottom: 1em;
-  /* margin-top: 4em; */
+  margin-top: 4em;
 }
 
 .all:hover {
@@ -101,33 +104,33 @@
 }
 
 .btn {
-  background: #38593a;
-  font-size: 16px;
-  color: white;
-  border: 1em;
-  border-radius: 15px;
-  margin: 15px;
-  padding: 8px 10px;
-  z-index: 600;
+  border: 1px solid rgb(129, 126, 94);
+  border-radius: 0px 15px 15px 0px;
+  padding: 8px 22px;
+  border-left: none;
+  background-color: transparent;
+  width: auto;
+  margin-top: -3em;
 }
 
 .btn:hover {
-  color: beige;
-  border: none;
-  font-weight: 500;
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #333;
-  background: #483c30;
+  background-color: #e8eb9d;
+  border: 1px solid transparent;
+  padding: 8px 22px;
+  color: rgb(27, 27, 27);
 }
 .btnFilter {
-  background: #483c30;
-  font-size: 16px;
-  color: white;
+  background: #e8eb9d;
+  font-size: 18px;
+  color: #32281f;
   border: 1em;
   border-radius: 15px;
-  margin: 15px;
-  padding: 8px 10px;
-  z-index: 600;
+  height: 45px;
+  width: 160px;
+  font-weight: 700;
+  margin-left: 50px;
+ 
+  
 }
 .btnFilter:hover {
   color: #000;

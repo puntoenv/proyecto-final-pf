@@ -83,16 +83,13 @@ export function form(props) {
                   setPost={setPost}
                   post={post}
                   errors={errors}
-                  provi={provi}
-                  munici={munici}
+                  
                   first={first}
                   setFirst={setFirst}
-                  handleProvincia={handleProvincia}
-                  handleCiudad={handleCiudad}
+                 
                   handleSelector={handleSelector}
                   validation={validation}
-                  dispatch={dispatch}
-                  getmuni={getmuni}
+                 
                 ></AdoptionForm1>
               ) : (
                 <AdoptionForm2
@@ -105,6 +102,12 @@ export function form(props) {
                   setPost={setPost}
                   setError={setError}
                   handleDisableInput={handleDisableInput}
+                  dispatch={dispatch}
+                  getmuni={getmuni}
+                  handleProvincia={handleProvincia}
+                  handleCiudad={handleCiudad}
+                  provi={provi}
+                  munici={munici}
                 ></AdoptionForm2>
               )}
             </form>
@@ -117,7 +120,12 @@ export function form(props) {
 }
 
 export default withPageAuthRequired(form, {
-  onRedirecting: () => <h1>Loading...</h1>,
+  onRedirecting: () => (
+    <div className={style.container}>
+      <div className={style.loader}></div>
+      <p>Loading...</p>
+    </div>
+  ),
 
   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
