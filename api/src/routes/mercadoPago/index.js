@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
   let preference = {
     items: arr,
     back_urls: {
-      success: "https://proyecto-final-pf.vercel.app/eShop",
+      success: "http://localhost:3000/eShop",
       failure: "",
       pending: "",
     },
