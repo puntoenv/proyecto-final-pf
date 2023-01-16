@@ -44,10 +44,10 @@ postPet.post("/post-pet", async (req, res) => {
     user.pets = user.pets.concat(pet._id);
     await user.save();
 
-    let data = await ejs.renderFile(
-      path.join(__dirname + "/email.ejs"),
-      req.body
-    );
+    let data = await ejs.renderFile(path.join(__dirname + "/email.ejs"), {
+      ...req.body,
+      id: pet._id,
+    });
     let info = await mailer.sendMail({
       from: "littlePaws0508@gmail.com",
       to: `${user.email}`,
