@@ -1,34 +1,39 @@
 import Image from "next/image";
-import Layout from "../layout";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./styles.module.css";
-import { formatItemsMp } from "../../controller/formatItemsMp";
-import { useEffect, useState } from "react";
+import CardProduct from "../../components/cardsCart/CardProduct";
 
 export default function Cart({
   cart,
   setCart,
   deleteCart,
   deleteAllCart,
-  actualizarCantidad,
+  productOfCart,
+  addToCart,
+  discountItem,
+  getSubtotalCart,
 }) {
+  const { user } = useUser();
   const [total, setTotal] = useState(0);
 
+  const modifiedTotal = () => {
+    const calculoTotal = getSubtotalCart();
+    setTotal((total) => (total = calculoTotal));
+  };
+
   useEffect(() => {
-    const calculoTotal = cart.reduce(
-      (total, producto) => total + producto.amount * producto.price,
-      0
-    );
-    setTotal(calculoTotal);
-    console.log(calculoTotal);
-  }, [cart]);
-  const handlerDelete = (id) => {
-    deleteCart(cart, setCart, id);
-  };
+    setTotal((total) => (total = getSubtotalCart()));
+    console.log(total);
+  }, [cart, total]);
+
   const handlerDeleteAll = () => {
-    deleteAllCart(setCart);
+    deleteAllCart(cart, setCart);
   };
+
   return (
     <div>
       <div>
@@ -39,71 +44,44 @@ export default function Cart({
           {cart.length === 0 ? (
             <p className={styles.carritoVacio}> Carrito vacio </p>
           ) : (
-            cart?.map((unidad, index) => (
-              <div className={styles.card} key={index}>
-                <h3 className={styles.name}>{unidad.name}</h3>
-                <Image
-                  className={styles.img}
-                  src={unidad.image}
-                  width={200}
-                  height={140}
-                  alt={`imagen de ${unidad.name}`}
-                />
-                <p className={styles.size}>Precio: ${unidad.price}</p>
-                <div className={styles.cantidad}>
-                  <p> Cantidad: {unidad.amount}</p>
-                  <select
-                    value={unidad.amount}
-                    onChange={(e) =>
-                      actualizarCantidad({
-                        amount: e.target.value,
-                        id: unidad._id,
-                      })
-                    }
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                  </select>
-                </div>
-                <p>Subtotal: ${unidad.amount * unidad.price}</p>
-                <button
-                  className={styles.btn}
-                  onClick={() => handlerDelete(unidad._id)}
-                >
-                  X
-                </button>
-              </div>
+            cart?.map((product, index) => (
+              <CardProduct
+                product={product}
+                cart={cart}
+                addToCart={addToCart}
+                discountItem={discountItem}
+                deleteCart={deleteCart}
+                productOfCart={productOfCart}
+                modifiedTotal={modifiedTotal}
+                key={index}
+              />
             ))
           )}
         </div>
       </div>
       <div className={styles.resumenContainer}>
-        {cart.length === 0 ? null : (
+        {!cart.length ? null : (
           <button className={styles.vaciarCarrito} onClick={handlerDeleteAll}>
             Vaciar Carrito
           </button>
         )}
         {total > 0 ? (
           <>
-            {/* // <div className={styles.resumen}> */}
-            {/* <h3 className={styles.miCarrito}>Resumen de compra</h3> */}
             <p className={styles.total}>Total a pagar: ${total}</p>
-            <button
-              className={styles.btn}
-              onClick={(e) => formatItemsMp(total)}
-            >
-              Finalizar Compra
-            </button>
+            {user ? (
+              <button
+                className={styles.btn}
+                onClick={() => formatItemsMp(total)}
+              >
+                Finalizar Compra
+              </button>
+            ) : (
+              <Link className={styles.btn} href="/api/auth/login">
+                Inicia sesion o registrate para finalizar la compra
+              </Link>
+            )}
           </>
         ) : (
-          // </div>
-          // </div>
           <p></p>
         )}
       </div>
