@@ -5,6 +5,7 @@ import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/cardsCart/CardProduct";
+import { formatItemsMp } from "../../controller/formatItemsMp";
 
 export default function Cart({
   cart,
@@ -75,7 +76,7 @@ export default function Cart({
             {user ? (
               <button
                 className={styles.btn}
-                onClick={() => formatItemsMp(total)}
+                onClick={(e) => formatItemsMp(total)}
               >
                 Finalizar Compra
               </button>

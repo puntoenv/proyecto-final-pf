@@ -8,7 +8,7 @@ function Petscrea({ response }) {
   return (
     <div>
       <div className={styles.container_animal}>
-        <h2 className={styles.letra}>Posteo de mascotas</h2>
+        <h2 className={styles.letra}>Tus publicaciones</h2>
         <div className={styles.container_post}>
           {!pets.length ? (
             <h1 className={styles.letra}>No hay historial de creaciones</h1>

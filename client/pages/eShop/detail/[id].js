@@ -13,8 +13,9 @@ export default function Detail({
   addToCart,
   deleteCart,
   productOfCart,
+  discountItem,
 }) {
-  const { user } = useUser;
+  const { user } = useUser();
 
   const { name, image, price, _id, description, stock, category, boughtBy } =
     data;
@@ -44,21 +45,17 @@ export default function Detail({
   };
 
   const handlerSubmitDiscount = () => {
-    discountProduct(cart, _id);
-
-    setAmount((i) => (i = i - 1));
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto quitado de tu Carrito`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
-  };
-  const handlerDelete = (id) => {
-    deleteCart(id);
-    setCantidad(1);
-    alert(`${name} eliminado con exito`);
+    if (amount !== 0) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Producto quitado de tu Carrito`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
   };
 
   useEffect(() => {
@@ -92,6 +89,19 @@ export default function Detail({
                     Comprar
                   </button>
                 ))}
+              {/* {(user && (
+                <button
+                  className={style.btnBuy}
+                  onClick={(e) => formatOneItemMP(products)}
+                >
+                  Comprar
+                </button>
+              )) ||
+                (itemCart && (
+                  <Link href="/cart" className={style.btnBuy}>
+                    Comprar
+                  </Link>
+                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
