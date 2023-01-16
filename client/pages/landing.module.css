@@ -95,9 +95,8 @@
   justify-content: center;
   position: relative;
   left: 23%;
-  top: 85%;
+  top: -8em;
   background: #e8eb9d;
-  padding: 10px 30px;
   font-weight: 700;
   font-size: 23px;
   color: #32281f;
@@ -118,6 +117,11 @@
   background: #32281f;
   font-size: 23px;
   color: #e8eb9d;
+}
+
+.land{
+width: 100em;
+height: 50em;
 }
 
 @media screen and (max-width: 1300px) {
