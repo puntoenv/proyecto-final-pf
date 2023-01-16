@@ -29,7 +29,7 @@ export default function Home() {
       autoplay: true,
       speed: 2000,
       autoplaySpeed: 1700,
-      cssEase: "linear"
+      cssEase: "linear",
     };
     // const settings = {
     //   arrows: false,
@@ -47,7 +47,7 @@ export default function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getPets(1));
-      dispatch(getProducts(1))
+      dispatch(getProducts(1));
     }, []);
     // useEffect(()=>{
     //   dispatch(getProducts(1))
@@ -93,13 +93,12 @@ export default function Home() {
             </Slider>
           </div>
 
-          
           <div className={styles.containSlider}>
-          <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
+            <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
-                key={producto._id}
+                  key={producto._id}
                   info={producto}
                   // addToCart={addToCart}
                   // key={producto._id}
