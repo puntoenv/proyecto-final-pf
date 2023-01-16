@@ -3,14 +3,14 @@
   height: 100%;
 }
 .containerImg {
-  background: linear-gradient(to right, white, #415d43);
+  background: linear-gradient(to right,white );
   background-size: cover;
   width: 100%;
   height: 100%;
   position: absolute;
 }
 .img1 {
-  background-image: url(https://i.postimg.cc/bwNgMGzm/pata-top.png);
+  background-image: url(https://i.postimg.cc/kGd3bJ5q/pata-topgreen.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -26,7 +26,8 @@
   position: absolute;
 }
 .img3 {
-  background-image: url(https://i.postimg.cc/GhRqF76w/cambia-Una-Vida.png);
+  background-image: url(https://i.postimg.cc/15nBT2tb/cambia-Una-Vidamarron.png);
+  box-shadow: #415d43;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -39,7 +40,7 @@
   animation-iteration-count: 3s;
 }
 .img4 {
-  background-image: url(https://i.postimg.cc/15KMJ0Zg/Adopta.png);
+  background-image: url(https://i.postimg.cc/B6SSBLRM/adoptamarron.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -47,12 +48,12 @@
   position: absolute;
   animation-name: adopt-animation;
   animation-duration: 1.5s;
-  animation-delay: 0.1s;
+  animation-delay: 0s;
   animation-timing-function: ease-in;
   animation-iteration-count: 3s;
 }
 .img5 {
-  background-image: url(https://i.postimg.cc/L4LxZKC3/litePaw.png);
+  background-image: url(https://i.postimg.cc/QMd70Rjc/logo1.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -60,7 +61,7 @@
   position: absolute;
 }
 .img6 {
-  background-image: url(https://i.postimg.cc/rpqcHdbj/logo.png);
+  background-image: url(https://i.postimg.cc/QMd70Rjc/logo1.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
@@ -68,20 +69,14 @@
   position: absolute;
 }
 .img7 {
-  background-image: url(https://i.postimg.cc/s2McjtGS/pata-bot.png);
+  background-image: url(https://i.postimg.cc/d3mMRb7d/pata-botgreen.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100%;
   position: absolute;
 }
-.img8 {
-  width: 100px;
-  height: 200px;
-  border-radius: 30px;
-  position: absolute;
-  left: 100px;
-}
+
 .buttonContainer {
   width: 100%;
   height: 100%;
@@ -95,7 +90,7 @@
   justify-content: center;
   position: relative;
   left: 23%;
-  top: 85%;
+  top: 75%;
   background: #e8eb9d;
   padding: 10px 30px;
   font-weight: 700;
@@ -120,58 +115,24 @@
   color: #e8eb9d;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1100px) {
+  
+  
+}
+@media screen and (max-width: 800px) {
   .img2 {
     background-image: none;
   }
   .button {
     position: relative;
-    left: 35%;
+    left: 26%;
   }
 }
-@media screen and (max-width: 1200px) {
-  .button {
-    position: relative;
-    left: 40%;
-  }
+@media screen and (max-width: 800px) {
+  
+  
 }
-@media screen and (max-width: 750px) {
-  .img2 {
-    background-image: none;
-  }
-}
-@media screen and (max-width: 500px) {
-  .img7 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-  .img1 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-  .img3 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-  .img4 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-  .img5 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-  .img6 {
-    background-size: contain;
-    width: 500px;
-    height: 300px;
-  }
-}
+
 
 @keyframes adopt-animation {
   0% {
