@@ -6,7 +6,12 @@
   border-radius: 00% 00% 383% 383%;
 }
 .container_history {
-  margin: 0 auto;
+  margin: auto;
   max-width: 80%;
   
+}
+
+.containerPets, .containerProducts {
+  margin-bottom: 5rem;
+  color: #271b16;
 }

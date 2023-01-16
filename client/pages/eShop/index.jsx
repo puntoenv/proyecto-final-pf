@@ -10,10 +10,6 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import {
-  IoIosArrowDropleftCircle,
-  IoIosArrowDroprightCircle,
-} from "react-icons/io";
 
 export default function eShop({
   addToCart,
@@ -22,6 +18,10 @@ export default function eShop({
   productOfCart,
   discountItem,
 }) {
+  // console.log(dataProps);
+
+  // if (dataProps.collection_status === "approved") deleteAllCart();
+
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -108,7 +108,6 @@ export default function eShop({
         dispatch(getProducts(page));
       }
     }
-    console.log(e.target.value, "hola");
   };
 
   return (
@@ -116,9 +115,9 @@ export default function eShop({
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
         <form
-          className={styles.search}
           onChange={(e) => handlerSearch(e)}
           onSubmit={(e) => handlerOnSearch(e)}
+          className={styles.box}
         >
           <input
             className={styles.input}
@@ -141,7 +140,7 @@ export default function eShop({
                 value="Todos"
                 defaultValue={true}
               >
-                Todos
+                Todas
               </option>
               {categories?.map((category) => (
                 <option key={category} value={category}>
@@ -164,7 +163,10 @@ export default function eShop({
                 5.000$ a 10.000$
               </option>
             </select>
-            <button className={styles.all} onClick={(e) => handlerFilter(e)}>
+            <button
+              className={styles.btnFilter}
+              onClick={(e) => handlerFilter(e)}
+            >
               Aplicar Filtros
             </button>
           </form>
@@ -207,3 +209,17 @@ export default function eShop({
     </LayoutGlobal>
   );
 }
+
+// export async function getServerSideProps({ query }) {
+//   try {
+//     // const data = query;
+//     console.log(query);
+//     return {
+//       props: {
+//         dataProps: query,
+//       },
+//     };
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

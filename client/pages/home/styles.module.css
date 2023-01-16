@@ -17,6 +17,7 @@
   padding-top: 30px;
   padding-bottom: 50px;
   width: 1200px;
+  
 }
 
 .link::before {
@@ -69,6 +70,15 @@
   color: black;
   font-size: 20px;
   font-weight: 450;
+}
+
+/* .slick-prev:before,
+.slick-next:before {
+  color: green;
+} */
+.slick-prev:before,
+.slick-next:before {
+  color: red!important;
 }
 
 .boxInfoNosotros {
@@ -138,8 +148,13 @@ font-size:20px ;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(35, 73, 35);
+
   font-size: 35px;
+  width: 500px;
+  margin-left: 350px;
+   color: #415d43;
+
+  font-weight: 700;
 }
 
 .containerAdopciones {
@@ -154,4 +169,28 @@ font-size:20px ;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+}
+.titleRoute{
+  justify-content: space-between;
+ flex-direction:row;
+ 
+}
+.buttonRoute{
+  justify-content: center;
+  align-items: right;
+  width: 100px;
+  margin-left: 80%; 
+  display: flex;
+  background: #e8eb9d;
+  color: #32281f;
+  font-size: 23px;
+  border-radius: 15px;
+  width: 150px;
+  padding: 10px;
+  z-index: 600;
+  font-weight: 700;
+ 
+
+
 }

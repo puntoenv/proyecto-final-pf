@@ -20,6 +20,8 @@
 }
 
 .searchB {
+  margin-top: 3em;
+  margin-bottom: 1.50em;
   border: 1px solid rgb(129, 126, 94);
   border-radius: 0px 15px 15px 0px;
   padding: 8px 22px;
@@ -29,19 +31,21 @@
 }
 
 .searchB:hover {
-  background-color: #6e613f;
+  background-color: #e8eb9d;
   border: 1px solid transparent;
   padding: 8px 22px;
-  color: white;
+  color: rgb(27, 27, 27);
 }
 
 .input {
-  width: 20%;
+  margin-top: 3em;
+  margin-bottom: 1.50em;
+  width: 100%;
   background-color: #e8eb9d;
   padding: 12px 24px;
   transition: transform 250ms ease-in-out;
   line-height: 10px;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   border: none;
   border-right: none;
   transition: all 250ms ease-in-out;
@@ -64,14 +68,14 @@
   padding: 12px 24px;
   outline: 0;
   border: none;
-  border-radius: 15px;
+  border-radius: 15px 0px 0px 15px;
   background-position: 100% center;
   background-color: #8c7d5d;
 }
 
 .all {
   background: #e8eb9d;
-  font-size: 21px;
+  font-size: 19px;
   color: #32281f;
   border: 1em;
   border-radius: 15px;
@@ -91,7 +95,7 @@
 }
 .all2 {
   background: #e8eb9d;
-  font-size: 21px;
+  font-size: 18px;
   color: #32281f;
   border: 1em;
   border-radius: 15px;
@@ -117,10 +121,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 280px;
   height: 400px;
   margin: 30px;
-  padding: 30px;
+ padding-bottom: 30px;
   background: #e8eb9d;
   border-radius: 30px;
 }
@@ -139,10 +143,10 @@
 }
 
 .img {
-  width: 100%;
+  width: 20em;
   height: 180px;
   object-fit: cover;
-  border-radius: 30px;
+  border-radius: 30px 30px  0px 0px ;
 }
 
 .btn {
@@ -180,6 +184,7 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
+  margin-top: 5rem;
 }
 
 .select {
@@ -245,12 +250,7 @@
   align-items: center;
 }
 
-.search {
-  border: 1px solid rgb(129, 126, 94);
-  border-radius: 15px 0px 0px 15px;
-  padding: 8px 22px;
-  background-color: #4c8053;
-}
+
 
 .box {
   display: flex;

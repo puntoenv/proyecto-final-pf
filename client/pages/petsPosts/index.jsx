@@ -192,9 +192,9 @@ export default function PetAdoption() {
             >
               <input
                 type="search"
-                placeholder="Ingrese el nombre de la mascota ..."
+                placeholder="Buscar mascota..."
                 autoFocus
-                className={styles.search}
+                className={styles.input}
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
@@ -205,7 +205,7 @@ export default function PetAdoption() {
                   <div key={mascota._id} className={styles.card}>
                     <Image
                       className={styles.img}
-                      width="300"
+                      width="400"
                       height="240"
                       src={mascota.image}
                       alt="image"
