@@ -117,7 +117,12 @@ export function form(props) {
 }
 
 export default withPageAuthRequired(form, {
-  onRedirecting: () => <h1>Loading...</h1>,
+  onRedirecting: () => (
+    <div className={style.container}>
+      <div className={style.loader}></div>
+      <p>Loading...</p>
+    </div>
+  ),
 
   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
