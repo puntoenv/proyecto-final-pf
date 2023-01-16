@@ -192,9 +192,9 @@ export default function PetAdoption() {
             >
               <input
                 type="search"
-                placeholder="Ingrese el nombre de la mascota ..."
+                placeholder="Buscar mascota..."
                 autoFocus
-                className={styles.search}
+                className={styles.input}
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>

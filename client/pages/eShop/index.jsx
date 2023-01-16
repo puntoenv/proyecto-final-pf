@@ -114,7 +114,7 @@ export default function eShop({
     <LayoutGlobal>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
-        <div className={styles.search}>
+        <form className={styles.box}>
           <input
             className={styles.input}
             type="search"
@@ -124,7 +124,7 @@ export default function eShop({
           <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
             Buscar
           </button>
-        </div>
+        </form >
         <div className={styles.container2}>
           <form
             className={styles.form}
@@ -139,7 +139,7 @@ export default function eShop({
                 value="Todos"
                 defaultValue={true}
               >
-                Todos
+                Todas
               </option>
               {categories?.map((category) => (
                 <option key={category} value={category}>
@@ -162,7 +162,7 @@ export default function eShop({
                 5.000$ a 10.000$
               </option>
             </select>
-            <button className={styles.all} onClick={(e) => handlerFilter(e)}>
+            <button className={styles.btnFilter} onClick={(e) => handlerFilter(e)}>
               Aplicar Filtros
             </button>
           </form>
