@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
+import "sweetalert2/src/sweetalert2.scss";
 
 export const productsSlice = createSlice({
   name: "products",
@@ -26,11 +29,16 @@ export const productsSlice = createSlice({
       state.cart = [];
     },
     getCategories: (state, action) => {
-      state.categories = action.payload;
+      state.categories = action.payload.sort((a, b) => {
+        if (a == b) return 0;
+        if (a < b) return -1;
+        return 1;
+      });
     },
     productsFilter: (state, action) => {
       if (action.payload.docs.length === 0) {
-        alert("No hay productos con esas características.");
+
+        // alert("No hay productos con esas características.");
       } else {
         state.allProducts = action.payload.docs;
         state.data = {

@@ -21,7 +21,7 @@ const Join = () => {
           <Image className={styles.gif} src={Gif} width="auto" height="auto" />
         </div>
         <button className={styles.joinBtn}>
-          <Link href="/api/auth/login">Sumarme </Link>
+          <Link href="/api/auth/login">Sumarme</Link>
         </button>
       </div>
     </div>

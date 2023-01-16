@@ -54,6 +54,7 @@ export default function eShop({
   const handlerOnSearch = (e) => {
     e.preventDefault();
     dispatch(searchProduct(search, 1));
+    e.target.reset();
   };
 
   const handlerSelect = (e) => {
@@ -114,17 +115,18 @@ export default function eShop({
     <LayoutGlobal>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
-        <div className={styles.search}>
+        <form
+          className={styles.search}
+          onChange={(e) => handlerSearch(e)}
+          onSubmit={(e) => handlerOnSearch(e)}
+        >
           <input
             className={styles.input}
             type="search"
             placeholder="Buscar..."
-            onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
-            Buscar
-          </button>
-        </div>
+          <button className={styles.btn}>Buscar</button>
+        </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
