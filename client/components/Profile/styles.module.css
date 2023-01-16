@@ -36,14 +36,14 @@
   font-size: 12px;
   font-weight: 600;
   color: #034103;
- background-color: rgba(255, 255, 255, 0.541);
+  background-color: rgba(255, 255, 255, 0.541);
   display: flex;
   transition: all 0.5s;
   cursor: pointer;
-  padding: 8px 40px;
+  padding: 5px 40px;
   text-transform: uppercase;
   width: 10rem;
-  height: 3.45rem;
+  height: 3rem;
   text-align: center;
   border-radius: 5px;
   margin: auto;
@@ -61,15 +61,42 @@
   flex-direction: row-reverse;
 }
 
+.iconImage {
+  margin-top: 1rem;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.541);
+  width: 10rem;
+  align-self: center;
+  transition: all 0.5s;
+}
+
+.iconImage:hover {
+  background-color: #163811aa;
+  color: antiquewhite;
+  border: 1px solid #411a038e;
+}
+
 .infoStyles {
   width: 40vw;
   margin-bottom: 2rem;
 }
 .buttons {
   width: 80vw;
-  background-color: purple;
   display: flex;
   justify-content: space-evenly;
+  margin-top: 6rem;
+}
+.buttons button {
+  height: 2rem;
+  border-radius: 20px;
+  width: 15rem;
+  background-color: rgba(255, 255, 255, 0.541);
+  color: #034103;
+}
+
+.buttons button:hover{
+  background-color: #163811aa;
+  color: antiquewhite;
 }
 .mainSpan {
   display: flex;
@@ -77,6 +104,7 @@
 .span {
   max-width: 10rem;
   text-align: center;
+  color: antiquewhite;
 }
 .formImage {
   display: flex;
@@ -84,6 +112,7 @@
 }
 .icon {
   cursor: pointer;
+  color: antiquewhite;
 }
 
 .h1 {
@@ -133,7 +162,7 @@
   display: flex;
   justify-content: space-between;
 }
-.nombreContainer{
+.nombreContainer {
   display: flex;
   background-color: rgba(255, 255, 255, 0.432);
   width: 25rem;
@@ -158,6 +187,7 @@
   color: antiquewhite;
   margin-right: 5px;
 }
+
 /* 
 
 

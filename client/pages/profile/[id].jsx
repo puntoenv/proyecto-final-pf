@@ -31,8 +31,12 @@ function Profile({ data, response }) {
         </div>
 
         <div className={style.container_history}>
-          <Petscrea response={response} />
-          <HistoryEsh response={response} />
+          <div className={style.containerPets}>
+            <Petscrea response={response} />
+          </div>
+          <div>
+            <HistoryEsh className={style.containerProducts} response={response} />
+          </div>
         </div>
       </div>
     </LayoutGlobal>
