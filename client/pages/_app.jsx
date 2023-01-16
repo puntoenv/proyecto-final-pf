@@ -41,10 +41,6 @@ export default function App({ Component, pageProps }) {
     deleteItemOfCart(cart, setCart, id);
   };
 
-  const getSubtotalCart = () => {
-    return getTotal(cart);
-  };
-
   useEffect(() => {
     const carrito = JSON.parse(localStorage.getItem("cart")) ?? [];
     setCart(carrito);
@@ -67,7 +63,6 @@ export default function App({ Component, pageProps }) {
             deleteCart={deleteOneProductToCart}
             deleteAllCart={deleteCart}
             productOfCart={getProduct}
-            getSubtotalCart={getSubtotalCart}
           />
         </Provider>
       </UserProvider>

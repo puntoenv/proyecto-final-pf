@@ -20,6 +20,7 @@ export const discountOneProduct = (cart, setCart, id) => {
     return;
   } else {
     item.amount -= 1;
+    item.subtotal -= item.price;
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 };
