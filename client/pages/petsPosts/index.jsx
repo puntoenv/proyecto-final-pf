@@ -122,7 +122,7 @@ export default function PetAdoption() {
             <div>
               <input type="submit" className={styles.all} value="Ver Todas" />
             </div>
-            <h1 className={styles.title}>Animal</h1>
+            <h1 className={styles.title}>Especie</h1>
             <select className={styles.select} id="type">
               <option className={styles.option} value="animal">
                 Todos
@@ -161,7 +161,7 @@ export default function PetAdoption() {
                 Hembra
               </option>
             </select>
-            <h1 className={styles.title}>Edades</h1>
+            <h1 className={styles.title}>Edad</h1>
             <select id="age" className={styles.select}>
               <option className={styles.option} defaultValue={true} value="">
                 Todas

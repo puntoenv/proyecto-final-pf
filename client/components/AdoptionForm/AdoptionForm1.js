@@ -208,7 +208,7 @@ const AdoptionForm1 = ({
         type="button"
         className={styles.buttonSiguiente}
         onClick={() => setFirst(false)}
-      >
+      > 
         Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
       </button>
     </div>

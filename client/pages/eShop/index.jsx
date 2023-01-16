@@ -54,6 +54,7 @@ export default function eShop({
   const handlerOnSearch = (e) => {
     e.preventDefault();
     dispatch(searchProduct(search, 1));
+    e.target.reset();
   };
 
   const handlerSelect = (e) => {
@@ -107,7 +108,7 @@ export default function eShop({
         dispatch(getProducts(page));
       }
     }
-    console.log(e.target.value);
+    console.log(e.target.value, "hola");
   };
 
   return (
@@ -119,12 +120,9 @@ export default function eShop({
             className={styles.input}
             type="search"
             placeholder="Buscar..."
-            onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
-            Buscar
-          </button>
-        </form >
+          <button className={styles.btn}>Buscar</button>
+        </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
@@ -184,8 +182,8 @@ export default function eShop({
           </div>
         </div>
         <div className={styles.pages}>
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDropleftCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡸">
+            {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
           </button>
           {paging?.map((p) => (
             <button
@@ -197,8 +195,8 @@ export default function eShop({
               {p}
             </button>
           ))}
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDroprightCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡺">
+            {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
           </button>
         </div>
       </div>
