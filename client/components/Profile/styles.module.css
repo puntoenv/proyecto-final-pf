@@ -7,7 +7,7 @@
 .container_caja2 {
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   height: 20rem;
 }
 .container_caja3 {
@@ -36,7 +36,7 @@
   font-size: 12px;
   font-weight: 600;
   color: #034103;
-  background-color: antiquewhite;
+ background-color: rgba(255, 255, 255, 0.541);
   display: flex;
   transition: all 0.5s;
   cursor: pointer;
@@ -50,7 +50,7 @@
 }
 
 .mi_archivo:hover {
-  background-color:#411a038e;
+  background-color: #163811aa;
   color: #fff;
   border: 1px solid #411a038e;
   border-radius: 5px;
@@ -71,22 +71,22 @@
   display: flex;
   justify-content: space-evenly;
 }
-.mainSpan{
+.mainSpan {
   display: flex;
 }
 .span {
   max-width: 10rem;
   text-align: center;
 }
-.formImage{
+.formImage {
   display: flex;
   flex-direction: column;
 }
-.icon{
+.icon {
   cursor: pointer;
 }
 
-.h1{
+.h1 {
   margin-top: 2rem;
   font-size: 50px;
   color: antiquewhite;
@@ -98,56 +98,69 @@
 
 .bioContainer {
   margin-top: 2rem;
-
 }
 
 .bio {
-   font-weight: 600;
-   font-size: 20px;
-   color: antiquewhite;
+  font-weight: 600;
+  font-size: 20px;
+  color: antiquewhite;
 }
 .conta_bio {
-    background-color: rgba(255, 255, 255, 0.432);
-    border-radius: 20px;
-    padding: 4px;
-    max-width: 21rem;
-    min-width: 18rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 4px;
+  background-color: rgba(255, 255, 255, 0.432);
+  border-radius: 20px;
+  padding: 4px;
+  max-width: 21rem;
+  min-width: 18rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
 }
 
-.input{
+.input {
   border-radius: 10px;
 }
-.form_input{
+.form_input {
   display: flex;
-align-items: flex-start;
-
+  align-items: flex-start;
 }
 
 .infoStylesP {
   display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+.divContainer {
+  display: flex;
   justify-content: space-between;
 }
-/* .email {
-  margin-bottom: 3rem;
-  font-size: 109%;
-  color: mintcream;
-  border: 2px solid;
-  border-top-color: #815843;
-  border-left-color: #815843;
-  border-right-color: #815843;
-  padding-top: 30px;
-  padding-bottom: 5%;
+.nombreContainer{
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.432);
+  width: 25rem;
+  height: 2rem;
+  align-items: center;
+  border-radius: 15px;
+}
+.error {
+  color: rgb(141, 2, 2);
+  text-align: center;
+  font-size: 14px;
 }
 
-.thirdContainer {
+.p {
+  background-color: #163811aa;
+  width: 9rem;
+  height: 2rem;
+  border-radius: 15px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  padding-left: 5px;
   color: antiquewhite;
+  margin-right: 5px;
 }
+/* 
+
+
 
 .infoContainer {
   padding: 2rem 3rem;

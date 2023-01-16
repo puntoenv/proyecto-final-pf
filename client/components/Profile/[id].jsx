@@ -202,7 +202,7 @@ export default function Perfil({
                               <GoX className={style.icon} size={25}></GoX>
                             </span>
                             <span className={style.span}>
-                              {input.image.slice(0, 40) + "..."}
+                              {input.image.slice(0, 20) + "..."}
                             </span>
                           </>
                         )
@@ -225,169 +225,182 @@ export default function Perfil({
           <div>
             <div className={style.infoStyles}>
               <p className={style.infoStylesP}>
-                <p className={style.p}>Nombre completo:</p>
-                <div className={style.insideInfo}>
-                  {!edit.name ? (
-                    nameUpper ? (
-                      nameUpper
-                    ) : (
-                      "No especificado"
-                    )
-                  ) : (
-                    <form
-                      className={style.form}
-                      onSubmit={(event) =>
-                        handleOnSubmit(
-                          event,
-                          setResult,
-                          setInput,
-                          input,
-                          idUser
+                <div className={style.divContainer}>
+                  <div className={style.nombreContainer}>
+                    <p className={style.p}>Nombre completo:</p>
+                    <div>
+                      {!edit.name ? (
+                        nameUpper ? (
+                          nameUpper
+                        ) : (
+                          "No especificado"
                         )
-                      }
-                    >
-                      <input
-                        type="text"
-                        placeholder="Ej: Pedro"
-                        name="name"
-                        onChange={(event) => {
-                          hanldeOnChange(event, setInput, input, setResult),
-                            validateForm(event, setError, error);
-                        }}
-                      />
-                      <button
-                        disabled={error.name ? true : false}
-                        className={style.icon}
-                        type="submit"
-                      >
-                        <HiCheck size={20}></HiCheck>
-                      </button>
-                    </form>
-                  )}
-                </div>
+                      ) : (
+                        <form
+                          className={style.form}
+                          onSubmit={(event) =>
+                            handleOnSubmit(
+                              event,
+                              setResult,
+                              setInput,
+                              input,
+                              idUser
+                            )
+                          }
+                        >
+                          <input
+                            className={style.input}
+                            type="text"
+                            placeholder="Ej: Pedro"
+                            name="name"
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
+                          />
+                          <button
+                            disabled={error.name ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
+                            <HiCheck size={20}></HiCheck>
+                          </button>
+                        </form>
+                      )}
+                    </div>
+                  </div>
 
-                <span
-                  onClick={() => {
-                    setEdit({ ...edit, name: !edit.name }),
-                      setInput({ ...input, name: "" });
-                  }}
-                >
-                  <HiPencilSquare
-                    className={style.icon}
-                    size={18}
-                  ></HiPencilSquare>
-                </span>
+                  <span
+                    onClick={() => {
+                      setEdit({ ...edit, name: !edit.name }),
+                        setInput({ ...input, name: "" });
+                    }}
+                  >
+                    <HiPencilSquare
+                      className={style.icon}
+                      size={18}
+                    ></HiPencilSquare>
+                  </span>
+                </div>
                 <span>{error.name ? error.name : ""}</span>
               </p>
               <p className={style.infoStylesP}>
-                <div className={style.pContainer}>
-                  <p className={style.p}>Edad: </p>
-                  <div className={style.insideInfo}>
-                    {!edit.age ? (
-                      response.age ? (
-                        response.age
+                <div className={style.divContainer}>
+                  <div className={style.nombreContainer}>
+                    <p className={style.p}>Edad: </p>
+                    <div>
+                      {!edit.age ? (
+                        response.age ? (
+                          response.age
+                        ) : (
+                          "No especificado"
+                        )
                       ) : (
-                        "No especificado"
-                      )
-                    ) : (
-                      <form
-                        className={style.form}
-                        onSubmit={(event) =>
-                          handleOnSubmit(
-                            event,
-                            setResult,
-                            setInput,
-                            input,
-                            idUser
-                          )
-                        }
-                      >
-                        <input
-                          type="number"
-                          placeholder="Ej: 28"
-                          name="age"
-                          onChange={(event) => {
-                            hanldeOnChange(event, setInput, input, setResult),
-                              validateForm(event, setError, error);
-                          }}
-                        />
-
-                        <button
-                          disabled={error.age ? true : false}
-                          className={style.icon}
-                          type="submit"
+                        <form
+                          className={style.form}
+                          onSubmit={(event) =>
+                            handleOnSubmit(
+                              event,
+                              setResult,
+                              setInput,
+                              input,
+                              idUser
+                            )
+                          }
                         >
-                          <HiCheck size={20}></HiCheck>
-                        </button>
-                      </form>
-                    )}
+                          <input
+                            className={style.input}
+                            type="number"
+                            placeholder="Ej: 28"
+                            name="age"
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
+                          />
+
+                          <button
+                            disabled={error.age ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
+                            <HiCheck size={20}></HiCheck>
+                          </button>
+                        </form>
+                      )}
+                    </div>
                   </div>
+                  <span
+                    className={style.icon}
+                    onClick={() => {
+                      setEdit({ ...edit, age: !edit.age }),
+                        setInput({ ...input, age: "" });
+                    }}
+                  >
+                    <HiPencilSquare size={18}></HiPencilSquare>
+                  </span>
                 </div>
-                <span
-                  className={style.icon}
-                  onClick={() => {
-                    setEdit({ ...edit, age: !edit.age }),
-                      setInput({ ...input, age: "" });
-                  }}
-                >
-                  <HiPencilSquare size={18}></HiPencilSquare>
-                </span>
                 <span>{error.age ? error.age : ""}</span>
               </p>
 
               <p className={style.infoStylesP}>
-                <div>
-                  <p className={style.p}>Provincia: </p>
-                  <div className={style.insideInfo}>
-                    {!edit.ubication ? (
-                      response.ubication ? (
-                        response.ubication
+                <div className={style.divContainer}>
+                  <div className={style.nombreContainer}>
+                    <p className={style.p}>Provincia: </p>
+                    <div>
+                      {!edit.ubication ? (
+                        response.ubication ? (
+                          response.ubication
+                        ) : (
+                          "No especificado"
+                        )
                       ) : (
-                        "No especificado"
-                      )
-                    ) : (
-                      <form
-                        className={style.form}
-                        onSubmit={(event) =>
-                          handleOnSubmit(
-                            event,
-                            setResult,
-                            setInput,
-                            input,
-                            idUser
-                          )
-                        }
-                      >
-                        <input
-                          type="text"
-                          placeholder="Ej: Buenos Aires"
-                          name="ubication"
-                          onChange={(event) => {
-                            hanldeOnChange(event, setInput, input, setResult),
-                              validateForm(event, setError, error);
-                          }}
-                        />
-                        <button
-                          disabled={error.ubication ? true : false}
-                          className={style.icon}
-                          type="submit"
+                        <form
+                          className={style.form}
+                          onSubmit={(event) =>
+                            handleOnSubmit(
+                              event,
+                              setResult,
+                              setInput,
+                              input,
+                              idUser
+                            )
+                          }
                         >
-                          <HiCheck size={20}></HiCheck>
-                        </button>
-                      </form>
-                    )}
+                          <input
+                            className={style.input}
+                            type="text"
+                            placeholder="Ej: Buenos Aires"
+                            name="ubication"
+                            onChange={(event) => {
+                              hanldeOnChange(event, setInput, input, setResult),
+                                validateForm(event, setError, error);
+                            }}
+                          />
+                          <button
+                            disabled={error.ubication ? true : false}
+                            className={style.icon}
+                            type="submit"
+                          >
+                            <HiCheck size={20}></HiCheck>
+                          </button>
+                        </form>
+                      )}
+                    </div>
                   </div>
+                  <span
+                    className={style.icon}
+                    onClick={() => {
+                      setEdit({ ...edit, ubication: !edit.ubication }),
+                        setInput({ ...input, ubication: "" });
+                    }}
+                  >
+                    <HiPencilSquare size={18}></HiPencilSquare>
+                  </span>
                 </div>
-                <span
-                  className={style.icon}
-                  onClick={() => {
-                    setEdit({ ...edit, ubication: !edit.ubication }),
-                      setInput({ ...input, ubication: "" });
-                  }}
-                >
-                  <HiPencilSquare size={18}></HiPencilSquare>
+                <span className={style.error}>
+                  {error.ubication ? error.ubication : ""}
                 </span>
-                <span>{error.ubication ? error.ubication : ""}</span>
               </p>
             </div>
             <div className={style.buttons}>
