@@ -32,12 +32,13 @@ export default function Home() {
     //   cssEase: "linear",
     // };
     const settings = {
-      arrows: false,
+      arrows: true,
       infinite: true,
       dots: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,
+      
     };
 
     const dataPets = useSelector((data) => data.mascotas.mascotas);

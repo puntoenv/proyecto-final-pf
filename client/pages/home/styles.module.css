@@ -72,6 +72,15 @@
   font-weight: 450;
 }
 
+/* .slick-prev:before,
+.slick-next:before {
+  color: green;
+} */
+.slick-prev:before,
+.slick-next:before {
+  color: red!important;
+}
+
 .boxInfoNosotros {
   display: flex;
   justify-content: flex-start;
