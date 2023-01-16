@@ -115,7 +115,11 @@ export default function eShop({
     <LayoutGlobal>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
-        <form className={styles.box}>
+        <form 
+        
+        onChange={(e) => handlerSearch(e)}
+        onSubmit= {(e) => handlerOnSearch(e)}
+        className={styles.box}>
           <input
             className={styles.input}
             type="search"
