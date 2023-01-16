@@ -180,6 +180,7 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
+  margin-top: 5rem;
 }
 
 .select {
