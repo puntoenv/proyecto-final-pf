@@ -4,15 +4,14 @@ import Image from "next/image";
 
 function Petscrea({ response }) {
   const { pets } = response;
-  console.log(response);
-  // console.log(response);
+
   return (
     <div>
       <div className={styles.container_animal}>
-        <h2 className={styles.letra}>posteo de mascotas</h2>
+        <h2 className={styles.letra}>Posteo de mascotas</h2>
         <div className={styles.container_post}>
           {!pets.length ? (
-            <h1 className={styles.letra}>no hay historial de creaciones</h1>
+            <h1 className={styles.letra}>No hay historial de creaciones</h1>
           ) : (
             pets?.map((mascota) => {
               return (

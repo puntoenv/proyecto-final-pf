@@ -208,6 +208,7 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-top: 2rem;
 }
 .container_animal {
   width: 100%;

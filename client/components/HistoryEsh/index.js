@@ -7,10 +7,10 @@ function index({ response }) {
   return (
     <div>
       <div className={styles.container_animal}>
-        <h2 className={styles.letra}>historial de compras</h2>
+        <h2 className={styles.letra}>Historial de compras</h2>
         <div className={styles.container_post}>
         
-          {!bought.length ? <h1 className={styles.letra}>no hay historial de compra</h1> : bought?.map((producto) => (
+          {!bought.length ? <h1 className={styles.letra}>No hay historial de compra</h1> : bought?.map((producto) => (
             <CardProduct
               key={producto._id}
               info={producto}
