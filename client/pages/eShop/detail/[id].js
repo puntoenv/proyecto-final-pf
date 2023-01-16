@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
-import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Detail({
   data,
@@ -15,7 +15,10 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
-  const { name, image, price, _id, stock, category, boughtBy } = data;
+  const { user } = useUser();
+
+  const { name, image, price, _id, description, stock, category, boughtBy } =
+    data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
 
@@ -42,16 +45,17 @@ export default function Detail({
   };
 
   const handlerSubmitDiscount = () => {
-    setAmount((i) => (i = i - 1));
-    discountItem(_id);
-    console.log(itemCart.amount);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto quitado de tu Carrito`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
+    if (amount !== 0) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Producto quitado de tu Carrito`,
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
   };
 
   useEffect(() => {
@@ -72,18 +76,32 @@ export default function Detail({
           <div className={style.containInfo}>
             <h1 className={style.nameProduct}>{data.name}</h1>
             <div className={style.containPriceAndCategorie}>
-              {itemCart ? (
+              {(itemCart && (
                 <Link href="/cart" className={style.btnBuy}>
-                  Comprar 😀
+                  Comprar
                 </Link>
-              ) : (
+              )) ||
+                (user && (
+                  <button
+                    className={style.btnBuy}
+                    onClick={(e) => formatOneItemMP(products)}
+                  >
+                    Comprar
+                  </button>
+                ))}
+              {/* {(user && (
                 <button
                   className={style.btnBuy}
                   onClick={(e) => formatOneItemMP(products)}
                 >
                   Comprar
                 </button>
-              )}
+              )) ||
+                (itemCart && (
+                  <Link href="/cart" className={style.btnBuy}>
+                    Comprar
+                  </Link>
+                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
@@ -104,6 +122,7 @@ export default function Detail({
                     <button
                       onClick={handlerSubmitDiscount}
                       className={style.modifiedCant}
+                      type="submit"
                     >
                       <BsCartDashFill className={style.icon} />
                     </button>
@@ -135,10 +154,7 @@ export default function Detail({
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/products/detail/" +
-          params.id
-      )
+      await fetch("http://localhost:3001/products/detail/" + params.id)
     ).json();
     return {
       props: {

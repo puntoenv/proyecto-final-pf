@@ -7,7 +7,7 @@ import Link from "next/link";
 import logo from "../../img/logo.jpeg";
 
 export default function Detail({ data }) {
-  console.log(data);
+
   return (
     <div className={styles.containerAll}>
       <Layout title={data.name.toUpperCase()} />
@@ -91,10 +91,7 @@ export default function Detail({ data }) {
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/pets/detail/" +
-          params.id
-      )
+      await fetch("http://localhost:3001/pets/detail/" + params.id)
     ).json();
     return {
       props: {

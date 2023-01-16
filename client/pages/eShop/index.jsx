@@ -10,10 +10,6 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import {
-  IoIosArrowDropleftCircle,
-  IoIosArrowDroprightCircle,
-} from "react-icons/io";
 
 export default function eShop({
   addToCart,
@@ -22,6 +18,10 @@ export default function eShop({
   productOfCart,
   discountItem,
 }) {
+  // console.log(dataProps);
+
+  // if (dataProps.collection_status === "approved") deleteAllCart();
+
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
@@ -54,6 +54,7 @@ export default function eShop({
   const handlerOnSearch = (e) => {
     e.preventDefault();
     dispatch(searchProduct(search, 1));
+    e.target.reset();
   };
 
   const handlerSelect = (e) => {
@@ -107,24 +108,24 @@ export default function eShop({
         dispatch(getProducts(page));
       }
     }
-    console.log(e.target.value);
   };
 
   return (
     <LayoutGlobal>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
-        <div className={styles.search}>
+        <form
+          onChange={(e) => handlerSearch(e)}
+          onSubmit={(e) => handlerOnSearch(e)}
+          className={styles.box}
+        >
           <input
             className={styles.input}
             type="search"
             placeholder="Buscar..."
-            onChange={(e) => handlerSearch(e)}
           />
-          <button onClick={(e) => handlerOnSearch(e)} className={styles.btn}>
-            Buscar
-          </button>
-        </div>
+          <button className={styles.btn}>Buscar</button>
+        </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
@@ -139,7 +140,7 @@ export default function eShop({
                 value="Todos"
                 defaultValue={true}
               >
-                Todos
+                Todas
               </option>
               {categories?.map((category) => (
                 <option key={category} value={category}>
@@ -162,7 +163,10 @@ export default function eShop({
                 5.000$ a 10.000$
               </option>
             </select>
-            <button className={styles.all} onClick={(e) => handlerFilter(e)}>
+            <button
+              className={styles.btnFilter}
+              onClick={(e) => handlerFilter(e)}
+            >
               Aplicar Filtros
             </button>
           </form>
@@ -184,8 +188,8 @@ export default function eShop({
           </div>
         </div>
         <div className={styles.pages}>
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDropleftCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡸">
+            {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
           </button>
           {paging?.map((p) => (
             <button
@@ -197,11 +201,25 @@ export default function eShop({
               {p}
             </button>
           ))}
-          <button onClick={(e) => handlerPage(e)}>
-            <IoIosArrowDroprightCircle className={styles.iconPage} />
+          <button onClick={(e) => handlerPage(e)} value="🡺">
+            {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
           </button>
         </div>
       </div>
     </LayoutGlobal>
   );
 }
+
+// export async function getServerSideProps({ query }) {
+//   try {
+//     // const data = query;
+//     console.log(query);
+//     return {
+//       props: {
+//         dataProps: query,
+//       },
+//     };
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

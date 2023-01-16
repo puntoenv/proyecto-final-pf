@@ -3,7 +3,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Petscrea from "../../components/petscreate";
-import HistoryEsh from "../../components/HistoryEsh";
+// import HistoryEsh from "../../components/HistoryEsh";
 import styles from "../../components/Profile/Loading.module.css";
 import style from "./style.module.css";
 import Layout from "../layout";
@@ -18,23 +18,26 @@ function Profile({ data, response }) {
   return (
     <LayoutGlobal>
       <div className={style.container}>
-        <Layout title={"Perfil"}></Layout>
-        <Perfil
-          data={data}
-          response={response}
-          hanldeOnChange={hanldeOnChange}
-          handleOnSubmit={handleOnSubmit}
-          user={user}
-          isLoading={isLoading}
-        ></Perfil>
-      </div>
-      <div>
-        {
-          <div className={style.container_history}>
+        <div>
+          <Layout title={"Perfil"}></Layout>
+          <Perfil
+            data={data}
+            response={response}
+            hanldeOnChange={hanldeOnChange}
+            handleOnSubmit={handleOnSubmit}
+            user={user}
+            isLoading={isLoading}
+          ></Perfil>
+        </div>
+
+        <div className={style.container_history}>
+          <div className={style.containerPets}>
             <Petscrea response={response} />
-            <HistoryEsh response={response} />
           </div>
-        }
+          {/* <div>
+            <HistoryEsh className={style.containerProducts} response={response} />
+          </div> */}
+        </div>
       </div>
     </LayoutGlobal>
   );
@@ -53,9 +56,7 @@ export default withPageAuthRequired(Profile, {
 export async function getServerSideProps({ params }) {
   try {
     const response = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/user/" + params.id
-      )
+      await fetch("http://localhost:3001/user/" + params.id)
     ).json();
     return {
       props: {

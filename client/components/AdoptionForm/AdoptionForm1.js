@@ -1,20 +1,16 @@
 import React from "react";
 import styles from "../../pages/adoptionForm/style.module.css";
 import { IoIosArrowForward } from "react-icons/io";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const AdoptionForm1 = ({
   errors,
-  provi,
-  munici,
   setFirst,
-  handleProvincia,
-  handleCiudad,
+  handleDisableInput,
   handleSelector,
   validation,
   setPost,
   post,
-  dispatch,
-  getmuni,
 }) => {
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -23,67 +19,22 @@ const AdoptionForm1 = ({
   return (
     <div>
       <label htmlFor="name" className={styles.stretch}>
-        Nombre:
+        
         <span className={styles.errors}>{errors.name}</span>
         <input
           className={styles.input}
           id="name"
           type="text"
           name="name"
-          placeholder=" Ingrese el nombre de la mascota..."
+          placeholder="Nombre..."
           onChange={(e) => {
             validation(e, errors);
             handleSelector(e, setPost, post);
           }}
         />
       </label>
-      {/* <label htmlFor="size" className={styles.stretch}>
-        Tamaño:
-        <span className={styles.errors}>{errors.size}</span>
-        <div className={styles.radio}>
-          <label htmlFor="pequeño">
-            <input
-              type="radio"
-              id="pequeño"
-              value="pequeño"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Pequeño
-          </label>
-          <label htmlFor="mediano">
-            <input
-              type="radio"
-              id="mediano"
-              value="mediano"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Mediano
-          </label>
-          <label htmlFor="grande">
-            <input
-              type="radio"
-              id="grande"
-              value="grande"
-              name="size"
-              onClick={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Grande
-          </label>
-        </div>
-      </label> */}
       <label htmlFor="age" className={styles.stretch}>
-        Edad:
+  
         <span className={styles.errors}>{errors.age}</span>
         <select
           name="age"
@@ -95,7 +46,7 @@ const AdoptionForm1 = ({
           }}
         >
           <option defaultValue={true} value="">
-            Ingrese la edad de la mascota...
+            Edad
           </option>
           {ages.map((age) => (
             <option key={age} value={age}>
@@ -105,7 +56,7 @@ const AdoptionForm1 = ({
         </select>
       </label>
       <label htmlFor="type" className={styles.stretch}>
-        Especie:
+      
         <span className={styles.errors}>{errors.type}</span>
         <select
           className={styles.input}
@@ -117,7 +68,7 @@ const AdoptionForm1 = ({
           }}
         >
           <option defaultValue={true} value="select">
-            Seleccione la especie de la mascota...
+            Especie
           </option>
           <option value="ave">Ave</option>
           <option value="conejo">Conejo</option>
@@ -163,53 +114,95 @@ const AdoptionForm1 = ({
         </div>
       </label>
 
-      <label className={styles.stretch}>
-        Ubicación:
-        <label htmlFor="provincia" className={styles.stretch}>
-          <span className={styles.title2}>Provincia</span>
-          <span className={styles.errors}>{errors.provincia}</span>
-          <select
-            className={styles.input}
-            name="provincia"
-            id="provincia"
-            onChange={(e) => {
-              validation(e, errors);
-              handleProvincia(e, setPost, post, dispatch, getmuni);
-            }}
-          >
-            <option defaultValue={true} value="select">
-              Seleccione la provincia...
-            </option>
-            {provi?.map((el) => (
-              <option key={el.nombre} value={el.nombre}>
-                {el.nombre}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="ciudad" className={styles.stretch}>
-          <span className={styles.title2}>Ciudad</span>
-          <span className={styles.errors}>{errors.ciudad}</span>
-          <select
-            className={styles.input}
-            id="ciudad"
-            name="ciudad"
-            onChange={(e) => {
-              validation(e, errors);
-              handleCiudad(e, setPost, post);
-            }}
-          >
-            <option defaultValue={true} value="select">
-              Seleccione la ciudad...
-            </option>
-            <option value="Resistencia">Resistencia</option>
-            {munici?.map((el) => (
-              <option key={el.nombre} value={el.nombre}>
-                {el.nombre}
-              </option>
-            ))}
-          </select>
-        </label>
+      <label htmlFor="size" className={styles.stretch}>
+        Tamaño:
+        <span className={styles.errors}>{errors.size}</span>
+        <div className={styles.radio}>
+          <label htmlFor="pequeño">
+            <input
+              type="radio"
+              id="pequeño"
+              value="pequeño"
+              name="size"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Pequeño
+          </label>
+          <label htmlFor="mediano">
+            <input
+              type="radio"
+              id="mediano"
+              value="mediano"
+              name="size"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Mediano
+          </label>
+          <label htmlFor="grande">
+            <input
+              type="radio"
+              id="grande"
+              value="grande"
+              name="size"
+              onClick={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Grande
+          </label>
+        </div>
+      </label>
+      <label htmlFor="health" className={styles.health}>
+        Salud
+        {/* <span className={styles.errors}>{errors.health}</span> */}
+        <div className={styles.radio2}>
+          <label htmlFor="good">
+            <input
+              type="radio"
+              value="buena"
+              id="good"
+              name="health"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Buena
+          </label>
+          <label htmlFor="needy">
+            <input
+              type="radio"
+              value="necesita atención"
+              id="needy"
+              name="health"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Necesita atención
+          </label>
+          <label htmlFor="unknown">
+            <input
+              type="radio"
+              value="desconocida"
+              id="unknown"
+              name="health"
+              onChange={(e) => {
+                validation(e, errors);
+                handleSelector(e, setPost, post);
+              }}
+            />
+            Desconozco
+          </label>
+        </div>
       </label>
       <button
         type="button"

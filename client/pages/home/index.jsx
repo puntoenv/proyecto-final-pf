@@ -21,13 +21,24 @@ import ProductCard from "../../components/CarouselEshop/productsCard";
 
 export default function Home() {
   {
+    // const settings = {
+    //   dots: true,
+    //   infinite: true,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 1,
+    //   autoplay: true,
+    //   speed: 2000,
+    //   autoplaySpeed: 1700,
+    //   cssEase: "linear",
+    // };
     const settings = {
-      arrows: false,
+      arrows: true,
       infinite: true,
       dots: true,
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,
+      
     };
 
     const dataPets = useSelector((data) => data.mascotas.mascotas);
@@ -37,7 +48,7 @@ export default function Home() {
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getPets(1));
-      dispatch(getProducts(1))
+      dispatch(getProducts(1));
     }, []);
     // useEffect(()=>{
     //   dispatch(getProducts(1))
@@ -70,6 +81,14 @@ export default function Home() {
           <Nosotros />
 
           <div className={styles.containSlider}>
+            <div className={styles.titleRoute}>
+            <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
+
+            <button className={styles.buttonRoute}>
+              <Link href='/petsPosts'>Ver mas</Link>
+            </button>
+            </div>
+
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard
@@ -77,16 +96,27 @@ export default function Home() {
                   nombre={mascota.name}
                   imagen={mascota.image}
                   genero={mascota.gender}
+                  tamano={mascota.size}
                 />
               ))}
             </Slider>
           </div>
 
+       
+
           <div className={styles.containSlider}>
+          <div className={styles.titleRoute}>
+            <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
+            <button className={styles.buttonRoute}>
+              <Link href='/eShop'>Ver mas</Link>
+            </button>
+            </div>
+            
+            
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
-                key={producto._id}
+                  key={producto._id}
                   info={producto}
                   // addToCart={addToCart}
                   // key={producto._id}
@@ -97,15 +127,6 @@ export default function Home() {
               ))}
             </Slider>
           </div>
-
-
-
-
-
-
-
-
-
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>

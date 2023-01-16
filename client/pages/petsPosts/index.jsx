@@ -122,7 +122,7 @@ export default function PetAdoption() {
             <div>
               <input type="submit" className={styles.all} value="Ver Todas" />
             </div>
-            <h1 className={styles.title}>Animal</h1>
+            <h1 className={styles.title}>Especie</h1>
             <select className={styles.select} id="type">
               <option className={styles.option} value="animal">
                 Todos
@@ -161,7 +161,7 @@ export default function PetAdoption() {
                 Hembra
               </option>
             </select>
-            <h1 className={styles.title}>Edades</h1>
+            <h1 className={styles.title}>Edad</h1>
             <select id="age" className={styles.select}>
               <option className={styles.option} defaultValue={true} value="">
                 Todas
@@ -192,9 +192,9 @@ export default function PetAdoption() {
             >
               <input
                 type="search"
-                placeholder="Ingrese el nombre de la mascota ..."
+                placeholder="Buscar mascota..."
                 autoFocus
-                className={styles.search}
+                className={styles.input}
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
@@ -205,7 +205,7 @@ export default function PetAdoption() {
                   <div key={mascota._id} className={styles.card}>
                     <Image
                       className={styles.img}
-                      width="300"
+                      width="400"
                       height="240"
                       src={mascota.image}
                       alt="image"

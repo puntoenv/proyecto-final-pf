@@ -2,7 +2,7 @@ import axios from "axios";
 import Router from "next/router";
 
 export const validateForm = (event, setError, error) => {
-  let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$"; 
+  let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
   let inputValue = event.target.value;
   let inputName = event.target.name;
   console.log(error)
@@ -133,7 +133,7 @@ export const handleOnSubmit = async (
 
   try {
     const response = await axios.put(
-      `https://proyecto-final-pf-production.up.railway.app/updateProfile/${idUser}`,
+      `http://localhost:3001/updateProfile/${idUser}`,
       input
     );
 

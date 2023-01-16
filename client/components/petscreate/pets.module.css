@@ -122,7 +122,11 @@
 }
 
 .img {
-  border-radius: 30px;
+  width: 18em;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 30px 30px  0px 0px ;
+ 
 }
 
 .btn {
@@ -207,7 +211,8 @@
   display: inline-flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-around;
+ gap: 2em;
+  margin-top: 2rem;
 }
 .container_animal {
   width: 100%;

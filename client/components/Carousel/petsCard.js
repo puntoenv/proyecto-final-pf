@@ -3,21 +3,23 @@ import styles from "../../styles/carrusel.module.css";
 
 import Link from "next/link";
 
-export default function PetsCard({ nombre, imagen, genero }) {
+export default function PetsCard({ nombre, imagen, genero, size }) {
   return (
     <div className={styles.container}>
       <div className={styles.containImg}>
-        <Link href={"/petsPosts"}>
+        {/* <Link href={"/petsPosts"}> */}
           <img
             className={styles.image}
             src={imagen}
             alt="imagen de la mascota"
           />
-        </Link>
+        {/* </Link> */}
       </div>
       <div className={styles.containInfo}>
-        <h3 className={styles.name}> {nombre}</h3>
+        <h3 className={styles.name}> {nombre.toUpperCase()}</h3>
         <h1 className={styles.gender}> {genero}</h1>
+        
+        <h1 className={styles.size}>{size}</h1>
       </div>
     </div>
   );
