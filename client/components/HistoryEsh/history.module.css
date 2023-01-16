@@ -216,6 +216,7 @@ width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  margin-top: 3rem;
 }
 
 .letra {

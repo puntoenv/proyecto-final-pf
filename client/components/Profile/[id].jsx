@@ -206,7 +206,6 @@ export default function Perfil({
                             </span>
                           </>
                         )
-                        // input.image.slice(0, 40)
                       }
                     </span>
                     <button className={style.iconImage} type="submit">
@@ -251,7 +250,7 @@ export default function Perfil({
                           <input
                             className={style.input}
                             type="text"
-                            placeholder="Ej: Pedro"
+                            placeholder="Ej: Pedro Pérez"
                             name="name"
                             onChange={(event) => {
                               hanldeOnChange(event, setInput, input, setResult),
