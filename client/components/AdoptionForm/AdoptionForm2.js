@@ -15,106 +15,15 @@ const AdoptionForm2 = ({
   setPost,
   setError,
   handleDisableInput,
+  handleProvincia,
+  handleCiudad,
+  dispatch,
+  getmuni,
+  provi,
+  munici,
 }) => {
   return (
     <div className={styles.form2}>
-      <label htmlFor="size" className={styles.stretch}>
-        Tamaño:
-        <span className={styles.errors}>{errors.size}</span>
-        <div className={styles.radio}>
-          <label htmlFor="pequeño">
-            <input
-              type="radio"
-              id="pequeño"
-              value="pequeño"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Pequeño
-          </label>
-          <label htmlFor="mediano">
-            <input
-              type="radio"
-              id="mediano"
-              value="mediano"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Mediano
-          </label>
-          <label htmlFor="grande">
-            <input
-              type="radio"
-              id="grande"
-              value="grande"
-              name="size"
-              onClick={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Grande
-          </label>
-        </div>
-      </label>
-      <label htmlFor="health" className={styles.health}>
-        Salud
-        {/* <span className={styles.errors}>{errors.health}</span> */}
-        <div className={styles.radio2}>
-          <label classNamee={styles.label} htmlFor="good">
-            <input
-              classNamee={styles.input}
-              type="radio"
-              value="buena"
-              id="good"
-              name="health"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Buena
-          </label>
-          <div className={styles.check}></div>
-          <label classNamee={styles.label} htmlFor="needy">
-            <input
-              classNamee={styles.input}
-              type="radio"
-              value="necesita atención"
-              id="needy"
-              name="health"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Necesita atención
-          </label>
-          <div className={styles.check}></div>
-          <label classNamee={styles.label} htmlFor="unknown">
-            <input
-              classNamee={styles.input}
-              type="radio"
-              value="desconocida"
-              id="unknown"
-              name="health"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Desconozco
-          </label>
-          <div className={styles.check}></div>
-        </div>
-      </label>
-
       <label htmlFor="condition" className={styles.condition}>
         Condición
         <div className={styles.radio2}>
@@ -218,6 +127,56 @@ const AdoptionForm2 = ({
         </div>
       </label>
 
+
+
+      <label className={styles.location}>
+        <label htmlFor="provincia" className={styles.stretch}>
+          <span className={styles.title2}>Provincia</span>
+          <span className={styles.errors}>{errors.provincia}</span>
+          <select
+            className={styles.locat_select}
+            name="provincia"
+            id="provincia"
+            onChange={(e) => {
+              validation(e, errors);
+              handleProvincia(e, setPost, post, dispatch, getmuni);
+            }}
+          >
+            <option defaultValue={true} value="select">
+              Seleccione la provincia...
+            </option>
+            {provi?.map((el) => (
+              <option key={el.nombre} value={el.nombre}>
+                {el.nombre}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="ciudad" className={styles.stretch}>
+          <span className={styles.title2}>Ciudad</span>
+          <span className={styles.errors}>{errors.ciudad}</span>
+          <select
+            className={styles.locat_select}
+            id="ciudad"
+            name="ciudad"
+            onChange={(e) => {
+              validation(e, errors);
+              handleCiudad(e, setPost, post);
+            }}
+          >
+            <option defaultValue={true} value="select">
+              Seleccione la ciudad...
+            </option>
+            <option value="Resistencia">Resistencia</option>
+            {munici?.map((el) => (
+              <option key={el.nombre} value={el.nombre}>
+                {el.nombre}
+              </option>
+            ))}
+          </select>
+        </label>
+      </label>
+
       <label htmlFor="description" className={styles.stretch}>
         Descripción:
         <span className={styles.errors}>
@@ -259,7 +218,7 @@ const AdoptionForm2 = ({
           handleFiles(e, setPost, post);
         }}
       >
-        <HiArrowDownOnSquare size={20}></HiArrowDownOnSquare>
+        <HiArrowDownOnSquare size={15}></HiArrowDownOnSquare>
         Subir imagen
         <span className={styles.errors}>{errors.image && errors.image}</span>
         <input
@@ -295,33 +254,10 @@ const AdoptionForm2 = ({
           id="submit"
           type="submit"
           value="Subir Mascota"
-          // disabled={
-          //   // !post.age ||
-          //   // !post.name ||
-          //   // !post.description ||
-          //   // !post.location.provincia ||
-          //   // !post.image ||
-          //   // !post.size ||
-          //   // !post.gender ||
-          //   // !post.type ||
-          //   // !post.location.municipio ||
-          //   // ///////////////////////////////////////////////////
-          //   // errors.name !== null ||
-          //   // errors.age !== null ||
-          //   // errors.description !== null ||
-          //   // errors.size !== null ||
-          //   // errors.gender !== null ||
-          //   // errors.ciudad !== null ||
-          //   // errors.provincia !== null ||
-          //   // errors.type !== null ||
-          //   // errors.image !== null ||
-          //   // errors.health !== null ||
-          //   // errors.sociability !== null ||
-          //   // errors.condition !== null
-          //   () => handleDisableInput(post, errors, Swal)
-          // }
-          // onClick={event => handleDisableInput(event, post, errors, Swal)}
-        >Subir Mascota</button>
+        
+        >
+          Publicar
+        </button>
       </label>
     </div>
   );
