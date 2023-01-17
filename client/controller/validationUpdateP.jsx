@@ -133,7 +133,7 @@ export const handleOnSubmit = async (
 
   try {
     const response = await axios.put(
-      `https://proyecto-final-pf-production.up.railway.app/updateProfile/${idUser}`,
+      `http://localhost:3001/updateProfile/${idUser}`,
       input
     );
 
