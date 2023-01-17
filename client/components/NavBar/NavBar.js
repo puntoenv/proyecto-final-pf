@@ -45,6 +45,9 @@ const NavBar = (res) => {
       </Link>
       <nav className="nav">
         <div className="navMenuList">
+          <Link className="itemNav" href='contact'>
+            <span>Contáctanos</span>
+          </Link>
           <Link className="itemNav" href="/eShop">
             <span>Productos</span>
           </Link>
