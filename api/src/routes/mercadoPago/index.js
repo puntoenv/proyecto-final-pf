@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
     items: arr,
     back_urls: {
       success: "http://localhost:3000/eShop",
-      failure: "",
+      failure: "http://localhost:3000/404",
       pending: "",
     },
     auto_return: "approved",
