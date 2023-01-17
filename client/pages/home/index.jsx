@@ -18,28 +18,30 @@ import { getPets, getProducts } from "../../stores/actions";
 import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import ProductCard from "../../components/CarouselEshop/productsCard";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
   {
-    // const settings = {
-    //   dots: true,
-    //   infinite: true,
-    //   slidesToShow: 3,
-    //   slidesToScroll: 1,
-    //   autoplay: true,
-    //   speed: 2000,
-    //   autoplaySpeed: 1700,
-    //   cssEase: "linear",
-    // };
     const settings = {
-      arrows: true,
-      infinite: true,
       dots: true,
-      speed: 500,
+      infinite: true,
       slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      speed: 2000,
+      autoplaySpeed: 2000,
+      cssEase: "linear",
     };
+    // const settings = {
+    //   arrows: true,
+    //   infinite: true,
+    //   dots: true,
+    //   speed: 500,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 3,
 
+    // };
+    const { user } = useUser();
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
     const data = useSelector((state) => state.products.data);
@@ -136,7 +138,7 @@ export default function Home() {
               posteos.
             </p>
           </div>
-          <Join />
+          <Join user={user} />
         </div>
       </LayoutGlobal>
     );

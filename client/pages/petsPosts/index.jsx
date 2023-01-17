@@ -111,6 +111,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
     dispatch(getPets(1, filter));
     console.log(filter);
     setFilter({});
+    console.log(e.target);
+    e.target.reset();
   };
 
   return (
@@ -121,10 +123,12 @@ export default function PetAdoption({ favorite, addAgregar }) {
           <form
             className={styles.form}
             onChange={(e) => handlerFilter(e)}
-            onSubmit={(e) => handlerTodas(e)}
+            onSubmit={(e) => handlerSubmit(e)}
           >
             <div>
-              <input type="submit" className={styles.all} value="Ver Todas" />
+              <button className={styles.all} onClick={(e) => handlerTodas(e)}>
+                Ver Todas
+              </button>
             </div>
             <h1 className={styles.title}>Especie</h1>
             <select className={styles.select} id="type">
@@ -176,9 +180,11 @@ export default function PetAdoption({ favorite, addAgregar }) {
                 </option>
               ))}
             </select>
-            <button className={styles.all2} onClick={(e) => handlerSubmit(e)}>
-              Aplicar Filtros
-            </button>
+            <input
+              type="submit"
+              className={styles.all2}
+              value="Aplicar Filtros"
+            />
           </form>
 
           {/* <select className="select" onChange={handlerSort}>

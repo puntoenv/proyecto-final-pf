@@ -11,8 +11,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/footer";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import AdoptionForm1 from "../../components/adoptionForm/adoptionForm1";
-import AdoptionForm2 from "../../components/adoptionForm/adoptionForm2";
+import AdoptionForm1 from "../../components/AdoptionForm/AdoptionForm1";
+import AdoptionForm2 from "../../components/AdoptionForm/AdoptionForm2";
 import {
   validation,
   handleSelector,
@@ -133,7 +133,9 @@ export default withPageAuthRequired(form, {
 export async function getServerSideProps({ params }) {
   try {
     const response = await (
-      await fetch("http://localhost:3001/user/" + params.id)
+      await fetch(
+        "https://proyecto-final-pf-production.up.railway.app/user/" + params.id
+      )
     ).json();
     return {
       props: {

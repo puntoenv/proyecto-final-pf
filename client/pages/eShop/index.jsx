@@ -42,7 +42,6 @@ export default function eShop({
     e.preventDefault();
     dispatch(getProducts(1));
     setInput({});
-    e.target.reset();
   };
 
   const handlerSearch = (e) => {
@@ -74,6 +73,7 @@ export default function eShop({
   const handlerFilter = (e) => {
     e.preventDefault();
     dispatch(filterProducts(input, 1));
+    e.target.reset();
   };
 
   const handlerPage = (e) => {
@@ -124,15 +124,18 @@ export default function eShop({
             type="search"
             placeholder="Buscar..."
           />
-          <button className={styles.btn}>Buscar</button>
+          <input type="submit" className={styles.btn} value="Buscar" />
         </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
             onChange={(e) => handlerSelect(e)}
-            onSubmit={(e) => handlerTodos(e)}
+            onSubmit={(e) => handlerFilter(e)}
           >
-            <input type="submit" value="Ver Todos" className={styles.all} />
+            <input type="submit" value="" />
+            <button className={styles.all} onClick={(e) => handlerTodos(e)}>
+              Ver Todos
+            </button>
             <h1 className={styles.title}>Categorias</h1>
             <select className={styles.select} name="category">
               <option
@@ -163,14 +166,103 @@ export default function eShop({
                 5.000$ a 10.000$
               </option>
             </select>
-            <button
+            <input
+              type="submit"
               className={styles.btnFilter}
-              onClick={(e) => handlerFilter(e)}
-            >
-              Aplicar Filtros
-            </button>
+              value="Aplicar Filtros"
+            />
           </form>
           <div className={styles.containerCards}>
+            {/* <CardProduct
+              key={1100}
+              info={{
+                name: "Gorra",
+                image:
+                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
+                price: 1500,
+                _id: "63b6fa9ec2e6c5bd60363236",
+                stock: 10,
+                category: ["Productos Little Paws", "Los mas vendidos"],
+                boughtBy: [],
+              }}
+              addToCart={addToCart}
+              cart={cart}
+              serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            />
+            <CardProduct
+              key={1234}
+              info={{
+                name: "Mochila transportadora",
+                image:
+                  "https://http2.mlstatic.com/D_NQ_NP_965399-MLA50860887736_072022-O.webp",
+                price: 3000,
+                _id: "63b6fa9ec2e6c5bd60363236",
+                stock: 10,
+                category: ["Accesorios para perros", "Accesorios para gatos"],
+                boughtBy: [],
+              }}
+              addToCart={addToCart}
+              cart={cart}
+              serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            />
+            <CardProduct
+              key={2542}
+              info={{
+                name: "Gorra",
+                image:
+                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
+                price: 1500,
+                _id: "63b6fa9ec2e6c5bd60363236",
+                stock: 10,
+                category: ["Productos Little Paws", "Los mas vendidos"],
+                boughtBy: [],
+              }}
+              addToCart={addToCart}
+              cart={cart}
+              serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            />
+            <CardProduct
+              key={34253}
+              info={{
+                name: "Gorra",
+                image:
+                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
+                price: 1500,
+                _id: "63b6fa9ec2e6c5bd60363236",
+                stock: 10,
+                category: ["Productos Little Paws", "Los mas vendidos"],
+                boughtBy: [],
+              }}
+              addToCart={addToCart}
+              cart={cart}
+              serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            />
+            <CardProduct
+              key={5312454}
+              info={{
+                name: "Gorra",
+                image:
+                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
+                price: 1500,
+                _id: "63b6fa9ec2e6c5bd60363236",
+                stock: 10,
+                category: ["Productos Little Paws", "Los mas vendidos"],
+                boughtBy: [],
+              }}
+              addToCart={addToCart}
+              cart={cart}
+              serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            /> */}
             {productos?.map((producto) => {
               return (
                 <CardProduct
