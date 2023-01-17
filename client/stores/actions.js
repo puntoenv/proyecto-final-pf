@@ -79,7 +79,7 @@ export const PostAdop = (post) => {
       // .then((id) => router.push(`detail/${id}`))
       .catch(
         (err) => {
-          console.log(err)
+          console.log(err);
           if (err) {
             if (err.response.statusText === "Payload Too Large") {
               Swal.fire({
@@ -273,7 +273,9 @@ export const filterProducts = (input, page) => async (dispatch) => {
     }
     console.log(products.data.docs);
     dispatch(productsFilter(products.data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const allcategories = () => async (dispatch) => {
