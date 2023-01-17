@@ -16,6 +16,7 @@ import {
   deleteItemOfCart,
   discountOneProduct,
 } from "../controller/functionsCart/deleteProduct";
+//import {agregar} from '../controller/functionFavorite/agregar'
 import { getProduct } from "../controller/functionsCart/getProduct";
 
 registerLicense(
@@ -28,11 +29,12 @@ const clientId = process.env.AUHT0_CLIENT_ID;
 
 export default function App({ Component, pageProps }) {
   const [cart, setCart] = useState([]);
-
+  const [favorite, setFavorite] = useState([]);
+ 
   const addToCart = (product) => {
     addedProduct(product, cart, setCart);
   };
-
+ 
   const discountItem = (id) => {
     discountOneProduct(cart, setCart, id);
   };
@@ -40,15 +42,29 @@ export default function App({ Component, pageProps }) {
   const deleteOneProductToCart = (id) => {
     deleteItemOfCart(cart, setCart, id);
   };
+  
+ const favorito = {
+  AddAgregar: (items) => {
+    try{
+      favorite.some((i)=> i._id === items._id) ? 
+      alert('producto duplicado') : setFavorite([...favorite,items]) 
+    }catch(e){
+      alert(e,'error en agregar favorito')
+    }
+  }
+ }
 
   useEffect(() => {
     const carrito = JSON.parse(localStorage.getItem("cart")) ?? [];
     setCart(carrito);
+    const favorito = JSON.parse(localStorage.getItem("favorite")) ?? [];
+    setFavorite(favorito)
   }, []);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem("favorite",JSON.stringify(favorite));
+  }, [cart,favorite]);
 
   return (
     <ContextProvider>
@@ -63,6 +79,9 @@ export default function App({ Component, pageProps }) {
             deleteCart={deleteOneProductToCart}
             deleteAllCart={deleteCart}
             productOfCart={getProduct}
+            favorite={favorite}
+            setFavorite={setFavorite}
+            addAgregar= {favorito.AddAgregar}
           />
         </Provider>
       </UserProvider>
