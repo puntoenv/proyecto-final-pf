@@ -222,7 +222,9 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <button
                       className={styles.btn}
                       onClick={(e) => handlerFavorite(e, mascota)}
-                    ></button>
+                    >
+                      Favorito
+                    </button>
                   </div>
                 );
               })}

@@ -38,7 +38,6 @@ export default function Home() {
       speed: 500,
       slidesToShow: 3,
       slidesToScroll: 3,
-      
     };
 
     const dataPets = useSelector((data) => data.mascotas.mascotas);
@@ -82,11 +81,11 @@ export default function Home() {
 
           <div className={styles.containSlider}>
             <div className={styles.titleRoute}>
-            <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
+              <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
 
-            <button className={styles.buttonRoute}>
-              <Link href='/petsPosts'>Ver mas</Link>
-            </button>
+              <button className={styles.buttonRoute}>
+                <Link href="/petsPosts">Ver mas</Link>
+              </button>
             </div>
 
             <Slider {...settings} className="arrowsSlides">
@@ -102,17 +101,14 @@ export default function Home() {
             </Slider>
           </div>
 
-       
-
           <div className={styles.containSlider}>
-          <div className={styles.titleRoute}>
-            <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
-            <button className={styles.buttonRoute}>
-              <Link href='/eShop'>Ver mas</Link>
-            </button>
+            <div className={styles.titleRoute}>
+              <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
+              <button className={styles.buttonRoute}>
+                <Link href="/eShop">Ver mas</Link>
+              </button>
             </div>
-            
-            
+
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
