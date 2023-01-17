@@ -11,14 +11,12 @@ export default function Detail({
   data,
   cart,
   addToCart,
-  deleteCart,
   productOfCart,
   discountItem,
 }) {
   const { user } = useUser();
 
-  const { name, image, price, _id, description, stock, category, boughtBy } =
-    data;
+  const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
 
@@ -89,44 +87,34 @@ export default function Detail({
                     Comprar
                   </button>
                 ))}
-              {/* {(user && (
-                <button
-                  className={style.btnBuy}
-                  onClick={(e) => formatOneItemMP(products)}
-                >
-                  Comprar
-                </button>
-              )) ||
-                (itemCart && (
-                  <Link href="/cart" className={style.btnBuy}>
-                    Comprar
-                  </Link>
-                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
-                <div className={style.formCantCart}>
-                  <button
-                    onClick={handlerSubmitAdded}
-                    className={style.modifiedCant}
-                    type="submit"
-                  >
-                    <BsCartPlusFill className={style.icon} />
-                  </button>
-
-                  {amount !== undefined && (
-                    <span className={style.amount}>{amount}</span>
-                  )}
-
-                  <span className={style.spanButtonAdd}>
+                <div className={style.containFormCart}>
+                  <div className={style.formCantCart}>
                     <button
-                      onClick={handlerSubmitDiscount}
+                      onClick={handlerSubmitAdded}
                       className={style.modifiedCant}
                       type="submit"
                     >
-                      <BsCartDashFill className={style.icon} />
+                      <BsCartPlusFill className={style.icon} />
                     </button>
-                  </span>
+
+                    {amount !== undefined && (
+                      <span className={style.amount}>{amount}</span>
+                    )}
+
+                    <span className={style.spanButtonAdd}>
+                      <button
+                        onClick={handlerSubmitDiscount}
+                        className={style.modifiedCant}
+                        type="submit"
+                      >
+                        <BsCartDashFill className={style.icon} />
+                      </button>
+                    </span>
+                  </div>
+                  <span className={style.spanStock}>stock: {data.stock}</span>
                 </div>
               </span>
               {data.category && (
