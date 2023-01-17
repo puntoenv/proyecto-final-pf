@@ -7,7 +7,7 @@ import Link from "next/link";
 import logo from "../../img/logo.jpeg";
 
 export default function Detail({ data }) {
-
+console.log(data)
   return (
     <div className={styles.containerAll}>
       <Layout title={data.name.toUpperCase()} />
@@ -31,10 +31,6 @@ export default function Detail({ data }) {
             <div class={styles.divSize}>
               <b>Tamaño: </b>
               <span>{data.size}</span>
-            </div>
-            <div class={styles.divHealth}>
-              <b>Salud: </b>
-              <span>{data.health}</span>
             </div>
             <div class={styles.divSpecie}>
               <b>Especie: </b>
@@ -64,6 +60,16 @@ export default function Detail({ data }) {
               <b>Interacción con otros animales: </b>
               <span>{data.sociability}</span>
             </div>
+            <div class={styles.divHealth}>
+              <b>Salud: </b>
+              <span>{data.health}</span>
+            </div>
+            {data.healthExtra && (
+              <div>
+                <b>Descripción de salud: </b>
+                <span>{data.healthExtra}</span>
+              </div>
+            )}
           </div>
         </div>
 
@@ -91,10 +97,7 @@ export default function Detail({ data }) {
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/pets/detail/" +
-          params.id
-      )
+      await fetch(`${process.env.URL_BACK}pets/detail/${params.id}`)
     ).json();
     return {
       props: {

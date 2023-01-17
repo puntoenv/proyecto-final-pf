@@ -2,8 +2,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
 
 export default function CardProduct({
   info,
@@ -29,26 +27,12 @@ export default function CardProduct({
     };
     addToCart(product);
     setAmount((i) => (i = i + 1));
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: `Producto agregado`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const handlerSubmitDiscount = () => {
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Producto quitado de tu Carrito`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
     }
   };
 

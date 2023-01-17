@@ -1,12 +1,10 @@
 import React from "react";
 import styles from "../../pages/adoptionForm/style.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const AdoptionForm1 = ({
   errors,
   setFirst,
-  handleDisableInput,
   handleSelector,
   validation,
   setPost,
@@ -19,7 +17,6 @@ const AdoptionForm1 = ({
   return (
     <div>
       <label htmlFor="name" className={styles.stretch}>
-        
         <span className={styles.errors}>{errors.name}</span>
         <input
           className={styles.input}
@@ -34,7 +31,6 @@ const AdoptionForm1 = ({
         />
       </label>
       <label htmlFor="age" className={styles.stretch}>
-  
         <span className={styles.errors}>{errors.age}</span>
         <select
           name="age"
@@ -56,7 +52,6 @@ const AdoptionForm1 = ({
         </select>
       </label>
       <label htmlFor="type" className={styles.stretch}>
-      
         <span className={styles.errors}>{errors.type}</span>
         <select
           className={styles.input}
@@ -204,11 +199,32 @@ const AdoptionForm1 = ({
           </label>
         </div>
       </label>
+      {post.health === "necesita atención" && (
+        <label htmlFor="healthExtra" className={styles.stretch}>
+          Describe su condición de salud:
+          {errors.healthExtra ? (
+            <span className={styles.errors}>{errors.healthExtra}</span>
+          ) : (
+            ""
+          )}
+          <textarea
+            className={styles.input}
+            id="healthExtra"
+            type="text"
+            name="healthExtra"
+            placeholder="Descripción detallada"
+            onChange={(e) => {
+              validation(e, errors);
+              handleSelector(e, setPost, post);
+            }}
+          />
+        </label>
+      )}
       <button
         type="button"
         className={styles.buttonSiguiente}
         onClick={() => setFirst(false)}
-      > 
+      >
         Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
       </button>
     </div>

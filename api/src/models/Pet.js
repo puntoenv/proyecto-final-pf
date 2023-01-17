@@ -39,6 +39,7 @@ const petSchema = new Schema({
   },
 
   health: String,
+  healthExtra: String,
   condition: String,
   sociability: String,
   user: {
@@ -47,7 +48,7 @@ const petSchema = new Schema({
   },
 
   hidden: { type: Boolean, default: false },
-  expireAt: { type: Date, expires: 5184000 },
+//  expireAt: { type: Date, expires: 5184000 },
 });
 
 petSchema.plugin(mongoosePaginate);
