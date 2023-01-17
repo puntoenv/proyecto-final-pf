@@ -33,26 +33,12 @@ export default function Detail({
     };
     setAmount((i) => (i = i + 1));
     addToCart(product);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto agregado`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const handlerSubmitDiscount = () => {
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Producto quitado de tu Carrito`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
     }
   };
 
