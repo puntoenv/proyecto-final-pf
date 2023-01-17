@@ -39,6 +39,7 @@ const petSchema = new Schema({
   },
 
   health: String,
+  healthExtra: String,
   condition: String,
   sociability: String,
   user: {

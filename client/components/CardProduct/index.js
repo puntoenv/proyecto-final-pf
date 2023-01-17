@@ -7,7 +7,6 @@ export default function CardProduct({
   info,
   addToCart,
   cart,
-  setCart,
   productOfCart,
   discountItem,
 }) {
@@ -44,43 +43,41 @@ export default function CardProduct({
 
   return (
     <div className={styles.card}>
+      <Link href={`/eShop/detail/${_id}`} className={styles.name}>
+        {name}
+      </Link>
       <Link className={styles.linkImg} href={`/eShop/detail/${_id}`}>
         <img className={styles.img} src={image} alt="imagen del producto" />
       </Link>
       <div className={styles.divInfoProduct}>
-        <Link href={`/eShop/detail/${_id}`} className={styles.name}>
-          {name.toUpperCase()}
-        </Link>
-        <div className={styles.divPriceAddCart}>
-          {price ? (
-            <Link href={`/eShop/detail/${_id}`} className={styles.price}>
-              ${price}
-            </Link>
-          ) : null}
-          <div className={styles.formCantCart}>
+        <div className={styles.formCantCart}>
+          <button
+            onClick={handlerSubmitAdded}
+            className={styles.modifiedCant}
+            type="submit"
+          >
+            <BsCartPlusFill className={styles.icon} />
+          </button>
+
+          {amount !== undefined && (
+            <span className={styles.amount}>{amount}</span>
+          )}
+
+          <span className={styles.spanButtonAdd}>
             <button
-              onClick={handlerSubmitAdded}
+              onClick={handlerSubmitDiscount}
               className={styles.modifiedCant}
               type="submit"
             >
-              <BsCartPlusFill className={styles.icon} />
+              <BsCartDashFill className={styles.icon} />
             </button>
-
-            {amount !== undefined && (
-              <span className={styles.amount}>{amount}</span>
-            )}
-
-            <span className={styles.spanButtonAdd}>
-              <button
-                onClick={handlerSubmitDiscount}
-                className={styles.modifiedCant}
-                type="submit"
-              >
-                <BsCartDashFill className={styles.icon} />
-              </button>
-            </span>
-          </div>
+          </span>
         </div>
+        {price ? (
+          <Link href={`/eShop/detail/${_id}`} className={styles.price}>
+            ${price}
+          </Link>
+        ) : null}
         {/* <div className={styles.detail}> */}
         <Link className={styles.detail} href={`/eShop/detail/${_id}`}>
           Ver Producto

@@ -16,7 +16,7 @@ const Join = ({user}) => {
             {!user
               ? `Sumate a nuestra comunidad para poder adoptar o ayudar a las
             mascotas`
-              : `¿Te interesa ayudarnos en nuestra misión? ¡Ayúdanos!`}
+              : `¿Te interesa ayudarnos en nuestra misión? ¡Apoyanos!`}
           </span>
         </div>
         <div className={styles.divGif}>
