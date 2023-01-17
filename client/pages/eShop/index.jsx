@@ -42,7 +42,6 @@ export default function eShop({
     e.preventDefault();
     dispatch(getProducts(1));
     setInput({});
-    e.target.reset();
   };
 
   const handlerSearch = (e) => {
@@ -74,6 +73,7 @@ export default function eShop({
   const handlerFilter = (e) => {
     e.preventDefault();
     dispatch(filterProducts(input, 1));
+    e.target.reset();
   };
 
   const handlerPage = (e) => {
@@ -124,15 +124,18 @@ export default function eShop({
             type="search"
             placeholder="Buscar..."
           />
-          <button className={styles.btn}>Buscar</button>
+          <input type="submit" className={styles.btn} value="Buscar" />
         </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
             onChange={(e) => handlerSelect(e)}
-            onSubmit={(e) => handlerTodos(e)}
+            onSubmit={(e) => handlerFilter(e)}
           >
-            <input type="submit" value="Ver Todos" className={styles.all} />
+            <input type="submit" value="" />
+            <button className={styles.all} onClick={(e) => handlerTodos(e)}>
+              Ver Todos
+            </button>
             <h1 className={styles.title}>Categorias</h1>
             <select className={styles.select} name="category">
               <option
@@ -163,12 +166,11 @@ export default function eShop({
                 5.000$ a 10.000$
               </option>
             </select>
-            <button
+            <input
+              type="submit"
               className={styles.btnFilter}
-              onClick={(e) => handlerFilter(e)}
-            >
-              Aplicar Filtros
-            </button>
+              value="Aplicar Filtros"
+            />
           </form>
           <div className={styles.containerCards}>
             {productos?.map((producto) => {
