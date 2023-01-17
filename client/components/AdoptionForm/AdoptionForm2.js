@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../pages/adoptionForm/style.module.css";
+import styles from "./styles.module.css";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -127,8 +127,6 @@ const AdoptionForm2 = ({
         </div>
       </label>
 
-
-
       <label className={styles.location}>
         <label htmlFor="provincia" className={styles.stretch}>
           <span className={styles.title2}>Provincia</span>
@@ -254,7 +252,6 @@ const AdoptionForm2 = ({
           id="submit"
           type="submit"
           value="Subir Mascota"
-        
         >
           Publicar
         </button>

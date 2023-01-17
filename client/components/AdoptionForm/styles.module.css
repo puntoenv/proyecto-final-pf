@@ -1,0 +1,160 @@
+.containForm1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.form2 {
+}
+.stretch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  min-width: 50%;
+  max-width: 90%;
+  font-size: 18px;
+  border-radius: 20px;
+  background-color: #c2bea150;
+}
+
+.input {
+  border: none;
+  border-radius: 15px;
+  padding: 8px 15px;
+  margin: 10px;
+  background-color: #fffde0;
+  box-shadow: 6px 6px 12px #9c9871, -6px -6px 12px #f8faaa;
+  font-size: medium;
+  font-weight: bold;
+  min-width: 50%;
+  max-width: 90%;
+}
+.input:focus {
+  outline-color: rgb(94, 93, 59);
+  place-content: "Enter your message!";
+}
+
+.radio {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 5px 0;
+  width: 100%;
+}
+.radio label {
+  margin: 10px;
+}
+.errors {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  color: red;
+  font-size: smaller;
+  font-style: inherit;
+}
+.radio2 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.buttonSiguiente {
+  justify-self: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  font-size: small;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.title,
+.title2 {
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+}
+.title2 {
+  font-size: large;
+}
+
+.hiddenInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.mi_archivo {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 8px 40px;
+  text-transform: uppercase;
+  width: 12.8rem;
+  height: 2.5rem;
+  text-align: center;
+  align-self: center;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(188, 178, 117);
+  color: #053005;
+  border: 1px solid #78774a;
+  border-radius: 5px;
+}
+
+.mi_archivo:hover {
+  color: rgb(255, 250, 250);
+  background-color: #584a3c91;
+  border-radius: 5px;
+  border: #584a3cf3;
+}
+
+.buttonAtras {
+  display: flex;
+  align-items: center;
+  font-size: small;
+}
+
+.submit {
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  background-color: #584a3cf3;
+  transition: all 0.5s;
+  cursor: pointer;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 5px;
+  align-self: center;
+}
+
+.submit:hover {
+  background-color: antiquewhite;
+  color: #034103;
+  border: 2px solid #03410371;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+.location {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.locat_select {
+  padding: 8px 7px;
+  font-size: 17px;
+  background: transparent;
+  width: 200px;
+}
