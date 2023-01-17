@@ -48,6 +48,8 @@ export const validation = (e, errors, setError) => {
     errors.health = !value
       ? "Por favor, especifique el estado de salud de la mascota"
       : null;
+  } else if(name === "healthExtra"){
+    errors.healthExtra = !value ? "Por favor, describe la condición de salud de la mascota" : ''
   } else if (name === "sociability") {
     errors.sociability = !value
       ? "Por favor, indique la sociabilidad de la mascota"
