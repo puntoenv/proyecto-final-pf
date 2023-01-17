@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 const Schema = mongoose.Schema;
 
+// const timeExpiration = 5184000;
+
 const petSchema = new Schema({
   name: {
     type: String,
@@ -48,7 +50,7 @@ const petSchema = new Schema({
   },
 
   hidden: { type: Boolean, default: false },
-  expireAt: { type: Date, expires: 5.184 * 1000 },
+  expireAt: { type: Date, expires: 5184000 },
 });
 
 petSchema.plugin(mongoosePaginate);
