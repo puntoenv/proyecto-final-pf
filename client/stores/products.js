@@ -37,8 +37,8 @@ export const productsSlice = createSlice({
     },
     productsFilter: (state, action) => {
       if (action.payload.docs.length === 0) {
-
-        // alert("No hay productos con esas características.");
+        // state.allProducts = action.payload.docs;
+        alert("No hay productos con esas características.");
       } else {
         state.allProducts = action.payload.docs;
         state.data = {
