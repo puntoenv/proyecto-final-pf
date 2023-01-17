@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
