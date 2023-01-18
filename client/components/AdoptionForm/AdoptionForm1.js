@@ -16,13 +16,6 @@ const AdoptionForm1 = ({
   }
   return (
     <div className={styles.containForm1}>
-      <button
-        type="button"
-        className={styles.buttonSiguiente}
-        onClick={() => setFirst(false)}
-      >
-        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
-      </button>
       {/******************INPUT NAME******************/}
       <span className={styles.errors}>{errors.name}</span>
       <input
@@ -229,6 +222,14 @@ const AdoptionForm1 = ({
           />
         </label>
       )}
+
+      <button
+        type="button"
+        className={styles.buttonSiguiente}
+        onClick={() => setFirst(false)}
+      >
+        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
+      </button>
     </div>
   );
 };

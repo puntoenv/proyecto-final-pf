@@ -26,6 +26,7 @@ postPet.post("/post-pet", async (req, res) => {
       userId,
     } = req.body;
     let result = await cloudinary.uploader.upload(image);
+    console.log(image)
     const user = await User.findById(userId);
     let pet = await Pet.create({
       name,

@@ -39,6 +39,7 @@ export function form(props) {
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
   const [post, setPost] = useState({
+    image: [],
     userId: idUser,
   });
   const [first, setFirst] = useState(true);
@@ -73,6 +74,7 @@ export function form(props) {
           <Layout title="Publicar Mascota" />
           <NavBar />
           <div className={styles.container}>
+            <div className={styles.containImg}></div>
             <form
               className={styles.form}
               onSubmit={(e) =>

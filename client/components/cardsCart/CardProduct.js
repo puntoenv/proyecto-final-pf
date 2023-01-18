@@ -6,6 +6,7 @@ import {
   BsCartPlusFill,
   BsFillTrashFill,
 } from "react-icons/bs";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 export default function CardProduct({
@@ -46,7 +47,23 @@ export default function CardProduct({
   };
 
   const handlerDelete = (id) => {
-    deleteCart(id);
+    Swal.fire({
+      title: "Estas seguro que deseas eliminar el producto?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, estoy seguro!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCart(id);
+        Swal.fire({
+          title: "Producto eliminado exitosamente",
+          icon: "success",
+        });
+      }
+    });
   };
 
   useEffect(() => {

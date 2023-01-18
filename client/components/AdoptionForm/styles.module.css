@@ -63,8 +63,9 @@
   border-radius: 15px;
   padding: 15px;
   margin: 10px;
-  background-color: #ffffff;
-  box-shadow: 6px 6px 12px #eeeeee, -6px -6px 12px #c5c5c5;
+  color: #333;
+  background-color: #ffffff88;
+  box-shadow: 6px 6px 12px #aaa, -3px -3px 12px #888;
   font-size: medium;
   font-weight: bold;
   min-width: 50%;
@@ -107,14 +108,12 @@
 
 .buttonSiguiente {
   justify-self: flex-end;
-  position: absolute;
-  top: -20px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   font-size: small;
   align-items: center;
-  margin-top: 1rem;
+  margin: 30px;
 }
 
 .title,
@@ -182,6 +181,7 @@
   height: 2rem;
   border-radius: 5px;
   align-self: center;
+  margin: 20px 0;
 }
 
 .submit:hover {
@@ -209,4 +209,11 @@
 .upImage {
   font-size: 60px;
   margin-right: 20px;
+}
+
+.divImgsPost {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
 }

@@ -22,6 +22,7 @@ const AdoptionForm2 = ({
   provi,
   munici,
 }) => {
+  console.log(post.image);
   return (
     <div className={styles.form2}>
       <button
@@ -192,42 +193,32 @@ const AdoptionForm2 = ({
           }}
         />
       </label>
-
-      {/* <label htmlFor="image" className={styles.stretch}>
-        Imagen:
-        <span className={styles.errors}>{errors.image}</span>
-        <input
-          id="image"
-          type="file"
+      <div className={styles.divImgsPost}>
+        <label
+          htmlFor="image"
+          className={styles.mi_archivo}
           name="image"
           onChange={(e) => {
-            validation(e, errors);
+            validation(e, errors, setError);
             handleFiles(e, setPost, post);
           }}
-        />
-      </label> */}
-      <label
-        htmlFor="image"
-        className={styles.mi_archivo}
-        name="image"
-        onChange={(e) => {
-          validation(e, errors, setError);
-          handleFiles(e, setPost, post);
-        }}
-      >
-        <HiArrowDownOnSquare className={styles.upImage} />
-        Subir imagen
-        <span className={styles.errors}>{errors.image && errors.image}</span>
-        <input
-          type="file"
-          className={styles.hiddenInput}
-          name="image"
-          id="image"
-        ></input>
-      </label>
-      <span style={{ textAlign: "center" }}>
-        {post.image && post.image.slice(0, 40) + "..."}
-      </span>
+        >
+          <HiArrowDownOnSquare className={styles.upImage} />
+          Subir imagen
+          <span className={styles.errors}>{errors.image && errors.image}</span>
+          <input
+            type="file"
+            className={styles.hiddenInput}
+            name="image"
+            id="image"
+            multiple
+          ></input>
+        </label>
+        <span style={{ textAlign: "center" }}>
+          {post.image.length !== 0 &&
+            post.image.map((img) => <p>{img.slice(0, 20) + "..."}</p>)}
+        </span>
+      </div>
       <label htmlFor="submit" className={styles.submit}>
         <button
           className={styles.inputSubmit}
