@@ -220,7 +220,7 @@ export default function Perfil({
               </div>
             </div>
           </div>
-
+{/* Datossssssssssssssssssssssss NOMBRES */}
           <div>
             <div className={style.infoStyles}>
               <p className={style.infoStylesP}>
@@ -266,10 +266,7 @@ export default function Perfil({
                           </button>
                         </form>
                       )}
-                    </div>
-                  </div>
-
-                  <span
+                       <span
                     onClick={() => {
                       setEdit({ ...edit, name: !edit.name }),
                         setInput({ ...input, name: "" });
@@ -280,6 +277,10 @@ export default function Perfil({
                       size={18}
                     ></HiPencilSquare>
                   </span>
+                    </div>
+                  </div>
+
+                 
                 </div>
                 <span>{error.name ? error.name : ""}</span>
               </p>
@@ -327,9 +328,7 @@ export default function Perfil({
                           </button>
                         </form>
                       )}
-                    </div>
-                  </div>
-                  <span
+                       <span
                     className={style.icon}
                     onClick={() => {
                       setEdit({ ...edit, age: !edit.age }),
@@ -338,6 +337,9 @@ export default function Perfil({
                   >
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
+                    </div>
+                  </div>
+                 
                 </div>
                 <span>{error.age ? error.age : ""}</span>
               </p>
@@ -385,9 +387,7 @@ export default function Perfil({
                           </button>
                         </form>
                       )}
-                    </div>
-                  </div>
-                  <span
+                       <span
                     className={style.icon}
                     onClick={() => {
                       setEdit({ ...edit, ubication: !edit.ubication }),
@@ -397,6 +397,9 @@ export default function Perfil({
                     <HiPencilSquare size={18}></HiPencilSquare>
                   </span>
                 </div>
+                    </div>
+                  </div>
+                 
                 <span className={style.error}>
                   {error.ubication ? error.ubication : ""}
                 </span>
