@@ -21,6 +21,7 @@ const payment = require("./routes/mercadoPago");
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
 const types = require("./routes/pets/types");
+const related = require("./routes/pets/related");
 
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
@@ -31,6 +32,7 @@ router.use("/users", allUsers);
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 router.use("/types", types);
+router.use("/petsRelated", related);
 // buyProduct aun no esta listo
 router.use(
   "/products",
@@ -38,7 +40,7 @@ router.use(
   getAllProducts,
   buyProduct,
   detailProduct,
-  productsByName,
+  productsByName
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
