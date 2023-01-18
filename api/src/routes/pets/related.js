@@ -1,8 +1,8 @@
 const { Router } = require("express");
-const related = Router();
+const petsRelated = Router();
 const Pet = require("../../models/Pet");
 
-related.get("/", async (req, res) => {
+petsRelated.get("/", async (req, res) => {
   let { query } = req;
   try {
     let pets = await Pet.find(query);
@@ -12,4 +12,4 @@ related.get("/", async (req, res) => {
   }
 });
 
-module.exports = related;
+module.exports = petsRelated;
