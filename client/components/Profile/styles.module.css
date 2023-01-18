@@ -94,7 +94,7 @@
   color: #034103;
 }
 
-.buttons button:hover{
+.buttons button:hover {
   background-color: #163811aa;
   color: antiquewhite;
 }
@@ -114,7 +114,6 @@
   cursor: pointer;
   color: antiquewhite;
   display: flex;
-
 }
 
 .h1 {
@@ -160,6 +159,14 @@
   flex-direction: column;
   margin-bottom: 2rem;
 }
+
+.inputInside {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px;
+}
+
 .divContainer {
   display: flex;
   justify-content: space-between;
@@ -169,9 +176,7 @@
   background-color: rgba(255, 255, 255, 0.432);
   width: 25rem;
   height: 2rem;
-  
-  
-  
+
   border-radius: 15px;
 }
 .error {
@@ -182,7 +187,7 @@
 
 .p {
   background-color: #163811aa;
-  width: 9rem;
+  min-width: 9rem;
   height: 2rem;
   border-radius: 15px;
   display: flex;

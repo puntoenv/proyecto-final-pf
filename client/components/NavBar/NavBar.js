@@ -48,7 +48,7 @@ const NavBar = (res) => {
           <Link className="itemNav" href='/aboutUs'>
             <span>Nosotros</span>
           </Link>
-          <Link className="itemNav" href='contact'>
+          <Link className="itemNav" href='/contact'>
             <span>Contáctanos</span>
           </Link>
           <Link className="itemNav" href="/eShop">
