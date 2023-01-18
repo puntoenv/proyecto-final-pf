@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
@@ -33,26 +32,12 @@ export default function Detail({
     };
     setAmount((i) => (i = i + 1));
     addToCart(product);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto agregado`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const handlerSubmitDiscount = () => {
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Producto quitado de tu Carrito`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
     }
   };
 
@@ -142,10 +127,7 @@ export default function Detail({
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/products/detail/" +
-          params.id
-      )
+      await fetch(`${process.env.URL_BACK}products/detail/${params.id}`)
     ).json();
     return {
       props: {

@@ -28,7 +28,7 @@ export default function Home() {
       slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 2000,
+      speed: 1700,
       autoplaySpeed: 2000,
       cssEase: "linear",
     };

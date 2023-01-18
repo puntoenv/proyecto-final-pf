@@ -155,9 +155,7 @@ export default Favorite;
 export async function getServerSideProps({query}) {
   try {
     const response = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/user/" + query.id
-      )
+      await fetch(`${process.env.URL_BACK}user/${query.id}`)
     ).json();
     return {
       props: {
