@@ -225,7 +225,6 @@ const AdoptionForm2 = ({
           className={styles.hiddenInput}
           name="image"
           id="image"
-          multiple
         ></input>
       </label>
       <span style={{ textAlign: "center" }}>
