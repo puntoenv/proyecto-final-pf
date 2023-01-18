@@ -1,14 +1,19 @@
 import axios from "axios";
 
-export function formatItemsMp(total) {
-    if (total) {
+export function formatItemsMp() {
+
+  const productstotal = JSON.parse(localStorage.getItem("cart"));
+  console.log(productstotal)
+  console.log(productstotal)
+  console.log(productstotal)
+    if (productstotal) {
       
-       let item= [{
+      /* let item= [{
         name:"productos varios",
         price:total,
-    }] 
+    }] */
     const payment = axios
-      .post("https://proyecto-final-pf-production.up.railway.app/payment", item)
+      .post("http://localhost:3001/payment",productstotal) //item)
       .then(
         (res) => (window.location.href = res.data.response.body.init_point)
       );
@@ -24,7 +29,7 @@ export function formatOneItemMP(products) {
   if (products){
         const payment = axios
           .post(
-            "https://proyecto-final-pf-production.up.railway.app/payment",
+            "http://localhost:3001/payment",
             products
           )
           .then(
