@@ -97,9 +97,10 @@ export const handleFiles = (e, setPost, post) => {
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
   reader.onloadend = () => {
+    
     setPost({
       ...post,
-      image: reader.result,
+      image: [...post.image, reader.result]
     });
   };
 };

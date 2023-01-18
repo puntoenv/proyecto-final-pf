@@ -20,7 +20,9 @@ const petSchema = new Schema({
     required: true,
     min: 15,
   },
-  image: String,
+  image: {
+    type: String
+  },
   gender: {
     type: String,
     required: true,
