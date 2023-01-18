@@ -14,6 +14,7 @@ router.get("/:id", async (req, res) => {
       if (price === "barato") {
         products = await Product.paginate(
           {
+            hidden: false,
             category: { $in: [...category] },
             price: { $gte: 0, $lte: 999 },
           },
@@ -22,6 +23,7 @@ router.get("/:id", async (req, res) => {
       } else if (price === "accesible") {
         products = await Product.paginate(
           {
+            hidden: false,
             category: { $in: [...category] },
             price: { $gte: 1000, $lte: 4999 },
           },
@@ -30,6 +32,7 @@ router.get("/:id", async (req, res) => {
       } else if (price === "costoso") {
         products = await Product.paginate(
           {
+            hidden: false,
             category: { $in: [...category] },
             price: { $gte: 5000, $lte: 10000 },
           },
@@ -40,28 +43,31 @@ router.get("/:id", async (req, res) => {
       category = Array.from(new Set(category.split("-")));
       console.log(category);
       products = await Product.paginate(
-        { category: { $in: [...category] } },
+        { hidden: false, category: { $in: [...category] } },
         { page: id, limit: 10 }
       );
     } else if (!category && price) {
       if (price === "barato") {
         products = await Product.paginate(
-          { price: { $gte: 0, $lte: 999 } },
+          { hidden: false, price: { $gte: 0, $lte: 999 } },
           { page: id, limit: 10 }
         );
       } else if (price === "accesible") {
         products = await Product.paginate(
-          { price: { $gte: 1000, $lte: 4999 } },
+          { hidden: false, price: { $gte: 1000, $lte: 4999 } },
           { page: id, limit: 10 }
         );
       } else if (price === "costoso") {
         products = await Product.paginate(
-          { price: { $gte: 5000, $lte: 10000 } },
+          { hidden: false, price: { $gte: 5000, $lte: 10000 } },
           { page: id, limit: 10 }
         );
       }
     } else {
-      products = await Product.paginate({}, { page: id, limit: 10 });
+      products = await Product.paginate(
+        { hidden: false },
+        { page: id, limit: 10 }
+      );
     }
     console.log(products);
     res.send(products);
