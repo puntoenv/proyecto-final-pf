@@ -42,7 +42,7 @@
     "react-slick": "^0.29.0",
     "sass": "^1.57.1",
     "slick-carousel": "^1.8.1",
-    "sweetalert2": "^11.7.0",
+    "sweetalert2": "^11.4.8",
     "swiper": "^8.4.5",
     "url": "^0.11.0"
   },
