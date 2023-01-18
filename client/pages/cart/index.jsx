@@ -6,6 +6,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/cardsCart/CardProduct";
 import { formatItemsMp } from "../../controller/formatItemsMp";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 export default function Cart({
   cart,
@@ -36,7 +38,24 @@ export default function Cart({
   }, [cart, total]);
 
   const handlerDeleteAll = () => {
-    deleteAllCart(cart, setCart);
+    Swal.fire({
+      title: "Estas seguro que deseas vaciar el carrito?",
+      text: "Esta acción es irreversible",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, estoy seguro!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteAllCart(cart, setCart);
+        Swal.fire({
+          title: "Carrito vaciado exitosamente",
+          icon: "success",
+        });
+      }
+    });
   };
 
   return (

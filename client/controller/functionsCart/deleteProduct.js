@@ -20,13 +20,15 @@ export const discountOneProduct = (cart, setCart, id) => {
     const cartFiltered = cart.filter((item) => item._id !== id);
     setCart(cartFiltered);
     localStorage.setItem("cart", JSON.stringify(cart));
-    return Swal.fire({
+    Swal.fire({
       position: "center",
       icon: "success",
-      title: `Producto quitado de tu Carrito`,
+      title: `Producto quitado de tu carrito`,
       showConfirmButton: false,
       timer: 1000,
     });
+
+    return;
   } else {
     item.amount -= 1;
     item.subtotal -= item.price;
@@ -34,7 +36,7 @@ export const discountOneProduct = (cart, setCart, id) => {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: `Producto quitado de tu Carrito`,
+      title: `Producto quitado de tu carrito`,
       showConfirmButton: false,
       timer: 1000,
     });
