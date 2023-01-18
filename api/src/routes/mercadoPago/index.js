@@ -23,6 +23,7 @@ router.post("/", (req, res) => {
     };
     arr.push(obj);
     
+    
   }
   let preference = {
     items: arr,
