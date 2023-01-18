@@ -36,7 +36,7 @@
 
       .imageLogo {
         height: 10rem;
-        width: 10rem;
+        width: 15rem;
         border-radius: 1rem;
       }
 
@@ -83,26 +83,24 @@
         src="https://res.cloudinary.com/dibwxnomi/image/upload/v1673707803/imagenes/WhatsApp_Image_2023-01-14_at_9.46.08_AM_qkbtwv.jpg"
         alt="title"
       />
-      <p>Has realizado la publicacion de una mascota.</p>
+      <p>Tu familia ha crecido.</p>
+      <p>De ahora en adelante <%= pet.name %> es parte de tu vida.</p>
       <p>
-        A partir de ahora nuestra ONG sera parte del proceso de encontrar una
-        familia para <%= name %>.
+        Esperamos que haya sido gratificante el proceso de adopcion. Si por
+        alguna razón se presenta algún conflicto, ya sea de adopcion u otro
+        ambito, puedes comunicarte con nosotros a travez de nuestro Gmail <%=
+        email %> o contáctanos en nuestra cuenta de Instagram
+        <a class="link" href="https://www.instagram.com/pets_littlepaws/"
+          >@pets_littlepaws</a
+        >.
       </p>
-      <p>
-        Te notificaremos via email cada paso del proceso de adopción. Si tienes
-        alguna consulta sobre los procesos realizados por Little Paws, puedes
-        contactarte con nosotros a nuestro email
-      </p>
-      <a href="http://localhost:3000/detail/<%= id %>" class="link">
-        <button class="btn">Ver Publicación</button>
+      <br />
+      <img class="imageLogo" src="<%= pet.image[0] %>" alt="Little Paws" />
+      <br />
+      <br />
+      <a href="http://localhost:3000/detail/<%= pet._id %>">
+        <button class="btn">Ver perfil de <%= pet.name %></button>
       </a>
-      <br />
-      <br />
-      <img
-        class="imageLogo"
-        src="https://res.cloudinary.com/dibwxnomi/image/upload/v1673708954/imagenes/Logo_marro%CC%81n.png_ehcsx9.png"
-        alt="Little Paws"
-      />
     </div>
   </body>
 </html>
