@@ -7,7 +7,7 @@ import Link from "next/link";
 import logo from "../../img/logo.jpeg";
 
 export default function Detail({ data }) {
-console.log(data)
+
   return (
     <div className={styles.containerAll}>
       <Layout title={data.name.toUpperCase()} />
@@ -21,11 +21,19 @@ console.log(data)
         </div>
         <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
         <div className={styles.containCardDetail}>
-          <img
+          {/* <img
             className={styles.image}
             src={data.image}
             alt="Imagen de la mascota"
-          />
+          /> */}
+
+          {data.image.map((ele) => (
+            <img
+              className={styles.image}
+              src={ele}
+              alt="Imagen de la mascota"
+            />
+          ))}
 
           <div class={styles.divCharacteristics}>
             <div class={styles.divSize}>
