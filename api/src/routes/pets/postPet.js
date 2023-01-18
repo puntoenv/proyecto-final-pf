@@ -20,22 +20,28 @@ postPet.post("/post-pet", async (req, res) => {
       gender,
       location,
       health,
+      healthExtra,
       sociability,
       condition,
       userId,
     } = req.body;
-    let result = await cloudinary.uploader.upload(image);
+    let result = []
+    for(let i = 0; i < image.length; i++){
+      result.push(await cloudinary.uploader.upload(image[i]));
+    }
+    console.log(result)
     const user = await User.findById(userId);
     let pet = await Pet.create({
       name,
       size,
       age,
       description,
-      image: result.url,
+      image: result.map(ele => ele.url),
       type,
       location,
       gender,
       health,
+      healthExtra,
       condition,
       sociability,
       user: user._id,
@@ -54,7 +60,6 @@ postPet.post("/post-pet", async (req, res) => {
       subject: "Correo de confirmación",
       html: data,
     });
-    console.log(info);
     res.status(200).send(pet._id);
   } catch (error) {
     console.log(error);

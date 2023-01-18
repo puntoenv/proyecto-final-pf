@@ -22,26 +22,26 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
   {
-    // const settings = {
-    //   dots: true,
-    //   infinite: true,
-    //   slidesToShow: 3,
-    //   slidesToScroll: 1,
-    //   autoplay: true,
-    //   speed: 2000,
-    //   autoplaySpeed: 1700,
-    //   cssEase: "linear",
-    // };
     const settings = {
-      arrows: true,
-      infinite: true,
       dots: true,
-      speed: 500,
+      infinite: true,
       slidesToShow: 3,
-      slidesToScroll: 3,
-      
+      slidesToScroll: 1,
+      autoplay: true,
+      speed: 1700,
+      autoplaySpeed: 2000,
+      cssEase: "linear",
     };
-    const {user} = useUser()
+    // const settings = {
+    //   arrows: true,
+    //   infinite: true,
+    //   dots: true,
+    //   speed: 500,
+    //   slidesToShow: 3,
+    //   slidesToScroll: 3,
+
+    // };
+    const { user } = useUser();
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
     const data = useSelector((state) => state.products.data);
@@ -83,11 +83,11 @@ export default function Home() {
 
           <div className={styles.containSlider}>
             <div className={styles.titleRoute}>
-            <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
+              <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
 
-            <button className={styles.buttonRoute}>
-              <Link href='/petsPosts'>Ver mas</Link>
-            </button>
+              <button className={styles.buttonRoute}>
+                <Link href="/petsPosts">Ver mas</Link>
+              </button>
             </div>
 
             <Slider {...settings} className="arrowsSlides">
@@ -103,17 +103,14 @@ export default function Home() {
             </Slider>
           </div>
 
-       
-
           <div className={styles.containSlider}>
-          <div className={styles.titleRoute}>
-            <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
-            <button className={styles.buttonRoute}>
-              <Link href='/eShop'>Ver mas</Link>
-            </button>
+            <div className={styles.titleRoute}>
+              <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
+              <button className={styles.buttonRoute}>
+                <Link href="/eShop">Ver mas</Link>
+              </button>
             </div>
-            
-            
+
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => (
                 <ProductCard
@@ -141,7 +138,7 @@ export default function Home() {
               posteos.
             </p>
           </div>
-          <Join user={user}/>
+          <Join user={user} />
         </div>
       </LayoutGlobal>
     );

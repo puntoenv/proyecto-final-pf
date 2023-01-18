@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
@@ -11,14 +10,12 @@ export default function Detail({
   data,
   cart,
   addToCart,
-  deleteCart,
   productOfCart,
   discountItem,
 }) {
   const { user } = useUser();
 
-  const { name, image, price, _id, description, stock, category, boughtBy } =
-    data;
+  const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
 
@@ -35,26 +32,12 @@ export default function Detail({
     };
     setAmount((i) => (i = i + 1));
     addToCart(product);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto agregado`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const handlerSubmitDiscount = () => {
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Producto quitado de tu Carrito`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
     }
   };
 
@@ -89,44 +72,34 @@ export default function Detail({
                     Comprar
                   </button>
                 ))}
-              {/* {(user && (
-                <button
-                  className={style.btnBuy}
-                  onClick={(e) => formatOneItemMP(products)}
-                >
-                  Comprar
-                </button>
-              )) ||
-                (itemCart && (
-                  <Link href="/cart" className={style.btnBuy}>
-                    Comprar
-                  </Link>
-                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
-                <div className={style.formCantCart}>
-                  <button
-                    onClick={handlerSubmitAdded}
-                    className={style.modifiedCant}
-                    type="submit"
-                  >
-                    <BsCartPlusFill className={style.icon} />
-                  </button>
-
-                  {amount !== undefined && (
-                    <span className={style.amount}>{amount}</span>
-                  )}
-
-                  <span className={style.spanButtonAdd}>
+                <div className={style.containFormCart}>
+                  <div className={style.formCantCart}>
                     <button
-                      onClick={handlerSubmitDiscount}
+                      onClick={handlerSubmitAdded}
                       className={style.modifiedCant}
                       type="submit"
                     >
-                      <BsCartDashFill className={style.icon} />
+                      <BsCartPlusFill className={style.icon} />
                     </button>
-                  </span>
+
+                    {amount !== undefined && (
+                      <span className={style.amount}>{amount}</span>
+                    )}
+
+                    <span className={style.spanButtonAdd}>
+                      <button
+                        onClick={handlerSubmitDiscount}
+                        className={style.modifiedCant}
+                        type="submit"
+                      >
+                        <BsCartDashFill className={style.icon} />
+                      </button>
+                    </span>
+                  </div>
+                  <span className={style.spanStock}>stock: {data.stock}</span>
                 </div>
               </span>
               {data.category && (
@@ -154,10 +127,7 @@ export default function Detail({
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/products/detail/" +
-          params.id
-      )
+      await fetch(`${process.env.URL_BACK}products/detail/${params.id}`)
     ).json();
     return {
       props: {

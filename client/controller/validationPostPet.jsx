@@ -48,6 +48,8 @@ export const validation = (e, errors, setError) => {
     errors.health = !value
       ? "Por favor, especifique el estado de salud de la mascota"
       : null;
+  } else if(name === "healthExtra"){
+    errors.healthExtra = !value ? "Por favor, describe la condición de salud de la mascota" : ''
   } else if (name === "sociability") {
     errors.sociability = !value
       ? "Por favor, indique la sociabilidad de la mascota"
@@ -95,9 +97,10 @@ export const handleFiles = (e, setPost, post) => {
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
   reader.onloadend = () => {
+    
     setPost({
       ...post,
-      image: reader.result,
+      image: [...post.image, reader.result]
     });
   };
 };

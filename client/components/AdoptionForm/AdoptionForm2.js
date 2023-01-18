@@ -22,6 +22,7 @@ const AdoptionForm2 = ({
   provi,
   munici,
 }) => {
+  console.log(post.image)
   return (
     <div className={styles.form2}>
       <label htmlFor="condition" className={styles.condition}>
@@ -126,8 +127,6 @@ const AdoptionForm2 = ({
           </label>
         </div>
       </label>
-
-
 
       <label className={styles.location}>
         <label htmlFor="provincia" className={styles.stretch}>
@@ -254,7 +253,6 @@ const AdoptionForm2 = ({
           id="submit"
           type="submit"
           value="Subir Mascota"
-        
         >
           Publicar
         </button>
