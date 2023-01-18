@@ -62,7 +62,7 @@ export default function getYourPet({ pet, user }) {
     console.log(input);
   };
 
-  const handlerOnSubmit = (e) => {
+  const handlerOnSubmit = async (e) => {
     e.preventDefault();
     Swal.fire({
       title: "¡Felicidades! Se realizo la adopción.",
@@ -71,7 +71,8 @@ export default function getYourPet({ pet, user }) {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-    router.push("/home");
+    await axios.get(`/adoptEmail/?petId=${pet._id}&userId=${user._id}`);
+    return router.push("/home");
   };
 
   return (
