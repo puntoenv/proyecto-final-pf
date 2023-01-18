@@ -16,11 +16,13 @@ router.post("/", (req, res) => {
 
   for (let i = 0; i < products.length; i++) {
     let obj = {
+      id:products[i]._id,
       title: products[i].name,
       unit_price: products[i].price,
-      quantity: 1,
+      quantity: products[i].amount?products[i].amount:1,
     };
     arr.push(obj);
+    
   }
   let preference = {
     items: arr,
