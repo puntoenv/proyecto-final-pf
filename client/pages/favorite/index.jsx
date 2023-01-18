@@ -1,18 +1,38 @@
 import Link from "next/link";
 import styles from "./styles.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useRouter } from "next/router";
 function index({ favorite, DeletFavori }) {
+  const { user } = useUser();
+  const userId = user?.sub?.split("|").pop();
+  const router = useRouter();
   console.log(favorite);
-  const handleClick = () => {
+
+  const handleClick = (e) => {
+    let petId = favorite[e.target.value]._id;
+    e.preventDefault();
+    if (user) {
+      router.push(`/getYourPet/?pet=${petId}&user=${userId}`);
+    } else {
+      Swal.fire({
+        title: "Necesitas registrarte para realizar alguna adopción.",
+        icon: "error ",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      });
+    }
     console.log("soy el formulario");
   };
+
   return (
     <LayoutGlobal>
       <div className={styles.cards}>
         {!favorite.length ? (
           <h1 className={styles.favoritoVacio}>la lista esta vacia</h1>
         ) : (
-          favorite?.map((items) => (
+          favorite?.map((items, index) => (
             <div className={styles.card}>
               <img
                 className={styles.card__image}
@@ -39,8 +59,12 @@ function index({ favorite, DeletFavori }) {
                 <h3 className={styles.card__description}>
                   {items.description}
                 </h3>
-                <button className={styles.btn} onClick={() => handleClick()}>
-                  formulario
+                <button
+                  className={styles.btn}
+                  value={index}
+                  onClick={(e) => handleClick(e)}
+                >
+                  Adoptar
                 </button>
               </div>
             </div>
