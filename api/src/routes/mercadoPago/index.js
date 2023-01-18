@@ -22,6 +22,7 @@ router.post("/", (req, res) => {
       quantity: products[i].amount?products[i].amount:1,
     };
     arr.push(obj);
+    
   }
   let preference = {
     items: arr,
