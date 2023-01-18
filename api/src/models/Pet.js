@@ -21,7 +21,7 @@ const petSchema = new Schema({
     min: 15,
   },
   image: {
-    type: String
+    type: Array
   },
   gender: {
     type: String,
