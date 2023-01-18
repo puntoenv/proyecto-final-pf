@@ -8,7 +8,7 @@ router.get("/by-name/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const pets = await Pet.paginate(
-      { name: { $regex: name, $options: "i" } },
+      { name: { $regex: name, $options: "i" }, hidden: false },
       { page: id, limit: 10 }
     );
     // const petsFiltered = pets.filter((e) => e.name.includes(name));

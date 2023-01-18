@@ -8,7 +8,9 @@ productsRelated.get("/:id", async (req, res) => {
   try {
     let ctgrs = await Product.findById(id).then((product) => product.category);
     for (let i = 0; i < ctgrs.length; i++) {
-      related.push(await Product.find({ category: { $in: [ctgrs[i]] } }));
+      related.push(
+        await Product.find({ category: { $in: [ctgrs[i]] }, hidden: false })
+      );
     }
     res.status(200).send(related.flat());
   } catch (error) {
