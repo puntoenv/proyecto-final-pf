@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  flex-direction: column;
   position: relative;
   background-color: #38593a;
   margin-top: 40px;
@@ -22,24 +23,19 @@
 .containJoin {
   padding: 10px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
 }
+
 .joinBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 55%;
-  top: 80%;
   background: #e8eb9d;
   color: #32281f;
   font-size: 23px;
   border-radius: 15px;
-  width: 150px;
+  min-width: 150px;
   padding: 10px;
   z-index: 600;
   font-weight: 700;
-  margin-left: 1rem;
+  margin: 2rem auto;
 }
 
 .join {
@@ -75,3 +71,8 @@
   width: 10em;
   height: 10em;
 }
+
+.icon {
+  margin: auto;
+}
+

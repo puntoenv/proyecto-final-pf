@@ -127,10 +127,7 @@ export default function Detail({
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/products/detail/" +
-          params.id
-      )
+      await fetch(`${process.env.URL_BACK}products/detail/${params.id}`)
     ).json();
     return {
       props: {
