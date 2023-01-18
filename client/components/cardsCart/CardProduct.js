@@ -37,12 +37,37 @@ export default function CardProduct({
     addToCart(product);
     setAmount((i) => (i = i + 1));
   };
-
-  const handlerSubmitDiscount = () => {
+  /* const handlerSubmitDiscount = () => {
     modifiedTotal();
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
+    }
+  }; */
+  const handlerSubmitDiscount = () => {
+    modifiedTotal();
+    if (amount > 1) {
+      setAmount((i) => (i = i - 1));
+      discountItem(_id);
+    }
+    if (amount === 1) {
+      Swal.fire({
+        title: "Estas seguro que deseas eliminar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, estoy seguro!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          discountItem(_id);
+          Swal.fire({
+            title: "Producto eliminado exitosamente",
+            icon: "success",
+          });
+        }
+      });
     }
   };
 
