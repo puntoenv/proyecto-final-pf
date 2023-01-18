@@ -21,6 +21,9 @@ const updatePet = require("./routes/pets/updatePet");
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
 const types = require("./routes/pets/types");
+const petsRelated = require("./routes/pets/related");
+const productsRelated = require("./routes/products/related");
+const adoptEmail = require("./routes/pets/adopt");
 
 router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
@@ -32,6 +35,8 @@ router.use("/users", allUsers);
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 router.use("/types", types);
+router.use("/petsRelated", petsRelated);
+router.use("/adoptEmail", adoptEmail);
 // buyProduct aun no esta listo
 router.use(
   "/products",
@@ -45,4 +50,5 @@ router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
 router.use("/payment", payment);
 router.use("/categories", categories);
+router.use("/productsRelated", productsRelated);
 module.exports = router;

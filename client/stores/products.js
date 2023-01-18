@@ -19,7 +19,6 @@ export const productsSlice = createSlice({
         page: action.payload.page,
         pages: action.payload.totalPages,
       };
-      console.log(state.data);
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
@@ -38,7 +37,14 @@ export const productsSlice = createSlice({
     productsFilter: (state, action) => {
       if (action.payload.docs.length === 0) {
         // state.allProducts = action.payload.docs;
-        alert("No hay productos con esas características.");
+        Swal.fire({
+          title: "No hay productos con esas características.",
+          icon: "error",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+          // background: "#fff url(../backAlerts.png)",
+        });
       } else {
         state.allProducts = action.payload.docs;
         state.data = {

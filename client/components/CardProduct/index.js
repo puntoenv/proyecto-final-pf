@@ -37,7 +37,6 @@ export default function CardProduct({
   };
 
   useEffect(() => {
-    console.log(itemCart);
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
   }, [cart, amount]);
 
