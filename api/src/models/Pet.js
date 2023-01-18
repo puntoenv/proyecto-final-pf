@@ -21,7 +21,7 @@ const petSchema = new Schema({
     min: 15,
   },
   image: {
-    type: String
+    type: Array,
   },
   gender: {
     type: String,
@@ -50,7 +50,7 @@ const petSchema = new Schema({
   },
 
   hidden: { type: Boolean, default: false },
-//  expireAt: { type: Date, expires: 5184000 },
+  //  expireAt: { type: Date, expires: 5184000 },
 });
 
 petSchema.plugin(mongoosePaginate);
