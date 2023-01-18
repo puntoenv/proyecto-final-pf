@@ -5,10 +5,11 @@
   place-content: center;
   flex-direction: column;
   border-radius: 1rem;
-  background-color: #f2f4c0;
+  background-color: #ffffff;
   max-width: 80%;
+  min-width: 50%;
   padding: 20px 30px;
-  margin: auto;
+  margin: 100px auto;
   border-left: 1px solid #e8eb9d;
   border-top: 1px solid #e8eb9d;
   backdrop-filter: blur(20px);
@@ -19,10 +20,12 @@
   display: flex;
   justify-content: center;
   width: 100vw;
+  /* height: 100vh; */
   background-color: rgb(188, 178, 117);
   padding-bottom: 3rem;
   font-size: 20px;
-  padding: 120px 0px;
+  padding: 10px 0px;
+  padding-top: 60px;
 }
 
 .post {
@@ -41,4 +44,9 @@
   z-index: 4500;
   width: auto;
   height: 14em;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
 }

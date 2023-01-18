@@ -1,12 +1,10 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const AdoptionForm1 = ({
   errors,
   setFirst,
-  handleDisableInput,
   handleSelector,
   validation,
   setPost,
@@ -18,6 +16,13 @@ const AdoptionForm1 = ({
   }
   return (
     <div className={styles.containForm1}>
+      <button
+        type="button"
+        className={styles.buttonSiguiente}
+        onClick={() => setFirst(false)}
+      >
+        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
+      </button>
       {/******************INPUT NAME******************/}
       <span className={styles.errors}>{errors.name}</span>
       <input
@@ -74,90 +79,93 @@ const AdoptionForm1 = ({
         <option value="otra">otra</option>
       </select>
 
-      {/******************RADIOS GENERO******************/}
-      <label htmlFor="gender" className={styles.stretch}>
-        Genero:
-        <span className={styles.errors}>{errors.gender}</span>
-        <div className={styles.radio}>
-          <label htmlFor="macho">
-            <input
-              type="radio"
-              value="macho"
-              id="macho"
-              name="gender"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Macho
-          </label>
-          <label htmlFor="hembra">
-            <input
-              type="radio"
-              value="hembra"
-              id="hembra"
-              name="gender"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Hembra
-          </label>
-        </div>
-      </label>
+      <div className={styles.selectGenderSize}>
+        {/******************RADIOS GENERO******************/}
+        <label htmlFor="gender" className={styles.stretchGenSize}>
+          Genero:
+          <span className={styles.errors}>{errors.gender}</span>
+          <div className={styles.radio}>
+            <label htmlFor="macho">
+              <input
+                type="radio"
+                value="macho"
+                id="macho"
+                name="gender"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Macho
+            </label>
+            <label htmlFor="hembra">
+              <input
+                type="radio"
+                value="hembra"
+                id="hembra"
+                name="gender"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Hembra
+            </label>
+          </div>
+        </label>
 
-      {/******************RADIOS SALUD******************/}
-      <label htmlFor="size" className={styles.stretch}>
-        Tamaño:
-        <span className={styles.errors}>{errors.size}</span>
-        <div className={styles.radio}>
-          <label htmlFor="pequeño">
-            <input
-              type="radio"
-              id="pequeño"
-              value="pequeño"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Pequeño
-          </label>
-          <label htmlFor="mediano">
-            <input
-              type="radio"
-              id="mediano"
-              value="mediano"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Mediano
-          </label>
-          <label htmlFor="grande">
-            <input
-              type="radio"
-              id="grande"
-              value="grande"
-              name="size"
-              onClick={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Grande
-          </label>
-        </div>
-      </label>
-      <label htmlFor="health" className={styles.health}>
+        {/******************RADIOS TAMAÑO******************/}
+        <label htmlFor="size" className={styles.stretchGenSize}>
+          Tamaño:
+          <span className={styles.errors}>{errors.size}</span>
+          <div className={styles.radio}>
+            <label htmlFor="pequeño">
+              <input
+                type="radio"
+                id="pequeño"
+                value="pequeño"
+                name="size"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Pequeño
+            </label>
+            <label htmlFor="mediano">
+              <input
+                type="radio"
+                id="mediano"
+                value="mediano"
+                name="size"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Mediano
+            </label>
+            <label htmlFor="grande">
+              <input
+                type="radio"
+                id="grande"
+                value="grande"
+                name="size"
+                onClick={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Grande
+            </label>
+          </div>
+        </label>
+      </div>
+
+      <label htmlFor="health" className={styles.stretch}>
         Salud
         {/* <span className={styles.errors}>{errors.health}</span> */}
-        <div className={styles.radio2}>
+        <div className={styles.radio}>
           <label htmlFor="good">
             <input
               type="radio"
@@ -199,26 +207,30 @@ const AdoptionForm1 = ({
           </label>
         </div>
       </label>
-      <button
-        type="button"
-        className={styles.buttonSiguiente}
-        onClick={() => setFirst(false)}
-      >
-        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
-      </button>
+
+      {post.health === "necesita atención" && (
+        <label htmlFor="healthExtra" className={styles.stretch}>
+          Describe su condición de salud:
+          {errors.healthExtra ? (
+            <span className={styles.errors}>{errors.healthExtra}</span>
+          ) : (
+            ""
+          )}
+          <textarea
+            className={styles.input}
+            id="healthExtra"
+            type="text"
+            name="healthExtra"
+            placeholder="Descripción detallada"
+            onChange={(e) => {
+              validation(e, errors);
+              handleSelector(e, setPost, post);
+            }}
+          />
+        </label>
+      )}
     </div>
   );
 };
 
 export default AdoptionForm1;
-
-// const AdoptionForm2 = ({ setFirst }) => {
-//   return (
-//     <div>
-//       <h1>hola</h1>
-//       <button type="button" onClick={() => setFirst(true)}>
-//         Atras
-//       </button>
-//     </div>
-//   );
-// };

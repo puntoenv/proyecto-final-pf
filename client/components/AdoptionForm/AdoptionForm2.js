@@ -24,9 +24,16 @@ const AdoptionForm2 = ({
 }) => {
   return (
     <div className={styles.form2}>
-      <label htmlFor="condition" className={styles.condition}>
+      <button
+        className={styles.buttonAtras}
+        type="button"
+        onClick={() => setFirst(true)}
+      >
+        <IoIosArrowBack size={30}></IoIosArrowBack> Atrás
+      </button>
+      <label htmlFor="condition" className={styles.stretch}>
         Condición
-        <div className={styles.radio2}>
+        <div className={styles.radio}>
           <label htmlFor="pregnant">
             <input
               type="radio"
@@ -69,9 +76,9 @@ const AdoptionForm2 = ({
         </div>
       </label>
 
-      <label htmlFor="sociability" className={styles.sociability}>
+      <label htmlFor="sociability" className={styles.stretch}>
         ¿Cómo es su interacción con otros animales?
-        <div className={styles.radio2}>
+        <div className={styles.radio}>
           <label htmlFor="_good">
             <input
               type="radio"
@@ -127,55 +134,47 @@ const AdoptionForm2 = ({
         </div>
       </label>
 
-      <label className={styles.location}>
-        <label htmlFor="provincia" className={styles.stretch}>
-          <span className={styles.title2}>Provincia</span>
-          <span className={styles.errors}>{errors.provincia}</span>
-          <select
-            className={styles.locat_select}
-            name="provincia"
-            id="provincia"
-            onChange={(e) => {
-              validation(e, errors);
-              handleProvincia(e, setPost, post, dispatch, getmuni);
-            }}
-          >
-            <option defaultValue={true} value="select">
-              Seleccione la provincia...
-            </option>
-            {provi?.map((el) => (
-              <option key={el.nombre} value={el.nombre}>
-                {el.nombre}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="ciudad" className={styles.stretch}>
-          <span className={styles.title2}>Ciudad</span>
-          <span className={styles.errors}>{errors.ciudad}</span>
-          <select
-            className={styles.locat_select}
-            id="ciudad"
-            name="ciudad"
-            onChange={(e) => {
-              validation(e, errors);
-              handleCiudad(e, setPost, post);
-            }}
-          >
-            <option defaultValue={true} value="select">
-              Seleccione la ciudad...
-            </option>
-            <option value="Resistencia">Resistencia</option>
-            {munici?.map((el) => (
-              <option key={el.nombre} value={el.nombre}>
-                {el.nombre}
-              </option>
-            ))}
-          </select>
-        </label>
-      </label>
+      <span className={styles.errors}>{errors.provincia}</span>
+      <select
+        className={styles.input}
+        name="provincia"
+        id="provincia"
+        onChange={(e) => {
+          validation(e, errors);
+          handleProvincia(e, setPost, post, dispatch, getmuni);
+        }}
+      >
+        <option defaultValue={true} value="select">
+          Seleccione la provincia...
+        </option>
+        {provi?.map((el) => (
+          <option key={el.nombre} value={el.nombre}>
+            {el.nombre}
+          </option>
+        ))}
+      </select>
+      <span className={styles.errors}>{errors.ciudad}</span>
+      <select
+        className={styles.input}
+        id="ciudad"
+        name="ciudad"
+        onChange={(e) => {
+          validation(e, errors);
+          handleCiudad(e, setPost, post);
+        }}
+      >
+        <option defaultValue={true} value="select">
+          Seleccione la ciudad...
+        </option>
+        <option value="Resistencia">Resistencia</option>
+        {munici?.map((el) => (
+          <option key={el.nombre} value={el.nombre}>
+            {el.nombre}
+          </option>
+        ))}
+      </select>
 
-      <label htmlFor="description" className={styles.stretch}>
+      <label htmlFor="description" className={styles.stretchDescription}>
         Descripción:
         <span className={styles.errors}>
           {errors.description && errors.description}
@@ -216,7 +215,7 @@ const AdoptionForm2 = ({
           handleFiles(e, setPost, post);
         }}
       >
-        <HiArrowDownOnSquare size={15}></HiArrowDownOnSquare>
+        <HiArrowDownOnSquare className={styles.upImage} />
         Subir imagen
         <span className={styles.errors}>{errors.image && errors.image}</span>
         <input
@@ -229,23 +228,6 @@ const AdoptionForm2 = ({
       <span style={{ textAlign: "center" }}>
         {post.image && post.image.slice(0, 40) + "..."}
       </span>
-      {/* <label htmlFor="email">
-                Email de confirmación de publicación
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Ingrese el email..."
-                onChange={(e) => handleSelector(e)}
-              /> */}
-      <button
-        className={styles.buttonAtras}
-        type="button"
-        onClick={() => setFirst(true)}
-      >
-        <IoIosArrowBack size={30}></IoIosArrowBack> Atrás
-      </button>
       <label htmlFor="submit" className={styles.submit}>
         <button
           className={styles.inputSubmit}

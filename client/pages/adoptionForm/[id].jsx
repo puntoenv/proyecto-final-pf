@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
-import style from '../../components/Profile/Loading.module.css'
+import style from "../../components/Profile/Loading.module.css";
 import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
@@ -22,6 +22,9 @@ import {
   handleSubmit,
   handleDisableInput,
 } from "../../controller/validationPostPet";
+import Image from "next/image";
+import imgPets from "../../img/pngFormPostPet.png";
+
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -83,13 +86,10 @@ export function form(props) {
                   setPost={setPost}
                   post={post}
                   errors={errors}
-                  
                   first={first}
                   setFirst={setFirst}
-                 
                   handleSelector={handleSelector}
                   validation={validation}
-                 
                 ></AdoptionForm1>
               ) : (
                 <AdoptionForm2
