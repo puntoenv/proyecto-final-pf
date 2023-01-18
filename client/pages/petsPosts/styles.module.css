@@ -21,7 +21,7 @@
 
 .searchB {
   margin-top: 3em;
-  margin-bottom: 1.50em;
+  margin-bottom: 1.5em;
   border: 1px solid rgb(129, 126, 94);
   border-radius: 0px 15px 15px 0px;
   padding: 8px 22px;
@@ -39,7 +39,7 @@
 
 .input {
   margin-top: 3em;
-  margin-bottom: 1.50em;
+  margin-bottom: 1.5em;
   width: 100%;
   background-color: #e8eb9d;
   padding: 12px 24px;
@@ -124,7 +124,7 @@
   width: 280px;
   height: 400px;
   margin: 30px;
- padding-bottom: 30px;
+  padding-bottom: 30px;
   background: #e8eb9d;
   border-radius: 30px;
 }
@@ -146,7 +146,7 @@
   width: 20em;
   height: 180px;
   object-fit: cover;
-  border-radius: 30px 30px  0px 0px ;
+  border-radius: 30px 30px 0px 0px;
 }
 
 .btn {
@@ -249,8 +249,6 @@
   justify-content: center;
   align-items: center;
 }
-
-
 
 .box {
   display: flex;

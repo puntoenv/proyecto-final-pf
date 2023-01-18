@@ -144,3 +144,39 @@
   width: auto;
   height: 14em;
 }
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 10rem;
+}
+
+.adoptar {
+  padding: 1.3em 3em;
+  /* font-size: 12px; */
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 800;
+  color: #584a3c;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.adoptar:hover {
+  background-color: #38593a;
+  box-shadow: 0px 15px 20px #1f3120;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.adoptar:active {
+  transform: translateY(-1px);
+}
