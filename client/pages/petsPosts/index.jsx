@@ -14,7 +14,8 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
 
-export default function PetAdoption() {
+export default function PetAdoption({ favorite, addAgregar }) {
+  //console.log(favorite);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
@@ -56,7 +57,10 @@ export default function PetAdoption() {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
-
+  const handlerFavorite = (e, ani) => {
+    e.preventDefault();
+    addAgregar(ani);
+  };
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
@@ -220,6 +224,12 @@ export default function PetAdoption() {
                     <span className={styles.size}>{mascota.gender}</span>
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                    </button>
+                    <button
+                      className={styles.btn}
+                      onClick={(e) => handlerFavorite(e, mascota)}
+                    >
+                      Favorito
                     </button>
                   </div>
                 );
