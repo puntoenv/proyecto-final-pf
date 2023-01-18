@@ -36,6 +36,19 @@ export const getmuni = (municipios) => async (dispatch) => {
   }
 };
 
+export const PutPets = async (id, obj) => {
+  // console.log(id, obj);
+  try {
+    const respo = await axios.put(
+      `${process.env.URL_BACK}/updatePet/delete/${id}`,
+      obj
+    );
+    return respo;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const PostAdop = (post) => {
   console.log(post);
   return (

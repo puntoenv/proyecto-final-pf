@@ -16,12 +16,13 @@ const detailProduct = require("./routes/products/detailProduct");
 const allUsers = require("./routes/users/allUsers");
 const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
-
+const updatePet = require("./routes/pets/updatePet");
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
 const types = require("./routes/pets/types");
 
+router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", detail);
@@ -38,7 +39,7 @@ router.use(
   getAllProducts,
   buyProduct,
   detailProduct,
-  productsByName,
+  productsByName
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);

@@ -1,10 +1,21 @@
 import styles from "./pets.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useState } from "react";
+import { PutPets } from "../../stores/actions";
+import { useDispatch } from "react-redux";
 function Petscrea({ response }) {
-  const { pets } = response;
+  const dispatch = useDispatch();
 
+  const [pet, setpet] = useState([]);
+  const { pets } = response;
+  const arrayPets = pets.slice();
+  const handleClick = (id, obj) => {
+    /*const arrPets = arrayPets.filter((items) => items.hidden !== true);
+    setpet(arrPets);*/
+    PutPets(id, obj);
+  };
+  console.log(pets);
   return (
     <div>
       <div className={styles.container_animal}>
@@ -27,6 +38,12 @@ function Petscrea({ response }) {
                   <h2 className={styles.size}>{mascota.gender}</h2>
                   <button className={styles.btn}>
                     <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                  </button>
+                  <button
+                    className={styles.delet}
+                    onClick={(e) => handleClick(mascota._id, { hidden: true })}
+                  >
+                    x
                   </button>
                 </div>
               );
