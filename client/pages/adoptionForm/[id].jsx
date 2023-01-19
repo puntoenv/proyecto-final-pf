@@ -17,14 +17,11 @@ import AdoptionForm3 from "../../components/AdoptionForm/AdoptionForm3";
 import {
   validation,
   handleSelector,
-  handleProvincia,
-  handleCiudad,
+  handleLocation,
   handleFiles,
   handleSubmit,
   handleDisableInput,
 } from "../../controller/validationPostPet";
-import Image from "next/image";
-import imgPets from "../../img/pngFormPostPet.png";
 
 const ages = [];
 for (let i = 0; i <= 40; i++) {
@@ -45,6 +42,10 @@ export function form(props) {
   });
   const [position, setFirst] = useState(1);
 
+  const handlerCoords = (coords) => {
+    handleLocation(post, setPost, coords);
+  };
+
   useEffect(() => {
     if (!props.response.name || props.response.name === " ") {
       Swal.fire({
@@ -56,11 +57,8 @@ export function form(props) {
       });
       router.push(`/profile/${idUser}`);
     }
-  }, []);
-
-  useEffect(() => {
-    dispatch(getper()).then((_) => console.log(provi));
-  }, [dispatch]);
+    console.log(post);
+  }, [post]);
 
   return (
     <>
@@ -126,8 +124,7 @@ export function form(props) {
                   handleDisableInput={handleDisableInput}
                   dispatch={dispatch}
                   getmuni={getmuni}
-                  handleProvincia={handleProvincia}
-                  handleCiudad={handleCiudad}
+                  handlerCoords={handlerCoords}
                   provi={provi}
                   munici={munici}
                 />
@@ -144,8 +141,6 @@ export function form(props) {
                   handleDisableInput={handleDisableInput}
                   dispatch={dispatch}
                   getmuni={getmuni}
-                  handleProvincia={handleProvincia}
-                  handleCiudad={handleCiudad}
                   provi={provi}
                   munici={munici}
                 />

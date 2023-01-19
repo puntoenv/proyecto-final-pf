@@ -14,13 +14,6 @@ const AdoptionForm2 = ({
   handleFiles,
   setPost,
   setError,
-  //   handleDisableInput,
-  //   handleProvincia,
-  //   handleCiudad,
-  //   dispatch,
-  //   getmuni,
-  //   provi,
-  //   munici,
 }) => {
   console.log(post.image);
   return (
@@ -58,7 +51,6 @@ const AdoptionForm2 = ({
         name="contactAdoption"
         placeholder="Información de contacto"
         onChange={(e) => {
-          validation(e, errors);
           handleSelector(e, setPost, post);
         }}
       />

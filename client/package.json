@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@next/font": "13.1.1",
+    "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.17.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@syncfusion/ej2-react-calendars": "^20.4.42",
@@ -45,7 +46,8 @@
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.4.8",
     "swiper": "^8.4.5",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "use-places-autocomplete": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

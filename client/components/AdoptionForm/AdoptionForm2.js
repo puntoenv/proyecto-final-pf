@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./styles.module.css";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
@@ -11,15 +11,9 @@ const AdoptionForm2 = ({
   setFirst,
   validation,
   handleSelector,
+  handlerCoords,
   setPost,
-  handleProvincia,
-  handleCiudad,
-  dispatch,
-  getmuni,
-  provi,
-  munici,
 }) => {
-  console.log(post.image);
   return (
     <div className={styles.form2}>
       <button
@@ -136,46 +130,8 @@ const AdoptionForm2 = ({
       </div>
 
       <div className={styles.containMap}>
-        <Maps lat />
+        <Maps setLocationPet={handlerCoords} />
       </div>
-      {/*  <span className={styles.errors}>{errors.provincia}</span>
-      <select
-        className={styles.input}
-        name="provincia"
-        id="provincia"
-        onChange={(e) => {
-          validation(e, errors);
-          handleProvincia(e, setPost, post, dispatch, getmuni);
-        }}
-      >
-        <option defaultValue={true} value="select">
-          Seleccione la provincia...
-        </option>
-        {provi?.map((el) => (
-          <option key={el.nombre} value={el.nombre}>
-            {el.nombre}
-          </option>
-        ))}
-      </select>
-      <span className={styles.errors}>{errors.ciudad}</span>
-      <select
-        className={styles.input}
-        id="ciudad"
-        name="ciudad"
-        onChange={(e) => {
-          validation(e, errors);
-          handleCiudad(e, setPost, post);
-        }}
-      >
-        <option defaultValue={true} value="select">
-          Seleccione la ciudad...
-        </option>
-        {munici?.map((el) => (
-          <option key={el.nombre} value={el.nombre}>
-            {el.nombre}
-          </option>
-        ))}
-      </select> */}
 
       <button
         type="button"
