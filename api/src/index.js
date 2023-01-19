@@ -24,6 +24,7 @@ const types = require("./routes/pets/types");
 const petsRelated = require("./routes/pets/related");
 const productsRelated = require("./routes/products/related");
 const adoptEmail = require("./routes/pets/adopt");
+const buyEmail = require("./routes/products/buyEmail");
 
 router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
@@ -51,4 +52,5 @@ router.use("/FilteredProducts", filterP);
 router.use("/payment", payment);
 router.use("/categories", categories);
 router.use("/productsRelated", productsRelated);
+router.use("/buyEmail", buyEmail);
 module.exports = router;
