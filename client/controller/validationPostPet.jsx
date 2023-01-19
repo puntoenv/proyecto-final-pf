@@ -75,12 +75,10 @@ export const handleSelector = (e, setPost, post) => {
   console.log(post);
 };
 export const handleLocation = (post, setPost, coords) => {
-  // dispatch(getmuni(value));
   setPost({
     ...post,
     location: coords,
   });
-  console.log(post);
 };
 
 export const handleFiles = (e, setPost, post) => {
@@ -100,19 +98,16 @@ export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
     !post.age ||
     !post.name ||
     !post.description ||
-    !post.location.provincia ||
+    !post.location ||
     !post.image ||
     !post.size ||
     !post.gender ||
     !post.type ||
-    !post.location.municipio ||
     errors.name !== null ||
     errors.age !== null ||
     errors.description !== null ||
     errors.size !== null ||
     errors.gender !== null ||
-    errors.ciudad !== null ||
-    errors.provincia !== null ||
     errors.type !== null ||
     errors.image !== null ||
     errors.health !== null ||
