@@ -19,8 +19,9 @@ updatePet.put("/:id", async (req, res) => {
       sociability,
       castrated,
       userId,
+      hidden,
     } = req.body;
-    let pet = Pet.findById(id);
+    let pet = await Pet.findById(id);
     pet.name = name ? name : pet.name;
     pet["size"] = size ? size : pet["size"];
     pet.age = age ? age : pet.age;
@@ -34,6 +35,7 @@ updatePet.put("/:id", async (req, res) => {
     pet.pregnant = pregnant ? pregnant : pet.pregnant;
     pet.sociability = sociability ? sociability : pet.sociability;
     pet.castrated = castrated ? castrated : pet.castrated;
+    pet.hidden = hidden ? hidden : pet.hidden;
     let updatePet = await pet.save();
     res.status(200).send(updatePet);
   } catch (error) {
@@ -41,4 +43,16 @@ updatePet.put("/:id", async (req, res) => {
   }
 });
 
+updatePet.put("/delete/:id", async (req, res) => {
+  try {
+    let { id } = req.params;
+    let { hidden } = req.body;
+    let pet = await Pet.findById(id);
+    pet.hidden = hidden ? hidden : pet.hidden;
+    let updatePet = await pet.save();
+    res.status(200).send(updatePet);
+  } catch (error) {
+    res.status(400).send("error al modificar");
+  }
+});
 module.exports = updatePet;
