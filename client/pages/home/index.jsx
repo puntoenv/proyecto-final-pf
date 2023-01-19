@@ -51,7 +51,7 @@ export default function Home() {
     useEffect(() => {
       (function (d, m) {
         var kommunicateSettings = {
-          appId: "122487bf720849c3b858b77549e7d5eae",
+          appId: process.env.NEXT_PUBLIC_APP_CHATBOT_ID,
           popupWidget: true,
           automaticChatOpenOnNavigation: true,
         };
