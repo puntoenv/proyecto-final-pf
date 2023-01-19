@@ -10,6 +10,7 @@ function Petscrea({ response }) {
   const { pets } = response;
   //console.log(pets);
   const filtro = pets.filter((items) => items.hidden !== true);
+  console.log(filtro)
   //console.log(filtro);
   const handleClick = (id, obj) => {
     PutPets(id, obj);
@@ -28,7 +29,7 @@ function Petscrea({ response }) {
                 <div key={mascota._id} className={styles.card}>
                   <img
                     className={styles.img}
-                    src={mascota.image}
+                    src={mascota.image[0]}
                     width="200px"
                     height="150px"
                     alt="image"
