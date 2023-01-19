@@ -5,6 +5,9 @@ import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { getRelated } from '../../../stores/actions'
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Detail({
   data,
@@ -18,6 +21,9 @@ export default function Detail({
   const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
+  const dispatch = useDispatch();
+  const recomendados= useSelector((state)=>state.products.productsRelated)
+  console.log(recomendados)
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -40,10 +46,17 @@ export default function Detail({
       discountItem(_id);
     }
   };
+  
 
   useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
   }, [cart, amount]);
+
+  useEffect(() => {
+    getRelated(data._id)
+  },[dispatch]);
+
+
 
   let products = [data];
   return (
@@ -138,3 +151,4 @@ export async function getServerSideProps({ params }) {
     console.log(error);
   }
 }
+

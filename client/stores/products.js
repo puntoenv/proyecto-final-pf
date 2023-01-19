@@ -11,6 +11,7 @@ export const productsSlice = createSlice({
     cart: [],
     categories: [],
     products: [],
+    productsRelated:[],
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -19,6 +20,9 @@ export const productsSlice = createSlice({
         page: action.payload.page,
         pages: action.payload.totalPages,
       };
+    },
+    getRelatedProducts:(state,action)=>{
+      state.productsRelated=action.payload;
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
