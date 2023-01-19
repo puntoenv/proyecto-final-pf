@@ -13,6 +13,17 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 
+/* PARA UTILIZAR ESTE COMPONENTE SOLO TIENEN QUE IMPORTARLO EN DONDE QUIERAN
+Y PASARLE POR PROPS (coords={{lat:43.123, lng: -76.3839}}) Y LISTO
+---------------------------------------------
+POR EJEMPLO, SI LO VAN A UTILIZAR PARA EL DETALLE DE LA MASCOTA SOLO TIENEN QUE PASARLE LA PROPIEDAD LOCATION 
+DE LA MASCOTA 
+***********************************************
+SI ES PARA EL ENVIO DEL PRODUCTO DE UN USUARIO DONDE NECESITAN GUARDAR LA INFO DE LA UBICACION
+QUE EL USUARIO ELIJE SOLO DEBEN PASARLE POR PROPS (setLocationPet={props.setLocationPet}) EL 
+METODO QUE SETEA SU ESTADO O PROPIEDAD, MAS ABAJO ESTA SEÑALADO DONDE Y COMO SE UTILIZA EL METODO
+QUE LE PASAMOS PARA SETEAR PARA QUE TENGAN UNA IDEA DE COMO FUNCIONA ;) */
+
 export default function Maps(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4",
@@ -21,18 +32,16 @@ export default function Maps(props) {
 
   if (!isLoaded) return <div>Loading...</div>;
 
-  return <Map setLocationPet={props.setLocationPet} />;
+  return <Map setLocationPet={props.setLocationPet} COORDS={props.coords} />;
 }
-
-function Map({ setLocationPet }) {
+function Map({ setLocationPet, COORDS }) {
   const [center, setCenter] = useState({});
   const [selected, setSelected] = useState(null);
-
   useEffect(() => {
-    selected && setLocationPet(selected);
-    console.log(selected);
-    // selected && console.log(selected);
-    if ("geolocation" in navigator) {
+    selected && setLocationPet(selected); //********METODO QUE SETEA******* */
+    if (COORDS) {
+      setCenter({ lat: COORDS.lat, lng: COORDS.lng });
+    } else if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         setCenter({
           lat: position.coords.latitude,
@@ -40,15 +49,17 @@ function Map({ setLocationPet }) {
         });
       });
     } else {
-      console.log("Not Available");
+      console.log("Not Available Google maps");
     }
   }, [selected]);
 
   return (
     <>
-      <div className="places-container">
-        <PlacesAutocomplete setSelected={setSelected} />
-      </div>
+      {!COORDS && (
+        <div className="places-container">
+          <PlacesAutocomplete setSelected={setSelected} />
+        </div>
+      )}
 
       <GoogleMap
         zoom={8}
