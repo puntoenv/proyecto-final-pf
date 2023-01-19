@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
-import style from '../../components/Profile/Loading.module.css'
+import style from "../../components/Profile/Loading.module.css";
 import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector } from "react-redux";
@@ -13,15 +13,16 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import AdoptionForm1 from "../../components/AdoptionForm/AdoptionForm1";
 import AdoptionForm2 from "../../components/AdoptionForm/AdoptionForm2";
+import AdoptionForm3 from "../../components/AdoptionForm/AdoptionForm3";
 import {
   validation,
   handleSelector,
-  handleProvincia,
-  handleCiudad,
+  handleLocation,
   handleFiles,
   handleSubmit,
   handleDisableInput,
 } from "../../controller/validationPostPet";
+
 const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
@@ -39,7 +40,11 @@ export function form(props) {
     image: [],
     userId: idUser,
   });
-  const [first, setFirst] = useState(true);
+  const [position, setFirst] = useState(1);
+
+  const handlerCoords = (coords) => {
+    handleLocation(post, setPost, coords);
+  };
 
   useEffect(() => {
     if (!props.response.name || props.response.name === " ") {
@@ -52,11 +57,8 @@ export function form(props) {
       });
       router.push(`/profile/${idUser}`);
     }
-  }, []);
-
-  useEffect(() => {
-    dispatch(getper()).then((_) => console.log(provi));
-  }, [dispatch]);
+    console.log(post);
+  }, [post]);
 
   return (
     <>
@@ -71,6 +73,26 @@ export function form(props) {
           <Layout title="Publicar Mascota" />
           <NavBar />
           <div className={styles.container}>
+            <div className={styles.containFirstDiv}>
+              <span className={styles.spanObligatorio}>
+                TODOS LOS CAMPOS SON OBLIGATORIOS
+              </span>
+              <div className={styles.divTips}>
+                <p className={styles.tips}>
+                  - En el campo de contacto si no quieres ingresar tu número
+                  telefónico puedes ingresar el <b>link</b> de alguna de tus
+                  redes sociales
+                </p>
+              </div>
+              <div className={styles.divTips}>
+                <p className={styles.tips}>
+                  - Recomendamos que por tu seguridad y evitar malas
+                  experiencias no ingresar tu ubicación exacta, puedes poner un
+                  lugar de referencia que tengas cerca, un lugar público como
+                  una plaza o un parque por ejemplo
+                </p>
+              </div>
+            </div>
             <form
               className={styles.form}
               onSubmit={(e) =>
@@ -78,21 +100,18 @@ export function form(props) {
               }
             >
               <span className={styles.title}>Datos de la Mascota</span>
-              {first ? (
+              {position === 1 ? (
                 <AdoptionForm1
                   setError={setError}
                   setPost={setPost}
                   post={post}
                   errors={errors}
-                  
-                  first={first}
+                  position={position}
                   setFirst={setFirst}
-                 
                   handleSelector={handleSelector}
                   validation={validation}
-                 
-                ></AdoptionForm1>
-              ) : (
+                />
+              ) : position === 2 ? (
                 <AdoptionForm2
                   errors={errors}
                   post={post}
@@ -105,11 +124,26 @@ export function form(props) {
                   handleDisableInput={handleDisableInput}
                   dispatch={dispatch}
                   getmuni={getmuni}
-                  handleProvincia={handleProvincia}
-                  handleCiudad={handleCiudad}
+                  handlerCoords={handlerCoords}
                   provi={provi}
                   munici={munici}
-                ></AdoptionForm2>
+                />
+              ) : (
+                <AdoptionForm3
+                  errors={errors}
+                  post={post}
+                  setFirst={setFirst}
+                  validation={validation}
+                  handleSelector={handleSelector}
+                  handleFiles={handleFiles}
+                  setPost={setPost}
+                  setError={setError}
+                  handleDisableInput={handleDisableInput}
+                  dispatch={dispatch}
+                  getmuni={getmuni}
+                  provi={provi}
+                  munici={munici}
+                />
               )}
             </form>
           </div>
