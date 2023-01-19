@@ -5,8 +5,29 @@ import Layout from "../layout";
 import Footer from "../../components/Footer/footer";
 import Link from "next/link";
 import logo from "../../img/logo.jpeg";
+import { useRouter } from "next/router";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import Swal from "sweetalert2/dist/sweetalert2";
 
 export default function Detail({ data }) {
+  const { user } = useUser();
+  const userId = user?.sub?.split("|").pop();
+  const router = useRouter();
+
+  const handlerAdopt = (e) => {
+    e.preventDefault();
+    if (user) {
+      router.push(`/getYourPet/?pet=${data._id}&user=${userId}`);
+    } else {
+      Swal.fire({
+        title: "Necesitas registrarte para realizar alguna adopción.",
+        icon: "error ",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      });
+    }
+  };
 
   return (
     <div className={styles.containerAll}>
@@ -26,15 +47,18 @@ export default function Detail({ data }) {
             src={data.image}
             alt="Imagen de la mascota"
           /> */}
-
-          {data.image.map((ele) => (
-            <img
-              className={styles.image}
-              src={ele}
-              alt="Imagen de la mascota"
-            />
-          ))}
-
+          <div className={styles.box}>
+            <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
+              Adoptar
+            </button>
+            {data.image.map((ele) => (
+              <img
+                className={styles.image}
+                src={ele}
+                alt="Imagen de la mascota"
+              />
+            ))}
+          </div>
           <div class={styles.divCharacteristics}>
             <div class={styles.divSize}>
               <b>Tamaño: </b>
