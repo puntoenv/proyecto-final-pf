@@ -6,7 +6,9 @@ productsRelated.get("/:id", async (req, res) => {
   let { id } = req.params;
   let related = [];
   try {
-    let ctgrs = await Product.findById(id).then((product) => product.category);
+    let ctgrs = await Product.findOne({ hidden: false, _id: id }).then(
+      (product) => product.category
+    );
     for (let i = 0; i < ctgrs.length; i++) {
       related.push(
         await Product.find({ category: { $in: [ctgrs[i]] }, hidden: false })
