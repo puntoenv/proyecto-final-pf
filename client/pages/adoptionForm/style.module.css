@@ -11,7 +11,6 @@
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
     rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-  /* -webkit-backdrop-filter: blur(20px); */
   backdrop-filter: blur(10px);
   max-width: 80%;
   min-width: 50%;
@@ -25,19 +24,41 @@
   width: 100%;
   height: auto;
 }
-.containImg {
+.containFirstDiv {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
+  padding: 150px 10px;
+  height: 100%;
   width: 50%;
-  height: auto;
+}
+.spanObligatorio {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #544d;
+  border-radius: 20px;
+}
+.divTips {
+  margin: 20px;
+  padding: 20px;
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: 0.7px;
+  background: rgba(54, 65, 50, 0.596);
+  border-radius: 20px;
+  border: 1px solid #fff8;
+  backdrop-filter: blur(10px);
 }
 
+.tips {
+  margin-bottom: 30px;
+}
 .container {
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  /* background-color: rgb(253, 245, 190); */
+  height: 100%;
   background-image: url("../../img/pngFormPostPet.png");
   background-repeat: no-repeat;
   background-attachment: fixed;

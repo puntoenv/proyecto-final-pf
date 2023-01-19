@@ -13,6 +13,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import AdoptionForm1 from "../../components/AdoptionForm/AdoptionForm1";
 import AdoptionForm2 from "../../components/AdoptionForm/AdoptionForm2";
+import AdoptionForm3 from "../../components/AdoptionForm/AdoptionForm3";
 import {
   validation,
   handleSelector,
@@ -42,7 +43,7 @@ export function form(props) {
     image: [],
     userId: idUser,
   });
-  const [first, setFirst] = useState(true);
+  const [position, setFirst] = useState(1);
 
   useEffect(() => {
     if (!props.response.name || props.response.name === " ") {
@@ -74,7 +75,26 @@ export function form(props) {
           <Layout title="Publicar Mascota" />
           <NavBar />
           <div className={styles.container}>
-            <div className={styles.containImg}></div>
+            <div className={styles.containFirstDiv}>
+              <span className={styles.spanObligatorio}>
+                TODOS LOS CAMPOS SON OBLIGATORIOS
+              </span>
+              <div className={styles.divTips}>
+                <p className={styles.tips}>
+                  - En el campo de contacto si no quieres ingresar tu número
+                  telefónico puedes ingresar el <b>link</b> de alguna de tus
+                  redes sociales
+                </p>
+              </div>
+              <div className={styles.divTips}>
+                <p className={styles.tips}>
+                  - Recomendamos que por tu seguridad y evitar malas
+                  experiencias no ingresar tu ubicación exacta, puedes poner un
+                  lugar de referencia que tengas cerca, un lugar público como
+                  una plaza o un parque por ejemplo
+                </p>
+              </div>
+            </div>
             <form
               className={styles.form}
               onSubmit={(e) =>
@@ -82,18 +102,18 @@ export function form(props) {
               }
             >
               <span className={styles.title}>Datos de la Mascota</span>
-              {first ? (
+              {position === 1 ? (
                 <AdoptionForm1
                   setError={setError}
                   setPost={setPost}
                   post={post}
                   errors={errors}
-                  first={first}
+                  position={position}
                   setFirst={setFirst}
                   handleSelector={handleSelector}
                   validation={validation}
-                ></AdoptionForm1>
-              ) : (
+                />
+              ) : position === 2 ? (
                 <AdoptionForm2
                   errors={errors}
                   post={post}
@@ -110,7 +130,25 @@ export function form(props) {
                   handleCiudad={handleCiudad}
                   provi={provi}
                   munici={munici}
-                ></AdoptionForm2>
+                />
+              ) : (
+                <AdoptionForm3
+                  errors={errors}
+                  post={post}
+                  setFirst={setFirst}
+                  validation={validation}
+                  handleSelector={handleSelector}
+                  handleFiles={handleFiles}
+                  setPost={setPost}
+                  setError={setError}
+                  handleDisableInput={handleDisableInput}
+                  dispatch={dispatch}
+                  getmuni={getmuni}
+                  handleProvincia={handleProvincia}
+                  handleCiudad={handleCiudad}
+                  provi={provi}
+                  munici={munici}
+                />
               )}
             </form>
           </div>

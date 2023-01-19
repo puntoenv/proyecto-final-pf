@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
-import Swal from "sweetalert2/dist/sweetalert2.js";
+import { IoIosArrowForward } from "react-icons/io";
 import "sweetalert2/src/sweetalert2.scss";
+import Maps from "../GoogleMap/Maps";
 
 const AdoptionForm2 = ({
   errors,
@@ -11,10 +11,7 @@ const AdoptionForm2 = ({
   setFirst,
   validation,
   handleSelector,
-  handleFiles,
   setPost,
-  setError,
-  handleDisableInput,
   handleProvincia,
   handleCiudad,
   dispatch,
@@ -28,114 +25,120 @@ const AdoptionForm2 = ({
       <button
         className={styles.buttonAtras}
         type="button"
-        onClick={() => setFirst(true)}
+        onClick={() => setFirst(1)}
       >
         <IoIosArrowBack size={30}></IoIosArrowBack> Atrás
       </button>
-      <label htmlFor="condition" className={styles.stretch}>
-        Condición
-        <div className={styles.radio}>
-          <label htmlFor="pregnant">
-            <input
-              type="radio"
-              value="embarazada"
-              id="pregnant"
-              name="condition"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Embarazada
-          </label>
-          <label htmlFor="castrated">
-            <input
-              type="radio"
-              value="castrado/a"
-              id="castrated"
-              name="condition"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Castrado/a
-          </label>
-          <label htmlFor="_unknown">
-            <input
-              type="radio"
-              value="desconocida"
-              id="_unknown"
-              name="condition"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Desconozco
-          </label>
-        </div>
-      </label>
 
-      <label htmlFor="sociability" className={styles.stretch}>
-        ¿Cómo es su interacción con otros animales?
-        <div className={styles.radio}>
-          <label htmlFor="_good">
-            <input
-              type="radio"
-              value="buena"
-              id="_good"
-              name="sociability"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Buena
-          </label>
-          <label htmlFor="normal">
-            <input
-              type="radio"
-              value="normal"
-              id="normal"
-              name="sociability"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Normal
-          </label>
-          <label htmlFor="bad">
-            <input
-              type="radio"
-              value="mala"
-              id="bad"
-              name="sociability"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Mala
-          </label>
-          <label htmlFor="__unknown">
-            <input
-              type="radio"
-              value="desconocida"
-              id="__unknown"
-              name="sociability"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Desconozco
-          </label>
-        </div>
-      </label>
+      <div className={styles.selectGenderSize}>
+        <label htmlFor="condition" className={styles.stretchGenSize}>
+          Condición
+          <div className={styles.radio}>
+            <label htmlFor="pregnant">
+              <input
+                type="radio"
+                value="embarazada"
+                id="pregnant"
+                name="condition"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Embarazada
+            </label>
+            <label htmlFor="castrated">
+              <input
+                type="radio"
+                value="castrado/a"
+                id="castrated"
+                name="condition"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Castrado/a
+            </label>
+            <label htmlFor="_unknown">
+              <input
+                type="radio"
+                value="desconocida"
+                id="_unknown"
+                name="condition"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Desconozco
+            </label>
+          </div>
+        </label>
 
-      <span className={styles.errors}>{errors.provincia}</span>
+        <label htmlFor="sociability" className={styles.stretchGenSize}>
+          ¿Cómo es su interacción con otros animales?
+          <div className={styles.radio}>
+            <label htmlFor="_good">
+              <input
+                type="radio"
+                value="buena"
+                id="_good"
+                name="sociability"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Buena
+            </label>
+            <label htmlFor="normal">
+              <input
+                type="radio"
+                value="normal"
+                id="normal"
+                name="sociability"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Normal
+            </label>
+            <label htmlFor="bad">
+              <input
+                type="radio"
+                value="mala"
+                id="bad"
+                name="sociability"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Mala
+            </label>
+            <label htmlFor="__unknown">
+              <input
+                type="radio"
+                value="desconocida"
+                id="__unknown"
+                name="sociability"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Desconozco
+            </label>
+          </div>
+        </label>
+      </div>
+
+      <div className={styles.containMap}>
+        <Maps lat />
+      </div>
+      {/*  <span className={styles.errors}>{errors.provincia}</span>
       <select
         className={styles.input}
         name="provincia"
@@ -167,68 +170,20 @@ const AdoptionForm2 = ({
         <option defaultValue={true} value="select">
           Seleccione la ciudad...
         </option>
-        <option value="Resistencia">Resistencia</option>
         {munici?.map((el) => (
           <option key={el.nombre} value={el.nombre}>
             {el.nombre}
           </option>
         ))}
-      </select>
+      </select> */}
 
-      <label htmlFor="description" className={styles.stretchDescription}>
-        Descripción:
-        <span className={styles.errors}>
-          {errors.description && errors.description}
-        </span>
-        <textarea
-          className={styles.input}
-          id="description"
-          type="text"
-          name="description"
-          rows="3"
-          placeholder=" Describa a la mascota..."
-          onChange={(e) => {
-            validation(e, errors);
-            handleSelector(e, setPost, post);
-          }}
-        />
-      </label>
-      <div className={styles.divImgsPost}>
-        <label
-          htmlFor="image"
-          className={styles.mi_archivo}
-          name="image"
-          onChange={(e) => {
-            validation(e, errors, setError);
-            handleFiles(e, setPost, post);
-          }}
-        >
-          <HiArrowDownOnSquare className={styles.upImage} />
-          Subir imagen
-          <span className={styles.errors}>{errors.image && errors.image}</span>
-          <input
-            type="file"
-            className={styles.hiddenInput}
-            name="image"
-            id="image"
-            multiple
-          ></input>
-        </label>
-        <span style={{ textAlign: "center" }}>
-          {post.image.length !== 0 &&
-            post.image.map((img) => <p>{img.slice(0, 20) + "..."}</p>)}
-        </span>
-      </div>
-      <label htmlFor="submit" className={styles.submit}>
-        <button
-          className={styles.inputSubmit}
-          id="submit"
-          type="submit"
-          value="Subir Mascota"
-        >
-          Publicar
-        </button>
-      </label>
+      <button
+        type="button"
+        className={styles.buttonSiguiente}
+        onClick={() => setFirst(3)}
+      >
+        Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
+      </button>
     </div>
   );
 };

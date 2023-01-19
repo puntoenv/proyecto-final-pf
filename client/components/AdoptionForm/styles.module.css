@@ -24,12 +24,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 20px 10px;
   margin: 20px;
-  width: 40%;
+  width: 200px;
   font-size: 18px;
   border-radius: 20px;
   background-color: #c2bea150;
+}
+.stretchHealt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: 20px 0;
+  min-width: 50%;
+  max-width: 80%;
+  font-size: 18px;
+  border-radius: 20px;
+  background-color: #c2bea150;
+}
+.stretchHealt .radio label {
+  width: auto;
 }
 .stretchDescription {
   display: flex;
@@ -64,7 +79,7 @@
   padding: 15px;
   margin: 10px;
   color: #333;
-  background-color: #ffffff88;
+  background-color: #eee;
   box-shadow: 6px 6px 12px #aaa, -3px -3px 12px #888;
   font-size: medium;
   font-weight: bold;
@@ -73,7 +88,6 @@
 }
 .input:focus {
   outline-color: #aaffaa;
-  place-content: "Enter your message!";
 }
 
 .radio {
@@ -82,11 +96,11 @@
   flex-wrap: wrap;
   align-items: center;
   margin: 5px 0;
-  width: 60%;
+  width: 90%;
 }
 .radio label {
   margin: 10px;
-  width: 100%;
+  width: 200px;
 }
 .errors {
   display: flex;
@@ -216,4 +230,8 @@
   justify-content: space-evenly;
   align-items: center;
   width: 90%;
+}
+
+.containMap {
+  width: 100%;
 }

@@ -14,6 +14,7 @@ postPet.post("/post-pet", async (req, res) => {
       name,
       size,
       age,
+      contactAdoption,
       description,
       image,
       type,
@@ -25,18 +26,19 @@ postPet.post("/post-pet", async (req, res) => {
       condition,
       userId,
     } = req.body;
-    let result = []
-    for(let i = 0; i < image.length; i++){
+    let result = [];
+    for (let i = 0; i < image.length; i++) {
       result.push(await cloudinary.uploader.upload(image[i]));
     }
-    console.log(result)
+    console.log(result);
     const user = await User.findById(userId);
     let pet = await Pet.create({
       name,
       size,
       age,
+      contactAdoption,
       description,
-      image: result.map(ele => ele.url),
+      image: result.map((ele) => ele.url),
       type,
       location,
       gender,

@@ -155,7 +155,7 @@ const AdoptionForm1 = ({
         </label>
       </div>
 
-      <label htmlFor="health" className={styles.stretch}>
+      <label htmlFor="health" className={styles.stretchHealt}>
         Salud
         {/* <span className={styles.errors}>{errors.health}</span> */}
         <div className={styles.radio}>
@@ -226,7 +226,7 @@ const AdoptionForm1 = ({
       <button
         type="button"
         className={styles.buttonSiguiente}
-        onClick={() => setFirst(false)}
+        onClick={() => setFirst(2)}
       >
         Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
       </button>
