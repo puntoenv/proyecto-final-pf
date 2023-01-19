@@ -50,8 +50,12 @@ export default function Detail({
 
   useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
-    useDispatch(getRelated())
   }, [cart, amount]);
+
+  useEffect(() => {
+    getRelated(data._id)
+  },[dispatch]);
+
 
 
   let products = [data];

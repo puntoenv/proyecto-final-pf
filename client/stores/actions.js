@@ -168,6 +168,7 @@ export const getRelated =(id)=> async(dispatch)=>{
     let related=await axios (`/productsRelated/${id}`);
     //http://localhost:3001/productsRelated/63b6fa9ec2e6c5bd60363236
     dispatch(getRelatedProducts(related.data));
+    console.log('miru')
   }catch (error){
     console.log(error);
   }

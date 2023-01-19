@@ -22,7 +22,7 @@ export const productsSlice = createSlice({
       };
     },
     getRelatedProducts:(state,action)=>{
-      state.productsRelated=action.payload.docs;
+      state.productsRelated=action.payload;
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
