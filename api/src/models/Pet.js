@@ -15,6 +15,10 @@ const petSchema = new Schema({
     min: 0,
     max: 30,
   },
+  contactAdoption: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
