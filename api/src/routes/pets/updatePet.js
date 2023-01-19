@@ -20,6 +20,7 @@ updatePet.put("/:id", async (req, res) => {
       castrated,
       userId,
       hidden,
+      report,
     } = req.body;
     let pet = await Pet.findById(id);
     pet.name = name ? name : pet.name;
@@ -36,6 +37,7 @@ updatePet.put("/:id", async (req, res) => {
     pet.sociability = sociability ? sociability : pet.sociability;
     pet.castrated = castrated ? castrated : pet.castrated;
     pet.hidden = hidden ? hidden : pet.hidden;
+    pet.report = report ? report : pet.report;
     let updatePet = await pet.save();
     res.status(200).send(updatePet);
   } catch (error) {

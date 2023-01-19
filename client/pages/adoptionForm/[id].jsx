@@ -46,19 +46,22 @@ export function form(props) {
     handleLocation(post, setPost, coords);
   };
 
+  // useEffect(() => {
+  //   if (!props.response.name || props.response.name === " ") {
+  //     Swal.fire({
+  //       title: "Necesitas configurar tu nombre para adoptar",
+  //       icon: "error",
+  //       color: "#437042",
+  //       confirmButtonColor: "#437042",
+  //       confirmButtonAriaLabel: "#437042",
+  //     });
+  //     router.push(`/profile/${idUser}`);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    if (!props.response.name || props.response.name === " ") {
-      Swal.fire({
-        title: "Necesitas configurar tu nombre para adoptar",
-        icon: "error",
-        color: "#437042",
-        confirmButtonColor: "#437042",
-        confirmButtonAriaLabel: "#437042",
-      });
-      router.push(`/profile/${idUser}`);
-    }
-    console.log(post);
-  }, [post]);
+    dispatch(getper()).then((_) => console.log(provi));
+  }, [dispatch]);
 
   return (
     <>

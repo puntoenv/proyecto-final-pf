@@ -94,29 +94,16 @@ export const PostAdop = (post) => {
       .catch(
         (err) => {
           console.log(err);
-          if (err) {
-            if (err.response.statusText === "Payload Too Large") {
-              Swal.fire({
-                title: "Error. Imagen inválida",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            } else {
-              Swal.fire({
-                title: "Error. No se pudo publicar la mascota",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
+          Swal.fire({
+            title: "Error. No se pudo publicar la mascota",
+            icon: "error",
+            color: "#437042",
+            confirmButtonColor: "#437042",
+            confirmButtonAriaLabel: "#437042",
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            }
-          }
+            // background:'#fff url(../backAlerts.png)',
+          });
         }
         //   Swal.fire({
         //     position: "top-end",
