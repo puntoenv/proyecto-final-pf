@@ -124,19 +124,24 @@ export default function getYourPet({ pet, user }) {
           {page === 1 ? (
             <div className={styles.form}>
               <div>
-                <h1>Enhorabuena {capitalize(user.name) || user.email}</h1>
-                <p className={styles.p}>
-                  Tu familia está a punto de crecer. Estamos muy felices de que
-                  te hayas interesado en adoptar a {capitalize(pet.name)}. Cada
-                  vez son mas las personas que desean darle un hogar a nuestras
-                  Little Paws.
-                </p>
+                <Image
+                  src="https://res.cloudinary.com/dibwxnomi/image/upload/v1674147010/imagenes/Enhorabuena_ngdnn0.png"
+                  width={300}
+                  height={300}
+                />
               </div>
-              <Image
+              <p>Hola {capitalize(user.name) || user.email}</p>
+              <p className={styles.p}>
+                Tu familia está a punto de crecer. Estamos muy felices de que te
+                hayas interesado en adoptar a {capitalize(pet.name)}. Cada vez
+                son mas las personas que desean darle un hogar a nuestras Little
+                Paws.
+              </p>
+              {/* <Image
                 src="https://res.cloudinary.com/dibwxnomi/image/upload/v1673708954/imagenes/Logo_marro%CC%81n.png_ehcsx9.png"
                 width={150}
                 height={150}
-              />
+              /> */}
               <p className={styles.p}>
                 Acontinuación deberas llenar un pequeño formulario para saber si
                 eres apto para {capitalize(pet.name)}.
