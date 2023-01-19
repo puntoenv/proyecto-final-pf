@@ -37,12 +37,13 @@ export const getmuni = (municipios) => async (dispatch) => {
 };
 
 export const PutPets = async (id, obj) => {
-  // console.log(id, obj);
+  //console.log(id, obj);
   try {
-    const respo = await axios.put(
-      `${process.env.URL_BACK}/updatePet/delete/${id}`,
-      obj
-    );
+    const respo = await axios
+      .put(`http://localhost:3001/updatePet/delete/${id}`, obj)
+      .then((response) => {
+        console.log("Update SUCCESS!");
+      });
     return respo;
   } catch (e) {
     console.log(e);

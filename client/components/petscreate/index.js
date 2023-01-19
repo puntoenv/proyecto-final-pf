@@ -1,30 +1,29 @@
 import styles from "./pets.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 import { PutPets } from "../../stores/actions";
-import { useDispatch } from "react-redux";
-function Petscrea({ response }) {
-  const dispatch = useDispatch();
+import Router from "next/router";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
-  const [pet, setpet] = useState([]);
+function Petscrea({ response }) {
   const { pets } = response;
-  const arrayPets = pets.slice();
+  //console.log(pets);
+  const filtro = pets.filter((items) => items.hidden !== true);
+  //console.log(filtro);
   const handleClick = (id, obj) => {
-    /*const arrPets = arrayPets.filter((items) => items.hidden !== true);
-    setpet(arrPets);*/
     PutPets(id, obj);
+    Router.reload(window.location.pathname);
   };
-  console.log(pets);
   return (
     <div>
       <div className={styles.container_animal}>
         <h2 className={styles.letra}>Tus publicaciones</h2>
         <div className={styles.container_post}>
-          {!pets.length ? (
+          {!filtro.length ? (
             <h1 className={styles.letra}>No hay historial de creaciones</h1>
           ) : (
-            pets?.map((mascota) => {
+            filtro?.map((mascota) => {
               return (
                 <div key={mascota._id} className={styles.card}>
                   <img
@@ -41,7 +40,22 @@ function Petscrea({ response }) {
                   </button>
                   <button
                     className={styles.delet}
-                    onClick={(e) => handleClick(mascota._id, { hidden: true })}
+                    onClick={(e) =>
+                      Swal.fire({
+                        title: "¿Seguro que deseas continuar?",
+                        text: "No podrás deshacer este paso...",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "Mmm... mejor no",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "¡Adelante!",
+                        closeOnConfirm: false,
+                      }).then((res) =>
+                        res.isConfirmed === false
+                          ? console.log("clicked cancel")
+                          : handleClick(mascota._id, { hidden: true })
+                      )
+                    }
                   >
                     x
                   </button>
@@ -54,5 +68,19 @@ function Petscrea({ response }) {
     </div>
   );
 }
-
+/*handleClick(mascota._id, { hidden: true },mascota.user)*/
 export default Petscrea;
+export async function getServerSideProps({ params }) {
+  try {
+    const response = await (
+      await fetch(`${process.env.URL_BACK}user/${params.id}`)
+    ).json();
+    return {
+      props: {
+        response,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
