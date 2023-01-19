@@ -6,6 +6,7 @@ import {
   getCategories,
   products,
   productsFilter,
+  getRelatedProducts
 } from "./products";
 import { getMascotas, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
@@ -172,6 +173,16 @@ export const getProducts = (page) => async (dispatch) => {
     dispatch(getAllProducts(products.data));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getRelated =(id)=> async(dispatch)=>{
+  try{
+    let related=await axios (`/productsRelated/${id}`);
+    //http://localhost:3001/productsRelated/63b6fa9ec2e6c5bd60363236
+    dispatch(getRelatedProducts(related.data));
+  }catch (error){
+    console.log(error);
   }
 };
 
