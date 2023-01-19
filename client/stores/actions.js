@@ -6,7 +6,7 @@ import {
   getCategories,
   products,
   productsFilter,
-  getRelatedProducts
+  getRelatedProducts,
 } from "./products";
 import { getMascotas, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
@@ -163,13 +163,22 @@ export const getProducts = (page) => async (dispatch) => {
   }
 };
 
-export const getRelated =(id)=> async(dispatch)=>{
-  try{
-    let related=await axios (`/productsRelated/${id}`);
+export const getProductsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/productsRelated/${id}`);
     //http://localhost:3001/productsRelated/63b6fa9ec2e6c5bd60363236
     dispatch(getRelatedProducts(related.data));
-    console.log('miru')
-  }catch (error){
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPetsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/petsRelated/${id}`);
+    dispatch(getRelatedPets(related.data));
+    console.log(related.data);
+  } catch (error) {
     console.log(error);
   }
 };
