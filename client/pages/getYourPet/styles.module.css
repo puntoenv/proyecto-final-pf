@@ -27,23 +27,24 @@
 
 .form {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  margin-top: 3rem;
+  margin-top: 3.75rem;
   box-shadow: 10px 10px 50px rgb(136, 92, 57);
   gap: 0.1rem;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
   background-color: #f2f4c0;
-  padding: 3rem;
+  padding: 2rem;
   border-left: 1px solid #e8eb9d;
   border-top: 1px solid #e8eb9d;
   backdrop-filter: blur(20px);
-  justify-content: space-around;
+  justify-content: space-between;
   height: 35rem;
   width: 30rem;
   align-items: center;
   text-align: center;
   font-size: large;
+  text-align: justify;
 }
 
 .images {
@@ -62,6 +63,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-top: 3rem;
 }
 
 .imgs {
