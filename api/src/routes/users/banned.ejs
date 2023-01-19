@@ -35,14 +35,15 @@
       }
 
       .imageLogo {
-        height: 10rem;
-        width: 10rem;
+        height: 15rem;
+        width: 12rem;
         border-radius: 1rem;
+        object-fit: cover;
       }
 
       .imageTitle {
-        max-width: 20rem;
-        height: 10rem;
+        width: 20rem;
+        height: 5rem;
       }
       p {
         text-align: justify;
@@ -80,23 +81,20 @@
     <div class="card">
       <img
         class="imageTitle"
-        src="https://res.cloudinary.com/dibwxnomi/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1674072073/imagenes/Atencio%CC%81n_u0osex.png"
+        src="https://res.cloudinary.com/dibwxnomi/image/upload/v1674147010/imagenes/Atencio%CC%81n_cltci3.png"
         alt="title"
       />
-      <p>Has realizado la publicacion de una mascota.</p>
+      <p style="color: red">Tu usuario de Little Paws ha sido bloqueado.</p>
       <p>
-        A partir de ahora nuestra ONG sera parte del proceso de encontrar una
-        familia para <%= name %>.
+        Ha partir de ahora no podras ninguna de las a acciones que son
+        unicamente factibles para los usuarios registrados. Esta acción se
+        realizo debido a que se encontraron indicios de agravio hacia las
+        politicas de la página.
       </p>
       <p>
-        Te notificaremos via email cada paso del proceso de adopción. Si tienes
-        alguna consulta sobre los procesos realizados por Little Paws, puedes
-        contactarte con nosotros a nuestro email
+        Si deseas recuperar tu cuenta deberas ponerte en contacto con nosotros a
+        través de nuestro email <%= email%> para iniciar el proceso.
       </p>
-      <a href="http://localhost:3000/detail/<%= id %>" class="link">
-        <button class="btn">Ver Publicación</button>
-      </a>
-      <br />
       <br />
       <img
         class="imageLogo"

@@ -19,7 +19,7 @@ updateProfile.put("/:id", async (req, res) => {
       let info = await mailer.sendMail({
         from: "littlePaws0508@gmail.com",
         to: `${user.email}`,
-        subject: `GRACIAS ${user.name.toUpperCase()}`,
+        subject: `ATENCÍON ${user.name.toUpperCase()}`,
         html: data,
       });
       console.log(info);
