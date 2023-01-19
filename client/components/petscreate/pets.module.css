@@ -223,3 +223,15 @@
   text-shadow: 2px 2px 4px #937a60;
   width: 100%;
 }
+.delet {
+  all: unset;
+  position: absolute;
+  color: #ffffff;
+  top: 1rem;
+  right: 1rem;
+  font-size: 120%;
+  border-bottom: 1px #ffffff;
+}
+.delet:hover {
+  cursor: pointer;
+}

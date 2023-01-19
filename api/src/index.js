@@ -16,7 +16,7 @@ const detailProduct = require("./routes/products/detailProduct");
 const allUsers = require("./routes/users/allUsers");
 const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
-
+const updatePet = require("./routes/pets/updatePet");
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
@@ -25,6 +25,7 @@ const petsRelated = require("./routes/pets/related");
 const productsRelated = require("./routes/products/related");
 const adoptEmail = require("./routes/pets/adopt");
 
+router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", detail);

@@ -211,13 +211,14 @@ export default function PetAdoption({ favorite, addAgregar }) {
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
+                console.log(mascota.image)
                 return (
                   <div key={mascota._id} className={styles.card}>
                     <Image
                       className={styles.img}
                       width="400"
                       height="240"
-                      src={mascota.image}
+                      src={mascota.image[0]}
                       alt="image"
                     />
                     <h3 className={styles.name}>{mascota.name}</h3>
