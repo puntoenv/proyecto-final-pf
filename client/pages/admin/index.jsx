@@ -23,17 +23,21 @@ export default function Admin() {
       setRender(<Pie />);
     }
   }, []);
-  
 
   return (
     <>
-    <div className="navAd">
-      <Navbar />
+      <div className="navAd">
+        <Navbar />
       </div>
       <div>
         <div>
-          <div >
-            <button onClick={(e) => handlerOnClick(e, <Pie />)}  className={styles.lp}>Little Paws</button>
+          <div>
+            <button
+              onClick={(e) => handlerOnClick(e, <Pie />)}
+              className={styles.lp}
+            >
+              Little Paws
+            </button>
           </div>
 
           <div>
@@ -58,7 +62,7 @@ export default function Admin() {
               >
                 Productos
               </button>
-            
+
               <button
                 className={styles.btn}
                 onClick={(e) => handlerOnClick(e, <Calendar />)}
