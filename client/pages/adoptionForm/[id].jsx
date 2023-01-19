@@ -41,18 +41,18 @@ export function form(props) {
   });
   const [first, setFirst] = useState(true);
 
-  useEffect(() => {
-    if (!props.response.name || props.response.name === " ") {
-      Swal.fire({
-        title: "Necesitas configurar tu nombre para adoptar",
-        icon: "error",
-        color: "#437042",
-        confirmButtonColor: "#437042",
-        confirmButtonAriaLabel: "#437042",
-      });
-      router.push(`/profile/${idUser}`);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!props.response.name || props.response.name === " ") {
+  //     Swal.fire({
+  //       title: "Necesitas configurar tu nombre para adoptar",
+  //       icon: "error",
+  //       color: "#437042",
+  //       confirmButtonColor: "#437042",
+  //       confirmButtonAriaLabel: "#437042",
+  //     });
+  //     router.push(`/profile/${idUser}`);
+  //   }
+  // }, []);
 
   useEffect(() => {
     dispatch(getper()).then((_) => console.log(provi));
