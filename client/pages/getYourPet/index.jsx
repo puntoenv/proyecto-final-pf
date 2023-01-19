@@ -19,11 +19,11 @@ export default function getYourPet({ pet, user }) {
   const router = useRouter();
   const [boolean, setBoolean] = useState(true);
   const [input, setInput] = useState({});
-  const [page, setPage] = useState(2);
-  const [petImage, setImage] = useState(pet.image);
+  const [page, setPage] = useState(1);
+  const [petImage, setImage] = useState(pet.image[0]);
   const [x, setX] = useState("center");
   const [y, setY] = useState("center");
-  // console.log(pet);
+  console.log(pet);
 
   function disabled(input) {
     if (
@@ -35,6 +35,10 @@ export default function getYourPet({ pet, user }) {
       return setBoolean(false);
     return setBoolean(true);
   }
+
+  const handlerSelectImage = (e) => {
+    e.preventDefault();
+  };
 
   const handlerContainerImage = (e) => {
     setX(e.clientX - e.target.offsetLeft);
@@ -58,7 +62,7 @@ export default function getYourPet({ pet, user }) {
     console.log(input);
   };
 
-  const handlerOnSubmit = (e) => {
+  const handlerOnSubmit = async (e) => {
     e.preventDefault();
     Swal.fire({
       title: "¡Felicidades! Se realizo la adopción.",
@@ -67,7 +71,8 @@ export default function getYourPet({ pet, user }) {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-    router.push("/home");
+    await axios.get(`/adoptEmail/?petId=${pet._id}&userId=${user._id}`);
+    return router.push("/home");
   };
 
   return (
@@ -98,21 +103,21 @@ export default function getYourPet({ pet, user }) {
                 width={1000}
                 height={1000}
                 className={styles.imgs}
-                onClick={(e) => {}}
+                onClick={(e) => handlerSelectImage(e)}
               />
               <Image
                 src={pet.image}
                 width={1000}
                 height={1000}
                 className={styles.imgs}
-                onClick={(e) => {}}
+                onClick={(e) => handlerSelectImage(e)}
               />
               <Image
                 src={pet.image}
                 width={1000}
                 height={1000}
                 className={styles.imgs}
-                onClick={(e) => {}}
+                onClick={(e) => handlerSelectImage(e)}
               />
             </div>
           </div>

@@ -4,7 +4,6 @@ const mailer = require("../../../mailer");
 const Pet = require("../../models/Pet");
 const User = require("../../models/User");
 const postPet = Router();
-const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
 
@@ -55,6 +54,7 @@ postPet.post("/post-pet", async (req, res) => {
     let data = await ejs.renderFile(path.join(__dirname + "/email.ejs"), {
       ...req.body,
       id: pet._id,
+      email: "littlePaws0508@gmail.com",
     });
     let info = await mailer.sendMail({
       from: "littlePaws0508@gmail.com",

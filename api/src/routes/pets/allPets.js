@@ -8,9 +8,12 @@ allPets.get("/:id", async (req, res) => {
     let { query } = req;
     let data = {};
     if (query) {
-      data = await Pet.paginate(query, { page: id, limit: 10 });
+      data = await Pet.paginate(
+        { ...query, hidden: false },
+        { page: id, limit: 10 }
+      );
     } else {
-      data = await Pet.paginate({}, { page: id, limit: 10 });
+      data = await Pet.paginate({ hidden: false }, { page: id, limit: 10 });
     }
     console.log(data);
     res.send(data);

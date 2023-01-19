@@ -16,12 +16,16 @@ const detailProduct = require("./routes/products/detailProduct");
 const allUsers = require("./routes/users/allUsers");
 const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
-
+const updatePet = require("./routes/pets/updatePet");
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
 const types = require("./routes/pets/types");
+const petsRelated = require("./routes/pets/related");
+const productsRelated = require("./routes/products/related");
+const adoptEmail = require("./routes/pets/adopt");
 
+router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
 router.use("/pets", allPets);
 router.use("/pets", detail);
@@ -31,6 +35,8 @@ router.use("/users", allUsers);
 router.use("/user", user);
 router.use("/updateProfile", updateProfile);
 router.use("/types", types);
+router.use("/petsRelated", petsRelated);
+router.use("/adoptEmail", adoptEmail);
 // buyProduct aun no esta listo
 router.use(
   "/products",
@@ -38,10 +44,11 @@ router.use(
   getAllProducts,
   buyProduct,
   detailProduct,
-  productsByName,
+  productsByName
 );
 router.use("/updateProduct", updateProduct);
 router.use("/FilteredProducts", filterP);
 router.use("/payment", payment);
 router.use("/categories", categories);
+router.use("/productsRelated", productsRelated);
 module.exports = router;
