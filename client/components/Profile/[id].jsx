@@ -25,7 +25,6 @@ export default function Perfil({
   hanldeOnChange,
   handleOnSubmit,
 }) {
-  const router = useRouter();
   const nameUpper =
     response.name && response.name[0].toUpperCase() + response.name.slice(1);
   const imgAux =
@@ -61,7 +60,6 @@ export default function Perfil({
     ubication: false,
   });
 
-  const { _id } = response;
   return (
     <div className={style.container_caja1}>
       {isLoading && (
