@@ -7,6 +7,7 @@ import "../styles/NavBar/NavBar.css";
 import "../styles/NavBar/DashBoardUser.css";
 import "../styles/admin/index.css";
 import "../styles/admin/Users.css";
+import "../styles/user/user.css";
 import Script from "next/script";
 import axios from "axios";
 import { ContextProvider } from "../contexts/ContextProvider";
@@ -48,20 +49,21 @@ export default function App({ Component, pageProps }) {
     AddAgregar: (items) => {
       try {
         favorite.some((i) => i._id === items._id)
-          ?  Swal.fire({
-            title: "Ups! mascota duplicada",
-            icon: "error ",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
-          })
-          :  Swal.fire({
-            title: "Mascota agregada a favoritos",
-            icon: "error ",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
-          }),setFavorite([...favorite, items]);
+          ? Swal.fire({
+              title: "Ups! mascota duplicada",
+              icon: "error ",
+              color: "#437042",
+              confirmButtonColor: "#437042",
+              confirmButtonAriaLabel: "#437042",
+            })
+          : Swal.fire({
+              title: "Mascota agregada a favoritos",
+              icon: "error ",
+              color: "#437042",
+              confirmButtonColor: "#437042",
+              confirmButtonAriaLabel: "#437042",
+            }),
+          setFavorite([...favorite, items]);
       } catch (e) {
         alert(e, "error en agregar favorito");
       }

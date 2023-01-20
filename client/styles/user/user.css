@@ -1,0 +1,21 @@
+.menu {
+  position: fixed;
+  left: 0px;
+  top: 250px;
+  background-color: rgb(197, 18, 18);
+   
+}
+.divHidden {
+  position: fixed;
+  left: 0px;
+  top: 250px;
+  width: 0;
+  height: 50vh;
+  background-color: white;
+  overflow-x: hidden;
+  transition: all 0.5s;
+}
+
+.width {
+  width: 10rem;
+}

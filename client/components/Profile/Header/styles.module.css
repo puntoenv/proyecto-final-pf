@@ -1,0 +1,41 @@
+.headContainer {
+  display: flex;
+  flex-wrap: wrap;
+  height: 70px;
+  background-color: white;
+  margin-left: 250px;
+  box-shadow: 3px 0px 6px 0px rgba(19, 31, 17, 0.486);
+}
+
+.haedwrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.title {
+  margin-left: 40px;
+}
+.title > h2 {
+  color: black;
+  font-weight: 700;
+  font-size: 25px;
+}
+.title > p {
+  color: black;
+  margin-left: 10px;
+  font-size: 15px;
+  font-weight: 550;
+  opacity: 0.6;
+}
+
+.profile {
+  position: absolute;
+  right: 20px;
+}
+
+.image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
