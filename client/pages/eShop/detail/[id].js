@@ -8,6 +8,12 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { getProductsRelated } from "../../../stores/actions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import CardProduct from "../../../components/CardProduct";
+import relatedCard from "../../../components/related/related";
+import Related from "../../../components/related/related";
 
 export default function Detail({
   data,
@@ -15,7 +21,18 @@ export default function Detail({
   addToCart,
   productOfCart,
   discountItem,
-}) {
+}) 
+
+//  {
+//      const settings = {
+//       arrows: true,
+//       infinite: true,
+//       dots: true,
+//       speed: 500,
+//       slidesToShow: 3,
+//       slidesToScroll: 3,
+//   };
+{
   const { user } = useUser();
 
   const { name, image, price, _id, stock, category, boughtBy } = data;
@@ -126,6 +143,39 @@ export default function Detail({
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
+        
+
+
+        {/* <div className={style.relatedContainer}>
+          <h1> Productos Relacionados </h1>
+            <Slider {...settings} className="arrowsSlides">  
+               {recomendados.slice(0, 9).map((recomendado) => (
+                <CardProduct
+                  //   <h1>{recomendados.name}</h1>
+                    //   <img
+                    //   className={style.image}
+                    //   src={recomendados.image}
+                    //   alt="imagen de la mascota"
+                    //   width={200}
+                    //   height={250}
+                    // /
+                
+                />
+                    // <div className={style.recomendados}>
+                    //   <h1>{recomendados.name}</h1>
+                    //   <img
+                    //   className={style.image}
+                    //   src={recomendados.image}
+                    //   alt="imagen de la mascota"
+                    //   width={200}
+                    //   height={250}
+                    // />
+                    //  </div>
+              ))}    
+             </Slider> 
+          
+
+        </div> */}
       </div>
     </LayoutGlobal>
   );
