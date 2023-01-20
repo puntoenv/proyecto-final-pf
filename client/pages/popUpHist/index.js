@@ -3,9 +3,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import {buyAndStock} from "../../controller/buyAndStock"
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function index({ response, query }) {
+  const [order, setOrder] = useState(" ");
   const router = useRouter();
   const { user } = useUser();
   const userId = user?.sub?.split("|").pop();
@@ -17,7 +19,10 @@ function index({ response, query }) {
     if (query.status === "approved") await axios.get(`/buyEmail/${userId}`);
     // router.push(`/profile/${userId}?pos=${id}`);
   };
-  if(payments[0].status=="approved" ){ buyAndStock(); console.log("funciono?????????????????")}
+  
+   if(payments[0].status=="approved"&& query.merchant_order_id!=order ){ buyAndStock(); setOrder(query.merchant_order_id)}
+ 
+  
 
   return (
     <>
