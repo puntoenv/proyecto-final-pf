@@ -17,7 +17,7 @@ function Profile({ data, response }) {
   const { isLoading, user } = useUser();
 
   return (
-    <LayoutGlobal>
+    <>
       
       <div className={style.container}>
         <div>
@@ -31,17 +31,17 @@ function Profile({ data, response }) {
             isLoading={isLoading}
           ></Perfil>
         </div>
-
+{/* 
         <div className={style.container_history}>
           <div className={style.containerPets}>
             <Petscrea response={response} />
           </div>
-          {/* <div>
+          <div>
             <HistoryEsh className={style.containerProducts} response={response} />
-          </div> */}
-        </div>
+          </div>
+        </div> */}
       </div>
-    </LayoutGlobal>
+    </>
   );
 }
 
