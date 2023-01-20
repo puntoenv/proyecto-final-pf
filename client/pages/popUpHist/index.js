@@ -15,12 +15,13 @@ function index({ response }) {
             return (
               <div>
                 <p>{ite.id}</p>
-                <p>{ite.date_approved}</p>
-                <p>{ite.status}</p>
+                <p> {ite.date_approved}</p>
+                <p>estado de la compra: {ite.status}</p>
                 <p>{ite._detail}</p>
               </div>
             );
           })}
+          <div>
           {items?.map((item) => {
             return (
               <div>
@@ -30,6 +31,7 @@ function index({ response }) {
               </div>
             );
           })}
+          </div>
           {payments?.map((ite) => {
             return (
               <div>
