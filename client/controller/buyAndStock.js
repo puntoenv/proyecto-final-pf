@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { sendError } from "next/dist/server/api-utils";
 
 
  
@@ -30,13 +29,7 @@ const buyAndStock = async (merchand_order) => {
           };
          await axios.put(`http://localhost:3001/updateProduct/`+productstotal[i]._id,obj) //item)
      }
-   
-    //deleteCart()
-     //deleteAllCart();
-    //}
-
-    //localStorage.clear();
-    localStorage.removeItem('cart');
+    localStorage.setItem("cart", JSON.stringify([]))
  }
 } catch (error) {
         
