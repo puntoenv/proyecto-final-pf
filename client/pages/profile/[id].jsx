@@ -3,7 +3,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import Perfil from "../../components/Profile/[id]";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Petscrea from "../../components/petscreate";
-// import HistoryEsh from "../../components/HistoryEsh";
+import HistoryEsh from "../../components/HistoryEsh";
 import styles from "../../components/Profile/Loading.module.css";
 import style from "./style.module.css";
 import Layout from "../layout";
@@ -15,9 +15,8 @@ import NavBar from "../../components/NavBar/NavBar";
 
 function Profile({ data, response }) {
   const { isLoading, user } = useUser();
-
   return (
-    <LayoutGlobal>
+    <>
       
       <div className={style.container}>
         <div>
@@ -31,17 +30,17 @@ function Profile({ data, response }) {
             isLoading={isLoading}
           ></Perfil>
         </div>
-
+{/* 
         <div className={style.container_history}>
           <div className={style.containerPets}>
             <Petscrea response={response} />
           </div>
-          {/* <div>
+          <div>
             <HistoryEsh className={style.containerProducts} response={response} />
-          </div> */}
-        </div>
+          </div>
+        </div> */}
       </div>
-    </LayoutGlobal>
+    </>
   );
 }
 

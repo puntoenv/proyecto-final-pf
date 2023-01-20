@@ -1,9 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: #815843;
+   background-color: #271b16d8;
   width: 100%;
-  border-radius: 00% 00% 383% 383%;
+  height: 100vh;
 }
 .container_history {
   margin: auto;
@@ -15,3 +15,4 @@
   margin-bottom: 5rem;
   color: #271b16;
 }
+
