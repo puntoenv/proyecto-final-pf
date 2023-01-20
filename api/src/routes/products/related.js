@@ -15,6 +15,7 @@ productsRelated.get("/:id", async (req, res) => {
       );
     }
     res.status(200).send(related.flat());
+    console.log(related)
   } catch (error) {
     console.error(error);
   }
