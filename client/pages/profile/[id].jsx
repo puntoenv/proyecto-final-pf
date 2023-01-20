@@ -11,11 +11,13 @@ import {
   hanldeOnChange,
   handleOnSubmit,
 } from "../../controller/validationUpdateP";
+import NavBar from "../../components/NavBar/NavBar";
 
 function Profile({ data, response }) {
   const { isLoading, user } = useUser();
   return (
     <LayoutGlobal>
+      
       <div className={style.container}>
         <div>
           <Layout title={"Perfil"}></Layout>
