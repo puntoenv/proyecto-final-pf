@@ -12,8 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
-import relatedCard from "../../../components/related/related";
-import Related from "../../../components/related/related";
+
 
 export default function Detail({
   data,
@@ -144,42 +143,29 @@ export default function Detail({
           <span className={style.contentDescription}>{data.description}</span>
         </div>
         
+         <div className={style.relatedContainer}>
+          <h1 className={style.titleRelated}> Productos Relacionados </h1>
 
-
-        {/* <div className={style.relatedContainer}>
-          <h1> Productos Relacionados </h1>
-            <Slider {...settings} className="arrowsSlides">  
+            {/* <Slider {...settings} className="arrowsSlides">   */}
                {recomendados.slice(0, 9).map((recomendado) => (
-                <CardProduct
-                  //   <h1>{recomendados.name}</h1>
-                    //   <img
-                    //   className={style.image}
-                    //   src={recomendados.image}
-                    //   alt="imagen de la mascota"
-                    //   width={200}
-                    //   height={250}
-                    // /
-                
-                />
-                    // <div className={style.recomendados}>
-                    //   <h1>{recomendados.name}</h1>
-                    //   <img
-                    //   className={style.image}
-                    //   src={recomendados.image}
-                    //   alt="imagen de la mascota"
-                    //   width={200}
-                    //   height={250}
-                    // />
-                    //  </div>
+                    <CardProduct
+                    key={recomendado._id}
+                    info={recomendado}
+                    addToCart={addToCart}
+                    cart={cart}
+                    // serCart={setCart}
+                    productOfCart={productOfCart}
+                    discountItem={discountItem}
+                  />
               ))}    
-             </Slider> 
-          
-
-        </div> */}
+             {/* </Slider>  */}
+        
+        </div> 
       </div>
     </LayoutGlobal>
   );
 }
+//}
 
 export async function getServerSideProps({ params }) {
   try {

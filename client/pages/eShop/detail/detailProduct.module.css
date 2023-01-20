@@ -6,8 +6,16 @@
   padding-bottom: 60px;
   background-color: #fff;
 }
-.recomendados{
+/* .recomendados{
   margin: 20px;
+} */
+.titleRelated{
+  color: #415d43;
+  font-size: 45px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  margin:20px
 }
 .containBtnBack {
   display: flex;
