@@ -7,6 +7,8 @@ import "../styles/NavBar/NavBar.css";
 import "../styles/NavBar/DashBoardUser.css";
 import "../styles/admin/index.css";
 import "../styles/admin/Users.css";
+import "../styles/user/user.css";
+import Script from "next/script";
 import axios from "axios";
 import { ContextProvider } from "../contexts/ContextProvider";
 import { registerLicense } from "@syncfusion/ej2-base";
@@ -93,6 +95,10 @@ export default function App({ Component, pageProps }) {
       <UserProvider client_id={clientId}>
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
+            {/* <Script src="https://polyfill.io/v3/polyfill.min.js?features=default" />
+          <Script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4&callback=initMap&v=weekly"
+          /> */}
             <Component
               {...pageProps}
               discountItem={discountItem}

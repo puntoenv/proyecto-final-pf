@@ -2,11 +2,14 @@ const { Router } = require("express");
 const petsRelated = Router();
 const Pet = require("../../models/Pet");
 
-petsRelated.get("/", async (req, res) => {
-  let { query } = req;
+petsRelated.get("/:id", async (req, res) => {
+  let { id } = req.params;
   try {
-    let pets = await Pet.find({ ...query, hidden: false });
-    res.status(200).send(pets);
+    let pet = await Pet.findOne({ hidden: false, _id: id });
+    let types = await Pet.find({ hidden: false, type: pet.type });
+    let sizes = await Pet.find({ hidden: false, size: pet.size });
+    let related = [...types, ...sizes];
+    res.status(200).send(related);
   } catch (error) {
     console.error(error);
   }

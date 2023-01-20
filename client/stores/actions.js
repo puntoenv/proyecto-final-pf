@@ -6,6 +6,7 @@ import {
   getCategories,
   products,
   productsFilter,
+  getRelatedProducts,
 } from "./products";
 import { getMascotas, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
@@ -94,29 +95,16 @@ export const PostAdop = (post) => {
       .catch(
         (err) => {
           console.log(err);
-          if (err) {
-            if (err.response.statusText === "Payload Too Large") {
-              Swal.fire({
-                title: "Error. Imagen inválida",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            } else {
-              Swal.fire({
-                title: "Error. No se pudo publicar la mascota",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
+          Swal.fire({
+            title: "Error. No se pudo publicar la mascota",
+            icon: "error",
+            color: "#437042",
+            confirmButtonColor: "#437042",
+            confirmButtonAriaLabel: "#437042",
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            }
-          }
+            // background:'#fff url(../backAlerts.png)',
+          });
         }
         //   Swal.fire({
         //     position: "top-end",
@@ -172,6 +160,26 @@ export const getProducts = (page) => async (dispatch) => {
     dispatch(getAllProducts(products.data));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getProductsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/productsRelated/${id}`);
+    //http://localhost:3001/productsRelated/63b6fa9ec2e6c5bd60363236
+    dispatch(getRelatedProducts(related.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPetsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/petsRelated/${id}`);
+    dispatch(getRelatedPets(related.data));
+    console.log(related.data);
+  } catch (error) {
+    console.log(error);
   }
 };
 
