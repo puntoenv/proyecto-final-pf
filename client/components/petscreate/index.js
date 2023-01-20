@@ -8,10 +8,10 @@ import "sweetalert2/src/sweetalert2.scss";
 
 function Petscrea({ response }) {
   const { pets } = response;
-  //console.log(pets);
+  console.log(pets);
   const filtro = pets.filter((items) => items.hidden !== true);
   console.log(filtro)
-  //console.log(filtro);
+  
   const handleClick = (id, obj) => {
     PutPets(id, obj);
     Router.reload(window.location.pathname);
