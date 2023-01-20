@@ -15,7 +15,7 @@ function index({ response, query }) {
   const handlerEmail = async (e) => {
     e.preventDefault();
     if (query.status === "approved") await axios.get(`/buyEmail/${userId}`);
-    router.push(`/profile/${userId}?pos=${id}`);
+    router.push(`/home`);
   };
   if (payments[0].status == "approved") {
     buyAndStock();
