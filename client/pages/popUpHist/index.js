@@ -1,11 +1,21 @@
 import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
-function index({ response }) {
+import { useRouter } from "next/router";
+import axios from "axios";
+
+function index({ response, query }) {
+  const router = useRouter();
   const { user } = useUser();
   const userId = user?.sub?.split("|").pop();
-  //console.log(userId);
+  console.log(query);
   const { items, payments, id } = response;
+
+  const handlerEmail = async (e) => {
+    e.preventDefault();
+    if (query.status === "approved") await axios.get(`/buyEmail/${userId}`);
+    // router.push(`/profile/${userId}?pos=${id}`);
+  };
 
   return (
     <>
@@ -40,8 +50,8 @@ function index({ response }) {
               </div>
             );
           })}
-          <button>
-            <Link href={`/profile/${userId}?pos=${id}`}>ok</Link>
+          <button onClick={(e) => handlerEmail(e)}>
+            Enviar correo de confirmación
           </button>
         </div>
       </div>
@@ -59,6 +69,7 @@ export async function getServerSideProps({ query }) {
     return {
       props: {
         response,
+        query,
       },
     };
   } catch (error) {
