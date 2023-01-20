@@ -18,7 +18,9 @@ import {
   validateForm,
 } from "../../controller/validationUpdateP";
 import { CgMenuGridR } from "react-icons/cg";
-import SideBar from "./SideBar";
+import SideBar from "./SideBar/SideBar";
+import HeaderTest from "./Header/Header";
+import ContentUser from "./Content/ContentUser";
 
 export default function Perfil({
   user,
@@ -79,6 +81,8 @@ export default function Perfil({
         <>
           <div>
             <SideBar></SideBar>
+            <HeaderTest user={user} response={response}></HeaderTest>
+            <ContentUser></ContentUser>
           </div>
           
         </>

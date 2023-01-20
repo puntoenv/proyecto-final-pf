@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
-import logoPata from "../../img/pata_logo_claro.png";
+import logoPata from "../../../img/pata_logo_claro.png";
 import Image from "next/image";
 import { GrHomeRounded } from "react-icons/gr";
 import { BsFillCartFill } from "react-icons/bs";
@@ -26,42 +26,48 @@ const SideBar = () => {
         <ul>
           <li className={styles.icon}>
             <a href="/home">
-              <GrHomeRounded className={styles.iconSize}></GrHomeRounded>
+              <GrHomeRounded></GrHomeRounded>
             </a>
           </li>
           <div className={styles.li}>
-            <CgProfile size={20}></CgProfile>
+            <CgProfile className={styles.iconSize} size={20}></CgProfile>
             <li>
               <a href="">Perfil</a>
             </li>
           </div>
           <div className={styles.li}>
-            <HiHeart size={20}></HiHeart>
+            <HiHeart className={styles.iconSize} size={20}></HiHeart>
             <li>
               <a href="">Adopciones</a>
             </li>
           </div>
           <div className={styles.li}>
-            <HiDocumentText size={20}></HiDocumentText>
+            <HiDocumentText
+              className={styles.iconSize}
+              size={20}
+            ></HiDocumentText>
             <li>
               <a href="">Publicaciones</a>
             </li>
           </div>
           <div className={styles.li}>
-            <FaStar size={20}></FaStar>
+            <FaStar className={styles.iconSize} size={20}></FaStar>
             <li>
               <a href="">Favoritos</a>
             </li>
           </div>
           <div className={styles.li}>
-            <BsFillCartFill size={20}></BsFillCartFill>
+            <BsFillCartFill
+              className={styles.iconSize}
+              size={20}
+            ></BsFillCartFill>
             <li>
               <a href="">Carrito</a>
             </li>
           </div>
           <div className={styles.liLogout}>
             <RiLogoutBoxLine size={20}></RiLogoutBoxLine>
-            <li >
+            <li>
               <a href="/api/auth/logout">Cerrar sesión</a>
             </li>
           </div>
