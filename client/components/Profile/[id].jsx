@@ -67,7 +67,6 @@ export default function Perfil({
   });
 
 
-  const { _id } = response;
   return (
     <div className={style.container_caja1}>
       {isLoading && (
