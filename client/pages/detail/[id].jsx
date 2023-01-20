@@ -9,6 +9,7 @@ import Swal from "sweetalert2/dist/sweetalert2";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
+import Maps from "../../components/GoogleMap/Maps";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -66,6 +67,12 @@ export default function Detail({ data }) {
               />
             ))}
           </div>
+          <div className={styles.divLocation}>
+            <Maps
+              coords={{ lat: data.location.lat, lng: data.location.lng }}
+            ></Maps>
+          </div>
+
           <div class={styles.divCharacteristics}>
             <div class={styles.divSize}>
               <b>Tamaño: </b>
@@ -103,7 +110,7 @@ export default function Detail({ data }) {
             </div>
 
             {data.healthExtra && (
-              <div>
+              <div class={styles.divHealthExtra}>
                 <b>Descripción de salud: </b>
                 <span>{data.healthExtra}</span>
               </div>
