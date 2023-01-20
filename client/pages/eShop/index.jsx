@@ -11,6 +11,7 @@ import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
+
 export default function eShop({
   addToCart,
   cart,
@@ -18,6 +19,8 @@ export default function eShop({
   productOfCart,
   discountItem,
 }) {
+
+
   // console.log(dataProps);
 
   // if (dataProps.collection_status === "approved") deleteAllCart();
