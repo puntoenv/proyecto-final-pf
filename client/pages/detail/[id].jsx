@@ -10,6 +10,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import getPetsRelated from "../../stores/actions";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export default function Detail({ data }) {
   const related = useSelector((state) => state.mascotas.relatesPets);
   console.log(related);
   useEffect(() => {
-    dispatch(getPetsRelated(data._id));
+    // dispatch(getPetsRelated(data._id));
   }, []);
 
   const handlerAdopt = (e) => {
