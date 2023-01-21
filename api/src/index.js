@@ -17,6 +17,7 @@ const allUsers = require("./routes/users/allUsers");
 const productsByName = require("./routes/products/getByName");
 const payment = require("./routes/mercadoPago");
 const updatePet = require("./routes/pets/updatePet");
+const contactUs = require("./routes/ContactUs/routeContactUs");
 // NO ESTA LISTO.....................
 const buyProduct = require("./routes/products/buyProduct");
 const categories = require("./routes/products/categories");
@@ -52,5 +53,6 @@ router.use("/FilteredProducts", filterP);
 router.use("/payment", payment);
 router.use("/categories", categories);
 router.use("/productsRelated", productsRelated);
+router.use("/contact-us", contactUs);
 router.use("/buyEmail", buyEmail);
 module.exports = router;
