@@ -1,6 +1,5 @@
 .contentcontainer {
   max-width: 100vw;
-  max-height: 100vh;
-  padding-top: 70px;
+  min-height: 90vh;
   padding-left: 250px;
 }
