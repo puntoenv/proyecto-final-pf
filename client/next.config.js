@@ -16,6 +16,7 @@ const nextConfig = {
       "img.freepik.com",
       "http2.mlstatic.com",
       "i.pinimg.com",
+      "static.vecteezy.com",
     ],
 
     remotePatterns: [
