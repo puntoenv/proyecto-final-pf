@@ -1,0 +1,121 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  min-height: 90vh;
+  align-items: center;
+}
+
+.hiddenInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.mi_archivo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #034103;
+  background-color: rgba(255, 255, 255, 0.541);
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 5px 40px;
+  text-transform: uppercase;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+  border-radius: 5px;
+  margin: 30px auto;
+}
+
+.mi_archivo:hover {
+  background-color: #163811aa;
+  color: #fff;
+  border: 1px solid #411a038e;
+  border-radius: 5px;
+}
+
+.userContent {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.781);
+  border-radius: 20px;
+  min-width: 40rem;
+  min-height: 30rem;
+  box-shadow: 0px 0px 10px 0px #333 inset;
+  padding: 10px;
+}
+
+.divImage {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 250px;
+  height: 280px;
+  border-radius: 50%;
+  margin-left: 40px;
+}
+
+.imageSpan{
+  text-align: center;
+}
+
+.editImage {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 30vh;
+}
+
+.cleanInput{
+  display: inline-block;
+}
+
+.profileDiv{
+  margin: auto;
+}
+
+.profileDiv>h1{
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profileDiv>p{
+  font-weight: 600;
+}
+
+
+/* INFORMACION DEL USUARIO !! */
+
+.info {
+display: flex;
+flex-wrap: wrap;
+width: 40rem;
+height: 8rem;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.info>.p {
+  display: flex;
+  
+  width: 20rem;
+  height: 3rem;
+}
+
+.info>.p>p {
+  width: 9rem;
+}
+
+
+.editInfo{
+   display: flex;
+   flex-direction: row-reverse;
+   position: relative;
+
+}

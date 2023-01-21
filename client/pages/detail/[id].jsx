@@ -1,15 +1,15 @@
-import Image from "next/image";
 import styles from "./detail.module.css";
 import NavBar from "../../components/NavBar/NavBar";
 import Layout from "../layout";
 import Footer from "../../components/Footer/footer";
 import Link from "next/link";
-import logo from "../../img/logo.jpeg";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getPetsRelated } from "../../stores/actions";
+import Maps from "../../components/GoogleMap/Maps";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -67,45 +67,50 @@ export default function Detail({ data }) {
               />
             ))}
           </div>
+          <div className={styles.divLocation}>
+            <Maps
+              coords={{ lat: data.location.lat, lng: data.location.lng }}
+            ></Maps>
+          </div>
+
           <div class={styles.divCharacteristics}>
             <div class={styles.divSize}>
               <b>Tamaño: </b>
               <span>{data.size}</span>
             </div>
+
             <div class={styles.divSpecie}>
               <b>Especie: </b>
               <span>{data.type}</span>
             </div>
+
             <div class={styles.divCondition}>
               <b>Condición: </b>
               <span>{data.condition}</span>
             </div>
-            <div class={styles.divProvince}>
-              <b>Provincia: </b>
-              <span>{data.location.provincia}</span>
-            </div>
-            <div class={styles.divCity}>
-              <b>Ciudad: </b>
-              <span>{data.location.municipio}</span>
-            </div>
+
             <div class={styles.divGender}>
               <b>Genero: </b>
               <span>{data.gender}</span>
             </div>
+
             <div class={styles.divAge}>
               <b>Edad: </b>
               <span>{data.age}</span>
             </div>
+
             <div class={styles.divSocial}>
               <b>Interacción con otros animales: </b>
               <span>{data.sociability}</span>
             </div>
+
             <div class={styles.divHealth}>
               <b>Salud: </b>
               <span>{data.health}</span>
             </div>
+
             {data.healthExtra && (
-              <div>
+              <div class={styles.divHealthExtra}>
                 <b>Descripción de salud: </b>
                 <span>{data.healthExtra}</span>
               </div>

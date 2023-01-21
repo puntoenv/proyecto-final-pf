@@ -8,6 +8,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { getProductsRelated } from "../../../stores/actions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import CardProduct from "../../../components/CardProduct";
+
 
 export default function Detail({
   data,
@@ -15,7 +20,18 @@ export default function Detail({
   addToCart,
   productOfCart,
   discountItem,
-}) {
+}) 
+
+//  {
+//      const settings = {
+//       arrows: true,
+//       infinite: true,
+//       dots: true,
+//       speed: 500,
+//       slidesToShow: 3,
+//       slidesToScroll: 3,
+//   };
+{
   const { user } = useUser();
 
   const { name, image, price, _id, stock, category, boughtBy } = data;
@@ -126,10 +142,30 @@ export default function Detail({
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
+        
+         <div className={style.relatedContainer}>
+          <h1 className={style.titleRelated}> Productos Relacionados </h1>
+
+            {/* <Slider {...settings} className="arrowsSlides">   */}
+               {recomendados.slice(0, 9).map((recomendado) => (
+                    <CardProduct
+                    key={recomendado._id}
+                    info={recomendado}
+                    addToCart={addToCart}
+                    cart={cart}
+                    // serCart={setCart}
+                    productOfCart={productOfCart}
+                    discountItem={discountItem}
+                  />
+              ))}    
+             {/* </Slider>  */}
+        
+        </div> 
       </div>
     </LayoutGlobal>
   );
 }
+//}
 
 export async function getServerSideProps({ params }) {
   try {

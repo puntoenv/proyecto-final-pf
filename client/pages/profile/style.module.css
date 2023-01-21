@@ -3,16 +3,14 @@
   flex-direction: column;
    background-color: #271b16d8;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 .container_history {
   margin: auto;
   max-width: 80%;
-  
 }
 
 .containerPets, .containerProducts {
   margin-bottom: 5rem;
   color: #271b16;
 }
-
