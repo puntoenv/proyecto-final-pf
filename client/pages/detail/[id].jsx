@@ -6,10 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
 import Maps from "../../components/GoogleMap/Maps";
+import axios from "axios";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -17,9 +18,8 @@ export default function Detail({ data }) {
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatesPets);
-  console.log(related);
   useEffect(() => {
-    dispatch(getPetsRelated(data._id));
+    // dispatch(getPetsRelated(data._id));
   }, []);
 
   const handlerAdopt = (e) => {
@@ -132,6 +132,71 @@ export default function Detail({ data }) {
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
           </p> */}
+        </div>
+        <div className={styles.button}>
+          <button
+            onClick={async () => {
+              user
+                ? Swal.fire({
+                    title: "¿Por qué denuncias este post?",
+                    text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
+                    input: "text",
+                    showCancelButton: true,
+                  })
+                    .then(async (result) => {
+                      if (result.isConfirmed) {
+                        if (result.value) {
+                          let report = { motiveReport: result.value };
+                          return [result, report];
+                        }
+                      }
+                    })
+                    .then(async (response) => {
+                      try {
+                        if (response) {
+                          let res = await axios.put(
+                            "http://localhost:3001/updatePet/report/" +
+                              data._id,
+                            response[1]
+                          );
+                          return res;
+                        }
+                      } catch (error) {
+                        return { error: error };
+                      }
+                    })
+                    .then((response) => {
+                      if (response) {
+                        response.error
+                          ? Swal.fire({
+                              title: response.error.response.data,
+                              icon: "error",
+                              color: "#437042",
+                              confirmButtonColor: "#437042",
+                              confirmButtonAriaLabel: "#437042",
+                            })
+                          : Swal.fire({
+                              title: "Reporte enviado con éxito.",
+                              text: "Estaremos revisando el post en poco tiempo",
+                              icon: "success",
+                              color: "#437042",
+                              confirmButtonColor: "#437042",
+                              confirmButtonAriaLabel: "#437042",
+                            });
+                      }
+                    })
+                : Swal.fire({
+                    title: "Necesitas registrarte para denunciar",
+                    icon: "error",
+                    color: "#437042",
+                    confirmButtonColor: "#437042",
+                    confirmButtonAriaLabel: "#437042",
+                  });
+            }}
+            type="button"
+          >
+            Denunciar
+          </button>
         </div>
       </div>
       <Footer />

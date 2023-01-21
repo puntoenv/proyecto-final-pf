@@ -26,6 +26,8 @@
     "mongoose-unique-validator": "^3.1.0",
     "morgan": "~1.9.1",
     "nodemailer": "^6.9.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "openai": "^3.1.0",
+    "translate": "^1.4.1"
   }
 }

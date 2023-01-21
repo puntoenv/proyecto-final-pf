@@ -8,7 +8,7 @@ export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
          {/* <Link href={`/detail/${id}`}>   */}
           <img
             className={styles.image}
-            src={imagen}
+            src={imagen[0]}
             alt="imagen de la mascota"
           />
           {/* </Link>   */}

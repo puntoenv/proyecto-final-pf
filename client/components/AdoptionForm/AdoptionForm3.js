@@ -15,7 +15,7 @@ const AdoptionForm2 = ({
   setPost,
   setError,
 }) => {
-  console.log(post.image);
+  console.log(post);
   return (
     <div className={styles.form2}>
       <button
@@ -73,12 +73,27 @@ const AdoptionForm2 = ({
             className={styles.hiddenInput}
             name="image"
             id="image"
-            multiple
           ></input>
         </label>
         <span style={{ textAlign: "center" }}>
-          {post.image.length !== 0 &&
-            post.image.map((img) => <p>{img.slice(0, 20) + "..."}</p>)}
+          {post.image && post.image.length !== 0 && (
+            <>
+              {post.image.map((img, i) => (
+                <p>{img.slice(0, 20) + "..."}</p>
+              ))}
+              <span
+                style={{ fontSize: 18, cursor: 'pointer' }}
+                onClick={() =>
+                  setPost({
+                    ...post,
+                    image: post.image.slice(0, post.image.length - 1),
+                  })
+                }
+              >
+                Deshacer
+              </span>
+            </>
+          )}
         </span>
       </div>
       <label htmlFor="submit" className={styles.submit}>
