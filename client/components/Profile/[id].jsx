@@ -11,7 +11,7 @@ import {
 import { GoX } from "react-icons/go";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import { useRouter } from "next/router";
+
 import {
   handleAdoption,
   handleFiles,
@@ -29,45 +29,44 @@ export default function Perfil({
   hanldeOnChange,
   handleOnSubmit,
 }) {
-  const router = useRouter();
-  const nameUpper =
-    response.name && response.name[0].toUpperCase() + response.name.slice(1);
-  const imgAux =
-    "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
 
-  const idUser = user?.sub.split("|")[1];
+  // const nameUpper =
+  //   response.name && response.name[0].toUpperCase() + response.name.slice(1);
 
-  const [show, setShow] = useState(false)
+  // const idUser = user?.sub.split("|")[1];
 
-  const [input, setInput] = useState({
-    name: "",
-    age: "",
-    bio: "",
-    image: "",
-    ubication: "",
-  });
+  // const [show, setShow] = useState(false)
 
-  const [result, setResult] = useState({
-    error: "",
-    success: "",
-  });
+  // const [input, setInput] = useState({
+  //   name: "",
+  //   age: "",
+  //   bio: "",
+  //   image: "",
+  //   ubication: "",
+  // });
 
-  const [error, setError] = useState({
-    name: "",
-    age: "",
-    bio: "",
-    image: "",
-    ubication: "",
-  });
+  // const [result, setResult] = useState({
+  //   error: "",
+  //   success: "",
+  // });
 
-  const [edit, setEdit] = useState({
-    name: false,
-    age: false,
-    bio: false,
-    image: false,
-    ubication: false,
-  });
+  // const [error, setError] = useState({
+  //   name: "",
+  //   age: "",
+  //   bio: "",
+  //   image: "",
+  //   ubication: "",
+  // });
 
+  // const [edit, setEdit] = useState({
+  //   name: false,
+  //   age: false,
+  //   bio: false,
+  //   image: false,
+  //   ubication: false,
+  // });
+
+  const [render, setRender] = useState('profile')
 
   return (
     <div className={style.container_caja1}>
@@ -80,11 +79,16 @@ export default function Perfil({
       {user && (
         <>
           <div>
-            <SideBar></SideBar>
-            <HeaderTest user={user} response={response}></HeaderTest>
-            <ContentUser></ContentUser>
+            <SideBar render={render} setRender={setRender} response={response}></SideBar>
+            <HeaderTest user={user} response={response} setRender={setRender}></HeaderTest>
+            <ContentUser
+              response={response}
+              user={user}
+              handleOnSubmit={handleOnSubmit}
+              hanldeOnChange={hanldeOnChange}
+              render={render}
+            ></ContentUser>
           </div>
-          
         </>
       )}
     </div>

@@ -1,6 +1,7 @@
 import styles from "./pets.module.css";
 import Link from "next/link";
 import Image from "next/image";
+// import { PutPets } from "../../stores/actions";
 import { PutPets } from "../../stores/actions";
 import Router from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -10,8 +11,8 @@ function Petscrea({ response }) {
   const { pets } = response;
   console.log(pets);
   const filtro = pets.filter((items) => items.hidden !== true);
-  console.log(filtro)
-  
+  console.log(filtro);
+
   const handleClick = (id, obj) => {
     PutPets(id, obj);
     Router.reload(window.location.pathname);
