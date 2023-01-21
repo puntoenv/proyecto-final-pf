@@ -19,6 +19,7 @@ import React, { Component } from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import style from "../petsPosts/styles.module.css";
 
 export default function Home() {
 
@@ -97,29 +98,55 @@ export default function Home() {
           </div>
           <Nosotros />
 
-          <div className={styles.containSlider}>
+          <div className={style.big_container}>
             <div className={styles.titleRoute}>
               <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
 
-              <button className={styles.buttonRoute}>
+              {/* <button className={styles.buttonRoute}>
                 <Link href="/petsPosts">Ver mas</Link>
-              </button>
+              </button> */}
             </div>
 
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
-                <PetsCard
-                  key={mascota._id}
-                  nombre={mascota.name}
-                  imagen={mascota.image}
-                  genero={mascota.gender}
-                  tamano={mascota.size}
-                />
+                 <div key={mascota._id} className={style.card}>
+                 <Image
+                   className={style.img}
+                   width="400"
+                   height="240"
+                   src={mascota.image[0]}
+                   alt="image"
+                 />
+                 <h3 className={style.name}>{mascota.name}</h3>
+                 <span className={style.size}>{mascota.gender}</span>
+                 <button className={style.btn}>
+                   <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                 </button>
+                 <button
+                   className={style.btn}
+                   onClick={(e) => handlerFavorite(e, mascota)}
+                 >
+                   Favorito
+                 </button>
+               </div>
+
+
+
+
+                
+                // <PetsCard
+                //   id={mascota._id}
+                //   nombre={mascota.name}
+                //   imagen={mascota.image}
+                //   genero={mascota.gender}
+                //   tamano={mascota.size}
+                // />
+                
               ))}
             </Slider>
           </div>
 
-          <div className={styles.containSlider}>
+          {/* <div className={styles.containSlider}>
             <div className={styles.titleRoute}>
               <h1 className={styles.titleCarrusel}> Nuestros productos</h1>
               <button className={styles.buttonRoute}>
@@ -140,7 +167,7 @@ export default function Home() {
                 />
               ))}
             </Slider>
-          </div>
+          </div> */}
 
           <div className={styles.containerAdopciones}>
             <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
