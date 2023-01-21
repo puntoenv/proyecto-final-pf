@@ -34,10 +34,12 @@ router.post("/", (req, res) => {
     auto_return: "approved",
   };
 
-  mercadopago.preferences
+  const pay = mercadopago.preferences
     .create(preference)
     .then((response) => res.status(200).send({ response }))
     .catch((error) => res.status(400).send({ error: error.message }));
+
+  console.log(pay);
 });
 
 router.get("/:id", async (req, res) => {
@@ -47,8 +49,7 @@ router.get("/:id", async (req, res) => {
     method: "get",
     url: `https://api.mercadopago.com/merchant_orders/${id}`,
     headers: {
-      Authorization:
-        `Bearer ${process.env.PROD_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${process.env.PROD_ACCESS_TOKEN}`,
     },
   };
 
