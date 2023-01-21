@@ -44,6 +44,7 @@ const petSchema = new Schema({
     required: true,
   },
   report: { type: Boolean, default: false },
+  motiveReport: String,
   health: String,
   healthExtra: String,
   condition: String,

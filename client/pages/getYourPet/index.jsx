@@ -10,6 +10,7 @@ import Swal from "sweetalert2/dist/sweetalert2";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout";
 import styles from "./styles.module.css";
+import fileNotFound from '../../img/file_not_found.jpg'
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -23,7 +24,7 @@ export default function getYourPet({ pet, user }) {
   const [petImage, setImage] = useState(pet.image[0]);
   const [x, setX] = useState("center");
   const [y, setY] = useState("center");
-  console.log(pet);
+
 
   function disabled(input) {
     if (
@@ -91,7 +92,7 @@ export default function getYourPet({ pet, user }) {
                   transformOrigin: `${x}px ${y}px`,
                 }}
                 className={styles.image}
-                src={petImage}
+                src={pet.image[0]}
                 alt="petImage"
                 width={500}
                 height={500}
@@ -99,21 +100,21 @@ export default function getYourPet({ pet, user }) {
             </div>
             <div className={styles.images}>
               <Image
-                src={pet.image}
+                src={pet.image[1] ? pet.image[1] : fileNotFound}
                 width={1000}
                 height={1000}
                 className={styles.imgs}
                 onClick={(e) => handlerSelectImage(e)}
               />
               <Image
-                src={pet.image}
+                src={pet.image[2] ? pet.image[2] : fileNotFound}
                 width={1000}
                 height={1000}
                 className={styles.imgs}
                 onClick={(e) => handlerSelectImage(e)}
               />
               <Image
-                src={pet.image}
+                src={pet.image[3] ? pet.image[3] : fileNotFound}
                 width={1000}
                 height={1000}
                 className={styles.imgs}

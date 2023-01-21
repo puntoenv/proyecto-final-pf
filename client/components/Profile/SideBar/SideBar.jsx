@@ -5,7 +5,9 @@ import Image from "next/image";
 import { GrHomeRounded, GrFormDown } from "react-icons/gr";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
+import { GiSittingDog } from "react-icons/gi";
 import { HiDocumentText, HiHeart } from "react-icons/hi";
+import { SiDatadog } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine, RiFileList3Fill } from "react-icons/ri";
 import { BiLink } from "react-icons/bi";
@@ -131,13 +133,13 @@ const SideBar = ({ setRender, response }) => {
             </div>
             <div className={styles.link}>
               <li>
-                <FaStar className={styles.iconSize}></FaStar>
+                <GiSittingDog className={styles.iconSize}></GiSittingDog>
                 <a href="/petsPosts">Adopta</a>
               </li>
             </div>
             <div className={styles.link}>
               <li>
-                <FaStar className={styles.iconSize}></FaStar>
+                <SiDatadog className={styles.iconSize}></SiDatadog>
                 <a href={`/adoptionForm/${response._id}`}>Publica</a>
               </li>
             </div>
