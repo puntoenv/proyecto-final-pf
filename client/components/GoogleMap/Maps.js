@@ -62,11 +62,11 @@ function Map({ setLocationPet, COORDS }) {
       )}
 
       <GoogleMap
-        zoom={8}
+        zoom={11}
         center={selected || center}
         mapContainerClassName="map-container"
       >
-        {selected && <Marker position={selected} />}
+        {selected || (center && <Marker position={selected || center} />)}
       </GoogleMap>
     </>
   );
