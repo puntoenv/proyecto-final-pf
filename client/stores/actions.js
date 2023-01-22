@@ -299,7 +299,6 @@ export const filterProducts = (input, page) => async (dispatch) => {
   }
 };
 
-
 export const UpdateProduct = async (id, obj) => {
   console.log(id, obj);
   try {
@@ -314,6 +313,25 @@ export const UpdateProduct = async (id, obj) => {
   }
 };
 
+export const addProduct = async (post) => {
+  console.log(post);
+  try {
+    const res = await axios
+      .post("/products/post", post);
+      res ?
+        Swal.fire({
+          title: "Producto agregado",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        }) : null
+    return res.data;
+    
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const allcategories = () => async (dispatch) => {
   try {
