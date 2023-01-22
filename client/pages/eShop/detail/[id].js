@@ -20,23 +20,15 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
-  //  {
-  //      const settings = {
-  //       arrows: true,
-  //       infinite: true,
-  //       dots: true,
-  //       speed: 500,
-  //       slidesToShow: 3,
-  //       slidesToScroll: 3,
-  //   };
   const { user } = useUser();
+
+  const id_User = user && user.sub.split("|")[1];
 
   const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
   const dispatch = useDispatch();
   const recomendados = useSelector((state) => state.products.productsRelated);
-  console.log(recomendados);
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -44,6 +36,7 @@ export default function Detail({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,
@@ -64,8 +57,9 @@ export default function Detail({
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
     dispatch(getProductsRelated(data._id));
   }, [cart, amount]);
-
+  data.id_User = id_User;
   let products = [data];
+  console.log(products);
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>

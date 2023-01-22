@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
 import {
   BsCartDashFill,
@@ -18,9 +19,11 @@ export default function CardProduct({
   deleteCart,
   discountItem,
 }) {
+  const { user } = useUser();
   const { name, image, price, _id, stock, category, boughtBy } = product;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
+  const id_User = user && user.sub.split("|")[1];
 
   const handlerSubmitAdded = (e) => {
     modifiedTotal();
@@ -29,6 +32,7 @@ export default function CardProduct({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,
@@ -37,13 +41,7 @@ export default function CardProduct({
     addToCart(product);
     setAmount((i) => (i = i + 1));
   };
-  /* const handlerSubmitDiscount = () => {
-    modifiedTotal();
-    if (amount !== 0) {
-      setAmount((i) => (i = i - 1));
-      discountItem(_id);
-    }
-  }; */
+
   const handlerSubmitDiscount = () => {
     modifiedTotal();
     if (amount > 1) {

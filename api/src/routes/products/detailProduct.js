@@ -5,8 +5,10 @@ const detailProduct = express.Router();
 detailProduct.get("/detail/:id", async (req, res) => {
   try {
     let id = req.params.id;
-    //console.log(id);
-    let detail = await Product.findOne({ _id: id, hidden: false });
+    let detail = await Product.findOne({ _id: id, hidden: false }).populate({
+      path: "boughtBy",
+      model: "User",
+    });
 
     res.status(200).json(detail);
   } catch (error) {
