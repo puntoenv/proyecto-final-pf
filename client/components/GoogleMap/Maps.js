@@ -66,7 +66,8 @@ function Map({ setLocationPet, COORDS }) {
         center={selected || center}
         mapContainerClassName="map-container"
       >
-        {selected || (center && <Marker position={selected || center} />)}
+        {(selected && <Marker position={selected} />) ||
+          (center && <Marker position={center} />)}
       </GoogleMap>
     </>
   );
