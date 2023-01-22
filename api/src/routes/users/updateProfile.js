@@ -22,7 +22,6 @@ updateProfile.put("/:id", async (req, res) => {
         subject: `ATENCÍON ${user.name.toUpperCase()}`,
         html: data,
       });
-      console.log(info);
     } else {
       user.name = name ? name : user.name;
       user.age = age ? age : user.age;
