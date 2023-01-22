@@ -21,7 +21,6 @@ const petSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
     min: 15,
   },
   image: {
@@ -44,6 +43,7 @@ const petSchema = new Schema({
     required: true,
   },
   report: { type: Boolean, default: false },
+  motiveReport: String,
   health: String,
   healthExtra: String,
   condition: String,

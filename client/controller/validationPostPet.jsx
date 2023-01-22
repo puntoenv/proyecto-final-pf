@@ -97,7 +97,6 @@ export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
   if (
     !post.age ||
     !post.name ||
-    !post.description ||
     !post.location ||
     !post.image ||
     !post.size ||
@@ -105,7 +104,7 @@ export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
     !post.type ||
     errors.name !== null ||
     errors.age !== null ||
-    errors.description !== null ||
+    // errors.description !== null ||
     errors.size !== null ||
     errors.gender !== null ||
     errors.type !== null ||
@@ -135,7 +134,6 @@ export const handleDisableInput = (event, post, errors, Swal) => {
   if (
     !post.age ||
     !post.name ||
-    !post.description ||
     !post.location.provincia ||
     !post.image ||
     !post.size ||
@@ -144,7 +142,7 @@ export const handleDisableInput = (event, post, errors, Swal) => {
     !post.location.municipio ||
     errors.name !== null ||
     errors.age !== null ||
-    errors.description !== null ||
+    // errors.description !== null ||
     errors.size !== null ||
     errors.gender !== null ||
     errors.ciudad !== null ||

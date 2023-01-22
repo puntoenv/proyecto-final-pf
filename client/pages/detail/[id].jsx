@@ -6,17 +6,22 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
 import Maps from "../../components/GoogleMap/Maps";
+import axios from "axios";
+import Slider from "react-slick";
+import PetsCard from "../../components/Carousel/petsCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
   const { user } = useUser();
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
-  const related = useSelector((state) => state.mascotas.relatesPets);
+  const related = useSelector((state) => state.mascotas.relatedPets);
   console.log(related);
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
@@ -35,6 +40,17 @@ export default function Detail({ data }) {
         confirmButtonAriaLabel: "#437042",
       });
     }
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
   };
 
   return (
@@ -133,6 +149,85 @@ export default function Detail({ data }) {
             PageMaker including versions of Lorem Ipsum.
           </p> */}
         </div>
+        <div className={styles.buttonReport}>
+          <button
+            className={styles.back}
+            onClick={async () => {
+              user
+                ? Swal.fire({
+                    title: "¿Por qué denuncias este post?",
+                    text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
+                    input: "text",
+                    showCancelButton: true,
+                  })
+                    .then(async (result) => {
+                      if (result.isConfirmed) {
+                        if (result.value) {
+                          let report = { motiveReport: result.value };
+                          return [result, report];
+                        }
+                      }
+                    })
+                    .then(async (response) => {
+                      try {
+                        if (response) {
+                          let res = await axios.put(
+                            "http://localhost:3001/updatePet/report/" +
+                              data._id,
+                            response[1]
+                          );
+                          return res;
+                        }
+                      } catch (error) {
+                        return { error: error };
+                      }
+                    })
+                    .then((response) => {
+                      if (response) {
+                        response.error
+                          ? Swal.fire({
+                              title: response.error.response.data,
+                              icon: "error",
+                              color: "#437042",
+                              confirmButtonColor: "#437042",
+                              confirmButtonAriaLabel: "#437042",
+                            })
+                          : Swal.fire({
+                              title: "Reporte enviado con éxito.",
+                              text: "Estaremos revisando el post en poco tiempo",
+                              icon: "success",
+                              color: "#437042",
+                              confirmButtonColor: "#437042",
+                              confirmButtonAriaLabel: "#437042",
+                            });
+                      }
+                    })
+                : Swal.fire({
+                    title: "Necesitas registrarte para denunciar",
+                    icon: "error",
+                    color: "#437042",
+                    confirmButtonColor: "#437042",
+                    confirmButtonAriaLabel: "#437042",
+                  });
+            }}
+            type="button"
+          >
+            Denunciar
+          </button>
+        </div>
+      </div>
+      <div>
+        <Slider {...settings} className="arrowsSlides">
+          {related.slice(0, 9).map((mascota) => (
+            <PetsCard
+              key={mascota._id}
+              nombre={mascota.name}
+              imagen={mascota.image}
+              genero={mascota.gender}
+              tamano={mascota.size}
+            />
+          ))}
+        </Slider>
       </div>
       <Footer />
     </div>
