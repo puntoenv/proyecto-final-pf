@@ -8,7 +8,7 @@ import {
   productsFilter,
   getRelatedProducts,
 } from "./products";
-import { getMascotas, typesGet } from "./mascotas";
+import { getMascotas, getRelatedPets, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -177,7 +177,6 @@ export const getPetsRelated = (id) => async (dispatch) => {
   try {
     let related = await axios.get(`/petsRelated/${id}`);
     dispatch(getRelatedPets(related.data));
-    console.log(related.data);
   } catch (error) {
     console.log(error);
   }
@@ -299,6 +298,22 @@ export const filterProducts = (input, page) => async (dispatch) => {
     console.log(error);
   }
 };
+
+
+export const UpdateProduct = async (id, obj) => {
+  console.log(id, obj);
+  try {
+    const respo = await axios
+      .put(`http://localhost:3001/updateProduct/${id}`, obj)
+      .then((response) => {
+        console.log("Edición exitosa");
+      });
+    return respo;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 
 export const allcategories = () => async (dispatch) => {
   try {

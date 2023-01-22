@@ -14,6 +14,9 @@ const userSchema = new Schema({
     type: Number,
   },
   ubication: String,
+  directions: {
+    type: Array,
+  },
   image: String,
   email: {
     type: String,

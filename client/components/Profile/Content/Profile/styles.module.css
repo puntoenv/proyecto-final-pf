@@ -1,8 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Laila:wght@500&family=Poppins&family=Quicksand:wght@500&display=swap");
+
 .mainContainer {
   display: flex;
   justify-content: center;
   min-height: 90vh;
   align-items: center;
+}
+
+.backImage {
+  border-left: 2px solid #022902;
+  box-shadow: -10px 0px 10px 1px #aaaaaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  width: 258px;
+  height: 288px;
+  border-radius: 50%;
 }
 
 .hiddenInput {
@@ -43,9 +57,10 @@
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.781);
   border-radius: 20px;
-  min-width: 40rem;
-  min-height: 30rem;
+  width: 40rem;
+  min-height: 40rem;
   box-shadow: 0px 0px 10px 0px #333 inset;
+  border-right: 20px solid #022902;
   padding: 10px;
 }
 
@@ -58,10 +73,9 @@
   width: 250px;
   height: 280px;
   border-radius: 50%;
-  margin-left: 40px;
 }
 
-.imageSpan{
+.imageSpan {
   text-align: center;
 }
 
@@ -72,50 +86,119 @@
   height: 30vh;
 }
 
-.cleanInput{
+.cleanInput {
   display: inline-block;
 }
 
-.profileDiv{
+.profileDiv {
   margin: auto;
 }
 
-.profileDiv>h1{
+.profileDiv > h1 {
   font-size: 40px;
   text-align: center;
   margin-bottom: 20px;
-}
-.profileDiv>p{
+  color: #022902;
   font-weight: 600;
+    font-family: "Quicksand", sans-serif;
 }
-
+.profileDiv > p {
+  font-weight: 600;
+    font-family: "Quicksand", sans-serif;
+    
+}
 
 /* INFORMACION DEL USUARIO !! */
 
 .info {
-display: flex;
-flex-wrap: wrap;
-width: 40rem;
-height: 8rem;
-justify-content: space-between;
-margin-bottom: 20px;
-}
-
-.info>.p {
   display: flex;
-  
+  flex-wrap: wrap;
+  max-width: 40rem;
+  height: 14rem;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.info > p {
+  width: 18rem;
+  font-family: "Quicksand", sans-serif;
+}
+
+.info > p > p {
+  width: 5rem;
+  color: #034103;
+  font-weight: 600;
+  font-size: 17px;
+  font-family: "Quicksand", sans-serif;
+  margin-bottom: 5px;
+
+  border-bottom: 2px solid rgb(23, 58, 20);
+}
+
+.editInfo {
+  display: flex;
+  flex-direction: row-reverse;
+  position: relative;
+}
+
+.infoEnvios {
+  display: flex;
+  flex-direction: column;
+  max-width: 4rem;
+}
+
+.infoEnvio > p {
+  margin-bottom: 10px;
+  margin-left: 4px;
+  font-weight: 600;
+  color: #023502;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
   width: 20rem;
-  height: 3rem;
+  box-shadow: -10px 0px 10px 1px #aaaaaa;
 }
 
-.info>.p>p {
-  width: 9rem;
+.inputEnvios {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  height: 6rem;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.inputEnviosStyle {
+  border-radius: 30px;
+  padding: 4px;
+  width: 10rem;
+}
+
+.inputEnvios > p {
+  width: 10rem;
+  height: auto;
+  font-family: "Quicksand", sans-serif;
+}
+
+.inputEnvios > p > p {
+  color: #034103;
+  font-weight: 600;
+  font-size: 17px;
+  font-family: "Quicksand", sans-serif;
+  border-bottom: 2px solid rgb(23, 58, 20);
+  width: 6.5rem;
+  margin-bottom: 5px;
 }
 
 
-.editInfo{
-   display: flex;
-   flex-direction: row-reverse;
-   position: relative;
+/* EDICION!! */
+.input {
+  border-radius: 20px;
+  padding: 4px;
+}
 
+.info > p > .Error {
+  color: red;
+  font-size: 12px;
+  width: auto;
+  border: none;
 }

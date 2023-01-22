@@ -10,7 +10,7 @@ export default function PetsCard({ nombre, imagen, genero, size }) {
         {/* <Link href={"/petsPosts"}> */}
           <img
             className={styles.image}
-            src={imagen}
+            src={imagen[0]}
             alt="imagen de la mascota"
           />
         {/* </Link> */}

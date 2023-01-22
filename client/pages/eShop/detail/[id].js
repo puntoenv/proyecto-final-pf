@@ -14,33 +14,22 @@ import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
 import Point from "../../../components/punctuation/index"
 
-
 export default function Detail({
   data,
   cart,
   addToCart,
   productOfCart,
   discountItem,
-}) 
-
-//  {
-//      const settings = {
-//       arrows: true,
-//       infinite: true,
-//       dots: true,
-//       speed: 500,
-//       slidesToShow: 3,
-//       slidesToScroll: 3,
-//   };
-{
+}) {
   const { user } = useUser();
+
+  const id_User = user && user.sub.split("|")[1];
 
   const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
   const dispatch = useDispatch();
   const recomendados = useSelector((state) => state.products.productsRelated);
-  console.log(recomendados);
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -48,6 +37,7 @@ export default function Detail({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,
@@ -68,8 +58,9 @@ export default function Detail({
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
     dispatch(getProductsRelated(data._id));
   }, [cart, amount]);
-
+  data.id_User = id_User;
   let products = [data];
+  console.log(products);
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -144,25 +135,24 @@ export default function Detail({
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-        
-         <div className={style.relatedContainer}>
+
+        <div className={style.relatedContainer}>
           <h1 className={style.titleRelated}> Productos Relacionados </h1>
 
-            {/* <Slider {...settings} className="arrowsSlides">   */}
-               {recomendados.slice(0, 9).map((recomendado) => (
-                    <CardProduct
-                    key={recomendado._id}
-                    info={recomendado}
-                    addToCart={addToCart}
-                    cart={cart}
-                    // serCart={setCart}
-                    productOfCart={productOfCart}
-                    discountItem={discountItem}
-                  />
-              ))}    
-             {/* </Slider>  */}
-        
-        </div> 
+          {/* <Slider {...settings} className="arrowsSlides">   */}
+          {recomendados.slice(0, 9).map((recomendado) => (
+            <CardProduct
+              key={recomendado._id}
+              info={recomendado}
+              addToCart={addToCart}
+              cart={cart}
+              // serCart={setCart}
+              productOfCart={productOfCart}
+              discountItem={discountItem}
+            />
+          ))}
+          {/* </Slider>  */}
+        </div>
       </div>
     </LayoutGlobal>
   );
