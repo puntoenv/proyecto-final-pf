@@ -19,7 +19,7 @@ export default function Detail({ data }) {
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatesPets);
   useEffect(() => {
-    dispatch(getPetsRelated(data._id));
+    // dispatch(getPetsRelated(data._id));
   }, []);
 
   const handlerAdopt = (e) => {
