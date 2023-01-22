@@ -107,7 +107,7 @@ export default function Home() {
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard
-                  key={mascota._id}
+                  id={mascota._id}
                   nombre={mascota.name}
                   imagen={mascota.image}
                   genero={mascota.gender}
@@ -129,11 +129,10 @@ export default function Home() {
                 <ProductCard
                   key={producto._id}
                   info={producto}
-                  // addToCart={addToCart}
-                  // key={producto._id}
-                  // nombre={producto.name}
-                  // imagen={producto.image}
-                  // precio={producto.price}
+                  //addToCart={addToCart}
+                  nombre={producto.name}
+                  imagen={producto.image}
+                  precio={producto.price}
                 />
               ))}
             </Slider>

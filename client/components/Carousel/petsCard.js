@@ -4,14 +4,17 @@ import Link from "next/link";
 export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
   return (
     <div className={styles.big_container}>
-      
-         {/* <Link href={`/detail/${id}`}>   */}
+      <div className={styles.imgcontainer}>
+         <Link href={`/detail/${id}`}>  
           <img
             className={styles.image}
             src={imagen[0]}
+            // width={250}
+            // height={300}
             alt="imagen de la mascota"
           />
-          {/* </Link>   */}
+          </Link>  
+          </div>
       
       <div className={styles.containInfo}>
         <h3 className={styles.name}> {nombre.toUpperCase()}</h3>
