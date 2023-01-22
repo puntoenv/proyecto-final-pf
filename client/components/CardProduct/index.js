@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 
@@ -10,9 +11,12 @@ export default function CardProduct({
   productOfCart,
   discountItem,
 }) {
+  const { user } = useUser();
   const { name, image, price, _id, stock, category, boughtBy } = info;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
+
+  const id_User = user && user.sub.split("|")[1];
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -20,6 +24,7 @@ export default function CardProduct({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,

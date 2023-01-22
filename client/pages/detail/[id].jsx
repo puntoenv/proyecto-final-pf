@@ -11,15 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
 import Maps from "../../components/GoogleMap/Maps";
 import axios from "axios";
+import Slider from "react-slick";
+import PetsCard from "../../components/Carousel/petsCard";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
   const { user } = useUser();
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
-  const related = useSelector((state) => state.mascotas.relatesPets);
+  const related = useSelector((state) => state.mascotas.relatedPets);
+  console.log(related);
   useEffect(() => {
-    // dispatch(getPetsRelated(data._id));
+    dispatch(getPetsRelated(data._id));
   }, []);
 
   const handlerAdopt = (e) => {
@@ -35,6 +40,17 @@ export default function Detail({ data }) {
         confirmButtonAriaLabel: "#437042",
       });
     }
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
   };
 
   return (
@@ -199,6 +215,19 @@ export default function Detail({ data }) {
             Denunciar
           </button>
         </div>
+      </div>
+      <div>
+        <Slider {...settings} className="arrowsSlides">
+          {related.slice(0, 9).map((mascota) => (
+            <PetsCard
+              key={mascota._id}
+              nombre={mascota.name}
+              imagen={mascota.image}
+              genero={mascota.gender}
+              tamano={mascota.size}
+            />
+          ))}
+        </Slider>
       </div>
       <Footer />
     </div>

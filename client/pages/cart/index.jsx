@@ -20,7 +20,7 @@ export default function Cart({
 }) {
   const { user } = useUser();
   const [total, setTotal] = useState(0);
-
+  console.log(cart);
   const modifiedTotal = () => {
     const total = cart.reduce(
       (total, producto) => (total += producto.subtotal),

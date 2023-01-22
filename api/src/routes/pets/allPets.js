@@ -15,7 +15,6 @@ allPets.get("/:id", async (req, res) => {
     } else {
       data = await Pet.paginate({ hidden: false }, { page: id, limit: 10 });
     }
-    console.log(data);
     res.send(data);
   } catch (error) {
     console.log(error);
