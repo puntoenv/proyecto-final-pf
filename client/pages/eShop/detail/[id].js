@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
+import Point from "../../../components/punctuation/index"
 
 
 export default function Detail({
@@ -77,6 +78,7 @@ export default function Detail({
             {"<"} Atras
           </Link>
         </div>
+        <Point></Point>
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
