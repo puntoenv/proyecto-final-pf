@@ -101,7 +101,6 @@ export default function Detail({ data }) {
                 ></Maps>
               </div>
             </div>
-            {/* <div className={styles.contentDescripCharact}> */}
             <div class={styles.divCharacteristics}>
               <div class={styles.divSize}>
                 <b>Tamaño: </b>
@@ -153,7 +152,6 @@ export default function Detail({ data }) {
                 </div>
               )}
             </div>
-            {/* </div> */}
           </div>
           <div className={styles.divDescription}>
             <h3 className={styles.titleDescription}>Descripición</h3>
@@ -228,8 +226,8 @@ export default function Detail({ data }) {
             </button>
           </div>
         </div>
-        <div>
-          {/* <Slider {...settings} className="arrowsSlides">
+        <div className={styles.contentSlidePets}>
+          <Slider {...settings} className="arrowsSlides">
             {related.slice(0, 9).map((mascota) => (
               <PetsCard
                 key={mascota._id}
@@ -239,7 +237,7 @@ export default function Detail({ data }) {
                 tamano={mascota.size}
               />
             ))}
-          </Slider> */}
+          </Slider>
         </div>
       </div>
     </LayoutGlobal>

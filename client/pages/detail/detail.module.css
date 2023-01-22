@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #e8eb9d;
+  background-color: #feffe2;
 }
 .containDetail {
   display: flex;
@@ -256,4 +256,7 @@
   transform: scale(1.05);
   box-shadow: 0 0 10px rgb(185, 163, 103);
   background: #584a3c;
+}
+.contentSlidePets {
+  width: 100%;
 }

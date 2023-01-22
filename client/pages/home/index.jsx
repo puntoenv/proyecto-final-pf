@@ -1,11 +1,9 @@
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import Nosotros from "../../components/infoHome/nosotros";
 import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
-import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
 import Join from "../../components/JoinUs/joinUs";
 import Slider from "react-slick";
@@ -95,18 +93,19 @@ export default function Home() {
                 <Link href="/petsPosts">Ver mas</Link>
               </button>
             </div>
-
-            <Slider {...settings} className="arrowsSlides">
-              {dataPets.slice(0, 9).map((mascota) => (
-                <PetsCard
-                  key={mascota._id}
-                  nombre={mascota.name}
-                  imagen={mascota.image}
-                  genero={mascota.gender}
-                  tamano={mascota.size}
-                />
-              ))}
-            </Slider>
+            <div className={styles.contentSlider}>
+              <Slider {...settings} className="arrowsSlides">
+                {dataPets.slice(0, 9).map((mascota) => (
+                  <PetsCard
+                    key={mascota._id}
+                    nombre={mascota.name}
+                    imagen={mascota.image}
+                    genero={mascota.gender}
+                    tamano={mascota.size}
+                  />
+                ))}
+              </Slider>
+            </div>
           </div>
 
           <div className={styles.containSlider}>
@@ -116,20 +115,13 @@ export default function Home() {
                 <Link href="/eShop">Ver mas</Link>
               </button>
             </div>
-
-            <Slider {...settings} className="arrowsSlides">
-              {productos.slice(0, 9).map((producto) => (
-                <ProductCard
-                  key={producto._id}
-                  info={producto}
-                  // addToCart={addToCart}
-                  // key={producto._id}
-                  // nombre={producto.name}
-                  // imagen={producto.image}
-                  // precio={producto.price}
-                />
-              ))}
-            </Slider>
+            <div className={styles.contentSlider}>
+              <Slider {...settings} className="arrowsSlides">
+                {productos.slice(0, 9).map((producto) => (
+                  <ProductCard key={producto._id} info={producto} />
+                ))}
+              </Slider>
+            </div>
           </div>
 
           <div className={styles.containerAdopciones}>
