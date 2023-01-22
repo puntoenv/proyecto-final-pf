@@ -32,14 +32,23 @@ export default function Maps(props) {
 
   if (!isLoaded) return <div>Loading...</div>;
 
-  return <Map setLocationPet={props.setLocationPet} COORDS={props.coords} />;
+  return (
+    <Map
+      setLocationPet={props.setLocationPet}
+      COORDS={props.coords}
+      setInput={props.setInput}
+      input={props.input}
+    />
+  );
 }
-function Map({ setLocationPet, COORDS }) {
+function Map({ setLocationPet, COORDS, setInput, input }) {
   const [center, setCenter] = useState({});
   const [selected, setSelected] = useState(null);
+
   useEffect(() => {
     selected && setLocationPet(selected); //********METODO QUE SETEA******* */
     if (COORDS) {
+      console.log(COORDS);
       setCenter({ lat: COORDS.lat, lng: COORDS.lng });
     } else if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -57,7 +66,11 @@ function Map({ setLocationPet, COORDS }) {
     <>
       {!COORDS && (
         <div className="places-container">
-          <PlacesAutocomplete setSelected={setSelected} />
+          <PlacesAutocomplete
+            setSelected={setSelected}
+            setInput={setInput}
+            input={input}
+          />
         </div>
       )}
 
@@ -73,7 +86,7 @@ function Map({ setLocationPet, COORDS }) {
   );
 }
 
-const PlacesAutocomplete = ({ setSelected }) => {
+const PlacesAutocomplete = ({ setSelected, setInput, input }) => {
   const {
     ready,
     value,
@@ -85,10 +98,27 @@ const PlacesAutocomplete = ({ setSelected }) => {
   const handlerSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
+    if (input) {
+      if (input.directions.length < 3) {
+        if (!input.directions.includes(address)) {
+          setInput({
+            ...input,
+            directions: [...input.directions, address],
+          });
+        } else {
+          setInput({
+            ...input,
+            directions: [...input.directions],
+          });
+        }
+      }
+    } else {
+       const results = await getGeocode({ address });
+       const { lat, lng } = await getLatLng(results[0]);
+       setSelected({ lat, lng });
+    }
 
-    const results = await getGeocode({ address });
-    const { lat, lng } = await getLatLng(results[0]);
-    setSelected({ lat, lng });
+   
   };
 
   return (
