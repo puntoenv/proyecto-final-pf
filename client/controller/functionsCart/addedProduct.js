@@ -3,6 +3,7 @@ import "sweetalert2/src/sweetalert2.scss";
 
 export const addedProduct = (product, cart, setCart) => {
   const item = cart.find((item) => item._id === product._id);
+
   if (!cart.length || !item) {
     product.amount = 1;
     product.subtotal += product.price;
@@ -16,6 +17,7 @@ export const addedProduct = (product, cart, setCart) => {
       timer: 1000,
     });
   }
+
   if (item.amount < item.stock) {
     item.amount += 1;
     product.subtotal += product.price;
@@ -28,6 +30,7 @@ export const addedProduct = (product, cart, setCart) => {
       timer: 1000,
     });
   }
+
   return Swal.fire({
     position: "center",
     icon: "error",

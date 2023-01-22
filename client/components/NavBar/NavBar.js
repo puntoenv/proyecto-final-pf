@@ -46,9 +46,6 @@ const NavBar = () => {
       </Link>
       <nav className="nav">
         <div className="navMenuList">
-          <Link className="itemNav" href="/favorite">
-            <span>Favoritos</span>
-          </Link>
           <Link className="itemNav" href="/aboutUs">
             <span>Nosotros</span>
           </Link>

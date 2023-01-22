@@ -109,9 +109,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
   const handlerSubmit = (e) => {
     e.preventDefault();
     dispatch(getPets(1, filter));
-    console.log(filter);
     setFilter({});
-    console.log(e.target);
     e.target.reset();
   };
 
@@ -211,7 +209,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
-                console.log(mascota.image)
+                console.log(mascota.image);
                 return (
                   <div key={mascota._id} className={styles.card}>
                     <Image

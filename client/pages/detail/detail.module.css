@@ -185,3 +185,9 @@
 .adoptar:active {
   transform: translateY(-1px);
 }
+
+.buttonReport {
+  position: relative;
+  bottom: 20px;
+  left: 40px;
+}
