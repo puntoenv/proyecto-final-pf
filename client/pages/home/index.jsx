@@ -21,7 +21,6 @@ import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Home() {
-
   {
     const settings = {
       dots: true,
