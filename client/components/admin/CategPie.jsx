@@ -1,14 +1,14 @@
-import React from 'react';
-import { catChartData } from '../../data/dummy';
-import CategPiee from '../_admin/CategPiee';
+// import React from 'react';
+// import { catChartData } from '../../data/dummy';
+// import CategPiee from '../_admin/CategPiee';
 
-const CategPie = () => (
-  <div className="">
+// const CategPie = () => (
+//   <div className="">
   
-    <div className="">
-      <CategPiee id="categ-pie" data={catChartData} legendVisiblity  />
-    </div>
-  </div>
-);
+//     <div className="">
+//       <CategPiee id="categ-pie" data={catChartData} legendVisiblity  />
+//     </div>
+//   </div>
+// );
 
-export default CategPie;
+// export default CategPie;

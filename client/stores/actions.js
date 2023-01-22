@@ -299,6 +299,22 @@ export const filterProducts = (input, page) => async (dispatch) => {
   }
 };
 
+
+export const UpdateProduct = async (id, obj) => {
+  console.log(id, obj);
+  try {
+    const respo = await axios
+      .put(`http://localhost:3001/updateProduct/${id}`, obj)
+      .then((response) => {
+        console.log("Edición exitosa");
+      });
+    return respo;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+
 export const allcategories = () => async (dispatch) => {
   try {
     let categories = await axios.get("/categories");
