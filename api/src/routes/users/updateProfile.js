@@ -8,7 +8,8 @@ const path = require("path");
 updateProfile.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    let { name, age, pets, image, bio, ubication, cart, hidden } = req.body;
+    let { name, age, pets, image, bio, ubication, cart, hidden, directions } =
+      req.body;
     let result = image && (await cloudinary.uploader.upload(image));
     let user = await User.findById(id);
     if (hidden) {
@@ -31,6 +32,7 @@ updateProfile.put("/:id", async (req, res) => {
       user.bio = bio ? bio : user.bio;
       user.ubication = ubication ? ubication : user.ubication;
       user.image = result ? result.url : user.image;
+      user.directions = directions ? directions : user.directions;
     }
     let userUpdate = await user.save();
     res.status(200).send(userUpdate);

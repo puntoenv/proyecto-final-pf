@@ -21,7 +21,6 @@ const petSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
     min: 15,
   },
   image: {
