@@ -1,7 +1,6 @@
 import styles from "./detail.module.css";
-import NavBar from "../../components/NavBar/NavBar";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout";
-import Footer from "../../components/Footer/footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -15,6 +14,7 @@ import Slider from "react-slick";
 import PetsCard from "../../components/Carousel/petsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -22,10 +22,12 @@ export default function Detail({ data }) {
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatedPets);
-  console.log(related);
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
   }, []);
+  console.log(data.expireAt.split("T")[0]);
+  const [nImg, setNImg] = useState(0);
+  const imgS = data.image;
 
   const handlerAdopt = (e) => {
     e.preventDefault();
@@ -42,6 +44,17 @@ export default function Detail({ data }) {
     }
   };
 
+  const handlerNext = () => {
+    if (nImg < imgS.length - 1) {
+      setNImg((n) => (n = n + 1));
+    }
+  };
+  const handlerPrev = (e) => {
+    if (nImg > 0) {
+      setNImg((n) => (n = n - 1));
+    }
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -54,183 +67,182 @@ export default function Detail({ data }) {
   };
 
   return (
-    <div className={styles.containerAll}>
-      <Layout title={data.name.toUpperCase()} />
-      <NavBar />
+    <LayoutGlobal>
+      <div className={styles.containerAll}>
+        <Layout title={data.name.toUpperCase()} />
 
-      <div className={styles.containDetail}>
-        <div className={styles.button}>
-          <Link className={styles.back} href="/petsPosts">
-            Volver
-          </Link>
-        </div>
-        <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
-        <div className={styles.containCardDetail}>
-          {/* <img
-            className={styles.image}
-            src={data.image}
-            alt="Imagen de la mascota"
-          /> */}
-          <div className={styles.box}>
-            <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
-              Adoptar
+        <div className={styles.containDetail}>
+          <div className={styles.button}>
+            <Link className={styles.back} href="/petsPosts">
+              Volver
+            </Link>
+          </div>
+          <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
+          <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
+            Adoptar
+          </button>
+          <div className={styles.containCardDetail}>
+            <div className={styles.box}>
+              <div className={styles.divSlideManual}>
+                <GrCaretPrevious
+                  className={styles.iconPrev}
+                  onClick={handlerPrev}
+                  name="Prev"
+                />
+                <img src={imgS[nImg]} className={styles.image} />
+                <GrCaretNext
+                  className={styles.iconNext}
+                  onClick={handlerNext}
+                />
+              </div>
+              <div className={styles.divLocation}>
+                <Maps
+                  coords={{ lat: data.location.lat, lng: data.location.lng }}
+                ></Maps>
+              </div>
+            </div>
+            {/* <div className={styles.contentDescripCharact}> */}
+            <div class={styles.divCharacteristics}>
+              <div class={styles.divSize}>
+                <b>Tamaño: </b>
+                <span className={styles.spanChar}>{data.size}</span>
+              </div>
+
+              <div class={styles.divSpecie}>
+                <b>Especie: </b>
+                <span className={styles.spanChar}>{data.type}</span>
+              </div>
+
+              <div class={styles.divCondition}>
+                <b>Condición: </b>
+                <span className={styles.spanChar}>{data.condition}</span>
+              </div>
+
+              <div class={styles.divGender}>
+                <b>Genero: </b>
+                <span className={styles.spanChar}>{data.gender}</span>
+              </div>
+
+              <div class={styles.divAge}>
+                <b>Edad: </b>
+                <span className={styles.spanChar}>{data.age}</span>
+              </div>
+
+              <div class={styles.divSocial}>
+                <b>Interacción con otros animales: </b>
+                <span className={styles.spanChar}>{data.sociability}</span>
+              </div>
+
+              <div class={styles.divHealth}>
+                <b>Salud: </b>
+                <span className={styles.spanChar}>{data.health}</span>
+              </div>
+
+              {data.healthExtra && (
+                <div class={styles.divHealthExtra}>
+                  <b>Descripción de salud: </b>
+                  <span className={styles.spanChar}>{data.healthExtra}</span>
+                </div>
+              )}
+              {data.contactAdoption && (
+                <div class={styles.contactUser}>
+                  <b>Contacto: </b>
+                  <span className={styles.spanChar}>
+                    {data.contactAdoption}
+                  </span>
+                </div>
+              )}
+            </div>
+            {/* </div> */}
+          </div>
+          <div className={styles.divDescription}>
+            <h3 className={styles.titleDescription}>Descripición</h3>
+            <p className={styles.description}>{data.description}</p>
+          </div>
+          <div className={styles.divDate}>
+            <span>Fecha de Publicación: {data.expireAt.split("T")[0]}</span>
+          </div>
+          <div className={styles.buttonReport}>
+            <button
+              onClick={async () => {
+                user
+                  ? Swal.fire({
+                      title: "¿Por qué denuncias este post?",
+                      text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
+                      input: "text",
+                      showCancelButton: true,
+                    })
+                      .then(async (result) => {
+                        if (result.isConfirmed) {
+                          if (result.value) {
+                            let report = { motiveReport: result.value };
+                            return [result, report];
+                          }
+                        }
+                      })
+                      .then(async (response) => {
+                        try {
+                          if (response) {
+                            let res = await axios.put(
+                              "http://localhost:3001/updatePet/report/" +
+                                data._id,
+                              response[1]
+                            );
+                            return res;
+                          }
+                        } catch (error) {
+                          return { error: error };
+                        }
+                      })
+                      .then((response) => {
+                        if (response) {
+                          response.error
+                            ? Swal.fire({
+                                title: response.error.response.data,
+                                icon: "error",
+                                color: "#437042",
+                                confirmButtonColor: "#437042",
+                                confirmButtonAriaLabel: "#437042",
+                              })
+                            : Swal.fire({
+                                title: "Reporte enviado con éxito.",
+                                text: "Estaremos revisando el post en poco tiempo",
+                                icon: "success",
+                                color: "#437042",
+                                confirmButtonColor: "#437042",
+                                confirmButtonAriaLabel: "#437042",
+                              });
+                        }
+                      })
+                  : Swal.fire({
+                      title: "Necesitas registrarte para denunciar",
+                      icon: "error",
+                      color: "#437042",
+                      confirmButtonColor: "#437042",
+                      confirmButtonAriaLabel: "#437042",
+                    });
+              }}
+              type="button"
+            >
+              Denunciar
             </button>
-            {data.image.map((ele) => (
-              <img
-                className={styles.image}
-                src={ele}
-                alt="Imagen de la mascota"
+          </div>
+        </div>
+        <div>
+          {/* <Slider {...settings} className="arrowsSlides">
+            {related.slice(0, 9).map((mascota) => (
+              <PetsCard
+                key={mascota._id}
+                nombre={mascota.name}
+                imagen={mascota.image}
+                genero={mascota.gender}
+                tamano={mascota.size}
               />
             ))}
-          </div>
-          <div className={styles.divLocation}>
-            <Maps
-              coords={{ lat: data.location.lat, lng: data.location.lng }}
-            ></Maps>
-          </div>
-
-          <div class={styles.divCharacteristics}>
-            <div class={styles.divSize}>
-              <b>Tamaño: </b>
-              <span>{data.size}</span>
-            </div>
-
-            <div class={styles.divSpecie}>
-              <b>Especie: </b>
-              <span>{data.type}</span>
-            </div>
-
-            <div class={styles.divCondition}>
-              <b>Condición: </b>
-              <span>{data.condition}</span>
-            </div>
-
-            <div class={styles.divGender}>
-              <b>Genero: </b>
-              <span>{data.gender}</span>
-            </div>
-
-            <div class={styles.divAge}>
-              <b>Edad: </b>
-              <span>{data.age}</span>
-            </div>
-
-            <div class={styles.divSocial}>
-              <b>Interacción con otros animales: </b>
-              <span>{data.sociability}</span>
-            </div>
-
-            <div class={styles.divHealth}>
-              <b>Salud: </b>
-              <span>{data.health}</span>
-            </div>
-
-            {data.healthExtra && (
-              <div class={styles.divHealthExtra}>
-                <b>Descripción de salud: </b>
-                <span>{data.healthExtra}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className={styles.divDescription}>
-          <h3 className={styles.titleDescription}>Descripición</h3>
-          <p className={styles.description}>{data.description}</p>
-          {/* <p className={styles.description}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p> */}
-        </div>
-        <div className={styles.buttonReport}>
-          <button
-            className={styles.back}
-            onClick={async () => {
-              user
-                ? Swal.fire({
-                    title: "¿Por qué denuncias este post?",
-                    text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
-                    input: "text",
-                    showCancelButton: true,
-                  })
-                    .then(async (result) => {
-                      if (result.isConfirmed) {
-                        if (result.value) {
-                          let report = { motiveReport: result.value };
-                          return [result, report];
-                        }
-                      }
-                    })
-                    .then(async (response) => {
-                      try {
-                        if (response) {
-                          let res = await axios.put(
-                            "http://localhost:3001/updatePet/report/" +
-                              data._id,
-                            response[1]
-                          );
-                          return res;
-                        }
-                      } catch (error) {
-                        return { error: error };
-                      }
-                    })
-                    .then((response) => {
-                      if (response) {
-                        response.error
-                          ? Swal.fire({
-                              title: response.error.response.data,
-                              icon: "error",
-                              color: "#437042",
-                              confirmButtonColor: "#437042",
-                              confirmButtonAriaLabel: "#437042",
-                            })
-                          : Swal.fire({
-                              title: "Reporte enviado con éxito.",
-                              text: "Estaremos revisando el post en poco tiempo",
-                              icon: "success",
-                              color: "#437042",
-                              confirmButtonColor: "#437042",
-                              confirmButtonAriaLabel: "#437042",
-                            });
-                      }
-                    })
-                : Swal.fire({
-                    title: "Necesitas registrarte para denunciar",
-                    icon: "error",
-                    color: "#437042",
-                    confirmButtonColor: "#437042",
-                    confirmButtonAriaLabel: "#437042",
-                  });
-            }}
-            type="button"
-          >
-            Denunciar
-          </button>
+          </Slider> */}
         </div>
       </div>
-      <div>
-        <Slider {...settings} className="arrowsSlides">
-          {related.slice(0, 9).map((mascota) => (
-            <PetsCard
-              key={mascota._id}
-              nombre={mascota.name}
-              imagen={mascota.image}
-              genero={mascota.gender}
-              tamano={mascota.size}
-            />
-          ))}
-        </Slider>
-      </div>
-      <Footer />
-    </div>
+    </LayoutGlobal>
   );
 }
 
