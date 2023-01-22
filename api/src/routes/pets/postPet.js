@@ -37,7 +37,7 @@ postPet.post("/post-pet", async (req, res) => {
       age,
       contactAdoption,
       description,
-      // await aiText(req.body),
+      //await aiText(req.body),
       image: result.map((ele) => ele.url),
       type,
       location,
