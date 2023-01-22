@@ -80,10 +80,27 @@ export const validateForm = (event, setError, error) => {
 };
 
 export const hanldeOnChange = (event, setInput, input, setResult) => {
-  setInput({
-    ...input,
-    [event.target.name]: event.target.value,
-  });
+  if (event.target.name.includes('direction')) {
+   input.directions
+      
+
+    // if (!input.directions.length) {
+    //   setInput({
+    //     ...input,
+    //     directions: [event.target.value],
+    //   });
+    // } else {
+    //   setInput({
+    //     ...input,
+    //     directions: [...input.directions, event.target.value],
+    //   });
+    // }
+  } else {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+  }
 
   setResult({
     error: "",
@@ -105,8 +122,8 @@ export const handleFiles = (event, setInput, input) => {
 
 export const handleAdoption = async (router, Swal, idUser) => {
   try {
-    const response = await axios.get(`http://localhost:3001/user/${idUser}`)
-    if(!response.data.name || response.data.name === ' '){
+    const response = await axios.get(`http://localhost:3001/user/${idUser}`);
+    if (!response.data.name || response.data.name === " ") {
       Swal.fire({
         title: "Necesitas configurar tu nombre para adoptar",
         icon: "error",
@@ -118,9 +135,8 @@ export const handleAdoption = async (router, Swal, idUser) => {
       router.push(`/adoptionForm/${idUser}`);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-
 };
 
 export const handleOnSubmit = async (

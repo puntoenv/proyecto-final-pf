@@ -15,6 +15,7 @@ import {
 } from "../../../../controller/validationUpdateP";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import Maps from "../../../GoogleMap/Maps";
 
 const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
   const imgAux =
@@ -32,6 +33,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
     bio: "",
     image: "",
     ubication: "",
+    // directions: [direction1, direction2, direction3]
   });
 
   const [result, setResult] = useState({
@@ -45,9 +47,17 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
     bio: "",
     image: "",
     ubication: "",
+    directions: '',
   });
 
   const [edit, setEdit] = useState(false);
+
+  const handleMaps = (coord) => {
+    setInput({
+      ...input,
+      ubication: coord,
+    });
+  };
 
   const disabledHandle = () => {
     if (
@@ -70,12 +80,15 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
           handleOnSubmit(event, setResult, setInput, input, idUser)
         }
       >
+        <div className={styles.bar}></div>
         <div className={styles.divImage}>
-          <img
-            className={styles.image}
-            src={response.image ? response.image : imgAux}
-            alt={user.name}
-          />
+          <div className={styles.backImage}>
+            <img
+              className={styles.image}
+              src={response.image ? response.image : imgAux}
+              alt={user.name}
+            />
+          </div>
 
           <div className={styles.editImage}>
             {edit ? (
@@ -133,6 +146,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
             ) : (
               <>
                 <textarea
+                  className={styles.input}
                   type="text"
                   placeholder="Breve descripción sobre ti"
                   name="bio"
@@ -143,10 +157,10 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
                 />
               </>
             )}
-            <span>{error.bio ? error.bio : ""}</span>
+            <p className={styles.Error}>{error.bio ? error.bio : ""}</p>
           </p>
           <p>
-            <p>Nombre completo:</p>
+            <p>Nombre:</p>
 
             {!edit ? (
               nameUpper ? (
@@ -157,6 +171,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
             ) : (
               <>
                 <input
+                  className={styles.input}
                   type="text"
                   placeholder="Ej: Pedro Pérez"
                   name="name"
@@ -168,7 +183,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
               </>
             )}
 
-            <span>{error.name ? error.name : ""}</span>
+            <p className={styles.Error}>{error.name ? error.name : ""}</p>
           </p>
           <p>
             <p>Edad: </p>
@@ -182,6 +197,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
             ) : (
               <>
                 <input
+                  className={styles.input}
                   type="number"
                   placeholder="Ej: 28"
                   name="age"
@@ -193,7 +209,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
               </>
             )}
 
-            <span>{error.age ? error.age : ""}</span>
+            <p className={styles.Error}>{error.age ? error.age : ""}</p>
           </p>
           <p>
             <p>Provincia: </p>
@@ -207,6 +223,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
             ) : (
               <>
                 <input
+                  className={styles.input}
                   type="text"
                   placeholder="Ej: Buenos Aires"
                   name="ubication"
@@ -217,81 +234,91 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
                 />
               </>
             )}
-            <span>{error.ubication ? error.ubication : ""}</span>
+            <p className={styles.Error}>
+              {error.ubication ? error.ubication : ""}
+            </p>
+            {/* <div className={styles.containMap}>
+              <Maps setLocationPet={handleMaps} />
+            </div> */}
           </p>
         </div>
-        {/* <div style={{ display: "flex", flexWrap: "wrap", maxWidth: '40%' }}>
+        <div className={styles.infoEnvio}>
           <p>Información de envíos:</p>
-          <p style={{ display: "flex" }}>
-            <p>Ubicación 1: </p>
-            {!edit ? (
-              response.age ? (
-                response.age
+          <div className={styles.inputEnvios}>
+            <p>
+              <p>Ubicación 1: </p>
+              {!edit ? (
+                response.directions ? (
+                  response.directions[0]
+                ) : (
+                  "No especificado"
+                )
               ) : (
-                "No especificado"
-              )
-            ) : (
-              <>
-                <input
-                  type="number"
-                  placeholder="Ej: 28"
-                  name="age"
-                  onChange={(event) => {
-                    hanldeOnChange(event, setInput, input, setResult),
-                      validateForm(event, setError, error);
-                  }}
-                />
-              </>
-            )}
-            <span>{error.age ? error.age : ""}</span>
-          </p>
-          <p style={{ display: "flex" }}>
-            <p>Ubicación 2: </p>
-            {!edit ? (
-              response.age ? (
-                response.age
+                <>
+                  <input
+                    className={styles.inputEnviosStyle}
+                    type="text"
+                    placeholder="Calle, Altura, CP"
+                    name="directions"
+                    onChange={(event) => {
+                      hanldeOnChange(event, setInput, input, setResult),
+                        validateForm(event, setError, error);
+                    }}
+                  />
+                </>
+              )}
+              <span>{error.directions ? error.directions : ""}</span>
+            </p>
+            <p>
+              <p>Ubicación 2: </p>
+              {!edit ? (
+                response.directions && response.directions[1] ? (
+                  response.directions[1]
+                ) : (
+                  "No especificado"
+                )
               ) : (
-                "No especificado"
-              )
-            ) : (
-              <>
-                <input
-                  type="number"
-                  placeholder="Ej: 28"
-                  name="age"
-                  onChange={(event) => {
-                    hanldeOnChange(event, setInput, input, setResult),
-                      validateForm(event, setError, error);
-                  }}
-                />
-              </>
-            )}
-            <span>{error.age ? error.age : ""}</span>
-          </p>
-          <p style={{ display: "flex" }}>
-            <p>Ubicación 3: </p>
-            {!edit ? (
-              response.age ? (
-                response.age
+                <>
+                  <input
+                    className={styles.inputEnviosStyle}
+                    type="text"
+                    placeholder="Calle, Altura, CP"
+                    name="directions"
+                    onChange={(event) => {
+                      hanldeOnChange(event, setInput, input, setResult),
+                        validateForm(event, setError, error);
+                    }}
+                  />
+                </>
+              )}
+              <span>{error.directions ? error.directions : ""}</span>
+            </p>
+            <p>
+              <p>Ubicación 3: </p>
+              {!edit ? (
+                response.directions && response.directions[2] ? (
+                  response.directions[2]
+                ) : (
+                  "No especificado"
+                )
               ) : (
-                "No especificado"
-              )
-            ) : (
-              <>
-                <input
-                  type="number"
-                  placeholder="Ej: 28"
-                  name="age"
-                  onChange={(event) => {
-                    hanldeOnChange(event, setInput, input, setResult),
-                      validateForm(event, setError, error);
-                  }}
-                />
-              </>
-            )}
-            <span>{error.age ? error.age : ""}</span>
-          </p>
-        </div> */}
+                <>
+                  <input
+                    className={styles.inputEnviosStyle}
+                    type="text"
+                    placeholder="Calle, Altura, CP"
+                    name="directions"
+                    onChange={(event) => {
+                      hanldeOnChange(event, setInput, input, setResult),
+                        validateForm(event, setError, error);
+                    }}
+                  />
+                </>
+              )}
+              <span>{error.directions ? error.directions : ""}</span>
+            </p>
+          </div>
+        </div>
         <span
           className={styles.editInfo}
           onClick={() => {
@@ -303,6 +330,13 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
                 image: "",
                 ubication: "",
               });
+            setError({
+              name: "",
+              age: "",
+              bio: "",
+              image: "",
+              ubication: "",
+            });
           }}
         >
           Editar Perfil
@@ -310,6 +344,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
         </span>
         {edit && (
           <button disabled={disabledHandle()} type="submit">
+            Guardar información
             <HiCheck size={20}></HiCheck>
           </button>
         )}
