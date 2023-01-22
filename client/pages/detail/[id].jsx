@@ -133,8 +133,9 @@ export default function Detail({ data }) {
             PageMaker including versions of Lorem Ipsum.
           </p> */}
         </div>
-        <div className={styles.button}>
+        <div className={styles.buttonReport}>
           <button
+            className={styles.back}
             onClick={async () => {
               user
                 ? Swal.fire({
