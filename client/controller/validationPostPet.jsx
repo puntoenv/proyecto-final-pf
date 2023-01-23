@@ -92,8 +92,17 @@ export const handleFiles = (e, setPost, post) => {
     });
   };
 };
-export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
+export const handleSubmit = async (
+  e,
+  PostAdop,
+  post,
+  router,
+  errors,
+  Swal,
+  setLoader
+) => {
   e.preventDefault();
+  setLoader(true)
   if (
     !post.age ||
     !post.name ||
@@ -122,8 +131,8 @@ export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
     });
   } else {
     const id = await PostAdop(post);
-
     if (typeof id === "string") {
+      setLoader(false)
       return await router.push(`/detail/${id}`);
     }
   }
