@@ -134,11 +134,13 @@ export default function Detail({
           <span className={style.contentDescription}>{data.description}</span>
         </div>
 
+        <h1 className={style.titleRelated}> Productos Relacionados </h1>
         <div className={style.relatedContainer}>
-          <h1 className={style.titleRelated}> Productos Relacionados </h1>
+          
 
           {/* <Slider {...settings} className="arrowsSlides"> */}
           {recomendados.slice(0, 9).map((recomendado) => (
+            <div className={style.cards}>
             <CardProduct
               key={recomendado._id}
               info={recomendado}
@@ -148,6 +150,7 @@ export default function Detail({
               productOfCart={productOfCart}
               discountItem={discountItem}
             />
+            </div>
           ))}
           {/* </Slider> */}
         </div>
