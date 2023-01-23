@@ -10,6 +10,7 @@
   border-radius: 30px;
   background-color: #ffffff;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  margin: 1rem;
 }
 .linkImg {
   display: flex;
