@@ -11,11 +11,12 @@
 .containSlider {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   margin-bottom: 50px;
-  width: 65rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  width: 99vw;
+  padding-left: 5rem;
+  /* padding-left: 2rem; */
+  /* padding-right: 2rem; */
 }
 
 .namePet {
@@ -292,11 +293,11 @@
 
 .buttonReport {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
-  margin: 40px;
-  bottom: 20px;
-  left: 40px;
+  /* margin: 40px; */
+  /* bottom: 20px; */
+  /* left: 40px; */
 }
 
 .main {

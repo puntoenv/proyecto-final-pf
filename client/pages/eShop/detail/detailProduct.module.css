@@ -15,8 +15,9 @@
   color: #415d43;
   font-size: 45px;
   font-weight: 700;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
+  text-align: center;
   margin: 20px;
 }
 .containBtnBack {
@@ -156,8 +157,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 12.5rem;
-  padding-right: 10rem;
-  padding-bottom: 5rem;
-  width: 100%;
+  padding-left: 2.5rem;
+  width: 100vw;
 }

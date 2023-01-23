@@ -146,7 +146,7 @@ export default function Detail({
           <span className={style.contentDescription}>{data.description}</span>
         </div>
         <div className={style.containSlider}>
-          <h1 className={style.titleRelated}> Productos Relacionados </h1>
+          {/* <h1 className={style.titleRelated}> Productos Relacionados </h1> */}
           <Slider {...settings} className="arrowsSlides">
             {recomendados.slice(0, 9).map((recomendado) => (
               // <CardProduct

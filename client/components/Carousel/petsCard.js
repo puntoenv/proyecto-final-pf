@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function PetsCard({ nombre, imagen, genero, size, id }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.big_container}>
       <div className={styles.containImg}>
         {/* <Link href={"/petsPosts"}> */}
         <img
