@@ -37,6 +37,14 @@ export const getmuni = (municipios) => async (dispatch) => {
   }
 };
 
+export const PutReview = async (obj) => {
+  try{
+    console.log(obj)
+  }catch(error){
+     console.log(error)
+  }
+}
+
 export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {

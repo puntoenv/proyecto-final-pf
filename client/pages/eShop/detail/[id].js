@@ -5,15 +5,16 @@ import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { getProductsRelated } from "../../../stores/actions";
+import { getProductsRelated, PutReview } from "../../../stores/actions";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
-import Point from "../../../components/punctuation/index"
-
+//import Point from "../../../components/Punctuation/index";
+//import Review from "../../../components/Reviews";
+import Start_Revi from "../../../components/star_Revi"
 export default function Detail({
   data,
   cart,
@@ -25,7 +26,10 @@ export default function Detail({
 
   const id_User = user && user.sub.split("|")[1];
 
-  const { name, image, price, _id, stock, category, boughtBy } = data;
+  const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
+    data;
+ 
+  
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
   const dispatch = useDispatch();
@@ -54,13 +58,15 @@ export default function Detail({
     }
   };
 
-  useEffect(() => {
+  const CondiRevi = useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
     dispatch(getProductsRelated(data._id));
   }, [cart, amount]);
   data.id_User = id_User;
   let products = [data];
-  console.log(products);
+  // console.log(products);
+
+ 
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -69,7 +75,7 @@ export default function Detail({
             {"<"} Atras
           </Link>
         </div>
-        <Point></Point>
+
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
@@ -135,7 +141,12 @@ export default function Detail({
           <span className={style.descriptionTitle}>Description</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-
+        <div>
+          {<Start_Revi
+          data = {data}
+          id_User = {id_User}
+          />}
+        </div>
         <div className={style.relatedContainer}>
           <h1 className={style.titleRelated}> Productos Relacionados </h1>
 

@@ -22,6 +22,17 @@ const productSchema = new Schema({
   image: String,
   stock: Number,
   category: Array,
+  star_reviews:[
+    {
+     coment: {type: Boolean,default:true},
+     stars: Number,
+     reviews: String,
+     user: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+     }
+    }
+  ],
   boughtBy: [
     {
       type: Schema.Types.ObjectId,
