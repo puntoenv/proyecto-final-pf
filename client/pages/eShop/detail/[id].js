@@ -28,7 +28,7 @@ export default function Detail({
 
   const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
- 
+ console.log(_id)
   
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
