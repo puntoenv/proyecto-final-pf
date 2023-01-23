@@ -52,6 +52,17 @@ const userSchema = new Schema({
       ref: "Product",
     },
   ],
+  review_star: [
+    { 
+      coment: {type: Boolean,default:true},
+      stars: Number,
+      reviews: String,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      }
+    }
+  ],
   signIn: {
     type: String,
     default: "local",
