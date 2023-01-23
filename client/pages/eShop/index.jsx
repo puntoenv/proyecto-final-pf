@@ -2,7 +2,7 @@ import {
   allcategories,
   filterProducts,
   getProducts,
-  searchProduct /* , addCart  */,
+  searchProduct,
 } from "../../stores/actions";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,6 @@ import styles from "./styles.module.css";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
-
 export default function eShop({
   addToCart,
   cart,
@@ -19,12 +18,6 @@ export default function eShop({
   productOfCart,
   discountItem,
 }) {
-
-
-  // console.log(dataProps);
-
-  // if (dataProps.collection_status === "approved") deleteAllCart();
-
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);

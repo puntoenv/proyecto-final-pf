@@ -9,9 +9,11 @@ const ContentUser = ({
   user,
   handleOnSubmit,
   hanldeOnChange,
+
   render,
+
 }) => {
-  console.log(render)
+  console.log(render);
   return (
     <div className={styles.contentcontainer}>
       {render === "profile" && (

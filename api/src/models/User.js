@@ -13,7 +13,12 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
-  ubication: String,
+  gender: {
+    type: String
+  },
+  ubication: {
+    type: Object
+  },
   directions: {
     type: Array,
   },

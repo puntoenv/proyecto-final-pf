@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/Navbar.jsx";
-import Bar from "../../components/admin/Bar";
-import Link from "next/link";
-import Pie from "../../components/admin/Pie";
-import CategPie from "../../components/admin/CategPie";
-import Calendar from "../../components/admin/Calendar";
-import Products from "../../components/admin/Products";
+// import Bar from "../../components/admin/Bar";
+// import Link from "next/link";
+//import Pie from "../../components/admin/Pie";
+// import CategPie from "../../components/admin/CategPie";
+// import Calendar from "../../components/admin/Calendar";
+import Products from "../../components/admin/Products/Products";
 import styles from "./admin.module.css";
-import Users from "../../components/admin/Users";
+import Users from "../../components/admin/Users/Users";
 import Footer from "../../components/admin/Footer";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
@@ -15,6 +15,10 @@ import { useQuery } from "react-query";
 import { getUserById } from "../../controller/functionsUser/getUserById.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+
+
+
+
 
 const Admin = withPageAuthRequired(() => {
   const [Render, setRender] = useState();
@@ -55,7 +59,7 @@ const Admin = withPageAuthRequired(() => {
 
   useEffect(() => {
     {
-      setRender(<Pie />);
+      setRender();
     }
   }, []);
 
@@ -68,7 +72,7 @@ const Admin = withPageAuthRequired(() => {
         <div>
           <div>
             <button
-              onClick={(e) => handlerOnClick(e, <Pie />)}
+              onClick={(e) => handlerOnClick(e, )}
               className={styles.lp}
             >
               Little Paws
@@ -100,7 +104,7 @@ const Admin = withPageAuthRequired(() => {
 
               <button
                 className={styles.btn}
-                onClick={(e) => handlerOnClick(e, <Calendar />)}
+                onClick={(e) => handlerOnClick(e, )}
               >
                 Calendario
               </button>
@@ -108,8 +112,8 @@ const Admin = withPageAuthRequired(() => {
           </div>
         </div>
       </div>
-
-      <Footer />
+{/* 
+      <Footer /> */}
     </div>
   );
 });

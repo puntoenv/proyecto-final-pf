@@ -41,10 +41,26 @@ export function form(props) {
     userId: idUser,
   });
   const [position, setFirst] = useState(1);
-
+  const [loader, setLoader] = useState(false);
   const handlerCoords = (coords) => {
     handleLocation(post, setPost, coords);
   };
+
+  // const handleLoader = (event) => {
+  //   event.preventDefault()
+  //   return (
+  //     <ThreeDots
+  //       height="80"
+  //       width="80"
+  //       radius="9"
+  //       color="#4fa94d"
+  //       ariaLabel="three-dots-loading"
+  //       wrapperStyle={{}}
+  //       wrapperClassName=""
+  //       visible={true}
+  //     />
+  //   );
+  // }
 
   useEffect(() => {
     dispatch(getper()).then((_) => console.log(provi));
@@ -83,10 +99,14 @@ export function form(props) {
                 </p>
               </div>
             </div>
+            { loader &&  <div className={style.container}>
+              <div className={style.loader}></div>
+              <p>Loading...</p>
+            </div>}
             <form
               className={styles.form}
               onSubmit={(e) =>
-                handleSubmit(e, PostAdop, post, router, errors, Swal)
+                handleSubmit(e, PostAdop, post, router, errors, Swal, setLoader)
               }
             >
               <span className={styles.title}>Datos de la Mascota</span>

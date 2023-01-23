@@ -79,34 +79,31 @@ export const validateForm = (event, setError, error) => {
   }
 };
 
-export const hanldeOnChange = (event, setInput, input, setResult) => {
-  if (event.target.name.includes('direction')) {
-   input.directions
-      
+export const hanldeOnChange = (
+  event,
+  setInput,
+  input,
+  setResult,
+) => {
+  if (event.target.name.includes("direction")) {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value
+    })
 
-    // if (!input.directions.length) {
-    //   setInput({
-    //     ...input,
-    //     directions: [event.target.value],
-    //   });
-    // } else {
-    //   setInput({
-    //     ...input,
-    //     directions: [...input.directions, event.target.value],
-    //   });
-    // }
-  } else {
+  } 
     setInput({
       ...input,
       [event.target.name]: event.target.value,
     });
-  }
 
+  
   setResult({
     error: "",
     seccess: "",
   });
 };
+
 
 export const handleFiles = (event, setInput, input) => {
   const { files } = event.target;

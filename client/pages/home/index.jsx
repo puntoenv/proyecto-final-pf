@@ -15,7 +15,7 @@ import PetsCard from "../../components/Carousel/petsCard";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPets, getProducts } from "../../stores/actions";
-import React, { Component } from "react";
+import React from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -31,15 +31,6 @@ export default function Home() {
     autoplaySpeed: 2000,
     cssEase: "linear",
   };
-  // const settings = {
-  //   arrows: true,
-  //   infinite: true,
-  //   dots: true,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 3,
-
-  // };
   const { user } = useUser();
   const dataPets = useSelector((data) => data.mascotas.mascotas);
   const productos = useSelector((state) => state.products.allProducts);
