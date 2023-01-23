@@ -1,16 +1,25 @@
-import styles from "./styles.module.css";
+import Link from "next/link";
+import styles from "../../styles/carruselShop.module.css";
 
 export default function ProductCard({ info }) {
-  const { name, image, price } = info;
+  const { name, image, price, _id } = info;
   return (
-    <div className={styles.card}>
-      <div className={styles.name}>{name}</div>
-      <div className={styles.linkImg}>
+    <div className={styles.container}>
+      {/* <div className={styles.containerImg}> */}
+      <div className={styles.divImage}>
         <img className={styles.img} src={image} alt="imagen del producto" />
+        <hr className={styles.linea}></hr>
       </div>
-      <div className={styles.divInfoProduct}>
-        {price ? <div className={styles.price}>${price}</div> : null}
+      <div className={styles.containInfo}>
+        <h3 className={styles.name}> {name.toUpperCase()} </h3>
+        <h1 className={styles.price}>${price} </h1>
+        <Link href={`/eShop/detail/${_id}`}>
+          <div className={styles.button}>
+            <button className={styles.detail}>Ver Producto</button>
+          </div>
+        </Link>
       </div>
+      {/* </div> */}
     </div>
   );
 }
