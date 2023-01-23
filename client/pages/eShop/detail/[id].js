@@ -20,17 +20,7 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
-  //  {
-  //      const settings = {
-  //       arrows: true,
-  //       infinite: true,
-  //       dots: true,
-  //       speed: 500,
-  //       slidesToShow: 3,
-  //       slidesToScroll: 3,
-  //   };
   const { user } = useUser();
-
   const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
@@ -143,7 +133,7 @@ export default function Detail({
         <div className={style.relatedContainer}>
           <h1 className={style.titleRelated}> Productos Relacionados </h1>
 
-          {/* <Slider {...settings} className="arrowsSlides">   */}
+          {/* <Slider {...settings} className="arrowsSlides"> */}
           {recomendados.slice(0, 9).map((recomendado) => (
             <CardProduct
               key={recomendado._id}
@@ -155,7 +145,7 @@ export default function Detail({
               discountItem={discountItem}
             />
           ))}
-          {/* </Slider>  */}
+          {/* </Slider> */}
         </div>
       </div>
     </LayoutGlobal>
