@@ -2,6 +2,11 @@ import styles from "../../styles/carrusel.module.css";
 import Link from "next/link";
 
 export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
+  // const {id, nombre, imagen, genero, tamano}= mascota
+  const handlerFavorite = (e, ani) => {
+    e.preventDefault();
+    addAgregar(ani);
+  };
 
   return (
     <div className={styles.big_container}>
@@ -21,6 +26,12 @@ export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
         {/* <h1 className={styles.size}>{tamano}</h1> */}
         <button className={styles.btn}>
                       <Link href={`/detail/${id}`}>Ver detalle</Link>
+                    </button>
+                    <button
+                      className={styles.btnFav}
+                      onClick={(e) => handlerFavorite(e, mascota)}
+                    >
+                      Favorito
                     </button>
                  
       </div>

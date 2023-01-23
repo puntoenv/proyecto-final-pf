@@ -20,6 +20,16 @@
   z-index: 600;
   font-weight: 700;
 }
+.btnFav{
+  background: #38593a;
+  font-size: 21px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  height: 45px;
+  width: 150px;
+  font-weight: 700;
+}
 
 .containImg {
   display: flex;
@@ -58,4 +68,15 @@
   display: flex;
   justify-content: center;
   justify-items: center;
+}
+.divFavorito{
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  height: 600px;
+  border-radius: 30px;
+  margin: 40px auto;
+  text-align: center;
+  display: flex;
+  background:red;
 }

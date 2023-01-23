@@ -42,16 +42,16 @@ export default function Detail({ data }) {
     }
   };
 
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   autoplay: true,
-  //   speed: 1700,
-  //   autoplaySpeed: 2000,
-  //   cssEase: "linear",
-  // };
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
 
   return (
     <div className={styles.containerAll}>
