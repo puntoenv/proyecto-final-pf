@@ -83,8 +83,10 @@ export default function CardProduct({
           </Link>
         ) : null}
         {/* <div className={styles.detail}> */}
-        <Link className={styles.detail} href={`/eShop/detail/${_id}`}>
-          Ver Producto
+        <Link href={`/eShop/detail/${_id}`}>
+          <div className={styles.button}>
+            <button className={styles.detail}>Ver Producto</button>
+          </div>
         </Link>
         {/* </div> */}
       </div>
