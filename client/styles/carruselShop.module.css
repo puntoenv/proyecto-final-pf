@@ -59,16 +59,15 @@
     background-color: #e8eb9d;
     display: flex; */
 }
-   
 
-.name{
-    font-size: 25px;
-    display: flex;
-    justify-content: center;
-    font-weight: 700;
-    color: #32281f;
-    text-shadow: 2px 2px 4px #937a60;
-    margin-bottom: 5px;
+.name {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  color: #32281f;
+  text-shadow: 2px 2px 4px #937a60;
+  margin-bottom: 5px;
 }
 .price{
     font-size: 20px;

@@ -1,5 +1,6 @@
 .big_container {
   flex-direction: column;
+  display: flex;
   align-items: center;
   width: 280px;
   height: 400px;

@@ -1,11 +1,9 @@
 import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import Nosotros from "../../components/infoHome/nosotros";
 import Layout from "../layout";
 import home from "../../img/prueba.jpeg";
-import logo from "../../img/logo.jpeg";
 import Cat from "../../img/meal.png";
 import Join from "../../components/JoinUs/joinUs";
 import Slider from "react-slick";
@@ -75,8 +73,6 @@ import CardProduct from "../../components/CardProduct";
     //   dispatch(getProducts(1))
     // },[dispatch])
    
-
-    //////////////////////////////////
   
 
     return (
