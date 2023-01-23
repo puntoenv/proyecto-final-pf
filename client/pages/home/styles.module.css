@@ -7,7 +7,7 @@
   font-size: 12px;
   position: relative;
 }
-
+/* componente del carrusel entero */
 .containSlider {
   display: flex;
   flex-direction: column;
@@ -190,7 +190,25 @@ font-size:20px ;
   padding: 10px;
   z-index: 600;
   font-weight: 700;
- 
-
-
+}
+.btnFav{
+  background: #38593a;
+  font-size: 21px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  height: 45px;
+  width: 150px;
+  font-weight: 700;
+}
+.btn {
+  background: #38593a;
+  font-size: 21px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  height: 45px;
+  width: 150px;
+  z-index: 600;
+  font-weight: 700;
 }

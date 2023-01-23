@@ -2,6 +2,7 @@ import styles from "../../styles/carrusel.module.css";
 import Link from "next/link";
 
 export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
+
   return (
     <div className={styles.big_container}>
       <div className={styles.imgcontainer}>
@@ -21,6 +22,7 @@ export default function PetsCard({ id, nombre, imagen, genero, tamano }) {
         <button className={styles.btn}>
                       <Link href={`/detail/${id}`}>Ver detalle</Link>
                     </button>
+                 
       </div>
     </div>
   );
