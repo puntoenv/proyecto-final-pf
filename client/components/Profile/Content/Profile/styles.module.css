@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Laila:wght@500&family=Poppins&family=Quicksand:wght@500&display=swap");
-
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -60,10 +58,10 @@
   border-radius: 20px;
   width: 40rem;
   min-height: 40rem;
-  box-shadow: 0px 0px 30px 0px #8e8f73 inset;
+  box-shadow: 0px 0px 30px 0px #8f7e73;
   /* border-right: 15px solid #e8eb9d; */
   padding: 10px;
-  margin-bottom: 3rem;
+  margin: 2rem;
 }
 
 .divImage {
@@ -102,11 +100,9 @@
   margin-bottom: 20px;
   color: #022902;
   font-weight: 600;
-  font-family: "Quicksand", sans-serif;
 }
 .profileDiv > p {
   font-weight: 600;
-  font-family: "Quicksand", sans-serif;
 }
 
 /* INFORMACION DEL USUARIO !! */
@@ -115,14 +111,12 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 40rem;
-  max-height: 14rem;
+  max-height: 15rem;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
-.info > p {
-  width: 18rem;
-  font-family: "Quicksand", sans-serif;
+.info>p{
+  width: 15rem;
 }
 
 .info > p > p {
@@ -130,7 +124,6 @@
   color: #034103;
   font-weight: 600;
   font-size: 17px;
-  font-family: "Quicksand", sans-serif;
   margin-bottom: 5px;
   border-bottom: 2px solid rgb(23, 58, 20);
 }
@@ -146,7 +139,6 @@
   margin-left: 4px;
   font-weight: 600;
   color: #023502;
-  font-family: "Quicksand", sans-serif;
   font-size: 20px;
   width: 20rem;
   box-shadow: 0px 4px 10px 1px #6a6b4a70;
@@ -178,7 +170,6 @@
   color: #034103;
   font-weight: 600;
   font-size: 17px;
-  font-family: "Quicksand", sans-serif;
   border-bottom: 2px solid rgb(23, 58, 20);
   width: 6.5rem;
   margin-bottom: 5px;
@@ -242,7 +233,6 @@
   flex-direction: row-reverse;
   cursor: pointer;
   gap: 10px;
-  font-family: "Quicksand", sans-serif;
   align-items: center;
   font-weight: 600;
   text-shadow: #66665f 1px 0 10px;
