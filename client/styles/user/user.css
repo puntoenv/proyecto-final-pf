@@ -1,12 +1,13 @@
 .divHidden {
-  width: 0rem;
+  width: 10rem;
+  height: 0;
   overflow-x: hidden;
   transition: all 0.5s;
   list-style: none;
   font-size: 20px;
   text-decoration: none;
   opacity: 0.6;
-  transition: all 0.5s;
+  transition: all 1s;
   margin-top: 20px;
   gap: 10px;
   font-weight: 660;
@@ -16,5 +17,5 @@
 }
 
 .width {
-  width: 10rem;
+  height: 18rem;
 }

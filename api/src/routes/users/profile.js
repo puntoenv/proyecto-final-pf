@@ -11,6 +11,7 @@ profile.get("/:id", async (req, res) => {
     }).populate([
       { path: "pets", model: "Pet" },
       { path: "bought", model: "Product" },
+      { path: "review_star", model: "Product" },
     ]);
 
     if (user.hidden) return res.json("User not found");
