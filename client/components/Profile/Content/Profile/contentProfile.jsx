@@ -10,6 +10,7 @@ import {
 } from "../../../../controller/validationUpdateP";
 import Maps from "../../../GoogleMap/Maps";
 
+
 const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
   const imgAux =
     "https://www.pngkit.com/png/detail/128-1280585_user-icon-fa-fa-user-circle.png";
@@ -376,7 +377,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
               });
             }}
           >
-            Editar Perfil
+            {!edit ? 'Editar Perfil': 'Vover'}
             <HiPencilSquare size={18}></HiPencilSquare>
           </span>
           {edit && (
