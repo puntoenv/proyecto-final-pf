@@ -11,12 +11,8 @@
 .containSlider {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   margin-bottom: 50px;
-  width: 99vw;
-  padding-left: 5rem;
-  /* padding-left: 2rem; */
-  /* padding-right: 2rem; */
+  width: 75vw;
 }
 
 .namePet {
