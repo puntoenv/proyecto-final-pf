@@ -33,6 +33,7 @@
   font-weight: 600;
   color: #034103;
   background-color: rgba(255, 255, 255, 0.541);
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
   display: flex;
   transition: all 0.5s;
   cursor: pointer;
@@ -55,13 +56,14 @@
 .userContent {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.781);
+  background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 40rem;
   min-height: 40rem;
-  box-shadow: 0px 0px 10px 0px #333 inset;
-  border-right: 20px solid #022902;
+  box-shadow: 0px 0px 30px 0px #8e8f73 inset;
+  /* border-right: 15px solid #e8eb9d; */
   padding: 10px;
+  margin-bottom: 3rem;
 }
 
 .divImage {
@@ -100,12 +102,11 @@
   margin-bottom: 20px;
   color: #022902;
   font-weight: 600;
-    font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 .profileDiv > p {
   font-weight: 600;
-    font-family: "Quicksand", sans-serif;
-    
+  font-family: "Quicksand", sans-serif;
 }
 
 /* INFORMACION DEL USUARIO !! */
@@ -114,7 +115,7 @@
   display: flex;
   flex-wrap: wrap;
   max-width: 40rem;
-  height: 14rem;
+  max-height: 14rem;
   justify-content: space-between;
   margin-bottom: 20px;
 }
@@ -131,14 +132,7 @@
   font-size: 17px;
   font-family: "Quicksand", sans-serif;
   margin-bottom: 5px;
-
   border-bottom: 2px solid rgb(23, 58, 20);
-}
-
-.editInfo {
-  display: flex;
-  flex-direction: row-reverse;
-  position: relative;
 }
 
 .infoEnvios {
@@ -155,7 +149,7 @@
   font-family: "Quicksand", sans-serif;
   font-size: 20px;
   width: 20rem;
-  box-shadow: -10px 0px 10px 1px #aaaaaa;
+  box-shadow: 0px 4px 10px 1px #6a6b4a70;
 }
 
 .inputEnvios {
@@ -169,6 +163,7 @@
 
 .inputEnviosStyle {
   border-radius: 30px;
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
   padding: 4px;
   width: 10rem;
 }
@@ -189,16 +184,94 @@
   margin-bottom: 5px;
 }
 
-
 /* EDICION!! */
 .input {
   border-radius: 20px;
   padding: 4px;
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
 }
 
-.info > p > .Error {
+.info > p > .Error,
+.containMap > div > .Error {
   color: red;
   font-size: 12px;
   width: auto;
   border: none;
+}
+
+.containMap > div > .Error {
+  text-align: center;
+}
+
+.containMap {
+  min-height: 8rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.inputMaps {
+  width: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputMaps > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.infoDir {
+  width: 18rem;
+}
+
+/* SUBMIT !!!! */
+
+.containEdit {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 7rem;
+  margin-top: 2rem;
+}
+
+.editInfo {
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+  gap: 10px;
+  font-family: "Quicksand", sans-serif;
+  align-items: center;
+  font-weight: 600;
+  text-shadow: #66665f 1px 0 10px;
+  transition: all 0.3s;
+}
+
+.editInfo:hover{
+   transform: scale(1.02);
+}
+
+.buttonSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 20px;
+  background: #38593a;
+  font-size: 18px;
+  color: white;
+  border-radius: 15px;
+  height: 40px;
+  font-weight: 700;
+  transition: all 0.5s;
+}
+
+.containEdit > .buttonSubmit:hover {
+  color: beige;
+  border: none;
+  font-weight: 700;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(185, 163, 103);
+  background: #584a3c;
 }
