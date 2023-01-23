@@ -24,7 +24,7 @@ const productSchema = new Schema({
   category: Array,
   star_reviews:[
     {
-     coment: {type: Boolean,default:true},
+    
      stars: Number,
      reviews: String,
      user: {

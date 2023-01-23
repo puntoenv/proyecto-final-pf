@@ -4,6 +4,7 @@ function Review({ state, revi }) {
   return (
     <div>
       <textarea
+        className={styles.container}
         name="reviews"
         type="text"
         onChange={(e) => state(e)}
