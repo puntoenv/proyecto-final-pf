@@ -40,8 +40,8 @@ const NavBar = () => {
           src={logo}
           alt="logo"
           className="logo"
-          width="auto"
-          height="auto"
+          // width="auto"
+          // height="auto"
         />
       </Link>
       <nav className="nav">

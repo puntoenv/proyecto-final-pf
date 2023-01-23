@@ -25,6 +25,14 @@
   text-decoration: none;
   font-size: 20px;
 }
+@media(max-width:350px){
+  .itemNav{
+    font-size: 15px;
+    color: red;
+    flex-direction: column;
+    display: block;
+  }
+}
 
 .itemNav:hover {
   color: #fff;
@@ -56,4 +64,10 @@
   z-index: 4500;
   width: auto;
   height: 14em;
+}
+@media(max-width:350px){
+  .logo{
+   height: 10em;
+   left: 5px;
+  }
 }

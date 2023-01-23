@@ -1,8 +1,12 @@
 .containerAllPets {
   display: flex;
   flex-direction: column;
-  padding: 50px 0;
+  /* padding: 50px 0; */
+  /* height: 100%; */
+  /* min-width: 100%; */
 }
+
+
 
 .container2 {
   display: flex;
@@ -17,6 +21,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
+
 }
 
 .searchB {
@@ -226,6 +231,7 @@
   margin-bottom: 1rem;
   background-color: white;
   margin-left: 14rem;
+
 }
 
 .paginate {
