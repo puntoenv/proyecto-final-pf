@@ -1,11 +1,21 @@
 .containerAll {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  min-height: 100vh;
   background-color: #e8eb9d;
 }
-.containDetail {
-  margin-top: 100px;
+
+.containSlider {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 65rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .namePet {
@@ -19,10 +29,9 @@
 .containCardDetail {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 30px 5px;
   width: 100%;
+  flex-direction: column;
 }
 .containFront {
   display: flex;
@@ -49,8 +58,9 @@
 }
 .divLocation {
   border-radius: 20px;
-  width: 500px;
-  height: 300px;
+  width: 30rem;
+  height: 20rem;
+  margin-bottom: 3rem;
 }
 
 .divSize {
@@ -101,13 +111,13 @@
 .titleDescription {
   text-align: center;
   font-size: 30px;
-  margin: 20px 40px;
+  /* margin: 20px 40px; */
 }
 
 .divDescription {
   text-align: center;
-  padding: 30px 150px;
-  padding-bottom: 100px;
+  /* padding: 30px 150px; */
+  /* padding-bottom: 100px; */
 }
 .description {
   text-align: center;
@@ -155,7 +165,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   margin-bottom: 10rem;
 }
 
@@ -190,4 +200,14 @@
   position: relative;
   bottom: 20px;
   left: 40px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  height: fit-content;
+  height: 20rem;
 }

@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
+import ProductCard from "../../../components/CarouselEshop/productsCard";
 
 export default function Detail({
   data,
@@ -20,6 +21,17 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
+
   const { user } = useUser();
 
   const id_User = user && user.sub.split("|")[1];
@@ -130,26 +142,32 @@ export default function Detail({
           </div>
         </div>
         <div className={style.containDescription}>
-          <span className={style.descriptionTitle}>Description</span>
+          <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-
-        <div className={style.relatedContainer}>
+        <div className={style.containSlider}>
           <h1 className={style.titleRelated}> Productos Relacionados </h1>
-
-          {/* <Slider {...settings} className="arrowsSlides"> */}
-          {recomendados.slice(0, 9).map((recomendado) => (
-            <CardProduct
-              key={recomendado._id}
-              info={recomendado}
-              addToCart={addToCart}
-              cart={cart}
-              // serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
-          ))}
-          {/* </Slider> */}
+          <Slider {...settings} className="arrowsSlides">
+            {recomendados.slice(0, 9).map((recomendado) => (
+              // <CardProduct
+              //   key={recomendado._id}
+              //   info={recomendado}
+              //   addToCart={addToCart}
+              //   cart={cart}
+              //   // serCart={setCart}
+              //   productOfCart={productOfCart}
+              //   discountItem={discountItem}
+              // />
+              <ProductCard
+                key={recomendado._id}
+                info={recomendado}
+                // addToCart={addToCart}
+                nombre={recomendado.name}
+                imagen={recomendado.image}
+                precio={recomendado.price}
+              />
+            ))}
+          </Slider>
         </div>
       </div>
     </LayoutGlobal>
