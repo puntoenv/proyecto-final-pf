@@ -19,8 +19,21 @@ import React from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import CardProduct from "../../components/CardProduct";
 
-export default function Home() {
+
+
+ export default function Home({ favorite, addAgregar , 
+  addToCart,
+  cart,
+  productOfCart,
+  discountItem,
+  //data,
+//   cart,
+//   addToCart,
+//   productOfCart,
+//   discountItem
+}) {
   {
     const settings = {
       dots: true,
@@ -35,7 +48,8 @@ export default function Home() {
     const { user } = useUser();
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
-    const data = useSelector((state) => state.products.data);
+    //const data = useSelector((state) => state.products.data);
+   
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -60,6 +74,10 @@ export default function Home() {
     // useEffect(()=>{
     //   dispatch(getProducts(1))
     // },[dispatch])
+   
+
+    //////////////////////////////////
+  
 
     return (
       <LayoutGlobal>
@@ -86,25 +104,28 @@ export default function Home() {
             />
           </div>
           <Nosotros />
-
           <div className={styles.containSlider}>
-            <div className={styles.titleRoute}>
+            
               <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
-
               <button className={styles.buttonRoute}>
                 <Link href="/petsPosts">Ver mas</Link>
               </button>
-            </div>
+          
 
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
+              
                 <PetsCard
-                  key={mascota._id}
+                  id={mascota._id}
                   nombre={mascota.name}
                   imagen={mascota.image}
                   genero={mascota.gender}
                   tamano={mascota.size}
+                  
                 />
+                
+
+            
               ))}
             </Slider>
           </div>
@@ -116,19 +137,30 @@ export default function Home() {
                 <Link href="/eShop">Ver mas</Link>
               </button>
             </div>
-
             <Slider {...settings} className="arrowsSlides">
-              {productos.slice(0, 9).map((producto) => (
+            {productos.slice(0, 9).map((producto) => {
+              return (
+            <CardProduct 
+            key={producto._id}
+       info={producto}
+         addToCart={addToCart}
+         cart={cart}
+          // serCart={setCart}
+           productOfCart={productOfCart}
+           discountItem={discountItem}
+          />
+            )})}
+
+               {/* {productos.slice(0, 9).map((producto) => (
                 <ProductCard
                   key={producto._id}
                   info={producto}
                   // addToCart={addToCart}
-                  // key={producto._id}
-                  // nombre={producto.name}
-                  // imagen={producto.image}
-                  // precio={producto.price}
+                  nombre={producto.name}
+                  imagen={producto.image}
+                  precio={producto.price}
                 />
-              ))}
+              ))}  */}
             </Slider>
           </div>
 
