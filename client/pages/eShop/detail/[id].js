@@ -147,11 +147,14 @@ export default function Detail({
           id_User = {id_User}
           />}
         </div>
-        <div className={style.relatedContainer}>
-          <h1 className={style.titleRelated}> Productos Relacionados </h1>
 
-          {/* <Slider {...settings} className="arrowsSlides">   */}
+        <h1 className={style.titleRelated}> Productos Relacionados </h1>
+        <div className={style.relatedContainer}>
+          
+
+          {/* <Slider {...settings} className="arrowsSlides"> */}
           {recomendados.slice(0, 9).map((recomendado) => (
+            <div className={style.cards}>
             <CardProduct
               key={recomendado._id}
               info={recomendado}
@@ -161,8 +164,9 @@ export default function Detail({
               productOfCart={productOfCart}
               discountItem={discountItem}
             />
+            </div>
           ))}
-          {/* </Slider>  */}
+          {/* </Slider> */}
         </div>
       </div>
     </LayoutGlobal>

@@ -149,3 +149,17 @@
 .contentDescription {
   color: #666;
 }
+
+.relatedContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: "Segoe UI";
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-left: 10%;
+}
+
+/* .cards{
+
+} */

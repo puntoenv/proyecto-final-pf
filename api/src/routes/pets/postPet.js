@@ -30,13 +30,16 @@ postPet.post("/post-pet", async (req, res) => {
     for (let i = 0; i < image.length; i++) {
       result.push(await cloudinary.uploader.upload(image[i]));
     }
+    if (!description) {
+      ai = await aiText(req.body);
+    }
     const user = await User.findById(userId);
     let pet = await Pet.create({
       name,
       size,
       age,
       contactAdoption,
-      description: description ? description : await aiText(req.body),
+      description: description ? description : ai,
       image: result.map((ele) => ele.url),
       type,
       location,
@@ -53,6 +56,7 @@ postPet.post("/post-pet", async (req, res) => {
     } else {
       let ai = await aiText(req.body);
       pet.description = ai;
+      console.log(ai, description);
     }
     user.pets = user.pets.concat(pet._id);
     await user.save();

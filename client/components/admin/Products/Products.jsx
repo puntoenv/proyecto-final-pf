@@ -1,20 +1,34 @@
-import { adminProducts } from "../../stores/actions";
+import { adminProducts } from "../../../stores/actions";
 import { useEffect, useMemo, useState } from "react";
 import { Avatar, Box, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import {  DataGrid,
+  GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarDensitySelector, } from "@mui/x-data-grid";
 import { useSelector, useDispatch } from "react-redux";
-import {UpdateProduct} from "../../stores/actions"
-
+import {UpdateProduct} from "../../../stores/actions"
+import Button from '@mui/material/Button';
+import Add from "./add";
 
 
 
 export default function Users() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.products.products);
+ 
+  const [Render, setRender] = useState();
 
   useEffect(() => {
     dispatch(adminProducts());
+    setRender();
   }, [dispatch]);
+
+
+  
+
+
+
 
   const columns = useMemo(
     () => [
@@ -34,18 +48,41 @@ export default function Users() {
     []
   );
   const [pageSize, setPageSize] = useState(5);
-  const [rowId, setRowId] = useState(null);
+ 
 
-  const handleEdit = (e) => {
+  const handlerEdit = (e) => {
     const { _id } = e.row;
     const obj = e.row
     UpdateProduct(_id, obj);
-   
   };
 
 
 
+ const handlerAdd  = ( component) => {
+    setRender(component);
+  };
+ 
+
+
+
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+        <Button onClick={() => handlerAdd( <Add />)}> Agregar</Button>
+      </GridToolbarContainer>
+    );
+  }
+
   return (
+<>
+    <div>
+    <section>{Render}</section>
+  </div>
+
+
     <Box
       sx={{
         height: 460,
@@ -72,10 +109,13 @@ export default function Users() {
           top: params.isFirstVisible ? 0 : 5,
           bottom: params.isLastVisible ? 0 : 5,
         })}
-        onCellFocusOut={(e) => handleEdit(e)}
+        onCellFocusOut={(e) => handlerEdit(e)}
         editMode="row"
-        
+        components={{
+          Toolbar: CustomToolbar,
+        }}
       />
     </Box>
+    </>
   );
 }

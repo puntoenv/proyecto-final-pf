@@ -13,8 +13,7 @@ export default function Perfil({
   hanldeOnChange,
   handleOnSubmit,
 }) {
-
-  const [render, setRender] = useState('profile')
+  const [render, setRender] = useState("profile");
 
   return (
     <div className={style.container_caja1}>
@@ -27,8 +26,16 @@ export default function Perfil({
       {user && (
         <>
           <div>
-            <SideBar render={render} setRender={setRender} response={response}></SideBar>
-            <HeaderTest user={user} response={response} setRender={setRender}></HeaderTest>
+            <SideBar
+              render={render}
+              setRender={setRender}
+              response={response}
+            ></SideBar>
+            <HeaderTest
+              user={user}
+              response={response}
+              setRender={setRender}
+            ></HeaderTest>
             <ContentUser
               response={response}
               user={user}

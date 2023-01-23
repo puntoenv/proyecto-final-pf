@@ -5,7 +5,7 @@ import Navbar from "../../components/admin/Navbar.jsx";
 //import Pie from "../../components/admin/Pie";
 // import CategPie from "../../components/admin/CategPie";
 // import Calendar from "../../components/admin/Calendar";
-import Products from "../../components/admin/Products";
+import Products from "../../components/admin/Products/Products";
 import styles from "./admin.module.css";
 import Users from "../../components/admin/Users/Users";
 import Footer from "../../components/admin/Footer";
