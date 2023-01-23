@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
-import logoPata from "../../../img/pata_logo_claro.png";
+import logoPata from "../../../img/logo.jpeg";
 import Image from "next/image";
 import { GrHomeRounded, GrFormDown } from "react-icons/gr";
 import { BsFillCartFill } from "react-icons/bs";
@@ -10,8 +10,11 @@ import { HiDocumentText, HiHeart } from "react-icons/hi";
 import { SiDatadog } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine, RiFileList3Fill } from "react-icons/ri";
+import {BsChevronCompactDown} from 'react-icons/bs'
 import { BiLink } from "react-icons/bi";
+import { AiFillHome } from "react-icons/ai";
 import { useState } from "react";
+import Link from "next/link";
 
 const SideBar = ({ setRender, response }) => {
   const handlerClick = () => {
@@ -31,17 +34,18 @@ const SideBar = ({ setRender, response }) => {
           src={logoPata}
           alt="logo"
           className={styles.logoPata}
-          width={40}
-          height={40}
+          width={20}
+          height={20}
         />
         <h2>Little Paws</h2>
       </div>
       <div className={styles.wrapper}>
         <ul className={styles.ul}>
           <li className={styles.icon}>
-            <a href="/home">
-              <GrHomeRounded></GrHomeRounded>
-            </a>
+            <Link href={'/home'}>
+              <AiFillHome size={20}></AiFillHome>
+              Home
+            </Link>
           </li>
           <div
             className={styles.li}
@@ -55,7 +59,7 @@ const SideBar = ({ setRender, response }) => {
               <a href="">Perfil</a>
             </li>
           </div>
-          <div
+          {/* <div
             className={styles.li}
             onClick={(event) => {
               event.preventDefault();
@@ -66,7 +70,7 @@ const SideBar = ({ setRender, response }) => {
             <li>
               <a href="">Adopciones</a>
             </li>
-          </div>
+          </div> */}
           <div
             className={styles.li}
             onClick={(event) => {
@@ -106,13 +110,16 @@ const SideBar = ({ setRender, response }) => {
           >
             <BiLink className={styles.iconSize} size={20}></BiLink>
             <li>
-              Links <GrFormDown className={styles.icondown}></GrFormDown>
+              Links
+              <BsChevronCompactDown
+                className={styles.icondown}
+              ></BsChevronCompactDown>
             </li>
           </div>
 
           <div className={styles.liLogout}>
-            <RiLogoutBoxLine size={20}></RiLogoutBoxLine>
             <li>
+              <RiLogoutBoxLine size={20}></RiLogoutBoxLine>
               <a href="/api/auth/logout">Cerrar sesión</a>
             </li>
           </div>
