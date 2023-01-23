@@ -138,7 +138,7 @@ export default function Detail({
         <div className={style.relatedContainer}>
           
 
-          {/* <Slider {...settings} className="arrowsSlides">   */}
+          {/* <Slider {...settings} className="arrowsSlides"> */}
           {recomendados.slice(0, 9).map((recomendado) => (
             <div className={style.cards}>
             <CardProduct
@@ -152,7 +152,7 @@ export default function Detail({
             />
             </div>
           ))}
-          {/* </Slider>  */}
+          {/* </Slider> */}
         </div>
       </div>
     </LayoutGlobal>

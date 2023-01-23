@@ -47,7 +47,6 @@ import CardProduct from "../../components/CardProduct";
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
     //const data = useSelector((state) => state.products.data);
-   
 
     const dispatch = useDispatch();
     useEffect(() => {
