@@ -1,0 +1,103 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 240px;
+  height: 300px;
+  margin: 20px auto;
+  padding: 20px 20px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+.linkImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+.img {
+  height: 100px;
+  object-fit: cover;
+  width: auto;
+  border-radius: 30px;
+}
+
+.divInfoProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.name {
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #333;
+  margin: 5px 0;
+}
+.price {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.formCantCart {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: 12px;
+}
+.selectCant {
+  width: 25%;
+  margin: 20px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 5px 8px;
+}
+.spanButtonAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+}
+.icon {
+  font-size: 20px;
+  color: rgb(10, 116, 10);
+}
+.modifiedCant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  padding: 2px 7px;
+  border: 1px solid rgb(10, 116, 10);
+  border-radius: 10px;
+  margin: 0 12px;
+}
+
+.detail {
+  padding: 5px;
+  color: rgb(83, 83, 83);
+  border: 3px solid rgb(83, 83, 83);
+  width: 9rem;
+  text-align: center;
+  border-radius: 0.3rem;
+  transition: 250ms;
+  font-weight: bold;
+}
+
+.detail:hover {
+  box-shadow: 3px 3px 0px 0px rgb(48, 48, 48);
+}

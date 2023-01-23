@@ -26,6 +26,48 @@
   font-size: 3em;
   text-shadow: 2px 2px 20px rgb(93, 79, 54);
 }
+
+.divSlideManual {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.image {
+  border-radius: 10px;
+  object-fit: cover;
+  height: 350px;
+  width: 450px;
+}
+
+.iconNext {
+  position: absolute;
+  right: -25px;
+  padding: 4px;
+  font-size: 40px;
+  background-color: #effbf074;
+  border-radius: 50%;
+}
+.iconPrev {
+  position: absolute;
+  left: -25px;
+  padding: 4px;
+  font-size: 40px;
+  background-color: #effbf074;
+  border-radius: 50%;
+}
+.iconPrev:hover {
+  cursor: pointer;
+  background-color: #e8eb9d;
+  font-size: 39px;
+}
+.iconNext:hover {
+  cursor: pointer;
+  background-color: #e8eb9d;
+  font-size: 39px;
+}
 .containCardDetail {
   display: flex;
   align-items: center;
@@ -40,17 +82,7 @@
   flex-direction: column;
   padding: 30px;
 }
-
-.divCharacteristics {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  padding: 30px;
-  grid-column-gap: 30px;
-  grid-row-gap: 41px;
-}
-
-.divCharacteristics div {
+.contentDescripCharact {
   display: flex;
   background-color: #584a3caa;
   color: #fff;
@@ -121,9 +153,70 @@
 }
 .description {
   text-align: center;
+  padding: 0 150px;
 }
+.divCharacteristics {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.divCharacteristics div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 350px;
+  background-color: #584a3caa;
+  margin: 20px 50px;
+  color: #fff;
+  border-radius: 16px;
+}
+.divLocation {
+  border-radius: 20px;
+  width: 500px;
+  height: 300px;
+}
+
+.divHealthExtra {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 320px;
+  background-color: #584a3caa;
+  margin: 30px 50px;
+  color: #fff;
+  border-radius: 16px;
+}
+.divDate {
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+  font-size: 14px;
+}
+.spanChar {
+  display: block;
+  font-size: 80px;
+  max-height: 80px;
+  margin: 6px;
+  font-size: 14px;
+  padding: 5px 15px;
+  overflow-y: scroll;
+}
+.divCharacteristics b {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #38593a88;
+  padding: 5px 15px;
+  height: 45px;
+  font-size: 16px;
+  border-radius: 16px;
+}
+
 .button {
   display: flex;
+  width: 100%;
   justify-content: flex-end;
   padding: 0 50px;
 }
@@ -163,6 +256,7 @@
 .box {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   justify-content: center;
   gap: 2rem;
@@ -197,7 +291,10 @@
 }
 
 .buttonReport {
-  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin: 40px;
   bottom: 20px;
   left: 40px;
 }

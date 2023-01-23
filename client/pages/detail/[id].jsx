@@ -1,7 +1,6 @@
 import styles from "./detail.module.css";
-import NavBar from "../../components/NavBar/NavBar";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout";
-import Footer from "../../components/Footer/footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -15,7 +14,6 @@ import Slider from "react-slick";
 import PetsCard from "../../components/Carousel/petsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -23,10 +21,12 @@ export default function Detail({ data }) {
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatedPets);
-  console.log(related);
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
   }, []);
+  console.log(data.expireAt.split("T")[0]);
+  const [nImg, setNImg] = useState(0);
+  const imgS = data.image;
 
   const handlerAdopt = (e) => {
     e.preventDefault();
@@ -40,6 +40,17 @@ export default function Detail({ data }) {
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
       });
+    }
+  };
+
+  const handlerNext = () => {
+    if (nImg < imgS.length - 1) {
+      setNImg((n) => (n = n + 1));
+    }
+  };
+  const handlerPrev = (e) => {
+    if (nImg > 0) {
+      setNImg((n) => (n = n - 1));
     }
   };
 
