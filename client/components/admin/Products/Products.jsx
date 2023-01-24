@@ -82,11 +82,11 @@ export default function Products() {
     }
 
 
-const category = ()=>{
+const category = ()=>
 products.map((product)=>{
   product.category.length > 0 ? product.category : "Sin categoria/s"
 })
-}
+
 
   const columns = useMemo(() => [
     {
@@ -98,11 +98,11 @@ products.map((product)=>{
       filterable: false,
     },
     { field: "name", headerName: "Name", editable: true, width: 160 },
-    { field: "hidden", headerName: "Estado", valueGetter: status(), editable: true, width: 100 },
+    { field: "hidden", headerName: "Estado", editable: true, width: 100 },
     {
       field: "category",
       headerName: "Categorias",
-     valueGetter: category(),
+      
       editable: true,
       width: 120,
     },

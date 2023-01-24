@@ -18,6 +18,12 @@ import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import CardProduct from "../../components/CardProduct";
+import "sweetalert2/src/sweetalert2.scss";
+
+
+
+
+
 
 
 
@@ -47,6 +53,22 @@ import CardProduct from "../../components/CardProduct";
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
     //const data = useSelector((state) => state.products.data);
+
+
+    //    return(
+    //    <a className="itemDash" href="/api/auth/logout">
+    //  <span>Cerrar sesión</span>
+    //  </a>
+     
+console.log(user);
+
+     user && user.hidden ?  Swal.fire({
+      title: "Producto agregado",
+      icon: "success",
+      color: "#437042",
+      confirmButtonColor: "#437042",
+      confirmButtonAriaLabel: "#437042",
+    }) : null
 
     const dispatch = useDispatch();
     useEffect(() => {
