@@ -31,15 +31,14 @@ router.post("/", async (req, res) => {
   let preference = {
     items: arr,
     back_urls: {
-      success: "http://localhost:3000/popUpHist",
-      failure: "http://localhost:3000/404",
+      success: "https://proyecto-final-pf.vercel.app/popUpHist",
+      failure: "https://proyecto-final-pf.vercel.app/cart",
       pending: "",
     },
     auto_return: "approved",
 
-
-    notification_url:"https://fff1-2802-8010-a805-1b00-69c3-8f89-a53b-2fac.sa.ngrok.io/payment/buynotification",
-
+    notification_url:
+      "https://proyecto-final-pf-production.up.railway.app/payment/buynotification",
   };
   
   
@@ -190,7 +189,10 @@ console.log("mOrderVerifyn")
 const mOrderVerify= await Merchant_orders.findOne({id:idMo})
    
 if (merchant_order.body.id && mOrderVerify==null){
-  await axios.post(`http://localhost:3001/merchantorders`,merchant_order.body);
+  await axios.post(
+    `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
+    merchant_order.body
+  );
 
 
       if (merchant_order.body.payments[0].status=='approved'&&merchant_order.body.payments[0].status_detail=='accredited') {
@@ -205,7 +207,9 @@ if (merchant_order.body.id && mOrderVerify==null){
    
      let id_product=merchant_order.body.items[i].id
   
-     await axios.put(`http://localhost:3001/payment/update/123/${id_product}/${quantity}`) //item)
+     await axios.put(
+       `https://proyecto-final-pf-production.up.railway.app/payment/update/123/${id_product}/${quantity}`
+     ); //item)
        }
       
       

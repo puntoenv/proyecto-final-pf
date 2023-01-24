@@ -2,9 +2,9 @@ import { handleAuth, handleLogout, handleLogin } from "@auth0/nextjs-auth0";
 
 export default handleAuth({
   login: handleLogin({
-    returnTo: "http://localhost:3000/home",
+    returnTo: "https://proyecto-final-pf.vercel.app/home",
   }),
   logout: handleLogout({
-    returnTo: "http://localhost:3000/home",
+    returnTo: "https://proyecto-final-pf.vercel.app/home",
   }),
 });
