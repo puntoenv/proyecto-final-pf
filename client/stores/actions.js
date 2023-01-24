@@ -8,6 +8,7 @@ import {
   productsFilter,
   getRelatedProducts,
 } from "./products";
+import { get_User, get_authUser } from "./userAuth";
 import {
   getAdminPets,
   getMascotas,
@@ -19,6 +20,32 @@ import { getUserId, getAllUsers } from "./User";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
+
+const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+export const authUser = (email, name) => async (dispatch) => {
+  try {
+    const res = await axios.get(`${baseUrl}user-by-email/${email}`);
+    const finded = res.data;
+    console.log(finded);
+
+    if (!finded.error) {
+      dispatch(get_User(finded.user));
+      return;
+    } else {
+      console.log("user create");
+      const response = await axios.post(`http://localhost:3001/create-user`, {
+        email,
+        name,
+      });
+      console.log(response);
+      const data = response.data;
+      dispatch(get_User(data));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getper = () => async (dispatch) => {
   try {
@@ -72,86 +99,34 @@ export const PutPets = async (id, obj) => {
 
 export const PostAdop = (post) => {
   console.log(post);
-  return (
-    axios
-      .post("/pets/post-pet", post)
-      .then((res) => {
-        // Swal.fire({
-        //   title: 'Mascota publicada correctamente',
-        //   width: 600,
-        //   padding: '3em',
-        //   color: '#716add',
-        //   // background: '#fff url(/images/trees.png)',
-        //   backdrop: `
-        //     rgba(0,0,123,0.4)
-        //     url("./giphy.gif")
-        //     left top
-        //     no-repeat
-        //   `
-        // })
-        Swal.fire({
-          title: "🐾 Mascota publicada correctamente 🐾",
-          icon: "success",
-          color: "#437042",
-          confirmButtonColor: "#437042",
-          confirmButtonAriaLabel: "#437042",
+  return axios
+    .post("/pets/post-pet", post)
+    .then((res) => {
+      Swal.fire({
+        title: "🐾 Mascota publicada correctamente 🐾",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
 
-          // background: '#fff url(/images/trees.png)'
-        });
-        // Swal.fire({
-        //   position: "top-end",
-        //   icon: "success",
-        //   title: "Mascota publicada correctamente",
-        //   showConfirmButton: false,
-        //   timer: 3000,
-        // });
-        // alert("Mascota publicada correctamente.");
-        return res.data;
-      })
-      // .then((id) => fetch(`http://localhost:3001/pets/detail/${id}`))
-      // .then((response) => response.url.split("/").pop())
-      // .then((id) => router.push(`detail/${id}`))
-      .catch(
-        (err) => {
-          console.log(err);
+        // background: '#fff url(/images/trees.png)'
+      });
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err);
 
-          Swal.fire({
-            title: "Error. No se pudo publicar la mascota",
-            icon: "error",
-            color: "#437042",
-            confirmButtonColor: "#437042",
-            confirmButtonAriaLabel: "#437042",
+      Swal.fire({
+        title: "Error. No se pudo publicar la mascota",
+        icon: "error",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
 
-            // background:'#fff url(../backAlerts.png)',
-          });
-        }
-        //   Swal.fire({
-        //     position: "top-end",
-        //     icon: "error",
-        //     title: "No se pudo publicar la mascota",
-        //     showConfirmButton: false,
-        //     timer: 3000,
-        //   })
-      )
-  );
+        // background:'#fff url(../backAlerts.png)',
+      });
+    });
 };
-
-// export const postUser = (payload) => {
-//   // return async function(dispatch){
-//   //     const response = await axios('http://localhost:3001/cards')
-//   //     return dispatch({type: GET_ALL_DOGS, payload: response.data})
-//   // }
-
-//   return async function () {
-//     try {
-//       console.log(payload);
-//       const response = await axios.post("/auth/register", payload);
-//       return response;
-//     } catch (err) {
-//       return err.response;
-//     }
-//   };
-// };
 
 export const getUserById = (id) => async (dispatch) => {
   await axios.get(`/user/${id}`).then((res) => {
@@ -159,19 +134,6 @@ export const getUserById = (id) => async (dispatch) => {
     dispatch(getUserId(res.data));
   });
 };
-
-/*export const GetUs = (id) =>  (dispatch) => {
-
-   fetch(`http://localhost:3001/user/${id}`).then(res => res.json()).then(res => console.log(res))
-};*/
-
-// export const setFilteredPets = (filter) => (dispatch) => {
-//   dispatch(getMascotas(mascotas));
-// };
-
-// export const filterPets = (params) => (dispatch) => {
-//   return dispatch(petsFilter(params));
-// };
 
 export const getProducts = (page) => async (dispatch) => {
   try {
@@ -232,14 +194,6 @@ export const searchProduct = (product, page) => async (dispatch) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      // Swal.fire({
-      //   title: "No hay productos con ese nombre",
-      //   icon: "error",
-      //   color: "#437042",
-      //   confirmButtonColor: "#437042",
-      //   confirmButtonAriaLabel: "#437042",
-      // });
-      // alert("No existen productos con ese nombre.");
       productoEncontrado = await axios("/products/1");
     }
     dispatch(getAllProducts(productoEncontrado.data));
@@ -302,15 +256,6 @@ export const addCart = (id) => async (dispatch) => {
   }
 };
 
-// export const sorts=(payload)=> (dispatch)=>{
-//   // console.log(payload)
-//   return dispatch(orderPets(payload))
-
-// }
-
-// export const filterPets = (params) => (dispatch) => {
-//   return dispatch(petsFilter(params));
-// };
 export const filterProducts = (input, page) => async (dispatch) => {
   try {
     let products = {};
