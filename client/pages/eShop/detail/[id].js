@@ -16,7 +16,7 @@ import ProductCard from "../../../components/CarouselEshop/productsCard";
 
 //import Point from "../../../components/Punctuation/index";
 //import Review from "../../../components/Reviews";
-import Start_Revi from "../../../components/star_Revi"
+import Start_Revi from "../../../components/star_Revi";
 export default function Detail({
   data,
   cart,
@@ -41,8 +41,8 @@ export default function Detail({
 
   const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
- console.log(_id)
-  
+  console.log(_id);
+
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
   const dispatch = useDispatch();
@@ -79,7 +79,6 @@ export default function Detail({
   let products = [data];
   // console.log(products);
 
- 
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -154,18 +153,11 @@ export default function Detail({
           <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-        <div>
-          {<Start_Revi
-          data = {data}
-          id_User = {id_User}
-          />}
-        </div>
+        <div>{<Start_Revi data={data} id_User={id_User} />}</div>
 
         <h1 className={style.titleRelated}> Productos Relacionados </h1>
-        <div className={style.relatedContainer}>
-          
-
-        <Slider {...settings} className="arrowsSlides">
+        <div className={style.containSlider}>
+          <Slider {...settings} className="arrowsSlides">
             {recomendados.slice(0, 9).map((recomendado) => (
               // <CardProduct
               //   key={recomendado._id}
