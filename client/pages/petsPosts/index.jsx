@@ -50,7 +50,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
   const handlerTodas = (e) => {
     e.preventDefault();
     dispatch(getPets(1));
-    e.target.reset();
   };
 
   //   const handlerSort = (e)=>{
@@ -119,7 +118,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
 
       {/* CONTENEDOR DE TODA LA PAGINA : containerAllPets*/}
       <div className={styles.containerAllPets}>
-
         {/* CONTEENDOR DE LOS FILTROS : CONTAINER2*/}
         <div className={styles.container2}>
           <form
