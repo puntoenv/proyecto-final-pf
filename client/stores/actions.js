@@ -37,6 +37,18 @@ export const getmuni = (municipios) => async (dispatch) => {
   }
 };
 
+export const PutReview = async (obj,id) => {
+  try{
+    //console.log(id)
+    const res = axios.put(`http://localhost:3001/updateProduct/reviews/${id}`,obj).then((response) => {
+      console.log("Update SUCCESS!");
+    });
+  return res;
+  }catch(error){
+     console.log(error)
+  }
+}
+
 export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {

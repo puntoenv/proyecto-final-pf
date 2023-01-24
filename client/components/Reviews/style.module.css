@@ -1,0 +1,7 @@
+.container {
+    width: 70%;
+    border: solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
