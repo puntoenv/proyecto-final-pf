@@ -8,8 +8,6 @@ import {
   productsFilter,
   getRelatedProducts,
 } from "./products";
-import { getMascotas, getRelatedPets, typesGet } from "./mascotas";
-import { get, getAllUsers } from "./User";
 import { get_User, get_authUser } from "./userAuth";
 import {
   getAdminPets,
