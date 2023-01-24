@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     auto_return: "approved",
 
 
-    notification_url:"http://localhost:3001/payment/buynotification",
+    notification_url:"https://fff1-2802-8010-a805-1b00-69c3-8f89-a53b-2fac.sa.ngrok.io/payment/buynotification",
 
   };
   
@@ -64,7 +64,7 @@ router.get("/:id", async (req, res) => {
     const response = await axios(config);
     const data = response.data;
 
-    const idUser = data.items[0].category_id //id.split(" | id-del-usuario: ")[1];
+   const idUser = data.items[0].category_id //id.split(" | id-del-usuario: ")[1];
     const productsId = data.items.map(
       (product) => product.id//.split(" | id-del-usuario: ")[0]
     );
