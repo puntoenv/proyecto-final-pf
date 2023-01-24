@@ -41,6 +41,7 @@ router.post("/", async (req, res) => {
     notification_url:"http://localhost:3001/payment/buynotification",
 
   };
+  
 
   mercadopago.preferences
     .create(preference)
