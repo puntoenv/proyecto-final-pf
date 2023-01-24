@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     auto_return: "approved",
 
 
-    notification_url:"https://a5d9-179-38-187-19.sa.ngrok.io/payment/buynotification",
+    notification_url:"http://localhost:3001/payment/buynotification",
 
   };
 
@@ -156,6 +156,7 @@ switch (topic) {
   default:
     break;
 }
+
 
 /*
 
