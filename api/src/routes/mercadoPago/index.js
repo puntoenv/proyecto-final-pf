@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     },
     auto_return: "approved",
 
-    notification_url: "http://localhost:3001/payment/buynotification",
+    notification_url: "http://localhost:3001/payment/buyNotification",
   };
 
   mercadopago.preferences
