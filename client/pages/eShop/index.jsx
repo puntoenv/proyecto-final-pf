@@ -8,8 +8,24 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../layout.js";
 import styles from "./styles.module.css";
+import { authUser } from "../../stores/actions";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 export default function eShop({
   addToCart,
@@ -18,12 +34,19 @@ export default function eShop({
   productOfCart,
   discountItem,
 }) {
+  const { user } = useUser();
   const dispatch = useDispatch();
   const productos = useSelector((state) => state.products.allProducts);
   const data = useSelector((state) => state.products.data);
   const [input, setInput] = useState({ category: "" });
   const [search, setSearch] = useState("");
   const categories = useSelector((state) => state.products.categories);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+  const [numCall, setNumCall] = useState(0);
+
+  !numCall && user && fn(user, dispatch, setNumCall);
+
   const paging = [];
   for (let i = 1; i <= data.pages; i++) {
     paging.push(i);
