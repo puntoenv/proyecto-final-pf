@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 import logo from "../../img/logo.jpeg";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -19,11 +20,11 @@ const handlerClick = () => {
   dash.className += " view";
 };
 
-const NavBar = () => {
+const NavBar = ({ authUser }) => {
   const { user, isLoading } = useUser();
   const router = useRouter();
-  const idUser = user?.sub.split("|")[1];
-
+  const idUser = authUser && authUser._id;
+  // const idUser = user?.sub.split("|")[1];
 
   if (isLoading)
     return (
@@ -55,7 +56,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/eShop">
             <span>Productos</span>
           </Link>
-          <Link  className="itemNav" href="/petsPosts">
+          <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>
           {user ? (
@@ -70,10 +71,7 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link
-          className="itemDash"
-          href={user ? `/profile/${user.sub.split("|")[1]}` : "/"}
-        >
+        <Link className="itemDash" href={`/profile/${idUser}`}>
           <span>Mi Perfil</span>
         </Link>
         {/* <Link className="itemDash" href="#">
@@ -83,7 +81,7 @@ const NavBar = () => {
           <span>Mi carrito</span>
         </Link>
         <p
-          onClick={() => handleAdoption( router, Swal, idUser)}
+          onClick={() => handleAdoption(router, Swal, idUser)}
           className="itemDash"
           href="/adoptionForm"
         >

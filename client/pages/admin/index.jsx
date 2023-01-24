@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/Navbar.jsx";
-// import Bar from "../../components/admin/Bar";
-// import Link from "next/link";
-//import Pie from "../../components/admin/Pie";
-// import CategPie from "../../components/admin/CategPie";
-// import Calendar from "../../components/admin/Calendar";
 import Products from "../../components/admin/Products/Products";
 import styles from "./admin.module.css";
 import Users from "../../components/admin/Users/Users";
@@ -15,22 +10,35 @@ import { useQuery } from "react-query";
 import { getUserById } from "../../controller/functionsUser/getUserById.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { authUser } from "../../stores/actions";
+import { useDispatch, useSelector } from "react-redux";
 
-
-
-
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 const Admin = withPageAuthRequired(() => {
-  const [Render, setRender] = useState();
-
   const { user } = useUser();
+
+  const dispatch = useDispatch();
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
+  const [Render, setRender] = useState();
   const router = useRouter();
 
-  let id;
-  if (user && user.sub) {
-    const idUser = user.sub.split("|")[1];
-    id = idUser;
-  }
+  let id = userAuth && userAuth._id;
   const { data: dbUser, isLoading } = useQuery(["user", id], () =>
     getUserById(id)
   );
@@ -71,10 +79,7 @@ const Admin = withPageAuthRequired(() => {
       <div>
         <div>
           <div>
-            <button
-              onClick={(e) => handlerOnClick(e, )}
-              className={styles.lp}
-            >
+            <button onClick={(e) => handlerOnClick(e)} className={styles.lp}>
               Little Paws
             </button>
           </div>
@@ -102,17 +107,14 @@ const Admin = withPageAuthRequired(() => {
                 Productos
               </button>
 
-              <button
-                className={styles.btn}
-                onClick={(e) => handlerOnClick(e, )}
-              >
+              <button className={styles.btn} onClick={(e) => handlerOnClick(e)}>
                 Calendario
               </button>
             </div>
           </div>
         </div>
       </div>
-{/* 
+      {/* 
       <Footer /> */}
     </div>
   );

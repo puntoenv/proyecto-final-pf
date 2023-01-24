@@ -5,13 +5,26 @@ import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../../stores/actions";
 import { getProductsRelated } from "../../../stores/actions";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
 import CardProduct from "../../../components/CardProduct";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 export default function Detail({
   data,
@@ -21,14 +34,18 @@ export default function Detail({
   discountItem,
 }) {
   const { user } = useUser();
+  const dispatch = useDispatch();
 
-  const id_User = user && user.sub.split("|")[1];
+  const recomendados = useSelector((state) => state.products.productsRelated);
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+  const userAuth = useSelector((state) => state.userAuth.userData);
+  const id_User = userAuth && userAuth._id;
 
   const { name, image, price, _id, stock, category, boughtBy } = data;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
-  const dispatch = useDispatch();
-  const recomendados = useSelector((state) => state.products.productsRelated);
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -61,7 +78,7 @@ export default function Detail({
   let products = [data];
   console.log(products);
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <div className={style.containProduct}>
         <div className={style.containBtnBack}>
           <Link href="/eShop" className={style.btnBack}>
@@ -136,20 +153,18 @@ export default function Detail({
 
         <h1 className={style.titleRelated}> Productos Relacionados </h1>
         <div className={style.relatedContainer}>
-          
-
           {/* <Slider {...settings} className="arrowsSlides"> */}
           {recomendados.slice(0, 9).map((recomendado) => (
             <div className={style.cards}>
-            <CardProduct
-              key={recomendado._id}
-              info={recomendado}
-              addToCart={addToCart}
-              cart={cart}
-              // serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
+              <CardProduct
+                key={recomendado._id}
+                info={recomendado}
+                addToCart={addToCart}
+                cart={cart}
+                // serCart={setCart}
+                productOfCart={productOfCart}
+                discountItem={discountItem}
+              />
             </div>
           ))}
           {/* </Slider> */}
@@ -163,7 +178,9 @@ export default function Detail({
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(`${process.env.URL_BACK}products/detail/${params.id}`)
+      await fetch(
+        `${process.env.NEXT_PUBLIC_URL_BACK}products/detail/${params.id}`
+      )
     ).json();
     return {
       props: {

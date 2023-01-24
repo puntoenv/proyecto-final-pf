@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
 import style from "../../components/Profile/Loading.module.css";
-import { useDispatch } from "react-redux";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Layout from "../layout";
 import NavBar from "../../components/NavBar/NavBar";
@@ -30,7 +29,11 @@ for (let i = 0; i <= 40; i++) {
 
 export function form(props) {
   const { isLoading, user } = useUser();
-  const idUser = user?.sub.split("|")[1];
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+  const idUser = userAuth._id;
+
+  // const idUser = user?.sub.split("|")[1];
   const router = useRouter();
   const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
@@ -99,10 +102,12 @@ export function form(props) {
                 </p>
               </div>
             </div>
-            { loader &&  <div className={style.container}>
-              <div className={style.loader}></div>
-              <p>Loading...</p>
-            </div>}
+            {loader && (
+              <div className={style.container}>
+                <div className={style.loader}></div>
+                <p>Loading...</p>
+              </div>
+            )}
             <form
               className={styles.form}
               onSubmit={(e) =>
@@ -178,9 +183,7 @@ export default withPageAuthRequired(form, {
 export async function getServerSideProps({ params }) {
   try {
     const response = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/user/" + params.id
-      )
+      await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}user/${params.id}`)
     ).json();
     return {
       props: {
