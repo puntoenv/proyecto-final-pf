@@ -47,12 +47,8 @@ const userSchema = new Schema({
     },
     
   ],
-  merchant_orders:[
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Merchant_orders",
-    },
-  ],
+  
+  
   bought: [
     {
       type: Schema.Types.ObjectId,
