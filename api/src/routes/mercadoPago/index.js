@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     auto_return: "approved",
 
 
-    notification_url:"https://fff1-2802-8010-a805-1b00-69c3-8f89-a53b-2fac.sa.ngrok.io/payment/buynotification",
+    notification_url:"https://fff1-2802-8010-a805-1b00-69c3-8f89-a53b-2fac.sa.ngrok.io/payment/buyNotification",
 
   };
   
@@ -222,9 +222,9 @@ console.log("merchant_order")
 console.log("merchant_order")
 */
 
-res.send.status(200)
+res.sendStatus(200);
 } catch (error) {
-  res.send.status(400)
+  res.sendStatus(404);
 }
 
 

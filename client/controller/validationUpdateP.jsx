@@ -136,6 +136,8 @@ export const handleAdoption = async (router, Swal, idUser) => {
   }
 };
 
+
+
 export const handleOnSubmit = async (
   event,
   setResult,
