@@ -1,15 +1,14 @@
 
 .btn{
     display: flex;
-    gap: 1.25rem;
+    gap: 12px;
     font-size: 16px;
-    padding-left: 8px;
     padding-top: 1em;
     border-radius: 0.5rem;
     /* color: rgb(55 65 81); */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     z-index: 5002;
-    color: rgb(184, 184, 184);
+    color: rgb(218, 218, 218);
 }
 
 .btn:hover{
@@ -26,7 +25,7 @@
  
 }
 
-.lp{
+/* .lp{
 font-family:'Calibri';
 font-weight: 600;
 font-size: 25px;
@@ -36,7 +35,7 @@ position: fixed;
 z-index: 5001;
 color: white;
 
-}
+} */
 
 
 
@@ -47,13 +46,13 @@ color: white;
 }
 
 .hola{
-  color: #6f6f6f;
+  color: #b9b9b9;
   z-index: 2014;
 }
 
 .admin{
   font-weight: 600;
-  color: #4f5152;
+  color: #b4b4b4;
   margin-left: 4px;
   z-index: 2015;
   /* display: flex;
@@ -67,7 +66,7 @@ color: white;
   display: flex;
   flex-direction: row;
   float: right;
-  padding: 8px 15px
+  padding: 15px 15px
 }
 
 
@@ -125,20 +124,26 @@ color: white;
 
 }
 
-
+.logo {
+  border-radius: 1em;
+  margin-top: 1em;
+ 
+  width: auto;
+  height: 11em;
+}
 
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
 .sidebar {
-  box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
+  box-shadow: rgba(113, 131, 117, 0.11) 0px 7px 30px 0px;
   padding: 55px;
   position:fixed;
-  
+  width: 15em;
   top: 0px;
   height: 50em;
   display: flex;  
   z-index: 5000;
-  background: #393d3f;
+  background: #2c4229;
 }
 
 @media  screen and (max-width:800px) {

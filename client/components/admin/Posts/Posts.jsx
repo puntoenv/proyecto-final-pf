@@ -1,15 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { allUsers } from "../../../stores/actions";
+import { adminPets } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./style.module.css";
 
 
-
-export default function Users() {
+export default function Pets() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.users);
+  const pets = useSelector((state) => state.mascotas.adminPets);
   const columns = useMemo(
     () => [
       {
@@ -20,10 +19,14 @@ export default function Users() {
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", width: 140 },
-      { field: "email", headerName: "Email", width: 200 },
-      { field: "pets.length", headerName: "Posts", width: 120 },
-      { field: "_id", headerName: "Id", width: 220 },
+      { field: "name", headerName: "Nombre", width: 140 },
+      { field: "type", headerName: "Especie", width: 140 },
+      { field: "age", headerName: "Edad", width: 100 },
+      { field: "gender", headerName: "Género", width: 150 },
+      { field: "size", headerName: "Tamaño", width: 150 },
+      { field: "contactAdoption", headerName: "Contacto", width: 120 },
+      { field: "description", headerName: "Descripción", width: 120 },
+      { field: "_id", headerName: "Id", width: 200 },
     ],
     []
   );
@@ -31,22 +34,22 @@ export default function Users() {
   const [rowId, setRowId] = useState(null);
 
   useEffect(() => {
-    dispatch(allUsers());
+    dispatch(adminPets());
   }, [dispatch]);
 
   return (
     <Box
       sx={{
         height: 460,
-          width: "96%",
+        width: "96%",
       }}
     >
-     <h1 className={style.users}> Usuarios </h1>
-
+ <h1 className={style.posts}> Publicaciones </h1>
+     
       <DataGrid
         sx={{ ml: 35 }}
         columns={columns}
-        rows={users}
+        rows={pets}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
