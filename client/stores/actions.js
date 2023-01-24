@@ -339,3 +339,15 @@ export const allUsers = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export function getDescription(post) {
+  return async function (dispatch) {
+    try {
+      let query = "?" + new URLSearchParams(post);
+      const response = await axios.get(`/descriptionAI${query}`);
+      return response.data;
+    } catch (error) {
+      return console.log(error);
+    }
+  };
+}
