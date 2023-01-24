@@ -42,7 +42,6 @@ router.post("/", async (req, res) => {
 
   };
   
-
   mercadopago.preferences
     .create(preference)
     .then((response) => res.status(200).send({ response }))
