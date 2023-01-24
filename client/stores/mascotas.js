@@ -7,6 +7,8 @@ export const mascotasSlice = createSlice({
     data: {},
     auxMascotas: [],
     types: [],
+    relatedPets: [],
+    adminPets: []
   },
   reducers: {
     getMascotas: (state, action) => {
@@ -44,8 +46,15 @@ export const mascotasSlice = createSlice({
         return 1;
       });
     },
+    getRelatedPets: (state, action) => {
+      state.relatedPets = action.payload;
+    },
+   getAdminPets: (state, action) => {
+      state.adminPets = action.payload;
+    },
   },
 });
 
-export const { getMascotas, orderPets, typesGet } = mascotasSlice.actions;
+export const { getMascotas, orderPets, typesGet, getRelatedPets, getAdminPets } =
+  mascotasSlice.actions;
 export default mascotasSlice.reducer;

@@ -19,11 +19,11 @@ const handlerClick = () => {
   dash.className += " view";
 };
 
-const NavBar = (res) => {
+const NavBar = () => {
   const { user, isLoading } = useUser();
   const router = useRouter();
   const idUser = user?.sub.split("|")[1];
-  const response = res.res;
+
   if (isLoading)
     return (
       <div className={styles.container}>
@@ -39,12 +39,18 @@ const NavBar = (res) => {
           src={logo}
           alt="logo"
           className="logo"
-          width="auto"
-          height="auto"
+          // width="auto"
+          // height="auto"
         />
       </Link>
       <nav className="nav">
         <div className="navMenuList">
+          <Link className="itemNav" href="/aboutUs">
+            <span>Nosotros</span>
+          </Link>
+          <Link className="itemNav" href="/contact">
+            <span>Contáctanos</span>
+          </Link>
           <Link className="itemNav" href="/eShop">
             <span>Productos</span>
           </Link>
@@ -76,7 +82,7 @@ const NavBar = (res) => {
           <span>Mi carrito</span>
         </Link>
         <p
-          onClick={() => handleAdoption(response, router, Swal, idUser)}
+          onClick={() => handleAdoption(router, Swal, idUser)}
           className="itemDash"
           href="/adoptionForm"
         >

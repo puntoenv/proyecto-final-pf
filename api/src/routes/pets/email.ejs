@@ -18,8 +18,11 @@
 
       .card {
         height: fit-content;
-        max-width: 20rem;
-        padding: 1rem;
+        width: 25rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
         border-style: solid;
         border-radius: 1rem;
         border-color: rgb(61, 61, 61);
@@ -33,17 +36,24 @@
 
       .imageLogo {
         height: 10rem;
-        width: 9rem;
+        width: 10rem;
+        border-radius: 1rem;
       }
 
       .imageTitle {
         max-width: 20rem;
         height: 5rem;
       }
+      p {
+        text-align: justify;
+        color: black;
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
 
       .link {
+        color: black;
         text-decoration: none;
-        color: white;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
       }
 
@@ -78,14 +88,14 @@
         A partir de ahora nuestra ONG sera parte del proceso de encontrar una
         familia para <%= name %>.
       </p>
-      <p>Te notificaremos via email cada paso del proceso de adopción.</p>
-      <button class="btn">
-        <a
-          href="https://proyecto-final-pf.vercel.app/detail/<%= id %>"
-          class="link"
-          >Ver Publicación</a
-        >
-      </button>
+      <p>
+        Te notificaremos via email cada paso del proceso de adopción. Si tienes
+        alguna consulta sobre los procesos realizados por Little Paws, puedes
+        contactarte con nosotros a nuestro email
+      </p>
+      <a href="http://localhost:3000/detail/<%= id %>" class="link">
+        <button class="btn">Ver Publicación</button>
+      </a>
       <br />
       <br />
       <img

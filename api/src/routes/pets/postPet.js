@@ -4,9 +4,9 @@ const mailer = require("../../../mailer");
 const Pet = require("../../models/Pet");
 const User = require("../../models/User");
 const postPet = Router();
-const fs = require("fs");
 const path = require("path");
 const ejs = require("ejs");
+const aiText = require("../../../openai.js");
 
 postPet.post("/post-pet", async (req, res) => {
   try {
@@ -14,39 +14,56 @@ postPet.post("/post-pet", async (req, res) => {
       name,
       size,
       age,
+      contactAdoption,
       description,
       image,
       type,
       gender,
       location,
       health,
+      healthExtra,
       sociability,
       condition,
       userId,
     } = req.body;
-    let result = await cloudinary.uploader.upload(image);
+    let result = [];
+    for (let i = 0; i < image.length; i++) {
+      result.push(await cloudinary.uploader.upload(image[i]));
+    }
+    if (!description) {
+      ai = await aiText(req.body);
+    }
     const user = await User.findById(userId);
     let pet = await Pet.create({
       name,
       size,
       age,
-      description,
-      image: result.url,
+      contactAdoption,
+      description: description ? description : ai,
+      image: result.map((ele) => ele.url),
       type,
       location,
       gender,
       health,
+      healthExtra,
       condition,
       sociability,
       user: user._id,
       expireAt: new Date(),
     });
+    if (description) {
+      pet.description = description;
+    } else {
+      let ai = await aiText(req.body);
+      pet.description = ai;
+      console.log(ai, description);
+    }
     user.pets = user.pets.concat(pet._id);
     await user.save();
-
     let data = await ejs.renderFile(path.join(__dirname + "/email.ejs"), {
       ...req.body,
       id: pet._id,
+      email: "littlePaws0508@gmail.com",
     });
     let info = await mailer.sendMail({
       from: "littlePaws0508@gmail.com",

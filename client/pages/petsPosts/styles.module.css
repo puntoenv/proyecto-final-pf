@@ -1,8 +1,12 @@
 .containerAllPets {
   display: flex;
   flex-direction: column;
-  padding: 50px 0;
+  /* padding: 50px 0; */
+  /* height: 100%; */
+  /* min-width: 100%; */
 }
+
+
 
 .container2 {
   display: flex;
@@ -17,11 +21,12 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
+
 }
 
 .searchB {
   margin-top: 3em;
-  margin-bottom: 1.50em;
+  margin-bottom: 1.5em;
   border: 1px solid rgb(129, 126, 94);
   border-radius: 0px 15px 15px 0px;
   padding: 8px 22px;
@@ -39,7 +44,7 @@
 
 .input {
   margin-top: 3em;
-  margin-bottom: 1.50em;
+  margin-bottom: 1.5em;
   width: 100%;
   background-color: #e8eb9d;
   padding: 12px 24px;
@@ -124,7 +129,7 @@
   width: 280px;
   height: 400px;
   margin: 30px;
- padding-bottom: 30px;
+  padding-bottom: 30px;
   background: #e8eb9d;
   border-radius: 30px;
 }
@@ -146,7 +151,7 @@
   width: 20em;
   height: 180px;
   object-fit: cover;
-  border-radius: 30px 30px  0px 0px ;
+  border-radius: 30px 30px 0px 0px;
 }
 
 .btn {
@@ -226,6 +231,7 @@
   margin-bottom: 1rem;
   background-color: white;
   margin-left: 14rem;
+
 }
 
 .paginate {
@@ -251,11 +257,23 @@
 }
 
 
-
 .box {
   display: flex;
   justify-content: center;
   padding-top: 3rem;
+}
+@media(max-width:730px){
+  .box{
+    
+    padding-top: 10.5rem;
+    /* width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem; */
+    /* margin-top: 5rem; */
+  }
 }
 
 .btns {

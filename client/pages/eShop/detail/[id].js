@@ -3,24 +3,50 @@ import React, { useState, useEffect } from "react";
 import LayoutGlobal from "../../../components/LayoutGlobal/Layout";
 import style from "./detailProduct.module.css";
 import { formatOneItemMP } from "../../../controller/formatItemsMp";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { getProductsRelated, PutReview } from "../../../stores/actions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import CardProduct from "../../../components/CardProduct";
+import ProductCard from "../../../components/CarouselEshop/productsCard";
 
+//import Point from "../../../components/Punctuation/index";
+//import Review from "../../../components/Reviews";
+import Start_Revi from "../../../components/star_Revi";
 export default function Detail({
   data,
   cart,
   addToCart,
-  deleteCart,
   productOfCart,
   discountItem,
 }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
+
   const { user } = useUser();
 
-  const { name, image, price, _id, description, stock, category, boughtBy } =
+  const id_User = user && user.sub.split("|")[1];
+
+  const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
+  console.log(_id);
+
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
+  const dispatch = useDispatch();
+  const recomendados = useSelector((state) => state.products.productsRelated);
 
   const handlerSubmitAdded = (e) => {
     e.preventDefault();
@@ -28,6 +54,7 @@ export default function Detail({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,
@@ -35,34 +62,23 @@ export default function Detail({
     };
     setAmount((i) => (i = i + 1));
     addToCart(product);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: `Producto agregado`,
-      showConfirmButton: false,
-      timer: 1000,
-    });
   };
 
   const handlerSubmitDiscount = () => {
     if (amount !== 0) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Producto quitado de tu Carrito`,
-        showConfirmButton: false,
-        timer: 1000,
-      });
     }
   };
 
-  useEffect(() => {
+  const CondiRevi = useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
+    dispatch(getProductsRelated(data._id));
   }, [cart, amount]);
-
+  data.id_User = id_User;
   let products = [data];
+  // console.log(products);
+
   return (
     <LayoutGlobal>
       <div className={style.containProduct}>
@@ -71,6 +87,7 @@ export default function Detail({
             {"<"} Atras
           </Link>
         </div>
+
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
@@ -89,44 +106,34 @@ export default function Detail({
                     Comprar
                   </button>
                 ))}
-              {/* {(user && (
-                <button
-                  className={style.btnBuy}
-                  onClick={(e) => formatOneItemMP(products)}
-                >
-                  Comprar
-                </button>
-              )) ||
-                (itemCart && (
-                  <Link href="/cart" className={style.btnBuy}>
-                    Comprar
-                  </Link>
-                ))} */}
 
               <span className={style.priceProduct}>
                 ${data.price}
-                <div className={style.formCantCart}>
-                  <button
-                    onClick={handlerSubmitAdded}
-                    className={style.modifiedCant}
-                    type="submit"
-                  >
-                    <BsCartPlusFill className={style.icon} />
-                  </button>
-
-                  {amount !== undefined && (
-                    <span className={style.amount}>{amount}</span>
-                  )}
-
-                  <span className={style.spanButtonAdd}>
+                <div className={style.containFormCart}>
+                  <div className={style.formCantCart}>
                     <button
-                      onClick={handlerSubmitDiscount}
+                      onClick={handlerSubmitAdded}
                       className={style.modifiedCant}
                       type="submit"
                     >
-                      <BsCartDashFill className={style.icon} />
+                      <BsCartPlusFill className={style.icon} />
                     </button>
-                  </span>
+
+                    {amount !== undefined && (
+                      <span className={style.amount}>{amount}</span>
+                    )}
+
+                    <span className={style.spanButtonAdd}>
+                      <button
+                        onClick={handlerSubmitDiscount}
+                        className={style.modifiedCant}
+                        type="submit"
+                      >
+                        <BsCartDashFill className={style.icon} />
+                      </button>
+                    </span>
+                  </div>
+                  <span className={style.spanStock}>stock: {data.stock}</span>
                 </div>
               </span>
               {data.category && (
@@ -143,21 +150,51 @@ export default function Detail({
           </div>
         </div>
         <div className={style.containDescription}>
-          <span className={style.descriptionTitle}>Description</span>
+          <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
+        </div>
+        {/* <div>{<Start_Revi data={data} id_User={id_User} />}</div> */}
+        <div className={style.containerRevi}>
+          {<Start_Revi
+          data = {data}
+          id_User = {id_User}
+          />}
+        </div>
+
+        <h1 className={style.titleRelated}> Productos Relacionados </h1>
+        <div className={style.containSlider}>
+          <Slider {...settings} className="arrowsSlides">
+            {recomendados.slice(0, 9).map((recomendado) => (
+              // <CardProduct
+              //   key={recomendado._id}
+              //   info={recomendado}
+              //   addToCart={addToCart}
+              //   cart={cart}
+              //   // serCart={setCart}
+              //   productOfCart={productOfCart}
+              //   discountItem={discountItem}
+              // />
+              <ProductCard
+                key={recomendado._id}
+                info={recomendado}
+                // addToCart={addToCart}
+                nombre={recomendado.name}
+                imagen={recomendado.image}
+                precio={recomendado.price}
+              />
+            ))}
+          </Slider>
         </div>
       </div>
     </LayoutGlobal>
   );
 }
+//}
 
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(
-        "https://proyecto-final-pf-production.up.railway.app/products/detail/" +
-          params.id
-      )
+      await fetch(`${process.env.URL_BACK}products/detail/${params.id}`)
     ).json();
     return {
       props: {

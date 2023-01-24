@@ -11,6 +11,7 @@ export const productsSlice = createSlice({
     cart: [],
     categories: [],
     products: [],
+    productsRelated: [],
   },
   reducers: {
     getAllProducts: (state, action) => {
@@ -19,7 +20,9 @@ export const productsSlice = createSlice({
         page: action.payload.page,
         pages: action.payload.totalPages,
       };
-      console.log(state.data);
+    },
+    getRelatedProducts: (state, action) => {
+      state.productsRelated = action.payload;
     },
     addProductCart: (state, action) => {
       let producto = state.allProducts.find((p) => p._id === action.payload);
@@ -37,8 +40,15 @@ export const productsSlice = createSlice({
     },
     productsFilter: (state, action) => {
       if (action.payload.docs.length === 0) {
-
-        // alert("No hay productos con esas características.");
+        // state.allProducts = action.payload.docs;
+        Swal.fire({
+          title: "No hay productos con esas características.",
+          icon: "error",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+          // background: "#fff url(../backAlerts.png)",
+        });
       } else {
         state.allProducts = action.payload.docs;
         state.data = {
@@ -60,5 +70,6 @@ export const {
   getCategories,
   products,
   productsFilter,
+  getRelatedProducts,
 } = productsSlice.actions;
 export default productsSlice.reducer;

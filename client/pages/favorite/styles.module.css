@@ -1,0 +1,158 @@
+.body {
+  font-family: "Noto Sans JP", sans-serif;
+  background-color: #fef8f8;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 3%;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(40 * 1px);
+  overflow: hidden;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.card__image {
+  width: 200%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  border-radius: calc(40 * 1px);
+  background-color: #4c8053;
+  transform: translateY(100%);
+  transition: 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  transform: translateY(0);
+}
+.card__overlay:hover {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  border-radius: calc(40 * 1px) 0 0 0;
+  background-color: #4c8053;
+  transform: translateY(-100%);
+  transition: 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  z-index: 1;
+}
+
+.card__arc path {
+  fill: #fff;
+  display: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+  box-sizing: border-box;
+}
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card__title {
+  text-align: center;
+  font-weight: 600;
+  margin-top: 0px;
+  color: #32281f;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px #937a60;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";
+  font-size: 0.1em;
+  color: #d7bdca;
+}
+
+.card__status {
+  font-size: 150%;
+  color: #572405;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #100d0f;
+  font-family: "MockFlowFont";
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.btn {
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 1px;
+  width: 40%;
+  max-width: 200px;
+  background: #fff; /* fallback color for old browsers */
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease-out;
+}
+
+.delet {
+  all: unset;
+  position: absolute;
+  color: #ffffff;
+  top: 1rem;
+  right: 1rem;
+  font-size: 120%;
+  border-bottom: 1px #ffffff;
+}
+.delet:hover {
+  cursor: pointer;
+}
+
+.favoritoVacio {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}

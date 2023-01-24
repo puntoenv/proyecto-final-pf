@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./style.module.css";
 import {
   BsCartDashFill,
   BsCartPlusFill,
   BsFillTrashFill,
 } from "react-icons/bs";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 
 export default function CardProduct({
@@ -17,9 +19,11 @@ export default function CardProduct({
   deleteCart,
   discountItem,
 }) {
+  const { user } = useUser();
   const { name, image, price, _id, stock, category, boughtBy } = product;
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
+  const id_User = user && user.sub.split("|")[1];
 
   const handlerSubmitAdded = (e) => {
     modifiedTotal();
@@ -28,6 +32,7 @@ export default function CardProduct({
       name,
       image,
       price,
+      id_User,
       _id,
       stock,
       category,
@@ -39,14 +44,49 @@ export default function CardProduct({
 
   const handlerSubmitDiscount = () => {
     modifiedTotal();
-    if (amount !== 0) {
+    if (amount > 1) {
       setAmount((i) => (i = i - 1));
       discountItem(_id);
+    }
+    if (amount === 1) {
+      Swal.fire({
+        title: "Estas seguro que deseas eliminar el producto?",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, estoy seguro!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          discountItem(_id);
+          Swal.fire({
+            title: "Producto eliminado exitosamente",
+            icon: "success",
+          });
+        }
+      });
     }
   };
 
   const handlerDelete = (id) => {
-    deleteCart(id);
+    Swal.fire({
+      title: "Estas seguro que deseas eliminar el producto?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, estoy seguro!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCart(id);
+        Swal.fire({
+          title: "Producto eliminado exitosamente",
+          icon: "success",
+        });
+      }
+    });
   };
 
   useEffect(() => {

@@ -14,9 +14,9 @@ const corsConfig = {
 app.use(cors(corsConfig));
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "10mb" }));
 // parse application/json
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '10mb'}));
 
 app.use(morgan("tiny"));
 

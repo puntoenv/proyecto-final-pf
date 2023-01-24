@@ -48,6 +48,10 @@ export const validation = (e, errors, setError) => {
     errors.health = !value
       ? "Por favor, especifique el estado de salud de la mascota"
       : null;
+  } else if (name === "healthExtra") {
+    errors.healthExtra = !value
+      ? "Por favor, describe la condición de salud de la mascota"
+      : "";
   } else if (name === "sociability") {
     errors.sociability = !value
       ? "Por favor, indique la sociabilidad de la mascota"
@@ -70,26 +74,13 @@ export const handleSelector = (e, setPost, post) => {
   });
   console.log(post);
 };
-export const handleProvincia = (e, setPost, post, dispatch, getmuni) => {
-  const { value } = e.target;
-  dispatch(getmuni(value));
+export const handleLocation = (post, setPost, coords) => {
   setPost({
     ...post,
-    location: {
-      provincia: value,
-    },
+    location: coords,
   });
 };
-export const handleCiudad = (e, setPost, post) => {
-  const { value } = e.target;
-  setPost({
-    ...post,
-    location: {
-      ...post.location,
-      municipio: value,
-    },
-  });
-};
+
 export const handleFiles = (e, setPost, post) => {
   const { files } = e.target;
   const reader = new FileReader();
@@ -97,29 +88,34 @@ export const handleFiles = (e, setPost, post) => {
   reader.onloadend = () => {
     setPost({
       ...post,
-      image: reader.result,
+      image: [...post.image, reader.result],
     });
   };
 };
-export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
+export const handleSubmit = async (
+  e,
+  PostAdop,
+  post,
+  router,
+  errors,
+  Swal,
+  setLoader
+) => {
   e.preventDefault();
+  setLoader(true)
   if (
     !post.age ||
     !post.name ||
-    !post.description ||
-    !post.location.provincia ||
+    !post.location ||
     !post.image ||
     !post.size ||
     !post.gender ||
     !post.type ||
-    !post.location.municipio ||
     errors.name !== null ||
     errors.age !== null ||
-    errors.description !== null ||
+    // errors.description !== null ||
     errors.size !== null ||
     errors.gender !== null ||
-    errors.ciudad !== null ||
-    errors.provincia !== null ||
     errors.type !== null ||
     errors.image !== null ||
     errors.health !== null ||
@@ -133,13 +129,13 @@ export const handleSubmit = async (e, PostAdop, post, router, errors, Swal) => {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-  } else{
+  } else {
     const id = await PostAdop(post);
-    
-    if(typeof id === "string") {
+    if (typeof id === "string") {
+      setLoader(false)
       return await router.push(`/detail/${id}`);
     }
-  } 
+  }
 };
 
 export const handleDisableInput = (event, post, errors, Swal) => {
@@ -147,7 +143,6 @@ export const handleDisableInput = (event, post, errors, Swal) => {
   if (
     !post.age ||
     !post.name ||
-    !post.description ||
     !post.location.provincia ||
     !post.image ||
     !post.size ||
@@ -156,7 +151,7 @@ export const handleDisableInput = (event, post, errors, Swal) => {
     !post.location.municipio ||
     errors.name !== null ||
     errors.age !== null ||
-    errors.description !== null ||
+    // errors.description !== null ||
     errors.size !== null ||
     errors.gender !== null ||
     errors.ciudad !== null ||

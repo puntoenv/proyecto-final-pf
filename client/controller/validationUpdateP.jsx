@@ -5,7 +5,7 @@ export const validateForm = (event, setError, error) => {
   let regex = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
   let inputValue = event.target.value;
   let inputName = event.target.name;
-  console.log(error)
+  console.log(error);
 
   if (inputValue !== "") {
     if (inputName === "name") {
@@ -52,8 +52,8 @@ export const validateForm = (event, setError, error) => {
         });
       }
     }
-  
-    if(inputName === "ubication"){
+
+    if (inputName === "ubication") {
       if (!inputValue.match(regex)) {
         setError({
           ...error,
@@ -79,19 +79,33 @@ export const validateForm = (event, setError, error) => {
   }
 };
 
-export const hanldeOnChange = (event, setInput, input, setResult) => {
-  setInput({
-    ...input,
-    [event.target.name]: event.target.value,
-  });
+export const hanldeOnChange = (
+  event,
+  setInput,
+  input,
+  setResult,
+) => {
+  if (event.target.name.includes("direction")) {
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value
+    })
 
+  } 
+    setInput({
+      ...input,
+      [event.target.name]: event.target.value,
+    });
+
+  
   setResult({
     error: "",
     seccess: "",
   });
 };
 
-export   const handleFiles = (event, setInput, input) => {
+
+export const handleFiles = (event, setInput, input) => {
   const { files } = event.target;
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
@@ -103,9 +117,10 @@ export   const handleFiles = (event, setInput, input) => {
   };
 };
 
-export const handleAdoption = (response, router, Swal, idUser) => {
-  if (response) {
-    if (!response.name || response.name === " ") {
+export const handleAdoption = async (router, Swal, idUser) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/user/${idUser}`);
+    if (!response.data.name || response.data.name === " ") {
       Swal.fire({
         title: "Necesitas configurar tu nombre para adoptar",
         icon: "error",
@@ -116,9 +131,9 @@ export const handleAdoption = (response, router, Swal, idUser) => {
     } else {
       router.push(`/adoptionForm/${idUser}`);
     }
-    } else {
-      router.push(`/adoptionForm/${idUser}`);
-    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const handleOnSubmit = async (
@@ -133,7 +148,7 @@ export const handleOnSubmit = async (
 
   try {
     const response = await axios.put(
-      `https://proyecto-final-pf-production.up.railway.app/updateProfile/${idUser}`,
+      `http://localhost:3001/updateProfile/${idUser}`,
       input
     );
 
@@ -180,4 +195,3 @@ export const handleOnSubmit = async (
     // }
   }
 };
-

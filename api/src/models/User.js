@@ -13,7 +13,15 @@ const userSchema = new Schema({
   age: {
     type: Number,
   },
-  ubication: String,
+  gender: {
+    type: String
+  },
+  ubication: {
+    type: Object
+  },
+  directions: {
+    type: Array,
+  },
   image: String,
   email: {
     type: String,
@@ -37,12 +45,25 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
+    
   ],
+  
+  
   bought: [
     {
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
+  ],
+  review_star: [
+    { 
+      stars: Number,
+      reviews: String,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      }
+    }
   ],
   signIn: {
     type: String,

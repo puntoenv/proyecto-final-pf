@@ -1,0 +1,267 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  min-height: 90vh;
+  align-items: center;
+}
+
+.backImage {
+  border-left: 2px solid #022902;
+  box-shadow: -10px 0px 10px 1px #aaaaaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  width: 258px;
+  height: 288px;
+  border-radius: 50%;
+}
+
+.hiddenInput {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.mi_archivo {
+  font-size: 12px;
+  font-weight: 600;
+  color: #034103;
+  background-color: rgba(255, 255, 255, 0.541);
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 5px 40px;
+  text-transform: uppercase;
+  width: 10rem;
+  height: 3rem;
+  text-align: center;
+  border-radius: 5px;
+  margin: 30px auto;
+}
+
+.mi_archivo:hover {
+  background-color: #163811aa;
+  color: #fff;
+  border: 1px solid #411a038e;
+  border-radius: 5px;
+}
+
+.userContent {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 40rem;
+  min-height: 40rem;
+  box-shadow: 0px 0px 30px 0px #8f7e73;
+  /* border-right: 15px solid #e8eb9d; */
+  padding: 10px;
+  margin: 2rem;
+}
+
+.divImage {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  width: 250px;
+  height: 280px;
+  border-radius: 50%;
+}
+
+.imageSpan {
+  text-align: center;
+}
+
+.editImage {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 30vh;
+}
+
+.cleanInput {
+  display: inline-block;
+}
+
+.profileDiv {
+  margin: auto;
+}
+
+.profileDiv > h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #022902;
+  font-weight: 600;
+}
+.profileDiv > p {
+  font-weight: 600;
+}
+
+/* INFORMACION DEL USUARIO !! */
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  max-height: 15rem;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.info>p{
+  width: 15rem;
+}
+
+.info > p > p {
+  width: 5rem;
+  color: #034103;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+  border-bottom: 2px solid rgb(23, 58, 20);
+}
+
+.infoEnvios {
+  display: flex;
+  flex-direction: column;
+  max-width: 4rem;
+}
+
+.infoEnvio > p {
+  margin-bottom: 10px;
+  margin-left: 4px;
+  font-weight: 600;
+  color: #023502;
+  font-size: 20px;
+  width: 20rem;
+  box-shadow: 0px 4px 10px 1px #6a6b4a70;
+}
+
+.inputEnvios {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  height: 6rem;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.inputEnviosStyle {
+  border-radius: 30px;
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
+  padding: 4px;
+  width: 10rem;
+}
+
+.inputEnvios > p {
+  width: 10rem;
+  height: auto;
+  font-family: "Quicksand", sans-serif;
+}
+
+.inputEnvios > p > p {
+  color: #034103;
+  font-weight: 600;
+  font-size: 17px;
+  border-bottom: 2px solid rgb(23, 58, 20);
+  width: 6.5rem;
+  margin-bottom: 5px;
+}
+
+/* EDICION!! */
+.input {
+  border-radius: 20px;
+  padding: 4px;
+  box-shadow: -5px 0px 10px 1px #6a6b4a70;
+}
+
+.info > p > .Error,
+.containMap > div > .Error {
+  color: red;
+  font-size: 12px;
+  width: auto;
+  border: none;
+}
+
+.containMap > div > .Error {
+  text-align: center;
+}
+
+.containMap {
+  min-height: 8rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.inputMaps {
+  width: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputMaps > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.infoDir {
+  width: 18rem;
+}
+
+/* SUBMIT !!!! */
+
+.containEdit {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 7rem;
+  margin-top: 2rem;
+}
+
+.editInfo {
+  display: flex;
+  flex-direction: row-reverse;
+  cursor: pointer;
+  gap: 10px;
+  align-items: center;
+  font-weight: 600;
+  text-shadow: #66665f 1px 0 10px;
+  transition: all 0.3s;
+}
+
+.editInfo:hover{
+   transform: scale(1.02);
+}
+
+.buttonSubmit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 20px;
+  background: #38593a;
+  font-size: 18px;
+  color: white;
+  border-radius: 15px;
+  height: 40px;
+  font-weight: 700;
+  transition: all 0.5s;
+}
+
+.containEdit > .buttonSubmit:hover {
+  color: beige;
+  border: none;
+  font-weight: 700;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(185, 163, 103);
+  background: #584a3c;
+}

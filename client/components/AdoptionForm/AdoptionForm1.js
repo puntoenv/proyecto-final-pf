@@ -1,168 +1,164 @@
 import React from "react";
-import styles from "../../pages/adoptionForm/style.module.css";
+import styles from "./styles.module.css";
 import { IoIosArrowForward } from "react-icons/io";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 
 const AdoptionForm1 = ({
   errors,
   setFirst,
-  handleDisableInput,
   handleSelector,
   validation,
   setPost,
   post,
 }) => {
   const ages = [];
-  for (let i = 0; i <= 40; i++) {
+  for (let i = 1; i <= 40; i++) {
     ages.push(i);
   }
   return (
-    <div>
-      <label htmlFor="name" className={styles.stretch}>
-        
-        <span className={styles.errors}>{errors.name}</span>
-        <input
-          className={styles.input}
-          id="name"
-          type="text"
-          name="name"
-          placeholder="Nombre..."
-          onChange={(e) => {
-            validation(e, errors);
-            handleSelector(e, setPost, post);
-          }}
-        />
-      </label>
-      <label htmlFor="age" className={styles.stretch}>
-  
-        <span className={styles.errors}>{errors.age}</span>
-        <select
-          name="age"
-          id="age"
-          className={styles.input}
-          onChange={(e) => {
-            validation(e, errors);
-            handleSelector(e, setPost, post);
-          }}
-        >
-          <option defaultValue={true} value="">
-            Edad
+    <div className={styles.containForm1}>
+      {/******************INPUT NAME******************/}
+      <span className={styles.errors}>{errors.name}</span>
+      <input
+        className={styles.input}
+        id="name"
+        type="text"
+        name="name"
+        placeholder="Nombre..."
+        onChange={(e) => {
+          validation(e, errors);
+          handleSelector(e, setPost, post);
+        }}
+      />
+      {/******************SELECTS TYPES-AGE******************/}
+      <span className={styles.errors}>{errors.age}</span>
+      <select
+        name="age"
+        id="age"
+        className={styles.input}
+        onChange={(e) => {
+          validation(e, errors);
+          handleSelector(e, setPost, post);
+        }}
+      >
+        <option defaultValue={true} value="">
+          Edad
+        </option>
+        {ages.map((age) => (
+          <option key={age} value={age}>
+            {age}
           </option>
-          {ages.map((age) => (
-            <option key={age} value={age}>
-              {age}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label htmlFor="type" className={styles.stretch}>
-      
-        <span className={styles.errors}>{errors.type}</span>
-        <select
-          className={styles.input}
-          id="type"
-          name="type"
-          onChange={(e) => {
-            validation(e, errors);
-            handleSelector(e, setPost, post);
-          }}
-        >
-          <option defaultValue={true} value="select">
-            Especie
-          </option>
-          <option value="ave">Ave</option>
-          <option value="conejo">Conejo</option>
-          <option value="gato">Gato</option>
-          <option value="hamster">Hamster</option>
-          <option value="perro">Perro</option>
-          <option value="pez">Pez</option>
-          <option value="tortuga">Tortuga</option>
-          <option value="otra">otra</option>
-        </select>
-      </label>
+        ))}
+      </select>
+      <span className={styles.errors}>{errors.type}</span>
+      <select
+        className={styles.input}
+        id="type"
+        name="type"
+        onChange={(e) => {
+          validation(e, errors);
+          handleSelector(e, setPost, post);
+        }}
+      >
+        <option defaultValue={true} value="select">
+          Especie
+        </option>
+        <option value="ave">Ave</option>
+        <option value="conejo">Conejo</option>
+        <option value="gato">Gato</option>
+        <option value="hamster">Hamster</option>
+        <option value="perro">Perro</option>
+        <option value="pez">Pez</option>
+        <option value="tortuga">Tortuga</option>
+        <option value="otra">otra</option>
+      </select>
 
-      <label htmlFor="gender" className={styles.stretch}>
-        Genero:
-        <span className={styles.errors}>{errors.gender}</span>
-        <div className={styles.radio}>
-          <label htmlFor="macho">
-            <input
-              type="radio"
-              value="macho"
-              id="macho"
-              name="gender"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Macho
-          </label>
-          <label htmlFor="hembra">
-            <input
-              type="radio"
-              value="hembra"
-              id="hembra"
-              name="gender"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Hembra
-          </label>
-        </div>
-      </label>
+      <div className={styles.selectGenderSize}>
+        {/******************RADIOS GENERO******************/}
+        <label htmlFor="gender" className={styles.stretchGenSize}>
+          Genero:
+          <span className={styles.errors}>{errors.gender}</span>
+          <div className={styles.radio}>
+            <label htmlFor="macho">
+              <input
+                type="radio"
+                value="macho"
+                id="macho"
+                name="gender"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Macho
+            </label>
+            <label htmlFor="hembra">
+              <input
+                type="radio"
+                value="hembra"
+                id="hembra"
+                name="gender"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Hembra
+            </label>
+          </div>
+        </label>
 
-      <label htmlFor="size" className={styles.stretch}>
-        Tamaño:
-        <span className={styles.errors}>{errors.size}</span>
-        <div className={styles.radio}>
-          <label htmlFor="pequeño">
-            <input
-              type="radio"
-              id="pequeño"
-              value="pequeño"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Pequeño
-          </label>
-          <label htmlFor="mediano">
-            <input
-              type="radio"
-              id="mediano"
-              value="mediano"
-              name="size"
-              onChange={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Mediano
-          </label>
-          <label htmlFor="grande">
-            <input
-              type="radio"
-              id="grande"
-              value="grande"
-              name="size"
-              onClick={(e) => {
-                validation(e, errors);
-                handleSelector(e, setPost, post);
-              }}
-            />
-            Grande
-          </label>
-        </div>
-      </label>
-      <label htmlFor="health" className={styles.health}>
+        {/******************RADIOS TAMAÑO******************/}
+        <label htmlFor="size" className={styles.stretchGenSize}>
+          Tamaño:
+          <span className={styles.errors}>{errors.size}</span>
+          <div className={styles.radio}>
+            <label htmlFor="pequeño">
+              <input
+                type="radio"
+                id="pequeño"
+                value="pequeño"
+                name="size"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Pequeño
+            </label>
+            <label htmlFor="mediano">
+              <input
+                type="radio"
+                id="mediano"
+                value="mediano"
+                name="size"
+                onChange={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Mediano
+            </label>
+            <label htmlFor="grande">
+              <input
+                type="radio"
+                id="grande"
+                value="grande"
+                name="size"
+                onClick={(e) => {
+                  validation(e, errors);
+                  handleSelector(e, setPost, post);
+                }}
+              />
+              Grande
+            </label>
+          </div>
+        </label>
+      </div>
+
+      <label htmlFor="health" className={styles.stretchHealt}>
         Salud
         {/* <span className={styles.errors}>{errors.health}</span> */}
-        <div className={styles.radio2}>
+        <div className={styles.radio}>
           <label htmlFor="good">
             <input
               type="radio"
@@ -204,11 +200,34 @@ const AdoptionForm1 = ({
           </label>
         </div>
       </label>
+
+      {post.health === "necesita atención" && (
+        <label htmlFor="healthExtra" className={styles.stretch}>
+          Describe su condición de salud:
+          {errors.healthExtra ? (
+            <span className={styles.errors}>{errors.healthExtra}</span>
+          ) : (
+            ""
+          )}
+          <textarea
+            className={styles.input}
+            id="healthExtra"
+            type="text"
+            name="healthExtra"
+            placeholder="Descripción detallada"
+            onChange={(e) => {
+              validation(e, errors);
+              handleSelector(e, setPost, post);
+            }}
+          />
+        </label>
+      )}
+
       <button
         type="button"
         className={styles.buttonSiguiente}
-        onClick={() => setFirst(false)}
-      > 
+        onClick={() => setFirst(2)}
+      >
         Siguiente <IoIosArrowForward size={30}></IoIosArrowForward>
       </button>
     </div>
@@ -216,14 +235,3 @@ const AdoptionForm1 = ({
 };
 
 export default AdoptionForm1;
-
-// const AdoptionForm2 = ({ setFirst }) => {
-//   return (
-//     <div>
-//       <h1>hola</h1>
-//       <button type="button" onClick={() => setFirst(true)}>
-//         Atras
-//       </button>
-//     </div>
-//   );
-// };

@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.title{
+    color: #333;
+    font-size: 130%;
+}
+.frase{
+    color: #888;
+}
+
+.container_1{
+    width: 25%;
+    height: 150px;
+    box-shadow: inset 1px 1px 40px 0 rgb(0 0 0 / 45%);
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    margin: 1%;
+    background: url(http://ianfarb.com/wp-content/uploads/2013/10/nicholas-hodag.jpg);
+    background-size: cover;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

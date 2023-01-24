@@ -14,7 +14,10 @@ allProducts.get("/", async (req, res) => {
 allProducts.get("/:id", async (req, res) => {
   let { id } = req.params;
   try {
-    let products = await Product.paginate({}, { page: id, limit: 10 });
+    let products = await Product.paginate(
+      { hidden: false },
+      { page: id, limit: 10 }
+    );
     res.status(200).send(products);
   } catch (error) {
     console.log(error, id);

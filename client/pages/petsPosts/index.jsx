@@ -14,7 +14,8 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
 
-export default function PetAdoption() {
+export default function PetAdoption({ favorite, addAgregar }) {
+  //console.log(favorite);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
@@ -56,7 +57,10 @@ export default function PetAdoption() {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
-
+  const handlerFavorite = (e, ani) => {
+    e.preventDefault();
+    addAgregar(ani);
+  };
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
@@ -105,22 +109,28 @@ export default function PetAdoption() {
   const handlerSubmit = (e) => {
     e.preventDefault();
     dispatch(getPets(1, filter));
-    console.log(filter);
     setFilter({});
+    e.target.reset();
   };
 
   return (
     <LayoutGlobal>
       <Layout title="Mascotas" />
+
+      {/* CONTENEDOR DE TODA LA PAGINA : containerAllPets*/}
       <div className={styles.containerAllPets}>
+
+        {/* CONTEENDOR DE LOS FILTROS : CONTAINER2*/}
         <div className={styles.container2}>
           <form
             className={styles.form}
             onChange={(e) => handlerFilter(e)}
-            onSubmit={(e) => handlerTodas(e)}
+            onSubmit={(e) => handlerSubmit(e)}
           >
             <div>
-              <input type="submit" className={styles.all} value="Ver Todas" />
+              <button className={styles.all} onClick={(e) => handlerTodas(e)}>
+                Ver Todas
+              </button>
             </div>
             <h1 className={styles.title}>Especie</h1>
             <select className={styles.select} id="type">
@@ -172,9 +182,11 @@ export default function PetAdoption() {
                 </option>
               ))}
             </select>
-            <button className={styles.all2} onClick={(e) => handlerSubmit(e)}>
-              Aplicar Filtros
-            </button>
+            <input
+              type="submit"
+              className={styles.all2}
+              value="Aplicar Filtros"
+            />
           </form>
 
           {/* <select className="select" onChange={handlerSort}>
@@ -182,6 +194,8 @@ export default function PetAdoption() {
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
           </select> */}
+
+          {/* CONTENEDOR SEARCH : CAJA*/}
           <div className={styles.caja}>
             <form
               className={styles.box}
@@ -198,22 +212,31 @@ export default function PetAdoption() {
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
+
+            {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
+                console.log(mascota.image);
                 return (
                   <div key={mascota._id} className={styles.card}>
                     <Image
                       className={styles.img}
                       width="400"
                       height="240"
-                      src={mascota.image}
+                      src={mascota.image[0]}
                       alt="image"
                     />
                     <h3 className={styles.name}>{mascota.name}</h3>
                     <span className={styles.size}>{mascota.gender}</span>
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
+                    </button>
+                    <button
+                      className={styles.btn}
+                      onClick={(e) => handlerFavorite(e, mascota)}
+                    >
+                      Favorito
                     </button>
                   </div>
                 );
@@ -222,6 +245,8 @@ export default function PetAdoption() {
             </div>
           </div>
         </div>
+
+        {/* CONTENDOR PAGINADO : PAGING */}
         <div className={styles.paging}>
           <input
             className={styles.paginate}

@@ -6,8 +6,9 @@ import {
   getCategories,
   products,
   productsFilter,
+  getRelatedProducts,
 } from "./products";
-import { getMascotas, typesGet } from "./mascotas";
+import { getAdminPets, getMascotas, getRelatedPets, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -33,6 +34,32 @@ export const getmuni = (municipios) => async (dispatch) => {
       .then((res) => dispatch(getmunicipios(res)));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const PutReview = async (obj,id) => {
+  try{
+    //console.log(id)
+    const res = axios.put(`http://localhost:3001/updateProduct/reviews/${id}`,obj).then((response) => {
+      console.log("Update SUCCESS!");
+    });
+  return res;
+  }catch(error){
+     console.log(error)
+  }
+}
+
+export const PutPets = async (id, obj) => {
+  //console.log(id, obj);
+  try {
+    const respo = await axios
+      .put(`http://localhost:3001/updatePet/delete/${id}`, obj)
+      .then((response) => {
+        console.log("Update SUCCESS!");
+      });
+    return respo;
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -79,30 +106,17 @@ export const PostAdop = (post) => {
       // .then((id) => router.push(`detail/${id}`))
       .catch(
         (err) => {
-          console.log(err)
-          if (err) {
-            if (err.response.statusText === "Payload Too Large") {
-              Swal.fire({
-                title: "Error. Imagen inválida",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
+          console.log(err);
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            } else {
-              Swal.fire({
-                title: "Error. No se pudo publicar la mascota",
-                icon: "error",
-                color: "#437042",
-                confirmButtonColor: "#437042",
-                confirmButtonAriaLabel: "#437042",
+          Swal.fire({
+            title: "Error. No se pudo publicar la mascota",
+            icon: "error",
+            color: "#437042",
+            confirmButtonColor: "#437042",
+            confirmButtonAriaLabel: "#437042",
 
-                // background:'#fff url(../backAlerts.png)',
-              });
-            }
-          }
+            // background:'#fff url(../backAlerts.png)',
+          });
         }
         //   Swal.fire({
         //     position: "top-end",
@@ -161,10 +175,38 @@ export const getProducts = (page) => async (dispatch) => {
   }
 };
 
+export const getProductsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/productsRelated/${id}`);
+    //http://localhost:3001/productsRelated/63b6fa9ec2e6c5bd60363236
+    dispatch(getRelatedProducts(related.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPetsRelated = (id) => async (dispatch) => {
+  try {
+    let related = await axios.get(`/petsRelated/${id}`);
+    dispatch(getRelatedPets(related.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const adminProducts = () => async (dispatch) => {
   try {
     let adProducts = await axios("/products");
     dispatch(products(adProducts.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const adminPets = () => async (dispatch) => {
+  try {
+    let adPets = await axios("/pets");
+    dispatch(getAdminPets(adPets.data));
   } catch (error) {
     console.error(error);
   }
@@ -273,7 +315,48 @@ export const filterProducts = (input, page) => async (dispatch) => {
     }
     console.log(products.data.docs);
     dispatch(productsFilter(products.data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const UpdateProduct = async (id, obj) => {
+  console.log(id, obj);
+  try {
+    const respo = await axios
+      .put(`http://localhost:3001/updateProduct/${id}`, obj)
+      respo ?
+      Swal.fire({
+        title: "Producto editado con éxito",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }) : null
+    return respo;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addProduct = async (post) => {
+  console.log(post);
+  try {
+    const res = await axios
+      .post("/products/post", post);
+      res ?
+        Swal.fire({
+          title: "Producto agregado",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        }) : null
+    return res.data;
+    
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const allcategories = () => async (dispatch) => {

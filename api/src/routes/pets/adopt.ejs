@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        text-align: center;
+      }
+
+      .card {
+        height: fit-content;
+        width: 25rem;
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border-style: solid;
+        border-radius: 1rem;
+        border-color: rgb(61, 61, 61);
+        background-color: white;
+        color: black;
+      }
+
+      .title {
+        text-align: center;
+      }
+
+      .imageLogo {
+        height: 10rem;
+        width: 15rem;
+        border-radius: 1rem;
+      }
+
+      .imageTitle {
+        max-width: 20rem;
+        height: 5rem;
+      }
+      p {
+        text-align: justify;
+        color: black;
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .link {
+        color: black;
+        text-decoration: none;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .btn {
+        color: white;
+        border: 1px solid rgb(41, 73, 41);
+        border-radius: 5px;
+        font-size: 1em;
+        height: 2em;
+        background-color: rgb(64, 136, 64);
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: rgb(110, 83, 52);
+        box-shadow: 2px 2px 10px rgb(63, 48, 30);
+        border: 1px solid rgb(77, 58, 36);
+      }
+    </style>
+  </head>
+  <body class="body">
+    <div class="card">
+      <img
+        class="imageTitle"
+        src="https://res.cloudinary.com/dibwxnomi/image/upload/v1673707803/imagenes/WhatsApp_Image_2023-01-14_at_9.46.08_AM_qkbtwv.jpg"
+        alt="title"
+      />
+      <p>Tu familia ha crecido.</p>
+      <p>De ahora en adelante <%= pet.name %> es parte de tu vida.</p>
+      <p>
+        Esperamos que haya sido gratificante el proceso de adopcion. Si por
+        alguna razón se presenta algún conflicto, ya sea de adopcion u otro
+        ambito, puedes comunicarte con nosotros a travez de nuestro Gmail <%=
+        email %> o contáctanos en nuestra cuenta de Instagram
+        <a class="link" href="https://www.instagram.com/pets_littlepaws/"
+          >@pets_littlepaws</a
+        >.
+      </p>
+      <br />
+      <img class="imageLogo" src="<%= pet.image[0] %>" alt="Little Paws" />
+      <br />
+      <br />
+      <a href="http://localhost:3000/detail/<%= pet._id %>">
+        <button class="btn">Ver perfil de <%= pet.name %></button>
+      </a>
+    </div>
+  </body>
+</html>
