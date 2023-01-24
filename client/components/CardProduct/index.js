@@ -8,7 +8,6 @@ export default function CardProduct({
   info,
   addToCart,
   cart,
-  productOfCart,
   discountItem,
 }) {
   const { user } = useUser();
