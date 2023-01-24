@@ -26,12 +26,10 @@ const merchant_orderSchema = new Schema({
   order_status: {
     type: String,
   },
-  user: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-    },
-  ],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = mongoose.model("Merchant_orders", merchant_orderSchema);

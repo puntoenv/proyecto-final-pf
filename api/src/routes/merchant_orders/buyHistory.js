@@ -5,13 +5,10 @@ const buyHistory = Router();
 
 buyHistory.get("/", async (req, res) => {
   try {
-    let users = await User.find();
-    let history = await Merchant_orders.find().then((data) =>
-      data.map((buy) => {
-        buy.user = users.find((user) => user._id);
-        return { ...buy };
-      })
-    );
+    let history = await Merchant_orders.find().populate({
+      path: "user",
+      model: User,
+    });
     res.status(200).send(history);
   } catch (error) {
     console.error(error);
