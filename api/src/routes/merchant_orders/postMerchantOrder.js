@@ -27,8 +27,7 @@ postMerchant_order.post("/", async (req, res) => {
         
     } = req.body;
     let result = [];
-    let userId=items[0].category_id;
-    const user = await User.findById(userId);
+   
     let merchant_orders = await Merchant_orders.create({
         id,
         status,
@@ -40,13 +39,13 @@ postMerchant_order.post("/", async (req, res) => {
         items,
         cancelled,
         order_status,
-        userId,
-      user: user._id,
+       
+     
    
     });
     order = await Merchant_orders.findById(merchant_orders._id)
-    user.merchant_orders = user.merchant_orders.concat(merchant_orders);
-    await user.save();
+   
+   
    
    
     //console.log(info);
