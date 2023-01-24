@@ -116,7 +116,11 @@ export default function PetAdoption({ favorite, addAgregar }) {
   return (
     <LayoutGlobal>
       <Layout title="Mascotas" />
+
+      {/* CONTENEDOR DE TODA LA PAGINA : containerAllPets*/}
       <div className={styles.containerAllPets}>
+
+        {/* CONTEENDOR DE LOS FILTROS : CONTAINER2*/}
         <div className={styles.container2}>
           <form
             className={styles.form}
@@ -190,6 +194,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
           </select> */}
+
+          {/* CONTENEDOR SEARCH : CAJA*/}
           <div className={styles.caja}>
             <form
               className={styles.box}
@@ -206,6 +212,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
+
+            {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
@@ -237,6 +245,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
             </div>
           </div>
         </div>
+
+        {/* CONTENDOR PAGINADO : PAGING */}
         <div className={styles.paging}>
           <input
             className={styles.paginate}

@@ -8,7 +8,7 @@ import {
   productsFilter,
   getRelatedProducts,
 } from "./products";
-import { getMascotas, getRelatedPets, typesGet } from "./mascotas";
+import { getAdminPets, getMascotas, getRelatedPets, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -36,6 +36,18 @@ export const getmuni = (municipios) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const PutReview = async (obj,id) => {
+  try{
+    //console.log(id)
+    const res = axios.put(`http://localhost:3001/updateProduct/reviews/${id}`,obj).then((response) => {
+      console.log("Update SUCCESS!");
+    });
+  return res;
+  }catch(error){
+     console.log(error)
+  }
+}
 
 export const PutPets = async (id, obj) => {
   //console.log(id, obj);
@@ -191,6 +203,15 @@ export const adminProducts = () => async (dispatch) => {
   }
 };
 
+export const adminPets = () => async (dispatch) => {
+  try {
+    let adPets = await axios("/pets");
+    dispatch(getAdminPets(adPets.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const searchProduct = (product, page) => async (dispatch) => {
   try {
     let productoEncontrado = await axios(
@@ -299,21 +320,44 @@ export const filterProducts = (input, page) => async (dispatch) => {
   }
 };
 
-
 export const UpdateProduct = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios
       .put(`http://localhost:3001/updateProduct/${id}`, obj)
-      .then((response) => {
-        console.log("Edición exitosa");
-      });
+      respo ?
+      Swal.fire({
+        title: "Producto editado con éxito",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }) : null
     return respo;
   } catch (e) {
     console.log(e);
   }
 };
 
+export const addProduct = async (post) => {
+  console.log(post);
+  try {
+    const res = await axios
+      .post("/products/post", post);
+      res ?
+        Swal.fire({
+          title: "Producto agregado",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        }) : null
+    return res.data;
+    
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export const allcategories = () => async (dispatch) => {
   try {

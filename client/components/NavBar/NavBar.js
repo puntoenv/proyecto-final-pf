@@ -24,7 +24,6 @@ const NavBar = () => {
   const router = useRouter();
   const idUser = user?.sub.split("|")[1];
 
-
   if (isLoading)
     return (
       <div className={styles.container}>
@@ -40,8 +39,8 @@ const NavBar = () => {
           src={logo}
           alt="logo"
           className="logo"
-          width="auto"
-          height="auto"
+          // width="auto"
+          // height="auto"
         />
       </Link>
       <nav className="nav">
@@ -55,7 +54,7 @@ const NavBar = () => {
           <Link className="itemNav" href="/eShop">
             <span>Productos</span>
           </Link>
-          <Link  className="itemNav" href="/petsPosts">
+          <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>
           {user ? (
@@ -83,7 +82,7 @@ const NavBar = () => {
           <span>Mi carrito</span>
         </Link>
         <p
-          onClick={() => handleAdoption( router, Swal, idUser)}
+          onClick={() => handleAdoption(router, Swal, idUser)}
           className="itemDash"
           href="/adoptionForm"
         >

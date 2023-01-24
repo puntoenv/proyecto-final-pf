@@ -1,69 +1,55 @@
-import { adminProducts } from "../../stores/actions";
 import { useEffect, useMemo, useState } from "react";
 import { Avatar, Box, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { adminPets } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
-import {UpdateProduct} from "../../stores/actions"
+import style from "./style.module.css";
 
 
-
-
-export default function Users() {
+export default function Pets() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.products.products);
-
-  useEffect(() => {
-    dispatch(adminProducts());
-  }, [dispatch]);
-
+  const pets = useSelector((state) => state.mascotas.adminPets);
   const columns = useMemo(
     () => [
       {
-        field: "image",
-        headerName: "Imagen",
+        field: 'image',
+        headerName: 'Imagen',
         width: 60,
         renderCell: (params) => <Avatar src={params.row.image} />,
         sortable: false,
         filterable: false,
       },
-      { field: "name", headerName: "Name", editable: true, width: 140 },
-      { field: "hidden", headerName: "Estado", width: 200 },
-      { field: "stock", headerName: "Stock", width: 120 },
-      { field: "_id", headerName: "Id", width: 220 },
+      { field: "name", headerName: "Nombre", width: 140 },
+      { field: "type", headerName: "Especie", width: 140 },
+      { field: "age", headerName: "Edad", width: 100 },
+      { field: "gender", headerName: "Género", width: 150 },
+      { field: "size", headerName: "Tamaño", width: 150 },
+      { field: "contactAdoption", headerName: "Contacto", width: 120 },
+      { field: "description", headerName: "Descripción", width: 120 },
+      { field: "_id", headerName: "Id", width: 200 },
     ],
     []
   );
   const [pageSize, setPageSize] = useState(5);
   const [rowId, setRowId] = useState(null);
 
-  const handleEdit = (e) => {
-    const { _id } = e.row;
-    const obj = e.row
-    UpdateProduct(_id, obj);
-   
-  };
-
-
+  useEffect(() => {
+    dispatch(adminPets());
+  }, [dispatch]);
 
   return (
     <Box
       sx={{
         height: 460,
-        width: "80%",
+        width: "96%",
       }}
     >
-      <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 15, mb: 10 }}
-      >
-        Productos
-      </Typography>
-
+ <h1 className={style.posts}> Publicaciones </h1>
+     
       <DataGrid
         sx={{ ml: 35 }}
         columns={columns}
-        rows={users}
+        rows={pets}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
@@ -72,8 +58,7 @@ export default function Users() {
           top: params.isFirstVisible ? 0 : 5,
           bottom: params.isLastVisible ? 0 : 5,
         })}
-        onCellFocusOut={(e) => handleEdit(e)}
-        editMode="row"
+        onCellEditCommit={(params) => setRowId(params.id)}
         
       />
     </Box>

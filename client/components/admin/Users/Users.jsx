@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { allUsers } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
+import style from "./style.module.css";
+
+
+
 export default function Users() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
@@ -33,18 +37,12 @@ export default function Users() {
   return (
     <Box
       sx={{
-        height: 400,
-        width: "80%",
+        height: 460,
+          width: "96%",
       }}
     >
-      <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 15, mb: 10 }}
-      >
-        Usuarios
-      </Typography>
-      {/* <div className={styles.grid}> */}
+     <h1 className={style.users}> Usuarios </h1>
+
       <DataGrid
         sx={{ ml: 35 }}
         columns={columns}
