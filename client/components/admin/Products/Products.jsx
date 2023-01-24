@@ -18,10 +18,10 @@ import Button from "@mui/material/Button";
 import Add from "./add";
 import PropTypes from "prop-types";
 import AddIcon from "@mui/icons-material/Add";
-import BlockIcon from "@mui/icons-material/Block";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';;
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Rating from "@mui/material/Rating";
-import styles from "../../Profile/Loading.module.css";
+//import styles from "../../Profile/Loading.module.css";
 import Pagination from '@mui/material/Pagination';
 import style from "./styles.module.css";
 
@@ -59,6 +59,12 @@ export default function Products() {
     setRender();
   }, [dispatch]);
 
+
+
+
+
+
+
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -72,8 +78,15 @@ export default function Products() {
   };
 
   const status = () => {
-    products.hidden ? "verde" : "rojo";
-  };
+   "PRUEBA"
+    }
+
+
+const category = ()=>{
+products.map((product)=>{
+  product.category.length > 0 ? product.category : "Sin categoria/s"
+})
+}
 
   const columns = useMemo(() => [
     {
@@ -85,7 +98,14 @@ export default function Products() {
       filterable: false,
     },
     { field: "name", headerName: "Name", editable: true, width: 160 },
-    { field: "hidden", headerName: "Estado", renderCell: status, editable: true, width: 100 },
+    { field: "hidden", headerName: "Estado", valueGetter: status(), editable: true, width: 100 },
+    {
+      field: "category",
+      headerName: "Categorias",
+     valueGetter: category(),
+      editable: true,
+      width: 120,
+    },
     {
       field: "price",
       headerName: "Precio",
@@ -152,7 +172,7 @@ export default function Products() {
           Agregar
         </Button>
 
-        <Button startIcon={<BlockIcon />} onClick={(e) => handleHide(e)}>
+        <Button startIcon={<VisibilityOffIcon />} onClick={(e) => handleHide(e)}>
           Ocultar
         </Button>
         <Button startIcon={<VisibilityIcon />} onClick={(e) => handleShow(e)}>
@@ -188,6 +208,7 @@ export default function Products() {
           rows={products}
           editMode="cell"
           getRowId={(row) => row._id}
+          getRowHeight={() => 'auto'}
           rowsPerPageOptions={[5, 10, 20]}
           pageSize={pageSize}
           onCellEditStop={handleEdit}
