@@ -15,8 +15,15 @@ import { BiLink } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { useState } from "react";
 import Link from "next/link";
+import { handleAdoption } from "../../../controller/validationUpdateP";
+import { useRouter } from "next/router";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
-const SideBar = ({ setRender, response }) => {
+const SideBar = ({ setRender, response, authUser }) => {
+  const router = useRouter();
+  const idUser = authUser && authUser._id;
+  console.log(idUser)
   const handlerClick = () => {
     const dash = document.getElementById("hidden");
 
@@ -42,7 +49,7 @@ const SideBar = ({ setRender, response }) => {
       <div className={styles.wrapper}>
         <ul className={styles.ul}>
           <li className={styles.icon}>
-            <Link href={'/home'}>
+            <Link href={"/home"}>
               <AiFillHome size={20}></AiFillHome>
               Home
             </Link>
@@ -147,7 +154,11 @@ const SideBar = ({ setRender, response }) => {
             <div className={styles.link}>
               <li>
                 <SiDatadog className={styles.iconSize}></SiDatadog>
-                <a href={`/adoptionForm/${response._id}`}>Publica</a>
+                <span
+                  onClick={() => handleAdoption(router, Swal, idUser)}
+                >
+                  Publica
+                </span>
               </li>
             </div>
           </div>

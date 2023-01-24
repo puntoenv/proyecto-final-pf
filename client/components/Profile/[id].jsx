@@ -12,6 +12,7 @@ export default function Perfil({
   response,
   hanldeOnChange,
   handleOnSubmit,
+  authUser,
 }) {
   const [render, setRender] = useState("profile");
 
@@ -23,13 +24,14 @@ export default function Perfil({
           <p>Loading...</p>
         </div>
       )}
-      {user && (
+      {authUser ? (
         <>
           <div>
             <SideBar
               render={render}
               setRender={setRender}
               response={response}
+              authUser={authUser}
             ></SideBar>
             <HeaderTest
               user={user}
@@ -45,6 +47,11 @@ export default function Perfil({
             ></ContentUser>
           </div>
         </>
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.loader}></div>
+          <p>Loading...</p>
+        </div>
       )}
     </div>
   );

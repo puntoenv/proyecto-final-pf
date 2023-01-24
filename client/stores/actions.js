@@ -114,7 +114,6 @@ export const PostAdop = (post) => {
       return res.data;
     })
     .catch((err) => {
-      console.log(err);
 
       Swal.fire({
         title: "Error. No se pudo publicar la mascota",
