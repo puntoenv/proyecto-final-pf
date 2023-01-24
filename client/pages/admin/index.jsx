@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/Navbar.jsx";
-// import Bar from "../../components/admin/Bar";
-//import Pie from "../../components/admin/Pie";
-// import CategPie from "../../components/admin/CategPie";
-// import Calendar from "../../components/admin/Calendar";
 import Products from "../../components/admin/Products/Products";
 import Pets from "../../components/admin/Posts/Posts";
 import styles from "./admin.module.css";
@@ -15,24 +11,41 @@ import { useQuery } from "react-query";
 import { getUserById } from "../../controller/functionsUser/getUserById.js";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { authUser } from "../../stores/actions";
+import { useDispatch, useSelector } from "react-redux";
 import GroupIcon from "@mui/icons-material/Group";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
-import ImageIcon from '@mui/icons-material/Image';
+import ImageIcon from "@mui/icons-material/Image";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 const Admin = withPageAuthRequired(() => {
-  const [Render, setRender] = useState();
-
   const { user } = useUser();
+
+  const dispatch = useDispatch();
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
+  const [Render, setRender] = useState();
   const router = useRouter();
 
-  let id;
-  if (user && user.sub) {
-    const idUser = user.sub.split("|")[1];
-    id = idUser;
-  }
+  let id = userAuth && userAuth._id;
   const { data: dbUser, isLoading } = useQuery(["user", id], () =>
     getUserById(id)
   );
@@ -70,22 +83,22 @@ const Admin = withPageAuthRequired(() => {
       <div className="navAd">
         <Navbar />
       </div>
-    
+
       <div>
         <div>
           <section>{Render}</section>
         </div>
 
         <div className={styles.sidebar}>
-        <Link href={"/home"} className="logo">
-        <Image
-          src={logo}
-          alt="logo"
-          className={styles.logo}
-          width="auto"
-          height="auto"
-        />
-      </Link>
+          <Link href={"/home"} className="logo">
+            <Image
+              src={logo}
+              alt="logo"
+              className={styles.logo}
+              width="auto"
+              height="auto"
+            />
+          </Link>
           <div key="customers">
             <p className="text-gray-400 dark:text-gray-400 m-1 mt-32 uppercase">
               Dashboard
@@ -95,7 +108,6 @@ const Admin = withPageAuthRequired(() => {
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Users />)}
             >
-              
               <GroupIcon />
               Usuarios
             </button>
@@ -103,7 +115,6 @@ const Admin = withPageAuthRequired(() => {
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Products />)}
             >
-             
               <StorefrontIcon />
               Productos
             </button>
@@ -111,7 +122,6 @@ const Admin = withPageAuthRequired(() => {
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Pets />)}
             >
-             
               <ImageIcon />
               Publicaciones
             </button>
@@ -124,7 +134,6 @@ const Admin = withPageAuthRequired(() => {
           </div>
         </div>
       </div>
-
       {/* 
       <Footer /> */}
     </div>

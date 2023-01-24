@@ -79,31 +79,23 @@ export const validateForm = (event, setError, error) => {
   }
 };
 
-export const hanldeOnChange = (
-  event,
-  setInput,
-  input,
-  setResult,
-) => {
+export const hanldeOnChange = (event, setInput, input, setResult) => {
   if (event.target.name.includes("direction")) {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value
-    })
-
-  } 
     setInput({
       ...input,
       [event.target.name]: event.target.value,
     });
+  }
+  setInput({
+    ...input,
+    [event.target.name]: event.target.value,
+  });
 
-  
   setResult({
     error: "",
     seccess: "",
   });
 };
-
 
 export const handleFiles = (event, setInput, input) => {
   const { files } = event.target;
@@ -118,6 +110,7 @@ export const handleFiles = (event, setInput, input) => {
 };
 
 export const handleAdoption = async (router, Swal, idUser) => {
+  console.log(idUser);
   try {
     const response = await axios.get(`http://localhost:3001/user/${idUser}`);
     if (!response.data.name || response.data.name === " ") {
@@ -186,14 +179,5 @@ export const handleOnSubmit = async (
         });
       }
     }
-    // else {
-    //   Swal.fire({
-    //     title: "No se pudo editar el perfil. Intenta nuevamente",
-    //     icon: "error",
-    //     color: "#437042",
-    //     confirmButtonColor: "#437042",
-    //     confirmButtonAriaLabel: "#437042",
-    //   });
-    // }
   }
 };

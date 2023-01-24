@@ -241,7 +241,7 @@ export default function Detail({ data }) {
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(`${process.env.URL_BACK}pets/detail/${params.id}`)
+      await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}pets/detail/${params.id}`)
     ).json();
     return {
       props: {
