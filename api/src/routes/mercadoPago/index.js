@@ -205,10 +205,17 @@ console.log("merchant_order")
 console.log("merchant_order")
 */
 
-    res.sendStatus(200);
-  } catch (error) {
-    res.sendStatus(400);
-  }
-});
+res.sendStatus(200);
+} catch (error) {
+  res.sendStatus(404);
+}
+
+
+
+
+})
+
+
+
 
 module.exports = router;
