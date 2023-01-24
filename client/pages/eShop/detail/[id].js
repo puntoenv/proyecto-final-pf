@@ -153,7 +153,13 @@ export default function Detail({
           <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-        <div>{<Start_Revi data={data} id_User={id_User} />}</div>
+        {/* <div>{<Start_Revi data={data} id_User={id_User} />}</div> */}
+        <div className={style.containerRevi}>
+          {<Start_Revi
+          data = {data}
+          id_User = {id_User}
+          />}
+        </div>
 
         <h1 className={style.titleRelated}> Productos Relacionados </h1>
         <div className={style.containSlider}>

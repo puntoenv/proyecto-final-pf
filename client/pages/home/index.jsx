@@ -118,9 +118,6 @@ import CardProduct from "../../components/CardProduct";
                   tamano={mascota.size}
                   
                 />
-                
-
-            
               ))}
             </Slider>
           </div>
