@@ -54,7 +54,6 @@ const userSchema = new Schema({
   ],
   review_star: [
     { 
-      coment: {type: Boolean,default:true},
       stars: Number,
       reviews: String,
       product: {
