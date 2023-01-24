@@ -1,39 +1,59 @@
 import { adminProducts } from "../../../stores/actions";
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import {
   DataGrid,
   GridToolbarContainer,
   GridToolbarColumnsButton,
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
+  gridPageCountSelector,
+  gridPageSelector,
+  useGridApiContext,
+  useGridSelector,
 } from "@mui/x-data-grid";
 import { useSelector, useDispatch } from "react-redux";
 import { UpdateProduct } from "../../../stores/actions";
 import Button from "@mui/material/Button";
 import Add from "./add";
-//import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import AddIcon from "@mui/icons-material/Add";
-//import EditIcon from "@mui/icons-material/Edit";
 import BlockIcon from "@mui/icons-material/Block";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import Rating from '@mui/material/Rating';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import Rating from "@mui/material/Rating";
 import styles from "../../Profile/Loading.module.css";
-// import SaveIcon from "@mui/icons-material/Save";
-// import CancelIcon from "@mui/icons-material/Close";
-// import { styled } from "@mui/material/styles";
-// import Checkbox from "@mui/material/Checkbox";
-// import { pink } from "@mui/material/colors";
+import Pagination from '@mui/material/Pagination';
+import style from "./styles.module.css";
 
-// const VISIBLE_FIELDS = ["Nombre", "Estado", "Precio", "Stock", "Descripción"];
+function CustomPagination() {
+  const apiRef = useGridApiContext();
+  const page = useGridSelector(apiRef, gridPageSelector);
+  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+  return (
+    <Pagination
+      color="primary"
+      count={pageCount}
+      page={page + 1}
+      onChange={(event, value) => apiRef.current.setPage(value - 1)}
+    />
+  );
+}
+function renderRating(params) {
+  return <Rating readOnly value={params.value} />;
+}
+
+renderRating.propTypes = {
+  value: PropTypes.number,
+};
 
 export default function Products() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const [data, setData] = useState();
   const [Render, setRender] = useState();
-  const [pageSize, setPageSize] = useState(5);
-  
+  const [pageSize, setPageSize] = useState(8);
+
   useEffect(() => {
     dispatch(adminProducts());
     setRender();
@@ -51,6 +71,10 @@ export default function Products() {
     cellClassName: "font-tabular-nums",
   };
 
+  const status = () => {
+    products.hidden ? "verde" : "rojo";
+  };
+
   const columns = useMemo(() => [
     {
       field: "image",
@@ -61,7 +85,7 @@ export default function Products() {
       filterable: false,
     },
     { field: "name", headerName: "Name", editable: true, width: 160 },
-    { field: "hidden", headerName: "Estado", editable: true, width: 100 },
+    { field: "hidden", headerName: "Estado", renderCell: status, editable: true, width: 100 },
     {
       field: "price",
       headerName: "Precio",
@@ -71,8 +95,9 @@ export default function Products() {
     },
     { field: "stock", headerName: "Stock", editable: true, width: 120 },
     // {
-    //   field: "",
+    //   field: '',
     //   headerName: "Rating",
+    //   renderCell: renderRating,
     //   editable: true,
     //   width: 300,
     // },
@@ -96,7 +121,7 @@ export default function Products() {
   const handleShow = async () => {
     try {
       const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "show" });      
+      if (data) await UpdateProduct(_id, { hidden: "show" });
     } catch (error) {
       console.log(error);
     }
@@ -115,12 +140,9 @@ export default function Products() {
   const handleAdd = (component) => {
     setRender(component);
   };
-  
+
   function CustomToolbar() {
     return (
-
-     
-
       <GridToolbarContainer>
         <Button
           color="primary"
@@ -153,20 +175,13 @@ export default function Products() {
         sx={{
           height: 460,
           width: "96%",
-          "& .font-tabular-nums": {
-            fontVariantNumeric: "tabular-nums",
-          },
+          
         }}
       >
-        <Typography
-          variant="h3"
-          component="h3"
-          sx={{ textAlign: "center", mt: 15, mb: 10 }}
-        >
-          Productos
-        </Typography>
+        <h1 className={style.products}> Productos </h1>
 
         <DataGrid
+         pagination
           onRowClick={(e) => setData(e)}
           sx={{ ml: 35 }}
           columns={columns}
@@ -184,7 +199,9 @@ export default function Products() {
           })}
           components={{
             Toolbar: CustomToolbar,
+            Pagination: CustomPagination,
           }}
+        
           // experimentalFeatures={{ newEditingApi: true }}
         />
       </Box>

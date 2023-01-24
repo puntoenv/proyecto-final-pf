@@ -8,7 +8,7 @@ import {
   productsFilter,
   getRelatedProducts,
 } from "./products";
-import { getMascotas, getRelatedPets, typesGet } from "./mascotas";
+import { getAdminPets, getMascotas, getRelatedPets, typesGet } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -198,6 +198,15 @@ export const adminProducts = () => async (dispatch) => {
   try {
     let adProducts = await axios("/products");
     dispatch(products(adProducts.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const adminPets = () => async (dispatch) => {
+  try {
+    let adPets = await axios("/pets");
+    dispatch(getAdminPets(adPets.data));
   } catch (error) {
     console.error(error);
   }
