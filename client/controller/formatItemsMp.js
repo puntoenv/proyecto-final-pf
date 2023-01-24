@@ -32,7 +32,7 @@ export function formatOneItemMP(products) {
   if (products){
         const payment = axios
           .post(
-            "http://localhost:3001/payment",
+            "https://proyecto-final-pf-production.up.railway.app/payment",
             products
           )
           .then(

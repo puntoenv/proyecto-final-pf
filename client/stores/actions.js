@@ -40,7 +40,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 export const PutReview = async (obj,id) => {
   try{
     //console.log(id)
-    const res = axios.put(`http://localhost:3001/updateProduct/reviews/${id}`,obj).then((response) => {
+    const res = axios.put(`/updateProduct/reviews/${id}`,obj).then((response) => {
       console.log("Update SUCCESS!");
     });
   return res;
@@ -53,7 +53,7 @@ export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {
     const respo = await axios
-      .put(`http://localhost:3001/updatePet/delete/${id}`, obj)
+      .put(`/updatePet/delete/${id}`, obj)
       .then((response) => {
         console.log("Update SUCCESS!");
       });
