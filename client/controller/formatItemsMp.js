@@ -13,7 +13,10 @@ export function formatItemsMp() {
         price:total,
     }] */
     const payment = axios
-      .post("http://localhost:3001/payment",productstotal) //item)
+      .post(
+        "https://proyecto-final-pf-production.up.railway.app/payment",
+        productstotal
+      ) //item)
       .then(
         (res) => (window.location.href = res.data.response.body.init_point)
       );
