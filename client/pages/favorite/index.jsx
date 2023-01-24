@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
@@ -10,7 +11,7 @@ function index({ favorite, DeletFavori }) {
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
   console.log(favorite);
-  const dupli = Array.from(new Set(favorite))
+  const dupli = Array.from(new Set(favorite));
 
   const handleClick = (e) => {
     let petId = favorite[e.target.value]._id;
