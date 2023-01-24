@@ -10,6 +10,18 @@
   align-items: flex-end;
   background-color: #38593a;
 }
+@media(max-width:730px){
+  .nav{
+  display: flex;
+  flex-direction: column;
+  z-index: 3000;
+  justify-content: flex-start;
+  top: 0px;
+  right: -600px;
+  height: auto;
+  
+  }
+}
 .navMenuList {
   box-sizing: border-box;
   display: flex;
@@ -17,6 +29,12 @@
   justify-content: right;
   column-gap: 24px;
   color: white;
+}
+@media(max-width:730px){
+  .navMenuList{
+  display: flex;
+  flex-direction: column;
+  }
 }
 
 .itemNav {
@@ -27,8 +45,7 @@
 }
 @media(max-width:350px){
   .itemNav{
-    font-size: 15px;
-    color: red;
+    font-size: 17px;
     flex-direction: column;
     display: block;
   }

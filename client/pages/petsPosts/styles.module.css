@@ -256,10 +256,24 @@
   align-items: center;
 }
 
+
 .box {
   display: flex;
   justify-content: center;
   padding-top: 3rem;
+}
+@media(max-width:730px){
+  .box{
+    
+    padding-top: 10.5rem;
+    /* width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem; */
+    /* margin-top: 5rem; */
+  }
 }
 
 .btns {
