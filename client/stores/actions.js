@@ -316,9 +316,14 @@ export const UpdateProduct = async (id, obj) => {
   try {
     const respo = await axios
       .put(`http://localhost:3001/updateProduct/${id}`, obj)
-      .then((response) => {
-        console.log("Edición exitosa");
-      });
+      respo ?
+      Swal.fire({
+        title: "Producto editado con éxito",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }) : null
     return respo;
   } catch (e) {
     console.log(e);

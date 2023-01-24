@@ -8,6 +8,7 @@ const updateProduct = Router();
 updateProduct.put("/:id", async (req, res) => {
   try {
     let { id } = req.params;
+
     let product = await Product.findById(id);
     let {
       name,
@@ -21,7 +22,9 @@ updateProduct.put("/:id", async (req, res) => {
       star_reviews,
     } = req.body;
     if (hidden) {
-      product.hidden = hidden;
+      hidden === "show"
+        ? product.hidden = false
+        : (product.hidden = true);
     } else {
       if (image) {
         let result = await cloudinary.uploader.upload(image);
@@ -42,6 +45,9 @@ updateProduct.put("/:id", async (req, res) => {
     console.log(error);
   }
 });
+   
+// prueba
+
 
 updateProduct.put("/reviews/:id", async (req, res) => {
   const { id } = req.params;
@@ -69,11 +75,3 @@ updateProduct.put("/reviews/:id", async (req, res) => {
 
 module.exports = updateProduct;
 
-/*
-                                        ◥------◥
-                                        l ● ▄ ◉ l ѠOOƑ!
-                                        l‿/ʊ\‿l
-                                        l══o══l
-                                        ︳ ︳︳ l⊃
-                                        ఋ︵ ఋ
- */
