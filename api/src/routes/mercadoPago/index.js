@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const { related } = require("../../controllers/relateds/relatedUserBuy");
+const Product = require("../../models/Product");
+const Merchant_orders = require("../../models/Merchant_orders")
 const router = Router();
 const mercadopago = require("mercadopago");
 require("dotenv").config();
@@ -18,7 +20,8 @@ router.post("/", async (req, res) => {
 
   for (let i = 0; i < products.length; i++) {
     let obj = {
-      id: products[i]._id + ` | id-del-usuario: ${products[i].id_User}`,
+      category_id:products[i].id_User,
+      id: products[i]._id,// +` | id-del-usuario: ${products[i].id_User}`,
       title: products[i].name,
       unit_price: products[i].price,
       quantity: products[i].amount ? products[i].amount : 1,
@@ -33,6 +36,10 @@ router.post("/", async (req, res) => {
       pending: "",
     },
     auto_return: "approved",
+
+
+    notification_url:"https://a5d9-179-38-187-19.sa.ngrok.io/payment/buynotification",
+
   };
 
   mercadopago.preferences
@@ -56,9 +63,9 @@ router.get("/:id", async (req, res) => {
     const response = await axios(config);
     const data = response.data;
 
-    const idUser = data.items[0].id.split(" | id-del-usuario: ")[1];
+    const idUser = data.items[0].category_id //id.split(" | id-del-usuario: ")[1];
     const productsId = data.items.map(
-      (product) => product.id.split(" | id-del-usuario: ")[0]
+      (product) => product.id//.split(" | id-del-usuario: ")[0]
     );
     related(idUser, productsId, data, res);
   } catch (error) {
@@ -67,5 +74,163 @@ router.get("/:id", async (req, res) => {
 
   //  === aprovved ==> buscarUser ==> relacionar con el producto y viseverza
 });
+
+
+
+router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
+
+  try {
+
+
+    let { id_user,id_product,quantity } = req.params;
+   let product = await Product.findById(id_product);
+    const stockTT= product.stock
+
+    //let user = await User.findById(id_user);
+   /* console.log(quantity)
+        console.log("esto es quantity")
+        console.log(quantity)
+    */
+    let { name, description, price, boughtBy, hidden, image, stock, category } =
+      req.body;
+      let stockT= stockTT;
+      
+    let quantityT= stockT - quantity;
+    /*console.log (product.stock)    
+    console.log("esto es product.stock")
+    console.log (product.stock) */
+
+      product.name = name ? name : product.name;
+      product.description = description ? description : product.description;
+      product.price = price ? price : product.price;
+      product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
+      product.stock = stockT - quantity;
+      product.category = category ? category : product.category;
+     
+      
+/*
+        console.log (quantityT)    
+        console.log("esto es quantityT")
+        console.log (quantityT) 
+        console.log(quantity)
+        console.log("esto es quantity")
+        console.log(quantity)
+        console.log (product.stock)    
+        console.log("esto es product.stock despues")
+        console.log (product.stock) 
+*/
+    
+    let save = await product.save();
+    console.log(save);
+    res.status(200).send(product + "funciono el put a mp");
+  } catch (error) {
+    console.log(error+"no funciono el put a mp");
+  }
+});
+
+
+
+
+router.post("/buyNotification",async (req, res) => {
+
+  try {
+    
+  
+const {query} = req;
+const topic = query.topic
+const idMo= query.id
+res.send();
+var merchant_order;
+
+switch (topic) {
+  case "payments": 
+  const paymentId = query.id;
+  //console.log(topic, "geting payment",paymentId);
+  const payment= await mercadopago.merchant_orders.findById(paymentId.body.order.id);
+  merchant_order= await mercadopago.merchant_orders.findById(payment.body.order.id)
+    //console.log(payment)
+    break;
+    case "merchant_order":
+      const orderId= query.id;
+      merchant_order= await mercadopago.merchant_orders.findById(orderId) 
+  default:
+    break;
+}
+
+/*
+
+console.log("notificac;ion");
+console.log("notifica;cion");
+console.log(merchant_order.body);
+console.log("notificacion");
+console.log("notificacion");
+console.log(query);*/
+   
+/*
+
+console.log("merchant_order")
+console.log(merchant_order.body)
+console.log("merchant_order")
+console.log("notificacion")
+console.log(idMo)
+console.log("notificacion")
+*/
+
+
+ /* 
+console.log("mOrderVerifyn")
+console.log("mOrderVerifyn")
+console.log(mOrderVerify)
+console.log(mOrderVerify)
+console.log("mOrderVerifyn")
+console.log("mOrderVerifyn")
+*/
+const mOrderVerify= await Merchant_orders.findOne({id:idMo})
+   
+if (merchant_order.body.id && mOrderVerify==null){
+  await axios.post(`http://localhost:3001/merchantorders`,merchant_order.body);
+
+
+      if (merchant_order.body.payments[0].status=='approved'&&merchant_order.body.payments[0].status_detail=='accredited') {
+        
+      
+    
+      
+     
+    for (let i = 0; i < merchant_order.body.items.length; i++) {
+  
+  let quantity=merchant_order.body.items[i].quantity
+   
+     let id_product=merchant_order.body.items[i].id
+  
+     await axios.put(`http://localhost:3001/payment/update/123/${id_product}/${quantity}`) //item)
+       }
+      
+      
+      
+      
+     }
+     
+    }
+/*
+console.log("merchant_order")
+console.log("merchant_order")
+console.log(merchant_order)
+console.log("merchant_order")
+console.log("merchant_order")
+*/
+
+res.send.status(200)
+} catch (error) {
+  res.send.status(400)
+}
+
+
+
+
+})
+
+
+
 
 module.exports = router;

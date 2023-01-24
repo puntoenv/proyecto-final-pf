@@ -2,7 +2,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { buyAndStock } from "../../controller/buyAndStock";
+import { deleteCart } from "../../controller/buyAndStock";
 
 import axios from "axios";
 
@@ -22,8 +22,9 @@ function index({ response, query }) {
   };
 
   if (payments[0].status == "approved" && query.merchant_order_id != order) {
-    buyAndStock();
-    setOrder(query.merchant_order_id);
+    
+    deleteCart();
+ setOrder(query.merchant_order_id);
   }
 
   return (
