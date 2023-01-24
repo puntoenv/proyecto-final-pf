@@ -45,6 +45,9 @@ updateProduct.put("/:id", async (req, res) => {
     console.log(error);
   }
 });
+   
+// prueba
+
 
 updateProduct.put("/reviews/:id", async (req, res) => {
   const { id } = req.params;
