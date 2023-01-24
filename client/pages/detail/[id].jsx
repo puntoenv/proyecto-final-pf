@@ -175,7 +175,7 @@ export default function Detail({ data }) {
                         try {
                           if (response) {
                             let res = await axios.put(
-                              "http://localhost:3001/updatePet/report/" +
+                              "https://proyecto-final-pf-production.up.railway.app/updatePet/report/" +
                                 data._id,
                               response[1]
                             );

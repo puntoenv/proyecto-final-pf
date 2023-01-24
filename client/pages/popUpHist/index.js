@@ -81,7 +81,9 @@ export default index;
 export async function getServerSideProps({ query }) {
   try {
     const response = await (
-      await fetch(`http://localhost:3001/payment/${query.merchant_order_id}`)
+      await fetch(
+        `https://proyecto-final-pf-production.up.railway.app/payment/${query.merchant_order_id}`
+      )
     ).json();
     return {
       props: {

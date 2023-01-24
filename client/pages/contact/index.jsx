@@ -34,7 +34,10 @@ const Contact = () => {
   const handlerSubmit = async (e) => {
     e.preventDefault();
     if (!submit) {
-      const msg = await axios.post(`http://localhost:3001/contact-us`, message);
+      const msg = await axios.post(
+        `https://proyecto-final-pf-production.up.railway.app/contact-us`,
+        message
+      );
       const succes = msg.data;
 
       if (!succes.error) {

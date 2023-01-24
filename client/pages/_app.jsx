@@ -24,7 +24,7 @@ import "sweetalert2/src/sweetalert2.scss";
 import { QueryClientProvider, QueryClient } from "react-query";
 
 
-axios.defaults.baseURL = `http://localhost:3001/`;
+axios.defaults.baseURL = `https://proyecto-final-pf-production.up.railway.app/`;
 
 const queryClient = new QueryClient();
 

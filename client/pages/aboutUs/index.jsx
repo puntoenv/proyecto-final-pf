@@ -1,12 +1,10 @@
 import LayoutGlobal from "../../components/LayoutGlobal/Layout"
-import styles from './styles.module.css'
+import About from '../../components/aboutUs/index'
 
 const AboutUs = () => {
     return (
         <LayoutGlobal>
-            <div className={styles.mainContainer}>
-                <h1>Sobre Nosotros</h1>
-            </div>
+            <About></About>
         </LayoutGlobal>
     )
 }
