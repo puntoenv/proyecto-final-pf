@@ -11,6 +11,13 @@ import {
 import { getMascotas, getRelatedPets, typesGet } from "./mascotas";
 import { get, getAllUsers } from "./User";
 import { get_User, get_authUser } from "./userAuth";
+import {
+  getAdminPets,
+  getMascotas,
+  getRelatedPets,
+  typesGet,
+} from "./mascotas";
+import { getUserId, getAllUsers } from "./User";
 
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
@@ -61,6 +68,20 @@ export const getmuni = (municipios) => async (dispatch) => {
       .then((res) => dispatch(getmunicipios(res)));
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const PutReview = async (obj, id) => {
+  try {
+    //console.log(id)
+    const res = axios
+      .put(`http://localhost:3001/updateProduct/reviews/${id}`, obj)
+      .then((response) => {
+        console.log("Update SUCCESS!");
+      });
+    return res;
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -148,6 +169,15 @@ export const adminProducts = () => async (dispatch) => {
   try {
     let adProducts = await axios("/products");
     dispatch(products(adProducts.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const adminPets = () => async (dispatch) => {
+  try {
+    let adPets = await axios("/pets");
+    dispatch(getAdminPets(adPets.data));
   } catch (error) {
     console.error(error);
   }
@@ -247,11 +277,19 @@ export const filterProducts = (input, page) => async (dispatch) => {
 export const UpdateProduct = async (id, obj) => {
   console.log(id, obj);
   try {
-    const respo = await axios
-      .put(`http://localhost:3001/updateProduct/${id}`, obj)
-      .then((response) => {
-        console.log("Edición exitosa");
-      });
+    const respo = await axios.put(
+      `http://localhost:3001/updateProduct/${id}`,
+      obj
+    );
+    respo
+      ? Swal.fire({
+          title: "Producto editado con éxito",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        })
+      : null;
     return respo;
   } catch (e) {
     console.log(e);

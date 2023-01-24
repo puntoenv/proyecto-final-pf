@@ -28,6 +28,9 @@ const petsRelated = require("./routes/pets/related");
 const productsRelated = require("./routes/products/related");
 const adoptEmail = require("./routes/pets/adopt");
 const buyEmail = require("./routes/products/buyEmail");
+const postMerchant_order = require("./routes/merchant_orders/postMerchantOrder");
+const byid = require("./routes/merchant_orders/getById");
+const buyHistory = require("./routes/merchant_orders/buyHistory");
 
 router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
@@ -58,4 +61,6 @@ router.use("/categories", categories);
 router.use("/productsRelated", productsRelated);
 router.use("/contact-us", contactUs);
 router.use("/buyEmail", buyEmail);
+router.use("/merchantorders", postMerchant_order, byid);
+router.use("/buyHistory", buyHistory);
 module.exports = router;

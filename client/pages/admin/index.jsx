@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/Navbar.jsx";
 import Products from "../../components/admin/Products/Products";
+import Pets from "../../components/admin/Posts/Posts";
 import styles from "./admin.module.css";
 import Users from "../../components/admin/Users/Users";
 import Footer from "../../components/admin/Footer";
@@ -12,6 +13,12 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { authUser } from "../../stores/actions";
 import { useDispatch, useSelector } from "react-redux";
+import GroupIcon from "@mui/icons-material/Group";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import Link from "next/link";
+import Image from "next/image";
+import logo from "../../img/logo.jpeg";
+import ImageIcon from "@mui/icons-material/Image";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -76,41 +83,54 @@ const Admin = withPageAuthRequired(() => {
       <div className="navAd">
         <Navbar />
       </div>
+
       <div>
         <div>
-          <div>
-            <button onClick={(e) => handlerOnClick(e)} className={styles.lp}>
-              Little Paws
+          <section>{Render}</section>
+        </div>
+
+        <div className={styles.sidebar}>
+          <Link href={"/home"} className="logo">
+            <Image
+              src={logo}
+              alt="logo"
+              className={styles.logo}
+              width="auto"
+              height="auto"
+            />
+          </Link>
+          <div key="customers">
+            <p className="text-gray-400 dark:text-gray-400 m-1 mt-32 uppercase">
+              Dashboard
+            </p>
+
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Users />)}
+            >
+              <GroupIcon />
+              Usuarios
             </button>
-          </div>
-
-          <div>
-            <section>{Render}</section>
-          </div>
-
-          <div className={styles.sidebar}>
-            <div key="customers">
-              <p className="text-gray-400 dark:text-gray-400 m-1 mt-10 uppercase">
-                Dashboard
-              </p>
-
-              <button
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Products />)}
+            >
+              <StorefrontIcon />
+              Productos
+            </button>
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Pets />)}
+            >
+              <ImageIcon />
+              Publicaciones
+            </button>
+            {/* <button
                 className={styles.btn}
-                onClick={(e) => handlerOnClick(e, <Users />)}
+                onClick={(e) => handlerOnClick(e, )}
               >
-                Usuarios
-              </button>
-              <button
-                className={styles.btn}
-                onClick={(e) => handlerOnClick(e, <Products />)}
-              >
-                Productos
-              </button>
-
-              <button className={styles.btn} onClick={(e) => handlerOnClick(e)}>
                 Calendario
-              </button>
-            </div>
+              </button> */}
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardProduct from "../../../components/CardProduct";
+import ProductCard from "../../../components/CarouselEshop/productsCard";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -26,6 +27,7 @@ const fn = (user, dispatch, setNumCall) => {
   setNumCall(1);
 };
 
+import Start_Revi from "../../../components/star_Revi";
 export default function Detail({
   data,
   cart,
@@ -33,6 +35,17 @@ export default function Detail({
   productOfCart,
   discountItem,
 }) {
+  const settings = {
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 1700,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+  };
+
   const { user } = useUser();
   const dispatch = useDispatch();
 
@@ -43,7 +56,10 @@ export default function Detail({
   const userAuth = useSelector((state) => state.userAuth.userData);
   const id_User = userAuth && userAuth._id;
 
-  const { name, image, price, _id, stock, category, boughtBy } = data;
+  const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
+    data;
+  console.log(_id);
+
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
 
@@ -70,13 +86,14 @@ export default function Detail({
     }
   };
 
-  useEffect(() => {
+  const CondiRevi = useEffect(() => {
     itemCart && itemCart.amount > 0 && setAmount((i) => (i = itemCart.amount));
     dispatch(getProductsRelated(data._id));
   }, [cart, amount]);
   data.id_User = id_User;
   let products = [data];
-  console.log(products);
+  // console.log(products);
+
   return (
     <LayoutGlobal authUser={userAuth}>
       <div className={style.containProduct}>
@@ -85,6 +102,7 @@ export default function Detail({
             {"<"} Atras
           </Link>
         </div>
+
         <div className={style.headerDetail}>
           <img src={data.image} className={style.imgProduct} />
           <div className={style.containInfo}>
@@ -147,27 +165,38 @@ export default function Detail({
           </div>
         </div>
         <div className={style.containDescription}>
-          <span className={style.descriptionTitle}>Description</span>
+          <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
+        </div>
+        {/* <div>{<Start_Revi data={data} id_User={id_User} />}</div> */}
+        <div className={style.containerRevi}>
+          {<Start_Revi data={data} id_User={id_User} />}
+                  
         </div>
 
         <h1 className={style.titleRelated}> Productos Relacionados </h1>
-        <div className={style.relatedContainer}>
-          {/* <Slider {...settings} className="arrowsSlides"> */}
-          {recomendados.slice(0, 9).map((recomendado) => (
-            <div className={style.cards}>
-              <CardProduct
+        <div className={style.containSlider}>
+          <Slider {...settings} className="arrowsSlides">
+            {recomendados.slice(0, 9).map((recomendado) => (
+              // <CardProduct
+              //   key={recomendado._id}
+              //   info={recomendado}
+              //   addToCart={addToCart}
+              //   cart={cart}
+              //   // serCart={setCart}
+              //   productOfCart={productOfCart}
+              //   discountItem={discountItem}
+              // />
+              <ProductCard
                 key={recomendado._id}
                 info={recomendado}
-                addToCart={addToCart}
-                cart={cart}
-                // serCart={setCart}
-                productOfCart={productOfCart}
-                discountItem={discountItem}
+                // addToCart={addToCart}
+                nombre={recomendado.name}
+                imagen={recomendado.image}
+                precio={recomendado.price}
               />
-            </div>
-          ))}
-          {/* </Slider> */}
+            ))}
+          </Slider>
         </div>
       </div>
     </LayoutGlobal>

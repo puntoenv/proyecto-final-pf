@@ -14,7 +14,6 @@ import Slider from "react-slick";
 import PetsCard from "../../components/Carousel/petsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -67,10 +66,8 @@ export default function Detail({ data }) {
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal title={data.name.toUpperCase()}>
       <div className={styles.containerAll}>
-        <Layout title={data.name.toUpperCase()} />
-
         <div className={styles.containDetail}>
           <div className={styles.button}>
             <Link className={styles.back} href="/petsPosts">
@@ -78,22 +75,27 @@ export default function Detail({ data }) {
             </Link>
           </div>
           <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
-          <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
-            Adoptar
-          </button>
           <div className={styles.containCardDetail}>
-            <div className={styles.box}>
-              <div className={styles.divSlideManual}>
-                <GrCaretPrevious
-                  className={styles.iconPrev}
-                  onClick={handlerPrev}
-                  name="Prev"
-                />
-                <img src={imgS[nImg]} className={styles.image} />
-                <GrCaretNext
-                  className={styles.iconNext}
-                  onClick={handlerNext}
-                />
+            {/* <img
+            className={styles.image}
+            src={data.image}
+            alt="Imagen de la mascota"
+          /> */}
+            <div className={styles.main}>
+              <div className={styles.box}>
+                <button
+                  className={styles.adoptar}
+                  onClick={(e) => handlerAdopt(e)}
+                >
+                  Adoptar
+                </button>
+                {data.image.map((ele) => (
+                  <img
+                    className={styles.image}
+                    src={ele}
+                    alt="Imagen de la mascota"
+                  />
+                ))}
               </div>
               <div className={styles.divLocation}>
                 <Maps
@@ -101,67 +103,58 @@ export default function Detail({ data }) {
                 ></Maps>
               </div>
             </div>
+            <div className={styles.divDescription}>
+              <h3 className={styles.titleDescription}>Descripición</h3>
+              <p className={styles.description}>{data.description}</p>
+            </div>
             <div class={styles.divCharacteristics}>
               <div class={styles.divSize}>
                 <b>Tamaño: </b>
-                <span className={styles.spanChar}>{data.size}</span>
+                <span>{data.size}</span>
               </div>
 
               <div class={styles.divSpecie}>
                 <b>Especie: </b>
-                <span className={styles.spanChar}>{data.type}</span>
+                <span>{data.type}</span>
               </div>
 
               <div class={styles.divCondition}>
                 <b>Condición: </b>
-                <span className={styles.spanChar}>{data.condition}</span>
+                <span>{data.condition}</span>
               </div>
 
               <div class={styles.divGender}>
                 <b>Genero: </b>
-                <span className={styles.spanChar}>{data.gender}</span>
+                <span>{data.gender}</span>
               </div>
 
               <div class={styles.divAge}>
                 <b>Edad: </b>
-                <span className={styles.spanChar}>{data.age}</span>
+                <span>{data.age}</span>
               </div>
 
               <div class={styles.divSocial}>
                 <b>Interacción con otros animales: </b>
-                <span className={styles.spanChar}>{data.sociability}</span>
+                <span>{data.sociability}</span>
               </div>
 
               <div class={styles.divHealth}>
                 <b>Salud: </b>
-                <span className={styles.spanChar}>{data.health}</span>
+                <span>{data.health}</span>
               </div>
 
               {data.healthExtra && (
                 <div class={styles.divHealthExtra}>
                   <b>Descripción de salud: </b>
-                  <span className={styles.spanChar}>{data.healthExtra}</span>
-                </div>
-              )}
-              {data.contactAdoption && (
-                <div class={styles.contactUser}>
-                  <b>Contacto: </b>
-                  <span className={styles.spanChar}>
-                    {data.contactAdoption}
-                  </span>
+                  <span>{data.healthExtra}</span>
                 </div>
               )}
             </div>
           </div>
-          <div className={styles.divDescription}>
-            <h3 className={styles.titleDescription}>Descripición</h3>
-            <p className={styles.description}>{data.description}</p>
-          </div>
-          <div className={styles.divDate}>
-            <span>Fecha de Publicación: {data.expireAt.split("T")[0]}</span>
-          </div>
+
           <div className={styles.buttonReport}>
             <button
+              className={styles.back}
               onClick={async () => {
                 user
                   ? Swal.fire({
@@ -225,19 +218,20 @@ export default function Detail({ data }) {
               Denunciar
             </button>
           </div>
-        </div>
-        <div className={styles.contentSlidePets}>
-          <Slider {...settings} className="arrowsSlides">
-            {related.slice(0, 9).map((mascota) => (
-              <PetsCard
-                key={mascota._id}
-                nombre={mascota.name}
-                imagen={mascota.image}
-                genero={mascota.gender}
-                tamano={mascota.size}
-              />
-            ))}
-          </Slider>
+          <div className={styles.containSlider}>
+            <Slider {...settings} className="arrowsSlides">
+              {related.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                  tamano={mascota.size}
+                  id={mascota._id}
+                />
+              ))}
+            </Slider>
+          </div>
         </div>
       </div>
     </LayoutGlobal>

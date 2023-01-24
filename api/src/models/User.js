@@ -45,12 +45,25 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
+    
   ],
+  
+  
   bought: [
     {
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
+  ],
+  review_star: [
+    { 
+      stars: Number,
+      reviews: String,
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+      }
+    }
   ],
   signIn: {
     type: String,

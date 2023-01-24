@@ -217,7 +217,7 @@ function Add() {
             <TextField
               id="category"
               name="category"
-              sx={{ mr: 2, width: "40%" }}
+              sx={{ mr: 3, width: "44%" }}
               label="Categorias"
               variant="outlined"
               onChange={handleChange}
@@ -260,7 +260,7 @@ function Add() {
         <TextField
           id="description"
           name="description"
-          sx={{ ml: 61, mt: 2, width: "33%" }}
+          sx={{ ml: 56.5, mt: 2, width: "33%" }}
           label="Descripción"
           multiline
           maxRows={10}

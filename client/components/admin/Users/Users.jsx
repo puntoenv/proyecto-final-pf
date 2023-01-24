@@ -1,11 +1,42 @@
 import { useEffect, useMemo, useState } from "react";
-import { Avatar, Box, Typography } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { Avatar, Box } from "@mui/material";
+import { DataGrid, GridToolbarContainer,
+  GridToolbarColumnsButton,
+  GridToolbarFilterButton,
+  GridToolbarDensitySelector,
+  gridPageCountSelector,
+  gridPageSelector,
+  useGridApiContext,
+  useGridSelector, } from "@mui/x-data-grid";
 import { allUsers } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
+import style from "./style.module.css";
+import Button from "@mui/material/Button";
+import PersonOffIcon from '@mui/icons-material/PersonOff';
+import PersonIcon from '@mui/icons-material/Person';
+
 export default function Users() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
+
+  const [pageSize, setPageSize] = useState(5);
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    dispatch(allUsers());
+  }, [dispatch]);
+
+
+
+  const posts = ()=>{
+    users.map((user)=>{
+      user.pets.length > 0 ? Number( user.pets.length) : "Sin publicaciones"
+      console.log(user);
+    })
+   
+    }
+
+
   const columns = useMemo(
     () => [
       {
@@ -18,33 +49,56 @@ export default function Users() {
       },
       { field: "name", headerName: "Name", width: 140 },
       { field: "email", headerName: "Email", width: 200 },
-      { field: "pets.length", headerName: "Posts", width: 120 },
+      { field: "pets.length", valueGetter: posts(), headerName: "Posts", width: 120 },
+      { field: "bought", headerName: "Compras", width: 220 },
       { field: "_id", headerName: "Id", width: 220 },
     ],
-    []
+    
   );
-  const [pageSize, setPageSize] = useState(5);
-  const [rowId, setRowId] = useState(null);
 
-  useEffect(() => {
-    dispatch(allUsers());
-  }, [dispatch]);
+
+  const handleHide = async () => {
+    try {
+      const { _id } = data.row;
+      if (data) await UpdateProduct(_id, { hidden: "hide" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleShow = async () => {
+    try {
+      const { _id } = data.row;
+      if (data) await UpdateProduct(_id, { hidden: "show" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function CustomToolbar() {
+    return (
+      <GridToolbarContainer>
+              <Button startIcon={<PersonOffIcon />} onClick={(e) => handleHide(e)}>
+          Bloquear
+        </Button>
+        <Button startIcon={<PersonIcon />} onClick={(e) => handleShow(e)}>
+          Desbloquear
+        </Button>
+        <GridToolbarColumnsButton />
+        <GridToolbarFilterButton />
+        <GridToolbarDensitySelector />
+      </GridToolbarContainer>
+    );
+  }
 
   return (
     <Box
       sx={{
-        height: 400,
-        width: "80%",
+        height: 460,
+          width: "96%",
       }}
     >
-      <Typography
-        variant="h3"
-        component="h3"
-        sx={{ textAlign: "center", mt: 15, mb: 10 }}
-      >
-        Usuarios
-      </Typography>
-      {/* <div className={styles.grid}> */}
+     <h1 className={style.users}> Usuarios </h1>
+
       <DataGrid
         sx={{ ml: 35 }}
         columns={columns}
@@ -57,8 +111,9 @@ export default function Users() {
           top: params.isFirstVisible ? 0 : 5,
           bottom: params.isLastVisible ? 0 : 5,
         })}
-        onCellEditCommit={(params) => setRowId(params.id)}
-        
+        onRowClick={(e) => setData(e)}
+        components={{
+          Toolbar: CustomToolbar}}
       />
     </Box>
   );

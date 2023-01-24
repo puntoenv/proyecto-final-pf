@@ -23,8 +23,12 @@ const handlerClick = () => {
 const NavBar = ({ authUser }) => {
   const { user, isLoading } = useUser();
   const router = useRouter();
+<<<<<<< HEAD
   const idUser = authUser && authUser._id;
   // const idUser = user?.sub.split("|")[1];
+=======
+  const idUser = user?.sub.split("|")[1];
+>>>>>>> development
 
   if (isLoading)
     return (
@@ -41,8 +45,8 @@ const NavBar = ({ authUser }) => {
           src={logo}
           alt="logo"
           className="logo"
-          width="auto"
-          height="auto"
+          // width="auto"
+          // height="auto"
         />
       </Link>
       <nav className="nav">
