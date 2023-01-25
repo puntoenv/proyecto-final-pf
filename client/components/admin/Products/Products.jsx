@@ -169,7 +169,6 @@ function renderCellExpand(params) {
 
 renderCellExpand.propTypes = {
   colDef: PropTypes.object.isRequired,
-
   value: PropTypes.string,
 };
 
