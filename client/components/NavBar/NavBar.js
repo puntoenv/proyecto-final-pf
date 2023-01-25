@@ -88,6 +88,10 @@ const NavBar = () => {
         >
           <span>Publicar Mascota</span>
         </p>
+        <Link className="itemDash" href="/favorite">
+          <span>Favoritos</span>
+        </Link>
+
         <a className="itemDash" href="/api/auth/logout">
           <span>Cerrar sesión</span>
         </a>
