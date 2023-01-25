@@ -12,25 +12,31 @@ const ages = [];
 for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
-function Favorite({response}) {
-const {favorites} =response
-const [fil, setfil] = useState({
-  type:"",
-  size:"",
-  gender:"",
-  age:""
-})
-//console.log(fil)
- const handlerFilter = (e) => {
-   const {id, value} = e.target
-   id === 'type' ? setfil ({... fil,[id]:value}) : id === 'size' ? setfil ({... fil,[id]:value}) : id === 'gender' ? setfil ({... fil,[id]:value}) : id === 'age' ? setfil ({... fil,[id]:value}) : setfil({... fil})
-  }
+function Favorite({ response }) {
+  const { favorites } = response;
+  const [fil, setfil] = useState({
+    type: "",
+    size: "",
+    gender: "",
+    age: "",
+  });
+  const handlerFilter = (e) => {
+    const { id, value } = e.target;
+    id === "type"
+      ? setfil({ ...fil, [id]: value })
+      : id === "size"
+      ? setfil({ ...fil, [id]: value })
+      : id === "gender"
+      ? setfil({ ...fil, [id]: value })
+      : id === "age"
+      ? setfil({ ...fil, [id]: value })
+      : setfil({ ...fil });
+  };
 
   return (
-    
     <div>
       <Layout title="Mascotas" />
-      <NavBar/>
+      <NavBar />
       <Link href={"/home"} className="logo">
         <Image
           src={logo}
@@ -40,9 +46,9 @@ const [fil, setfil] = useState({
           height="auto"
         />
       </Link>
-   
+
       <div className={styles.container2}>
-      <form className={styles.form} onChange={(e) => handlerFilter(e)}>
+        <form className={styles.form} onChange={(e) => handlerFilter(e)}>
           <div>
             <button className={styles.all} onClick={(e) => handlerTodas(e)}>
               Ver todas
@@ -121,12 +127,13 @@ const [fil, setfil] = useState({
             value="Aplicar Filtros"
             className={styles.all}
             onClick={(e) => handlerSubmit(e)}
-          >Aplicar Filtros</button>
+          >
+            Aplicar Filtros
+          </button>
         </form>
         <p></p>
-     
-      <div className={styles.big_container}>
-         
+
+        <div className={styles.big_container}>
           {favorites?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
@@ -146,13 +153,13 @@ const [fil, setfil] = useState({
             );
           })}
         </div>
-        </div>
+      </div>
     </div>
   );
 }
 
 export default Favorite;
-export async function getServerSideProps({query}) {
+export async function getServerSideProps({ query }) {
   try {
     const response = await (
       await fetch(`${process.env.URL_BACK}user/${query.id}`)
@@ -162,7 +169,6 @@ export async function getServerSideProps({query}) {
         response,
       },
     };
-    
   } catch (error) {
     console.log(error);
   }

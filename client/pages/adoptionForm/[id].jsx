@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../stores/actions";
 import styles from "./style.module.css";
 import style from "../../components/Profile/Loading.module.css";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import Layout from "../layout";
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/footer";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import { authUser } from "../../stores/actions";
 import AdoptionForm1 from "../../components/AdoptionForm/AdoptionForm1";
 import AdoptionForm2 from "../../components/AdoptionForm/AdoptionForm2";
 import AdoptionForm3 from "../../components/AdoptionForm/AdoptionForm3";
@@ -61,28 +58,12 @@ export function form(props) {
     userId: idUser,
   });
 
-console.log(post)
+  console.log(post);
   const [position, setFirst] = useState(1);
   const [loader, setLoader] = useState(false);
   const handlerCoords = (coords) => {
     handleLocation(post, setPost, coords);
   };
-
-  // const handleLoader = (event) => {
-  //   event.preventDefault()
-  //   return (
-  //     <ThreeDots
-  //       height="80"
-  //       width="80"
-  //       radius="9"
-  //       color="#4fa94d"
-  //       ariaLabel="three-dots-loading"
-  //       wrapperStyle={{}}
-  //       wrapperClassName=""
-  //       visible={true}
-  //     />
-  //   );
-  // }
 
   useEffect(() => {
     dispatch(getper()).then((_) => console.log(provi));
@@ -191,7 +172,6 @@ console.log(post)
           </LayoutGlobal>
         </>
       )}
-      <Footer />
     </>
   );
 }

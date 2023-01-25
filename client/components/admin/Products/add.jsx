@@ -10,6 +10,8 @@ import { addProduct } from "../../../stores/actions";
 import FormControlUnstyled from "@mui/base/FormControlUnstyled";
 import { validation } from "./validations.js";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
+import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
 
 const blue = {
   500: "#153e21",
@@ -91,18 +93,11 @@ function Add() {
     setErrors(validation({ ...formData, [property]: value }));
   };
 
-  const handleCheck = (event) => {
-    const value = event.target.value;
-    setForm({ ...form, diets: [...form.diets, value] });
-    setErrors(validate({ ...form, diets: [...form.diets, value] }));
-  };
   const handleFiles = (event, setFormData, formData) => {
-    
     const { files } = event.target;
     const reader = new FileReader();
     reader.readAsDataURL(files[0]);
     reader.onloadend = () => {
-        
       setFormData({
         ...formData,
         image: reader.result,
@@ -118,7 +113,7 @@ function Add() {
       if (Object.values(errorSave).length !== 0) {
         alert("error");
       } else {
-        await (addProduct(formData));
+        await addProduct(formData);
         setMounted(false);
       }
     } catch (error) {
@@ -128,9 +123,18 @@ function Add() {
   if (!mounted) {
     return null;
   }
-
+  const handleClose = () => {
+    setMounted(false);
+  };
   return (
     <>
+      <div className={styles.close}>
+        <Button
+          sx={{ color: "#574c3d", ml: 1.5 }}
+          startIcon={<CloseIcon />}
+          onClick={() => handleClose()}
+        />
+      </div>
       <h1 className={styles.h1}> Agregar Producto </h1>
       <FormControlUnstyled>
         {errors.name ? (
