@@ -8,6 +8,7 @@ import { authUser } from "../../stores/actions";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { CiSquareRemove } from 'react-icons/Ci';
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -35,7 +36,7 @@ function index({ favorite, DeletFavori }) {
   const userId = userAuth && userAuth._id;
   const router = useRouter();
   const dupli = Array.from(new Set(favorite));
-
+console.log(dupli)
   const handleClick = (e) => {
     let petId = favorite[e.target.value]._id;
     e.preventDefault();
@@ -70,7 +71,7 @@ function index({ favorite, DeletFavori }) {
                 className={styles.delet}
                 onClick={() => DeletFavori(items._id)}
               >
-                x
+                <CiSquareRemove/>
               </button>
               <div className={styles.card__overlay}>
                 <div className={styles.card__header}>
