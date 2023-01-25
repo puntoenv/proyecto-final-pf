@@ -94,51 +94,60 @@ const Contact = () => {
   return (
     <LayoutGlobal authUser={userAuth}>
       <div className={s.mainContainer}>
-        <form action="" className={s.formContact} onChange={handlerChange}>
-          <p className={s.pHeader}>
-            Recuerda que puedes resolver tus dudas con nuestro chat automático.
-            Si tienes algún problema o necesitas soporte por parte del personal
-            de Little Paws contáctanos por medio de este formulario
-          </p>
-          <label name="name" className={s.labelName}>
-            Nombre y apellido
-            <span id="spanErrorName" className={s.spanError}>
-              Debes ingresar al menos 6 caracteres
-            </span>
-            <input
-              type="text"
-              name="name"
-              className={s.inputName}
-              value={message.name}
-            />
-          </label>
-          <label name="email" className={s.labelEmail}>
-            Email
-            <span id="spanErrorEmail" className={s.spanError}>
-              Ingresa un mail valido
-            </span>
-            <input
-              type="text"
-              name="email"
-              className={s.inputEmail}
-              value={message.email}
-            />
-          </label>
-          <label name="msg" className={s.labelMsg}>
-            Dejanos tu mensaje
-            <span id="spanErrorMsg" className={s.spanError}>
-              Debes ingresar al menos 30 caracteres
-            </span>
-            <textarea
-              className={s.textAreaMsg}
-              name="msg"
-              value={message.msg}
-            />
-          </label>
-          <button className={s.button} onClick={handlerSubmit}>
-            Button
-          </button>
-        </form>
+        <div className={s.contentForm}>
+          <hr className={s.hrTop} />
+          <div className={s.contentLogoTip}>
+            <p className={s.pHeader}>
+              Recuerda que puedes resolver tus dudas con nuestro chat
+              automático. Si tienes algún problema o necesitas soporte por parte
+              del personal de Little Paws contáctanos por medio de este
+              formulario
+            </p>
+            <div className={s.logoPaw}></div>
+          </div>
+          <form action="" className={s.formContact} onChange={handlerChange}>
+            <label name="name" className={s.labelName}>
+              Nombre y apellido
+              <span id="spanErrorName" className={s.spanError}>
+                Debes ingresar al menos 6 caracteres
+              </span>
+              <input
+                type="text"
+                name="name"
+                className={s.inputName}
+                value={message.name}
+              />
+            </label>
+            <label name="email" className={s.labelEmail}>
+              Email
+              <span id="spanErrorEmail" className={s.spanError}>
+                Ingresa un mail valido
+              </span>
+              <input
+                type="text"
+                name="email"
+                className={s.inputEmail}
+                value={message.email}
+              />
+            </label>
+            <label name="msg" className={s.labelMsg}>
+              Dejanos tu mensaje
+              <span id="spanErrorMsg" className={s.spanError}>
+                Debes ingresar al menos 30 caracteres
+              </span>
+              <textarea
+                className={s.textAreaMsg}
+                name="msg"
+                value={message.msg}
+              />
+            </label>
+            <button className={s.button} onClick={handlerSubmit}>
+              Enviar
+            </button>
+          </form>
+
+          <hr className={s.hrBottom} />
+        </div>
       </div>
     </LayoutGlobal>
   );
