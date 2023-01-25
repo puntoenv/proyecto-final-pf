@@ -14,7 +14,7 @@ export function formatItemsMp() {
     }] */
     const payment = axios
       .post(
-        "/payment",
+        "http://localhost:3001/payment",
         productstotal
       ) //item)
       .then(
@@ -32,7 +32,7 @@ export function formatOneItemMP(products) {
   if (products){
         const payment = axios
           .post(
-            "https://proyecto-final-pf-production.up.railway.app/payment",
+            "http://localhost:3001/payment",
             products
           )
           .then(

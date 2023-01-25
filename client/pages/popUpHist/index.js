@@ -44,10 +44,11 @@ const userAuth = useSelector((state) => state.userAuth.userData);
     if (query.status === "approved") await axios.get(`/buyEmail/${userId}`);
     router.push(`/home`);
   };
-
+   const idMo= query.merchant_order_id;
   if (payments[0].status == "approved" && query.merchant_order_id != order) {
+   
+    deleteCart(idMo);
     
-    deleteCart();
  setOrder(query.merchant_order_id);
   }
 
