@@ -227,7 +227,29 @@ export default function PetAdoption({ favorite, addAgregar }) {
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
-
+            <div className={styles.pagingTop}>
+              <input
+                className={styles.paginate}
+                type="button"
+                value="🡸"
+                onClick={(e) => handlerPage(e)}
+              />
+              {paging.map((page) => (
+                <input
+                  className={styles.paginate}
+                  type="button"
+                  value={page}
+                  key={page}
+                  onClick={(e) => handlerPage(e)}
+                />
+              ))}
+              <input
+                className={styles.paginate}
+                type="button"
+                value="🡺"
+                onClick={(e) => handlerPage(e)}
+              />
+            </div>
             {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
@@ -247,10 +269,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
                     <button
-                      className={styles.btn}
+                      className={styles.corazon}
                       onClick={(e) => handlerFavorite(e, mascota)}
                     >
-                      Favorito
+                      ♡
                     </button>
                   </div>
                 );

@@ -1,3 +1,4 @@
+
 .containerAllPets {
   display: flex;
   flex-direction: column;
@@ -124,7 +125,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 280px;
   height: 400px;
@@ -132,6 +133,7 @@
   padding-bottom: 30px;
   background: #e8eb9d;
   border-radius: 30px;
+  position: relative;
 }
 
 .name {
@@ -233,7 +235,14 @@
   margin-left: 14rem;
 
 }
-
+.pagingTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: white;
+width: 100%;
+}
 .paginate {
   background-color: #e8eb9d;
   margin: 1rem;
@@ -282,3 +291,29 @@
   padding-left: 50rem;
   margin-bottom: 10rem;
 }
+.corazon{
+  color: #888;
+  font-size: 230%;
+  width: 21%;
+  height: 56px;
+  position: absolute;
+  top: 80%;
+  right: 40%;
+
+}
+
+.corazon:hover{
+  color:red;
+  transition: 0.2s ease-in-out;
+  animation:like 0.5s 1;
+  fill:red;
+  stroke:none;
+}
+
+@keyframes like {
+  0%   { transform: scale(1); }
+  90%   { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
+}
+
+
