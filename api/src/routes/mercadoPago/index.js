@@ -8,7 +8,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 //configuracion de credenciales de mercado pago
-
+ 
 router.post("/", async (req, res) => {
   // Agrega credenciales
   mercadopago.configure({
@@ -77,21 +77,11 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
     let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-    // const stockTT = product.stock;
-
-    //let user = await User.findById(id_user);
-    /* console.log(quantity)
-        console.log("esto es quantity")
-        console.log(quantity)
-    */
+   
+    
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    // let stockT = stockTT;
-
-    // let quantityT = stockT - quantity;
-    /*console.log (product.stock)    
-    console.log("esto es product.stock")
-    console.log (product.stock) */
+    
 
     product.name = name ? name : product.name;
     product.description = description ? description : product.description;
@@ -113,12 +103,8 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
 router.post("/buyNotification/:idMo",async (req,res) => {
   try {
     const {idMo} = req.params;
-    //const topic = query.topic|| query.id;
-    //const idMo = query.id;
-    
-    
-  
-      const merchant_order = await mercadopago.merchant_orders.findById(idMo);
+   
+    const merchant_order = await mercadopago.merchant_orders.findById(idMo);
       
     const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
 
@@ -139,16 +125,16 @@ router.post("/buyNotification/:idMo",async (req,res) => {
 
           await axios.put(
             `http://localhost:3001/payment/update/${id_product}/${quantity}`
-          ); //item)
+          ); 
         }
       }
     }
    
 
 
-    res.sendStatus(200);
+    sendStatus(200);
   } catch (error) {
-    res.sendStatus(404);
+    sendStatus(404);
   }
 });
 
