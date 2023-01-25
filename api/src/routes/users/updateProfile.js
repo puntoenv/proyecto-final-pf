@@ -13,10 +13,12 @@ updateProfile.put("/:id", async (req, res) => {
       req.body;
     let result = image && (await cloudinary.uploader.upload(image));
     let user = await User.findById(id);
+
     if (hidden) {
       hidden === "show"
-        ? user.hidden = false
-        : (user.hidden = true);
+        ? (user.hidden = false)
+        : (user.hidden = true)
+
       let data = await ejs.renderFile(path.join(__dirname + "/banned.ejs"), {
         email: "littlePaws0508@gmail.com",
       });

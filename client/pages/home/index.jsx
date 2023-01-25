@@ -18,8 +18,6 @@ import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
 import CardProduct from "../../components/CardProduct";
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import { useRouter } from 'next/router'
 import "sweetalert2/src/sweetalert2.scss";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -65,47 +63,10 @@ const fn = (user, dispatch, setNumCall) => {
     const dispatch = useDispatch();
     const userAuth = useSelector((state) => state.userAuth.userData);
     const [numCall, setNumCall] = useState(0);
-    const router = useRouter()
+    // const router = useRouter()
     !numCall && user && fn(user, dispatch, setNumCall);
 
 
-
-
-
-   userAuth.hidden === true ?   Swal.fire({
-    title: 'Su cuenta ha sido bloqueada ',
-    text: "Ha infringido nuestras normas, por lo que ya no tiene permiso para utilizar la plataforma ",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#616161',
-    cancelButtonColor: '#d33',
-    cancelButtonText: 'Salir',
-    confirmButtonText: 'Reclamar',
-    allowEscapeKey: false,
-    allowEnterKey: false,
-    allowOutsideClick: false
-  }).then((result) => {
-    if (result.dismiss ){
-      router.push("/api/auth/logout")
-     }
-    if (result.isConfirmed) {
-      Swal.fire({
-        showCancelButton: true,
-        showConfirmButton: false,
-        title: 'Escribinos',
-        text:'Mail: littlePaws0508@gmail.com',
-         cancelButtonColor: '#d33',
-    cancelButtonText: 'Salir',
-    allowEscapeKey: false,
-    allowEnterKey: false,
-    allowOutsideClick: false
-    }).then((result) => {
-      if (result.dismiss) router.push("/api/auth/logout")})
-    }
-    
-     
-    
-  }) : null
 
     useEffect(() => {
       (function (d, m) {

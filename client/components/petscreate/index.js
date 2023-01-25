@@ -55,7 +55,7 @@ function Petscrea({ response }) {
                       }).then((res) =>
                         res.isConfirmed === false
                           ? console.log("clicked cancel")
-                          : handleClick(mascota._id, { hidden: true })
+                          : handleClick(mascota._id, { hidden: "hide" })
                       )
                     }
                   >

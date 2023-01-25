@@ -24,6 +24,10 @@ updatePet.put("/:id", async (req, res) => {
       motiveReport,
     } = req.body;
     let pet = await Pet.findById(id);
+
+    if (hidden) {
+      hidden === "show" ? (pet.hidden = false) : (pet.hidden = true);
+    }
     pet.name = name ? name : pet.name;
     pet["size"] = size ? size : pet["size"];
     pet.age = age ? age : pet.age;
@@ -37,7 +41,6 @@ updatePet.put("/:id", async (req, res) => {
     pet.pregnant = pregnant ? pregnant : pet.pregnant;
     pet.sociability = sociability ? sociability : pet.sociability;
     pet.castrated = castrated ? castrated : pet.castrated;
-    pet.hidden = hidden ? hidden : pet.hidden;
     pet.report = report ? report : pet.report;
     pet.motiveReport = motiveReport ? motiveReport : pet.motiveReport;
     let updatePet = await pet.save();
@@ -48,18 +51,6 @@ updatePet.put("/:id", async (req, res) => {
   }
 });
 
-updatePet.put("/delete/:id", async (req, res) => {
-  try {
-    let { id } = req.params;
-    let { hidden } = req.body;
-    let pet = await Pet.findById(id);
-    pet.hidden = hidden ? hidden : pet.hidden;
-    let updatePet = await pet.save();
-    res.status(200).send(updatePet);
-  } catch (error) {
-    res.status(400).send("error al modificar");
-  }
-});
 
 updatePet.put("/report/:id", async (req, res) => {
   try {
