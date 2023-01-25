@@ -34,7 +34,7 @@ const fn = (user, dispatch, setNumCall) => {
 };
 
 export default function getYourPet({ pet, user }) {
-  const { user } = useUser();
+
   const dispatch = useDispatch();
 
   const [numCall, setNumCall] = useState(0);
