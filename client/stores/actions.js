@@ -27,18 +27,15 @@ export const authUser = (email, name) => async (dispatch) => {
   try {
     const res = await axios.get(`${baseUrl}user-by-email/${email}`);
     const finded = res.data;
-    console.log(finded);
 
     if (!finded.error) {
       dispatch(get_User(finded.user));
       return;
     } else {
-      console.log("user create");
-      const response = await axios.post(`http://localhost:3001/create-user`, {
+      const response = await axios.post(`/create-user`, {
         email,
         name,
       });
-      console.log(response);
       const data = response.data;
       dispatch(get_User(data));
     }
@@ -73,7 +70,7 @@ export const PutReview = async (obj, id) => {
   try {
     //console.log(id)
     const res = axios
-      .put(`http://localhost:3001/updateProduct/reviews/${id}`, obj)
+      .put(`/updateProduct/reviews/${id}`, obj)
       .then((response) => {
         console.log("Update SUCCESS!");
       });
@@ -87,7 +84,7 @@ export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {
     const respo = await axios
-      .put(`http://localhost:3001/updatePet/delete/${id}`, obj)
+      .put(`/updatePet/delete/${id}`, obj)
       .then((response) => {
         console.log("Update SUCCESS!");
       });
@@ -273,10 +270,7 @@ export const filterProducts = (input, page) => async (dispatch) => {
 export const UpdateProduct = async (id, obj) => {
  
   try {
-    const respo = await axios.put(
-      `http://localhost:3001/updateProduct/${id}`,
-      obj
-    );
+    const respo = await axios.put(`/updateProduct/${id}`, obj);
     respo
       ? Swal.fire({
           title: "Producto editado con éxito",
@@ -368,5 +362,14 @@ export function getDescription(post) {
     } catch (error) {
       return console.log(error);
     }
+  };
+}
+
+export function adoptPet(petId, hidden, userId) {
+  return async function (dispatch) {
+    return axios
+      .put(`/updatePet/${petId}`, hidden)
+      .then(() => axios.get(`/adoptEmail/?petId=${petId}&userId=${userId}`))
+      .catch((error) => console.log(error));
   };
 }

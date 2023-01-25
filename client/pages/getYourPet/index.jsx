@@ -10,13 +10,37 @@ import Swal from "sweetalert2/dist/sweetalert2";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout";
 import styles from "./styles.module.css";
-import fileNotFound from '../../img/file_not_found.jpg'
+import fileNotFound from "../../img/file_not_found.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { adoptPet, authUser } from "../../stores/actions";
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export default function getYourPet({ pet, user }) {
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
+
+export default function getYourPet({ pet }) {
+  const { user } = useUser();
+  const dispatch = useDispatch();
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+  const userAuth = useSelector((state) => state.userAuth.userData);
+  const userId = userAuth && userAuth._id;
   const router = useRouter();
   const [boolean, setBoolean] = useState(true);
   const [input, setInput] = useState({});
@@ -24,7 +48,6 @@ export default function getYourPet({ pet, user }) {
   const [petImage, setImage] = useState(pet.image[0]);
   const [x, setX] = useState("center");
   const [y, setY] = useState("center");
-
 
   function disabled(input) {
     if (
@@ -72,13 +95,14 @@ export default function getYourPet({ pet, user }) {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-    await axios.get(`/adoptEmail/?petId=${pet._id}&userId=${user._id}`);
+    dispatch(adoptPet(pet._id, { hidden: true }, userId));
+    console.log(pet);
     return router.push("/home");
   };
 
   return (
     <div className={styles.page}>
-      <LayoutGlobal>
+      <LayoutGlobal authUser={userAuth}>
         <Layout title="Adopción" />
         <div className={styles.container}>
           <div className={styles.imagesContainer}>
@@ -131,7 +155,7 @@ export default function getYourPet({ pet, user }) {
                   height={300}
                 />
               </div>
-              <p>Hola {capitalize(user.name) || user.email}</p>
+              <p>Hola {capitalize(userAuth?.name) || userAuth?.email}</p>
               <p className={styles.p}>
                 Tu familia está a punto de crecer. Estamos muy felices de que te
                 hayas interesado en adoptar a {capitalize(pet.name)}. Cada vez
@@ -259,11 +283,11 @@ export async function getServerSideProps({ query }) {
     const pet = await axios
       .get(`/pets/detail/${query.pet}`)
       .then((response) => response.data);
-    const user = await axios
-      .get(`/user/${query.user}`)
-      .then((response) => response.data);
+    // const user = await axios
+    //   .get(`/user/${query.user}`)
+    //   .then((response) => response.data);
 
-    return { props: { pet, user } };
+    return { props: { pet } };
   } catch (err) {
     return console.log(err);
   }

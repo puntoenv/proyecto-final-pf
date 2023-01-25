@@ -296,3 +296,13 @@
   height: fit-content;
   height: 20rem;
 }
+
+.titleRelated {
+  color: #415d43;
+  font-size: 45px;
+  font-weight: 700;
+  /* display: flex; */
+  /* justify-content: center; */
+  text-align: center;
+  margin: 20px;
+}
