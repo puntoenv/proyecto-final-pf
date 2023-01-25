@@ -46,28 +46,44 @@ const About = () => {
           {show === "nosotros" && (
             <div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
               <div>
-                <div className={styles.divInfo}>{/* <Image></Image> */}</div>
+                <div className={styles.divInfo}>
+                  <img></img>
+                </div>
               </div>
             </div>
           )}
