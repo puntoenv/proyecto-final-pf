@@ -88,7 +88,7 @@ const Admin = withPageAuthRequired(() => {
         <div>
           <section>{Render}</section>
         </div>
-
+ {/* SIDEBAR = SIDEBAR */}
         <div className={styles.sidebar}>
           <Link href={"/home"} className="logo">
             <Image
