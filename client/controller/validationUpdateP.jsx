@@ -111,7 +111,9 @@ export const handleFiles = (event, setInput, input) => {
 
 export const handleAdoption = async (router, Swal, idUser) => {
   try {
-    const response = await axios.get(`http://localhost:3001/user/${idUser}`);
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_URL_BACK}user/${idUser}`
+    );
     if (!response.data.name || response.data.name === " ") {
       Swal.fire({
         title: "Necesitas configurar tu nombre para adoptar",
@@ -143,7 +145,7 @@ export const handleOnSubmit = async (
   try {
     setLoader(true)
     const response = await axios.put(
-      `http://localhost:3001/updateProfile/${idUser}`,
+      `/updateProfile/${idUser}`,
       input
     );
 

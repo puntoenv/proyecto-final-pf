@@ -230,7 +230,9 @@ export async function getServerSideProps({ params }) {
       )
     ).json();
     const response = await (
-      await fetch(`http://localhost:3001/products/avg/${params.id}`)
+      await fetch(
+        `${process.env.NEXT_PUBLIC_URL_BACK}products/avg/${params.id}`
+      )
     ).json();
     return {
       props: {
