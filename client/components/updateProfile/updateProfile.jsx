@@ -3,10 +3,11 @@ import Link from "next/link";
 import { useState } from "react";
 import style from "./styles.module.css";
 
-export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit }) {
+export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit, authUser }) {
   const { user } = useUser();
 
-  const idUser = user?.sub.split("|")[1];
+  const idUser = authUser && authUser._id
+  //user?.sub.split("|")[1];
   const [input, setInput] = useState({
     name: "",
     lastname: "",
@@ -22,17 +23,17 @@ export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit }) {
   });
   console.log(input);
 
-    const handleFiles = (event) => {
-      const { files } = event.target;
-      const reader = new FileReader();
-      reader.readAsDataURL(files[0]);
-      reader.onloadend = () => {
-        setInput({
-          ...input,
-          image: reader.result,
-        });
-      };
+  const handleFiles = (event) => {
+    const { files } = event.target;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onloadend = () => {
+      setInput({
+        ...input,
+        image: reader.result,
+      });
     };
+  };
 
   return (
     <div className={style.mainContainer}>
