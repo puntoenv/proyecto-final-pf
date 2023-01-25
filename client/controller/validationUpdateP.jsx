@@ -145,7 +145,12 @@ export const handleOnSubmit = async (
   try {
     setLoader(true)
     const response = await axios.put(
+<<<<<<< HEAD
+      `http://localhost:3001/updateP
+      rofile/${idUser}`,
+=======
       `/updateProfile/${idUser}`,
+>>>>>>> development
       input
     );
 
