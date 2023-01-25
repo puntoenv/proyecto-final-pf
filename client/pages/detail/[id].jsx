@@ -10,10 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
 import Maps from "../../components/GoogleMap/Maps";
 import axios from "axios";
-import Slider from "react-slick";
 import PetsCard from "../../components/Carousel/petsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -241,7 +241,7 @@ export default function Detail({ data }) {
 export async function getServerSideProps({ params }) {
   try {
     const data = await (
-      await fetch(`${process.env.URL_BACK}pets/detail/${params.id}`)
+      await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}pets/detail/${params.id}`)
     ).json();
     return {
       props: {

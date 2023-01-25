@@ -8,10 +8,7 @@ import "../styles/NavBar/DashBoardUser.css";
 import "../styles/admin/index.css";
 import "../styles/admin/Users.css";
 import "../styles/user/user.css";
-import Script from "next/script";
 import axios from "axios";
-//import { ContextProvider } from "../contexts/ContextProvider";
-//import { registerLicense } from "@syncfusion/ej2-base";
 import { addedProduct } from "../controller/functionsCart/addedProduct";
 import {
   deleteCart,
@@ -23,8 +20,9 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { QueryClientProvider, QueryClient } from "react-query";
 
+const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
 
-axios.defaults.baseURL = `http://localhost:3001/`;
+axios.defaults.baseURL = baseUrl;
 
 const queryClient = new QueryClient();
 
@@ -89,31 +87,29 @@ export default function App({ Component, pageProps }) {
   }, [cart, favorite]);
 
   return (
-   
-      <UserProvider client_id={clientId}>
-        <QueryClientProvider client={queryClient}>
-          <Provider store={store}>
-            {/* <Script src="https://polyfill.io/v3/polyfill.min.js?features=default" />
+    <UserProvider client_id={clientId}>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          {/* <Script src="https://polyfill.io/v3/polyfill.min.js?features=default" />
           <Script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4&callback=initMap&v=weekly"
           /> */}
-            <Component
-              {...pageProps}
-              discountItem={discountItem}
-              cart={cart}
-              setCart={setCart}
-              addToCart={addToCart}
-              deleteCart={deleteOneProductToCart}
-              deleteAllCart={deleteCart}
-              productOfCart={getProduct}
-              favorite={favorite}
-              setFavorite={setFavorite}
-              addAgregar={favorito.AddAgregar}
-              DeletFavori={favorito.DeletFavori}
-            />
-          </Provider>
-        </QueryClientProvider>
-      </UserProvider>
-  
+          <Component
+            {...pageProps}
+            discountItem={discountItem}
+            cart={cart}
+            setCart={setCart}
+            addToCart={addToCart}
+            deleteCart={deleteOneProductToCart}
+            deleteAllCart={deleteCart}
+            productOfCart={getProduct}
+            favorite={favorite}
+            setFavorite={setFavorite}
+            addAgregar={favorito.AddAgregar}
+            DeletFavori={favorito.DeletFavori}
+          />
+        </Provider>
+      </QueryClientProvider>
+    </UserProvider>
   );
 }

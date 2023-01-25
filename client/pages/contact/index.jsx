@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../stores/actions";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import s from "./styles.module.css";
 import {
@@ -9,7 +12,29 @@ import {
 } from "../../controller/ContactUs/validations";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
+
 const Contact = () => {
+  const { user } = useUser();
+  const dispatch = useDispatch();
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
   const [message, setMessage] = useState({
     name: "",
     email: "",
@@ -67,7 +92,7 @@ const Contact = () => {
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <div className={s.mainContainer}>
         <form action="" className={s.formContact} onChange={handlerChange}>
           <p className={s.pHeader}>

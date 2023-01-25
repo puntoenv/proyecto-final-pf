@@ -1,17 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 import logo from "../../img/logo.jpeg";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
-import { handleAdoption } from "../../controller/validationUpdateP";
+import {
+  handleAdoption,
+
+} from "../../controller/validationUpdateP";
 import styles from "../Profile/Loading.module.css";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
-
+ 
   if (dash.className.includes("view")) {
     dash.classList.remove("view");
     return;
@@ -19,10 +23,24 @@ const handlerClick = () => {
   dash.className += " view";
 };
 
-const NavBar = () => {
+const NavBar = ({ authUser }) => {
   const { user, isLoading } = useUser();
   const router = useRouter();
-  const idUser = user?.sub.split("|")[1];
+  const idUser = authUser && authUser._id;
+  // const idUser = user?.sub.split("|")[1];
+
+  const handleAdministrator = async (idUser) => {
+    try {
+      const response = await axios.get(`/user/${idUser}`);
+      if (response.data.administrator === true) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   if (isLoading)
     return (
@@ -31,6 +49,7 @@ const NavBar = () => {
         <p>Loading...</p>
       </div>
     );
+
 
   return (
     <header className="headerNav">
@@ -57,7 +76,14 @@ const NavBar = () => {
           <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>
-          {user ? (
+          {
+          // administrator === true ? (
+          //   <Link className="itemNav" href="/admin">
+          //     <span>Dashboard</span>
+          //     <Image style={{borderRadius: '50%', marginLeft: '5px'}}src={user.picture} width={30} height={30}></Image>
+          //   </Link>
+          // ) : 
+          user ? (
             <span className="btnPerfil" onClick={handlerClick}>
               Perfil
             </span>
@@ -65,14 +91,12 @@ const NavBar = () => {
             <Link href="/api/auth/login" className="itemNav">
               <span>Ingresar | Registrarse</span>
             </Link>
-          )}
+          )
+          }
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
-        <Link
-          className="itemDash"
-          href={user ? `/profile/${user.sub.split("|")[1]}` : "/"}
-        >
+        <Link className="itemDash" href={`/profile/${idUser}`}>
           <span>Mi Perfil</span>
         </Link>
         {/* <Link className="itemDash" href="#">

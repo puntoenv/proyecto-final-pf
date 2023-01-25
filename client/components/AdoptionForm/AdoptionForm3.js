@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.css";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getDescription } from "../../stores/actions";
 
 const AdoptionForm2 = ({
   errors,
@@ -15,7 +18,21 @@ const AdoptionForm2 = ({
   setPost,
   setError,
 }) => {
-  console.log(post);
+  const dispatch = useDispatch();
+  const [description, setDescription] = useState(1);
+
+  const handlerIA = (e) => {
+    e.preventDefault();
+    if (description === 1) {
+      dispatch(getDescription(post))
+        .then((ai) => (post.description = ai))
+        .then((_) => setDescription(2));
+    } else {
+      setDescription(1);
+    }
+    return console.log(post);
+  };
+
   return (
     <div className={styles.form2}>
       <button
@@ -30,18 +47,27 @@ const AdoptionForm2 = ({
         <span className={styles.errors}>
           {errors.description && errors.description}
         </span>
-        <textarea
-          className={styles.input}
-          id="description"
-          type="text"
-          name="description"
-          rows="3"
-          placeholder=" Describa a la mascota..."
-          onChange={(e) => {
-            validation(e, errors);
-            handleSelector(e, setPost, post);
-          }}
-        />
+        {description === 1 ? (
+          <textarea
+            className={styles.input}
+            id="description"
+            type="text"
+            name="description"
+            rows="3"
+            placeholder=" Describa a la mascota..."
+            onChange={(e) => {
+              validation(e, errors);
+              handleSelector(e, setPost, post);
+            }}
+          />
+        ) : (
+          <div>{post.description}</div>
+        )}
+        <div className={styles.ai} onClick={(e) => handlerIA(e)}>
+          {description === 1
+            ? "Usar descripción automática"
+            : "Crear una descripción"}
+        </div>
       </label>
       {/********************** INPUT INFO CONTACT ************************/}
       <input
@@ -82,7 +108,7 @@ const AdoptionForm2 = ({
                 <p>{img.slice(0, 20) + "..."}</p>
               ))}
               <span
-                style={{ fontSize: 18, cursor: 'pointer' }}
+                style={{ fontSize: 18, cursor: "pointer" }}
                 onClick={() =>
                   setPost({
                     ...post,
