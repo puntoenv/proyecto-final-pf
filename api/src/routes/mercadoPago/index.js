@@ -74,11 +74,11 @@ router.get("/:id", async (req, res) => {
   //  === aprovved ==> buscarUser ==> relacionar con el producto y viseverza
 });
 
-router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
+router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
-    let { id_user, id_product, quantity } = req.params;
+    let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-    const stockTT = product.stock;
+    // const stockTT = product.stock;
 
     //let user = await User.findById(id_user);
     /* console.log(quantity)
@@ -87,9 +87,9 @@ router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
     */
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    let stockT = stockTT;
+    // let stockT = stockTT;
 
-    let quantityT = stockT - quantity;
+    // let quantityT = stockT - quantity;
     /*console.log (product.stock)    
     console.log("esto es product.stock")
     console.log (product.stock) */
@@ -98,7 +98,7 @@ router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
     product.description = description ? description : product.description;
     product.price = price ? price : product.price;
     product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
-    product.stock = stockT - quantity;
+    product.stock = product.stock - quantity;
     product.category = category ? category : product.category;
 
     /*
@@ -175,37 +175,28 @@ console.log(mOrderVerify)
 console.log("mOrderVerifyn")
 console.log("mOrderVerifyn")
 */
-const mOrderVerify= await Merchant_orders.findOne({id:idMo})
-   
-if (merchant_order.body.id && mOrderVerify==null){
-  await axios.post(
-    `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
-    merchant_order.body
-  );
+    const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
 
+    if (merchant_order.body.id && mOrderVerify == null) {
+      await axios.post(
+        `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
+        merchant_order.body
+      );
 
-      if (merchant_order.body.payments[0].status=='approved'&&merchant_order.body.payments[0].status_detail=='accredited') {
-        
-      
-    
-      
-     
-    for (let i = 0; i < merchant_order.body.items.length; i++) {
-  
-  let quantity=merchant_order.body.items[i].quantity
-   
-     let id_product=merchant_order.body.items[i].id
-  
-     await axios.put(
-       `https://proyecto-final-pf-production.up.railway.app/payment/update/123/${id_product}/${quantity}`
-     ); //item)
-       }
-      
-      
-      
-      
-     }
-     
+      if (
+        merchant_order.body.payments[0].status == "approved" &&
+        merchant_order.body.payments[0].status_detail == "accredited"
+      ) {
+        for (let i = 0; i < merchant_order.body.items.length; i++) {
+          let quantity = merchant_order.body.items[i].quantity;
+
+          let id_product = merchant_order.body.items[i].id;
+
+          await axios.put(
+            `https://proyecto-final-pf-production.up.railway.app/payment/update/${id_product}/${quantity}`
+          ); //item)
+        }
+      }
     }
     /*
 console.log("merchant_order")
@@ -215,17 +206,10 @@ console.log("merchant_order")
 console.log("merchant_order")
 */
 
-res.sendStatus(200);
-} catch (error) {
-  res.sendStatus(404);
-}
-
-
-
-
-})
-
-
-
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
 
 module.exports = router;
