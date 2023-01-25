@@ -44,6 +44,7 @@ export default function Detail({ data }) {
 
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
+    console.log(related);
   }, []);
   console.log(data.expireAt.split("T")[0]);
   const [nImg, setNImg] = useState(0);
@@ -248,9 +249,25 @@ export default function Detail({ data }) {
             </button>
           </div>
         </div>
+        {related.length > 0 && (
+          <h1 className={styles.titleRelated}> Mascotas Relacionados </h1>
+        )}
         <div className={styles.contentSlidePets}>
-          <Slider {...settings} className="arrowsSlides">
-            {related.slice(0, 9).map((mascota) => (
+          {related.length > 2 ? (
+            <Slider {...settings} className="arrowsSlides">
+              {related.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                  tamano={mascota.size}
+                  id={mascota._id}
+                />
+              ))}
+            </Slider>
+          ) : (
+            related.map((mascota) => (
               <PetsCard
                 key={mascota._id}
                 nombre={mascota.name}
@@ -259,8 +276,8 @@ export default function Detail({ data }) {
                 tamano={mascota.size}
                 id={mascota._id}
               />
-            ))}
-          </Slider>
+            ))
+          )}
         </div>
       </div>
     </LayoutGlobal>

@@ -35,7 +35,7 @@ export default function Detail({
   addToCart,
   productOfCart,
   discountItem,
-  response
+  response,
 }) {
   const settings = {
     dots: true,
@@ -170,38 +170,51 @@ export default function Detail({
           <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
- 
-        <div className={style.containerRevi}>
-          {<Start_Revi
-          data = {data}
-          id_User = {id_User}
-          response={response}
-          />}
-          </div>
 
-        <h1 className={style.titleRelated}> Productos Relacionados </h1>
+        <div className={style.containerRevi}>
+          {<Start_Revi data={data} id_User={id_User} response={response} />}
+        </div>
+
+        {recomendados.length > 0 && (
+          <h1 className={style.titleRelated}> Productos Relacionados </h1>
+        )}
         <div className={style.containSlider}>
-          <Slider {...settings} className="arrowsSlides">
-            {recomendados.slice(0, 9).map((recomendado) => (
-              // <CardProduct
-              //   key={recomendado._id}
-              //   info={recomendado}
-              //   addToCart={addToCart}
-              //   cart={cart}
-              //   // serCart={setCart}
-              //   productOfCart={productOfCart}
-              //   discountItem={discountItem}
-              // />
-              <ProductCard
-                key={recomendado._id}
-                info={recomendado}
-                // addToCart={addToCart}
-                nombre={recomendado.name}
-                imagen={recomendado.image}
-                precio={recomendado.price}
-              />
-            ))}
-          </Slider>
+          {recomendados.length > 2 ? (
+            <Slider {...settings} className="arrowsSlides">
+              {recomendados.map((recomendado) => (
+                // <CardProduct
+                //   key={recomendado._id}
+                //   info={recomendado}
+                //   addToCart={addToCart}
+                //   cart={cart}
+                //   // serCart={setCart}
+                //   productOfCart={productOfCart}
+                //   discountItem={discountItem}
+                // />
+                <ProductCard
+                  key={recomendado._id}
+                  info={recomendado}
+                  // addToCart={addToCart}
+                  nombre={recomendado.name}
+                  imagen={recomendado.image}
+                  precio={recomendado.price}
+                />
+              ))}
+            </Slider>
+          ) : (
+            <div className={style.containSlider2}>
+              {recomendados.map((recomendado) => (
+                <ProductCard
+                  key={recomendado._id}
+                  info={recomendado}
+                  // addToCart={addToCart}
+                  nombre={recomendado.name}
+                  imagen={recomendado.image}
+                  precio={recomendado.price}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </LayoutGlobal>
@@ -222,7 +235,7 @@ export async function getServerSideProps({ params }) {
     return {
       props: {
         data,
-        response
+        response,
       },
     };
   } catch (error) {
