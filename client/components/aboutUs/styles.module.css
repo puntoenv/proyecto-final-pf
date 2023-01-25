@@ -1,0 +1,69 @@
+.mainContainer {
+  min-height: 100vh;
+  max-width: 100vw;
+  transition: all 0.8;
+}
+
+.mainContainer > h1 {
+  /* background-image: url("../../img/dog-background.jpg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: scroll;
+  max-width: 100vw;
+  height: 70vh;
+  text-align: center;
+  padding-top: 5rem;
+}
+
+.containerInfo {
+  max-height: 80rem;
+  margin-bottom: 3rem;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(49, 34, 34);
+}
+.menu > li {
+  transition: all 0.5s;
+  text-shadow: 1px 1px 1px rgb(218, 218, 218), 1px 2px 3px rgb(250, 248, 248);
+}
+
+.menu > li:hover {
+  transform: scale(1.25);
+  opacity: 0.9;
+  text-shadow: 1px 1px 1px rgb(75, 49, 34), 3px 3px 5px rgb(170, 177, 168);
+}
+
+.divSticky {
+  position: sticky;
+  top: 3.8rem;
+  backdrop-filter: blur(40px);
+  height: 3rem;
+}
+
+.usInfo {
+  width: 100vw;
+  min-height: 40rem;
+}
+
+.usInfo > div {
+  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 40px;
+  margin-top: 10px;
+}
+
+.usInfo > div > div {
+  background-color: black;
+  height: 10rem;
+  width: 30rem;
+}

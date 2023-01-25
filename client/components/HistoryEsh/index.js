@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./history.module.css";
 import CardProduct from "../CardProduct";
 
-function index({ response }) {
+function index({ response, addToCart, productOfCart }) {
   const { bought } = response;
 
   return (
@@ -18,6 +18,7 @@ function index({ response }) {
                 key={producto._id}
                 info={producto}
                 addToCart={addToCart}
+                productOfCart={productOfCart}
               />
             ))
           )}

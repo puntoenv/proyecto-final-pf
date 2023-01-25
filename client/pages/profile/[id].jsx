@@ -8,9 +8,12 @@ import {
   hanldeOnChange,
   handleOnSubmit,
 } from "../../controller/validationUpdateP";
+import { useSelector } from "react-redux";
 
 function Profile({ data, response }) {
   const { isLoading, user } = useUser();
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
   return (
     <>
       <div className={style.container}>
@@ -23,17 +26,9 @@ function Profile({ data, response }) {
             handleOnSubmit={handleOnSubmit}
             user={user}
             isLoading={isLoading}
+            authUser={userAuth}
           ></Perfil>
         </div>
-        {/* 
-        <div className={style.container_history}>
-          <div className={style.containerPets}>
-            <Petscrea response={response} />
-          </div>
-          <div>
-            <HistoryEsh className={style.containerProducts} response={response} />
-          </div>
-        </div> */}
       </div>
     </>
   );
@@ -52,7 +47,7 @@ export default withPageAuthRequired(Profile, {
 export async function getServerSideProps({ params }) {
   try {
     const response = await (
-      await fetch(`${process.env.URL_BACK}user/${params.id}`)
+      await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}user/${params.id}`)
     ).json();
     return {
       props: {
