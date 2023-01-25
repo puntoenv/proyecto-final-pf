@@ -9,6 +9,14 @@
   z-index: 1000;
   background-color: aliceblue;
 }
+/* @media(max-width:840){
+  .logo{
+    width: 15px;
+    height: 25px;
+
+  }
+} */
+
 
 .containerProfile{
     display: flex;

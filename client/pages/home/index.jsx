@@ -91,13 +91,13 @@ const fn = (user, dispatch, setNumCall) => {
       <LayoutGlobal authUser={userAuth}>
         <Layout title="Inicio" />
         <div className={styles.home}>
-          <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
+          {/* <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p> */}
           <Image
             src={home}
             alt="home"
-            className={styles.home}
-            width="auto"
-            height="auto"
+            className={styles.picture}
+            // width="auto"
+            // height="auto"
           />
           <div className={styles.barGreen}></div>
           <div className={styles.divAlimento}></div>
@@ -119,6 +119,7 @@ const fn = (user, dispatch, setNumCall) => {
               <Link href="/petsPosts">Ver mas</Link>
             </button>
 
+{/* carrusel hasta 1000px */}
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard
