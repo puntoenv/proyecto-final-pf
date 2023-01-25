@@ -54,7 +54,7 @@ function index({ favorite, DeletFavori }) {
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <div className={styles.cards}>
         {!dupli.length ? (
           <h1 className={styles.favoritoVacio}>la lista esta vacia</h1>
