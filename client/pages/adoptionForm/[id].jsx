@@ -191,7 +191,6 @@ console.log(post)
           </LayoutGlobal>
         </>
       )}
-      <Footer />
     </>
   );
 }
