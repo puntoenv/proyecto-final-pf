@@ -145,7 +145,9 @@ export const handleOnSubmit = async (
   try {
     setLoader(true)
     const response = await axios.put(
+
       `/updateProfile/${idUser}`,
+
       input
     );
 

@@ -37,6 +37,7 @@ console.log(authUser)
               user={user}
               response={response}
               setRender={setRender}
+              authUser={authUser}
             ></HeaderTest>
             <ContentUser
               response={response}
@@ -47,7 +48,7 @@ console.log(authUser)
             ></ContentUser>
           </div>
         </>
-      ) }
+      )}
     </div>
   );
 }
