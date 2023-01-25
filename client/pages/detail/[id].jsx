@@ -23,6 +23,7 @@ export default function Detail({ data }) {
   const related = useSelector((state) => state.mascotas.relatedPets);
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
+    console.log(related);
   }, []);
   console.log(data.expireAt.split("T")[0]);
   const [nImg, setNImg] = useState(0);
