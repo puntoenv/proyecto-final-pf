@@ -10,15 +10,28 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import PetsCard from "../../components/Carousel/petsCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPets, getProducts } from "../../stores/actions";
 import React from "react";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import ProductCard from "../../components/CarouselEshop/productsCard";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../stores/actions";
 import CardProduct from "../../components/CardProduct";
 
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 
  export default function Home({ favorite, addAgregar , 
@@ -46,9 +59,14 @@ import CardProduct from "../../components/CardProduct";
     const { user } = useUser();
     const dataPets = useSelector((data) => data.mascotas.mascotas);
     const productos = useSelector((state) => state.products.allProducts);
-    //const data = useSelector((state) => state.products.data);
-
     const dispatch = useDispatch();
+    const userAuth = useSelector((state) => state.userAuth.userData);
+    const [numCall, setNumCall] = useState(0);
+
+    !numCall && user && fn(user, dispatch, setNumCall);
+
+    console.log(userAuth);
+
     useEffect(() => {
       (function (d, m) {
         var kommunicateSettings = {
@@ -68,14 +86,9 @@ import CardProduct from "../../components/CardProduct";
       dispatch(getPets(1));
       dispatch(getProducts(1));
     }, []);
-    // useEffect(()=>{
-    //   dispatch(getProducts(1))
-    // },[dispatch])
-   
-  
 
     return (
-      <LayoutGlobal>
+      <LayoutGlobal authUser={userAuth}>
         <Layout title="Inicio" />
         <div className={styles.home}>
           <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
@@ -100,23 +113,19 @@ import CardProduct from "../../components/CardProduct";
           </div>
           <Nosotros />
           <div className={styles.containSlider}>
-            
-              <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
-              <button className={styles.buttonRoute}>
-                <Link href="/petsPosts">Ver mas</Link>
-              </button>
-          
+            <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
+            <button className={styles.buttonRoute}>
+              <Link href="/petsPosts">Ver mas</Link>
+            </button>
 
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
-              
                 <PetsCard
                   id={mascota._id}
                   nombre={mascota.name}
                   imagen={mascota.image}
                   genero={mascota.gender}
                   tamano={mascota.size}
-                  
                 />
               ))}
             </Slider>
@@ -130,29 +139,19 @@ import CardProduct from "../../components/CardProduct";
               </button>
             </div>
             <Slider {...settings} className="arrowsSlides">
-            {productos.slice(0, 9).map((producto) => {
-              return (
-            <CardProduct 
-            key={producto._id}
-       info={producto}
-         addToCart={addToCart}
-         cart={cart}
-          // serCart={setCart}
-           productOfCart={productOfCart}
-           discountItem={discountItem}
-          />
-            )})}
-
-               {/* {productos.slice(0, 9).map((producto) => (
-                <ProductCard
-                  key={producto._id}
-                  info={producto}
-                  // addToCart={addToCart}
-                  nombre={producto.name}
-                  imagen={producto.image}
-                  precio={producto.price}
-                />
-              ))}  */}
+              {productos.slice(0, 9).map((producto) => {
+                return (
+                  <CardProduct
+                    key={producto._id}
+                    info={producto}
+                    addToCart={addToCart}
+                    cart={cart}
+                    // serCart={setCart}
+                    productOfCart={productOfCart}
+                    discountItem={discountItem}
+                  />
+                );
+              })}
             </Slider>
           </div>
 

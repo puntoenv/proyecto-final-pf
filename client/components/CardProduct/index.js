@@ -5,17 +5,11 @@ import styles from "./styles.module.css";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
 import React from "react";
 
-export default function CardProduct({
-  info,
-  addToCart,
-  cart,
-  productOfCart,
-  discountItem,
-}) {
+export default function CardProduct({ info, addToCart, cart, discountItem, productOfCart }) {
   const { user } = useUser();
   const { name, image, price, _id, stock, category, boughtBy } = info;
   const [amount, setAmount] = useState(0);
-  const itemCart = productOfCart(cart, _id);
+  const itemCart = productOfCart && productOfCart(cart, _id);
 
   const id_User = user && user.sub.split("|")[1];
 

@@ -1,27 +1,47 @@
 import Link from "next/link";
 import { useState } from "react";
-import {
-  getPets,
-  searchPet,
-  getper,
-  sorts,
-  getTypes,
-} from "../../stores/actions";
+import { getPets, searchPet, getper, getTypes } from "../../stores/actions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../stores/actions";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 export default function PetAdoption({ favorite, addAgregar }) {
   //console.log(favorite);
+
+  const { user } = useUser();
+
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState({});
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.mascotas.mascotas);
   const data = useSelector((state) => state.mascotas.data);
   const types = useSelector((state) => state.mascotas.types);
+
+  const [numCall, setNumCall] = useState(0);
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
+  !numCall && user && fn(user, dispatch, setNumCall);
+
+  console.log(userAuth);
   const paging = [];
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -36,21 +56,18 @@ export default function PetAdoption({ favorite, addAgregar }) {
     let { value } = e.target;
     setSearch(value);
     setFilter({});
-    console.log(value);
   };
 
   const handlerOnSearch = (e) => {
     e.preventDefault();
     dispatch(searchPet(search, 1));
     // setSearch("");
-    console.log(e);
     e.target.reset();
   };
 
   const handlerTodas = (e) => {
     e.preventDefault();
     dispatch(getPets(1));
-    e.target.reset();
   };
 
   //   const handlerSort = (e)=>{
@@ -95,7 +112,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
         dispatch(getPets(value, filter));
       } else {
         dispatch(getPets(value));
-        console.log(value);
       }
     }
   };
@@ -114,12 +130,11 @@ export default function PetAdoption({ favorite, addAgregar }) {
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <Layout title="Mascotas" />
 
       {/* CONTENEDOR DE TODA LA PAGINA : containerAllPets*/}
       <div className={styles.containerAllPets}>
-
         {/* CONTEENDOR DE LOS FILTROS : CONTAINER2*/}
         <div className={styles.container2}>
           <form
@@ -217,7 +232,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
-                console.log(mascota.image);
                 return (
                   <div key={mascota._id} className={styles.card}>
                     <Image

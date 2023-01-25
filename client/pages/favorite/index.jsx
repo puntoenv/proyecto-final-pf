@@ -3,14 +3,38 @@ import Link from "next/link";
 import styles from "./styles.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { authUser } from "../../stores/actions";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
+
 function index({ favorite, DeletFavori }) {
   const { user } = useUser();
-  const userId = user?.sub?.split("|").pop();
+  const dispatch = useDispatch();
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
+  const userId = userAuth && userAuth._id;
   const router = useRouter();
-  console.log(favorite);
   const dupli = Array.from(new Set(favorite));
 
   const handleClick = (e) => {
@@ -31,7 +55,7 @@ function index({ favorite, DeletFavori }) {
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <div className={styles.cards}>
         {!dupli.length ? (
           <h1 className={styles.favoritoVacio}>la lista esta vacia</h1>

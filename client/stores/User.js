@@ -4,15 +4,15 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     usuario: [],
-    users:[]
+    users: [],
   },
   reducers: {
     getUser: (state, action) => {
       state.usuario = action.payload;
     },
     getAllUsers: (state, action) => {
-      state.users = action.payload
-    }
+      state.users = action.payload;
+    },
   },
 });
 
