@@ -36,12 +36,12 @@ export default function Detail({ data }) {
   //user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatedPets);
-  
+
   const [numCall, setNumCall] = useState(0);
   !numCall && user && fn(user, dispatch, setNumCall);
-  
+
   const userAuth = useSelector((state) => state.userAuth.userData);
-  const userId = userAuth && userAuth._id
+  const userId = userAuth && userAuth._id;
 
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
@@ -99,9 +99,11 @@ export default function Detail({ data }) {
             </Link>
           </div>
           <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
-          <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
-            Adoptar
-          </button>
+          {!data.hidden && (
+            <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
+              Adoptar
+            </button>
+          )}
           <div className={styles.containCardDetail}>
             <div className={styles.box}>
               <div className={styles.divSlideManual}>
