@@ -15,7 +15,7 @@ export default function Perfil({
   authUser,
 }) {
   const [render, setRender] = useState("profile");
-
+console.log(authUser)
   return (
     <div className={style.container_caja1}>
       {isLoading && (
@@ -24,7 +24,7 @@ export default function Perfil({
           <p>Loading...</p>
         </div>
       )}
-      {authUser ? (
+      {authUser && (
         <>
           <div>
             <SideBar
@@ -47,12 +47,7 @@ export default function Perfil({
             ></ContentUser>
           </div>
         </>
-      ) : (
-        <div className={styles.container}>
-          <div className={styles.loader}></div>
-          <p>Loading...</p>
-        </div>
-      )}
+      ) }
     </div>
   );
 }

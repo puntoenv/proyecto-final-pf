@@ -12,6 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CardProduct from "../../../components/CardProduct";
 import ProductCard from "../../../components/CarouselEshop/productsCard";
+import Slider from "react-slick";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
