@@ -114,7 +114,6 @@ export const PostAdop = (post) => {
       return res.data;
     })
     .catch((err) => {
-
       Swal.fire({
         title: "Error. No se pudo publicar la mascota",
         icon: "error",
@@ -272,7 +271,7 @@ export const filterProducts = (input, page) => async (dispatch) => {
 };
 
 export const UpdateProduct = async (id, obj) => {
-  console.log(id, obj);
+ 
   try {
     const respo = await axios.put(
       `http://localhost:3001/updateProduct/${id}`,
@@ -336,6 +335,27 @@ export const allUsers = () => async (dispatch) => {
     dispatch(getAllUsers(users.data));
   } catch (error) {
     console.log(error);
+  }
+};
+export const updateUser = async (id, obj) => {
+  console.log(id, obj);
+  try {
+    const respo = await axios.put(
+      `http://localhost:3001/updateProfile/${id}`,
+      obj
+    );
+    respo
+      ? Swal.fire({
+          title: "Usuario editado con éxito",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        })
+      : null;
+    return respo;
+  } catch (e) {
+    console.log(e);
   }
 };
 
