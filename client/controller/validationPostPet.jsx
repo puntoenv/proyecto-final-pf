@@ -103,38 +103,44 @@ export const handleSubmit = async (
 ) => {
   e.preventDefault();
   setLoader(true)
-  if (
-    !post.age ||
-    !post.name ||
-    !post.location ||
-    !post.image ||
-    !post.size ||
-    !post.gender ||
-    !post.type ||
-    errors.name !== null ||
-    errors.age !== null ||
-    // errors.description !== null ||
-    errors.size !== null ||
-    errors.gender !== null ||
-    errors.type !== null ||
-    errors.image !== null ||
-    errors.health !== null ||
-    errors.sociability !== null ||
-    errors.condition !== null
-  ) {
-    Swal.fire({
-      title: "Rellena todos los input para avanzar",
-      icon: "error",
-      color: "#437042",
-      confirmButtonColor: "#437042",
-      confirmButtonAriaLabel: "#437042",
-    });
-  } else {
-    const id = await PostAdop(post);
-    if (typeof id === "string") {
-      setLoader(false)
-      return await router.push(`/detail/${id}`);
+  try {
+    if (
+      !post.age ||
+      !post.name ||
+      !post.location ||
+      !post.image ||
+      !post.size ||
+      !post.gender ||
+      !post.type ||
+      errors.name !== null ||
+      errors.age !== null ||
+      // errors.description !== null ||
+      errors.size !== null ||
+      errors.gender !== null ||
+      errors.type !== null ||
+      errors.image !== null ||
+      errors.health !== null ||
+      errors.sociability !== null ||
+      errors.condition !== null
+    ) {
+      setLoader(false);
+      Swal.fire({
+        title: "Rellena todos los input para avanzar",
+        icon: "error",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      });
+    } else {
+      const id = await PostAdop(post);
+      setLoader(false);
+      if (typeof id === "string") {
+        
+        return await router.push(`/detail/${id}`);
+      }
     }
+  } catch (error) {
+    console.log(error)
   }
 };
 

@@ -110,7 +110,6 @@ export const handleFiles = (event, setInput, input) => {
 };
 
 export const handleAdoption = async (router, Swal, idUser) => {
-  console.log(idUser);
   try {
     const response = await axios.get(`http://localhost:3001/user/${idUser}`);
     if (!response.data.name || response.data.name === " ") {
@@ -137,22 +136,25 @@ export const handleOnSubmit = async (
   setInput,
   input,
   idUser,
-  Swal
+  Swal, setLoader
 ) => {
   event.preventDefault();
 
   try {
+    setLoader(true)
     const response = await axios.put(
       `http://localhost:3001/updateProfile/${idUser}`,
       input
     );
 
     if (response.data.error) {
+      setLoader(false)
       setResult({
         error: "El perfil no se pudo editar. Intenta de nuevo más tarde",
         success: "",
       });
     } else {
+      
       setResult({
         error: "",
         success: "Perfil editado con éxito",
@@ -165,6 +167,7 @@ export const handleOnSubmit = async (
         image: "",
         ubication: "",
       });
+      
       Router.reload(window.location.pathname);
     }
   } catch (error) {

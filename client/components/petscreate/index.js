@@ -10,7 +10,7 @@ import "sweetalert2/src/sweetalert2.scss";
 function Petscrea({ response }) {
   const { pets } = response;
   console.log(pets);
-  const filtro = pets.filter((items) => items.hidden !== true);
+  const filtro = pets?.filter((items) => items.hidden !== true);
   console.log(filtro);
 
   const handleClick = (id, obj) => {
@@ -22,7 +22,7 @@ function Petscrea({ response }) {
       <div className={styles.container_animal}>
         <h2 className={styles.letra}>Tus publicaciones</h2>
         <div className={styles.container_post}>
-          {!filtro.length ? (
+          {!filtro ? (
             <h1 className={styles.letra}>No hay historial de creaciones</h1>
           ) : (
             filtro?.map((mascota) => {
