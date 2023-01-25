@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CardProduct from "../../../components/CardProduct";
 import ProductCard from "../../../components/CarouselEshop/productsCard";
 import Slider from "react-slick";
+import Start_Revi from "../../../components/star_Revi";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -28,13 +29,13 @@ const fn = (user, dispatch, setNumCall) => {
   setNumCall(1);
 };
 
-import Start_Revi from "../../../components/star_Revi";
 export default function Detail({
   data,
   cart,
   addToCart,
   productOfCart,
   discountItem,
+  response,
 }) {
   const settings = {
     dots: true,
@@ -169,11 +170,11 @@ export default function Detail({
           <span className={style.descriptionTitle}>Descripción</span>
           <span className={style.contentDescription}>{data.description}</span>
         </div>
-        {/* <div>{<Start_Revi data={data} id_User={id_User} />}</div> */}
+
         <div className={style.containerRevi}>
-          {<Start_Revi data={data} id_User={id_User} />}
-                  
+          {<Start_Revi data={data} id_User={id_User} response={response} />}
         </div>
+
         {recomendados.length > 0 && (
           <h1 className={style.titleRelated}> Productos Relacionados </h1>
         )}
@@ -228,9 +229,13 @@ export async function getServerSideProps({ params }) {
         `${process.env.NEXT_PUBLIC_URL_BACK}products/detail/${params.id}`
       )
     ).json();
+    const response = await (
+      await fetch(`http://localhost:3001/products/avg/${params.id}`)
+    ).json();
     return {
       props: {
         data,
+        response,
       },
     };
   } catch (error) {

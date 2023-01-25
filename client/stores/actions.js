@@ -27,18 +27,15 @@ export const authUser = (email, name) => async (dispatch) => {
   try {
     const res = await axios.get(`${baseUrl}user-by-email/${email}`);
     const finded = res.data;
-    console.log(finded);
 
     if (!finded.error) {
       dispatch(get_User(finded.user));
       return;
     } else {
-      console.log("user create");
       const response = await axios.post(`http://localhost:3001/create-user`, {
         email,
         name,
       });
-      console.log(response);
       const data = response.data;
       dispatch(get_User(data));
     }
@@ -114,8 +111,6 @@ export const PostAdop = (post) => {
       return res.data;
     })
     .catch((err) => {
-      console.log(err);
-
       Swal.fire({
         title: "Error. No se pudo publicar la mascota",
         icon: "error",

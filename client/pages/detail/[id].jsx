@@ -1,6 +1,5 @@
 import styles from "./detail.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import Layout from "../layout";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -8,12 +7,28 @@ import Swal from "sweetalert2/dist/sweetalert2";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetsRelated } from "../../stores/actions";
+import { authUser } from "../../stores/actions";
 import Maps from "../../components/GoogleMap/Maps";
 import axios from "axios";
-import Slider from "react-slick";
 import PetsCard from "../../components/Carousel/petsCard";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { GrCaretPrevious, GrCaretNext } from "react-icons/gr";
+import Slider from "react-slick";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 export default function Detail({ data }) {
   const dispatch = useDispatch();
@@ -21,6 +36,12 @@ export default function Detail({ data }) {
   const userId = user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatedPets);
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
     console.log(related);
@@ -67,8 +88,9 @@ export default function Detail({ data }) {
   };
 
   return (
-    <LayoutGlobal title={data.name.toUpperCase()}>
+    <LayoutGlobal title={data.name.toUpperCase()} authUser={userAuth}>
       <div className={styles.containerAll}>
+        {/* //////////////////////////////////// */}
         <div className={styles.containDetail}>
           <div className={styles.button}>
             <Link className={styles.back} href="/petsPosts">
@@ -76,27 +98,22 @@ export default function Detail({ data }) {
             </Link>
           </div>
           <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
+          <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
+            Adoptar
+          </button>
           <div className={styles.containCardDetail}>
-            {/* <img
-            className={styles.image}
-            src={data.image}
-            alt="Imagen de la mascota"
-          /> */}
-            <div className={styles.main}>
-              <div className={styles.box}>
-                <button
-                  className={styles.adoptar}
-                  onClick={(e) => handlerAdopt(e)}
-                >
-                  Adoptar
-                </button>
-                {data.image.map((ele) => (
-                  <img
-                    className={styles.image}
-                    src={ele}
-                    alt="Imagen de la mascota"
-                  />
-                ))}
+            <div className={styles.box}>
+              <div className={styles.divSlideManual}>
+                <GrCaretPrevious
+                  className={styles.iconPrev}
+                  onClick={handlerPrev}
+                  name="Prev"
+                />
+                <img src={imgS[nImg]} className={styles.image} />
+                <GrCaretNext
+                  className={styles.iconNext}
+                  onClick={handlerNext}
+                />
               </div>
               <div className={styles.divLocation}>
                 <Maps
@@ -104,55 +121,67 @@ export default function Detail({ data }) {
                 ></Maps>
               </div>
             </div>
-            <div className={styles.divDescription}>
-              <h3 className={styles.titleDescription}>Descripición</h3>
-              <p className={styles.description}>{data.description}</p>
-            </div>
+            {/* ----------------------------------- */}
             <div class={styles.divCharacteristics}>
               <div class={styles.divSize}>
                 <b>Tamaño: </b>
-                <span>{data.size}</span>
+                <span className={styles.spanChar}>{data.size}</span>
               </div>
 
               <div class={styles.divSpecie}>
                 <b>Especie: </b>
-                <span>{data.type}</span>
+                <span className={styles.spanChar}>{data.type}</span>
               </div>
 
               <div class={styles.divCondition}>
                 <b>Condición: </b>
-                <span>{data.condition}</span>
+                <span className={styles.spanChar}>{data.condition}</span>
               </div>
 
               <div class={styles.divGender}>
                 <b>Genero: </b>
-                <span>{data.gender}</span>
+                <span className={styles.spanChar}>{data.gender}</span>
               </div>
 
               <div class={styles.divAge}>
                 <b>Edad: </b>
-                <span>{data.age}</span>
+                <span className={styles.spanChar}>{data.age}</span>
               </div>
 
               <div class={styles.divSocial}>
                 <b>Interacción con otros animales: </b>
-                <span>{data.sociability}</span>
+                <span className={styles.spanChar}>{data.sociability}</span>
               </div>
 
               <div class={styles.divHealth}>
                 <b>Salud: </b>
-                <span>{data.health}</span>
+                <span className={styles.spanChar}>{data.health}</span>
               </div>
 
               {data.healthExtra && (
                 <div class={styles.divHealthExtra}>
                   <b>Descripción de salud: </b>
-                  <span>{data.healthExtra}</span>
+                  <span className={styles.spanChar}>{data.healthExtra}</span>
+                </div>
+              )}
+              {data.contactAdoption && (
+                <div class={styles.contactUser}>
+                  <b>Contacto: </b>
+                  <span className={styles.spanChar}>
+                    {data.contactAdoption}
+                  </span>
                 </div>
               )}
             </div>
           </div>
 
+          <div className={styles.divDescription}>
+            <h3 className={styles.titleDescription}>Descripición</h3>
+            <p className={styles.description}>{data.description}</p>
+          </div>
+          <div className={styles.divDate}>
+            <span>Fecha de Publicación: {data.expireAt.split("T")[0]}</span>
+          </div>
           <div className={styles.buttonReport}>
             <button
               className={styles.back}
@@ -219,7 +248,12 @@ export default function Detail({ data }) {
               Denunciar
             </button>
           </div>
-          <div className={styles.containSlider}>
+        </div>
+        {related.length > 0 && (
+          <h1 className={styles.titleRelated}> Mascotas Relacionados </h1>
+        )}
+        <div className={styles.contentSlidePets}>
+          {related.length > 2 ? (
             <Slider {...settings} className="arrowsSlides">
               {related.slice(0, 9).map((mascota) => (
                 <PetsCard
@@ -232,7 +266,18 @@ export default function Detail({ data }) {
                 />
               ))}
             </Slider>
-          </div>
+          ) : (
+            related.map((mascota) => (
+              <PetsCard
+                key={mascota._id}
+                nombre={mascota.name}
+                imagen={mascota.image}
+                genero={mascota.gender}
+                tamano={mascota.size}
+                id={mascota._id}
+              />
+            ))
+          )}
         </div>
       </div>
     </LayoutGlobal>

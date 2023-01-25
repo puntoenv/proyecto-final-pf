@@ -3,10 +3,23 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
+  height: 130vh;
   width: 100vw;
   position: absolute;
-  z-index: 20000;
+  z-index: 1000;
+  background-color: aliceblue;
+}
+
+.containerProfile{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100vw;
+  /* position: absolute;
+  z-index: 1000; */
+  background-color: aliceblue;
 }
 
 .loader {

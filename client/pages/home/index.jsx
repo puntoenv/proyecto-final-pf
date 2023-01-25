@@ -33,7 +33,18 @@ const fn = (user, dispatch, setNumCall) => {
   setNumCall(1);
 };
 
-export default function Home({ addToCart, cart, productOfCart, discountItem }) {
+
+ export default function Home({ favorite, addAgregar , 
+  addToCart,
+  cart,
+  productOfCart,
+  discountItem,
+  //data,
+//   cart,
+//   addToCart,
+//   productOfCart,
+//   discountItem
+}) {
   {
     const settings = {
       dots: true,
