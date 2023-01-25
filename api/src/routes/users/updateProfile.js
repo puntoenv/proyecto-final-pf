@@ -4,6 +4,7 @@ const updateProfile = Router();
 const cloudinary = require("../../../cloud");
 const ejs = require("ejs");
 const path = require("path");
+const mailer = require("../../../mailer")
 
 updateProfile.put("/:id", async (req, res) => {
   try {
@@ -19,7 +20,7 @@ updateProfile.put("/:id", async (req, res) => {
       let data = await ejs.renderFile(path.join(__dirname + "/banned.ejs"), {
         email: "littlePaws0508@gmail.com",
       });
-      let info = await mailer.sendMail({
+       await mailer.sendMail({
         from: "littlePaws0508@gmail.com",
         to: `${user.email}`,
         subject: `ATENCÍON ${user.name.toUpperCase()}`,
@@ -40,7 +41,7 @@ updateProfile.put("/:id", async (req, res) => {
     res.status(200).send(userUpdate);
   } catch (error) {
     console.log(error);
-    res.status(400).send({ error: "Error al modificar el perfil" });
+    res.status(400).send({ error: error.message});
   }
 });
 

@@ -69,12 +69,14 @@ export const getmuni = (municipios) => async (dispatch) => {
 export const PutReview = async (obj, id) => {
   try {
     //console.log(id)
-    const res = axios.put(`/updateProduct/reviews/${id}`,obj).then((response) => {
-      console.log("Update SUCCESS!");
-    });
-  return res;
-  }catch(error){
-     console.log(error)
+    const res = axios
+      .put(`/updateProduct/reviews/${id}`, obj)
+      .then((response) => {
+        console.log("Update SUCCESS!");
+      });
+    return res;
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -266,12 +268,9 @@ export const filterProducts = (input, page) => async (dispatch) => {
 };
 
 export const UpdateProduct = async (id, obj) => {
-  console.log(id, obj);
+ 
   try {
-    const respo = await axios.put(
-      `/updateProduct/${id}`,
-      obj
-    );
+    const respo = await axios.put(`/updateProduct/${id}`, obj);
     respo
       ? Swal.fire({
           title: "Producto editado con éxito",
@@ -332,6 +331,27 @@ export const allUsers = () => async (dispatch) => {
     console.log(error);
   }
 };
+export const updateUser = async (id, obj) => {
+  console.log(id, obj);
+  try {
+    const respo = await axios.put(
+      `http://localhost:3001/updateProfile/${id}`,
+      obj
+    );
+    respo
+      ? Swal.fire({
+          title: "Usuario editado con éxito",
+          icon: "success",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        })
+      : null;
+    return respo;
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export function getDescription(post) {
   return async function (dispatch) {
@@ -342,5 +362,14 @@ export function getDescription(post) {
     } catch (error) {
       return console.log(error);
     }
+  };
+}
+
+export function adoptPet(petId, hidden, userId) {
+  return async function (dispatch) {
+    return axios
+      .put(`/updatePet/${petId}`, hidden)
+      .then(() => axios.get(`/adoptEmail/?petId=${petId}&userId=${userId}`))
+      .catch((error) => console.log(error));
   };
 }
