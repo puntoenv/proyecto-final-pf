@@ -130,7 +130,7 @@ router.post("/buyNotification", async (req, res) => {
     var merchant_order;
 
     switch (topic) {
-      case "payments":
+      case "payment":
         const paymentId = query.id;
         //console.log(topic, "geting payment",paymentId);
         const payment = await mercadopago.merchant_orders.findById(
