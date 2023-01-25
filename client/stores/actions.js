@@ -335,9 +335,7 @@ export const updateUser = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios.put(
-      `http://localhost:3001/updateProfile/${id}`,
-      obj
-    );
+      `http://localhost:3001/updateProfile/${id}`, obj);
     respo
       ? Swal.fire({
           title: "Usuario editado con éxito",
@@ -347,6 +345,7 @@ export const updateUser = async (id, obj) => {
           confirmButtonAriaLabel: "#437042",
         })
       : null;
+      console.log(respo);
     return respo;
   } catch (e) {
     console.log(e);

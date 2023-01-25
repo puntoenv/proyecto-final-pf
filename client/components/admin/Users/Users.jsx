@@ -263,7 +263,6 @@ export default function Users() {
 
   const handleHide = async () => {
     try {
-      console.log(data);
       const { _id } = data.row;
       if (data) await updateUser(_id, { hidden: "hide" });
     } catch (error) {
@@ -285,14 +284,14 @@ export default function Users() {
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<PersonOffIcon />}
-          onClick={(e) => handleHide(e)}
+          onClick={handleHide}
         >
           Bloquear
         </Button>
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<PersonIcon />}
-          onClick={(e) => handleShow(e)}
+          onClick={handleShow}
         >
           Desbloquear
         </Button>
