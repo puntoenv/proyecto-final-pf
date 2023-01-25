@@ -1,13 +1,15 @@
+import React from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from "react";
+import { useState } from "react";
 import { authUser } from "../../stores/actions";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { CiSquareRemove } from 'react-icons/Ci';
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -35,7 +37,7 @@ function index({ favorite, DeletFavori }) {
   const userId = userAuth && userAuth._id;
   const router = useRouter();
   const dupli = Array.from(new Set(favorite));
-
+console.log(dupli)
   const handleClick = (e) => {
     let petId = favorite[e.target.value]._id;
     e.preventDefault();
@@ -70,7 +72,7 @@ function index({ favorite, DeletFavori }) {
                 className={styles.delet}
                 onClick={() => DeletFavori(items._id)}
               >
-                x
+                <CiSquareRemove/>
               </button>
               <div className={styles.card__overlay}>
                 <div className={styles.card__header}>

@@ -32,12 +32,13 @@ router.post("/", async (req, res) => {
     items: arr,
     back_urls: {
       success: "http://localhost:3000/popUpHist",
-      failure: "http://localhost:3000/404",
+      failure: "http://localhost:3000/cart",
       pending: "",
     },
     auto_return: "approved",
 
-    notification_url: "http://localhost:3001/payment/buyNotification",
+    // notification_url:
+    //   "https://proyecto-final-pf-production.up.railway.app/payment/buyNotification",
   };
 
   mercadopago.preferences
@@ -73,11 +74,11 @@ router.get("/:id", async (req, res) => {
   //  === aprovved ==> buscarUser ==> relacionar con el producto y viseverza
 });
 
-router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
+router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
-    let { id_user, id_product, quantity } = req.params;
+    let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-    const stockTT = product.stock;
+    // const stockTT = product.stock;
 
     //let user = await User.findById(id_user);
     /* console.log(quantity)
@@ -86,9 +87,9 @@ router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
     */
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    let stockT = stockTT;
+    // let stockT = stockTT;
 
-    let quantityT = stockT - quantity;
+    // let quantityT = stockT - quantity;
     /*console.log (product.stock)    
     console.log("esto es product.stock")
     console.log (product.stock) */
@@ -97,7 +98,7 @@ router.put("/update/:id_user/:id_product/:quantity", async (req, res) => {
     product.description = description ? description : product.description;
     product.price = price ? price : product.price;
     product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
-    product.stock = stockT - quantity;
+    product.stock = product.stock - quantity;
     product.category = category ? category : product.category;
 
     /*
@@ -129,7 +130,7 @@ router.post("/buyNotification", async (req, res) => {
     var merchant_order;
 
     switch (topic) {
-      case "payments":
+      case "payment":
         const paymentId = query.id;
         //console.log(topic, "geting payment",paymentId);
         const payment = await mercadopago.merchant_orders.findById(
@@ -192,7 +193,7 @@ console.log("mOrderVerifyn")
           let id_product = merchant_order.body.items[i].id;
 
           await axios.put(
-            `http://localhost:3001/payment/update/123/${id_product}/${quantity}`
+            `http://localhost:3001/payment/update/${id_product}/${quantity}`
           ); //item)
         }
       }
@@ -205,17 +206,10 @@ console.log("merchant_order")
 console.log("merchant_order")
 */
 
-res.sendStatus(200);
-} catch (error) {
-  res.sendStatus(404);
-}
-
-
-
-
-})
-
-
-
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
 
 module.exports = router;
