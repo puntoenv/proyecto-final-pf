@@ -191,6 +191,24 @@ export default function eShop({
               value="Aplicar Filtros"
             />
           </form>
+          <div className={styles.pages}>
+            <button onClick={(e) => handlerPage(e)} value="🡸">
+              {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
+            </button>
+            {paging?.map((p) => (
+              <button
+                value={p}
+                key={p}
+                onClick={(e) => handlerPage(e)}
+                className={styles.pageNum}
+              >
+                {p}
+              </button>
+            ))}
+            <button onClick={(e) => handlerPage(e)} value="🡺">
+              {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
+            </button>
+          </div>
           <div className={styles.containerCards}>
             {/* <CardProduct
               key={1100}
