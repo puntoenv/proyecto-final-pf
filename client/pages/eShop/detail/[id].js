@@ -13,6 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import CardProduct from "../../../components/CardProduct";
 import ProductCard from "../../../components/CarouselEshop/productsCard";
 import Slider from "react-slick";
+import Start_Revi from "../../../components/star_Revi";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -28,7 +29,6 @@ const fn = (user, dispatch, setNumCall) => {
   setNumCall(1);
 };
 
-import Start_Revi from "../../../components/star_Revi";
 export default function Detail({
   data,
   cart,

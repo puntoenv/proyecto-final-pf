@@ -130,7 +130,7 @@ export default function eShop({
   };
 
   return (
-    <LayoutGlobal>
+    <LayoutGlobal authUser={userAuth}>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
         <form

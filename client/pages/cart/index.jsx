@@ -1,13 +1,28 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import Layout from "../layout";
-import NavBar from "../../components/NavBar/NavBar";
+import { useDispatch, useSelector } from "react-redux";
+import { authUser } from "../../stores/actions";
+import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import styles from "./styles.module.css";
 import CardProduct from "../../components/cardsCart/CardProduct";
 import { formatItemsMp } from "../../controller/formatItemsMp";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 export default function Cart({
   cart,
@@ -19,8 +34,15 @@ export default function Cart({
   discountItem,
 }) {
   const { user } = useUser();
+  const dispatch = useDispatch();
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
   const [total, setTotal] = useState(0);
-  console.log(cart);
+
   const modifiedTotal = () => {
     const total = cart.reduce(
       (total, producto) => (total += producto.subtotal),
@@ -59,11 +81,8 @@ export default function Cart({
   };
 
   return (
-    <div>
+    <LayoutGlobal title="Carrito" authUser={userAuth}>
       <div>
-        <Layout title="Carrito" />
-        <NavBar />
-
         <div className={styles.big_container}>
           {cart.length === 0 ? (
             <p className={styles.carritoVacio}> Carrito vacio </p>
@@ -107,6 +126,6 @@ export default function Cart({
           </>
         )}
       </div>
-    </div>
+    </LayoutGlobal>
   );
 }
