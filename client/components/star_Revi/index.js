@@ -6,8 +6,12 @@ import styles from "./styles.module.css";
 import Comments from "./comments";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import Router from "next/router";
 
-function Start_Revi({ data, id_User }) {
+
+
+function Start_Revi({ data, id_User, response }) {
+  //console.log(response)
   const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
 
@@ -15,7 +19,7 @@ function Start_Revi({ data, id_User }) {
     stars: "",
     reviews: "",
   });
-  console.log(revi);
+  //console.log(revi);
 
   const handlerPoint = (e) => {
     e.preventDefault();
@@ -24,6 +28,14 @@ function Start_Revi({ data, id_User }) {
       stars: "",
       reviews: "",
     });
+    Swal.fire({
+      title: "Gracias por tu comentario.",
+      icon: "error ",
+      color: "#437042",
+      confirmButtonColor: "#437042",
+      confirmButtonAriaLabel: "#437042",
+    });
+    Router.reload(window.location.pathname);
   };
 
   const handlerReviews = (e) => {
@@ -47,8 +59,17 @@ function Start_Revi({ data, id_User }) {
   };
   const compra = boughtBy.some((items) => items._id === id_User); // true es por que compro el producto
   const iews = star_reviews.some((item) => item.user === id_User); //false es por que no a comentado el producto
-
-  const boton =
+  
+  const boton = revi.stars === "" && revi.reviews === "" ? <button  className={styles.btn}
+  onClick={(e) => {
+    Swal.fire({
+      title: "Espacios no completados",
+      icon: "error ",
+      color: "#437042",
+      confirmButtonColor: "#437042",
+      confirmButtonAriaLabel: "#437042",
+    });
+  }}>comentar</button> :
     compra === true ? (
       iews === false ? (
         <button className={styles.btn} onClick={(e) => handlerPoint(e)}>
@@ -79,9 +100,12 @@ function Start_Revi({ data, id_User }) {
         comentar
       </button>
     );
+
+
   return (
     <div>
       <Punctuation state={handlerReviews} revi={revi} />
+      {typeof response === "number" ? <p className={styles.letras}>El promedio del producto son {response} estrellas </p> : <p className={styles.letras}>{response}</p>}
       <Review state={handlerReviews} revi={revi}></Review>
       {boton}
       <Comments star_reviews={star_reviews} />
@@ -90,5 +114,4 @@ function Start_Revi({ data, id_User }) {
 }
 
 export default Start_Revi;
-
 
