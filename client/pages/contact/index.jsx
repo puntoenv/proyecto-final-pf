@@ -58,7 +58,7 @@ const Contact = () => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    setMessage({ name: "", email: "", msg: "" });
+    
     if (!submit) {
       const msg = await axios.post(
         `/contact-us`,
@@ -67,6 +67,7 @@ const Contact = () => {
       const succes = msg.data;
 
       if (!succes.error) {
+        
         Swal.fire({
           title: `${succes.message}. En breve te responderemos`,
           icon: "success",
@@ -93,6 +94,7 @@ const Contact = () => {
         confirmButtonAriaLabel: "#437042",
       });
     }
+    setMessage({ name: "", email: "", msg: "" });
   };
 
   return (

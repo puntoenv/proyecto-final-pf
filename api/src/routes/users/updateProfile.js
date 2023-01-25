@@ -14,7 +14,7 @@ updateProfile.put("/:id", async (req, res) => {
     let result = image && (await cloudinary.uploader.upload(image));
     let user = await User.findById(id);
     if (hidden) {
-      user.hidden === "show"
+      hidden === "show"
         ? user.hidden = false
         : (user.hidden = true);
       let data = await ejs.renderFile(path.join(__dirname + "/banned.ejs"), {

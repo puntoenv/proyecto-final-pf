@@ -235,7 +235,14 @@
   margin-left: 14rem;
 
 }
-
+.pagingTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: white;
+width: 100%;
+}
 .paginate {
   background-color: #e8eb9d;
   margin: 1rem;

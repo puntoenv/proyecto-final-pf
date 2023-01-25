@@ -53,16 +53,29 @@ export default function Detail({ data }) {
 
   const handlerAdopt = (e) => {
     e.preventDefault();
-    if (user) {
-      router.push(`/getYourPet/?pet=${data._id}&user=${userId}`);
-    } else {
+    console.log(userAuth);
+
+    if (userAuth && (!userAuth.name || userAuth.name === "")) {
       Swal.fire({
-        title: "Necesitas registrarte para realizar alguna adopción.",
-        icon: "error ",
+        title: "Necesitas configurar tu nombre para adoptar",
+        icon: "error",
         color: "#437042",
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
       });
+    } else {
+
+      if (user) {
+        router.push(`/getYourPet/?pet=${data._id}&user=${userId}`);
+      } else {
+        Swal.fire({
+          title: "Necesitas registrarte para realizar alguna adopción.",
+          icon: "error ",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        });
+      }
     }
   };
 
