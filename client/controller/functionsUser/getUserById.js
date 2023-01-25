@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUserById = async (id) => {
   const searchUser = await axios(
-    `https://proyecto-final-pf-production.up.railway.app/user/${id}`
+    `/user/${id}`
   );
   const user = await searchUser.data;
   console.log(user);

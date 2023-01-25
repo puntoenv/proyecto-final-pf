@@ -14,7 +14,7 @@ export function formatItemsMp() {
     }] */
     const payment = axios
       .post(
-        "https://proyecto-final-pf-production.up.railway.app/payment",
+        "/payment",
         productstotal
       ) //item)
       .then(

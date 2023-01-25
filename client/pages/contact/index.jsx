@@ -60,7 +60,7 @@ const Contact = () => {
     e.preventDefault();
     if (!submit) {
       const msg = await axios.post(
-        `https://proyecto-final-pf-production.up.railway.app/contact-us`,
+        `/contact-us`,
         message
       );
       const succes = msg.data;
