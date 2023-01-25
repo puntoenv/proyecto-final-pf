@@ -32,7 +32,7 @@ export const authUser = (email, name) => async (dispatch) => {
       dispatch(get_User(finded.user));
       return;
     } else {
-      const response = await axios.post(`http://localhost:3001/create-user`, {
+      const response = await axios.post(`/create-user`, {
         email,
         name,
       });
@@ -269,7 +269,7 @@ export const UpdateProduct = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios.put(
-      `http://localhost:3001/updateProduct/${id}`,
+      `/updateProduct/${id}`,
       obj
     );
     respo

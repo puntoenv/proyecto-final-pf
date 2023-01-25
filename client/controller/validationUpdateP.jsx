@@ -112,7 +112,7 @@ export const handleFiles = (event, setInput, input) => {
 export const handleAdoption = async (router, Swal, idUser) => {
   try {
     const response = await axios.get(
-      `https://proyecto-final-pf-production.up.railway.app/user/${idUser}`
+      `${process.env.NEXT_PUBLIC_URL_BACK}user/${idUser}`
     );
     if (!response.data.name || response.data.name === " ") {
       Swal.fire({
@@ -145,7 +145,7 @@ export const handleOnSubmit = async (
   try {
     setLoader(true)
     const response = await axios.put(
-      `https://proyecto-final-pf-production.up.railway.app/updateProfile/${idUser}`,
+      `/updateProfile/${idUser}`,
       input
     );
 

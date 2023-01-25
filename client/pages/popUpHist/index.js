@@ -82,7 +82,7 @@ export async function getServerSideProps({ query }) {
   try {
     const response = await (
       await fetch(
-        `https://proyecto-final-pf-production.up.railway.app/payment/${query.merchant_order_id}`
+        `${process.env.NEXT_PUBLIC_URL_BACK}payment/${query.merchant_order_id}`
       )
     ).json();
     return {
