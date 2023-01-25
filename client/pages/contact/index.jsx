@@ -58,6 +58,7 @@ const Contact = () => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
+    setMessage({ name: "", email: "", msg: "" });
     if (!submit) {
       const msg = await axios.post(
         `/contact-us`,
