@@ -31,8 +31,8 @@ router.post("/", async (req, res) => {
   let preference = {
     items: arr,
     back_urls: {
-      success: "https://proyecto-final-pf.vercel.app/popUpHist",
-      failure: "https://proyecto-final-pf.vercel.app/cart",
+      success: "http://localhost:3000/popUpHist",
+      failure: "http://localhost:3000/cart",
       pending: "",
     },
     auto_return: "approved",
@@ -179,7 +179,7 @@ console.log("mOrderVerifyn")
 
     if (merchant_order.body.id && mOrderVerify == null) {
       await axios.post(
-        `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
+        `http://localhost:3001/merchantorders`,
         merchant_order.body
       );
 
@@ -193,7 +193,7 @@ console.log("mOrderVerifyn")
           let id_product = merchant_order.body.items[i].id;
 
           await axios.put(
-            `https://proyecto-final-pf-production.up.railway.app/payment/update/${id_product}/${quantity}`
+            `http://localhost:3001/payment/update/${id_product}/${quantity}`
           ); //item)
         }
       }
