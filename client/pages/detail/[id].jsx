@@ -36,12 +36,12 @@ export default function Detail({ data }) {
   //user?.sub?.split("|").pop();
   const router = useRouter();
   const related = useSelector((state) => state.mascotas.relatedPets);
-  
+
   const [numCall, setNumCall] = useState(0);
   !numCall && user && fn(user, dispatch, setNumCall);
-  
+
   const userAuth = useSelector((state) => state.userAuth.userData);
-  const userId = userAuth && userAuth._id
+  const userId = userAuth && userAuth._id;
 
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
