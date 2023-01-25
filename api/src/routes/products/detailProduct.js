@@ -17,4 +17,22 @@ detailProduct.get("/detail/:id", async (req, res) => {
   }
 });
 
+detailProduct.get("/avg/:id", async (req, res)=> {
+  try{
+    let {id} = req.params;
+    let product = await Product.findById(id)
+    let {star_reviews} =product
+   if(!star_reviews.length){
+    return res.json("No tienes reviews")
+   }
+    let promedio =  star_reviews.reduce((a,b)=> {
+      return a += b.stars
+    },0)
+    res.json(promedio/star_reviews.length)
+  }catch(e){
+    
+  }
+})
+
+
 module.exports = detailProduct;
