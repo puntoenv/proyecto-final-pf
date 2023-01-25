@@ -28,19 +28,7 @@ const NavBar = ({ authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
   // const idUser = user?.sub.split("|")[1];
-
-  const handleAdministrator = async (idUser) => {
-    try {
-      const response = await axios.get(`/user/${idUser}`);
-      if (response.data.administrator === true) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+console.log(authUser.administrator)
 
   if (isLoading)
     return (
@@ -77,12 +65,12 @@ const NavBar = ({ authUser }) => {
             <span>Ver Mascotas</span>
           </Link>
           {
-          // administrator === true ? (
-          //   <Link className="itemNav" href="/admin">
-          //     <span>Dashboard</span>
-          //     <Image style={{borderRadius: '50%', marginLeft: '5px'}}src={user.picture} width={30} height={30}></Image>
-          //   </Link>
-          // ) : 
+          authUser.administrator === true ? (
+            <Link className="itemNav" href="/admin">
+              <span>Dashboard</span>
+              <Image style={{borderRadius: '50%', marginLeft: '5px'}}src={user.picture} width={30} height={30}></Image>
+            </Link>
+          ) : 
           user ? (
             <span className="btnPerfil" onClick={handlerClick}>
               Perfil
