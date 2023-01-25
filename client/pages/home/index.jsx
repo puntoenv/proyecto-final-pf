@@ -22,6 +22,7 @@ import CardProduct from "../../components/CardProduct";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
+   console.log(user)
     if (sub[0] === "google-oauth2") {
       dispatch(
         authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
