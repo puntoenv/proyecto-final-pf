@@ -32,7 +32,7 @@ updatePet.put("/:id", async (req, res) => {
     pet.type = type ? type : pet.type;
     pet.gender = gender ? gender : pet.gender;
     pet.location = location ? location : pet.location;
-    pet.userId = userId ? userId : pet.userId;
+    // pet.userId = userId ? userId : pet.userId;
     pet.health = health ? health : pet.health;
     pet.pregnant = pregnant ? pregnant : pet.pregnant;
     pet.sociability = sociability ? sociability : pet.sociability;
@@ -41,6 +41,7 @@ updatePet.put("/:id", async (req, res) => {
     pet.report = report ? report : pet.report;
     pet.motiveReport = motiveReport ? motiveReport : pet.motiveReport;
     let updatePet = await pet.save();
+    console.log(pet);
     res.status(200).send(updatePet);
   } catch (error) {
     res.status(400).send(error);
@@ -66,8 +67,14 @@ updatePet.put("/report/:id", async (req, res) => {
     let { motiveReport } = req.body;
     let pet = await Pet.findById(id);
     pet.report = true;
-    if (!motiveReport || motiveReport.length < 15 || motiveReport.length > 100) {
-      throw new Error("Tienes que explicar tu razón para denunciar entre 15 y 100 carácteres.");
+    if (
+      !motiveReport ||
+      motiveReport.length < 15 ||
+      motiveReport.length > 100
+    ) {
+      throw new Error(
+        "Tienes que explicar tu razón para denunciar entre 15 y 100 carácteres."
+      );
     } else {
       pet.motiveReport = motiveReport;
     }

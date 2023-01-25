@@ -45,6 +45,7 @@ export default function Detail({ data }) {
 
   useEffect(() => {
     dispatch(getPetsRelated(data._id));
+    console.log(related);
   }, []);
   console.log(data.expireAt.split("T")[0]);
   const [nImg, setNImg] = useState(0);
@@ -111,9 +112,11 @@ export default function Detail({ data }) {
             </Link>
           </div>
           <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
-          <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
-            Adoptar
-          </button>
+          {!data.hidden && (
+            <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
+              Adoptar
+            </button>
+          )}
           <div className={styles.containCardDetail}>
             <div className={styles.box}>
               <div className={styles.divSlideManual}>
@@ -262,9 +265,25 @@ export default function Detail({ data }) {
             </button>
           </div>
         </div>
+        {related.length > 0 && (
+          <h1 className={styles.titleRelated}> Mascotas Relacionados </h1>
+        )}
         <div className={styles.contentSlidePets}>
-          <Slider {...settings} className="arrowsSlides">
-            {related.slice(0, 9).map((mascota) => (
+          {related.length > 2 ? (
+            <Slider {...settings} className="arrowsSlides">
+              {related.slice(0, 9).map((mascota) => (
+                <PetsCard
+                  key={mascota._id}
+                  nombre={mascota.name}
+                  imagen={mascota.image}
+                  genero={mascota.gender}
+                  tamano={mascota.size}
+                  id={mascota._id}
+                />
+              ))}
+            </Slider>
+          ) : (
+            related.map((mascota) => (
               <PetsCard
                 key={mascota._id}
                 nombre={mascota.name}
@@ -273,8 +292,8 @@ export default function Detail({ data }) {
                 tamano={mascota.size}
                 id={mascota._id}
               />
-            ))}
-          </Slider>
+            ))
+          )}
         </div>
       </div>
     </LayoutGlobal>
