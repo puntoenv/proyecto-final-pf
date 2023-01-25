@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../components/admin/Navbar.jsx";
 import Products from "../../components/admin/Products/Products";
 import Pets from "../../components/admin/Posts/Posts";
+import Sales from "../../components/admin/Sales/Sales.jsx";
 import styles from "./admin.module.css";
 import Users from "../../components/admin/Users/Users";
 import Footer from "../../components/admin/Footer";
@@ -115,6 +116,13 @@ const Admin = withPageAuthRequired(() => {
             </button>
             <button
               className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Pets />)}
+            >
+              <ImageIcon />
+              Publicaciones
+            </button>
+            <button
+              className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Products />)}
             >
               <StorefrontIcon />
@@ -122,10 +130,10 @@ const Admin = withPageAuthRequired(() => {
             </button>
             <button
               className={styles.btn}
-              onClick={(e) => handlerOnClick(e, <Pets />)}
+              onClick={(e) => handlerOnClick(e, <Sales />)}
             >
               <ImageIcon />
-              Publicaciones
+              Ventas
             </button>
             {/* <button
                 className={styles.btn}

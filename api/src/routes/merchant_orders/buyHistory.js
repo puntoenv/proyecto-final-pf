@@ -11,7 +11,7 @@ buyHistory.get("/", async (req, res) => {
     });
     res.status(200).send(history);
   } catch (error) {
-    console.error(error);
+    console.log(error.message);
     res.status(400).send(error);
   }
 });
