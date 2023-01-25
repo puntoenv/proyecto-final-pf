@@ -3,14 +3,38 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { deleteCart } from "../../controller/buyAndStock";
+import { useDispatch, useSelector } from "react-redux";
+import { authUser } from "../../stores/actions";
+
 
 import axios from "axios";
+
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
 
 function index({ response, query }) {
   const [order, setOrder] = useState(" ");
   const router = useRouter();
   const { user } = useUser();
-  const userId = user?.sub?.split("|").pop();
+const dispatch = useDispatch();
+
+const [numCall, setNumCall] = useState(0);
+!numCall && user && fn(user, dispatch, setNumCall);
+
+const userAuth = useSelector((state) => state.userAuth.userData);
+  const userId = userAuth && userAuth._id;
+  //user?.sub?.split("|").pop();
   const { items, payments, id } = response;
 
   console.log(response);
@@ -81,7 +105,9 @@ export default index;
 export async function getServerSideProps({ query }) {
   try {
     const response = await (
-      await fetch(`http://localhost:3001/payment/${query.merchant_order_id}`)
+      await fetch(
+        `${process.env.NEXT_PUBLIC_URL_BACK}payment/${query.merchant_order_id}`
+      )
     ).json();
     return {
       props: {

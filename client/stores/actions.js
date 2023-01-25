@@ -32,7 +32,7 @@ export const authUser = (email, name) => async (dispatch) => {
       dispatch(get_User(finded.user));
       return;
     } else {
-      const response = await axios.post(`http://localhost:3001/create-user`, {
+      const response = await axios.post(`/create-user`, {
         email,
         name,
       });
@@ -69,14 +69,12 @@ export const getmuni = (municipios) => async (dispatch) => {
 export const PutReview = async (obj, id) => {
   try {
     //console.log(id)
-    const res = axios
-      .put(`http://localhost:3001/updateProduct/reviews/${id}`, obj)
-      .then((response) => {
-        console.log("Update SUCCESS!");
-      });
-    return res;
-  } catch (error) {
-    console.log(error);
+    const res = axios.put(`/updateProduct/reviews/${id}`,obj).then((response) => {
+      console.log("Update SUCCESS!");
+    });
+  return res;
+  }catch(error){
+     console.log(error)
   }
 };
 
@@ -84,7 +82,7 @@ export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {
     const respo = await axios
-      .put(`http://localhost:3001/updatePet/delete/${id}`, obj)
+      .put(`/updatePet/delete/${id}`, obj)
       .then((response) => {
         console.log("Update SUCCESS!");
       });
@@ -271,7 +269,7 @@ export const UpdateProduct = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios.put(
-      `http://localhost:3001/updateProduct/${id}`,
+      `/updateProduct/${id}`,
       obj
     );
     respo

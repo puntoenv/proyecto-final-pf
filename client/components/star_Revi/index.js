@@ -1,5 +1,5 @@
 import Review from "../Reviews";
-import Punctuation from "../Punctuation";
+import Punctuation from "../punctuation";
 import { PutReview } from "../../stores/actions";
 import { useState } from "react";
 import styles from "./styles.module.css";

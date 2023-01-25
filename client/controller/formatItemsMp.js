@@ -13,7 +13,10 @@ export function formatItemsMp() {
         price:total,
     }] */
     const payment = axios
-      .post("http://localhost:3001/payment",productstotal) //item)
+      .post(
+        "/payment",
+        productstotal
+      ) //item)
       .then(
         (res) => (window.location.href = res.data.response.body.init_point)
       );
@@ -29,7 +32,7 @@ export function formatOneItemMP(products) {
   if (products){
         const payment = axios
           .post(
-            "http://localhost:3001/payment",
+            "https://proyecto-final-pf-production.up.railway.app/payment",
             products
           )
           .then(
