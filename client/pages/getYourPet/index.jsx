@@ -95,7 +95,7 @@ export default function getYourPet({ pet }) {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-    dispatch(adoptPet(pet._id, { hidden: true }, userId));
+    dispatch(adoptPet(pet._id, { hidden: "hide" }, userId));
     console.log(pet);
     return router.push("/home");
   };

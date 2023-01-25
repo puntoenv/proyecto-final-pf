@@ -16,12 +16,24 @@ import {
   typesGet,
 } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
-
+import {getSales} from "./sales"
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+export const sales = ()=> async (dispatch)=>{
+  try {
+    let allSales = await axios("/buyHistory");
+    dispatch(getSales(allSales.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
 
 export const authUser = (email, name) => async (dispatch) => {
   try {
@@ -84,7 +96,7 @@ export const PutPets = async (id, obj) => {
   //console.log(id, obj);
   try {
     const respo = await axios
-      .put(`/updatePet/delete/${id}`, obj)
+      .put(`/updatePet/${id}`, obj)
       .then((response) => {
         console.log("Update SUCCESS!");
       });
@@ -335,9 +347,7 @@ export const updateUser = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios.put(
-      `http://localhost:3001/updateProfile/${id}`,
-      obj
-    );
+      `http://localhost:3001/updateProfile/${id}`, obj);
     respo
       ? Swal.fire({
           title: "Usuario editado con éxito",
@@ -347,6 +357,7 @@ export const updateUser = async (id, obj) => {
           confirmButtonAriaLabel: "#437042",
         })
       : null;
+      console.log(respo);
     return respo;
   } catch (e) {
     console.log(e);
