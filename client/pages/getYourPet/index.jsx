@@ -33,14 +33,14 @@ const fn = (user, dispatch, setNumCall) => {
   setNumCall(1);
 };
 
-export default function getYourPet({ pet, user }) {
-
+export default function getYourPet({ pet }) {
+const {user} = useUser()
   const dispatch = useDispatch();
 
   const [numCall, setNumCall] = useState(0);
   !numCall && user && fn(user, dispatch, setNumCall);
-
   const userAuth = useSelector((state) => state.userAuth.userData);
+  const userId = userAuth && userAuth._id
   const router = useRouter();
   const [boolean, setBoolean] = useState(true);
   const [input, setInput] = useState({});
@@ -96,7 +96,7 @@ export default function getYourPet({ pet, user }) {
       confirmButtonColor: "#437042",
       confirmButtonAriaLabel: "#437042",
     });
-    await axios.get(`/adoptEmail/?petId=${pet._id}&userId=${user._id}`);
+    await axios.get(`/adoptEmail/?petId=${pet._id}&userId=${userId}`);
     return router.push("/home");
   };
 
@@ -155,7 +155,7 @@ export default function getYourPet({ pet, user }) {
                   height={300}
                 />
               </div>
-              <p>Hola {capitalize(user.name) || user.email}</p>
+              <p>Hola {capitalize(userAuth?.name) || userAuth?.email}</p>
               <p className={styles.p}>
                 Tu familia está a punto de crecer. Estamos muy felices de que te
                 hayas interesado en adoptar a {capitalize(pet.name)}. Cada vez
@@ -283,11 +283,11 @@ export async function getServerSideProps({ query }) {
     const pet = await axios
       .get(`/pets/detail/${query.pet}`)
       .then((response) => response.data);
-    const user = await axios
-      .get(`/user/${query.user}`)
-      .then((response) => response.data);
+    // const user = await axios
+    //   .get(`/user/${query.user}`)
+    //   .then((response) => response.data);
 
-    return { props: { pet, user } };
+    return { props: { pet } };
   } catch (err) {
     return console.log(err);
   }

@@ -37,8 +37,8 @@ router.post("/", async (req, res) => {
     },
     auto_return: "approved",
 
-    notification_url:
-      "https://proyecto-final-pf-production.up.railway.app/payment/buyNotification",
+    // notification_url:
+    //   "https://proyecto-final-pf-production.up.railway.app/payment/buyNotification",
   };
 
   mercadopago.preferences
