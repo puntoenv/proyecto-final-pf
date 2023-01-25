@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
     auto_return: "approved",
 
     notification_url:
-      "https://proyecto-final-pf-production.up.railway.app/payment/buynotification",
+      "https://proyecto-final-pf-production.up.railway.app/payment/buyNotification",
   };
 
   mercadopago.preferences
@@ -175,28 +175,32 @@ console.log(mOrderVerify)
 console.log("mOrderVerifyn")
 console.log("mOrderVerifyn")
 */
-    const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
+const mOrderVerify= await Merchant_orders.findOne({id:idMo})
+   
+if (merchant_order.body.id && mOrderVerify==null){
+  await axios.post(`http://localhost:3001/merchantorders`,merchant_order.body);
 
-    if (merchant_order.body.id && mOrderVerify == null) {
-      await axios.post(
-        `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
-        merchant_order.body
-      );
 
-      if (
-        merchant_order.body.payments[0].status == "approved" &&
-        merchant_order.body.payments[0].status_detail == "accredited"
-      ) {
-        for (let i = 0; i < merchant_order.body.items.length; i++) {
-          let quantity = merchant_order.body.items[i].quantity;
-
-          let id_product = merchant_order.body.items[i].id;
-
-          await axios.put(
-            `https://proyecto-final-pf-production.up.railway.app/payment/update/123/${id_product}/${quantity}`
-          ); //item)
-        }
-      }
+      if (merchant_order.body.payments[0].status=='approved'&&merchant_order.body.payments[0].status_detail=='accredited') {
+        
+      
+    
+      
+     
+    for (let i = 0; i < merchant_order.body.items.length; i++) {
+  
+  let quantity=merchant_order.body.items[i].quantity
+   
+     let id_product=merchant_order.body.items[i].id
+  
+     await axios.put(`http://localhost:3001/payment/update/123/${id_product}/${quantity}`) //item)
+       }
+      
+      
+      
+      
+     }
+     
     }
     /*
 console.log("merchant_order")
@@ -206,10 +210,17 @@ console.log("merchant_order")
 console.log("merchant_order")
 */
 
-    res.send.status(200);
-  } catch (error) {
-    res.send.status(400);
-  }
-});
+res.sendStatus(200);
+} catch (error) {
+  res.sendStatus(404);
+}
+
+
+
+
+})
+
+
+
 
 module.exports = router;
