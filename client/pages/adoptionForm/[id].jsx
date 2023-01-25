@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
+import { authUser } from "../../stores/actions";
 import styles from "./style.module.css";
 import style from "../../components/Profile/Loading.module.css";
 import { getper, getmuni, PostAdop } from "../../stores/actions";
@@ -27,15 +28,32 @@ for (let i = 0; i <= 40; i++) {
   ages.push(i);
 }
 
+const fn = (user, dispatch, setNumCall) => {
+  if (user) {
+    const sub = user.sub.split("|");
+    if (sub[0] === "google-oauth2") {
+      dispatch(
+        authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
+      );
+    } else {
+      dispatch(authUser(user.name, null));
+    }
+  }
+  setNumCall(1);
+};
+
 export function form(props) {
   const { isLoading, user } = useUser();
+  const dispatch = useDispatch();
+
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
 
   const userAuth = useSelector((state) => state.userAuth.userData);
+
   const idUser = userAuth._id;
 
-  // const idUser = user?.sub.split("|")[1];
   const router = useRouter();
-  const dispatch = useDispatch();
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
@@ -48,22 +66,6 @@ export function form(props) {
   const handlerCoords = (coords) => {
     handleLocation(post, setPost, coords);
   };
-
-  // const handleLoader = (event) => {
-  //   event.preventDefault()
-  //   return (
-  //     <ThreeDots
-  //       height="80"
-  //       width="80"
-  //       radius="9"
-  //       color="#4fa94d"
-  //       ariaLabel="three-dots-loading"
-  //       wrapperStyle={{}}
-  //       wrapperClassName=""
-  //       visible={true}
-  //     />
-  //   );
-  // }
 
   useEffect(() => {
     dispatch(getper()).then((_) => console.log(provi));
