@@ -8,9 +8,12 @@ import {
   hanldeOnChange,
   handleOnSubmit,
 } from "../../controller/validationUpdateP";
+import { useSelector } from "react-redux";
 
 function Profile({ data, response }) {
   const { isLoading, user } = useUser();
+  const userAuth = useSelector((state) => state.userAuth.userData);
+
   return (
     <>
       <div className={style.container}>
@@ -23,6 +26,7 @@ function Profile({ data, response }) {
             handleOnSubmit={handleOnSubmit}
             user={user}
             isLoading={isLoading}
+            authUser={userAuth}
           ></Perfil>
         </div>
       </div>

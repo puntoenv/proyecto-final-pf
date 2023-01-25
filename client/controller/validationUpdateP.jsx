@@ -110,7 +110,6 @@ export const handleFiles = (event, setInput, input) => {
 };
 
 export const handleAdoption = async (router, Swal, idUser) => {
-  console.log(idUser);
   try {
     const response = await axios.get(`http://localhost:3001/user/${idUser}`);
     if (!response.data.name || response.data.name === " ") {
