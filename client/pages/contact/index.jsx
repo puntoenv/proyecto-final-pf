@@ -58,8 +58,12 @@ const Contact = () => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
+    setMessage({ name: "", email: "", msg: "" });
     if (!submit) {
-      const msg = await axios.post(`http://localhost:3001/contact-us`, message);
+      const msg = await axios.post(
+        `/contact-us`,
+        message
+      );
       const succes = msg.data;
 
       if (!succes.error) {

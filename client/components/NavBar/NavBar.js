@@ -25,7 +25,7 @@ const NavBar = ({ authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
   // const idUser = user?.sub.split("|")[1];
-  console.log(authUser.administrator);
+//console.log(authUser.administrator)
 
   if (isLoading)
     return (

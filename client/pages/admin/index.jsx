@@ -49,7 +49,9 @@ const Admin = withPageAuthRequired(() => {
   const { data: dbUser, isLoading } = useQuery(["user", id], () =>
     getUserById(id)
   );
+  
 
+  //user.hidden ? console.log("prohibido") : console.log("activo");
   useEffect(() => {
     if (!isLoading && dbUser.administrator === false) {
       Swal.fire({
