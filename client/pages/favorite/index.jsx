@@ -1,9 +1,10 @@
+import React from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from "react";
+import { useState } from "react";
 import { authUser } from "../../stores/actions";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";

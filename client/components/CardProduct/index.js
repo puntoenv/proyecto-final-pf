@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
 import { BsCartDashFill, BsCartPlusFill } from "react-icons/bs";
+import React from "react";
 
 export default function CardProduct({ info, addToCart, cart, discountItem, productOfCart }) {
   const { user } = useUser();
