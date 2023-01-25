@@ -112,6 +112,7 @@ const fn = (user, dispatch, setNumCall) => {
             />
           </div>
           <Nosotros />
+          {/* COMPONENTE MAS GRANDE CARRUSEL: CONTAINSLIDER */}
           <div className={styles.containSlider}>
             <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
             <button className={styles.buttonRoute}>

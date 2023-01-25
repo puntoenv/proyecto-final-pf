@@ -90,6 +90,12 @@
   margin: 70px 0;
   padding: 20px;
   width: 60%;
+  background-color: red;
+}
+@media(max-width:740){
+  .boxInfoNosotros{
+    font-size: 10px;
+  }
 }
 
 .infoAdopcion {
