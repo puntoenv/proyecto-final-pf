@@ -269,10 +269,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
                     <button
-                      className={styles.btn}
+                      className={styles.corazon}
                       onClick={(e) => handlerFavorite(e, mascota)}
                     >
-                      Favorito
+                      ♡
                     </button>
                   </div>
                 );

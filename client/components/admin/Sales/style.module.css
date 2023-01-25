@@ -1,0 +1,58 @@
+.posts{
+    margin-top: 4.5em;
+    margin-left: 10em;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+    font-weight: 600;
+    color: rgb(54, 54, 54);
+    width: fit-content
+}
+
+
+.red{
+    background: rgba(229, 8, 8, 0.43);
+    padding: 0px 12px;
+    border-radius: 50px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.green{
+    background: rgba(0, 151, 0, 0.437);
+    padding: 0px 12px;
+    border-radius: 50px;
+    border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+   
+}
+.icon{
+  
+    margin-left: -7.5px;
+    margin-right: 1.5px;
+}
+.iconOff{
+    
+    margin-left: -7.5px;
+    margin-right: 1px;
+}
+
+.active{
+   color: rgb(38, 95, 38);
+   font-weight: 600;
+   margin-top: 1.5px;
+   margin-right: -5px;
+   font-size: 12px;
+}
+
+.blocked{
+    color: rgba(214, 18, 18, 0.993);
+    font-weight: 600;
+    margin-top: 1.5px;
+    margin-right: -6px;
+   
+    font-size: smaller;
+}
