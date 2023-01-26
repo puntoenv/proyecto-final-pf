@@ -10,7 +10,7 @@ import { formatItemsMp } from "../../controller/formatItemsMp";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { BsFillTrashFill } from "react-icons/bs";
-
+import HistoryVacio from "../../components/CompoRelle"
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
@@ -87,7 +87,8 @@ export default function Cart({
         <div>
           <div className={styles.big_container}>
             {cart.length === 0 ? (
-              <p className={styles.carritoVacio}> Carrito vacio </p>
+              
+              <div className={styles.carritoVacio}> <HistoryVacio/> </div>
             ) : (
               cart?.map((product, index) => (
                 <CardProduct
@@ -117,7 +118,7 @@ export default function Cart({
               {user ? (
                 <button
                   className={styles.btn}
-                  onClick={(e) => formatItemsMp(total)}
+                  onClick={(e) => formatItemsMp(userAuth, Swal)}
                 >
                   Finalizar Compra
                 </button>
