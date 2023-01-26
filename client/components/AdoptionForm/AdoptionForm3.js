@@ -101,14 +101,21 @@ const AdoptionForm2 = ({
             id="image"
           ></input>
         </label>
-        <span style={{ textAlign: "center" }}>
+        <span style={{ textAlign: "center", fontSize: 14 }}>
           {post.image && post.image.length !== 0 && (
             <>
               {post.image.map((img, i) => (
                 <p>{img.slice(0, 20) + "..."}</p>
               ))}
               <span
-                style={{ fontSize: 18, cursor: "pointer" }}
+                style={{
+                  fontSize: 14,
+                  cursor: "pointer",
+                  background: "#e74",
+                  padding: "5px",
+                  borderRadius: "10px",
+                  margin: "10px",
+                }}
                 onClick={() =>
                   setPost({
                     ...post,

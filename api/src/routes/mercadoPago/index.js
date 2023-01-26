@@ -5,7 +5,7 @@ const Merchant_orders = require("../../models/Merchant_orders");
 const router = Router();
 const mercadopago = require("mercadopago");
 require("dotenv").config();
-var axios = require("axios");
+const axios = require("axios");
 
 //configuracion de credenciales de mercado pago
 
@@ -37,8 +37,7 @@ router.post("/", async (req, res) => {
     },
     auto_return: "approved",
 
-    // notification_url:
-    //   "https://proyecto-final-pf-production.up.railway.app/payment/buyNotification",
+    //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
   };
 
   mercadopago.preferences
@@ -78,21 +77,9 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
     let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-    // const stockTT = product.stock;
 
-    //let user = await User.findById(id_user);
-    /* console.log(quantity)
-        console.log("esto es quantity")
-        console.log(quantity)
-    */
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    // let stockT = stockTT;
-
-    // let quantityT = stockT - quantity;
-    /*console.log (product.stock)    
-    console.log("esto es product.stock")
-    console.log (product.stock) */
 
     product.name = name ? name : product.name;
     product.description = description ? description : product.description;
@@ -100,18 +87,6 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
     product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
     product.stock = product.stock - quantity;
     product.category = category ? category : product.category;
-
-    /*
-        console.log (quantityT)    
-        console.log("esto es quantityT")
-        console.log (quantityT) 
-        console.log(quantity)
-        console.log("esto es quantity")
-        console.log(quantity)
-        console.log (product.stock)    
-        console.log("esto es product.stock despues")
-        console.log (product.stock) 
-*/
 
     let save = await product.save();
     console.log(save);
@@ -121,60 +96,12 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   }
 });
 
-router.post("/buyNotification", async (req, res) => {
+router.post("/buyNotification/:idMo", async (req, res) => {
   try {
-    const { query } = req;
-    const topic = query.topic;
-    const idMo = query.id;
-    res.send();
-    var merchant_order;
+    const { idMo } = req.params;
 
-    switch (topic) {
-      case "payment":
-        const paymentId = query.id;
-        //console.log(topic, "geting payment",paymentId);
-        const payment = await mercadopago.merchant_orders.findById(
-          paymentId.body.order.id
-        );
-        merchant_order = await mercadopago.merchant_orders.findById(
-          payment.body.order.id
-        );
-        //console.log(payment)
-        break;
-      case "merchant_order":
-        const orderId = query.id;
-        merchant_order = await mercadopago.merchant_orders.findById(orderId);
-      default:
-        break;
-    }
+    const merchant_order = await mercadopago.merchant_orders.findById(idMo);
 
-    /*
-
-console.log("notificac;ion");
-console.log("notifica;cion");
-console.log(merchant_order.body);
-console.log("notificacion");
-console.log("notificacion");
-console.log(query);*/
-
-    /*
-
-console.log("merchant_order")
-console.log(merchant_order.body)
-console.log("merchant_order")
-console.log("notificacion")
-console.log(idMo)
-console.log("notificacion")
-*/
-
-    /* 
-console.log("mOrderVerifyn")
-console.log("mOrderVerifyn")
-console.log(mOrderVerify)
-console.log(mOrderVerify)
-console.log("mOrderVerifyn")
-console.log("mOrderVerifyn")
-*/
     const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
 
     if (merchant_order.body.id && mOrderVerify == null) {
@@ -194,21 +121,14 @@ console.log("mOrderVerifyn")
 
           await axios.put(
             `http://localhost:3001/payment/update/${id_product}/${quantity}`
-          ); //item)
+          );
         }
       }
     }
-    /*
-console.log("merchant_order")
-console.log("merchant_order")
-console.log(merchant_order)
-console.log("merchant_order")
-console.log("merchant_order")
-*/
 
-    res.sendStatus(200);
+    res.status(200);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(404);
   }
 });
 
