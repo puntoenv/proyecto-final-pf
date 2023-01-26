@@ -135,11 +135,11 @@
 width: 100%;
 height: 1000px;
 }
-@media(max-width:1500px){
+/* @media(max-width:1500px){
   .land{
     height: 850px;
   }
-}
+} */
 
 @media screen and (max-width: 1300px) {
   .img2 {
