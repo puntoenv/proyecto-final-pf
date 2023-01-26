@@ -306,3 +306,11 @@
   text-align: center;
   margin: 20px;
 }
+
+.my {
+  color: #415d43;
+  font-size: 35px;
+  font-weight: 500;
+  /* display: flex; */
+  /* justify-content: center; */
+}
