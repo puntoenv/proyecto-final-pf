@@ -6,6 +6,22 @@
   margin-top: -5em;
   position: relative;
 }
+@media(max-width:910px){
+  .home{
+    margin-top:40px;
+  }
+}
+
+@media(max-width:830px){
+  .home{
+    margin-top:90px;
+  }
+}
+@media(max-width:600px){
+  .home{
+    margin-top:130px;
+  }
+}
 .link {
   font-size: 12px;
   position: relative;
@@ -77,23 +93,46 @@
 }
 .kitten {
   position: relative;
-  margin-right: 100px;
-  height: 500px;
+  margin-right: 0px;
+  height: 450px;
   z-index: 1901;
-  width: 500px;
+  width: 450px;
 }
-@media(max-width:740px){
+@media(max-width:910px){
+  .kitten{
+    height: 310px;
+    width: 310px;
+    margin-right: 90px;
+    margin-right: 40px;
+  }
+}
+/* @media(max-width:830px){
   .kitten{
     height: 230px;
     width: 230px;
     margin-right: 90px;
+  }
+} */
+
+@media(max-width:740px){
+  .kitten{
+    height: 230px;
+    width: 230px;
+    margin-right: 10px;
   }
 }
 @media(max-width:530px){
   .kitten{
     height: 150px;
     width: 150px;
-    margin-right: 90px;
+    margin-right: 10px;
+  }
+}
+@media(max-width:430px){
+  .kitten{
+    height: 150px;
+    width: 150px;
+    margin-right: 1px;
   }
 }
 .infoNosotros {
