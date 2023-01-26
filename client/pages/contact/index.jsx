@@ -11,6 +11,7 @@ import {
   validationMsg,
 } from "../../controller/ContactUs/validations";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import { GrInstagram } from "react-icons/gr";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -58,16 +59,12 @@ const Contact = () => {
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!submit) {
-      const msg = await axios.post(
-        `/contact-us`,
-        message
-      );
+      const msg = await axios.post(`/contact-us`, message);
       const succes = msg.data;
 
       if (!succes.error) {
-        
         Swal.fire({
           title: `${succes.message}. En breve te responderemos`,
           icon: "success",
@@ -110,6 +107,13 @@ const Contact = () => {
               formulario
             </p>
             <div className={s.logoPaw}></div>
+            <a
+              target={"_blank"}
+              className={s.hrefInsta}
+              href="https://www.instagram.com/pets_littlepaws/"
+            >
+              <GrInstagram className={s.iconInsta}></GrInstagram>
+            </a>
           </div>
           <form action="" className={s.formContact} onChange={handlerChange}>
             <label name="name" className={s.labelName}>

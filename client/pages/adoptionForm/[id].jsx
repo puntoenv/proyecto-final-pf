@@ -89,7 +89,7 @@ export function form(props) {
                   <p className={styles.tips}>
                     - En el campo de contacto si no quieres ingresar tu número
                     telefónico puedes ingresar el <b>link</b> de alguna de tus
-                    redes sociales
+                    redes sociales como Facebook o Instagram.
                   </p>
                 </div>
                 <div className={styles.divTips}>
@@ -97,7 +97,13 @@ export function form(props) {
                     - Recomendamos que por tu seguridad y evitar malas
                     experiencias no ingresar tu ubicación exacta, puedes poner
                     un lugar de referencia que tengas cerca, un lugar público
-                    como una plaza o un parque por ejemplo
+                    como una plaza o un parque por ejemplo.
+                  </p>
+                </div>
+                <div className={styles.divTips}>
+                  <p className={styles.tips}>
+                    - Si la mascota necesita atencion médica por favor informalo
+                    y describelo en su campo correspondiente.
                   </p>
                 </div>
               </div>

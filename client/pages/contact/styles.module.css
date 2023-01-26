@@ -37,8 +37,20 @@
   padding: 60px 0;
   height: 100%;
   margin: 0 30px;
-
-  /* border-bottom: 3px solid #777; */
+}
+.hrefInsta {
+  display: flex;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #f48044;
+}
+.hrefInsta:hover {
+  background-color: #e1306c;
+}
+.iconInsta {
+  color: #fff;
+  font-size: 28px;
 }
 
 .logoPaw {

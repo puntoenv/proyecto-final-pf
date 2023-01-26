@@ -8,7 +8,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 //configuracion de credenciales de mercado pago
- 
+
 router.post("/", async (req, res) => {
   // Agrega credenciales
   mercadopago.configure({
@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
     },
     auto_return: "approved",
 
-     //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
+    //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
   };
 
   mercadopago.preferences
@@ -77,11 +77,9 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
     let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-   
-    
+
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    
 
     product.name = name ? name : product.name;
     product.description = description ? description : product.description;
@@ -89,8 +87,6 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
     product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
     product.stock = product.stock - quantity;
     product.category = category ? category : product.category;
-
-   
 
     let save = await product.save();
     console.log(save);
@@ -100,15 +96,15 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   }
 });
 
-router.post("/buyNotification/:idMo",async (req,res) => {
+router.post("/buyNotification/:idMo", async (req, res) => {
   try {
-    const {idMo} = req.params;
-   
+    const { idMo } = req.params;
+
     const merchant_order = await mercadopago.merchant_orders.findById(idMo);
-      
+
     const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
 
-    if (merchant_order.body.id && mOrderVerify == null ) {
+    if (merchant_order.body.id && mOrderVerify == null) {
       await axios.post(
         `http://localhost:3001/merchantorders`,
         merchant_order.body
@@ -125,16 +121,14 @@ router.post("/buyNotification/:idMo",async (req,res) => {
 
           await axios.put(
             `http://localhost:3001/payment/update/${id_product}/${quantity}`
-          ); 
+          );
         }
       }
     }
-   
 
-
-    sendStatus(200);
+    res.status(200);
   } catch (error) {
-    sendStatus(404);
+    res.status(404);
   }
 });
 
