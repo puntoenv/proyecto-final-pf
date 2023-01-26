@@ -56,6 +56,12 @@
   align-items: center;
   margin: 12px;
 }
+/* @media(max-width:614px){
+  .name{
+    font-size: 10px;
+    color: red;
+  }
+} */
 .selectCant {
   width: 25%;
   margin: 20px;

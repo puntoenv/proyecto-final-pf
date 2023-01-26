@@ -6,15 +6,15 @@
   flex-wrap: wrap;
 }
 
-@media(max-width:790px){
+/* @media(max-width:790px){
   .mainContainer{
     flex-direction: column; 
     display: flex;
     width: 300px;
-    /* flex-wrap: wrap-reverse; */
+    /* flex-wrap: wrap-reverse; 
 
   }
-}
+} */
 
 .backImage {
   border-left: 2px solid #022902;
@@ -126,8 +126,28 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+@media(max-width:780px){
+  .info{
+    flex-direction: column; 
+    display: flex;
+   
+    /* flex-wrap: wrap-reverse; */
+
+  }
+}
 .info>p{
   width: 15rem;
+}
+@media(max-width:780px){
+  .p{
+    flex-direction: column; 
+    display: flex;
+    width: 10rem;
+   
+    /* flex-wrap: wrap-reverse; */
+
+  }
 }
 
 .info > p > p {

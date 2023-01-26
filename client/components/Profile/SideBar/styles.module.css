@@ -1,11 +1,17 @@
 .navBarcontainer {
   position: fixed;
   right: 0;
-  width: 250px;
+  width: 200px;
   height: 100%;
   background-color: #38593a;
   box-shadow: 0px 0px 6px 3px rgba(19, 31, 17, 0.486);
   color: aliceblue;
+}
+@media(max-width:780px){
+  .navBarcontainer{
+    width: 150px;
+
+  }
 }
 
 .wrapper {
@@ -56,6 +62,15 @@
   display: flex;
   align-items: center;
 }
+@media(max-width:780px){
+  .wrapper > ul > .li > li {
+    font-size: 13px;
+   
+    /* flex-wrap: wrap-reverse; */
+
+  }
+}
+
 
 .link > li {
   display: flex;
@@ -63,6 +78,14 @@
 }
 .link a {
   color: rgb(255, 255, 255);
+}
+@media(max-width:780px){
+  .a{
+    font-size: 13px;
+   
+    /* flex-wrap: wrap-reverse; */
+
+  }
 }
 
 .link {
@@ -109,6 +132,12 @@
   display: flex;
   align-items: center;
 }
+@media(max-width:780px){
+  .wrapper > ul > .liLogout > li{
+    font-size: 13px;
+
+  }
+}
 
 .wrapper > ul > .icon > a {
   border-bottom: none;
@@ -120,12 +149,20 @@
   align-items: center;
   gap: 10px;
 }
+@media(max-width:780px){
+  .wrapper > ul > .icon > a{
+    font-size: 13px;
+
+  }
+}
 .wrapper > ul > .icon > a:hover {
   border-bottom: none;
   background: none;
   font-size: 25px;
   color: rgb(230, 221, 215);
 }
+
+
 
 .iconSize {
   color: aliceblue;
