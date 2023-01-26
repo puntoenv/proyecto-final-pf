@@ -5,7 +5,7 @@ import Pets from "../../components/admin/Posts/Posts";
 import Sales from "../../components/admin/Sales/Sales.jsx";
 import styles from "./admin.module.css";
 import Users from "../../components/admin/Users/Users";
-import Footer from "../../components/admin/Footer";
+import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
@@ -20,7 +20,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import ImageIcon from "@mui/icons-material/Image";
-import Pie from "../../components/admin/Charts/Pie.jsx";
+import Charts from "../../components/admin/Charts/Charts.jsx";
 import ProductsPie from "../../components/admin/Charts/ProductsPie.jsx";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { RiLogoutBoxLine } from "react-icons/ri";
@@ -80,7 +80,7 @@ const Admin = withPageAuthRequired(() => {
 
   useEffect(() => {
     {
-      setRender( <ProductsPie />);
+      setRender( <Charts />);
     }
   }, []);
 
@@ -94,7 +94,7 @@ const Admin = withPageAuthRequired(() => {
         <div>
           <section>{Render}</section>
         </div>
- {/* SIDEBAR = SIDEBAR */}
+ 
         <div className={styles.sidebar}>
           <Link href={"/home"} className="logo">
             <Image
@@ -109,6 +109,13 @@ const Admin = withPageAuthRequired(() => {
             <p className="text-gray-400 dark:text-gray-400 m-1 mt-32 uppercase">
               Dashboard
             </p>
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Charts />)}
+            >
+              <ShowChartIcon />
+              Gráficos
+            </button>
             <button
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Products />)}
@@ -145,15 +152,16 @@ const Admin = withPageAuthRequired(() => {
               Denuncias
             </button>
            
-              <button  className={styles.logOut}>
+              <button className={styles.logOut}>
               <RiLogoutBoxLine size={25}></RiLogoutBoxLine>
               <a href="/api/auth/logout">Cerrar sesión</a>
               </button>
+              
           </div>
         </div>
       </div>
-      {/* 
-      <Footer /> */}
+      
+    
     </div>
   );
 });
