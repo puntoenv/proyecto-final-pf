@@ -23,18 +23,6 @@
  
 }
 
-/* .lp{
-font-family:'Calibri';
-font-weight: 600;
-font-size: 25px;
-margin-top: -110px;
-margin-left: 20px;
-position: fixed;
-z-index: 5001;
-color: white;
-
-} */
-
 
 
 .img{
@@ -98,28 +86,32 @@ color: white;
 }
 
 .bar{
-  margin-left:18.50em
+  margin-left:18.50em;
+  margin-bottom: 4em
 }
 
 .rend{
   font-size: 2em;
   margin-left: 22em;
-  margin-top: 5em;
+  margin-top: 4em;
   margin-bottom: 1.06em;
   width: fit-content;
   font-weight: 900;
-  color: rgb(94, 93, 93);
+  color: rgba(54, 54, 54, 0.893);
 }
 
-.calend{
-  font-size: 2em;
-  margin-left: 27.35em;
-  margin-top: -16.60em;
-  margin-bottom: 1.06em;
-  width: fit-content;
-  font-weight: 900;
-  color: rgb(94, 93, 93);
+.type{
 
+  font-weight: 900;
+  font-size: 2em;
+  margin-left: 28em;
+  color: rgba(54, 54, 54, 0.893);
+  margin-top: -15.5em;
+}
+.sync{
+  background: transparent;
+margin-top: 1em;
+margin-left: 55em;
 }
 
 .logo {
@@ -131,7 +123,7 @@ color: white;
 }
 
 .logOut{
-  margin-top: 12.5em;
+  margin-top: 10em;
   margin-left: -1em;
   display: flex;
   flex-direction: row;
@@ -173,3 +165,6 @@ color: white;
   margin: 2.5rem;
   padding: 2.5rem;
 } }
+
+
+
