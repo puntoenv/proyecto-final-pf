@@ -138,7 +138,7 @@ color: white;
   position:fixed;
   width: 15em;
   top: 0px;
-  height: 50em;
+  height: 100vh;
   display: flex;  
   z-index: 5000;
   background: #2c4229;
