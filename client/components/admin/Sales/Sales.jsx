@@ -120,29 +120,14 @@ export default function Sales() {
     []
   );
 
-  const handleHide = async () => {
-    try {
-      const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "hide" });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleShow = async () => {
-    try {
-      const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "show" });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
 
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
-        <GridToolbarColumnsButton sx={{ color: "#574c3d" }} />
-        <GridToolbarFilterButton sx={{ color: "#574c3d" }} />
-        <GridToolbarDensitySelector sx={{ color: "#574c3d" }} />
+        <GridToolbarColumnsButton sx={{ color: "#574c3d", fontSize:15 }}  /> 
+        <GridToolbarFilterButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarDensitySelector sx={{ color: "#574c3d", fontSize:15 }} />
       </GridToolbarContainer>
     );
   }
