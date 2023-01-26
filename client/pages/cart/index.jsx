@@ -117,7 +117,7 @@ export default function Cart({
               {user ? (
                 <button
                   className={styles.btn}
-                  onClick={(e) => formatItemsMp(total)}
+                  onClick={(e) => formatItemsMp(userAuth, Swal)}
                 >
                   Finalizar Compra
                 </button>
