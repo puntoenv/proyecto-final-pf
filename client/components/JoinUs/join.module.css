@@ -71,6 +71,31 @@
   width: 10em;
   height: 10em;
 }
+@media(max-width:950px){
+  .cat{
+    width: 9em;
+    height: 9em;
+ top: -150px;
+  }
+}
+
+@media(max-width:650px){
+  .cat{
+    width: 8em;
+    height: 8em;
+    top: -150px;
+  
+  }
+}
+
+@media(max-width:515px){
+  .cat{
+    width: 7em;
+    height: 7em;
+    top: -130px;
+ 
+  }
+}
 
 .icon {
   margin: auto;

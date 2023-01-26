@@ -114,6 +114,20 @@
   font-size: 20px;
   }
 }
+
+@media(max-width:650px){
+  .name{
+    font-size: 17px;
+    margin-top: 15px;
+  }
+}
+
+@media(max-width:515px){
+  .name{
+    font-size: 13px;
+    margin-top: 15px; 
+  }
+}
 .gender {
   font-size: 20px;
   display: flex;
@@ -123,6 +137,18 @@
 @media(max-width:950px){
   .gender{
   font-size: 18px;
+  }
+}
+
+@media(max-width:650px){
+  .gender{
+    font-size: 15px;
+  }
+}
+
+@media(max-width:515px){
+  .gender{
+    font-size: 12px;
   }
 }
 
@@ -145,6 +171,23 @@
   width: 140px;
   }
 }
+
+@media(max-width:650px){
+  .btn{
+    font-size: 14px;
+  height: 30px;
+  width: 110px;
+  }
+}
+
+@media(max-width:515px){
+  .btn{
+    font-size: 13px;
+  height: 27px;
+  width: 90px;
+  }
+}
+
 .btn:hover {
   color: beige;
   border: none;
