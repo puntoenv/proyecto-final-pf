@@ -31,13 +31,13 @@ router.post("/", async (req, res) => {
   let preference = {
     items: arr,
     back_urls: {
-      success: "http://localhost:3000/popUpHist",
-      failure: "http://localhost:3000/cart",
+      success: "https://proyecto-final-pf.vercel.app/popUpHist",
+      failure: "https://proyecto-final-pf.vercel.app/cart",
       pending: "",
     },
     auto_return: "approved",
 
-     //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
+    //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
   };
 
   mercadopago.preferences
@@ -110,7 +110,7 @@ router.post("/buyNotification/:idMo",async (req,res) => {
 
     if (merchant_order.body.id && mOrderVerify == null ) {
       await axios.post(
-        `http://localhost:3001/merchantorders`,
+        `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
         merchant_order.body
       );
 
@@ -124,7 +124,7 @@ router.post("/buyNotification/:idMo",async (req,res) => {
           let id_product = merchant_order.body.items[i].id;
 
           await axios.put(
-            `http://localhost:3001/payment/update/${id_product}/${quantity}`
+            `https://proyecto-final-pf-production.up.railway.app/payment/update/${id_product}/${quantity}`
           ); 
         }
       }

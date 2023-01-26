@@ -9,8 +9,8 @@ import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
 import { handleAdoption } from "../../controller/validationUpdateP";
 import styles from "../Profile/Loading.module.css";
-import { BsFillHeartFill } from 'react-icons/Bs';
-import { RiShoppingCart2Line } from 'react-icons/Ri';
+import { BsFillHeartFill } from 'react-icons/bs';
+import { RiShoppingCart2Line } from 'react-icons/ri';
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
 
