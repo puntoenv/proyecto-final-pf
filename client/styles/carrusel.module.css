@@ -11,6 +11,48 @@
   border-radius: 2.5rem;
   margin: 1rem;
 }
+/* ////////////////////////////////////////////////////////////// 950*/
+@media(max-width:950px){
+  .big_container{
+    width: 12rem;
+  height: 20rem;
+  }
+}
+/* @media(max-width:910px){
+  .aboutUs{
+   font-size: 38px;
+  }
+} */
+
+@media(max-width:830px){
+  .big_container{
+    width: 12rem;
+    height: 20rem;
+    margin:10px;
+  }
+}
+@media(max-width:700px){
+  .big_container{
+    width: 10rem;
+    height: 20rem;
+    margin:12px;
+  }
+}
+@media(max-width:650px){
+  .big_container{
+    width: 8rem;
+    height: 17rem;
+    margin:12px;
+  }
+}
+
+@media(max-width:515px){
+  .big_container{
+    width: 6rem;
+    height: 15rem;
+    margin:2px;
+  }
+}
 
 .containImg {
   display: flex;
@@ -18,6 +60,8 @@
   border-top-right-radius: 2.5;
   border-top-left-radius: 2.5;
 }
+
+
 .image {
   width: 20em;
   height: 180px;
@@ -26,6 +70,25 @@
   border-top-left-radius: 2.5rem;
   object-fit: fill;
   /* height: auto; */
+}
+@media(max-width:950px){
+  .image{
+  height: 160px;
+  width: 15em;
+  }
+}
+@media(max-width:650px){
+  .image{
+    width: 12em;
+    height: 145px;
+  }
+}
+
+@media(max-width:515px){
+  .image{
+    width: 10em;
+    height: 135px;
+  }
 }
 
 .containInfo {
@@ -46,11 +109,47 @@
   color: #32281f;
   text-shadow: 2px 2px 4px #937a60;
 }
+@media(max-width:950px){
+  .name{
+  font-size: 20px;
+  }
+}
+
+@media(max-width:650px){
+  .name{
+    font-size: 17px;
+    margin-top: 15px;
+  }
+}
+
+@media(max-width:515px){
+  .name{
+    font-size: 13px;
+    margin-top: 15px; 
+  }
+}
 .gender {
   font-size: 20px;
   display: flex;
   justify-content: center;
   justify-items: center;
+}
+@media(max-width:950px){
+  .gender{
+  font-size: 18px;
+  }
+}
+
+@media(max-width:650px){
+  .gender{
+    font-size: 15px;
+  }
+}
+
+@media(max-width:515px){
+  .gender{
+    font-size: 12px;
+  }
 }
 
 .btn {
@@ -64,6 +163,29 @@
   z-index: 600;
   font-weight: 700;
   margin-bottom: 1rem;
+}
+@media(max-width:950px){
+  .btn{
+  font-size: 17px;
+  height: 37px;
+  width: 140px;
+  }
+}
+
+@media(max-width:650px){
+  .btn{
+    font-size: 14px;
+  height: 30px;
+  width: 110px;
+  }
+}
+
+@media(max-width:515px){
+  .btn{
+    font-size: 13px;
+  height: 27px;
+  width: 90px;
+  }
 }
 
 .btn:hover {
