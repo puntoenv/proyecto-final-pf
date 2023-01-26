@@ -9,7 +9,7 @@ import { authUser } from "../../stores/actions";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-import { CiSquareRemove } from 'react-icons/Ci';
+import { CiSquareRemove } from 'react-icons/ci';
 import HistoryVacio from "../../components/CompoRelle";
 
 const fn = (user, dispatch, setNumCall) => {

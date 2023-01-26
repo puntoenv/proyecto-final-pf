@@ -43,7 +43,15 @@ export default function UpdateUserProfile({ hanldeOnChange, handleOnSubmit, auth
       <div>
         <form
           onSubmit={(event) =>
-            handleOnSubmit(event, setResult, setInput, input, idUser)
+            handleOnSubmit(
+              event,
+              setResult,
+              setInput,
+              input,
+              idUser,
+              Swal,
+              setLoader
+            )
           }
         >
           <div>
