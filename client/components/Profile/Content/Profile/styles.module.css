@@ -27,6 +27,13 @@
   height: 288px;
   border-radius: 50%;
 }
+@media(max-width:780px){
+  .backImage{
+    width: 180px;
+    height: 215px;
+
+  }
+}
 
 .hiddenInput {
   width: 0.1px;
@@ -85,6 +92,13 @@
   height: 280px;
   border-radius: 50%;
 }
+@media(max-width:780px){
+  .image{
+    width: 180px;
+    height: 230px;
+  }
+}
+
 
 .imageSpan {
   text-align: center;
@@ -95,6 +109,11 @@
   flex-direction: column;
   width: 50%;
   height: 30vh;
+}
+@media(max-width:605px){
+  .editImage {
+  font-size: 14px;
+  }
 }
 
 .cleanInput {
@@ -111,6 +130,11 @@
   margin-bottom: 20px;
   color: #022902;
   font-weight: 600;
+}
+@media(max-width:605px){
+  .profileDiv > h1{
+  font-size: 30px;
+  }
 }
 .profileDiv > p {
   font-weight: 600;
@@ -144,6 +168,7 @@
     flex-direction: column; 
     display: flex;
     width: 10rem;
+    font-size: 14px;
    
     /* flex-wrap: wrap-reverse; */
 
@@ -157,6 +182,11 @@
   font-size: 17px;
   margin-bottom: 5px;
   border-bottom: 2px solid rgb(23, 58, 20);
+}
+@media(max-width:605px){
+  .info > p > p{
+  font-size: 15px;
+  }
 }
 
 .infoEnvios {
@@ -174,6 +204,14 @@
   width: 20rem;
   box-shadow: 0px 4px 10px 1px #6a6b4a70;
 }
+@media(max-width:605px){
+  .infoEnvio   > p{
+  font-size: 15px;
+  flex-direction: row;
+  display: flex;
+  }
+}
+
 
 .inputEnvios {
   display: flex;
@@ -196,6 +234,12 @@
   height: auto;
   font-family: "Quicksand", sans-serif;
 }
+@media(max-width:780px){
+  .inputEnvios > p{
+    width: 8rem;
+    /* height: 230px; */
+  }
+}
 
 .inputEnvios > p > p {
   color: #034103;
@@ -204,6 +248,11 @@
   border-bottom: 2px solid rgb(23, 58, 20);
   width: 6.5rem;
   margin-bottom: 5px;
+}
+@media(max-width:605px){
+  .inputEnvios > p > p{
+  font-size: 15px;
+  }
 }
 
 /* EDICION!! */
