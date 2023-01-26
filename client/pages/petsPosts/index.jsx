@@ -227,17 +227,40 @@ export default function PetAdoption({ favorite, addAgregar }) {
               />
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
-
+            <div className={styles.pagingTop}>
+              <input
+                className={styles.paginate}
+                type="button"
+                value="🡸"
+                onClick={(e) => handlerPage(e)}
+              />
+              {paging.map((page) => (
+                <input
+                  className={styles.paginate}
+                  type="button"
+                  value={page}
+                  key={page}
+                  onClick={(e) => handlerPage(e)}
+                />
+              ))}
+              <input
+                className={styles.paginate}
+                type="button"
+                value="🡺"
+                onClick={(e) => handlerPage(e)}
+              />
+            </div>
             {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
             <div className={styles.big_container}>
               <div className={styles.posts_Container}></div>
               {pets?.map((mascota) => {
+                // CADA CARD =CARD
                 return (
                   <div key={mascota._id} className={styles.card}>
-                    <Image
+                    <img
                       className={styles.img}
-                      width="400"
-                      height="240"
+                      // width="400"
+                      // height="240"
                       src={mascota.image[0]}
                       alt="image"
                     />
@@ -247,10 +270,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
                     <button
-                      className={styles.btn}
+                      className={styles.corazon}
                       onClick={(e) => handlerFavorite(e, mascota)}
                     >
-                      Favorito
+                      ♡
                     </button>
                   </div>
                 );

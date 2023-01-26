@@ -5,7 +5,7 @@ const detail = express.Router();
 detail.get("/detail/:id", async (req, res) => {
   try {
     let { id } = req.params;
-    let detail = await Pet.findOne({ _id: id, hidden: false }).populate({
+    let detail = await Pet.findOne({ _id: id }).populate({
       path: "user",
       model: "User",
     });

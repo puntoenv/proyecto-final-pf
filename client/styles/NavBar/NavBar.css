@@ -1,26 +1,35 @@
+.headerNav {
+  display: flex;
+  width: 100%;
+}
+
 .nav {
   display: flex;
   position: fixed;
   z-index: 4000;
   top: 0;
   left: 0;
+  /* width: 100%; */
   width: 100%;
   padding: 16px;
   justify-content: flex-end;
   align-items: flex-end;
   background-color: #38593a;
 }
-@media(max-width:730px){
-  .nav{
-  display: flex;
-  flex-direction: column;
-  z-index: 3000;
-  justify-content: flex-start;
-  top: 0px;
-  right: -600px;
-  height: auto;
-  
+@media (max-width: 730px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    z-index: 3000;
+    justify-content: flex-start;
+    top: 0px;
+    right: -600px;
+    height: auto;
   }
+}
+.headerNav{
+  width:auto;
+  display: flex;
 }
 .navMenuList {
   box-sizing: border-box;
@@ -39,12 +48,14 @@
 
 .itemNav {
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: #eeee;
   text-decoration: none;
   font-size: 20px;
 }
-@media(max-width:350px){
-  .itemNav{
+@media (max-width: 350px) {
+  .itemNav {
     font-size: 17px;
     flex-direction: column;
     display: block;
@@ -82,9 +93,9 @@
   width: auto;
   height: 14em;
 }
-@media(max-width:350px){
-  .logo{
-   height: 10em;
-   left: 5px;
+@media (max-width: 350px) {
+  .logo {
+    height: 10em;
+    left: 5px;
   }
 }

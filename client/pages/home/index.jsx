@@ -18,10 +18,11 @@ import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
 import CardProduct from "../../components/CardProduct";
-
+import "sweetalert2/src/sweetalert2.scss";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
+  
     if (sub[0] === "google-oauth2") {
       dispatch(
         authUser(`${user.nickname}@gmail.com`, user.name || user.nickname)
@@ -62,10 +63,10 @@ const fn = (user, dispatch, setNumCall) => {
     const dispatch = useDispatch();
     const userAuth = useSelector((state) => state.userAuth.userData);
     const [numCall, setNumCall] = useState(0);
-
+    // const router = useRouter()
     !numCall && user && fn(user, dispatch, setNumCall);
 
-    console.log(userAuth);
+
 
     useEffect(() => {
       (function (d, m) {
@@ -91,13 +92,13 @@ const fn = (user, dispatch, setNumCall) => {
       <LayoutGlobal authUser={userAuth}>
         <Layout title="Inicio" />
         <div className={styles.home}>
-          <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p>
+          {/* <p className={styles.friend}>Encuentra a tu nuevo mejor amigo</p> */}
           <Image
             src={home}
             alt="home"
-            className={styles.home}
-            width="auto"
-            height="auto"
+            className={styles.picture}
+            // width="auto"
+            // height="auto"
           />
           <div className={styles.barGreen}></div>
           <div className={styles.divAlimento}></div>
@@ -112,12 +113,14 @@ const fn = (user, dispatch, setNumCall) => {
             />
           </div>
           <Nosotros />
+          {/* COMPONENTE MAS GRANDE CARRUSEL: CONTAINSLIDER */}
           <div className={styles.containSlider}>
             <h1 className={styles.titleCarrusel}> Animalitos en adopción</h1>
             <button className={styles.buttonRoute}>
               <Link href="/petsPosts">Ver mas</Link>
             </button>
 
+{/* carrusel hasta 1000px */}
             <Slider {...settings} className="arrowsSlides">
               {dataPets.slice(0, 9).map((mascota) => (
                 <PetsCard

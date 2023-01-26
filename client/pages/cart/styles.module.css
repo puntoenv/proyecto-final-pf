@@ -1,3 +1,8 @@
+.containCart {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
 .search {
   display: flex;
   justify-content: center;
@@ -205,15 +210,23 @@
 }
 
 .vaciarCarrito {
-  background-color: #e8eb9d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  padding: 10px 20px;
+  background-color: #f58282;
   font-size: 20px;
   border-radius: 10em;
   color: #111111;
-  width: 10%;
   font-weight: 700;
 }
 .vaciarCarrito:hover {
-  background-color: #4c8053;
+  color: #fff;
+  background-color: #fd2424;
+}
+.iconDeleteCart {
+  margin-left: 10px;
 }
 .resumen {
   width: 27%;

@@ -35,6 +35,7 @@ const SideBar = ({ setRender, response, authUser }) => {
   };
   const [links, setLinks] = useState(false);
   return (
+    // NAVBAR= navContainer
     <div className={styles.navBarcontainer}>
       <div className={styles.logo}>
         <Image

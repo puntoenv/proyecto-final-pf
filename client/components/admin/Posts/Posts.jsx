@@ -5,7 +5,7 @@ import { DataGrid,
   GridToolbarColumnsButton,
   GridToolbarFilterButton,
   GridToolbarDensitySelector, } from "@mui/x-data-grid";
-import { adminPets } from "../../../stores/actions";
+import { adminPets, PutPets } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./style.module.css";
 import ReportProblemIcon from '@mui/icons-material/ReportProblem';
@@ -17,7 +17,7 @@ export default function Pets() {
   const pets = useSelector((state) => state.mascotas.adminPets);
   const [pageSize, setPageSize] = useState(8);
   const [rowId, setRowId] = useState(null);
-
+const [data, setData] = useState()
   useEffect(() => {
     dispatch(adminPets());
   }, [dispatch]);
@@ -121,7 +121,7 @@ export default function Pets() {
   const handleHide = async () => {
     try {
       const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "hide" });
+      if (data) await PutPets(_id, { hidden: "hide" });
     } catch (error) {
       console.log(error);
     }
@@ -129,7 +129,7 @@ export default function Pets() {
   const handleShow = async () => {
     try {
       const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "show" });
+      if (data) await PutPets(_id, { hidden: "show" });
     } catch (error) {
       console.log(error);
     }
@@ -141,14 +141,14 @@ export default function Pets() {
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<ReportProblemIcon />}
-          onClick={(e) => handleHide(e)}
+          onClick={handleHide}
         >
           Archivar
         </Button>
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<PetsIcon />}
-          onClick={(e) => handleShow(e)}
+          onClick={handleShow}
         >
           Mostrar
         </Button>
@@ -174,6 +174,7 @@ export default function Pets() {
       <h1 className={style.posts}> Publicaciones </h1>
 
       <DataGrid
+        onRowClick={(e) => setData(e)}
         sx={{ ml: 35 }}
         columns={columns}
         rows={petsNew}

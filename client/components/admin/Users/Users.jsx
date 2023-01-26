@@ -7,7 +7,7 @@ import {
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
 } from "@mui/x-data-grid";
-import { allUsers } from "../../../stores/actions";
+import { allUsers, updateUser } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
 import style from "./style.module.css";
 import Button from "@mui/material/Button";
@@ -36,7 +36,7 @@ const GridCellExpand = memo(function GridCellExpand(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [showFullCell, setShowFullCell] = useState(false);
   const [showPopper, setShowPopper] = useState(false);
-
+  
   const handleMouseEnter = () => {
     const isCurrentlyOverflown = isOverflown(cellValue.current);
     setShowPopper(isCurrentlyOverflown);
@@ -142,7 +142,6 @@ function renderCellExpand(params) {
 
 renderCellExpand.propTypes = {
   colDef: PropTypes.object.isRequired,
-
   value: PropTypes.string,
 };
 
@@ -152,9 +151,10 @@ renderCellExpand.propTypes = {
 export default function Users() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
-
-  const [pageSize, setPageSize] = useState(8);
   const [data, setData] = useState();
+  
+  const [pageSize, setPageSize] = useState(8);
+ 
 
   useEffect(() => {
     dispatch(allUsers());
@@ -264,7 +264,7 @@ export default function Users() {
   const handleHide = async () => {
     try {
       const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "hide" });
+      if (data) await updateUser(_id, { hidden: "hide" });
     } catch (error) {
       console.log(error);
     }
@@ -272,7 +272,7 @@ export default function Users() {
   const handleShow = async () => {
     try {
       const { _id } = data.row;
-      if (data) await UpdateProduct(_id, { hidden: "show" });
+      if (data) await updateUser(_id, { hidden: "show" });
     } catch (error) {
       console.log(error);
     }
@@ -284,14 +284,14 @@ export default function Users() {
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<PersonOffIcon />}
-          onClick={(e) => handleHide(e)}
+          onClick={handleHide}
         >
           Bloquear
         </Button>
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<PersonIcon />}
-          onClick={(e) => handleShow(e)}
+          onClick={handleShow}
         >
           Desbloquear
         </Button>
@@ -318,6 +318,7 @@ export default function Users() {
         sx={{ ml: 35 }}
         columns={columns}
         rows={usersNew}
+        onRowClick={(e) => setData(e)}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
@@ -326,7 +327,7 @@ export default function Users() {
           top: params.isFirstVisible ? 0 : 5,
           bottom: params.isLastVisible ? 0 : 5,
         })}
-        onRowClick={(e) => setData(e)}
+       
         components={{
           Toolbar: CustomToolbar,
         }}

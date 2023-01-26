@@ -169,7 +169,6 @@ function renderCellExpand(params) {
 
 renderCellExpand.propTypes = {
   colDef: PropTypes.object.isRequired,
-
   value: PropTypes.string,
 };
 
@@ -354,14 +353,14 @@ export default function Products() {
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<VisibilityOffIcon />}
-          onClick={(e) => handleHide(e)}
+          onClick={handleHide}
         >
           Ocultar
         </Button>
         <Button
           sx={{ color: "#574c3d" }}
           startIcon={<VisibilityIcon />}
-          onClick={(e) => handleShow(e)}
+          onClick={handleShow}
         >
           Mostrar
         </Button>

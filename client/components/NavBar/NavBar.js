@@ -9,7 +9,8 @@ import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
 import { handleAdoption } from "../../controller/validationUpdateP";
 import styles from "../Profile/Loading.module.css";
-
+import { BsFillHeartFill } from "react-icons/Bs";
+import { RiShoppingCart2Line } from "react-icons/Ri";
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
 
@@ -25,7 +26,7 @@ const NavBar = ({ authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
   // const idUser = user?.sub.split("|")[1];
-  console.log(authUser.administrator);
+  //console.log(authUser.administrator)
 
   if (isLoading)
     return (
@@ -48,15 +49,23 @@ const NavBar = ({ authUser }) => {
       </Link>
       <nav className="nav">
         <div className="navMenuList">
+          <Link className="itemNav" href="/favorite">
+            <BsFillHeartFill />
+          </Link>
+          <Link className="itemNav" href="/cart">
+            <RiShoppingCart2Line />
+          </Link>
+
+          <Link className="itemNav" href="/eShop">
+            <span>Productos</span>
+          </Link>
           <Link className="itemNav" href="/aboutUs">
             <span>Nosotros</span>
           </Link>
           <Link className="itemNav" href="/contact">
             <span>Contáctanos</span>
           </Link>
-          <Link className="itemNav" href="/eShop">
-            <span>Productos</span>
-          </Link>
+
           <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>
@@ -85,9 +94,6 @@ const NavBar = ({ authUser }) => {
         <Link className="itemDash" href={`/profile/${idUser}`}>
           <span>Mi Perfil</span>
         </Link>
-        {/* <Link className="itemDash" href="#">
-          <span>Mis Favoritos</span>
-        </Link> */}
         <Link className="itemDash" href="/cart">
           <span>Mi carrito</span>
         </Link>
@@ -98,6 +104,10 @@ const NavBar = ({ authUser }) => {
         >
           <span>Publicar Mascota</span>
         </p>
+        <Link className="itemDash" href="/favorite">
+          <span>Favoritos</span>
+        </Link>
+
         <a className="itemDash" href="/api/auth/logout">
           <span>Cerrar sesión</span>
         </a>
