@@ -119,7 +119,7 @@ export default function Detail({
               )) ||
                 (user && (
                   <button
-                    className={style.btnBuy}
+                    className={style.btnBuy} 
                     onClick={(e) => formatOneItemMP(products, userAuth, Swal)}
                   >
                     Comprar
