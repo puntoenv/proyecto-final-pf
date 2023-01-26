@@ -2,10 +2,9 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { deleteCart,updateStock } from "../../controller/buyAndStock";
+import { deleteCart, updateStock } from "../../controller/buyAndStock";
 import { useDispatch, useSelector } from "react-redux";
 import { authUser } from "../../stores/actions";
-
 
 import axios from "axios";
 
@@ -27,13 +26,14 @@ function index({ response, query }) {
   const [order, setOrder] = useState(" ");
   const router = useRouter();
   const { user } = useUser();
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-const [numCall, setNumCall] = useState(0);
-!numCall && user && fn(user, dispatch, setNumCall);
+  const [numCall, setNumCall] = useState(0);
+  !numCall && user && fn(user, dispatch, setNumCall);
 
-const userAuth = useSelector((state) => state.userAuth.userData);
+  const userAuth = useSelector((state) => state.userAuth.userData);
   const userId = userAuth && userAuth._id;
+  console.log(userId);
   //user?.sub?.split("|").pop();
   const { items, payments, id } = response;
 
@@ -44,11 +44,11 @@ const userAuth = useSelector((state) => state.userAuth.userData);
     if (query.status === "approved") await axios.get(`/buyEmail/${userId}`);
     router.push(`/home`);
   };
-   const idMo= query.merchant_order_id;
+  const idMo = query.merchant_order_id;
   if (payments[0].status == "approved" && query.merchant_order_id != order) {
-    deleteCart(); 
-    updateStock(idMo)
- setOrder(query.merchant_order_id);
+    deleteCart();
+    updateStock(idMo);
+    setOrder(query.merchant_order_id);
   }
 
   return (

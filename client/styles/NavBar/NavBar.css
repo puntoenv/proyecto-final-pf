@@ -43,6 +43,8 @@
 
 .itemNav {
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: #eeee;
   text-decoration: none;
   font-size: 20px;
