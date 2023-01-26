@@ -9,6 +9,7 @@
   height: 100%;
   position: absolute;
 }
+/* PATA */
 .img1 {
   background-image: url(https://i.postimg.cc/bwNgMGzm/pata-top.png);
   background-repeat: no-repeat;
@@ -17,6 +18,7 @@
   height: 100%;
   position: absolute;
 }
+/* NO SE USA */
 .img2 {
   background-image: url(https://i.postimg.cc/mrKSt87n/imgPerro.png);
   background-repeat: no-repeat;
@@ -25,6 +27,7 @@
   height: 100%;
   position: absolute;
 }
+/* CAMBIA UNA VIDA */
 .img3 {
   background-image: url(https://i.postimg.cc/GhRqF76w/cambia-Una-Vida.png);
   background-repeat: no-repeat;
@@ -38,6 +41,7 @@
   animation-timing-function: ease-in;
   animation-iteration-count: 3s;
 }
+/* ADOPTA */
 .img4 {
   background-image: url(https://i.postimg.cc/15KMJ0Zg/Adopta.png);
   background-repeat: no-repeat;
@@ -51,6 +55,7 @@
   animation-timing-function: ease-in;
   animation-iteration-count: 3s;
 }
+/* LITTLEPAWS */
 .img5 {
   background-image: url(https://i.postimg.cc/L4LxZKC3/litePaw.png);
   background-repeat: no-repeat;
@@ -59,6 +64,7 @@
   height: 100%;
   position: absolute;
 }
+/* LOGO */
 .img6 {
   background-image: url(https://i.postimg.cc/rpqcHdbj/logo.png);
   background-repeat: no-repeat;
@@ -67,6 +73,7 @@
   height: 100%;
   position: absolute;
 }
+/* OTRA PATA */
 .img7 {
   background-image: url(https://i.postimg.cc/s2McjtGS/pata-bot.png);
   background-repeat: no-repeat;
@@ -75,13 +82,13 @@
   height: 100%;
   position: absolute;
 }
-.img8 {
+/* .img8 {
   width: 100px;
   height: 200px;
   border-radius: 30px;
   position: absolute;
   left: 100px;
-}
+} */
 .buttonContainer {
   width: 100%;
   height: 100%;
@@ -111,6 +118,11 @@
   transition: all 250ms;
   font-size: 23px;
 }
+@media(max-width:1500px){
+  .button{
+    top:-10em;
+  }
+}
 
 .button:hover {
   transform: scale(1.05);
@@ -120,8 +132,13 @@
 }
 
 .land{
-width: 100em;
-height: 50em;
+width: 100%;
+height: auto;
+}
+@media(max-width:1500px){
+  .land{
+    height: 850px;
+  }
 }
 
 @media screen and (max-width: 1300px) {
