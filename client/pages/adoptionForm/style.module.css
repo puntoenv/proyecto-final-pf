@@ -71,6 +71,11 @@
   padding: 10px 0px;
   padding-top: 60px;
 }
+@media (max-width: 910px) {
+  .container {
+   margin-top:160px;
+  }
+}
 
 .post {
   border-radius: 10px;

@@ -11,6 +11,12 @@
   background-color: #ffffff;
   box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
 }
+@media(max-width:950px){
+  .card{
+  height: 300px;
+  width: 220px;
+  }
+}
 .linkImg {
   display: flex;
   justify-content: center;
