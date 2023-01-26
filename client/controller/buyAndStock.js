@@ -18,7 +18,7 @@ const deleteCart = async () => {
       try {     
     if (idMo ) {
       await axios.post(
-        (`http://localhost:3001/payment/buyNotification/${idMo}`)
+        `${process.env.NEXT_PUBLIC_URL_BACK}payment/buyNotification/${idMo}`
       );}
       
   } catch (error) {

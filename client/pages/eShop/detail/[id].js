@@ -14,6 +14,8 @@ import CardProduct from "../../../components/CardProduct";
 import ProductCard from "../../../components/CarouselEshop/productsCard";
 import Slider from "react-slick";
 import Start_Revi from "../../../components/star_Revi";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -117,8 +119,8 @@ export default function Detail({
               )) ||
                 (user && (
                   <button
-                    className={style.btnBuy}
-                    onClick={(e) => formatOneItemMP(products)}
+                    className={style.btnBuy} 
+                    onClick={(e) => formatOneItemMP(products, userAuth, Swal)}
                   >
                     Comprar
                   </button>

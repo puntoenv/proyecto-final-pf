@@ -101,7 +101,7 @@ export const PutReview = async (obj, id) => {
 };
 
 export const PutPets = async (id, obj) => {
-  //console.log(id, obj);
+  console.log(id, obj);
   try {
     const respo = await axios
       .put(`/updatePet/${id}`, obj)
@@ -355,7 +355,9 @@ export const updateUser = async (id, obj) => {
   console.log(id, obj);
   try {
     const respo = await axios.put(
-      `http://localhost:3001/updateProfile/${id}`, obj);
+      `/updateProfile/${id}`,
+      obj
+    );
     respo
       ? Swal.fire({
           title: "Usuario editado con éxito",

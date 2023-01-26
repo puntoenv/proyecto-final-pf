@@ -18,6 +18,7 @@ import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
 import CardProduct from "../../components/CardProduct";
+//import ProductCard from "../../components/CarouselEshop/productsCard";
 import "sweetalert2/src/sweetalert2.scss";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -143,6 +144,14 @@ const fn = (user, dispatch, setNumCall) => {
             </div>
             <Slider {...settings} className="arrowsSlides">
               {productos.slice(0, 9).map((producto) => {
+              //    <ProductCard
+              //    key={producto._id}
+              //    info={producto}
+              //    // addToCart={addToCart}
+              //    nombre={producto.name}
+              //    imagen={producto.image}
+              //    precio={producto.price}
+              //  />
                 return (
                   <CardProduct
                     key={producto._id}
