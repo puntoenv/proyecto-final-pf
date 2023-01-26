@@ -93,7 +93,7 @@ export const PutReview = async (obj, id) => {
 };
 
 export const PutPets = async (id, obj) => {
-  //console.log(id, obj);
+  console.log(id, obj);
   try {
     const respo = await axios
       .put(`/updatePet/${id}`, obj)

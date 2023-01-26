@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import { CiSquareRemove } from 'react-icons/Ci';
+import HistoryVacio from "../../components/CompoRelle";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -59,7 +60,7 @@ console.log(dupli)
     <LayoutGlobal authUser={userAuth}>
       <div className={styles.cards}>
         {!dupli.length ? (
-          <h1 className={styles.favoritoVacio}>la lista esta vacia</h1>
+          <div className={styles.favoritoVacio}><HistoryVacio/></div>
         ) : (
           dupli?.map((items, index) => (
             <div className={styles.card}>
