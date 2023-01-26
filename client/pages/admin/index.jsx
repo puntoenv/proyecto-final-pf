@@ -78,7 +78,7 @@ const Admin = withPageAuthRequired(() => {
 
   useEffect(() => {
     {
-      setRender();
+      setRender( <ProductsPie />);
     }
   }, []);
 
@@ -136,12 +136,7 @@ const Admin = withPageAuthRequired(() => {
               <ShoppingCartIcon />
               Ventas
             </button>
-             <button
-                className={styles.btn}
-                onClick={(e) => handlerOnClick(e, <ProductsPie />)}
-              >
-                Gráfico
-              </button>
+           
               <button  className={styles.logOut}>
               <RiLogoutBoxLine size={25}></RiLogoutBoxLine>
               <a href="/api/auth/logout">Cerrar sesión</a>

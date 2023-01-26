@@ -36,7 +36,10 @@ const ProductsPie = () => {
 
   
   return (
+    <>
+    <h1 className={styles.h1}>Stock de productos</h1>
     <div className={styles.products}>
+     
     <ResponsivePie
       data={data}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
@@ -49,9 +52,10 @@ const ProductsPie = () => {
         from: "color",
         modifiers: [["darker", 0.2]],
       }}
+      isInteractive = {false}
       arcLinkLabelsSkipAngle={10}
       arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={2}
+      arcLinkLabelsThickness={3}
       arcLinkLabelsColor={{ from: "color" }}
       arcLabelsSkipAngle={10}
       arcLabelsTextColor={{
@@ -79,33 +83,10 @@ const ProductsPie = () => {
         },
       ]}
       fill={data}
-    //   legends={[
-    //     {
-    //       anchor: "bottom",
-    //       direction: "column",
-    //       justify: false,
-    //       translateX: 0,
-    //       translateY: 56,
-    //       itemsSpacing: 0,
-    //       itemWidth: 100,
-    //       itemHeight: 18,
-    //       itemTextColor: "#999",
-    //       itemDirection: "left-to-right",
-    //       itemOpacity: 1,
-    //       symbolSize: 18,
-    //       symbolShape: "circle",
-    //       effects: [
-    //         {
-    //           on: "hover",
-    //           style: {
-    //             itemTextColor: "#000",
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   ]}
+      
     />
     </div>
+    </>
   );
 };
 
