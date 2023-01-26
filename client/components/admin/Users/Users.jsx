@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
 import PropTypes from "prop-types";
-
+import Fab from '@mui/material/Fab';
 
 
 
@@ -281,23 +281,23 @@ export default function Users() {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
-        <Button
-          sx={{ color: "#574c3d" }}
-          startIcon={<PersonOffIcon />}
+        <Fab variant="extended" size="medium"
+          sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1  }}
+          
           onClick={handleHide}
-        >
+        ><PersonOffIcon />
           Bloquear
-        </Button>
-        <Button
-          sx={{ color: "#574c3d" }}
-          startIcon={<PersonIcon />}
+        </Fab>
+        <Fab variant="extended" size="medium"
+          sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1 }}
+          
           onClick={handleShow}
-        >
+        ><PersonIcon />
           Desbloquear
-        </Button>
-        <GridToolbarColumnsButton sx={{ color: "#574c3d" }} />
-        <GridToolbarFilterButton sx={{ color: "#574c3d" }} />
-        <GridToolbarDensitySelector sx={{ color: "#574c3d" }} />
+        </Fab >
+        <GridToolbarColumnsButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarFilterButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarDensitySelector sx={{ color: "#574c3d", fontSize:15 }} />
       </GridToolbarContainer>
     );
   }

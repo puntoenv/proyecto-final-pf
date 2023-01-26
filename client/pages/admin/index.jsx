@@ -24,6 +24,8 @@ import Pie from "../../components/admin/Charts/Pie.jsx";
 import ProductsPie from "../../components/admin/Charts/ProductsPie.jsx";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { RiLogoutBoxLine } from "react-icons/ri";
+import Reported from "../../components/admin/Reports/Reports.jsx";
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
@@ -107,7 +109,20 @@ const Admin = withPageAuthRequired(() => {
             <p className="text-gray-400 dark:text-gray-400 m-1 mt-32 uppercase">
               Dashboard
             </p>
-
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Products />)}
+            >
+              <StorefrontIcon />
+              Productos
+            </button>
+            <button
+              className={styles.btn}
+              onClick={(e) => handlerOnClick(e, <Sales />)}
+            >
+              <ShoppingCartIcon />
+              Ventas
+            </button>
             <button
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Users />)}
@@ -124,17 +139,10 @@ const Admin = withPageAuthRequired(() => {
             </button>
             <button
               className={styles.btn}
-              onClick={(e) => handlerOnClick(e, <Products />)}
+              onClick={(e) => handlerOnClick(e, <Reported />)}
             >
-              <StorefrontIcon />
-              Productos
-            </button>
-            <button
-              className={styles.btn}
-              onClick={(e) => handlerOnClick(e, <Sales />)}
-            >
-              <ShoppingCartIcon />
-              Ventas
+              <ReportProblemIcon />
+              Denuncias
             </button>
            
               <button  className={styles.logOut}>
