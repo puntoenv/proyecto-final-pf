@@ -19,7 +19,7 @@
 }
 @media(max-width:600px){
   .home{
-    margin-top:130px;
+    margin-top:140px;
   }
 }
 /* ////////////////////////////////////////////////////////////// */
@@ -32,7 +32,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 30px;
+  /* padding-top: 1px; */
   padding-bottom: 50px;
   width: 100%;
 }
@@ -145,7 +145,7 @@
 @media(max-width:740px){
   .infoNosotros{
     font-size: 15px;
-    padding: 20px;
+    padding: 2px;
     /* color: red; */
   }
 }
@@ -263,6 +263,7 @@
   justify-content: center;
   font-size: 35px;
   width: 100%;
+  /* top: 0; */
   /* margin-left: 350px; */
   color: #415d43;
   font-weight: 700;
@@ -306,6 +307,8 @@
 .buttonRoute {
   justify-content: center;
   align-items: right;
+  width: 200px;
+   height: 50px;
   /* width: 100px; */
   /* margin-left: 80%; */
   display: flex;
@@ -313,11 +316,38 @@
   color: #32281f;
   font-size: 23px;
   border-radius: 15px;
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   z-index: 600;
   font-weight: 700;
 }
+@media(max-width:910px){
+  .buttonRoute{
+   font-size: 18px;
+   font-weight: 700;
+   width: 100px;
+   height: 40px;
+   display: flex;
+   /* align-items: center;
+   justify-content: center; */
+   /* margin-left: 30%;
+   margin-right: 30%; */
+  }
+}
+
+@media(max-width:830px){
+  .tbuttonRoute{
+    font-size: 13px;
+    font-weight: 700;
+    width: 90px;
+    height: 30px;
+  }
+}
+/* @media(max-width:600px){
+  .buttonRoute{
+    font-size: 10px;
+  }
+} */
 .btnFav{
   background: #38593a;
   font-size: 21px;
