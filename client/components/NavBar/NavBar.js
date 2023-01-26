@@ -26,7 +26,7 @@ const NavBar = ({ authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
   // const idUser = user?.sub.split("|")[1];
-//console.log(authUser.administrator)
+  //console.log(authUser.administrator)
 
   if (isLoading)
     return (
@@ -49,20 +49,23 @@ const NavBar = ({ authUser }) => {
       </Link>
       <nav className="nav">
         <div className="navMenuList">
-           <Link className="itemNav" href="/favorite">
-            <span><BsFillHeartFill/></span>
+          <Link className="itemNav" href="/favorite">
+            <BsFillHeartFill />
           </Link>
-          <Link className="itemNav" href="/eShop">
-            <span><RiShoppingCart2Line/></span>
+          <Link className="itemNav" href="/cart">
+            <RiShoppingCart2Line />
           </Link>
 
+          <Link className="itemNav" href="/eShop">
+            <span>Productos</span>
+          </Link>
           <Link className="itemNav" href="/aboutUs">
             <span>Nosotros</span>
           </Link>
           <Link className="itemNav" href="/contact">
             <span>Contáctanos</span>
           </Link>
-        
+
           <Link className="itemNav" href="/petsPosts">
             <span>Ver Mascotas</span>
           </Link>

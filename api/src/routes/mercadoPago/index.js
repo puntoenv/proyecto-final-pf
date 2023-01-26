@@ -8,7 +8,7 @@ require("dotenv").config();
 const axios = require("axios");
 
 //configuracion de credenciales de mercado pago
- 
+
 router.post("/", async (req, res) => {
   // Agrega credenciales
   mercadopago.configure({
@@ -77,11 +77,9 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   try {
     let { id_product, quantity } = req.params;
     let product = await Product.findById(id_product);
-   
-    
+
     let { name, description, price, boughtBy, hidden, image, stock, category } =
       req.body;
-    
 
     product.name = name ? name : product.name;
     product.description = description ? description : product.description;
@@ -89,8 +87,6 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
     product.boughtBy = boughtBy ? boughtBy : product.boughtBy;
     product.stock = product.stock - quantity;
     product.category = category ? category : product.category;
-
-   
 
     let save = await product.save();
     console.log(save);
@@ -100,15 +96,15 @@ router.put("/update/:id_product/:quantity", async (req, res) => {
   }
 });
 
-router.post("/buyNotification/:idMo",async (req,res) => {
+router.post("/buyNotification/:idMo", async (req, res) => {
   try {
-    const {idMo} = req.params;
-   
+    const { idMo } = req.params;
+
     const merchant_order = await mercadopago.merchant_orders.findById(idMo);
-      
+
     const mOrderVerify = await Merchant_orders.findOne({ id: idMo });
 
-    if (merchant_order.body.id && mOrderVerify == null ) {
+    if (merchant_order.body.id && mOrderVerify == null) {
       await axios.post(
         `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
         merchant_order.body
@@ -129,12 +125,10 @@ router.post("/buyNotification/:idMo",async (req,res) => {
         }
       }
     }
-   
 
-
-    sendStatus(200);
+    res.status(200);
   } catch (error) {
-    sendStatus(404);
+    res.status(404);
   }
 });
 

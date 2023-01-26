@@ -9,6 +9,7 @@ import CardProduct from "../../components/cardsCart/CardProduct";
 import { formatItemsMp } from "../../controller/formatItemsMp";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
+import { BsFillTrashFill } from "react-icons/bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -82,49 +83,52 @@ export default function Cart({
 
   return (
     <LayoutGlobal title="Carrito" authUser={userAuth}>
-      <div>
-        <div className={styles.big_container}>
-          {cart.length === 0 ? (
-            <p className={styles.carritoVacio}> Carrito vacio </p>
-          ) : (
-            cart?.map((product, index) => (
-              <CardProduct
-                product={product}
-                cart={cart}
-                addToCart={addToCart}
-                discountItem={discountItem}
-                deleteCart={deleteCart}
-                productOfCart={productOfCart}
-                modifiedTotal={modifiedTotal}
-                key={index}
-              />
-            ))
+      <div className={styles.containCart}>
+        <div>
+          <div className={styles.big_container}>
+            {cart.length === 0 ? (
+              <p className={styles.carritoVacio}> Carrito vacio </p>
+            ) : (
+              cart?.map((product, index) => (
+                <CardProduct
+                  product={product}
+                  cart={cart}
+                  addToCart={addToCart}
+                  discountItem={discountItem}
+                  deleteCart={deleteCart}
+                  productOfCart={productOfCart}
+                  modifiedTotal={modifiedTotal}
+                  key={index}
+                />
+              ))
+            )}
+          </div>
+        </div>
+        <div className={styles.resumenContainer}>
+          {!cart.length ? null : (
+            <button className={styles.vaciarCarrito} onClick={handlerDeleteAll}>
+              Vaciar Carrito{" "}
+              <BsFillTrashFill className={styles.iconDeleteCart} />
+            </button>
+          )}
+          {cart.length && (
+            <>
+              <p className={styles.total}>Total a pagar: ${total}</p>
+              {user ? (
+                <button
+                  className={styles.btn}
+                  onClick={(e) => formatItemsMp(total)}
+                >
+                  Finalizar Compra
+                </button>
+              ) : (
+                <Link className={styles.btn} href="/api/auth/login">
+                  Inicia sesion o registrate para finalizar la compra
+                </Link>
+              )}
+            </>
           )}
         </div>
-      </div>
-      <div className={styles.resumenContainer}>
-        {!cart.length ? null : (
-          <button className={styles.vaciarCarrito} onClick={handlerDeleteAll}>
-            Vaciar Carrito
-          </button>
-        )}
-        {cart.length && (
-          <>
-            <p className={styles.total}>Total a pagar: ${total}</p>
-            {user ? (
-              <button
-                className={styles.btn}
-                onClick={(e) => formatItemsMp(total)}
-              >
-                Finalizar Compra
-              </button>
-            ) : (
-              <Link className={styles.btn} href="/api/auth/login">
-                Inicia sesion o registrate para finalizar la compra
-              </Link>
-            )}
-          </>
-        )}
       </div>
     </LayoutGlobal>
   );
