@@ -58,11 +58,53 @@
 .divGif {
   display: flex;
 }
+@media(max-width:950px){
+  .divGif{
+    width: 200px;
+    height: 350px;
+  }
+}
+
+@media(max-width:650px){
+  .divGif{
+    width: 180px;
+    height: 320px;
+  }
+}
+
+@media(max-width:515px){
+  .divGif{
+    width: 180px;
+    height: 300px;
+  }
+}
 .gif {
-  display: inline-block;
+  /* display: inline-block; */
   width: 250px;
   height: 400px;
 }
+/* @media(max-width:950px){
+  .gif{
+    width: 200px;
+    height: 350px;
+  }
+}
+
+@media(max-width:650px){
+  .gif{
+    width: 180px;
+    height: 320px;
+  }
+}
+
+@media(max-width:515px){
+  .gif{
+    width: 180px;
+    height: 300px;
+   
+  }
+} */
+
 
 .cat {
   display: flex;
