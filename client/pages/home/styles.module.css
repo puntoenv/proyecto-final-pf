@@ -6,6 +6,23 @@
   margin-top: -5em;
   position: relative;
 }
+@media(max-width:910px){
+  .home{
+    margin-top:40px;
+  }
+}
+
+@media(max-width:830px){
+  .home{
+    margin-top:90px;
+  }
+}
+@media(max-width:600px){
+  .home{
+    margin-top:140px;
+  }
+}
+/* ////////////////////////////////////////////////////////////// */
 .link {
   font-size: 12px;
   position: relative;
@@ -15,7 +32,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 30px;
+  /* padding-top: 1px; */
   padding-bottom: 50px;
   width: 100%;
 }
@@ -77,23 +94,46 @@
 }
 .kitten {
   position: relative;
-  margin-right: 100px;
-  height: 500px;
+  margin-right: 0px;
+  height: 450px;
   z-index: 1901;
-  width: 500px;
+  width: 450px;
 }
-@media(max-width:740px){
+@media(max-width:910px){
+  .kitten{
+    height: 310px;
+    width: 310px;
+    margin-right: 90px;
+    margin-right: 40px;
+  }
+}
+/* @media(max-width:830px){
   .kitten{
     height: 230px;
     width: 230px;
     margin-right: 90px;
+  }
+} */
+
+@media(max-width:740px){
+  .kitten{
+    height: 230px;
+    width: 230px;
+    margin-right: 10px;
   }
 }
 @media(max-width:530px){
   .kitten{
     height: 150px;
     width: 150px;
-    margin-right: 90px;
+    margin-right: 10px;
+  }
+}
+@media(max-width:430px){
+  .kitten{
+    height: 150px;
+    width: 150px;
+    margin-right: 1px;
   }
 }
 .infoNosotros {
@@ -105,6 +145,14 @@
 @media(max-width:740px){
   .infoNosotros{
     font-size: 15px;
+    padding: 2px;
+    /* color: red; */
+  }
+}
+@media(max-width:500px){
+  .infoNosotros{
+    font-size: 13px;
+    padding: 5px;
     /* color: red; */
   }
 }
@@ -128,12 +176,12 @@
   width: 60%;
   
 }
-@media(max-width:740px){
+/* @media(max-width:740px){
   .boxInfoNosotros{
   
     background-color: red;
   }
-}
+} */
 
 .infoAdopcion {
   margin-bottom: 1%;
@@ -144,16 +192,46 @@
   color: black;
   justify-items: center;
   justify-self: center;
-  font-size: 20px;
+  font-size: 25px;
   flex-direction: column;
   align-items: center;
- 
 }
+@media(max-width:950px){
+  .infoAdopcion{
+  font-size: 17px;
+
+  }
+}
+
+@media(max-width:650px){
+  .infoAdopcion{
+    font-size: 13px;
+ 
+  }
+}
+
+/* @media(max-width:515px){
+  .infoAdopcion{
+    font-size: 10px;
+ 
+  }
+} */
 
 .aboutUs {
   color: #415d43;
   font-size: 45px;
   font-weight: 700;
+}
+@media(max-width:910px){
+  .aboutUs{
+   font-size: 38px;
+  }
+}
+
+@media(max-width:830px){
+  .aboutUs{
+    font-size: 30px;
+  }
 }
 @media(max-width:600px){
   .aboutUs{
@@ -202,13 +280,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 35px;
   width: 100%;
+  /* top: 0; */
   /* margin-left: 350px; */
   color: #415d43;
-
   font-weight: 700;
+}
+@media(max-width:910px){
+  .titleCarrusel{
+   font-size: 38px;
+  }
+}
+
+@media(max-width:830px){
+  .titleCarrusel{
+    font-size: 30px;
+  }
+}
+@media(max-width:600px){
+  .titleCarrusel{
+    font-size: 25px;
+  }
 }
 
 .containerAdopciones {
@@ -224,6 +317,25 @@
   align-items: center;
   justify-content: center;
 }
+@media(max-width:910px){
+  .tituloAdopcion{
+    font-size: 38px;
+   
+  }
+}
+
+@media(max-width:830px){
+  .tituloAdopcion{
+    font-size: 30px;
+   
+  }
+}
+@media(max-width:600px){
+  .tituloAdopcion{
+    font-size: 25px;
+ 
+  }
+}
 
 
 .titleRoute {
@@ -233,6 +345,8 @@
 .buttonRoute {
   justify-content: center;
   align-items: right;
+  width: 200px;
+   height: 50px;
   /* width: 100px; */
   /* margin-left: 80%; */
   display: flex;
@@ -240,11 +354,38 @@
   color: #32281f;
   font-size: 23px;
   border-radius: 15px;
-  width: 100%;
+  /* width: 100%; */
   padding: 10px;
   z-index: 600;
   font-weight: 700;
 }
+@media(max-width:910px){
+  .buttonRoute{
+   font-size: 18px;
+   font-weight: 700;
+   width: 100px;
+   height: 40px;
+   display: flex;
+   /* align-items: center;
+   justify-content: center; */
+   /* margin-left: 30%;
+   margin-right: 30%; */
+  }
+}
+
+@media(max-width:830px){
+  .tbuttonRoute{
+    font-size: 13px;
+    font-weight: 700;
+    width: 90px;
+    height: 30px;
+  }
+}
+/* @media(max-width:600px){
+  .buttonRoute{
+    font-size: 10px;
+  }
+} */
 .btnFav{
   background: #38593a;
   font-size: 21px;
