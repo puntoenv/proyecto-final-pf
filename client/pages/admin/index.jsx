@@ -20,7 +20,10 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import ImageIcon from "@mui/icons-material/Image";
-
+import Pie from "../../components/admin/Charts/Pie.jsx";
+import ProductsPie from "../../components/admin/Charts/ProductsPie.jsx";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { RiLogoutBoxLine } from "react-icons/ri";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
@@ -51,8 +54,6 @@ const Admin = withPageAuthRequired(() => {
     getUserById(id)
   );
   
-
-  //user.hidden ? console.log("prohibido") : console.log("activo");
   useEffect(() => {
     if (!isLoading && dbUser.administrator === false) {
       Swal.fire({
@@ -91,7 +92,7 @@ const Admin = withPageAuthRequired(() => {
         <div>
           <section>{Render}</section>
         </div>
-
+ {/* SIDEBAR = SIDEBAR */}
         <div className={styles.sidebar}>
           <Link href={"/home"} className="logo">
             <Image
@@ -132,15 +133,19 @@ const Admin = withPageAuthRequired(() => {
               className={styles.btn}
               onClick={(e) => handlerOnClick(e, <Sales />)}
             >
-              <ImageIcon />
+              <ShoppingCartIcon />
               Ventas
             </button>
-            {/* <button
+             <button
                 className={styles.btn}
-                onClick={(e) => handlerOnClick(e, )}
+                onClick={(e) => handlerOnClick(e, <ProductsPie />)}
               >
-                Calendario
-              </button> */}
+                Gráfico
+              </button>
+              <button  className={styles.logOut}>
+              <RiLogoutBoxLine size={25}></RiLogoutBoxLine>
+              <a href="/api/auth/logout">Cerrar sesión</a>
+              </button>
           </div>
         </div>
       </div>

@@ -15,8 +15,6 @@
   color: white;
 }
 
-
-
 .users{
     display: flex;
     justify-content:flex-end;
@@ -132,6 +130,24 @@ color: white;
   height: 11em;
 }
 
+.logOut{
+  margin-top: 12.5em;
+  margin-left: -1em;
+  display: flex;
+  flex-direction: row;
+    gap: 12px;
+    font-size: 17px;
+    border-radius: 0.5rem;
+    
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    z-index: 5002;
+    color: rgb(218, 218, 218);
+}
+
+.logOut:hover{
+  color: white;
+}
+
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
 .sidebar {
@@ -140,7 +156,7 @@ color: white;
   position:fixed;
   width: 15em;
   top: 0px;
-  height: 50em;
+  height: 100vh;
   display: flex;  
   z-index: 5000;
   background: #2c4229;

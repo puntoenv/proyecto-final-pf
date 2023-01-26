@@ -17,6 +17,7 @@
     "@mui/x-data-grid": "^5.17.20",
     "@mui/x-data-grid-pro": "^5.17.20",
     "@next/font": "13.1.1",
+    "@nivo/pie": "^0.80.0",
     "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.17.1",
     "@reduxjs/toolkit": "^1.9.1",
