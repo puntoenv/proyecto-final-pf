@@ -21,6 +21,7 @@ const [data, setData] = useState()
   useEffect(() => {
     dispatch(adminPets());
   }, [dispatch]);
+
   const petsNew = [];
   for (let i = 0; i < pets.length; i++) {
     petsNew.push({
@@ -43,6 +44,7 @@ const [data, setData] = useState()
     
     });
   }
+  
   function Blocked(props) {
     return (
       <div className={style.red}>
