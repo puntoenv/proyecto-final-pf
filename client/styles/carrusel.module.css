@@ -11,6 +11,13 @@
   border-radius: 2.5rem;
   margin: 1rem;
 }
+/* ////////////////////////////////////////////////////////////// 950*/
+@media(max-width:950px){
+  .big_container{
+    width: 12rem;
+  height: 20rem;
+  }
+}
 
 .containImg {
   display: flex;
@@ -18,6 +25,8 @@
   border-top-right-radius: 2.5;
   border-top-left-radius: 2.5;
 }
+
+
 .image {
   width: 20em;
   height: 180px;
@@ -26,6 +35,12 @@
   border-top-left-radius: 2.5rem;
   object-fit: fill;
   /* height: auto; */
+}
+@media(max-width:950px){
+  .image{
+  height: 160px;
+  width: 15em;
+  }
 }
 
 .containInfo {
@@ -46,11 +61,21 @@
   color: #32281f;
   text-shadow: 2px 2px 4px #937a60;
 }
+@media(max-width:950px){
+  .name{
+  font-size: 20px;
+  }
+}
 .gender {
   font-size: 20px;
   display: flex;
   justify-content: center;
   justify-items: center;
+}
+@media(max-width:950px){
+  .gender{
+  font-size: 18px;
+  }
 }
 
 .btn {
@@ -65,7 +90,13 @@
   font-weight: 700;
   margin-bottom: 1rem;
 }
-
+@media(max-width:950px){
+  .btn{
+  font-size: 17px;
+  height: 37px;
+  width: 140px;
+  }
+}
 .btn:hover {
   color: beige;
   border: none;

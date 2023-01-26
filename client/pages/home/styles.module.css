@@ -22,6 +22,7 @@
     margin-top:130px;
   }
 }
+/* ////////////////////////////////////////////////////////////// */
 .link {
   font-size: 12px;
   position: relative;
@@ -144,6 +145,14 @@
 @media(max-width:740px){
   .infoNosotros{
     font-size: 15px;
+    padding: 20px;
+    /* color: red; */
+  }
+}
+@media(max-width:500px){
+  .infoNosotros{
+    font-size: 13px;
+    padding: 5px;
     /* color: red; */
   }
 }
@@ -167,12 +176,12 @@
   width: 60%;
   
 }
-@media(max-width:740px){
+/* @media(max-width:740px){
   .boxInfoNosotros{
   
     background-color: red;
   }
-}
+} */
 
 .infoAdopcion {
   margin-bottom: 1%;
@@ -193,6 +202,17 @@
   color: #415d43;
   font-size: 45px;
   font-weight: 700;
+}
+@media(max-width:910px){
+  .aboutUs{
+   font-size: 38px;
+  }
+}
+
+@media(max-width:830px){
+  .aboutUs{
+    font-size: 30px;
+  }
 }
 @media(max-width:600px){
   .aboutUs{
@@ -241,13 +261,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 35px;
   width: 100%;
   /* margin-left: 350px; */
   color: #415d43;
-
   font-weight: 700;
+}
+@media(max-width:910px){
+  .titleCarrusel{
+   font-size: 38px;
+  }
+}
+
+@media(max-width:830px){
+  .titleCarrusel{
+    font-size: 30px;
+  }
+}
+@media(max-width:600px){
+  .titleCarrusel{
+    font-size: 25px;
+  }
 }
 
 .containerAdopciones {
