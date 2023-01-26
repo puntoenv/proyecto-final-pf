@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
       failure: "https://proyecto-final-pf.vercel.app/cart",
       pending: "",
     },
-    auto_return: "approved",
+    // auto_return: "approved",
 
     //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
   };
