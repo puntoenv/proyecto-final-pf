@@ -64,7 +64,6 @@ export default function Detail({ data }) {
         confirmButtonAriaLabel: "#437042",
       });
     } else {
-
       if (user) {
         router.push(`/getYourPet/?pet=${data._id}&user=${userId}`);
       } else {
@@ -100,7 +99,7 @@ export default function Detail({ data }) {
     autoplaySpeed: 2000,
     cssEase: "linear",
   };
-
+  console.log(data, user);
   return (
     <LayoutGlobal title={data.name.toUpperCase()} authUser={userAuth}>
       <div className={styles.containerAll}>
@@ -112,7 +111,9 @@ export default function Detail({ data }) {
             </Link>
           </div>
           <h1 className={styles.namePet}> {data.name.toUpperCase()} </h1>
-          {!data.hidden && (
+          {data.hidden || userId === data.user._id ? (
+            <h1 className={styles.my}> Mi publicación </h1>
+          ) : (
             <button className={styles.adoptar} onClick={(e) => handlerAdopt(e)}>
               Adoptar
             </button>
@@ -199,70 +200,72 @@ export default function Detail({ data }) {
             <span>Fecha de Publicación: {data.expireAt.split("T")[0]}</span>
           </div>
           <div className={styles.buttonReport}>
-            <button
-              className={styles.back}
-              onClick={async () => {
-                user
-                  ? Swal.fire({
-                      title: "¿Por qué denuncias este post?",
-                      text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
-                      input: "text",
-                      showCancelButton: true,
-                    })
-                      .then(async (result) => {
-                        if (result.isConfirmed) {
-                          if (result.value) {
-                            let report = { motiveReport: result.value };
-                            return [result, report];
-                          }
-                        }
+            {data.user._id !== userId && (
+              <button
+                className={styles.back}
+                onClick={async () => {
+                  user
+                    ? Swal.fire({
+                        title: "¿Por qué denuncias este post?",
+                        text: "Revisaremos cuidadosamente cada caso. Por favor, describe entre 15 y 100 carácteres.",
+                        input: "text",
+                        showCancelButton: true,
                       })
-                      .then(async (response) => {
-                        try {
+                        .then(async (result) => {
+                          if (result.isConfirmed) {
+                            if (result.value) {
+                              let report = { motiveReport: result.value };
+                              return [result, report];
+                            }
+                          }
+                        })
+                        .then(async (response) => {
+                          try {
+                            if (response) {
+                              let res = await axios.put(
+                                `${process.env.NEXT_PUBLIC_URL_BACK}updatePet/report/` +
+                                  data._id,
+                                response[1]
+                              );
+                              return res;
+                            }
+                          } catch (error) {
+                            return { error: error };
+                          }
+                        })
+                        .then((response) => {
                           if (response) {
-                            let res = await axios.put(
-                              `${process.env.NEXT_PUBLIC_URL_BACK}updatePet/report/` +
-                                data._id,
-                              response[1]
-                            );
-                            return res;
+                            response.error
+                              ? Swal.fire({
+                                  title: response.error.response.data,
+                                  icon: "error",
+                                  color: "#437042",
+                                  confirmButtonColor: "#437042",
+                                  confirmButtonAriaLabel: "#437042",
+                                })
+                              : Swal.fire({
+                                  title: "Reporte enviado con éxito.",
+                                  text: "Estaremos revisando el post en poco tiempo",
+                                  icon: "success",
+                                  color: "#437042",
+                                  confirmButtonColor: "#437042",
+                                  confirmButtonAriaLabel: "#437042",
+                                });
                           }
-                        } catch (error) {
-                          return { error: error };
-                        }
-                      })
-                      .then((response) => {
-                        if (response) {
-                          response.error
-                            ? Swal.fire({
-                                title: response.error.response.data,
-                                icon: "error",
-                                color: "#437042",
-                                confirmButtonColor: "#437042",
-                                confirmButtonAriaLabel: "#437042",
-                              })
-                            : Swal.fire({
-                                title: "Reporte enviado con éxito.",
-                                text: "Estaremos revisando el post en poco tiempo",
-                                icon: "success",
-                                color: "#437042",
-                                confirmButtonColor: "#437042",
-                                confirmButtonAriaLabel: "#437042",
-                              });
-                        }
-                      })
-                  : Swal.fire({
-                      title: "Necesitas registrarte para denunciar",
-                      icon: "error",
-                      color: "#437042",
-                      confirmButtonColor: "#437042",
-                      confirmButtonAriaLabel: "#437042",
-                    });
-              }}
-              type="button"
-            >
-              Denunciar
-            </button>
+                        })
+                    : Swal.fire({
+                        title: "Necesitas registrarte para denunciar",
+                        icon: "error",
+                        color: "#437042",
+                        confirmButtonColor: "#437042",
+                        confirmButtonAriaLabel: "#437042",
+                      });
+                }}
+                type="button"
+              >
+                Denunciar
+              </button>
+            )}
           </div>
         </div>
         {related.length > 0 && (
