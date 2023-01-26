@@ -6,26 +6,32 @@ import { PutPets } from "../../stores/actions";
 import Router from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
-
+import HistoryVacio from "../CompoRelle/index"
 function Petscrea({ response }) {
   const { pets } = response;
-  console.log(pets);
-  const filtro = pets?.filter((items) => items.hidden !== true);
-  console.log(filtro);
+  //console.log(pets);
+  const filtros = pets?.filter((items) => items.hidden !== true);
+  console.log(filtros);
 
   const handleClick = (id, obj) => {
     PutPets(id, obj);
-    Router.reload(window.location.pathname);
+    setTimeout(()=>{
+     return Router.reload(window.location.pathname);
+  }, 2000);
+    
   };
   return (
     <div>
       <div className={styles.container_animal}>
+        
         <h2 className={styles.letra}>Tus publicaciones</h2>
+        
         <div className={styles.container_post}>
-          {!filtro ? (
-            <h1 className={styles.letra}>No hay historial de creaciones</h1>
+         
+          {filtros.length === 0 ? (
+            <div className={styles.letra}><HistoryVacio/></div>
           ) : (
-            filtro?.map((mascota) => {
+            filtros?.map((mascota) => {
               return (
                 <div key={mascota._id} className={styles.card}>
                   <img
