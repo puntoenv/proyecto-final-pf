@@ -22,17 +22,20 @@ const productSchema = new Schema({
   image: String,
   stock: Number,
   category: Array,
-  star_reviews:[
+  star_reviews: [
     {
-    
-     stars: Number,
-     reviews: String,
-     user: {
+      stars: Number,
+      reviews: String,
+      user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-     }
-    }
+      },
+    },
   ],
+  // AVG: {
+  //   type: Number,
+  //   default: 0,
+  // },
   boughtBy: [
     {
       type: Schema.Types.ObjectId,
@@ -41,6 +44,22 @@ const productSchema = new Schema({
   ],
   hidden: { type: Boolean, default: false },
 });
+
+// const buildAVG = function (next) {
+//   if (this.star_reviews) {
+//     const additionStars = this.star_reviews.reduce((a, b) => {
+//       return (a += b.stars);
+//     }, 0);
+
+//     const avg = additionStars / this.star_reviews.length;
+
+//     this.AVG = avg;
+//   }
+
+//   return next;
+// };
+
+// productSchema.pre("save", buildAVG);
 
 productSchema.plugin(uniqueValidator, { message: "is already taken." });
 
