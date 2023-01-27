@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
       unit_price: products[i].price,
       quantity: products[i].amount ? products[i].amount : 1,
     };
+    // console.log("id PRoducto-----", products[i]._id);
     arr.push(obj);
   }
   let preference = {
@@ -39,10 +40,12 @@ router.post("/", async (req, res) => {
 
     //notification_url:"https://07ec-2802-8010-a805-1b00-758d-9c13-3e99-4d73.sa.ngrok.io/payment/buyNotification",
   };
-
   mercadopago.preferences
     .create(preference)
-    .then((response) => res.status(200).send({ response }))
+    .then((response) => {
+      console.log(response);
+      res.status(200).send({ response });
+    })
     .catch((error) => res.status(400).send({ error: error.message }));
 });
 
@@ -62,6 +65,7 @@ router.get("/:id", async (req, res) => {
     const data = response.data;
 
     const idUser = data.items[0].category_id; //id.split(" | id-del-usuario: ")[1];
+    console.log("id PRoducto-----", idUser);
     const productsId = data.items.map(
       (product) => product.id //.split(" | id-del-usuario: ")[0]
     );

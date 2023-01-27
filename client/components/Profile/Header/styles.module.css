@@ -52,3 +52,12 @@
   width: auto;
   height: 14em;
 }
+@media(max-width:1130px){
+  .logo{
+   height: 9em;
+   width: auto;
+   
+    /* flex-wrap: wrap-reverse; */
+
+  }
+}

@@ -3,8 +3,10 @@ const Product = require("../../models/Product");
 const productsRelated = Router();
 
 productsRelated.get("/:id", async (req, res) => {
+  console.log("ruta de related product ---------------------------------");
+  let { id } = req.params;
+
   try {
-    let { id } = req.params;
     let related = [];
     let response = [];
     let product = await Product.findById(id);
@@ -24,7 +26,7 @@ productsRelated.get("/:id", async (req, res) => {
     console.log(response);
     res.status(200).send(response);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 });
 
