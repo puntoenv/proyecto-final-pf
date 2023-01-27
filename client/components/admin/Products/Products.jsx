@@ -26,7 +26,7 @@ import style from "./styles.module.css";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
-
+import Fab from '@mui/material/Fab';
 function CustomPagination() {
   const apiRef = useGridApiContext();
   const page = useGridSelector(apiRef, gridPageSelector);
@@ -303,7 +303,7 @@ export default function Products() {
       headerAlign: "center",
       headerClassName: "super-app-theme--header",
       headerName: "Id",
-      width: 160, 
+      width: 185, 
     },
   ]);
 
@@ -341,32 +341,32 @@ export default function Products() {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
-        <Button
-          sx={{ color: "#574c3d" }}
+        <Fab variant="extended" size="medium"
+          sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1  }}
           color="primary"
-          startIcon={<AddIcon />}
+          
           onClick={() => handleAdd(<Add />)}
-        >
+        ><AddIcon />
           Agregar
-        </Button>
+        </Fab>
 
-        <Button
-          sx={{ color: "#574c3d" }}
-          startIcon={<VisibilityOffIcon />}
+        <Fab variant="extended" size="medium"
+          sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1  }}
+        
           onClick={handleHide}
-        >
+        ><VisibilityOffIcon />
           Ocultar
-        </Button>
-        <Button
-          sx={{ color: "#574c3d" }}
-          startIcon={<VisibilityIcon />}
+        </Fab>
+        <Fab variant="extended" size="medium"
+          sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1  }}
+         
           onClick={handleShow}
-        >
+        ><VisibilityIcon />
           Mostrar
-        </Button>
-        <GridToolbarColumnsButton sx={{ color: "#574c3d" }} />
-        <GridToolbarFilterButton sx={{ color: "#574c3d" }} />
-        <GridToolbarDensitySelector sx={{ color: "#574c3d" }} />
+        </Fab>
+        <GridToolbarColumnsButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarFilterButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarDensitySelector sx={{ color: "#574c3d" , fontSize:15}} />
       </GridToolbarContainer>
     );
   }

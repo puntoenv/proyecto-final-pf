@@ -1,7 +1,25 @@
 .products{
-/* //background: rgba(255, 99, 71, 0.352); */
-height: 30em;  
-width: 80em;
-margin-left: 20em;
-margin-top: 10em;
+
+
+height: 25em;  
+width: 55em;
+margin-left: 6em;
+margin-top: 3em;
+
+}
+
+.h1{
+    font-size: 2em;
+    margin-left: 10em;
+    margin-top: 5em;
+    margin-bottom: 1.06em;
+    width: fit-content;
+    font-weight: 900;
+    color: rgba(54, 54, 54, 0.893);
+}
+
+.bar{
+    width: 30em;
+    height: 30em;
+    background: tomato;
 }

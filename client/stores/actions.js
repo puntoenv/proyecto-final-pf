@@ -14,6 +14,7 @@ import {
   getMascotas,
   getRelatedPets,
   typesGet,
+  getReported
 } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
 import {getSales} from "./sales"
@@ -32,7 +33,14 @@ export const sales = ()=> async (dispatch)=>{
   }
 };
 
-
+export const reported = ()=> async (dispatch)=>{
+  try {
+    let pets = await axios("/pets/reported");
+    dispatch(getReported(pets.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 export const authUser = (email, name) => async (dispatch) => {
