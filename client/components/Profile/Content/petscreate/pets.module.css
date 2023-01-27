@@ -211,7 +211,6 @@
   width: 100%;
   flex-wrap: wrap;
   gap: 2em;
-  margin-top: 2rem;
 }
 .container_animal {
   width: 100%;
@@ -231,7 +230,14 @@
   right: 1rem;
   font-size: 120%;
   border-bottom: 1px #ffffff;
+  color: #111111;
+  font-weight: 600;
+  backdrop-filter: blur(20px);
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
 }
 .delet:hover {
   cursor: pointer;
 }
+

@@ -1,5 +1,6 @@
 .navBarcontainer {
   position: fixed;
+  z-index: 3000;
   right: 0;
   width: 250px;
   height: 100%;

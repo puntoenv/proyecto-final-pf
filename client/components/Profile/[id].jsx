@@ -14,7 +14,7 @@ export default function Perfil({
   handleOnSubmit,
   authUser,
 }) {
-  const [render, setRender] = useState("profile");
+  const [render, setRender] = useState("publications");
 console.log(authUser)
   return (
     <div className={style.container_caja1}>

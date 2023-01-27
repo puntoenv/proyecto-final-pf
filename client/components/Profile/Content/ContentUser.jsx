@@ -1,6 +1,6 @@
 import React from "react";
-import Petscrea from "../../petscreate";
-import HistoryEsh from "../../HistoryEsh"
+import HistoryEsh from "./HistoryEsh"
+import Petscrea from "./petscreate";
 import ContentProfile from "./Profile/contentProfile";
 import styles from "./styles.module.css";
 
