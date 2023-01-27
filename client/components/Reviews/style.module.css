@@ -1,7 +1,14 @@
-.container {
-    width: 70%;
-    border: solid;
-    border-left: none;
-    border-top: none;
-    border-right: none;
+.contentReview {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 400px;
+}
+
+.textArea {
+  height: 150px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  font-size: 14px;
+  outline: none;
 }

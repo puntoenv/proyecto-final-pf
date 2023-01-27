@@ -171,7 +171,7 @@ export const handleOnSubmit = async (
         image: "",
         ubication: "",
       });
-      
+      // setLoader(false)
       Router.reload(window.location.pathname);
     }
   } catch (error) {

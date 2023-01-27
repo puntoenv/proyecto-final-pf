@@ -15,6 +15,18 @@ allPets.get("/", async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
+allPets.get("/reported", async (req, res) => {
+  try {
+    let allPets = await Pet.find({report:true}).populate({
+      path: "user",
+      model: User,
+    });
+    res.status(200).send(allPets);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error: error.message });
+  }
+});
 
 allPets.get("/:id", async (req, res) => {
   try {

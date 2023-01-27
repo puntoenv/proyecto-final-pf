@@ -14,6 +14,8 @@ import CardProduct from "../../../components/CardProduct";
 import ProductCard from "../../../components/CarouselEshop/productsCard";
 import Slider from "react-slick";
 import Start_Revi from "../../../components/star_Revi";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -60,7 +62,6 @@ export default function Detail({
 
   const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
-  console.log(_id);
 
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
@@ -118,7 +119,7 @@ export default function Detail({
                 (user && (
                   <button
                     className={style.btnBuy}
-                    onClick={(e) => formatOneItemMP(products)}
+                    onClick={(e) => formatOneItemMP(products, userAuth, Swal)}
                   >
                     Comprar
                   </button>
@@ -182,15 +183,6 @@ export default function Detail({
           {recomendados.length > 2 ? (
             <Slider {...settings} className="arrowsSlides">
               {recomendados.map((recomendado) => (
-                // <CardProduct
-                //   key={recomendado._id}
-                //   info={recomendado}
-                //   addToCart={addToCart}
-                //   cart={cart}
-                //   // serCart={setCart}
-                //   productOfCart={productOfCart}
-                //   discountItem={discountItem}
-                // />
                 <ProductCard
                   key={recomendado._id}
                   info={recomendado}
@@ -207,7 +199,6 @@ export default function Detail({
                 <ProductCard
                   key={recomendado._id}
                   info={recomendado}
-                  // addToCart={addToCart}
                   nombre={recomendado.name}
                   imagen={recomendado.image}
                   precio={recomendado.price}

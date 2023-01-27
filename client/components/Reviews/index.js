@@ -1,15 +1,18 @@
-import styles from "./style.module.css";
+import s from "./style.module.css";
+import Stars from "../StarsReview/index";
 
 function Review({ state, revi }) {
   return (
-    <div>
+    <div className={s.contentReview}>
       <textarea
-        className={styles.container}
+        className={s.textArea}
         name="reviews"
         type="text"
+        placeholder="Deja tu opinion sobre el producto y puntualo"
         onChange={(e) => state(e)}
         value={revi.reviews}
-      ></textarea>
+      />
+      <Stars input={true} state={state} />
     </div>
   );
 }
