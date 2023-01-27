@@ -11,6 +11,11 @@
   padding: 3%;
   list-style-type: none;
 }
+@media(max-width:910px){
+  .cards{
+    margin-top: 220px;
+  }
+}
 
 .card {
   position: relative;
