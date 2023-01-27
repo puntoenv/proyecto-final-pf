@@ -11,3 +11,35 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.hiddenInput {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.mi_archivo {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  width: 12.8rem;
+  height: 60px;
+  text-align: center;
+  margin: 10px;
+  align-items: center;
+  background-color: rgb(223, 255, 215);
+  color: #053005;
+  border: 1px solid #78774a;
+  border-radius: 5px;
+}
+
+.mi_archivo:hover {
+  color: rgb(255, 250, 250);
+  background-color: #584a3c91;
+  border-radius: 5px;
+  border: #584a3cf3;
+}
