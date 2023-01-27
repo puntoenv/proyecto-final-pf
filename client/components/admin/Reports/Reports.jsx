@@ -7,23 +7,18 @@ import {
   GridToolbarFilterButton,
   GridToolbarDensitySelector,
 } from "@mui/x-data-grid";
-import { adminPets, PutPets } from "../../../stores/actions";
+import { reported } from "../../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
-import style from "./style.module.css";
+import style from "./styles.module.css";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import PetsIcon from "@mui/icons-material/Pets";
 import Button from "@mui/material/Button";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
-import PropTypes from "prop-types";
 import Paper from "@mui/material/Paper";
 import Popper from "@mui/material/Popper";
+import PropTypes from "prop-types";
 import Fab from '@mui/material/Fab';
-
-
-
-
-
 function isOverflown(element) {
   return (
     element.scrollHeight > element.clientHeight ||
@@ -150,38 +145,15 @@ colDef: PropTypes.object.isRequired,
 value: PropTypes.string,
 };
 
-
-export default function Pets() {
+export default function Reported() {
   const dispatch = useDispatch();
-  const pets = useSelector((state) => state.mascotas.adminPets);
+  const reportedPosts = useSelector((state) => state.mascotas.reported);
   const [pageSize, setPageSize] = useState(8);
   const [rowId, setRowId] = useState(null);
   const [data, setData] = useState();
   useEffect(() => {
-    dispatch(adminPets());
+    dispatch(reported());
   }, [dispatch]);
-
-  const petsNew = [];
-  for (let i = 0; i < pets.length; i++) {
-    petsNew.push({
-      name: pets[i].name,
-      description: pets[i].description,
-      image: pets[i].image,
-      health: pets[i].health,
-      bought: pets[i].bought,
-      _id: pets[i]._id,
-      hidden: pets[i].hidden,
-      age: pets[i].age,
-      gender: pets[i].gender,
-      size: pets[i].size,
-      directions: pets[i].directions,
-      condition: pets[i].condition,
-      user: pets[i].user.name,
-      userImage: pets[i].user.image,
-      contactAdoption: pets[i].contactAdoption,
-      type: pets[i].type,
-    });
-  }
 
   function Male(props) {
     return (
@@ -219,7 +191,7 @@ export default function Pets() {
         <PetsIcon className={style.icon} {...props}>
           <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />{" "}
         </PetsIcon>
-        <h3 className={style.active}>Activo</h3>
+        <h3 className={style.active}>Activa</h3>
       </div>
     );
   }
@@ -239,8 +211,7 @@ export default function Pets() {
         headerClassName: "super-app-theme--header",
         headerName: "Nombre",
         headerAlign: "left",
-        width: 100,
-        renderCell: renderCellExpand,
+        width: 100, renderCell: renderCellExpand,
       },
       {
         field: "hidden",
@@ -264,6 +235,18 @@ export default function Pets() {
         filterable: false,
       },
       {
+        field: "motiveReport",
+        headerClassName: "super-app-theme--header",
+        headerName: "Motivo", renderCell: renderCellExpand,
+        width: 170,
+      },
+      {
+        field: "type",
+        headerClassName: "super-app-theme--header",
+        headerName: "Especie",
+        width: 61,
+      },
+      {
         field: "gender",
         renderCell: (params) =>
           params.row.gender === "hembra" ? (
@@ -279,23 +262,16 @@ export default function Pets() {
           ),
         headerClassName: "super-app-theme--header",
         headerName: "",
-        headerAlign: "right",
-        width:30,
+        headerAlign: "left",
+        width: 25,
       },
-      {
-        field: "type",
-        headerClassName: "super-app-theme--header",
-        headerName: "Especie",
-        width: 80,
-      },
-      
       {
         field: "age",
         headerClassName: "super-app-theme--header",
         headerName: "Edad",
-        width: 60,
+        width: 50,
       },
-    
+
       {
         field: "size",
         headerClassName: "super-app-theme--header",
@@ -309,39 +285,23 @@ export default function Pets() {
         width: 120,
       },
       {
-        field: "userImage",
+        field: "description",
         headerClassName: "super-app-theme--header",
-        headerName: " ",
-        width: 50,
-        renderCell: (params) => <Avatar src={params.row.userImage} />,
-        sortable: false,
-        filterable: false,
-      },
-      {
-        field: "user",
-        headerName: "Usuario",
-        headerClassName: "super-app-theme--header",
-        width: 100,
+        headerName: "Descripción",
+        width: 170, renderCell: renderCellExpand,
       },
       {
         field: "contactAdoption",
         headerClassName: "super-app-theme--header",
         headerName: "Contacto",
-        width: 130,
-        renderCell: renderCellExpand,
+        width: 150, renderCell: renderCellExpand,
       },
-      {
-        field: "description",
-        headerClassName: "super-app-theme--header",
-        headerName: "Descripción",
-        width: 120,
-        renderCell: renderCellExpand,
-      },
+
       {
         field: "_id",
         headerClassName: "super-app-theme--header",
         headerName: "Id",
-        width: 100,
+        width: 110,
       },
     ],
     []
@@ -367,7 +327,7 @@ export default function Pets() {
   function CustomToolbar() {
     return (
       <GridToolbarContainer>
-        <Fab variant="extended" size="medium"
+       <Fab variant="extended" size="medium"
           sx={{ background:"#2b4822cd" ,color: "#dbdbdb", marginBottom:2, marginTop:1.5, marginRight: 1, marginLeft: 1  }}
          
           onClick={handleHide}
@@ -382,7 +342,7 @@ export default function Pets() {
           Mostrar
         </Fab>
         <GridToolbarColumnsButton sx={{ color: "#574c3d", fontSize:15 }} />
-        <GridToolbarFilterButton sx={{ color: "#574c3d", fontSize:15 }} />
+        <GridToolbarFilterButton sx={{ color: "#574c3d" , fontSize:15}} />
         <GridToolbarDensitySelector sx={{ color: "#574c3d", fontSize:15 }} />
       </GridToolbarContainer>
     );
@@ -398,13 +358,13 @@ export default function Pets() {
         },
       }}
     >
-      <h1 className={style.posts}> Publicaciones </h1>
+      <h1 className={style.posts}> Publicaciones denunciadas </h1>
 
       <DataGrid
         onRowClick={(e) => setData(e)}
         sx={{ ml: 35 }}
         columns={columns}
-        rows={petsNew}
+        rows={reportedPosts}
         getRowId={(row) => row._id}
         rowsPerPageOptions={[5, 10, 20]}
         pageSize={pageSize}
