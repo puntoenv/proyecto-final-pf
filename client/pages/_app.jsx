@@ -61,8 +61,7 @@ export default function App({ Component, pageProps }) {
               color: "#437042",
               confirmButtonColor: "#437042",
               confirmButtonAriaLabel: "#437042",
-            })
-          setFavorite([...favorite, items]);
+            }), setFavorite([...favorite, items]);
       } catch (e) {
         alert(e, "error en agregar favorito");
       }

@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-
+import { BsFillHeartFill } from 'react-icons/Bs';
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
@@ -25,7 +25,7 @@ const fn = (user, dispatch, setNumCall) => {
 };
 
 export default function PetAdoption({ favorite, addAgregar }) {
-  //console.log(favorite);
+  console.log(favorite);
 
   const { user } = useUser();
 
@@ -74,10 +74,12 @@ export default function PetAdoption({ favorite, addAgregar }) {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
+ 
   const handlerFavorite = (e, ani) => {
     e.preventDefault();
     addAgregar(ani);
   };
+
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
@@ -128,7 +130,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
     setFilter({});
     e.target.reset();
   };
-
   return (
     <LayoutGlobal authUser={userAuth}>
       <Layout title="Mascotas" />
@@ -269,12 +270,14 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
-                    <button
+                    {  <button
                       className={styles.corazon}
                       onClick={(e) => handlerFavorite(e, mascota)}
+                      
                     >
-                      ♡
-                    </button>
+                      <BsFillHeartFill/>
+                    </button> 
+                    }
                   </div>
                 );
               })}
