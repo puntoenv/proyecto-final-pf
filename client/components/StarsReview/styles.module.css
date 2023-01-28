@@ -1,0 +1,36 @@
+.contentStars {
+  display: flex;
+}
+.iconStar {
+  color: rgb(64, 167, 122);
+}
+
+.iconStarEmpty {
+  color: #aaa;
+}
+
+.fromRating {
+  display: flex;
+  font-size: 26px;
+}
+.fromRating label {
+  position: relative;
+}
+.fromRating label:hover {
+  cursor: pointer;
+  color: #dc3;
+}
+
+.fromRating input .iconStarForm {
+  color: #aaa;
+}
+.fromRating input {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  opacity: 0;
+}
+.fromRating input:hover {
+  color: #dc3;
+  cursor: pointer;
+}
