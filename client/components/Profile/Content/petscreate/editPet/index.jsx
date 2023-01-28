@@ -4,16 +4,17 @@ import Maps from "../../../../GoogleMap/Maps";
 import styles from "./styles.module.css";
 import { HiArrowDownOnSquare } from "react-icons/hi2";
 import { PutPets } from "../../../../../stores/actions";
+import { MdDelete } from "react-icons/md";
+import { validationImage, validationUpdatePet } from "../../../../../controller/validationPetUpdate";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
-
-const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
-    const ages = [];
-    for (let i = 1; i <= 40; i++) {
-      ages.push(i);
-    }
-  console.log(pet);
-
-  const [input, setInput] = useState();
+const EditProfile = ({ handlerClickEdit, pet, input, setInput }) => {
+  const ages = [];
+  for (let i = 1; i <= 40; i++) {
+    ages.push(i);
+  }
+  const [error, setError] = useState();
 
   const handleInputChange = (event) => {
     setInput({
@@ -22,15 +23,49 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
     });
   };
 
-  const handleOnSubmit = (event) => {
-    event.preventDefault()
-    console.log(input)
-    console.log(pet._id)
+  const handleFiles = (event) => {
+    const { files } = event.target;
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onloadend = () => {
+      setInput({
+        ...input,
+        image: input.image ? [...input.image, reader.result] : [reader.result],
+      });
+    };
+  };
 
-    PutPets(pet._id, input)
-    setInput()
-  }
-  console.log(input);
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    if ( 
+      error?.name ||
+      error?.description ||
+      error?.name === null ||
+      error?.description === null ||
+      !input.image.length
+      ) {
+        Swal.fire({
+          title: "Información inválida, corrige los errores para avanzar",
+          icon: "error",
+          color: "#437042",
+          confirmButtonColor: "#437042",
+          confirmButtonAriaLabel: "#437042",
+        });
+      } else {
+      PutPets(pet._id, input);
+      setInput();
+    }
+  };
+  const handleMaps = (coord) => {
+    setInput({
+      ...input,
+      location: coord,
+    });
+  };
+
+console.log(!input?.image.length);
+  console.log(error);
+
   return (
     <>
       <div className={styles.containerForm}>
@@ -39,17 +74,25 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
           onClick={() => {
             handlerClickEdit();
             setInput();
+            setError();
           }}
         >
           {" "}
           x
         </button>
-        <form className={styles.form} onSubmit={(event) => handleOnSubmit(event)}>
+        <form
+          className={styles.form}
+          onSubmit={(event) => handleOnSubmit(event)}
+        >
+          <span>{error?.name}</span>
           <label htmlFor="submitEdit">Nombre:</label>
           <input
             placeholder={pet?.name}
             name="name"
-            onChange={(event) => handleInputChange(event)}
+            onChange={(event) => {
+              handleInputChange(event),
+                validationUpdatePet(event, input, setError, error);
+            }}
             type="text"
           ></input>
           <label htmlFor="size" className={styles.stretchGenSize}>
@@ -63,6 +106,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
                   value="pequeño"
                   name="size"
                   onChange={(event) => handleInputChange(event)}
+                  checked={input?.size === "pequeño" ? true : false}
                 />
                 Pequeño
               </label>
@@ -73,6 +117,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
                   value="mediano"
                   name="size"
                   onChange={(event) => handleInputChange(event)}
+                  checked={input?.size === "mediano" ? true : false}
                 />
                 Mediano
               </label>
@@ -83,52 +128,60 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
                   value="grande"
                   name="size"
                   onChange={(event) => handleInputChange(event)}
+                  checked={input?.size === "grande" ? true : false}
                 />
                 Grande
               </label>
             </div>
           </label>
 
-          <select
-            className={styles.input}
-            id="type"
-            name="type"
-            onChange={(event) => handleInputChange(event)}
-          >
-            <option defaultValue={true} value="select">
-              {pet?.type}
-            </option>
-            <option value="ave">Ave</option>
-            <option value="conejo">Conejo</option>
-            <option value="gato">Gato</option>
-            <option value="hamster">Hamster</option>
-            <option value="perro">Perro</option>
-            <option value="pez">Pez</option>
-            <option value="tortuga">Tortuga</option>
-            <option value="otra">otra</option>
-          </select>
-
-          <select
-            name="age"
-            id="age"
-            className={styles.input}
-            onChange={(event) => {
-              //   validation(event, errors);
-              handleInputChange(event);
-            }}
-          >
-            <option defaultValue={true} value="">
-              Edad
-            </option>
-            {ages.map((age) => (
-              <option key={age} value={age}>
-                {age}
+          <label>
+            Especie:
+            <select
+              className={styles.input}
+              id="type"
+              name="type"
+              onChange={(event) => handleInputChange(event)}
+            >
+              <option defaultValue={true} value="select">
+                {pet?.type}
               </option>
-            ))}
-          </select>
+              <option value="ave">Ave</option>
+              <option value="conejo">Conejo</option>
+              <option value="gato">Gato</option>
+              <option value="hamster">Hamster</option>
+              <option value="perro">Perro</option>
+              <option value="pez">Pez</option>
+              <option value="tortuga">Tortuga</option>
+              <option value="otra">otra</option>
+            </select>
+          </label>
+
+          <label>
+            {" "}
+            Edad:
+            <select
+              name="age"
+              id="age"
+              className={styles.input}
+              onChange={(event) => {
+                //   validation(event, errors);
+                handleInputChange(event);
+              }}
+            >
+              <option defaultValue={true} value="">
+                {pet?.age}
+              </option>
+              {ages.map((age) => (
+                <option key={age} value={age}>
+                  {age}
+                </option>
+              ))}
+            </select>
+          </label>
 
           <label htmlFor="gender" className={styles.stretchGenSize}>
-            Genero:
+            Genero: {pet?.gender}
             {/* <span className={styles.errors}>{errors.gender}</span> */}
             <div className={styles.radio}>
               <label htmlFor="macho">
@@ -161,7 +214,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
           </label>
 
           <label htmlFor="health" className={styles.stretchHealt}>
-            Salud
+            Salud: {pet?.health}
             {/* <span className={styles.errors}>{errors.health}</span> */}
             <div className={styles.radio}>
               <label htmlFor="good">
@@ -208,7 +261,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
 
           {input?.health === "necesita atención" && (
             <label htmlFor="healthExtra" className={styles.stretch}>
-              Describe su condición de salud:
+              Describe su condición de salud: {pet?.healthExtra}
               {/* {errors.healthExtra ? (
                 <span className={styles.errors}>{errors.healthExtra}</span>
               ) : (
@@ -229,7 +282,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
           )}
 
           <label htmlFor="condition" className={styles.stretchGenSize}>
-            Condición
+            Condición: {pet?.condition}
             <div className={styles.radio}>
               <label htmlFor="pregnant">
                 <input
@@ -274,7 +327,7 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
           </label>
 
           <label htmlFor="sociability" className={styles.stretchGenSize}>
-            ¿Cómo es su interacción con otros animales?
+            ¿Cómo es su interacción con otros animales?: {pet?.sociability}
             <div className={styles.radio}>
               <label htmlFor="_good">
                 <input
@@ -332,11 +385,9 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
           </label>
 
           <div className={styles.containMap}>
-            <Maps
-            // setLocationPet={handlerCoords}
-            />
+            <Maps setLocationPet={handleMaps} />
           </div>
-
+          <span>{error?.description}</span>
           <label htmlFor="description" className={styles.stretchDescription}>
             Descripción:
             {/* <span className={styles.errors}>
@@ -344,18 +395,20 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
             </span> */}
             <textarea
               className={styles.input}
+              value={input?.description ? input.description : pet?.description}
               id="description"
               type="text"
               name="description"
               placeholder=" Describa a la mascota..."
               onChange={(event) => {
-                //   validation(event, errors);
-                handleInputChange(event);
+                handleInputChange(event),
+                  validationUpdatePet(event, input, setError, error);
               }}
             />
           </label>
 
           <label htmlFor="contactAdoption">
+            Contacto: {pet?.contactAdoption}
             <input
               className={styles.input}
               id="contactAdoption"
@@ -375,8 +428,8 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
               className={styles.mi_archivo}
               name="image"
               onChange={(event) => {
-                //   validation(event, errors);
-                handleInputChange(event);
+                // validationImage(event, input, setError, error),
+                  handleFiles(event);
               }}
             >
               <HiArrowDownOnSquare className={styles.upImage} />
@@ -392,12 +445,26 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
               ></input>
             </label>
             <span style={{ textAlign: "center", fontSize: 14 }}>
-              {input?.image && input.image.length !== 0 && (
+              {input?.image && input?.image.length !== 0 ? (
                 <>
-                  {input.image.map((img, i) => (
-                    <p>{img.slice(0, 20) + "..."}</p>
+                  {input?.image.map((img, i) => (
+                    <div style={{ width: "100px", height: "100px" }}>
+                      <MdDelete
+                        size={20}
+                        onClick={() =>
+                          setInput({
+                            ...input,
+                            image: input.image.filter(
+                              (ele) => ele !== input.image[i]
+                            ),
+                          })
+                        }
+                      ></MdDelete>
+                      <img src={img} alt={i} />
+                      <p>{img.slice(0, 20) + "..."}</p>
+                    </div>
                   ))}
-                  <span
+                  {/* <span
                     style={{
                       fontSize: 14,
                       cursor: "pointer",
@@ -414,7 +481,14 @@ const EditProfile = ({ handlerClickEdit, setEdit, pet }) => {
                     }
                   >
                     Deshacer
-                  </span>
+                  </span> */}
+                </>
+              ) : (
+                <>
+                  <p>
+                    {input?.image ? input.image.slice(0, 20) + "..." : ""}
+                  </p>
+                  <span>{input && !input.image.length ? "Debes subir al menos una imagen": "" }</span>
                 </>
               )}
             </span>

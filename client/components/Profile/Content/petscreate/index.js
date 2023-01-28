@@ -18,6 +18,7 @@ function Petscrea({ response }) {
   const [pet, setPet] = useState();
 
   const [edit, setEdit] = useState();
+  const [input, setInput] = useState();
 
   const handleClick = (id, obj) => {
     PutPets(id, obj);
@@ -64,7 +65,7 @@ function Petscrea({ response }) {
                   <button
                     className={styles.btn}
                     type="button"
-                    onClick={() => {handlerClickEdit(), setPet(mascota)}}
+                    onClick={() => {handlerClickEdit(), setPet(mascota), setInput({image: mascota.image, size: mascota.size})}}
                   >
                     Editar publicación
                   </button>
@@ -101,6 +102,8 @@ function Petscrea({ response }) {
             handlerClickEdit={handlerClickEdit}
             setEdit={setEdit}
             pet={pet}
+            input={input}
+            setInput={setInput}
           ></EditProfile>
         </div>
         {/* {edit && <EditProfile setEdit={setEdit}></EditProfile>} */}

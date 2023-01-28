@@ -60,6 +60,10 @@ export const validation = (e, errors, setError) => {
     errors.condition = !value
       ? "Por favor, indique la condición de la mascota"
       : null;
+  } else if(name === 'contact'){
+     errors.sociability = !value
+       ? "Por favor, indique un número de contacto"
+       : null;
   } else {
     setError(null);
   }
@@ -112,6 +116,7 @@ export const handleSubmit = async (
       !post.size ||
       !post.gender ||
       !post.type ||
+      !post.contact ||
       errors.name !== null ||
       errors.age !== null ||
       // errors.description !== null ||
@@ -121,11 +126,12 @@ export const handleSubmit = async (
       errors.image !== null ||
       errors.health !== null ||
       errors.sociability !== null ||
-      errors.condition !== null
+      errors.condition !== null ||
+      errors.contact !== null
     ) {
       setLoader(false);
       Swal.fire({
-        title: "Rellena todos los input para avanzar",
+        title: "Rellena todos los campos para avanzar",
         icon: "error",
         color: "#437042",
         confirmButtonColor: "#437042",
