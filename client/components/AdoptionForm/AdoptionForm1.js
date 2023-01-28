@@ -28,6 +28,7 @@ const AdoptionForm1 = ({
           validation(e, errors);
           handleSelector(e, setPost, post);
         }}
+        value={post.name}
       />
       {/******************SELECTS TYPES-AGE******************/}
       <span className={styles.errors}>{errors.age}</span>
@@ -39,8 +40,9 @@ const AdoptionForm1 = ({
           validation(e, errors);
           handleSelector(e, setPost, post);
         }}
+        value={post.age}
       >
-        <option defaultValue={true} value="">
+        <option defaultValue={true} value={0}>
           Edad
         </option>
         {ages.map((age) => (
@@ -58,6 +60,7 @@ const AdoptionForm1 = ({
           validation(e, errors);
           handleSelector(e, setPost, post);
         }}
+        value={post.type}
       >
         <option defaultValue={true} value="select">
           Especie
@@ -88,6 +91,7 @@ const AdoptionForm1 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.gender === "macho" ? true : false}
               />
               Macho
             </label>
@@ -101,6 +105,7 @@ const AdoptionForm1 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.gender === "hembra" ? true : false}
               />
               Hembra
             </label>
@@ -122,6 +127,7 @@ const AdoptionForm1 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.size === "pequeño" ? true : false}
               />
               Pequeño
             </label>
@@ -135,6 +141,7 @@ const AdoptionForm1 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.size === "mediano" ? true : false}
               />
               Mediano
             </label>
@@ -148,6 +155,7 @@ const AdoptionForm1 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.size === "grande" ? true : false}
               />
               Grande
             </label>
@@ -169,6 +177,7 @@ const AdoptionForm1 = ({
                 validation(e, errors);
                 handleSelector(e, setPost, post);
               }}
+              checked={post.health === "buena" ? true : false}
             />
             Buena
           </label>
@@ -182,6 +191,7 @@ const AdoptionForm1 = ({
                 validation(e, errors);
                 handleSelector(e, setPost, post);
               }}
+              checked={post.health === "necesita atención" ? true : false}
             />
             Necesita atención
           </label>
@@ -195,6 +205,7 @@ const AdoptionForm1 = ({
                 validation(e, errors);
                 handleSelector(e, setPost, post);
               }}
+              checked={post.health === "desconocida" ? true : false}
             />
             Desconozco
           </label>
