@@ -204,12 +204,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
             />
           </form>
 
-          {/* <select className="select" onChange={handlerSort}>
-          <option value=" ">Ordenar</option>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-          </select> */}
-
           {/* CONTENEDOR SEARCH : CAJA*/}
           <div className={styles.caja}>
             <form
@@ -232,7 +226,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
                 className={styles.paginate}
                 type="button"
                 value="🡸"
-                onClick={(e) => handlerPage(e)}
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
               />
               {paging.map((page) => (
                 <input
@@ -240,14 +237,20 @@ export default function PetAdoption({ favorite, addAgregar }) {
                   type="button"
                   value={page}
                   key={page}
-                  onClick={(e) => handlerPage(e)}
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
                 />
               ))}
               <input
                 className={styles.paginate}
                 type="button"
                 value="🡺"
-                onClick={(e) => handlerPage(e)}
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
               />
             </div>
             {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
@@ -289,7 +292,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
             className={styles.paginate}
             type="button"
             value="🡸"
-            onClick={(e) => handlerPage(e)}
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
           />
           {paging.map((page) => (
             <input
@@ -297,14 +303,20 @@ export default function PetAdoption({ favorite, addAgregar }) {
               type="button"
               value={page}
               key={page}
-              onClick={(e) => handlerPage(e)}
+              onClick={(e) => {
+                handlerPage(e);
+                window.scrollTo(0, 0);
+              }}
             />
           ))}
           <input
             className={styles.paginate}
             type="button"
             value="🡺"
-            onClick={(e) => handlerPage(e)}
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
           />
         </div>
       </div>

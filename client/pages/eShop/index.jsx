@@ -12,6 +12,7 @@ import { authUser } from "../../stores/actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
+import { BsWindowSidebar } from "react-icons/bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -133,10 +134,12 @@ export default function eShop({
     <LayoutGlobal authUser={userAuth}>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
+        <a name="up"></a>
         <form
           onChange={(e) => handlerSearch(e)}
           onSubmit={(e) => handlerOnSearch(e)}
           className={styles.box}
+          id="search"
         >
           <input
             className={styles.input}
@@ -192,114 +195,39 @@ export default function eShop({
             />
           </form>
           <div className={styles.pages}>
-            <button onClick={(e) => handlerPage(e)} value="🡸">
-              {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
+            <button
+              onClick={(e) => {
+                handlerPage(e);
+                window.scrollTo(0, 0);
+              }}
+              value="🡸"
+            >
+              🡸
             </button>
             {paging?.map((p) => (
               <button
                 value={p}
                 key={p}
-                onClick={(e) => handlerPage(e)}
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
                 className={styles.pageNum}
               >
                 {p}
               </button>
             ))}
-            <button onClick={(e) => handlerPage(e)} value="🡺">
-              {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
+            <button
+              onClick={(e) => {
+                handlerPage(e);
+                window.scrollTo(0, 0);
+              }}
+              value="🡺"
+            >
+              <a href="#search">🡺</a>
             </button>
           </div>
           <div className={styles.containerCards}>
-            {/* <CardProduct
-              key={1100}
-              info={{
-                name: "Gorra",
-                image:
-                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
-                price: 1500,
-                _id: "63b6fa9ec2e6c5bd60363236",
-                stock: 10,
-                category: ["Productos Little Paws", "Los mas vendidos"],
-                boughtBy: [],
-              }}
-              addToCart={addToCart}
-              cart={cart}
-              serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
-            <CardProduct
-              key={1234}
-              info={{
-                name: "Mochila transportadora",
-                image:
-                  "https://http2.mlstatic.com/D_NQ_NP_965399-MLA50860887736_072022-O.webp",
-                price: 3000,
-                _id: "63b6fa9ec2e6c5bd60363236",
-                stock: 10,
-                category: ["Accesorios para perros", "Accesorios para gatos"],
-                boughtBy: [],
-              }}
-              addToCart={addToCart}
-              cart={cart}
-              serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
-            <CardProduct
-              key={2542}
-              info={{
-                name: "Gorra",
-                image:
-                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
-                price: 1500,
-                _id: "63b6fa9ec2e6c5bd60363236",
-                stock: 10,
-                category: ["Productos Little Paws", "Los mas vendidos"],
-                boughtBy: [],
-              }}
-              addToCart={addToCart}
-              cart={cart}
-              serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
-            <CardProduct
-              key={34253}
-              info={{
-                name: "Gorra",
-                image:
-                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
-                price: 1500,
-                _id: "63b6fa9ec2e6c5bd60363236",
-                stock: 10,
-                category: ["Productos Little Paws", "Los mas vendidos"],
-                boughtBy: [],
-              }}
-              addToCart={addToCart}
-              cart={cart}
-              serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            />
-            <CardProduct
-              key={5312454}
-              info={{
-                name: "Gorra",
-                image:
-                  "https://res.cloudinary.com/dibwxnomi/image/upload/v1673646291/imagenes/WhatsApp_Image_2023-01-13_at_4.37.59_PM_c861hv.jpg",
-                price: 1500,
-                _id: "63b6fa9ec2e6c5bd60363236",
-                stock: 10,
-                category: ["Productos Little Paws", "Los mas vendidos"],
-                boughtBy: [],
-              }}
-              addToCart={addToCart}
-              cart={cart}
-              serCart={setCart}
-              productOfCart={productOfCart}
-              discountItem={discountItem}
-            /> */}
             {productos?.map((producto) => {
               return (
                 <CardProduct
@@ -317,21 +245,37 @@ export default function eShop({
           </div>
         </div>
         <div className={styles.pages}>
-          <button onClick={(e) => handlerPage(e)} value="🡸">
-            {/* <IoIosArrowDropleftCircle className={styles.iconPage} /> */}🡸
+          <button
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
+            value="🡸"
+          >
+            🡸
           </button>
+
           {paging?.map((p) => (
             <button
               value={p}
               key={p}
-              onClick={(e) => handlerPage(e)}
+              onClick={(e) => {
+                handlerPage(e);
+                window.scrollTo(0, 0);
+              }}
               className={styles.pageNum}
             >
               {p}
             </button>
           ))}
-          <button onClick={(e) => handlerPage(e)} value="🡺">
-            {/* <IoIosArrowDroprightCircle className={styles.iconPage} /> */}🡺
+          <button
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
+            value="🡺"
+          >
+            🡺
           </button>
         </div>
       </div>
