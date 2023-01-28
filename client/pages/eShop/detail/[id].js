@@ -62,7 +62,6 @@ export default function Detail({
 
   const { name, image, price, _id, stock, category, boughtBy, star_reviews } =
     data;
-  console.log(_id);
 
   const [amount, setAmount] = useState(0);
   const itemCart = productOfCart(cart, _id);
@@ -119,7 +118,7 @@ export default function Detail({
               )) ||
                 (user && (
                   <button
-                    className={style.btnBuy} 
+                    className={style.btnBuy}
                     onClick={(e) => formatOneItemMP(products, userAuth, Swal)}
                   >
                     Comprar
@@ -184,15 +183,6 @@ export default function Detail({
           {recomendados.length > 2 ? (
             <Slider {...settings} className="arrowsSlides">
               {recomendados.map((recomendado) => (
-                // <CardProduct
-                //   key={recomendado._id}
-                //   info={recomendado}
-                //   addToCart={addToCart}
-                //   cart={cart}
-                //   // serCart={setCart}
-                //   productOfCart={productOfCart}
-                //   discountItem={discountItem}
-                // />
                 <ProductCard
                   key={recomendado._id}
                   info={recomendado}
@@ -209,7 +199,6 @@ export default function Detail({
                 <ProductCard
                   key={recomendado._id}
                   info={recomendado}
-                  // addToCart={addToCart}
                   nombre={recomendado.name}
                   imagen={recomendado.image}
                   precio={recomendado.price}

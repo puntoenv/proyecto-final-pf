@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 export function formatItemsMp(userAuth, Swal) {
   const productstotal = JSON.parse(localStorage.getItem("cart"));
 

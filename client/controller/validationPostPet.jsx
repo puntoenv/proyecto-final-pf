@@ -102,7 +102,7 @@ export const handleSubmit = async (
   setLoader
 ) => {
   e.preventDefault();
-  setLoader(true)
+  setLoader(true);
   try {
     if (
       !post.age ||
@@ -135,12 +135,11 @@ export const handleSubmit = async (
       const id = await PostAdop(post);
       setLoader(false);
       if (typeof id === "string") {
-        
         return await router.push(`/detail/${id}`);
       }
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 

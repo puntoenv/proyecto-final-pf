@@ -25,6 +25,7 @@ const AdoptionForm2 = ({
       </button>
 
       <div className={styles.selectGenderSize}>
+        {/********************* INPUT CONDITION **********************/}
         <label htmlFor="condition" className={styles.stretchGenSize}>
           Condición
           <div className={styles.radio}>
@@ -38,6 +39,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.condition === "embarazada" ? true : false}
               />
               Embarazada
             </label>
@@ -51,6 +53,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.condition === "castrado/a" ? true : false}
               />
               Castrado/a
             </label>
@@ -64,6 +67,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.condition === "desconocida" ? true : false}
               />
               Desconozco
             </label>
@@ -83,6 +87,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.sociability === "buena" ? true : false}
               />
               Buena
             </label>
@@ -96,6 +101,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.sociability === "normal" ? true : false}
               />
               Normal
             </label>
@@ -109,6 +115,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.sociability === "mala" ? true : false}
               />
               Mala
             </label>
@@ -122,6 +129,7 @@ const AdoptionForm2 = ({
                   validation(e, errors);
                   handleSelector(e, setPost, post);
                 }}
+                checked={post.sociability === "desconocida" ? true : false}
               />
               Desconozco
             </label>
@@ -130,7 +138,11 @@ const AdoptionForm2 = ({
       </div>
 
       <div className={styles.containMap}>
-        <Maps setLocationPet={handlerCoords} />
+        <Maps
+          setLocationPet={handlerCoords}
+          coords={post.location}
+          search={true}
+        />
       </div>
 
       <button
