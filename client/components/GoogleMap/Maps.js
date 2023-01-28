@@ -36,12 +36,13 @@ export default function Maps(props) {
     <Map
       setLocationPet={props.setLocationPet}
       COORDS={props.coords}
+      search={props.search}
       setInput={props.setInput}
       input={props.input}
     />
   );
 }
-function Map({ setLocationPet, COORDS, setInput, input }) {
+function Map({ setLocationPet, COORDS, setInput, input, search }) {
   const [center, setCenter] = useState({});
   const [selected, setSelected] = useState(null);
 
@@ -64,7 +65,7 @@ function Map({ setLocationPet, COORDS, setInput, input }) {
 
   return (
     <>
-      {!COORDS && (
+      {search && (
         <div className="places-container">
           <PlacesAutocomplete
             setSelected={setSelected}
@@ -75,7 +76,7 @@ function Map({ setLocationPet, COORDS, setInput, input }) {
       )}
 
       <GoogleMap
-        zoom={11}
+        zoom={13}
         center={selected || center}
         mapContainerClassName="map-container"
       >
@@ -113,12 +114,10 @@ const PlacesAutocomplete = ({ setSelected, setInput, input }) => {
         }
       }
     } else {
-       const results = await getGeocode({ address });
-       const { lat, lng } = await getLatLng(results[0]);
-       setSelected({ lat, lng });
+      const results = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(results[0]);
+      setSelected({ lat, lng });
     }
-
-   
   };
 
   return (
