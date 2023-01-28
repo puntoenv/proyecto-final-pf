@@ -55,6 +55,7 @@ const AdoptionForm2 = ({
             name="description"
             rows="3"
             placeholder=" Describa a la mascota..."
+            value={post.description}
             onChange={(e) => {
               validation(e, errors);
               handleSelector(e, setPost, post);
@@ -75,6 +76,7 @@ const AdoptionForm2 = ({
         id="contactAdoption"
         type="text"
         name="contactAdoption"
+        value={post.contactAdoption}
         placeholder="Información de contacto"
         onChange={(e) => {
           handleSelector(e, setPost, post);
