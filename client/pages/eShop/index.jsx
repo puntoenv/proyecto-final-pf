@@ -12,7 +12,7 @@ import { authUser } from "../../stores/actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import CardProduct from "../../components/CardProduct";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
-import { BsWindowSidebar } from "react-icons/bs";
+import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -202,7 +202,7 @@ export default function eShop({
               }}
               value="🡸"
             >
-              🡸
+              <BsFillCaretLeftFill />
             </button>
             {paging?.map((p) => (
               <button
@@ -224,7 +224,7 @@ export default function eShop({
               }}
               value="🡺"
             >
-              <a href="#search">🡺</a>
+              <BsFillCaretRightFill />
             </button>
           </div>
           <div className={styles.containerCards}>
@@ -252,7 +252,7 @@ export default function eShop({
             }}
             value="🡸"
           >
-            🡸
+            <BsFillCaretLeftFill />
           </button>
 
           {paging?.map((p) => (
@@ -275,7 +275,7 @@ export default function eShop({
             }}
             value="🡺"
           >
-            🡺
+            <BsFillCaretRightFill />
           </button>
         </div>
       </div>
