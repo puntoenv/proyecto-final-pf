@@ -282,17 +282,3 @@ export default function eShop({
     </LayoutGlobal>
   );
 }
-
-// export async function getServerSideProps({ query }) {
-//   try {
-//     // const data = query;
-//     console.log(query);
-//     return {
-//       props: {
-//         dataProps: query,
-//       },
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
