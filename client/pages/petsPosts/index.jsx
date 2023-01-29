@@ -8,7 +8,7 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
+import { BsFillCaretLeftFill, BsFillCaretRightFill, BsFillHeartFill } from "react-icons/Bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -25,7 +25,7 @@ const fn = (user, dispatch, setNumCall) => {
 };
 
 export default function PetAdoption({ favorite, addAgregar }) {
-  //console.log(favorite);
+  console.log(favorite);
 
   const { user } = useUser();
 
@@ -41,7 +41,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
 
   !numCall && user && fn(user, dispatch, setNumCall);
 
-  console.log(userAuth);
+  // console.log(userAuth);
   const paging = [];
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -74,10 +74,12 @@ export default function PetAdoption({ favorite, addAgregar }) {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
+
   const handlerFavorite = (e, ani) => {
     e.preventDefault();
-    addAgregar(ani);
+    addAgregar({ ...ani, tono: "red" });
   };
+
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
@@ -273,12 +275,15 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
-                    <button
-                      className={styles.corazon}
-                      onClick={(e) => handlerFavorite(e, mascota)}
-                    >
-                      ♡
-                    </button>
+                    {
+                      <button
+                        id={mascota._id}
+                        className={styles.corazon}
+                        onClick={(e) => handlerFavorite(e, mascota)}
+                      >
+                        <BsFillHeartFill />
+                      </button>
+                    }
                   </div>
                 );
               })}

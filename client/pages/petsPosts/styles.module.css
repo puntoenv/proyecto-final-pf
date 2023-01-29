@@ -325,16 +325,18 @@ height:240px; */
   height: 56px;
   position: absolute;
   top: 80%;
-  right: 40%;
+  right: 36%;
+
 }
 
-.corazon:hover {
-  color: red;
+.corazon:hover{
+  color:red;
   transition: 0.2s ease-in-out;
-  animation: like 0.5s 1;
-  fill: red;
-  stroke: none;
+  animation:like 0.5s 1;
+  fill:red;
+  stroke:none;
 }
+
 
 @keyframes like {
   0% {
@@ -347,3 +349,5 @@ height:240px; */
     transform: scale(1.1);
   }
 }
+
+
