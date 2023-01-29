@@ -3,7 +3,7 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
 import styles from "./style.module.css";
 import style from "../../components/Profile/Loading.module.css";
-import { getper, getmuni, PostAdop } from "../../stores/actions";
+import { getmuni, PostAdop } from "../../stores/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -45,29 +45,43 @@ export function form(props) {
   const router = useRouter();
   const { isLoading, user } = useUser();
   const [numCall, setNumCall] = useState(0);
+
+  !numCall && user && fn(user, dispatch, setNumCall);
   const userAuth = useSelector((state) => state.userAuth.userData);
   const idUser = userAuth && userAuth._id;
-  !numCall && user && fn(user, dispatch, setNumCall);
 
-  // const idUser = user?.sub.split("|")[1];
   const provi = useSelector((state) => state.caracter.provi.provincias);
   const munici = useSelector((state) => state.caracter.municipios.municipios);
   const [errors, setError] = useState({});
   const [post, setPost] = useState({
+    name: "",
+    age: 0,
+    type: "",
+    gender: "",
+    size: "",
+    health: "",
+    healthExtra: "",
+    condition: "",
+    sociability: "",
+    location: null,
+    description: "",
+    contactAdoption: "",
     image: [],
     userId: idUser,
   });
 
-  console.log(post);
+  useEffect(() => {
+    !post.userId &&
+      setPost(() => ({
+        ...post,
+        userId: idUser,
+      }));
+  });
   const [position, setFirst] = useState(1);
   const [loader, setLoader] = useState(false);
   const handlerCoords = (coords) => {
     handleLocation(post, setPost, coords);
   };
-
-  useEffect(() => {
-    dispatch(getper()).then((_) => console.log(provi));
-  }, [dispatch]);
 
   return (
     <>
@@ -192,18 +206,3 @@ export default withPageAuthRequired(form, {
 
   onError: (error) => <ErrorMessage>{error.message}</ErrorMessage>,
 });
-
-// export async function getServerSideProps({ params }) {
-//   try {
-//     const response = await (
-//       await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}user/${params.id}`)
-//     ).json();
-//     return {
-//       props: {
-//         response,
-//       },
-//     };
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }

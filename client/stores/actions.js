@@ -14,17 +14,17 @@ import {
   getMascotas,
   getRelatedPets,
   typesGet,
-  getReported
+  getReported,
 } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
-import {getSales, getFilteredUsers, getFilteredPosts} from "./charts"
+import { getSales , getFilteredUsers, getFilteredPosts} from "./charts";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
 
-export const sales = ()=> async (dispatch)=>{
+export const sales = () => async (dispatch) => {
   try {
     let allSales = await axios("/buyHistory");
     dispatch(getSales(allSales.data));
@@ -58,7 +58,6 @@ export const reported = ()=> async (dispatch)=>{
     console.error(error);
   }
 };
-
 
 export const authUser = (email, name) => async (dispatch) => {
   try {
@@ -105,12 +104,7 @@ export const getmuni = (municipios) => async (dispatch) => {
 
 export const PutReview = async (obj, id) => {
   try {
-    //console.log(id)
-    const res = axios
-      .put(`/updateProduct/reviews/${id}`, obj)
-      .then((response) => {
-        console.log("Update SUCCESS!");
-      });
+    const res = await axios.put(`/updateProduct/reviews/${id}`, obj);
     return res;
   } catch (error) {
     console.log(error);
@@ -120,11 +114,9 @@ export const PutReview = async (obj, id) => {
 export const PutPets = async (id, obj) => {
   console.log(id, obj);
   try {
-    const respo = await axios
-      .put(`/updatePet/${id}`, obj)
-      .then((response) => {
-        console.log("Update SUCCESS!");
-      });
+    const respo = await axios.put(`/updatePet/${id}`, obj).then((response) => {
+      console.log("Update SUCCESS!");
+    });
     return respo;
   } catch (e) {
     console.log(e);
@@ -305,7 +297,6 @@ export const filterProducts = (input, page) => async (dispatch) => {
 };
 
 export const UpdateProduct = async (id, obj) => {
- 
   try {
     const respo = await axios.put(`/updateProduct/${id}`, obj);
     respo
@@ -371,10 +362,7 @@ export const allUsers = () => async (dispatch) => {
 export const updateUser = async (id, obj) => {
   console.log(id, obj);
   try {
-    const respo = await axios.put(
-      `/updateProfile/${id}`,
-      obj
-    );
+    const respo = await axios.put(`/updateProfile/${id}`, obj);
     respo
       ? Swal.fire({
           title: "Usuario editado con éxito",
@@ -384,7 +372,7 @@ export const updateUser = async (id, obj) => {
           confirmButtonAriaLabel: "#437042",
         })
       : null;
-      console.log(respo);
+    console.log(respo);
     return respo;
   } catch (e) {
     console.log(e);

@@ -1,23 +1,20 @@
+import styles from "./styles.module.css";
+import Stars from "../../StarsReview/index";
 
-import styles from "./styles.module.css"
-
-function Comments({star_reviews}) {
-    
+function Comments({ star_reviews }) {
   return (
-    <div className={styles.container} >
-        
- {  star_reviews?.map((ite)=> {
-    return (
-        <div className={styles.container_1}>
-        <p className={styles.title}>Puntuacion</p>
-        <p className={styles.frase}>{ite.stars}</p>
-        <p className={styles.title}>Reseñas</p>
-        <p className={styles.frase}>{ite.reviews}</p>
-        </div>
-    )
- }) }
+    <div className={styles.container}>
+      <h4 className={styles.h4}>Comentarios</h4>
+      {star_reviews?.map((ite) => {
+        return (
+          <div className={styles.containerComments}>
+            <Stars sizeStar={18} stars={ite.stars} />
+            <p className={styles.frase}>{ite.reviews}</p>
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default Comments
+export default Comments;

@@ -49,7 +49,7 @@ updateProduct.put("/:id", async (req, res) => {
 updateProduct.put("/reviews/:id", async (req, res) => {
   const { id } = req.params;
   const { stars, reviews, user_id } = req.body;
-
+  console.log(stars);
   const product = await Product.findById(id);
   const user = await User.findById(user_id);
 
