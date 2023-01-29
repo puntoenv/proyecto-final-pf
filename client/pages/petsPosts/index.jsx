@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import LayoutGlobal from "../../components/LayoutGlobal/Layout";
 import Layout from "../layout.js";
 import styles from "./styles.module.css";
-import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
+import { BsFillCaretLeftFill, BsFillCaretRightFill, BsFillHeartFill } from "react-icons/Bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -25,7 +25,7 @@ const fn = (user, dispatch, setNumCall) => {
 };
 
 export default function PetAdoption({ favorite, addAgregar }) {
-  //console.log(favorite);
+  console.log(favorite);
 
   const { user } = useUser();
 
@@ -41,7 +41,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
 
   !numCall && user && fn(user, dispatch, setNumCall);
 
-  console.log(userAuth);
+  // console.log(userAuth);
   const paging = [];
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -74,10 +74,12 @@ export default function PetAdoption({ favorite, addAgregar }) {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
+
   const handlerFavorite = (e, ani) => {
     e.preventDefault();
-    addAgregar(ani);
+    addAgregar({ ...ani, tono: "red" });
   };
+
   useEffect(() => {
     dispatch(getPets(1));
     dispatch(getper());
@@ -204,12 +206,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
             />
           </form>
 
-          {/* <select className="select" onChange={handlerSort}>
-          <option value=" ">Ordenar</option>
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-          </select> */}
-
           {/* CONTENEDOR SEARCH : CAJA*/}
           <div className={styles.caja}>
             <form
@@ -228,27 +224,39 @@ export default function PetAdoption({ favorite, addAgregar }) {
               <input type="submit" className={styles.searchB} value="Buscar" />
             </form>
             <div className={styles.pagingTop}>
-              <input
+              <button
                 className={styles.paginate}
-                type="button"
                 value="🡸"
-                onClick={(e) => handlerPage(e)}
-              />
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <BsFillCaretLeftFill />
+              </button>
               {paging.map((page) => (
-                <input
-                  className={styles.paginate}
-                  type="button"
+                <button
+                  className={styles.paginateNum}
                   value={page}
                   key={page}
-                  onClick={(e) => handlerPage(e)}
-                />
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  {page}
+                </button>
               ))}
-              <input
+              <button
                 className={styles.paginate}
-                type="button"
                 value="🡺"
-                onClick={(e) => handlerPage(e)}
-              />
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <BsFillCaretRightFill />
+              </button>
             </div>
             {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
             <div className={styles.big_container}>
@@ -259,8 +267,6 @@ export default function PetAdoption({ favorite, addAgregar }) {
                   <div key={mascota._id} className={styles.card}>
                     <img
                       className={styles.img}
-                      // width="400"
-                      // height="240"
                       src={mascota.image[0]}
                       alt="image"
                     />
@@ -269,12 +275,15 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
-                    <button
-                      className={styles.corazon}
-                      onClick={(e) => handlerFavorite(e, mascota)}
-                    >
-                      ♡
-                    </button>
+                    {
+                      <button
+                        id={mascota._id}
+                        className={styles.corazon}
+                        onClick={(e) => handlerFavorite(e, mascota)}
+                      >
+                        <BsFillHeartFill />
+                      </button>
+                    }
                   </div>
                 );
               })}
@@ -285,27 +294,40 @@ export default function PetAdoption({ favorite, addAgregar }) {
 
         {/* CONTENDOR PAGINADO : PAGING */}
         <div className={styles.paging}>
-          <input
+          <button
             className={styles.paginate}
-            type="button"
             value="🡸"
-            onClick={(e) => handlerPage(e)}
-          />
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
+          >
+            <BsFillCaretLeftFill />
+          </button>
           {paging.map((page) => (
-            <input
-              className={styles.paginate}
+            <button
+              className={styles.paginateNum}
               type="button"
               value={page}
               key={page}
-              onClick={(e) => handlerPage(e)}
-            />
+              onClick={(e) => {
+                handlerPage(e);
+                window.scrollTo(0, 0);
+              }}
+            >
+              {page}
+            </button>
           ))}
-          <input
+          <button
             className={styles.paginate}
-            type="button"
             value="🡺"
-            onClick={(e) => handlerPage(e)}
-          />
+            onClick={(e) => {
+              handlerPage(e);
+              window.scrollTo(0, 0);
+            }}
+          >
+            <BsFillCaretRightFill />
+          </button>
         </div>
       </div>
     </LayoutGlobal>
