@@ -9,7 +9,7 @@ import styles from "./styles.module.css";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-import { BsFillHeartFill } from 'react-icons/Bs';
+import { BsFillHeartFill } from "react-icons/Bs";
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
     const sub = user.sub.split("|");
@@ -41,7 +41,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
 
   !numCall && user && fn(user, dispatch, setNumCall);
 
-  console.log(userAuth);
+  // console.log(userAuth);
   const paging = [];
   const ages = [];
   for (let i = 0; i <= 40; i++) {
@@ -74,10 +74,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
   //     e.preventDefault();
   //     dispatch(sorts(e.target.value));
   // }
- 
+
   const handlerFavorite = (e, ani) => {
     e.preventDefault();
-    addAgregar(ani);
+    addAgregar({ ...ani, tono: "red" });
   };
 
   useEffect(() => {
@@ -130,6 +130,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
     setFilter({});
     e.target.reset();
   };
+
   return (
     <LayoutGlobal authUser={userAuth}>
       <Layout title="Mascotas" />
@@ -270,13 +271,14 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <button className={styles.btn}>
                       <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                     </button>
-                    {  <button
-                      className={styles.corazon}
-                      onClick={(e) => handlerFavorite(e, mascota)}
-                      
-                    >
-                      <BsFillHeartFill/>
-                    </button> 
+                    {
+                      <button
+                        id={mascota._id}
+                        className={styles.corazon}
+                        onClick={(e) => handlerFavorite(e, mascota)}
+                      >
+                        <BsFillHeartFill />
+                      </button>
                     }
                   </div>
                 );
