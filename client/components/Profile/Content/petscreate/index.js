@@ -13,7 +13,7 @@ function Petscrea({ response }) {
   const { pets } = response;
   //console.log(pets);
   const filtros = pets?.filter((items) => items.hidden !== true);
-
+console.log(filtros)
   const [pet, setPet] = useState();
 
   const [edit, setEdit] = useState();
@@ -47,13 +47,16 @@ function Petscrea({ response }) {
           filtros?.map((mascota) => {
             return (
               <div key={mascota._id} className={styles.card}>
-                <img
-                  className={styles.img}
-                  src={mascota.image[0]}
-                  width="200px"
-                  height="150px"
-                  alt="image"
-                />
+                <div>
+                  {mascota.report && <p className={styles.report}>Reportada</p>}
+                  <img
+                    className={styles.img}
+                    src={mascota.image[0]}
+                    width="200px"
+                    height="150px"
+                    alt="image"
+                  />
+                </div>
                 <h1 className={styles.name}>{mascota.name}</h1>
                 <h2 className={styles.size}>{mascota.gender}</h2>
                 <Link href={`/detail/${mascota._id}`}>
