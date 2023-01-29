@@ -3,11 +3,7 @@ import { adminProducts } from "../../../stores/actions";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css"
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+
 const ProductsPie = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);

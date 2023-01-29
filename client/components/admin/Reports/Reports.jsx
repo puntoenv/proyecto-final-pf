@@ -148,6 +148,7 @@ value: PropTypes.string,
 export default function Reported() {
   const dispatch = useDispatch();
   const reportedPosts = useSelector((state) => state.mascotas.reported);
+  console.log(reportedPosts);
   const [pageSize, setPageSize] = useState(8);
   const [rowId, setRowId] = useState(null);
   const [data, setData] = useState();

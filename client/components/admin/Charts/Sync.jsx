@@ -10,6 +10,8 @@ import {
   AccumulationTooltip,
 } from "@syncfusion/ej2-react-charts";
 import styles from '../../../pages/admin/admin.module.css'
+
+
 const Sync = ({ id, data, legendVisiblity, height }) => {
   return (
     <div>

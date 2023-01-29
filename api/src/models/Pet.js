@@ -55,7 +55,8 @@ const petSchema = new Schema({
 
   hidden: { type: Boolean, default: false },
   expireAt: { type: Date, expires: 5184000 },
-});
+ 
+}, {timestamps:true});
 
 petSchema.plugin(mongoosePaginate);
 

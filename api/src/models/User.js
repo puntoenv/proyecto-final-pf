@@ -70,7 +70,10 @@ const userSchema = new Schema({
     default: "local",
   },
   hidden: { type: Boolean, default: false },
-});
+  
+ 
+
+}, {timestamps:true});
 
 userSchema.plugin(uniqueValidator, { message: "is already taken." });
 
