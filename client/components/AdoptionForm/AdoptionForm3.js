@@ -79,6 +79,7 @@ const AdoptionForm2 = ({
         value={post.contactAdoption}
         placeholder="Información de contacto"
         onChange={(e) => {
+          validation(e, errors, setError);
           handleSelector(e, setPost, post);
         }}
       />
@@ -126,6 +127,9 @@ const AdoptionForm2 = ({
                 }
               >
                 Deshacer
+              </span>
+              <span className={styles.errors}>
+                {post.image.length === 4 && "Llegaste al límite de imágenes"}
               </span>
             </>
           )}

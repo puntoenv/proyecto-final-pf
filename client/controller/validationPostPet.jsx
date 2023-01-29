@@ -52,6 +52,10 @@ export const validation = (e, errors, setError) => {
     errors.healthExtra = !value
       ? "Por favor, describe la condición de salud de la mascota"
       : "";
+  } else if (name === "contactAdoption") {
+    errors.contactAdoption = !value
+      ? "Por favor, indique un medio de contacto"
+      : null;
   } else if (name === "sociability") {
     errors.sociability = !value
       ? "Por favor, indique la sociabilidad de la mascota"
@@ -59,6 +63,10 @@ export const validation = (e, errors, setError) => {
   } else if (name === "condition") {
     errors.condition = !value
       ? "Por favor, indique la condición de la mascota"
+      : null;
+  } else if (name === "contact") {
+    errors.sociability = !value
+      ? "Por favor, indique un número de contacto"
       : null;
   } else {
     setError(null);
@@ -86,10 +94,12 @@ export const handleFiles = (e, setPost, post) => {
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
   reader.onloadend = () => {
-    setPost({
-      ...post,
-      image: [...post.image, reader.result],
-    });
+    if (post.image.length < 4) {
+      setPost({
+        ...post,
+        image: [...post.image, reader.result],
+      });
+    }
   };
 };
 export const handleSubmit = async (
@@ -112,6 +122,7 @@ export const handleSubmit = async (
       !post.size ||
       !post.gender ||
       !post.type ||
+      !post.contactAdoption ||
       errors.name !== null ||
       errors.age !== null ||
       // errors.description !== null ||
@@ -121,11 +132,12 @@ export const handleSubmit = async (
       errors.image !== null ||
       errors.health !== null ||
       errors.sociability !== null ||
-      errors.condition !== null
+      errors.condition !== null ||
+      errors.contactAdoption !== null
     ) {
       setLoader(false);
       Swal.fire({
-        title: "Rellena todos los input para avanzar",
+        title: "Rellena todos los campos para avanzar",
         icon: "error",
         color: "#437042",
         confirmButtonColor: "#437042",

@@ -13,7 +13,7 @@ const petSchema = new Schema({
     type: Number,
     required: true,
     min: 0,
-    max: 30,
+    max: 40,
   },
   contactAdoption: {
     type: String,
