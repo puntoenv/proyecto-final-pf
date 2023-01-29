@@ -21,13 +21,14 @@ export const validationUpdatePet = (event, input, setError, error) => {
    }
 
    if (event.target.name === "description") {
+    console.log(event.target.value.length)
      if (
-       (event.target.value.length >= 1 && event.target.value.length < 15) ||
-       event.target.value.length > 250
+       event.target.value.length >= 1 && (event.target.value.length < 15 ||
+       event.target.value.length > 400)
      ) {
        setError({
          ...error,
-         description: "La descripción debe contener de 15 a 30 carácteres",
+         description: "La descripción debe contener de 15 a 400 carácteres",
        });
      } else {
        setError({

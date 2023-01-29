@@ -9,7 +9,6 @@ import HistoryVacio from "../../../CompoRelle";
 import { useState } from "react";
 import EditProfile from "./editPet";
 
-
 function Petscrea({ response }) {
   const { pets } = response;
   //console.log(pets);
@@ -65,7 +64,18 @@ function Petscrea({ response }) {
                   <button
                     className={styles.btn}
                     type="button"
-                    onClick={() => {handlerClickEdit(), setPet(mascota), setInput({image: mascota.image, size: mascota.size})}}
+                    onClick={() => {
+                      handlerClickEdit(),
+                        setPet(mascota),
+                        setInput({
+                          image: mascota.image,
+                          size: mascota.size,
+                          gender: mascota.gender,
+                          health: mascota.health,
+                          condition: mascota.condition,
+                          sociability: mascota.sociability,
+                        });
+                    }}
                   >
                     Editar publicación
                   </button>

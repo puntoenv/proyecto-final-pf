@@ -15,6 +15,7 @@ updatePet.put("/:id", async (req, res) => {
       gender,
       location,
       health,
+      healthExtra,
       pregnant,
       sociability,
       castrated,
@@ -38,6 +39,7 @@ updatePet.put("/:id", async (req, res) => {
     pet.location = location ? location : pet.location;
     // pet.userId = userId ? userId : pet.userId;
     pet.health = health ? health : pet.health;
+    pet.healthExtra = healthExtra ? healthExtra : pet.healthExtra;
     pet.pregnant = pregnant ? pregnant : pet.pregnant;
     pet.sociability = sociability ? sociability : pet.sociability;
     pet.castrated = castrated ? castrated : pet.castrated;
