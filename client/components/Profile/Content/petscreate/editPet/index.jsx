@@ -69,8 +69,6 @@ const EditProfile = ({ handlerClickEdit, pet, input, setInput }) => {
     });
   };
 
-  console.log(!input?.image.length);
-  console.log(error);
 
   return (
     <>
