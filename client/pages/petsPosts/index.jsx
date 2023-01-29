@@ -8,7 +8,7 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-import { BsFillCaretLeftFill, BsFillCaretRightFill } from "react-icons/bs";
+import { BsFillCaretLeftFill, BsFillCaretRightFill, BsFillHeartFill } from "react-icons/Bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
