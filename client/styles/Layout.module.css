@@ -19,5 +19,12 @@
   padding: 16px;
   display: flex;
   justify-content: center;
+  align-items: center;
   color: antiquewhite;
+}
+.link {
+  border-bottom: 1px solid #fff;
+}
+.link:hover {
+  color: #81664ee1;
 }

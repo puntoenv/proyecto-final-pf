@@ -67,12 +67,12 @@ const SideBar = ({ setRender, response, authUser }) => {
             className={"li"}
             onClick={(event) => {
               event.preventDefault();
-              // setRender("buy");
+              setRender("adoptions");
             }}
           >
             <MdArchive className={"iconSize"} size={20}></MdArchive>
             <li>
-              <a href="">Archivos</a>
+              <a href="">Adopciones</a>
             </li>
           </div>
           {/* ============================ COMPRAS ============================ */}

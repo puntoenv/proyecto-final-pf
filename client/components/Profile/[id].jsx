@@ -14,14 +14,13 @@ export default function Perfil({
   handleOnSubmit,
   authUser,
 }) {
-  const [render, setRender] = useState("adoptions");
-
+  const [render, setRender] = useState("profile");
   return (
     <div className={style.container_caja1}>
       {isLoading && (
         <div className={styles.container}>
           <div className={styles.loader}></div>
-          <p>Loading...</p>
+          <p>Loading....</p>
         </div>
       )}
       {authUser && (

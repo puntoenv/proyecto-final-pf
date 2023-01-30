@@ -11,8 +11,8 @@
   padding: 3%;
   list-style-type: none;
 }
-@media(max-width:910px){
-  .cards{
+@media (max-width: 910px) {
+  .cards {
     margin-top: 220px;
   }
 }
@@ -145,10 +145,11 @@
   all: unset;
   position: absolute;
   color: #ffffff;
+  background-color: red;
+  border-radius: 5px;
   top: 1rem;
   right: 1rem;
-  font-size: 225%;
-  border-bottom: 1px #ffffff;
+  font-size: 28px;
 }
 .delet:hover {
   cursor: pointer;
