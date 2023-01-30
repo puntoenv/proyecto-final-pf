@@ -15,7 +15,6 @@ export default function Perfil({
   authUser,
 }) {
   const [render, setRender] = useState("profile");
-  console.log(authUser);
   return (
     <div className={style.container_caja1}>
       {isLoading && (

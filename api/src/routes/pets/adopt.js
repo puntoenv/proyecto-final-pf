@@ -22,6 +22,8 @@ adoptEmail.get("/", async (req, res) => {
       subject: `GRACIAS ${user.name.toUpperCase()}`,
       html: data,
     });
+
+
   } catch (error) {
     console.error(error);
   }

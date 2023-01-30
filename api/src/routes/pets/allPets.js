@@ -6,8 +6,8 @@ const User = require("../../models/User");
 allPets.get("/", async (req, res) => {
   try {
     let allPets = await Pet.find().populate([
-      { path: "user", model: User },
-      { path: "adopted", model: User },
+      {path: "user", model: "User",},
+      { path: "adopted", model: "User" },
     ]);
     res.status(200).send(allPets);
   } catch (error) {

@@ -15,8 +15,10 @@ const userSchema = new Schema({
   },
   gender: {
     type: String,
+    type: String,
   },
   ubication: {
+    type: Object,
     type: Object,
   },
   directions: {
@@ -46,12 +48,19 @@ const userSchema = new Schema({
       ref: "Pet",
     },
   ],
+  petsAdopted: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Pet",
+    },
+  ],
   cart: [
     {
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
   ],
+
   bought: [
     {
       type: Schema.Types.ObjectId,
@@ -59,6 +68,7 @@ const userSchema = new Schema({
     },
   ],
   review_star: [
+    
     {
       stars: Number,
       reviews: String,
