@@ -142,7 +142,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
             onChange={(e) => handlerFilter(e)}
             onSubmit={(e) => handlerSubmit(e)}
           >
-            <div>
+            <div className={styles.viewAllPets}>
               <button className={styles.all} onClick={(e) => handlerTodas(e)}>
                 Ver Todas
               </button>
@@ -268,61 +268,65 @@ export default function PetAdoption({ favorite, addAgregar }) {
                       src={mascota.image[0]}
                       alt="image"
                     />
-                    <h3 className={styles.name}>{mascota.name}</h3>
-                    <span className={styles.size}>{mascota.gender}</span>
-                    <button className={styles.btn}>
-                      <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                    </button>
-                    <button
-                      className={styles.corazon}
-                      onClick={(e) => handlerFavorite(e, mascota)}
-                    >
-                      ♡
-                    </button>
+                    <div className={styles.infoPet}>
+                      <h3 className={styles.name}>{mascota.name}</h3>
+                      <span className={styles.size}>{mascota.gender}</span>
+                      <Link
+                        href={`/detail/${mascota._id}`}
+                        className={styles.btn}
+                      >
+                        Ver detalle
+                      </Link>
+                      <button
+                        className={styles.corazon}
+                        onClick={(e) => handlerFavorite(e, mascota)}
+                      >
+                        ♡
+                      </button>
+                    </div>
                   </div>
                 );
               })}
               <div />
             </div>
+            {/* CONTENDOR PAGINADO : PAGING */}
+            <div className={styles.paging}>
+              <button
+                className={styles.paginate}
+                value="🡸"
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <BsFillCaretLeftFill />
+              </button>
+              {paging.map((page) => (
+                <button
+                  className={styles.paginateNum}
+                  type="button"
+                  value={page}
+                  key={page}
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                className={styles.paginate}
+                value="🡺"
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                <BsFillCaretRightFill />
+              </button>
+            </div>
           </div>
-        </div>
-
-        {/* CONTENDOR PAGINADO : PAGING */}
-        <div className={styles.paging}>
-          <button
-            className={styles.paginate}
-            value="🡸"
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <BsFillCaretLeftFill />
-          </button>
-          {paging.map((page) => (
-            <button
-              className={styles.paginateNum}
-              type="button"
-              value={page}
-              key={page}
-              onClick={(e) => {
-                handlerPage(e);
-                window.scrollTo(0, 0);
-              }}
-            >
-              {page}
-            </button>
-          ))}
-          <button
-            className={styles.paginate}
-            value="🡺"
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <BsFillCaretRightFill />
-          </button>
         </div>
       </div>
     </LayoutGlobal>
