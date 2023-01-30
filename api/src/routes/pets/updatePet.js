@@ -42,16 +42,8 @@ updatePet.put("/:id", async (req, res) => {
     }
     if (updateAdopted) {
 
-      // const petAdopted = user.petsAdopted.filter(ele => ele == id)[0]
-      // console.log(petAdopted)
-
      pet.adopted.status = updateAdopted ? updateAdopted : pet.adopted.status
-    // for(let i = 0; i < user.petsAdopted.length ; i++){
-    //   console.log(user.petsAdopted[i]._id);
-    //   // if(user.petsAdopted[i]._id === id){
-    //   //   user.petsAdopted.adopted.status = updateAdopted
-    //   // }
-    // }
+
     }
     pet.name = name ? name : pet.name;
     pet["size"] = size ? size : pet["size"];
