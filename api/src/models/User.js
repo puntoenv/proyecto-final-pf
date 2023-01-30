@@ -68,7 +68,7 @@ const userSchema = new Schema({
     },
   ],
   review_star: [
-    {
+    
     {
       stars: Number,
       reviews: String,
