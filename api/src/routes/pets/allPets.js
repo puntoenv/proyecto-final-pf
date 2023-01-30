@@ -18,6 +18,7 @@ allPets.get("/", async (req, res) => {
 allPets.get("/reported", async (req, res) => {
   try {
     let allPets = await Pet.find({ report: true }).populate({
+    let allPets = await Pet.find({ report: true }).populate({
       path: "user",
       model: User,
     });

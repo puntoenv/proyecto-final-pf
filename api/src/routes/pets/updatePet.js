@@ -30,11 +30,13 @@ updatePet.put("/:id", async (req, res) => {
     let pet = await Pet.findById(id);
 
     const user = await User.findById(userId);
+
     if (adopted) {
       pet.adopted.user = user._id;
       pet.adopted.status = "pending";
       user.petsAdopted = user.petsAdopted.concat(pet._id);
     }
+
     if (hidden) {
       hidden === "show" ? (pet.hidden = false) : (pet.hidden = true);
     }

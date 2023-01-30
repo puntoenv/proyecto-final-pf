@@ -1,21 +1,29 @@
 .navBarcontainer {
   position: fixed;
-<<<<<<< HEAD
   display: flex;
   padding: 0 50px;
-
-=======
-  z-index: 3000;
->>>>>>> development
-  right: 0;
+  z-index: 40000;
+  right: -800px;
   height: 100%;
   background-color: #38593a;
   box-shadow: 0px 0px 6px 3px rgba(19, 31, 17, 0.486);
+  transition: all 0.5s;
+}
+
+.viewSideBarUser {
+  right: 0;
+}
+
+.icon {
+  margin: 20px 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .wrapper {
-  padding: 10px;
   z-index: 1;
+  padding-top: 70px;
 }
 
 .logo {
@@ -35,9 +43,7 @@
 }
 
 .wrapper > .ul {
-  margin-top: 20px;
   text-align: left;
-  padding-left: 10px;
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -51,14 +57,10 @@
   display: flex;
   list-style: none;
   text-decoration: none;
-  transition: all 0.3s;
   align-items: center;
 }
 .link > li {
   display: flex;
-  /* gap: 15px; */
-}
-.link a {
 }
 
 .link {
@@ -71,48 +73,41 @@
   align-items: center;
   gap: 11px;
   cursor: pointer;
-  transition: 0.6s;
+  transition: 0.3s;
 }
-.wrapper > ul > .li > li:hover {
+
+/* .iconSize {
+  margin-right: 0px;
+} */
+
+.wrapper > ul > .li:hover {
   color: #fff;
 }
 
 .wrapper > ul > .li > li > .icondown {
-  transition: all 0.6s;
   margin-left: 6px;
-}
-.wrapper > ul > .liLogout > li:hover,
-.wrapper > ul > div > .link:hover {
 }
 
 .wrapper > ul > .liLogout > li {
   list-style: none;
   text-decoration: none;
+  color: #ccc;
   position: fixed;
   bottom: 40px;
   transition: all 0.5s;
   display: flex;
   align-items: center;
 }
-@media (max-width: 780px) {
-  .wrapper > ul > .liLogout > li {
-  }
+.wrapper > ul > .liLogout > li:hover {
+  color: #fff;
 }
-
 .wrapper > ul > .icon > a {
   border-bottom: none;
   transition: all 0.6s;
   display: flex;
   align-items: center;
 }
-@media (max-width: 780px) {
-  .wrapper > ul > .icon > a {
-  }
-}
 .wrapper > ul > .icon > a:hover {
   border-bottom: none;
   background: none;
-}
-
-.iconSize {
 }

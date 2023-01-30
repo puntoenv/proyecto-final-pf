@@ -9,8 +9,12 @@ import "sweetalert2/src/sweetalert2.scss";
 import { useRouter } from "next/router";
 import { handleAdoption } from "../../controller/validationUpdateP";
 import styles from "../Profile/Loading.module.css";
-import { BsFillHeartFill } from "react-icons/bs";
-import { RiShoppingCart2Line } from "react-icons/ri";
+import { BsSuitHeartFill, BsFillCartFill } from "react-icons/bs";
+import { IoPaw } from "react-icons/io5";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { FiMenu } from "react-icons/fi";
+import { FaUserAlt } from "react-icons/fa";
+
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
 
@@ -36,30 +40,20 @@ const NavBar = ({ authUser }) => {
 
   return (
     <header className="headerNav">
-      <Link href={"/home"} className="logo">
-        <Image src={logo} alt="logo" className="logo" />
+      <Link href={"/home"} className="logoNav">
+        <Image src={logo} alt="logo" className="logoNav" />
       </Link>
       <nav className="nav">
         <div className="navMenuList">
-          <Link className="itemNav" href="/favorite">
-            <BsFillHeartFill />
-          </Link>
-          <Link className="itemNav" href="/cart">
-            <RiShoppingCart2Line />
-          </Link>
-
           <Link className="itemNav" href="/eShop">
             <span>Productos</span>
-          </Link>
-          <Link className="itemNav" href="/aboutUs">
-            <span>Nosotros</span>
           </Link>
           <Link className="itemNav" href="/contact">
             <span>Contáctanos</span>
           </Link>
 
           <Link className="itemNav" href="/petsPosts">
-            <span>Ver Mascotas</span>
+            <span>Mascotas</span>
           </Link>
           {authUser.administrator === true ? (
             <Link className="itemNav" href="/admin">
@@ -73,34 +67,38 @@ const NavBar = ({ authUser }) => {
             </Link>
           ) : user ? (
             <span className="btnPerfil" onClick={handlerClick}>
-              Perfil
+              <FiMenu />
             </span>
           ) : (
             <Link href="/api/auth/login" className="itemNav">
-              <span>Ingresar | Registrarse</span>
+              <span>LogIn</span>
             </Link>
           )}
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
         <Link className="itemDash" href={`/profile/${idUser}`}>
-          <span>Mi Perfil</span>
+          <FaUserAlt className={"iconSideNav"} />
+          <span>Perfil</span>
         </Link>
         <Link className="itemDash" href="/cart">
-          <span>Mi carrito</span>
+          <BsFillCartFill className={"iconSideNav"} /> Carrito
+        </Link>
+
+        <Link className="itemDash" href="/favorite">
+          <BsSuitHeartFill className={"iconSideNav"} /> Favorito
         </Link>
         <p
           onClick={() => handleAdoption(router, Swal, idUser)}
           className="itemDash"
           href="/adoptionForm"
         >
-          <span>Publicar Mascota</span>
+          <IoPaw className={"iconSideNav"} />
+          <span>Publicar</span>
         </p>
-        <Link className="itemDash" href="/favorite">
-          <span>Favoritos</span>
-        </Link>
+        <a className="itemDash itemLogOut" href="/api/auth/logout">
+          <RiLogoutBoxLine className={"iconSideNav"} />
 
-        <a className="itemDash" href="/api/auth/logout">
           <span>Cerrar sesión</span>
         </a>
       </div>
