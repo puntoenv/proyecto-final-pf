@@ -6,7 +6,6 @@ import Link from "next/link";
 
 
 const HeaderTest = ({ user, response, setRender, authUser }) => {
-  console.log(response);
   return (
     <div className={styles.headContainer}>
       <div className={styles.haedwrapper}>

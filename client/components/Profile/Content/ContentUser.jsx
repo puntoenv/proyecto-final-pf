@@ -1,4 +1,5 @@
 import React from "react";
+import AdoptHistory from "./AdoptionHistory/adoptionHistory";
 import HistoryEsh from "./HistoryEsh"
 import Petscrea from "./petscreate";
 import ContentProfile from "./Profile/contentProfile";
@@ -9,11 +10,9 @@ const ContentUser = ({
   user,
   handleOnSubmit,
   hanldeOnChange,
-
   render,
-
 }) => {
-  console.log(render);
+
   return (
     <div className={styles.contentcontainer}>
       {render === "profile" && (
@@ -24,7 +23,7 @@ const ContentUser = ({
           hanldeOnChange={hanldeOnChange}
         ></ContentProfile>
       )}
-      {render === "adoptions" && <h1>Adopciones</h1>}
+      {render === "adoptions" && <AdoptHistory response={response}></AdoptHistory>}
       {render === "publications" && <Petscrea response={response}></Petscrea>}
       {render === "buy" && <HistoryEsh response={response}></HistoryEsh>}
     </div>

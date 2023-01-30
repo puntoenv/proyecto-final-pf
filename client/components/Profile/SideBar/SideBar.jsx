@@ -23,7 +23,7 @@ import "sweetalert2/src/sweetalert2.scss";
 const SideBar = ({ setRender, response, authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
-  console.log(idUser)
+
   const handlerClick = () => {
     const dash = document.getElementById("hidden");
 

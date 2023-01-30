@@ -11,9 +11,13 @@ import EditProfile from "./editPet";
 
 function Petscrea({ response }) {
   const { pets } = response;
-  //console.log(pets);
-  const filtros = pets?.filter((items) => items.hidden !== true);
-console.log(filtros)
+  console.log(response);
+  const petsAdop = pets?.filter(
+    (items) => items.adopted && items.hidden === true
+  );
+  const petsHidden = pets?.filter((items) => items.hidden !== true);
+  const filtros = petsAdop.concat(petsHidden);
+
   const [pet, setPet] = useState();
 
   const [edit, setEdit] = useState();
@@ -26,6 +30,42 @@ console.log(filtros)
     }, 2000);
   };
 
+  const handleClickAdopt = (mascota, response) => {
+    Swal.fire({
+      title: "¿Cuál es el estado de la adopción",
+      input: "radio",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Cambiar estado",
+      inputOptions: inputOptions,
+    }).then((res) => {
+      if (res.isConfirmed === true && res.value !== null) {
+        if (res.value !== mascota.adopted.status) {
+          PutPets(mascota._id, {
+            updateAdopted: res.value,
+            userId: response._id,
+          });
+        } else {
+           Swal.fire({
+             title: "Ya está asignado este estado",
+             icon: "error",
+             confirmButtonColor: "#3085d6",
+           });
+        }
+      }
+    });
+  }
+  const inputOptions = new Promise((resolve) => {
+    // setTimeout(() => {
+    resolve({
+      pending: "Pendiente",
+      rejected: "Rechazada",
+      resolved: "Resuelta",
+    });
+    // }, 1000);
+  });
   const handlerClickEdit = () => {
     const dash = document.getElementById("editPet");
 
@@ -56,6 +96,28 @@ console.log(filtros)
                     height="150px"
                     alt="image"
                   />
+                  {mascota.adopted && (
+                    <div
+                      // style={{ backgroundColor: "#e27a2" }}
+                      className={styles.adopt}
+                    >
+                      <p>
+                        Adopción:{" "}
+                        {mascota.adopted.status === "pending"
+                          ? "Pendiente"
+                          : mascota.adopted.status === "resolved"
+                          ? "Resuelta"
+                          : mascota.adopted.status === "rejected" &&
+                            "Rechazada"}
+                      </p>
+                      <span
+                        onClick={() => handleClickAdopt(mascota, response)}
+                        className={styles.changeStatusAdopt}
+                      >
+                        Cambiar
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <h1 className={styles.name}>{mascota.name}</h1>
                 <h2 className={styles.size}>{mascota.gender}</h2>

@@ -94,11 +94,19 @@ export const PutReview = async (obj, id) => {
   }
 };
 
-export const PutPets = async (id, obj, router) => {
-
+export const PutPets = async (id, obj) => {
+console.log(obj)
   try {
     const respo = await axios.put(`/updatePet/${id}`, obj)
-    if(respo.data && !obj.hidden){
+    if (respo.data && obj.updateAdopted) {
+      Swal.fire({
+        title: "Estado editado con éxito",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }).then((res) => Router.reload(window.location.pathname));;
+    } else if (respo.data && !obj.hidden) {
       Swal.fire({
         title: "🐾 Mascota editada correctamente 🐾",
         icon: "success",
@@ -106,7 +114,7 @@ export const PutPets = async (id, obj, router) => {
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
       }).then((res) => Router.reload(window.location.pathname));
-    }
+    } 
   } catch (e) {
     console.log(e)
   }
@@ -380,10 +388,11 @@ export function getDescription(post) {
   };
 }
 
-export function adoptPet(petId, hidden, userId) {
+export function adoptPet(petId, obj) {
   return async function (dispatch) {
+    console.log(obj)
     return axios
-      .put(`/updatePet/${petId}`, hidden)
+      .put(`/updatePet/${petId}`, obj)
       .then(() => axios.get(`/adoptEmail/?petId=${petId}&userId=${userId}`))
       .catch((error) => console.log(error));
   };

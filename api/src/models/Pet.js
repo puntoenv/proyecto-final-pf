@@ -1,3 +1,4 @@
+const { object } = require("joi");
 const mongoose = require("mongoose");
 const mongoosePaginate = require("mongoose-paginate-v2");
 const Schema = mongoose.Schema;
@@ -54,6 +55,10 @@ const petSchema = new Schema({
   },
 
   hidden: { type: Boolean, default: false },
+  adopted: {
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    status: String,
+  },
   expireAt: { type: Date, expires: 5184000 },
 });
 

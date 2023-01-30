@@ -138,7 +138,7 @@
   height: 60px;
   width: 150px;
   margin-top: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   z-index: 600;
   font-weight: 700;
 }
@@ -253,5 +253,29 @@ transform: scale(1.05);
  font-size: 15px;
  position: absolute;
  padding-left: 2px;
+ border-radius: 20px 0 40px 0px;
+}
+
+.adopt{
+   background-color: #e27a25;
+ color: white; 
+ width: 100%;
+ font-size: 15px;
+ position: absolute;
+ padding-left: 2px;
  border-radius: 0 0 40px 0px;
+ display: flex;
+ justify-content: space-between;
+ padding-right: 10px;
+}
+
+.changeStatusAdopt {
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.changeStatusAdopt:hover{
+  transform: scale(1.05);
+  color: #333;
 }
