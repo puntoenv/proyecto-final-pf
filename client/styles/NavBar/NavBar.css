@@ -1,49 +1,25 @@
-.headerNav {
-  display: flex;
-  width: 100%;
-}
-
 .nav {
   display: flex;
   position: fixed;
   z-index: 4000;
   top: 0;
   left: 0;
-  /* width: 100%; */
   width: 100%;
   padding: 16px;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
   background-color: #38593a;
+  box-shadow: 0 1px 10px #223123;
 }
-@media (max-width: 730px) {
-  .nav {
-    display: flex;
-    flex-direction: column;
-    z-index: 3000;
-    justify-content: flex-start;
-    top: 0px;
-    right: -600px;
-    height: auto;
-  }
-}
-.headerNav{
-  width:auto;
+.headerNav {
+  width: auto;
   display: flex;
 }
 .navMenuList {
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
   justify-content: right;
-  column-gap: 24px;
   color: white;
-}
-@media(max-width:910px){
-  .navMenuList{
-  display: flex;
-  flex-direction: column;
-  }
 }
 
 .itemNav {
@@ -53,13 +29,7 @@
   color: #eeee;
   text-decoration: none;
   font-size: 20px;
-}
-@media (max-width: 350px) {
-  .itemNav {
-    font-size: 17px;
-    flex-direction: column;
-    display: block;
-  }
+  margin: 0 5px;
 }
 
 .itemNav:hover {
@@ -67,6 +37,9 @@
 }
 
 .btnPerfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-size: 20px;
 }
@@ -83,19 +56,23 @@
   position: absolute;
 }
 
-.logo {
+.logoNav {
   border-radius: 1em;
   display: flex;
   position: fixed;
   top: -50px;
   left: 30px;
-  z-index: 4500;
+  z-index: 8500;
   width: auto;
   height: 14em;
 }
-@media (max-width: 350px) {
-  .logo {
-    height: 10em;
-    left: 5px;
+@media (max-width: 550px) {
+  .itemNav {
+    font-size: 14px;
+  }
+  .logoNav {
+    top: -13px;
+    left: 10px;
+    height: 80px;
   }
 }

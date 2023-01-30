@@ -9,7 +9,7 @@ import { IoLogoInstagram } from "react-icons/io";
 const Join = ({ user }) => {
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.containerTwo}>
         <Image className={styles.cat} src={Cat} width="auto" height="auto" />
 
         <div className={styles.containGeneral}>
@@ -37,17 +37,13 @@ const Join = ({ user }) => {
             />
           </div>
         </div>
-        <div className={styles.divButton}></div>
-        <span>
+        <span className={styles.containInsta}>
           Siguenos en instagram
           <a
             target={"_blank"}
             href={"https://www.instagram.com/pets_littlepaws/"}
           >
-            <IoLogoInstagram
-              className={styles.icon}
-              size={40}
-            ></IoLogoInstagram>
+            <IoLogoInstagram className={styles.icon}></IoLogoInstagram>
           </a>
         </span>
       </div>

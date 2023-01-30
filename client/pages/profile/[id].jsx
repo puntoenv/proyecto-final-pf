@@ -31,7 +31,7 @@ function Profile({ data, response }) {
   const userAuth = useSelector((state) => state.userAuth.userData);
    const [numCall, setNumCall] = useState(0);
   !numCall && user && fn(user, dispatch, setNumCall);
-console.log(userAuth)
+
   return (
     <>
       <div className={style.container}>

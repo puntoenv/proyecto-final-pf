@@ -14,8 +14,8 @@ export default function Perfil({
   handleOnSubmit,
   authUser,
 }) {
-  const [render, setRender] = useState("profile");
-console.log(authUser)
+  const [render, setRender] = useState("adoptions");
+
   return (
     <div className={style.container_caja1}>
       {isLoading && (

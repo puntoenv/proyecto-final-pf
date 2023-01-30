@@ -38,6 +38,8 @@
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
+  position: relative;
+  z-index: 3000;
 }
 
 .logo {

@@ -88,6 +88,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  margin-top: 3rem;
 }
 
 .name {
@@ -137,7 +138,7 @@
   height: 60px;
   width: 150px;
   margin-top: 15px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   z-index: 600;
   font-weight: 700;
 }
@@ -211,7 +212,6 @@
   width: 100%;
   flex-wrap: wrap;
   gap: 2em;
-  margin-top: 2rem;
 }
 .container_animal {
   width: 100%;
@@ -226,12 +226,56 @@
 .delet {
   all: unset;
   position: absolute;
-  color: #ffffff;
   top: 1rem;
   right: 1rem;
   font-size: 120%;
-  border-bottom: 1px #ffffff;
-}
-.delet:hover {
+  color: #111111;
+  font-weight: 600;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
   cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.555);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color, transform 0.3s;
+}
+
+.delet:hover{
+transform: scale(1.05);
+}
+
+.report{
+ background-color: red;
+ color: white; 
+ width: 5rem;
+ font-size: 15px;
+ position: absolute;
+ padding-left: 2px;
+ border-radius: 20px 0 40px 0px;
+}
+
+.adopt{
+   background-color: #e27a25;
+ color: white; 
+ width: 100%;
+ font-size: 15px;
+ position: absolute;
+ padding-left: 2px;
+ border-radius: 0 0 40px 0px;
+ display: flex;
+ justify-content: space-between;
+ padding-right: 10px;
+}
+
+.changeStatusAdopt {
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.changeStatusAdopt:hover{
+  transform: scale(1.05);
+  color: #333;
 }

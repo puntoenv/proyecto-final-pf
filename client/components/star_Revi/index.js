@@ -10,6 +10,7 @@ import Router from "next/router";
 
 function Start_Revi({ data, id_User, response }) {
   const { _id, boughtBy, star_reviews } = data;
+
   const stars = star_reviews.reduce((a, b) => {
     return (a += b.stars);
   }, 0);

@@ -186,5 +186,24 @@
     position: absolute;
     right: 35%;
     top:65%
-    
+  }
+
+  .link{
+    position:absolute;
+    right: 33%;
+    top: 75%;
+  }
+
+  .link:hover{
+    color: #0d9916;
+  }
+
+  .link2{
+    position:absolute;
+    right: 29%;
+    top: 75%;
+  }
+
+  .link2:hover{
+    color: #0d9916;
   }

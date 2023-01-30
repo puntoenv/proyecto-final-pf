@@ -1,56 +1,24 @@
-/* AT 840px */
-/* ACHICAR LOGO, IMAGEN */
 .home {
-  margin-top: 70px;
   width: 100%;
-  margin-top: -5em;
   position: relative;
 }
-@media(max-width:910px){
-  .home{
-    margin-top:40px;
-  }
+.picture {
+  width: 100%;
 }
-
-@media(max-width:830px){
-  .home{
-    margin-top:90px;
-  }
-}
-@media(max-width:600px){
-  .home{
-    margin-top:140px;
-  }
-}
-/* ////////////////////////////////////////////////////////////// */
 .link {
   font-size: 12px;
   position: relative;
 }
-/* componente del carrusel entero */
 .containSlider {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding-top: 1px; */
   padding-bottom: 50px;
   width: 100%;
 }
-/* .picture{
-  width: auto;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-@media(max-width:840){
-  .picture{
-    /* margin-top: 50px; */
-    display: flex;
-    position: absolute;
-  }
+.contentCarrousel {
+  width: 100%;
 }
-
 .contentSlider {
   width: 100%;
 }
@@ -99,38 +67,23 @@
   z-index: 1901;
   width: 450px;
 }
-@media(max-width:910px){
-  .kitten{
-    height: 310px;
-    width: 310px;
-    margin-right: 90px;
-    margin-right: 40px;
-  }
-}
-/* @media(max-width:830px){
-  .kitten{
-    height: 230px;
-    width: 230px;
-    margin-right: 90px;
-  }
-} */
-
-@media(max-width:740px){
-  .kitten{
-    height: 230px;
-    width: 230px;
-    margin-right: 10px;
-  }
-}
-@media(max-width:530px){
-  .kitten{
+@media (max-width: 910px) {
+  .kitten {
     height: 150px;
     width: 150px;
     margin-right: 10px;
   }
 }
-@media(max-width:430px){
-  .kitten{
+
+@media (max-width: 530px) {
+  .kitten {
+    height: 150px;
+    width: 150px;
+    margin-right: 10px;
+  }
+}
+@media (max-width: 430px) {
+  .kitten {
     height: 150px;
     width: 150px;
     margin-right: 1px;
@@ -142,50 +95,31 @@
   font-size: 20px;
   font-weight: 450;
 }
-@media(max-width:740px){
-  .infoNosotros{
-    font-size: 15px;
+@media (max-width: 740px) {
+  .infoNosotros {
+    font-size: 16px;
     padding: 2px;
-    /* color: red; */
   }
 }
-@media(max-width:500px){
-  .infoNosotros{
-    font-size: 13px;
-    padding: 5px;
-    /* color: red; */
-  }
-}
-
-/* .slick-prev:before,
-.slick-next:before {
-  color: green;
-} */
-/* .slick-prev:before,
-.slick-next:before {
-  color: red!important;
-} */
 
 .boxInfoNosotros {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
-  margin: 70px 0;
+  margin-top: 40px;
   padding: 20px;
   width: 60%;
-  
 }
-/* @media(max-width:740px){
-  .boxInfoNosotros{
-  
-    background-color: red;
+@media (max-width: 900px) {
+  .boxInfoNosotros {
+    margin-top: 130px;
+    width: 100%;
   }
-} */
+}
 
 .infoAdopcion {
   margin-bottom: 1%;
-  padding: 0 21%;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -196,49 +130,33 @@
   flex-direction: column;
   align-items: center;
 }
-@media(max-width:950px){
-  .infoAdopcion{
-  font-size: 17px;
-
+@media (max-width: 950px) {
+  .infoAdopcion {
+    font-size: 17px;
   }
 }
-
-@media(max-width:650px){
-  .infoAdopcion{
-    font-size: 13px;
- 
-  }
-}
-
-/* @media(max-width:515px){
-  .infoAdopcion{
-    font-size: 10px;
- 
-  }
-} */
 
 .aboutUs {
   color: #415d43;
   font-size: 45px;
   font-weight: 700;
 }
-@media(max-width:910px){
-  .aboutUs{
-   font-size: 38px;
+@media (max-width: 910px) {
+  .aboutUs {
+    font-size: 38px;
   }
 }
 
-@media(max-width:830px){
-  .aboutUs{
+@media (max-width: 830px) {
+  .aboutUs {
     font-size: 30px;
   }
 }
-@media(max-width:600px){
-  .aboutUs{
+@media (max-width: 600px) {
+  .aboutUs {
     font-size: 25px;
   }
 }
-
 
 .carruselAnimals {
   background-color: rgb(184, 209, 115);
@@ -271,8 +189,8 @@
   margin-left: 15%;
   margin-right: 15%;
 }
-@media(max-width:840){
-  .aboutUs{
+@media (max-width: 840) {
+  .aboutUs {
     font-size: 30px;
   }
 }
@@ -287,25 +205,26 @@
   color: #415d43;
   font-weight: 700;
 }
-@media(max-width:910px){
-  .titleCarrusel{
-   font-size: 38px;
+@media (max-width: 910px) {
+  .titleCarrusel {
+    font-size: 38px;
   }
 }
 
-@media(max-width:830px){
-  .titleCarrusel{
+@media (max-width: 830px) {
+  .titleCarrusel {
     font-size: 30px;
   }
 }
-@media(max-width:600px){
-  .titleCarrusel{
+@media (max-width: 600px) {
+  .titleCarrusel {
     font-size: 25px;
   }
 }
 
 .containerAdopciones {
   padding: 30px;
+  margin-bottom: 100px;
 }
 .tituloAdopcion {
   /* font-size: 23px; */
@@ -317,76 +236,65 @@
   align-items: center;
   justify-content: center;
 }
-@media(max-width:910px){
-  .tituloAdopcion{
+@media (max-width: 910px) {
+  .tituloAdopcion {
     font-size: 38px;
-   
   }
 }
 
-@media(max-width:830px){
-  .tituloAdopcion{
+@media (max-width: 830px) {
+  .tituloAdopcion {
     font-size: 30px;
-   
   }
 }
-@media(max-width:600px){
-  .tituloAdopcion{
+@media (max-width: 600px) {
+  .tituloAdopcion {
     font-size: 25px;
- 
   }
 }
-
 
 .titleRoute {
   justify-content: space-between;
   flex-direction: row;
 }
 .buttonRoute {
+  display: flex;
   justify-content: center;
   align-items: right;
+  margin: 20px auto;
   width: 200px;
-   height: 50px;
-  /* width: 100px; */
-  /* margin-left: 80%; */
-  display: flex;
+  height: 50px;
   background: #e8eb9d;
   color: #32281f;
   font-size: 23px;
   border-radius: 15px;
-  /* width: 100%; */
   padding: 10px;
   z-index: 600;
   font-weight: 700;
 }
-@media(max-width:910px){
-  .buttonRoute{
-   font-size: 18px;
-   font-weight: 700;
-   width: 100px;
-   height: 40px;
-   display: flex;
-   /* align-items: center;
+@media (max-width: 910px) {
+  .buttonRoute {
+    font-size: 18px;
+    font-weight: 700;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    /* align-items: center;
    justify-content: center; */
-   /* margin-left: 30%;
+    /* margin-left: 30%;
    margin-right: 30%; */
   }
 }
 
-@media(max-width:830px){
-  .tbuttonRoute{
+@media (max-width: 830px) {
+  .tbuttonRoute {
     font-size: 13px;
     font-weight: 700;
     width: 90px;
     height: 30px;
   }
 }
-/* @media(max-width:600px){
-  .buttonRoute{
-    font-size: 10px;
-  }
-} */
-.btnFav{
+.btnFav {
   background: #38593a;
   font-size: 21px;
   color: white;
