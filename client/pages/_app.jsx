@@ -9,6 +9,7 @@ import "../styles/admin/index.css";
 import "../styles/admin/Users.css";
 import "../styles/user/user.css";
 import "../styles/SliderUser/slideUser.css";
+import "../styles/pet/Pet.css";
 import axios from "axios";
 import { addedProduct } from "../controller/functionsCart/addedProduct";
 import {
@@ -58,14 +59,8 @@ export default function App({ Component, pageProps }) {
               confirmButtonColor: "#437042",
               confirmButtonAriaLabel: "#437042",
             })
-          : Swal.fire({
-              title: "Mascota agregada a favoritos",
-              icon: "error ",
-              color: "#437042",
-              confirmButtonColor: "#437042",
-              confirmButtonAriaLabel: "#437042",
-            });
-        setFavorite([...favorite, items]);
+          : setFavorite([...favorite, items]),
+          (document.getElementById(items._id).style.color = items.tono);
       } catch (e) {
         alert(e, "error en agregar favorito");
       }

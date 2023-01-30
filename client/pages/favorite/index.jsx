@@ -60,7 +60,7 @@ console.log(dupli)
     <LayoutGlobal authUser={userAuth}>
       <div className={styles.cards}>
         {!dupli.length ? (
-          <div className={styles.favoritoVacio}><HistoryVacio/></div>
+          <div className={styles.favoritoVacio}><HistoryVacio favoritoVacio={true}/></div>
         ) : (
           dupli?.map((items, index) => (
             <div className={styles.card}>

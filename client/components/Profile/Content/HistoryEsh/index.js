@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./history.module.css";
-import CardProduct from "../CardProduct";
+import CardProduct from "../../../CardProduct";
 
 function index({ response, addToCart, productOfCart }) {
   const { bought } = response;

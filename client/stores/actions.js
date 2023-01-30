@@ -19,8 +19,8 @@ import {
 import { getUserId, getAllUsers } from "./User";
 import { getSales } from "./sales";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
 import "sweetalert2/src/sweetalert2.scss";
+import Router from "next/router";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
 
@@ -94,15 +94,21 @@ export const PutReview = async (obj, id) => {
   }
 };
 
-export const PutPets = async (id, obj) => {
-  console.log(id, obj);
+export const PutPets = async (id, obj, router) => {
+
   try {
-    const respo = await axios.put(`/updatePet/${id}`, obj).then((response) => {
-      console.log("Update SUCCESS!");
-    });
-    return respo;
+    const respo = await axios.put(`/updatePet/${id}`, obj)
+    if(respo.data && !obj.hidden){
+      Swal.fire({
+        title: "🐾 Mascota editada correctamente 🐾",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }).then((res) => Router.reload(window.location.pathname));
+    }
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
 };
 
