@@ -380,7 +380,7 @@ export function getDescription(post) {
   };
 }
 
-export function adoptPet(petId, hidden, userId) {
+export function adoptPet(petId, hidden) {
   return async function (dispatch) {
     return axios
       .put(`/updatePet/${petId}`, hidden)

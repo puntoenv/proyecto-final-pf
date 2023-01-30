@@ -14,10 +14,10 @@ const userSchema = new Schema({
     type: Number,
   },
   gender: {
-    type: String
+    type: String,
   },
   ubication: {
-    type: Object
+    type: Object,
   },
   directions: {
     type: Array,
@@ -40,15 +40,18 @@ const userSchema = new Schema({
       ref: "Pet",
     },
   ],
+  petsAdopted: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Pet",
+    },
+  ],
   cart: [
     {
       type: Schema.Types.ObjectId,
       ref: "Product",
     },
-    
   ],
-  
-  
   bought: [
     {
       type: Schema.Types.ObjectId,
@@ -56,14 +59,14 @@ const userSchema = new Schema({
     },
   ],
   review_star: [
-    { 
+    {
       stars: Number,
       reviews: String,
       product: {
         type: Schema.Types.ObjectId,
         ref: "Product",
-      }
-    }
+      },
+    },
   ],
   signIn: {
     type: String,

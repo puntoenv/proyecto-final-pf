@@ -8,7 +8,11 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-import { BsFillCaretLeftFill, BsFillCaretRightFill, BsFillHeartFill } from "react-icons/Bs";
+import {
+  BsFillCaretLeftFill,
+  BsFillCaretRightFill,
+  BsFillHeartFill,
+} from "react-icons/bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -144,7 +148,7 @@ export default function PetAdoption({ favorite, addAgregar }) {
             onChange={(e) => handlerFilter(e)}
             onSubmit={(e) => handlerSubmit(e)}
           >
-            <div>
+            <div className={styles.viewAllPets}>
               <button className={styles.all} onClick={(e) => handlerTodas(e)}>
                 Ver Todas
               </button>
@@ -232,7 +236,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
                   window.scrollTo(0, 0);
                 }}
               >
-                <BsFillCaretLeftFill />
+                {/* <BsFillCaretLeftFill /> */}
+                🡸
               </button>
               {paging.map((page) => (
                 <button
@@ -255,7 +260,8 @@ export default function PetAdoption({ favorite, addAgregar }) {
                   window.scrollTo(0, 0);
                 }}
               >
-                <BsFillCaretRightFill />
+                {/* <BsFillCaretRightFill /> */}
+                🡺
               </button>
             </div>
             {/* CONTENEDOR DE LAS CARDS BIG_CONTAINER */}
@@ -270,64 +276,67 @@ export default function PetAdoption({ favorite, addAgregar }) {
                       src={mascota.image[0]}
                       alt="image"
                     />
-                    <h3 className={styles.name}>{mascota.name}</h3>
-                    <span className={styles.size}>{mascota.gender}</span>
-                    <button className={styles.btn}>
-                      <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                    </button>
-                    {
-                      <button
-                        id={mascota._id}
-                        className={styles.corazon}
-                        onClick={(e) => handlerFavorite(e, mascota)}
-                      >
-                        <BsFillHeartFill />
+                    <div className={styles.infoPet}>
+                      <h3 className={styles.name}>{mascota.name}</h3>
+                      <span className={styles.size}>{mascota.gender}</span>
+                      <button className={styles.btn}>
+                        <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
                       </button>
-                    }
+                      {
+                        <button
+                          id={mascota._id}
+                          className={styles.corazon}
+                          onClick={(e) => handlerFavorite(e, mascota)}
+                        >
+                          <BsFillHeartFill />
+                        </button>
+                      }
+                    </div>
                   </div>
                 );
               })}
               <div />
             </div>
+            {/* CONTENDOR PAGINADO : PAGING */}
+            <div className={styles.paging}>
+              <button
+                className={styles.paginate}
+                value="🡸"
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {/* <BsFillCaretLeftFill /> */}
+                🡸
+              </button>
+              {paging.map((page) => (
+                <button
+                  className={styles.paginateNum}
+                  type="button"
+                  value={page}
+                  key={page}
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                className={styles.paginate}
+                value="🡺"
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+              >
+                {/* <BsFillCaretRightFill /> */}
+                🡺
+              </button>
+            </div>
           </div>
-        </div>
-
-        {/* CONTENDOR PAGINADO : PAGING */}
-        <div className={styles.paging}>
-          <button
-            className={styles.paginate}
-            value="🡸"
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <BsFillCaretLeftFill />
-          </button>
-          {paging.map((page) => (
-            <button
-              className={styles.paginateNum}
-              type="button"
-              value={page}
-              key={page}
-              onClick={(e) => {
-                handlerPage(e);
-                window.scrollTo(0, 0);
-              }}
-            >
-              {page}
-            </button>
-          ))}
-          <button
-            className={styles.paginate}
-            value="🡺"
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <BsFillCaretRightFill />
-          </button>
         </div>
       </div>
     </LayoutGlobal>

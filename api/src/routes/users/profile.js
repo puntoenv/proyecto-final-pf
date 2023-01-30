@@ -10,6 +10,7 @@ profile.get("/:id", async (req, res) => {
       _id: id,
     }).populate([
       { path: "pets", model: "Pet" },
+      { path: "petsAdopted", model: "Pet" },
       { path: "bought", model: "Product" },
       { path: "review_star", model: "Product" },
     ]);

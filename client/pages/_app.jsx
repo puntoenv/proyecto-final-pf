@@ -8,7 +8,8 @@ import "../styles/NavBar/DashBoardUser.css";
 import "../styles/admin/index.css";
 import "../styles/admin/Users.css";
 import "../styles/user/user.css";
-import "../styles/pet/Pet.css"
+import "../styles/SliderUser/slideUser.css";
+import "../styles/pet/Pet.css";
 import axios from "axios";
 import { addedProduct } from "../controller/functionsCart/addedProduct";
 import {
@@ -59,7 +60,7 @@ export default function App({ Component, pageProps }) {
               confirmButtonAriaLabel: "#437042",
             })
           : setFavorite([...favorite, items]),
-          (document.getElementById(items._id).style.color =  items.tono);
+          (document.getElementById(items._id).style.color = items.tono);
       } catch (e) {
         alert(e, "error en agregar favorito");
       }

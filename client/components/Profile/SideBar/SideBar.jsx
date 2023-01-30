@@ -1,16 +1,19 @@
 import React from "react";
-import styles from "./styles.module.css";
 import logoPata from "../../../img/logo.jpeg";
 import Image from "next/image";
 import { GrHomeRounded, GrFormDown } from "react-icons/gr";
 import { BsFillCartFill } from "react-icons/bs";
+import ImageIcon from "@mui/icons-material/Image";
+import { IoPaw } from "react-icons/io5";
+import { BsSuitHeartFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { GiSittingDog } from "react-icons/gi";
-import { HiDocumentText, HiHeart } from "react-icons/hi";
+import { MdArchive } from "react-icons/md";
+import { FaUserAlt } from "react-icons/fa";
 import { SiDatadog } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 import { RiLogoutBoxLine, RiFileList3Fill } from "react-icons/ri";
-import {BsChevronCompactDown} from 'react-icons/bs'
+import { BsChevronCompactDown } from "react-icons/bs";
 import { BiLink } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
 import { useState } from "react";
@@ -23,145 +26,112 @@ import "sweetalert2/src/sweetalert2.scss";
 const SideBar = ({ setRender, response, authUser }) => {
   const router = useRouter();
   const idUser = authUser && authUser._id;
-  console.log(idUser)
-  const handlerClick = () => {
-    const dash = document.getElementById("hidden");
 
-    if (dash.className.includes("width")) {
-      dash.classList.remove("width");
-      return;
-    }
-    dash.className += " width";
-  };
-  const [links, setLinks] = useState(false);
   return (
-    // NAVBAR= navContainer
-    <div className={styles.navBarcontainer}>
-      <div className={styles.logo}>
-        <Image
-          src={logoPata}
-          alt="logo"
-          className={styles.logoPata}
-          width={20}
-          height={20}
-        />
-        <h2>Little Paws</h2>
-      </div>
-      <div className={styles.wrapper}>
-        <ul className={styles.ul}>
-          <li className={styles.icon}>
-            <Link href={"/home"}>
-              <AiFillHome size={20}></AiFillHome>
-              Home
-            </Link>
+    //============================ NAVBAR= navContainer
+    <div className={"navBarcontainer"} id="sideBarUser">
+      <div className={"wrapper"}>
+        <ul className={"ul"}>
+          {/*============================ BIENVENIDA============================ */}
+          <li className={"icon"}>
+            <span
+              style={{
+                color: "#ccc",
+                fontSize: "22px",
+                marginBottom: "150px",
+              }}
+            >
+              ¡Hola,{" "}
+              <span style={{ color: "#eee" }}>
+                {authUser?.name || authUser?.email}
+              </span>
+              !
+            </span>
           </li>
+
+          {/* ============================ PERFIL============================ */}
           <div
-            className={styles.li}
+            className={"li"}
             onClick={(event) => {
               event.preventDefault();
               setRender("profile");
             }}
           >
-            <CgProfile className={styles.iconSize} size={20}></CgProfile>
+            <FaUserAlt className={"iconSize"} size={20}></FaUserAlt>
             <li>
               <a href="">Perfil</a>
             </li>
           </div>
-          {/* <div
-            className={styles.li}
+          {/* ============================ ARCHIVO============================ */}
+          <div
+            className={"li"}
             onClick={(event) => {
               event.preventDefault();
-              setRender("adoptions");
+              // setRender("buy");
             }}
           >
-            <HiHeart className={styles.iconSize} size={20}></HiHeart>
+            <MdArchive className={"iconSize"} size={20}></MdArchive>
             <li>
-              <a href="">Adopciones</a>
+              <a href="">Archivos</a>
             </li>
-          </div> */}
+          </div>
+          {/* ============================ COMPRAS ============================ */}
           <div
-            className={styles.li}
+            className={"li"}
             onClick={(event) => {
               event.preventDefault();
               setRender("buy");
             }}
           >
-            <RiFileList3Fill
-              className={styles.iconSize}
-              size={20}
-            ></RiFileList3Fill>
+            <RiFileList3Fill className={"iconSize"} size={20}></RiFileList3Fill>
             <li>
               <a href="">Compras</a>
             </li>
           </div>
+          {/* ============================ PUBLICACIONES ============================ */}
           <div
-            className={styles.li}
+            className={"li"}
             onClick={(event) => {
               event.preventDefault();
               setRender("publications");
             }}
           >
-            <HiDocumentText
-              className={styles.iconSize}
-              size={20}
-            ></HiDocumentText>
+            <ImageIcon className={"iconSize"} size={20}></ImageIcon>
             <li>
               <a href="">Publicaciones</a>
             </li>
           </div>
-          <div
-            className={styles.li}
-            onClick={(event) => {
-              event.preventDefault();
-              handlerClick();
-            }}
-          >
-            <BiLink className={styles.iconSize} size={20}></BiLink>
+          {/* ============================ CARRITO============================ */}
+
+          <div className={"li"}>
+            <BsFillCartFill className={"iconSize"}></BsFillCartFill>
             <li>
-              Links
-              <BsChevronCompactDown
-                className={styles.icondown}
-              ></BsChevronCompactDown>
+              <a href="/cart">Carrito</a>
             </li>
           </div>
 
-          <div className={styles.liLogout}>
+          {/* ============================ FAVORITOS ============================ */}
+          <div className={"li"}>
+            <BsSuitHeartFill className={"iconSize"}></BsSuitHeartFill>
+            <li>
+              <a href="/favorite">Favoritos</a>
+            </li>
+          </div>
+          {/* ============================ PUBLICAR ============================ */}
+          <div className={"li"}>
+            <IoPaw className={"iconSize"}></IoPaw>
+            <li>
+              <span onClick={() => handleAdoption(router, Swal, idUser)}>
+                Publica
+              </span>
+            </li>
+          </div>
+          {/* ============================ CERRAR SESION ============================ */}
+          <div className={"liLogout"}>
             <li>
               <RiLogoutBoxLine size={20}></RiLogoutBoxLine>
               <a href="/api/auth/logout">Cerrar sesión</a>
             </li>
-          </div>
-        </ul>
-        <ul>
-          <div className="divHidden" id="hidden">
-            <div className={styles.link}>
-              <li>
-                <FaStar className={styles.iconSize}></FaStar>
-                <a href="/favorite">Favoritos</a>
-              </li>
-            </div>
-            <div className={styles.link}>
-              <li>
-                <BsFillCartFill className={styles.iconSize}></BsFillCartFill>
-                <a href="/cart">Carrito</a>
-              </li>
-            </div>
-            <div className={styles.link}>
-              <li>
-                <GiSittingDog className={styles.iconSize}></GiSittingDog>
-                <a href="/petsPosts">Adopta</a>
-              </li>
-            </div>
-            <div className={styles.link}>
-              <li>
-                <SiDatadog className={styles.iconSize}></SiDatadog>
-                <span
-                  onClick={() => handleAdoption(router, Swal, idUser)}
-                >
-                  Publica
-                </span>
-              </li>
-            </div>
           </div>
         </ul>
       </div>
