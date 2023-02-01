@@ -32,7 +32,9 @@ const postMerchant_order = require("./routes/merchant_orders/postMerchantOrder")
 const byid = require("./routes/merchant_orders/getById");
 const buyHistory = require("./routes/merchant_orders/buyHistory");
 const descriptionAI = require("./routes/pets/descriptionAI");
+const data = require("./routes/Charts/data")
 
+router.use("/charts", data)
 router.use("/updatePet", updatePet);
 router.use("/pets", petsByName);
 router.use("/pets", allPets);

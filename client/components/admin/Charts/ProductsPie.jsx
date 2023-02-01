@@ -1,90 +1,70 @@
-import { ResponsivePie } from "@nivo/pie";
-import { adminProducts } from "../../../stores/actions";
-import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.css"
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-const ProductsPie = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.products.products);
- 
+import {
+    AccumulationChartComponent,
+    AccumulationSeriesCollectionDirective,
+    AccumulationSeriesDirective,
+    AccumulationLegend,
+    PieSeries,
+    AccumulationDataLabel,
+    Inject,
+    AccumulationTooltip,
+  } from "@syncfusion/ej2-react-charts"
 
-  useEffect(() => {
-    dispatch(adminProducts());
-  }, [dispatch]);
+import React from "react";
+import styles from "./styles.module.css";
 
-
-  const data = []
-
-  for (let i = 0; i < products.length; i++) {
-    data.push({
-        "id": products[i].name,
-        "label": products[i].name,
-        "value":  products[i].stock,
-         "color": "hsl(19, 70%, 50%)"
-      },);
-  }
+const ProductsPie = ({ id, data, legendVisiblity }) => {
 
   
 
-
-
-
-  
+        
+    
   return (
     <>
-    <h1 className={styles.h1}>Stock de productos</h1>
-    <div className={styles.products}>
-     
-    <ResponsivePie
-      data={data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-      innerRadius={0.5}
-      padAngle={0.7}
-      cornerRadius={3}
-      activeOuterRadiusOffset={8}
-      borderWidth={1}
-      borderColor={{
-        from: "color",
-        modifiers: [["darker", 0.2]],
-      }}
-      isInteractive = {false}
-      arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={3}
-      arcLinkLabelsColor={{ from: "color" }}
-      arcLabelsSkipAngle={10}
-      arcLabelsTextColor={{
-        from: "color",
-        modifiers: [["darker", 2]],
-      }}
-      defs={[
-        {
-          id: "dots",
-          type: "patternDots",
-          background: "inherit",
-          color: "rgba(255, 255, 255, 0.3)",
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: "lines",
-          type: "patternLines",
-          background: "inherit",
-          color: "rgba(255, 255, 255, 0.3)",
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
-      fill={data}
+      <h1 className={styles.h1}>Stock de productos</h1>
+      <div className={styles.products}>
       
-    />
+        <AccumulationChartComponent
+          id={id}
+          legendSettings={{ visible: legendVisiblity, position:"Bottom" }}
+          height="650"
+       background="transparent"
+          tooltip={{ enable: true }}
+          width="550"
+        >
+          <Inject
+            services={[
+              AccumulationLegend,
+              PieSeries,
+              AccumulationDataLabel,
+              AccumulationTooltip,
+            ]}
+          />
+          <AccumulationSeriesCollectionDirective>
+            <AccumulationSeriesDirective
+              
+              dataSource={data}
+              xName="x"
+              yName="y"
+              innerRadius="40%"
+              startAngle={0}
+              endAngle={360}
+              radius="70%"
+              explode
+              explodeOffset="10%"
+              explodeIndex={2}
+              dataLabel={{
+                visible: true,
+                name: "text",
+                position: "Inside",
+                font: {
+                  fontWeight: "600",
+               color: "white"
+                },
+              }}
+            />
+          </AccumulationSeriesCollectionDirective>
+        </AccumulationChartComponent>
+      
     </div>
     </>
   );
