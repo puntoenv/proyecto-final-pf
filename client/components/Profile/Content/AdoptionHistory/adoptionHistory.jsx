@@ -26,10 +26,10 @@ const AdoptHistory = ({ response }) => {
                 style={{
                   border:
                     ele.adopted.status === "pending"
-                      ? "2px solid #d35908"
+                      ? "5px solid #d35908"
                       : ele.adopted.status === "resolved"
-                      ? "2px solid green"
-                      : ele.adopted.status === "rejected" && "2px solid red",
+                      ? "5px solid green"
+                      : ele.adopted.status === "rejected" && "5px solid red",
                 }}
               />
               <h1 className={styles.name}>
