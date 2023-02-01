@@ -21,7 +21,6 @@ import Image from "next/image";
 import logo from "../../img/logo.jpeg";
 import ImageIcon from "@mui/icons-material/Image";
 import Charts from "../../components/admin/Charts/Charts.jsx";
-import ProductsPie from "../../components/admin/Charts/ProductsPie.jsx";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { RiLogoutBoxLine } from "react-icons/ri";
 import Reported from "../../components/admin/Reports/Reports.jsx";
@@ -89,14 +88,8 @@ const Admin = withPageAuthRequired(() => {
       <div className="navAd">
         <Navbar />
       </div>
-
-      <div>
-        <div>
-          <section>{Render}</section>
-        </div>
- 
-        <div className={styles.sidebar}>
-          <Link href={"/home"} className="logo">
+      <div className={styles.sidebar}>
+          <Link href={"/home"} className={styles.linkLogo}>
             <Image
               src={logo}
               alt="logo"
@@ -159,6 +152,12 @@ const Admin = withPageAuthRequired(() => {
               
           </div>
         </div>
+      <div>
+        <div>
+          <section>{Render}</section>
+        </div>
+ 
+       
       </div>
       
     
