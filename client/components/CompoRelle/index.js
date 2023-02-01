@@ -1,6 +1,8 @@
-import style from "./style.module.css"
+import style from "./style.module.css";
+import Link from "next/link";
+import { RiH3 } from "react-icons/ri";
 
-function HistoryVacio() {
+function HistoryVacio({carritoVacio, favoritoVacio}) {
   return (
   <div>
      <div className={style.container} >
@@ -34,6 +36,21 @@ function HistoryVacio() {
         </div>
     </div>
      <h1 className={style.h1}>Upss! se encuentra vacio</h1>
+     
+     { carritoVacio && <div className={style.link}>
+      <Link href="/eShop">
+      <h3>Añade productos a tu carrito</h3>
+      </Link>
+     </div> }
+     {
+      favoritoVacio && <div className={style.link2}>
+      <Link href="/petsPosts">
+        <h3>
+          Añade mascotas de tu preferencia 
+        </h3>
+      </Link>
+     </div>
+     }
 	</div>
   )
 }

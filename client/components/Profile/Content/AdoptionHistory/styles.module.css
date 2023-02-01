@@ -1,0 +1,63 @@
+.letra {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+  text-shadow: 2px 2px 4px #937a60;
+  width: 100%;
+  margin-bottom: 5rem;
+}
+.card {
+  background: #e8eb9d;
+  position: relative;
+  display: flex;
+  border-radius: 30px;
+  margin: 5px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 15rem;
+}
+
+.container_post {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.img {
+  width: 18em;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 30px 30px 0px 0px;
+}
+
+.name {
+  font-weight: 700;
+  margin-top: 20px;
+  color: #32281f;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px #937060;
+}
+
+.status {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.btn {
+  background: #38593a;
+  font-size: 21px;
+  color: white;
+  border: 1em;
+  border-radius: 15px;
+  height: 60px;
+  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  z-index: 600;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

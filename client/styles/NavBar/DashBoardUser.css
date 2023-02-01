@@ -1,41 +1,50 @@
 .dashBoardContain {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   position: fixed;
   z-index: 3000;
-  justify-content: flex-start;
   top: 0px;
-  right: -600px;
-  height: 100vh;
-  border-left: 1px solid #e8eb9d;
-  border-top: 1px solid #e8eb9d;
-  backdrop-filter: blur(20px);
-  padding: 30px;
-  padding-top: 70px;
-  padding-right: 100px;
+  right: -800px;
+  height: 100%;
+  background-color: #38593a;
+  padding: 75px;
+  padding-top: 100px;
+  transition: all 0.5s;
   text-align: left;
-  transition: all 0.6s;
-  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+  box-shadow: -1px 0px 10px #223123;
+  font-weight: bold;
 }
-@media(max-width:730px){
-  .dashBoardContain{
-    top:11.4rem
-
-
-  
+@media (max-width: 550px) {
+  .dashBoardContain {
+    padding: 60px;
+    padding-top: 90px;
+  }
+  .itemDash {
+    font-size: 16px;
   }
 }
-
 .itemDash {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  margin: 15px 10px;
+  margin: 20px 0;
   padding: 1px;
   padding-bottom: 2px;
-  border-bottom: 2px solid #32281f;
+  color: #ccc;
+}
+.iconSideNav {
+  margin-right: 10px;
+}
+.itemLogOut {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: 45px;
 }
 .itemDash:hover {
-  font-weight: bold;
-  border-bottom: 1px transparent;
+  color: #fff;
   cursor: pointer;
 }
 .view {

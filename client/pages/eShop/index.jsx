@@ -202,7 +202,8 @@ export default function eShop({
               }}
               value="🡸"
             >
-              <BsFillCaretLeftFill />
+              {/* <BsFillCaretLeftFill /> */}
+              🡸
             </button>
             {paging?.map((p) => (
               <button
@@ -224,7 +225,8 @@ export default function eShop({
               }}
               value="🡺"
             >
-              <BsFillCaretRightFill />
+              {/* <BsFillCaretRightFill /> */}
+              🡺
             </button>
           </div>
           <div className={styles.containerCards}>

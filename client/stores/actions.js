@@ -19,8 +19,8 @@ import {
 import { getUserId, getAllUsers } from "./User";
 import { getSales , getFilteredUsers, getFilteredPosts, getFilteredSales} from "./charts";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
 import "sweetalert2/src/sweetalert2.scss";
+import Router from "next/router";
 
 const baseUrl = process.env.NEXT_PUBLIC_URL_BACK;
 
@@ -120,14 +120,28 @@ export const PutReview = async (obj, id) => {
 };
 
 export const PutPets = async (id, obj) => {
-  console.log(id, obj);
+console.log(obj)
   try {
-    const respo = await axios.put(`/updatePet/${id}`, obj).then((response) => {
-      console.log("Update SUCCESS!");
-    });
-    return respo;
+    const respo = await axios.put(`/updatePet/${id}`, obj)
+    if (respo.data && obj.updateAdopted) {
+      Swal.fire({
+        title: "Estado editado con éxito",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }).then((res) => Router.reload(window.location.pathname));;
+    } else if (respo.data && !obj.hidden) {
+      Swal.fire({
+        title: "🐾 Mascota editada correctamente 🐾",
+        icon: "success",
+        color: "#437042",
+        confirmButtonColor: "#437042",
+        confirmButtonAriaLabel: "#437042",
+      }).then((res) => Router.reload(window.location.pathname));
+    } 
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
 };
 
@@ -399,10 +413,11 @@ export function getDescription(post) {
   };
 }
 
-export function adoptPet(petId, hidden, userId) {
+export function adoptPet(petId, obj) {
   return async function (dispatch) {
+    console.log(obj)
     return axios
-      .put(`/updatePet/${petId}`, hidden)
+      .put(`/updatePet/${petId}`, obj)
       .then(() => axios.get(`/adoptEmail/?petId=${petId}&userId=${userId}`))
       .catch((error) => console.log(error));
   };

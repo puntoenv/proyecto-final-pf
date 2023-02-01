@@ -73,8 +73,8 @@ const About = () => {
                       <p>Desarrollador Web Full Stack</p>
                       <p className={styles.info1}>Tareas realizadas:</p>
                       <p className={styles.info1}>
-                        Borrado lógico, formulario, favoritos, local storage,
-                        CCS, puntuación reviews y tareas en general.
+                        Formularios, favoritos, local storage, CCS, puntuación
+                        reviews y tareas en general.
                       </p>
                     </div>
                     <div className={styles.icons}>
@@ -146,8 +146,8 @@ const About = () => {
                       <p>Desarrolladora Web Full Stack</p>
                       <p className={styles.info1}>Tareas realizadas:</p>
                       <p className={styles.info1}>
-                        Panel administrador, Estilos, CSS; Backfront: CRUD,
-                        ruteo y manejo de bases de datos.
+                        Panel administrador, estilos, CSS, borrado lógico;
+                        Backend: CRUD, ruteo y manejo de bases de datos.
                       </p>
                     </div>
                     <div className={styles.icons}>
@@ -378,8 +378,8 @@ const About = () => {
                       <p>Mentor</p>
 
                       <p className={styles.info1}>
-                        Apoyo y tutoría en el desarrollo de la aplicación, así
-                        como recomendaciones para mejoras.
+                        Apoyo y tutoría en el desarrollo de la aplicación, y
+                        recomendaciones para mejoras.
                       </p>
                     </div>
                     {/* <div className={styles.icons}>
@@ -410,9 +410,10 @@ const About = () => {
             <div className={styles.divMV}>
               <h1 className={styles.misionVision}>Vision</h1>
               <p>
-                Crear un sentido de responsabilidad en cada persona para que
-                entre todos ayudemos a las mascotas y le demos igualdad de
-                importancia a cada vida.
+                Convertirnos en una de las mejores y más conocidas plataformas
+                para adopciones y así crear un sentido de responsabilidad en
+                cada persona para que entre todos ayudemos a las mascotas y le
+                demos igualdad de importancia a cada vida.
               </p>
             </div>
           )}

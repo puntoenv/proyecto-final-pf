@@ -309,6 +309,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
               <div style={{ width: "14rem", height: "auto" }}>
                 <Maps
                   setLocationPet={handleMaps}
+                  search={true}
                   setInput={setInput}
                   input={input}
                 />
@@ -362,7 +363,7 @@ const ContentProfile = ({ user, response, handleOnSubmit, hanldeOnChange }) => {
                     <p className={styles.infoDir}>{input.directions[2]}</p>
                   </div>
                 )}
-                {input.directions && input.directions.length === 3 && (
+                {input.directions && input.directions.length === 4 && (
                   <p className={styles.Error}>
                     Llegaste al máximo de direcciones
                   </p>

@@ -88,7 +88,7 @@ export default function Cart({
           <div className={styles.big_container}>
             {cart.length === 0 ? (
               
-              <div className={styles.carritoVacio}> <HistoryVacio/> </div>
+              <div className={styles.carritoVacio}> <HistoryVacio carritoVacio={true}/> </div>
             ) : (
               cart?.map((product, index) => (
                 <CardProduct
@@ -112,7 +112,7 @@ export default function Cart({
               <BsFillTrashFill className={styles.iconDeleteCart} />
             </button>
           )}
-          {cart.length && (
+          {!cart.length ? null : (
             <>
               <p className={styles.total}>Total a pagar: ${total}</p>
               {user ? (
