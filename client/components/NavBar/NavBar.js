@@ -14,6 +14,7 @@ import { IoPaw } from "react-icons/io5";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { FiMenu } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
 
 const handlerClick = () => {
   const dash = document.getElementById("dashNavAdmin");
@@ -77,6 +78,9 @@ const NavBar = ({ authUser }) => {
         </div>
       </nav>
       <div className="dashBoardContain" id="dashNavAdmin">
+        <span className="btnPerfilSlide" onClick={handlerClick}>
+          <RxCross2 />
+        </span>
         <Link className="itemDash" href={`/profile/${idUser}`}>
           <FaUserAlt className={"iconSideNav"} />
           <span>Perfil</span>
