@@ -17,7 +17,7 @@ import {
   getReported,
 } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
-import { getSales , getFilteredUsers, getFilteredPosts} from "./charts";
+import { getSales , getFilteredUsers, getFilteredPosts, getFilteredSales} from "./charts";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import "sweetalert2/src/sweetalert2.scss";
@@ -45,6 +45,14 @@ export const filteredPosts = ()=> async (dispatch)=>{
   try {
     let latestPosts = await axios("/charts/posts");
     dispatch(getFilteredPosts(latestPosts.data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const filteredSales= ()=> async (dispatch)=>{
+  try {
+    let latestSales = await axios("/charts/sales");
+    dispatch(getFilteredSales(latestSales.data));
   } catch (error) {
     console.error(error);
   }

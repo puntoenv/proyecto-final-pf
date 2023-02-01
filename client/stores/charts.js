@@ -5,7 +5,7 @@ export const chartsSlice = createSlice({
   initialState: {
     sales: [],
     filteredUsers: [],
-    filteredProducts: [],
+    filteredPosts: [],
     filteredSales:[]
   },
   reducers: {
@@ -18,8 +18,11 @@ export const chartsSlice = createSlice({
     getFilteredPosts: (state, action) => {
       state.filteredPosts = action.payload;
     },
+    getFilteredSales: (state, action) => {
+      state.filteredSales = action.payload;
+    },
   },
 });
 
-export const { getSales, getFilteredUsers, getFilteredPosts } = chartsSlice.actions;
+export const { getSales, getFilteredUsers, getFilteredPosts, getFilteredSales } = chartsSlice.actions;
 export default chartsSlice.reducer;

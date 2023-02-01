@@ -1,12 +1,12 @@
 import React from 'react'
-import ProductsPie from './ProductsPie'
+import Products from '../Products'
 import Bar from './Bar'
 import Doughnut from '../Doughnut'
 
 function Charts() {
   return (
     <>
-    <div><ProductsPie /></div>
+    <div><Products /></div>
     <div ><Doughnut /></div>
     <div><Bar /></div>
     

@@ -93,7 +93,7 @@
 .rend{
   font-size: 2em;
   margin-left: 22em;
-  margin-top: 4em;
+  margin-top: 11em;
   margin-bottom: 1.06em;
   width: fit-content;
   font-weight: 900;
@@ -106,12 +106,12 @@
   font-size: 2em;
   margin-left: 28em;
   color: rgba(54, 54, 54, 0.893);
-  margin-top: -15.5em;
+  margin-top: -448px
 }
 .sync{
   background: transparent;
-margin-top: 1em;
-margin-left: 55em;
+margin-top: -1.1em;
+margin-left: 52em;
 }
 
 .logo {

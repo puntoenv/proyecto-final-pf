@@ -280,50 +280,50 @@ export const barChartData = [
   ],
 ];
 
-// export const barCustomSeries = [
-//   {
-//     dataSource: barChartData[0],
-//     xName: "x",
-//     yName: "y",
-//     name: "Usuarios",
-//     type: "Column",
-//     marker: {
-//       dataLabel: {
-//         visible: true,
-//         position: "Top",
-//         font: { fontWeight: "600", color: "#ffffff" },
-//       },
-//     },
-//   },
-//   {
-//     dataSource: barChartData[1],
-//     xName: "x",
-//     yName: "y",
-//     name: "Publicaciones",
-//     type: "Column",
-//     marker: {
-//       dataLabel: {
-//         visible: true,
-//         position: "Top",
-//         font: { fontWeight: "600", color: "#ffffff" },
-//       },
-//     },
-//   },
-//   {
-//     dataSource: barChartData[2],
-//     xName: "x",
-//     yName: "y",
-//     name: "Ventas",
-//     type: "Column",
-//     marker: {
-//       dataLabel: {
-//         visible: true,
-//         position: "Top",
-//         font: { fontWeight: "600", color: "#ffffff" },
-//       },
-//     },
-//   },
-// ];
+export const barCustomSeries = [
+  {
+    dataSource: barChartData[0],
+    xName: "x",
+    yName: "y",
+    name: "Usuarios",
+    type: "Column",
+    marker: {
+      dataLabel: {
+        visible: true,
+        position: "Top",
+        font: { fontWeight: "600", color: "#ffffff" },
+      },
+    },
+  },
+  {
+    dataSource: barChartData[1],
+    xName: "x",
+    yName: "y",
+    name: "Publicaciones",
+    type: "Column",
+    marker: {
+      dataLabel: {
+        visible: true,
+        position: "Top",
+        font: { fontWeight: "600", color: "#ffffff" },
+      },
+    },
+  },
+  {
+    dataSource: barChartData[2],
+    xName: "x",
+    yName: "y",
+    name: "Ventas",
+    type: "Column",
+    marker: {
+      dataLabel: {
+        visible: true,
+        position: "Top",
+        font: { fontWeight: "600", color: "#ffffff" },
+      },
+    },
+  },
+];
 export const colorMappingData = [
   [
     { x: "Jan", y: 6.96 },
