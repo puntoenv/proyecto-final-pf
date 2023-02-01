@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 
 export default function Sales() {
   const dispatch = useDispatch();
-  const allSales = useSelector((state) => state.sales.sales);
+  const allSales = useSelector((state) => state.charts.sales);
 
   const [pageSize, setPageSize] = useState(8);
   const [rowId, setRowId] = useState(null);

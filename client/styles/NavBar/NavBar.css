@@ -16,6 +16,7 @@
   display: flex;
 }
 .navMenuList {
+  z-index: 4300;
   box-sizing: border-box;
   display: flex;
   justify-content: right;
@@ -40,8 +41,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 6px;
+  z-index: 4800;
   color: white;
-  font-size: 20px;
+  font-size: 24px;
 }
 .btnPerfil:hover {
   color: #fff;
@@ -74,5 +77,6 @@
     top: -13px;
     left: 10px;
     height: 80px;
+    border-radius: 10px;
   }
 }

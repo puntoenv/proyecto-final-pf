@@ -30,6 +30,6 @@ const merchant_orderSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-});
+}, {timestamps:true});
 
 module.exports = mongoose.model("Merchant_orders", merchant_orderSchema);

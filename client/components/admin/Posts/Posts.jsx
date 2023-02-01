@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 import style from "./style.module.css";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import PetsIcon from "@mui/icons-material/Pets";
-import Button from "@mui/material/Button";
+//import Button from "@mui/material/Button";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
 import PropTypes from "prop-types";

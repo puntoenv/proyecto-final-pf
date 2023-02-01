@@ -86,7 +86,7 @@
 .rend {
   font-size: 2em;
   margin-left: 22em;
-  margin-top: 4em;
+  margin-top: 11em;
   margin-bottom: 1.06em;
   width: fit-content;
   font-weight: 900;
@@ -98,20 +98,27 @@
   font-size: 2em;
   margin-left: 28em;
   color: rgba(54, 54, 54, 0.893);
-  margin-top: -15.5em;
+  margin-top: -448px
 }
 .sync {
   background: transparent;
-  margin-top: 1em;
-  margin-left: 55em;
+margin-top: -1.1em;
+margin-left: 52em;
 }
 
+.linkLogo{
+  height: 150px;
+  width: auto;
+  display: flex;
+  position: absolute;
+  top: -30px;
+  left: 25px;
+}
 .logo {
   border-radius: 1em;
-  margin-top: 1em;
+   width: auto;
+  height: 100%;
 
-  width: auto;
-  height: 11em;
 }
 
 .logOut {
@@ -134,17 +141,26 @@
 
 @import url("https://cdn.syncfusion.com/ej2/material.css");
 
+
+
+.conteinerSidebar{
+  position: relative;
+}
+
 .sidebar {
   box-shadow: rgba(113, 131, 117, 0.11) 0px 7px 30px 0px;
   padding: 55px;
   position: fixed;
-  /* width: 15em; */
+  width: 15em;
   top: 0px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   z-index: 5000;
   background: #2c4229;
+  
 }
+
+
 
 @media screen and (max-width: 800px) {
   .sidebar {

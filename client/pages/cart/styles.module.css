@@ -4,9 +4,9 @@
   flex-direction: column;
   margin-top: 100px;
 }
-@media(max-width:910px){
-  .containCart{
-    margin-top: 200px;
+@media (max-width: 910px) {
+  .containCart {
+    margin-top: 100px;
   }
 }
 
@@ -116,7 +116,6 @@
   }
 } */
 
-
 .name {
   font-weight: 600;
   margin-top: 20px;
@@ -131,7 +130,6 @@
     color: red;
   }
 } */
-
 
 .size {
   font-size: 20px;
@@ -148,13 +146,11 @@
   width: 1000px;
   flex-wrap: wrap;
 }
-@media(max-width:1000px){
-  .big_container{
+@media (max-width: 1000px) {
+  .big_container {
     width: auto;
-   
   }
 }
-
 
 .container2 {
   display: flex;

@@ -12,3 +12,8 @@
   font-size: 14px;
   outline: none;
 }
+@media (max-width: 950px) {
+  .contentReview {
+    width: 100%;
+  }
+}

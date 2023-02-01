@@ -23,6 +23,7 @@
     "mongodb": "^4.13.0",
     "mongoose": "^6.8.2",
     "mongoose-paginate-v2": "^1.7.1",
+    "mongoose-timestamp": "^0.6.0",
     "mongoose-unique-validator": "^3.1.0",
     "morgan": "~1.9.1",
     "nodemailer": "^6.9.0",

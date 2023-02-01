@@ -42,7 +42,6 @@ export default function Home({}) {
   const dispatch = useDispatch();
   const userAuth = useSelector((state) => state.userAuth.userData);
   const [numCall, setNumCall] = useState(0);
-  // const router = useRouter()
   !numCall && user && fn(user, dispatch, setNumCall);
   const settings = {
     arrows: false,
@@ -130,7 +129,7 @@ export default function Home({}) {
         </div>
 
         <div className={styles.containerAdopciones}>
-          <h2 className={styles.tituloAdopcion}>Info Adopciones</h2>
+          <h2 className={styles.tituloAdopcion}>INFO ADOPCIONES</h2>
           <p className={styles.infoAdopcion}>
             Nuestra plataforma permite a los usuarios visualizar todas las
             mascotas disponibles para adopción, como así también filtar las

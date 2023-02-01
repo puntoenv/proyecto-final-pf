@@ -10,7 +10,10 @@ import {
   AccumulationTooltip,
 } from "@syncfusion/ej2-react-charts";
 import styles from '../../../pages/admin/admin.module.css'
-const Sync = ({ id, data, legendVisiblity, height }) => {
+
+const PetType = ({ id, data, legendVisiblity }) => {
+
+
   return (
     <div>
       <p className={styles.type}> Especies</p>
@@ -18,10 +21,10 @@ const Sync = ({ id, data, legendVisiblity, height }) => {
         <AccumulationChartComponent
           id={id}
           legendSettings={{ visible: legendVisiblity,  }}
-          height="400"
+          height="520"
        background="transparent"
           tooltip={{ enable: true }}
-          width="500"
+          width="550"
         >
           <Inject
             services={[
@@ -33,11 +36,11 @@ const Sync = ({ id, data, legendVisiblity, height }) => {
           />
           <AccumulationSeriesCollectionDirective>
             <AccumulationSeriesDirective
-              name="Sale"
+              
               dataSource={data}
               xName="x"
               yName="y"
-              innerRadius="40%"
+              innerRadius="0%"
               startAngle={0}
               endAngle={360}
               radius="70%"
@@ -61,4 +64,4 @@ const Sync = ({ id, data, legendVisiblity, height }) => {
   );
 };
 
-export default Sync;
+export default PetType;
