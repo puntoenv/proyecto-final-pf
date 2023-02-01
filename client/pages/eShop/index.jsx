@@ -134,20 +134,6 @@ export default function eShop({
     <LayoutGlobal authUser={userAuth}>
       <Layout title="Productos" />
       <div className={styles.containerAllProducts}>
-        <a name="up"></a>
-        <form
-          onChange={(e) => handlerSearch(e)}
-          onSubmit={(e) => handlerOnSearch(e)}
-          className={styles.box}
-          id="search"
-        >
-          <input
-            className={styles.input}
-            type="search"
-            placeholder="Buscar..."
-          />
-          <input type="submit" className={styles.btn} value="Buscar" />
-        </form>
         <div className={styles.container2}>
           <form
             className={styles.form}
@@ -194,91 +180,112 @@ export default function eShop({
               value="Aplicar Filtros"
             />
           </form>
-          <div className={styles.pages}>
-            <button
-              onClick={(e) => {
-                handlerPage(e);
-                window.scrollTo(0, 0);
-              }}
-              value="🡸"
+          <div className={styles.caja}>
+            <form
+              onChange={(e) => handlerSearch(e)}
+              onSubmit={(e) => handlerOnSearch(e)}
+              className={styles.box}
+              id="search"
             >
-              {/* <BsFillCaretLeftFill /> */}
-              🡸
-            </button>
-            {paging?.map((p) => (
+              <input
+                className={styles.input}
+                type="search"
+                placeholder="Buscar..."
+              />
+              <input type="submit" className={styles.searchB} value="Buscar" />
+            </form>
+            <div className={styles.pagingTop}>
               <button
-                value={p}
-                key={p}
                 onClick={(e) => {
                   handlerPage(e);
                   window.scrollTo(0, 0);
                 }}
-                className={styles.pageNum}
+                value="🡸"
+                className={styles.paginate}
               >
-                {p}
+                {/* <BsFillCaretLeftFill /> */}
+                🡸
               </button>
-            ))}
-            <button
-              onClick={(e) => {
-                handlerPage(e);
-                window.scrollTo(0, 0);
-              }}
-              value="🡺"
-            >
-              {/* <BsFillCaretRightFill /> */}
-              🡺
-            </button>
-          </div>
-          <div className={styles.containerCards}>
-            {productos?.map((producto) => {
-              return (
-                <CardProduct
-                  key={producto._id}
-                  info={producto}
-                  addToCart={addToCart}
-                  cart={cart}
-                  serCart={setCart}
-                  productOfCart={productOfCart}
-                  discountItem={discountItem}
-                />
-              );
-            })}
-            <div />
-          </div>
-        </div>
-        <div className={styles.pages}>
-          <button
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-            value="🡸"
-          >
-            <BsFillCaretLeftFill />
-          </button>
+              {paging?.map((p) => (
+                <button
+                  value={p}
+                  key={p}
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
+                  className={styles.paginateNum}
+                >
+                  {p}
+                </button>
+              ))}
+              <button
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+                value="🡺"
+                className={styles.paginate}
+              >
+                {/* <BsFillCaretRightFill /> */}
+                🡺
+              </button>
+            </div>
+            <div className={styles.containerCards}>
+              {productos?.map((producto) => {
+                return (
+                  <CardProduct
+                    key={producto._id}
+                    info={producto}
+                    addToCart={addToCart}
+                    cart={cart}
+                    serCart={setCart}
+                    productOfCart={productOfCart}
+                    discountItem={discountItem}
+                  />
+                );
+              })}
+              <div />
+            </div>
+            <div className={styles.paging}>
+              <button
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+                value="🡸"
+                className={styles.paginate}
+              >
+                {/* <BsFillCaretLeftFill /> */}
+                🡸
+              </button>
 
-          {paging?.map((p) => (
-            <button
-              value={p}
-              key={p}
-              onClick={(e) => {
-                handlerPage(e);
-                window.scrollTo(0, 0);
-              }}
-              className={styles.pageNum}
-            >
-              {p}
-            </button>
-          ))}
-          <button
-            onClick={(e) => {
-              handlerPage(e);
-              window.scrollTo(0, 0);
-            }}
-            value="🡺"
-          >
-            <BsFillCaretRightFill />
-          </button>
+              {paging?.map((p) => (
+                <button
+                  value={p}
+                  key={p}
+                  onClick={(e) => {
+                    handlerPage(e);
+                    window.scrollTo(0, 0);
+                  }}
+                  className={styles.paginateNum}
+                >
+                  {p}
+                </button>
+              ))}
+              <button
+                onClick={(e) => {
+                  handlerPage(e);
+                  window.scrollTo(0, 0);
+                }}
+                value="🡺"
+                className={styles.paginate}
+              >
+                {/* <BsFillCaretRightFill /> */}
+                🡺
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </LayoutGlobal>

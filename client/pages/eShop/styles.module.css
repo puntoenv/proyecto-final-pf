@@ -1,8 +1,6 @@
-.containerAllProducts {
-  width: 100%;
-  height: 100%;
-  margin: 40px 0;
-  margin-bottom: 12%;
+.containerAllPets {
+  display: flex;
+  flex-direction: column;
 }
 
 .cantidad {
@@ -12,30 +10,57 @@
 }
 .container2 {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  justify-content: space-between;
 }
+@media (max-width: 900px) {
+  .container2 {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.caja {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
+  padding-top: 8.5rem;
   width: fit-content;
+  display: flex;
   gap: 0.5rem;
+  margin-top: 5rem;
+  margin-right: 30px;
+  margin-left: 100px;
+}
+
+@media (max-width: 900px) {
+  .form {
+    padding: 0;
+    margin: 0;
+    margin-top: 70px;
+  }
 }
 
 .containerCards {
+  margin: auto;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-content: space-around;
   font-family: "Segoe UI";
   flex-wrap: wrap;
-  margin-top: 30px;
-  margin-left: 25%;
+  justify-content: center;
+  align-content: flex-start;
 }
 .input {
-  width: 20%;
+  margin-top: 3em;
+  margin-bottom: 1.5em;
+  width: 100%;
   background-color: #e8eb9d;
   padding: 12px 24px;
   transition: transform 250ms ease-in-out;
@@ -49,7 +74,6 @@
   color: #111111;
   display: block;
   flex-direction: row;
-  margin-top: -3em;
 }
 
 .input::placeholder {
@@ -72,23 +96,22 @@
 .box {
   display: flex;
   justify-content: center;
-  width: 100%;
-  margin-top: 10em;
-  margin-left: 4rem;
+  padding-top: 3rem;
+}
+@media (max-width: 730px) {
+  .box {
+    padding: 0 30px;
+  }
 }
 
 .all {
   background: #e8eb9d;
-  font-size: 19px;
+  font-size: 16px;
   color: #32281f;
   border: 1em;
   border-radius: 15px;
-  height: 45px;
-  width: 160px;
   font-weight: 700;
-  margin-left: 50px;
-  margin-bottom: 1em;
-  margin-top: 4em;
+  padding: 6px 20px;
 }
 
 .all:hover {
@@ -104,17 +127,18 @@
   border-radius: 30px;
 }
 
-.btn {
+.searchB {
+  margin-top: 3em;
+  margin-bottom: 1.5em;
   border: 1px solid rgb(129, 126, 94);
   border-radius: 0px 15px 15px 0px;
   padding: 8px 22px;
   border-left: none;
   background-color: transparent;
   width: auto;
-  margin-top: -3em;
 }
 
-.btn:hover {
+.searchB:hover {
   background-color: #e8eb9d;
   border: 1px solid transparent;
   padding: 8px 22px;
@@ -123,33 +147,31 @@
 .btnFilter {
   background: #e8eb9d;
   font-size: 18px;
+  padding: 6px 20px;
   color: #32281f;
   border: 1em;
   border-radius: 15px;
-  height: 45px;
-  width: 160px;
   font-weight: 700;
-  margin-left: 50px;
+  margin-top: 1em;
 }
 .btnFilter:hover {
-  color: #000;
+  color: beige;
   border: none;
-  font-weight: 500;
+  font-weight: 700;
   transform: scale(1.05);
-  box-shadow: 0 0 10px #333;
-  background: #e8eb9d;
+  box-shadow: 0 0 10px rgb(185, 163, 103);
+  background: #584a3c;
 }
 .title {
   font-size: 20px;
 }
 
 .select {
+  height: 2rem;
   background-color: #4c8053;
   padding: 8px;
   width: 10em;
-  margin-bottom: 1em;
   border-radius: 9px;
-  margin-left: 3em;
   font-weight: 500;
   font-size: 17px;
 }
@@ -163,23 +185,46 @@
   display: flex;
 }
 
-.pages {
+.pagingTop {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: white;
   width: 100%;
-  margin-left: 4rem;
+}
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  background-color: white;
 }
 
-.pages button {
-  margin: 20px;
+.paginate {
+  display: flex;
+  margin: 20px 10px;
+  padding: 10px;
+  background-color: #e8eb9d;
+  border-radius: 15%;
 }
+.paginate:hover {
+  background-color: #4c8053;
+}
+
+.paginateNum {
+  display: flex;
+  margin: 20px 10px;
+  padding: 6px 10px;
+  background-color: #e8eb9d;
+  border-radius: 15%;
+}
+.paginateNum:hover {
+  background-color: #4c8053;
+}
+
 .iconPage {
   color: #555;
   font-size: 26px;
-}
-.pageNum {
-  padding: 1px 8px;
-  border-radius: 8px;
-  color: #fff;
-  background-color: #555;
 }

@@ -73,9 +73,11 @@
 
 .icon {
   margin: auto;
+  font-size: 50px;
 }
 .containInsta {
   margin-bottom: 40px;
+  font-size: 24px;
 }
 .containerTwo {
   padding: 40px;
@@ -114,7 +116,7 @@
     font-size: 16px;
   }
   .containInsta {
-    font-size: 18px;
+    font-size: 24px;
   }
   .icon {
     font-size: 30px;
@@ -193,7 +195,7 @@
     font-size: 12px;
   }
   .containInsta {
-    font-size: 14px;
+    font-size: 18x;
   }
   .icon {
     font-size: 30px;
