@@ -46,6 +46,8 @@ postPet.post("/post-pet", async (req, res) => {
       sociability,
       user: user._id,
       expireAt: new Date(),
+      
+     
     });
     user.pets = user.pets.concat(pet._id);
     await user.save();
@@ -64,7 +66,7 @@ postPet.post("/post-pet", async (req, res) => {
     res.status(200).send(pet._id);
   } catch (error) {
     console.log(error);
-    res.status(400).send("Error al publicar la mascota ");
+    res.status(400).send({error:error.message});
   }
 });
 

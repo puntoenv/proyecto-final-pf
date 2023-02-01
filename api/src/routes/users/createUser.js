@@ -7,8 +7,7 @@ router.post("/create-user", async (req, res) => {
   const { email, name } = req.body;
 
   try {
-    const user = await User.create({ email, name });
-
+    const user = await User.create({ email, name});
     await user.save();
 
     res.json({ error: null, user });

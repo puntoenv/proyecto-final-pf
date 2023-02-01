@@ -4,7 +4,7 @@ import mascotasSlice from "./mascotas";
 import userSlice from "./User";
 import productsSlice from "./products";
 import userAuthSlice from "./userAuth";
-import salesSlice from "./sales";
+import chartsSlice from "./charts";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +13,6 @@ export const store = configureStore({
     user: userSlice,
     products: productsSlice,
     userAuth: userAuthSlice,
-    sales: salesSlice
+    charts: chartsSlice
   },
 });
