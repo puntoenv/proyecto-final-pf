@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   position: fixed;
-  z-index: 3000;
+  z-index: 4500;
   top: 0px;
   right: -800px;
   height: 100%;
@@ -24,6 +24,20 @@
   .itemDash {
     font-size: 16px;
   }
+}
+
+.btnPerfilSlide {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 24px;
+  color: #fff;
+  background-color: #22312348;
+  border: 1px solid #2f473148;
+  border-radius: 5px;
+}
+.btnPerfilSlide:hover {
+  cursor: pointer;
 }
 .itemDash {
   display: flex;

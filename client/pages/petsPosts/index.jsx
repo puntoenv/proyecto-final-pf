@@ -8,11 +8,7 @@ import Layout from "../layout.js";
 import styles from "./styles.module.css";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { authUser } from "../../stores/actions";
-import {
-  BsFillCaretLeftFill,
-  BsFillCaretRightFill,
-  BsFillHeartFill,
-} from "react-icons/bs";
+import { BsFillHeartFill } from "react-icons/bs";
 
 const fn = (user, dispatch, setNumCall) => {
   if (user) {
@@ -41,9 +37,10 @@ export default function PetAdoption({ favorite, addAgregar }) {
   const types = useSelector((state) => state.mascotas.types);
 
   const [numCall, setNumCall] = useState(0);
-  const userAuth = useSelector((state) => state.userAuth.userData);
-
   !numCall && user && fn(user, dispatch, setNumCall);
+
+  const userAuth = useSelector((state) => state.userAuth.userData);
+  console.log(userAuth);
 
   // console.log(userAuth);
   const paging = [];

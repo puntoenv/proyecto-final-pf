@@ -20,3 +20,9 @@
   font-size: 120%;
   margin: 2%;
 }
+
+@media (max-width: 950px) {
+  .contentReviewSend {
+    width: 100%;
+  }
+}

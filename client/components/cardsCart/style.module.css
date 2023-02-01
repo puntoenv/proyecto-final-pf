@@ -2,6 +2,8 @@
   display: flex;
   justify-content: flex-start;
   position: relative;
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 5px;
   border-bottom: 3px solid #aaa;
   width: 100%;
   margin: 10px;
@@ -60,7 +62,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 100px; */
   padding: 5px;
   border-radius: 10px;
 }
@@ -82,4 +83,39 @@
   right: 40px;
   color: #e35;
   font-size: 30px;
+}
+
+@media (max-width: 530px) {
+  .containImgName {
+    width: 80px;
+    margin-bottom: 20px;
+  }
+  .img {
+    height: 50px;
+  }
+  .name {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .price {
+    font-size: 12px;
+  }
+  .containCantSubt {
+    position: absolute;
+    left: 150px;
+  }
+  .icon {
+    font-size: 18px;
+  }
+  .amount {
+    font-size: 14px;
+    padding: 1px 6px;
+  }
+  .subtotal {
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 22px;
+    right: 20px;
+  }
 }

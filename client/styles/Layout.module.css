@@ -11,20 +11,3 @@
   display: flex;
   justify-content: center;
 }
-
-.footer {
-  z-index: 4000;
-  background-color: #32281f;
-  width: 100%;
-  padding: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: antiquewhite;
-}
-.link {
-  border-bottom: 1px solid #fff;
-}
-.link:hover {
-  color: #81664ee1;
-}

@@ -7,7 +7,9 @@ types.get("/", async (req, res) => {
     let types = await Pet.find()
       .then((pets) => pets.map((pet) => pet.type))
       .then((data) => Array.from(new Set(data)));
+      console.log(types);
     res.status(200).send(types);
+
   } catch (error) {
     console.log(error);
   }

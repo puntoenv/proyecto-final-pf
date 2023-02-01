@@ -4,7 +4,7 @@ import styles from "../../pages/home/styles.module.css";
 function Nosotros() {
   return (
     <div className={styles.boxInfoNosotros}>
-      <span className={styles.aboutUs}>Sobre Nosotros</span>
+      <span className={styles.aboutUs}>SOBRE NOSOTROS</span>
 
       <p className={styles.infoNosotros}>
         Little Paws es una ONG que tiene como objetivo encontrar un hogar y
