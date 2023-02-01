@@ -102,7 +102,7 @@ export default function Detail({
       <div className={style.containProduct}>
         <div className={style.containBtnBack}>
           <Link href="/eShop" className={style.btnBack}>
-            {"<"} Atras
+            Volver
           </Link>
         </div>
 
@@ -186,7 +186,6 @@ export default function Detail({
                 <ProductCard
                   key={recomendado._id}
                   info={recomendado}
-                  // addToCart={addToCart}
                   nombre={recomendado.name}
                   imagen={recomendado.image}
                   precio={recomendado.price}
