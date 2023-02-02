@@ -41,3 +41,12 @@ export default function landingPage() {
     </div>
   );
 }
+
+export function getServerSideProps(context){
+  return {
+    redirect: {
+      destination: "/home",
+      permanent: true,
+    },
+  };
+}
