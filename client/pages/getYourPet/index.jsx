@@ -101,180 +101,172 @@ export default function getYourPet({ pet }) {
   };
 
   return (
-    <div className={styles.page}>
-      <LayoutGlobal authUser={userAuth}>
-        <Layout title="Adopción" />
-        <div className={styles.container}>
-          <div className={styles.imagesContainer}>
-            <div className={styles.petName}>{pet?.name?.toUpperCase()}</div>
-            <div
-              className={styles.divImage}
-              onMouseMove={(e) => handlerContainerImage(e)}
-            >
+    <LayoutGlobal authUser={userAuth}>
+      <Layout title="Adopción" />
+      <div className={styles.container}>
+        <div className={styles.imagesContainer}>
+          <div className={styles.petName}>{pet?.name?.toUpperCase()}</div>
+          <div
+            className={styles.divImage}
+            onMouseMove={(e) => handlerContainerImage(e)}
+          >
+            <Image
+              style={{
+                transformOrigin: `${x}px ${y}px`,
+              }}
+              className={styles.image}
+              src={pet.image[0]}
+              alt="petImage"
+              width={500}
+              height={500}
+            />
+          </div>
+          <div className={styles.images}>
+            <Image
+              src={pet.image[1] ? pet.image[1] : fileNotFound}
+              width={1000}
+              height={1000}
+              className={styles.imgs}
+              onClick={(e) => handlerSelectImage(e)}
+            />
+            <Image
+              src={pet.image[2] ? pet.image[2] : fileNotFound}
+              width={1000}
+              height={1000}
+              className={styles.imgs}
+              onClick={(e) => handlerSelectImage(e)}
+            />
+            <Image
+              src={pet.image[3] ? pet.image[3] : fileNotFound}
+              width={1000}
+              height={1000}
+              className={styles.imgs}
+              onClick={(e) => handlerSelectImage(e)}
+            />
+          </div>
+        </div>
+        {page === 1 ? (
+          <div className={styles.form}>
+            <div>
               <Image
-                style={{
-                  transformOrigin: `${x}px ${y}px`,
-                }}
-                className={styles.image}
-                src={pet.image[0]}
-                alt="petImage"
-                width={500}
-                height={500}
+                src="https://res.cloudinary.com/dibwxnomi/image/upload/v1674147010/imagenes/Enhorabuena_ngdnn0.png"
+                width={300}
+                height={300}
               />
             </div>
-            <div className={styles.images}>
-              <Image
-                src={pet.image[1] ? pet.image[1] : fileNotFound}
-                width={1000}
-                height={1000}
-                className={styles.imgs}
-                onClick={(e) => handlerSelectImage(e)}
-              />
-              <Image
-                src={pet.image[2] ? pet.image[2] : fileNotFound}
-                width={1000}
-                height={1000}
-                className={styles.imgs}
-                onClick={(e) => handlerSelectImage(e)}
-              />
-              <Image
-                src={pet.image[3] ? pet.image[3] : fileNotFound}
-                width={1000}
-                height={1000}
-                className={styles.imgs}
-                onClick={(e) => handlerSelectImage(e)}
-              />
+            <p>Hola {capitalize(userAuth?.name) || userAuth?.email}</p>
+            <p className={styles.p}>
+              Tu familia está a punto de crecer. Estamos muy felices de que te
+              hayas interesado en adoptar a {capitalize(pet.name)}. Cada vez son
+              mas las personas que desean darle un hogar a nuestras Little Paws.
+            </p>
+            <p className={styles.p}>
+              Acontinuación deberas llenar un pequeño formulario para saber si
+              eres apto para {capitalize(pet.name)}.
+            </p>
+            <div className={styles.btns}>
+              <Link href={`/detail/${pet._id}`} className={styles.back}>
+                <button>Volver</button>
+              </Link>
+              <button
+                className={styles.next}
+                onClick={(e) => handlerOnPaging(e)}
+              >
+                Siguiente<IoIosArrowForward size={30}></IoIosArrowForward>
+              </button>
             </div>
           </div>
-          {page === 1 ? (
-            <div className={styles.form}>
-              <div>
-                <Image
-                  src="https://res.cloudinary.com/dibwxnomi/image/upload/v1674147010/imagenes/Enhorabuena_ngdnn0.png"
-                  width={300}
-                  height={300}
-                />
-              </div>
-              <p>Hola {capitalize(userAuth?.name) || userAuth?.email}</p>
+        ) : (
+          <form
+            className={styles.form}
+            onChange={(e) => handlerForm(e)}
+            onSubmit={(e) => handlerOnSubmit(e)}
+          >
+            <div>
               <p className={styles.p}>
-                Tu familia está a punto de crecer. Estamos muy felices de que te
-                hayas interesado en adoptar a {capitalize(pet.name)}. Cada vez
-                son mas las personas que desean darle un hogar a nuestras Little
-                Paws.
+                ¿Te consideras apto para adoptar a {capitalize(pet.name)}?
               </p>
-              {/* <Image
-                src="https://res.cloudinary.com/dibwxnomi/image/upload/v1673708954/imagenes/Logo_marro%CC%81n.png_ehcsx9.png"
-                width={150}
-                height={150}
-              /> */}
-              <p className={styles.p}>
-                Acontinuación deberas llenar un pequeño formulario para saber si
-                eres apto para {capitalize(pet.name)}.
-              </p>
-              <div className={styles.btns}>
-                <Link href={`/detail/${pet._id}`} className={styles.back}>
-                  <button>Volver</button>
-                </Link>
-                <button
-                  className={styles.next}
-                  onClick={(e) => handlerOnPaging(e)}
-                >
-                  Siguiente<IoIosArrowForward size={30}></IoIosArrowForward>
-                </button>
+              <div className={styles.options}>
+                <label>
+                  <input name="apto" type="radio" value="si" />
+                  Si
+                </label>
+                <label>
+                  <input name="apto" type="radio" value="no" />
+                  No
+                </label>
               </div>
             </div>
-          ) : (
-            <form
-              className={styles.form}
-              onChange={(e) => handlerForm(e)}
-              onSubmit={(e) => handlerOnSubmit(e)}
-            >
-              <div>
-                <p className={styles.p}>
-                  ¿Te consideras apto para adoptar a {capitalize(pet.name)}?
-                </p>
-                <div className={styles.options}>
-                  <label>
-                    <input name="apto" type="radio" value="si" />
-                    Si
-                  </label>
-                  <label>
-                    <input name="apto" type="radio" value="no" />
-                    No
-                  </label>
-                </div>
+            <div>
+              <p className={styles.p}>
+                ¿Teniendo en cuenta que {capitalize(pet.name)} tiene {pet.age}{" "}
+                de edad consideras que podras cuidar de{" "}
+                {pet.gender === "hembra" ? "ella" : "el"} el tiempo que le quede
+                de vida?
+              </p>
+              <div className={styles.options}>
+                <label>
+                  <input name="edad" type="radio" value="si" />
+                  Si
+                </label>
+                <label>
+                  <input name="edad" type="radio" value="no" />
+                  No
+                </label>
               </div>
-              <div>
-                <p className={styles.p}>
-                  ¿Teniendo en cuenta que {capitalize(pet.name)} tiene {pet.age}{" "}
-                  de edad consideras que podras cuidar de{" "}
-                  {pet.gender === "hembra" ? "ella" : "el"} el tiempo que le
-                  quede de vida?
-                </p>
-                <div className={styles.options}>
-                  <label>
-                    <input name="edad" type="radio" value="si" />
-                    Si
-                  </label>
-                  <label>
-                    <input name="edad" type="radio" value="no" />
-                    No
-                  </label>
-                </div>
+            </div>
+            <div>
+              <p className={styles.p}>
+                Despues de visualizar la informacion detallada de{" "}
+                {capitalize(pet.name)} ¿Crees que podrias tener dificultades con
+                la salud de tu nueva mascota?
+              </p>
+              <div className={styles.options}>
+                <label>
+                  <input name="salud" type="radio" value="si" />
+                  Si
+                </label>
+                <label>
+                  <input name="salud" type="radio" value="no" />
+                  No
+                </label>
               </div>
-              <div>
-                <p className={styles.p}>
-                  Despues de visualizar la informacion detallada de{" "}
-                  {capitalize(pet.name)} ¿Crees que podrias tener dificultades
-                  con la salud de tu nueva mascota?
-                </p>
-                <div className={styles.options}>
-                  <label>
-                    <input name="salud" type="radio" value="si" />
-                    Si
-                  </label>
-                  <label>
-                    <input name="salud" type="radio" value="no" />
-                    No
-                  </label>
-                </div>
+            </div>
+            <div>
+              <p className={styles.p}>
+                ¿Consideras que la {pet.sociability} relación de{" "}
+                {capitalize(pet.name)} con las otras mascotas se volvera un
+                problema para ti?
+              </p>
+              <div className={styles.options}>
+                <label>
+                  <input name="relacion" type="radio" value="si" />
+                  Si
+                </label>
+                <label>
+                  <input name="relacion" type="radio" value="no" />
+                  No
+                </label>
               </div>
-              <div>
-                <p className={styles.p}>
-                  ¿Consideras que la {pet.sociability} relación de{" "}
-                  {capitalize(pet.name)} con las otras mascotas se volvera un
-                  problema para ti?
-                </p>
-                <div className={styles.options}>
-                  <label>
-                    <input name="relacion" type="radio" value="si" />
-                    Si
-                  </label>
-                  <label>
-                    <input name="relacion" type="radio" value="no" />
-                    No
-                  </label>
-                </div>
-              </div>
-              <div className={styles.btns}>
-                <button
-                  className={styles.prev}
-                  onClick={(e) => handlerOnPaging(e)}
-                >
-                  <IoIosArrowBack size={30}></IoIosArrowBack>Anterior
-                </button>
-                <input
-                  type="submit"
-                  disabled={boolean}
-                  className={styles.adopt}
-                  value="Adoptar"
-                />
-              </div>
-            </form>
-          )}
-        </div>
-      </LayoutGlobal>
-    </div>
+            </div>
+            <div className={styles.btns}>
+              <button
+                className={styles.prev}
+                onClick={(e) => handlerOnPaging(e)}
+              >
+                <IoIosArrowBack size={30}></IoIosArrowBack>Anterior
+              </button>
+              <input
+                type="submit"
+                disabled={boolean}
+                className={styles.adopt}
+                value="Adoptar"
+              />
+            </div>
+          </form>
+        )}
+      </div>
+    </LayoutGlobal>
   );
 }
 

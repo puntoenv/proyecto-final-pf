@@ -276,9 +276,12 @@ export default function PetAdoption({ favorite, addAgregar }) {
                     <div className={styles.infoPet}>
                       <h3 className={styles.name}>{mascota.name}</h3>
                       <span className={styles.size}>{mascota.gender}</span>
-                      <button className={styles.btn}>
-                        <Link href={`/detail/${mascota._id}`}>Ver detalle</Link>
-                      </button>
+                      <Link
+                        href={`/detail/${mascota._id}`}
+                        className={styles.btn}
+                      >
+                        Ver detalle
+                      </Link>
                       {
                         <button
                           id={mascota._id}
