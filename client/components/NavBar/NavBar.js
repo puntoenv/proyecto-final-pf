@@ -72,7 +72,7 @@ const NavBar = ({ authUser }) => {
             </span>
           ) : (
             <Link href="/api/auth/login" className="itemNav">
-              <span>LogIn</span>
+              <span>Entrar</span>
             </Link>
           )}
         </div>
