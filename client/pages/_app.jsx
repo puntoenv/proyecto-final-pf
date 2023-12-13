@@ -88,10 +88,6 @@ export default function App({ Component, pageProps }) {
     <UserProvider client_id={clientId}>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          {/* <Script src="https://polyfill.io/v3/polyfill.min.js?features=default" />
-          <Script
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4&callback=initMap&v=weekly"
-          /> */}
           <Component
             {...pageProps}
             discountItem={discountItem}
