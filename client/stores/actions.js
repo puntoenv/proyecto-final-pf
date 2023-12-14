@@ -17,7 +17,12 @@ import {
   getReported,
 } from "./mascotas";
 import { getUserId, getAllUsers } from "./User";
-import { getSales , getFilteredUsers, getFilteredPosts, getFilteredSales} from "./charts";
+import {
+  getSales,
+  getFilteredUsers,
+  getFilteredPosts,
+  getFilteredSales,
+} from "./charts";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
 import Router from "next/router";
@@ -33,7 +38,7 @@ export const sales = () => async (dispatch) => {
   }
 };
 
-export const filteredUsers = ()=> async (dispatch)=>{
+export const filteredUsers = () => async (dispatch) => {
   try {
     let latestUsers = await axios("/charts/users");
     dispatch(getFilteredUsers(latestUsers.data));
@@ -41,7 +46,7 @@ export const filteredUsers = ()=> async (dispatch)=>{
     console.error(error);
   }
 };
-export const filteredPosts = ()=> async (dispatch)=>{
+export const filteredPosts = () => async (dispatch) => {
   try {
     let latestPosts = await axios("/charts/posts");
     dispatch(getFilteredPosts(latestPosts.data));
@@ -49,7 +54,7 @@ export const filteredPosts = ()=> async (dispatch)=>{
     console.error(error);
   }
 };
-export const filteredSales= ()=> async (dispatch)=>{
+export const filteredSales = () => async (dispatch) => {
   try {
     let latestSales = await axios("/charts/sales");
     dispatch(getFilteredSales(latestSales.data));
@@ -58,7 +63,7 @@ export const filteredSales= ()=> async (dispatch)=>{
   }
 };
 
-export const reported = ()=> async (dispatch)=>{
+export const reported = () => async (dispatch) => {
   try {
     let pets = await axios("/pets/reported");
     dispatch(getReported(pets.data));
@@ -120,9 +125,9 @@ export const PutReview = async (obj, id) => {
 };
 
 export const PutPets = async (id, obj) => {
-console.log(obj)
+  console.log(obj);
   try {
-    const respo = await axios.put(`/updatePet/${id}`, obj)
+    const respo = await axios.put(`/updatePet/${id}`, obj);
     if (respo.data && obj.updateAdopted) {
       Swal.fire({
         title: "Estado editado con éxito",
@@ -130,7 +135,7 @@ console.log(obj)
         color: "#437042",
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
-      }).then((res) => Router.reload(window.location.pathname));;
+      }).then((res) => Router.reload(window.location.pathname));
     } else if (respo.data && !obj.hidden) {
       Swal.fire({
         title: "🐾 Mascota editada correctamente 🐾",
@@ -139,9 +144,9 @@ console.log(obj)
         confirmButtonColor: "#437042",
         confirmButtonAriaLabel: "#437042",
       }).then((res) => Router.reload(window.location.pathname));
-    } 
+    }
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 
@@ -413,12 +418,13 @@ export function getDescription(post) {
   };
 }
 
-export function adoptPet(petId, obj) {
+export function adoptPet(petId, userId, obj) {
   return async function (dispatch) {
-    console.log(obj)
+    console.log(obj);
     return axios
-      .put(`/updatePet/${petId}`, obj)
-      .then(() => axios.get(`/adoptEmail/?petId=${petId}&userId=${userId}`))
+      .get(`/adoptEmail/?petId=${petId}&userId=${userId}`)
+      .then(() => axios.put(`/updatePet/${petId}`, obj))
+      .then(() => console.log("holaaaaaaaaa"))
       .catch((error) => console.log(error));
   };
 }
