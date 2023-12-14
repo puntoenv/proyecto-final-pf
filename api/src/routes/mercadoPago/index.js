@@ -110,7 +110,7 @@ router.post("/buyNotification/:idMo", async (req, res) => {
 
     if (merchant_order.body.id && mOrderVerify == null) {
       await axios.post(
-        `https://proyecto-final-pf-production.up.railway.app/merchantorders`,
+        `https://backend-pf-sebastian-peralta.koyeb.app/merchantorders`,
         merchant_order.body
       );
 
@@ -124,8 +124,8 @@ router.post("/buyNotification/:idMo", async (req, res) => {
           let id_product = merchant_order.body.items[i].id;
 
           await axios.put(
-            `https://proyecto-final-pf-production.up.railway.app/payment/update/${id_product}/${quantity}`
-          ); 
+            `https://backend-pf-sebastian-peralta.koyeb.app/payment/update/${id_product}/${quantity}`
+          );
         }
       }
     }
