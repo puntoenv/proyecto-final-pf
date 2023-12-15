@@ -1,5 +1,6 @@
 require("dotenv").config();
 const translate = require("translate");
+const { GOOGLE_APY_KEY } = process.env;
 
 async function translateToEnglish(string) {
   translate.from = "es";
@@ -12,7 +13,7 @@ async function translateToEnglish(string) {
 async function translateToSpanish(string) {
   translate.from = "en";
   translate.engine = "google";
-  translate.key = "AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4";
+  translate.key = GOOGLE_APY_KEY;
   let result = await translate(string, { to: "es" });
   return result;
 }
