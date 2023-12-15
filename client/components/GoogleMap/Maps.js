@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+import { GOOGLE_MAPS_API_KEY } from "process.env";
 import React, { useEffect, useMemo, useState } from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import usePlacesAutocomplete, {
@@ -26,7 +29,7 @@ QUE LE PASAMOS PARA SETEAR PARA QUE TENGAN UNA IDEA DE COMO FUNCIONA ;) */
 
 export default function Maps(props) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyAefJK2BxtwD4TJT3JP-QG8Ej4YMhRTM-4",
+    googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
 
