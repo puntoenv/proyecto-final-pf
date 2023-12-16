@@ -13,6 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material/button": "^14.0.0",
+    "@mui/base": "^5.0.0-beta.27",
     "@mui/material": "^5.11.5",
     "@mui/x-data-grid": "^5.17.20",
     "@mui/x-data-grid-pro": "^5.17.20",
