@@ -2,7 +2,7 @@ const conn = require("./app");
 const mongoose = require("mongoose");
 
 const { PORT, MONGOPASSWORD, MONGOHOST, MONGOPORT, MONGOUSER } = process.env;
-const uri = `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}:${MONGOPORT}`;
+const uri = `mongodb://${MONGOUSER}:${MONGOPASSWORD}@${MONGOHOST}/${MONGOPORT}?retryWrites=true&w=majority`;
 
 mongoose.set("strictQuery", true);
 mongoose
